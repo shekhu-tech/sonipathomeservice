@@ -343,7 +343,7 @@ nav {
 }
 
 /* === Responsive for Tablets === */
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
   .stat-card {
     flex: 1 1 calc(50% - 30px);
     max-width: 48%;
