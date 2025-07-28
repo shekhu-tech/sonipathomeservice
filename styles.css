@@ -1,0 +1,453 @@
+
+/* Global Styles with ISME Classic Colors */
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    :root {
+      --deep-night: #080012;
+      --neon-pink: #ff0080;
+      --neon-blue: #00ffff;
+      --gold-glow: #ffd700;
+      --white: #ffffff;
+      --muted-gray: #aaa;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: light gray;
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--white);
+    }
+
+    /* ======= HEADER (Classic Black Theme) ======= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000;
+  padding: 16px 32px;
+  border-bottom: 2px solid #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+header.scrolled {
+  padding: 12px 32px;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+}
+
+/* ======= LOGO ======= */
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+.logo span {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 10px;
+  background: linear-gradient(to right, #ffd700, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+/* ======= NAVIGATION ======= */
+nav {
+  display: flex;
+  gap: 18px;
+}
+.nav-item {
+  position: relative;
+}
+.nav-item > a {
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.nav-item > a::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: #ffd700;
+  transition: width 0.3s ease;
+}
+.nav-item > a:hover {
+  background: rgba(255, 215, 0, 0.15);
+  color: #ffd700;
+  transform: translateY(-1px);
+}
+.nav-item > a:hover::after {
+  width: 100%;
+}
+
+/* ======= DROPDOWN (if any) ======= */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+  animation: dropdownFade 0.3s ease-in-out;
+}
+.dropdown a {
+  padding: 12px 18px;
+  color: #ccc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.dropdown a:hover {
+  background: #ffd700;
+  color: #000;
+  padding-left: 24px;
+}
+.nav-item:hover .dropdown {
+  display: flex;
+}
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======= MENU TOGGLE ======= */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  color: #ffd700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.menu-toggle:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+/* ======= SIDEBAR (Mobile) ======= */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 40px 24px;
+  background: #000;
+  backdrop-filter: blur(12px);
+  transform: translateX(-100%);
+  transition: 0.5s ease-in-out;
+  z-index: 9999;
+  overflow-y: auto;
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+}
+.sidebar.active {
+  transform: translateX(0);
+}
+.sidebar .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 26px;
+  color: #ffd700;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.sidebar .close-btn:hover {
+  transform: rotate(90deg) scale(1.2);
+}
+.sidebar-logo {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.sidebar-logo img {
+  height: 50px;
+  max-width: 100%;
+  transition: all 0.3s ease;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar li {
+  margin: 14px 0;
+}
+.sidebar-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid #ffd70033;
+}
+.sidebar-button:hover {
+  background: #ffd700;
+  color: #000;
+  transform: translateX(8px);
+}
+
+/* ======= Responsive (Mobile Nav) ======= */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+
+  /* === Slider Container === */
+.image-slider {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  background: #eaeff5;
+  margin: 0 auto;
+}
+
+/* === Background Images === */
+.slider-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.slider-background img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: all 1s ease-in-out;
+  filter: brightness(0.65);
+}
+.slider-background img.active {
+  opacity: 1;
+  z-index: 2;
+  animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* === Overlay === */
+.slider-overlay {
+  position: relative;
+  z-index: 3;
+  padding: 2rem;
+  text-align: center;
+  color: #ffffff;
+  max-width: 900px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+.slider-overlay h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+.slider-overlay p {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+/* === Info Display Box === */
+.jackpot-display {
+  background: rgba(0, 91, 150, 0.8);
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  padding: 12px 25px;
+  margin-bottom: 25px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+/* === CTA Button === */
+.slider-btn {
+  background: #007bff;
+  color: #ffffff;
+  padding: 16px 40px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  transition: 0.3s ease;
+}
+.slider-btn:hover {
+  background: #0056b3;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 91, 150, 0.4);
+}
+
+/* === Stats Section === */
+.lottery-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: #ffffff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  min-width: 200px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center; /* Center align content */
+  flex: 1 1 calc(25% - 30px); /* default 4 in row (adjust based on gap) */
+  max-width: 250px;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  border-color: #007bff;
+}
+
+.stat-card h3 {
+  font-size: 1.1rem;
+  color: #007bff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.stat-card p {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+}
+
+/* === Responsive for Tablets === */
+@media (max-width: 768px) {
+  .stat-card {
+    flex: 1 1 calc(50% - 30px);
+    max-width: 48%;
+  }
+}
+
+/* === Responsive for Small Phones === */
+@media (max-width: 480px) {
+  .stat-card {
+    flex: 1 1 calc(50% - 20px);
+    max-width: 47%;
+    padding: 15px 20px;
+  }
+
+  .stat-card h3 {
+    font-size: 1rem;
+  }
+
+  .stat-card p {
+    font-size: 1.5rem;
+  }
+}
+
+
+/* === Responsive === */
+@media (max-width: 992px) {
+  .slider-overlay h1 {
+    font-size: 2.8rem;
+  }
+  .slider-overlay p {
+    font-size: 1.3rem;
+  }
+  .jackpot-display {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+  }
+}
+@media (max-width: 768px) {
+  .slider-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+  .stat-card {
+    min-width: 160px;
+    padding: 15px 20px;
+  }
+}
+@media (max-width: 576px) {
+  .slider-overlay h1,
+  .slider-btn {
+    display: none;
+  }
+  .slider-overlay p {
+    font-size: 1.1rem;
+  }
+  .stat-card h3 {
+    font-size: 1rem;
+  }
+  .stat-card p {
+    font-size: 1.3rem;
+  }
+}
+ 
+    /* Products Section with ISME Colors */
+
+
+      
+
+ 
