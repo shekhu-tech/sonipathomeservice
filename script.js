@@ -215,6 +215,18 @@ function injectFooter() {
     gap: 10px;
   }
 }
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  height: 50px;
+  max-width: 100%;
+  transition: transform 0.3s ease;
+}
     </style>
   `;
 
@@ -222,7 +234,12 @@ function injectFooter() {
     <footer id="site-footer" style="background: #000; padding: 3rem 2rem;">
   <div class="footer-container">
     <div class="footer-header">
-      <h2 class="footer-heading">Sonipat AC Service</h2>
+      <!-- Centered Logo -->
+    <div class="footer-logo">
+      <a href="index.html">
+        <img src="win.png" alt="Sonipat AC Service Logo">
+      </a>
+    </div>
       <p class="footer-lines">
         Trusted appliance service in Sonipat<br>
         Fast doorstep repair for AC, fridge, cooler, geyser, washing machine, and more<br>
