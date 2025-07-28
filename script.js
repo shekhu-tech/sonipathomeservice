@@ -237,7 +237,9 @@ function injectFooter() {
       <a href="geyser-repair.html" class="footer-btn" title="Geyser"><i class="fas fa-burn"></i></a>
       <a href="washing-machine.html" class="footer-btn" title="Washing Machine"><i class="fas fa-soap"></i></a>
       <a href="chimney-cleaning.html" class="footer-btn" title="Chimney"><i class="fas fa-wind"></i></a>
-      <a href="privacy-policy.html" class="footer-btn" title="Privacy Policy"><i class="fas fa-shield-alt"></i></a>
+      <a href="privacy.html" class="footer-btn" title="Privacy Policy"><i class="fas fa-shield-alt"></i></a>
+      <a href="terms.html" class="footer-btn" title="Terms & Conditions"><i class="fas fa-file-contract"></i></a>
+     <a href="refund.html" class="footer-btn" title="Refund & Cancellation Policy"><i class="fas fa-undo-alt"></i></a>
     </div>
 
     <div class="social-links">
