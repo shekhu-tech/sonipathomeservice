@@ -407,9 +407,93 @@ nav {
   }
 }
  
-    /* Products Section with ISME Colors */
+   .policy-section {
+  max-width: 960px;
+  margin: 100px auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.05);
+  animation: fadeIn 0.7s ease;
+}
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
+.policy-section h1 {
+  font-size: 2.4rem;
+  margin-bottom: 30px;
+  text-align: center;
+  background: linear-gradient(90deg, #007bff, #00c3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.policy-section h2 {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  color: #007bff;
+}
+
+.policy-section p {
+  font-size: 1rem;
+  margin: 16px 0;
+  color: #444;
+}
+
+.policy-section ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.policy-section li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  position: relative;
+}
+
+.policy-section li::before {
+  content: "✔";
+  color: #00c3ff;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* ===== Highlight Box for Notices ===== */
+.notice {
+  background: #eaf6ff;
+  border-left: 4px solid #007bff;
+  padding: 16px;
+  margin: 20px 0;
+  border-radius: 6px;
+  color: #003d66;
+  font-weight: 500;
+}
+
+/* ===== Responsive Layout ===== */
+@media (max-width: 768px) {
+  .policy-section {
+    padding: 30px 20px;
+    margin: 60px 20px;
+  }
+
+  .policy-section h1 {
+    font-size: 1.9rem;
+  }
+
+  .policy-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .policy-section p,
+  .policy-section li {
+    font-size: 0.95rem;
+  }
+}
       
 
  
