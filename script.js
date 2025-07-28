@@ -42,6 +42,9 @@ function injectHeader() {
       <li><a class="sidebar-button" href="geyser-repair.html"><span><i class="fas fa-burn"></i> Geyser</span></a></li>
       <li><a class="sidebar-button" href="washing-machine.html"><span><i class="fas fa-soap"></i> Washing Machine</span></a></li>
       <li><a class="sidebar-button" href="chimney-cleaning.html"><span><i class="fas fa-wind"></i> Chimney</span></a></li>
+      <li><a class="sidebar-button" href="policy.html"><span><i class="fas fa-shield-alt"></i> Privacy Policy</span></a></li>
+      <li><a class="sidebar-button" href="terms.html"><span><i class="fas fa-file-contract"></i> Terms & Conditions</span></a></li>
+      <li><a class="sidebar-button" href="refund.html"><span><i class="fas fa-undo-alt"></i> Refund Policy</span></a></li>
     </ul>
   </div>
 </header>
