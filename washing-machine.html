@@ -12,6 +12,343 @@
   <div id="header-container"></div>
 
 
+<style>
+  /* ======= Main Section ======= */
+  .products-section {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: #f4f4f4;
+  }
+
+  /* ======= Title Styling ======= */
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #005f99;
+    text-transform: uppercase;
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+    padding-bottom: 6px;
+  }
+
+  /* ======= Card Layout ======= */
+  .cards-container1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .cards-container1 > .card {
+    width: calc(33.333% - 1.34rem);
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+
+  /* ======= Card Styling ======= */
+  .card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 270px;
+    max-width: 399px;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+    border-color: #007bff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  }
+
+  /* ======= Background Image Area ======= */
+  .card-background {
+    height: 65%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #e0e0e0;
+  }
+
+  /* ======= Card Content ======= */
+  .card-content2 {
+    height: 35%;
+    background: #f9f9f9;
+    color: #222;
+    padding: 0.6rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    text-align: center;
+  }
+
+  .card-content2 h3 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    color: #005f99;
+    letter-spacing: 0.5px;
+  }
+
+  /* ======= Button Style ======= */
+  .btn {
+    display: block;
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 10px 0;
+    border-radius: 999px;
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
+  }
+
+  .btn:hover {
+    background: #0056b3;
+    color: #fff;
+  }
+
+ /* ======= Top Corner Ribbon (Frosty Blue with Glow) ======= */
+.corner-ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 60px solid #b0e0f9; /* Icy sky blue */
+  border-right: 60px solid transparent;
+  z-index: 10;
+  filter: drop-shadow(0 0 12px #a3d4f7); /* Gentle cold glow */
+}
+
+/* ======= Top Badge (Mint-Silver with Frost Glow) ======= */
+.card-category-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #e8fafd; /* Light minty silver */
+  color: #1d1d1d;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  z-index: 10;
+  box-shadow: 0 0 14px rgba(176, 224, 249, 0.65); /* Frosty glow */
+  border: 1px solid #b0dfff; /* subtle icy border */
+}
+
+  /* ======= Tablet ======= */
+  @media (max-width: 1024px) {
+    .cards-container1 > .card {
+      width: 100%;
+      max-width: 90%;
+    }
+    .card {
+      height: 270px;
+    }
+  }
+
+  /* ======= Mobile ======= */
+  @media (max-width: 480px) {
+    .products-section {
+      padding: 2rem 1rem;
+    }
+    .section-title {
+      font-size: 1.8rem;
+    }
+    .corner-ribbon {
+      border-top: 40px solid #007bff;
+      border-right: 40px solid transparent;
+    }
+    .btn {
+      font-size: 0.85rem;
+      padding: 8px 0;
+    }
+  }
+</style>
+<br><br><br>
+<section class="products-section">
+  <h2 class="section-title">Washing Machine Services</h2>
+  <div class="cards-container1">
+
+    <!-- 1 -->
+    <a href="top-load-repair.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Top Load</div>
+      <div class="card-background" style="background-image: url('washing1.png');"></div>
+      <div class="card-content2">
+        <h3>Top Load Repair – ₹199</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 2 -->
+    <a href="front-load-repair.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Front Load</div>
+      <div class="card-background" style="background-image: url('washing2.png');"></div>
+      <div class="card-content2">
+        <h3>Front Load Repair – ₹249</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 3 -->
+    <a href="semi-automatic-repair.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Semi Automatic</div>
+      <div class="card-background" style="background-image: url('washing3.png');"></div>
+      <div class="card-content2">
+        <h3>Semi-Automatic Repair – ₹179</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 4 -->
+    <a href="fully-automatic-repair.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Fully Automatic</div>
+      <div class="card-background" style="background-image: url('washing4.png');"></div>
+      <div class="card-content2">
+        <h3>Fully Automatic Repair – ₹299</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 5 -->
+    <a href="drum-cleaning.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Drum Cleaning</div>
+      <div class="card-background" style="background-image: url('washing5.png');"></div>
+      <div class="card-content2">
+        <h3>Drum Cleaning – ₹149</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 6 -->
+    <a href="water-inlet-outlet.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Water Issue</div>
+      <div class="card-background" style="background-image: url('washing6.png');"></div>
+      <div class="card-content2">
+        <h3>Water Inlet/Outlet Fix – ₹199</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 7 -->
+    <a href="spin-motor-issue.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Spin Motor</div>
+      <div class="card-background" style="background-image: url('washing7.png');"></div>
+      <div class="card-content2">
+        <h3>Spin Motor Issue – ₹249</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 8 -->
+    <a href="noisy-operation.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Noise Fix</div>
+      <div class="card-background" style="background-image: url('washing8.png');"></div>
+      <div class="card-content2">
+        <h3>Noisy Operation Fix – ₹229</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 9 -->
+    <a href="power-issue.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Power / Display</div>
+      <div class="card-background" style="background-image: url('washing9.png');"></div>
+      <div class="card-content2">
+        <h3>Power Issue / No Display – ₹249</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 10 -->
+    <a href="pcb-repair.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">PCB Repair</div>
+      <div class="card-background" style="background-image: url('washing10.png');"></div>
+      <div class="card-content2">
+        <h3>PCB Repair or Replacement – ₹499</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 11 -->
+    <a href="door-lock-fix.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Door Lock</div>
+      <div class="card-background" style="background-image: url('washing11.png');"></div>
+      <div class="card-content2">
+        <h3>Door Lock/Handle Fix – ₹199</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 12 -->
+    <a href="vibration-fix.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Vibration</div>
+      <div class="card-background" style="background-image: url('washing12.png');"></div>
+      <div class="card-content2">
+        <h3>Vibration / Balancing Issue – ₹199</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 13 -->
+    <a href="valve-pump-repair.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Drain Valve</div>
+      <div class="card-background" style="background-image: url('washing13.png');"></div>
+      <div class="card-content2">
+        <h3>Inlet Valve or Drain Pump – ₹299</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 14 -->
+    <a href="installation.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Installation</div>
+      <div class="card-background" style="background-image: url('washing14.png');"></div>
+      <div class="card-content2">
+        <h3>Installation / Uninstallation – ₹149</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <!-- 15 -->
+    <a href="general-maintenance.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">General Service</div>
+      <div class="card-background" style="background-image: url('washing15.png');"></div>
+      <div class="card-content2">
+        <h3>General Service & Maintenance – ₹149</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+  </div>
+</section>
 
   
   
