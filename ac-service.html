@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,8 @@
   <title>ac-service – Sonipat AC Service</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css" />
+  <!-- Razorpay SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
   <!-- Header Injection Target -->
@@ -61,6 +62,7 @@
     border: 1px solid #ccc;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
   }
 
   .card:hover {
@@ -176,13 +178,153 @@
       padding: 8px 0;
     }
   }
+  
+  /* Payment Popup Styles */
+  /* CSS Variables for consistent theming */
+  :root {
+    --primary: #4a148c;
+    --secondary: #7b1fa2;
+    --accent: #e91e63;
+    --light: #f5f5f5;
+    --dark: #212121;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+
+  /* Styles for the background overlay with blur effect */
+  .popup-overlay {
+    display: none; /* Default hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Black with transparency */
+    backdrop-filter: blur(8px); /* The magic blur effect! */
+    -webkit-backdrop-filter: blur(8px); /* For Safari browser support */
+    z-index: 999; /* Below the popup but above everything else */
+  }
+
+  /* Core popup styles to center them on the screen */
+  .service-popup {
+    display: none;
+    background: #1a002c;
+    color: #fff; /* Added for better text visibility */
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+    position: fixed; /* Positions relative to the viewport */
+    top: 50%;        /* Aligns top edge to the middle of the viewport */
+    left: 50%;       /* Aligns left edge to the middle of the viewport */
+    transform: translate(-50%, -50%); /* Moves element back by half its width/height to truly center */
+    z-index: 1000;   /* Above the overlay */
+    width: 90%;      /* Responsive width */
+    max-width: 500px; /* Maximum width for larger screens */
+  }
+
+  /* Form and button styling within popups */
+  .service-popup input,
+  .service-popup button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+  }
+  .service-popup input {
+    background: #f5f5f5;
+    color: #000;
+  }
+  .service-popup button[type="submit"],
+  .service-popup button.okay-btn,
+  .razorpay-payment-btn { /* Combined styles for main action buttons */
+    background: linear-gradient(90deg, var(--accent), #ff4081);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+  }
+  
+  .ticket-display {
+    font-weight: bold;
+    color: #00ffcc;
+    font-size: 20px;
+    word-break: break-word;
+    text-align: center;
+  }
+  .serial-number-display {
+      font-weight: bold;
+      color: #f0f; /* A distinct color for the serial number */
+      font-size: 1.1rem;
+      text-align: center;
+      margin-top: 5px;
+  }
+
+  .country-error {
+    color: red;
+    font-size: 13px;
+    display: none;
+    margin-top: -5px;
+    margin-bottom: 10px;
+  }
+
+  /* Message for submitting form */
+  .submit-message {
+      color: #00ffcc;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-top: 10px;
+      display: none; /* Hidden by default */
+  }
+  
+  .timer-display {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--accent);
+      text-align: center;
+      margin-top: 15px;
+  }
+
+  /* Close button for popups */
+  .popup-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  /* Responsive adjustments for popups */
+  @media (max-width: 480px) {
+    .service-popup {
+      padding: 20px;
+    }
+    .service-popup input,
+    .service-popup button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
 </style>
  <section class="products-section"> 
   <h2 class="section-title">AC-Services</h2>
   <div class="cards-container1">
 
     <!-- 1 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Window AC Repair" data-price="499">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Repair</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -190,10 +332,10 @@
         <h3>Window AC Repair – ₹499</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 2 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Split AC Repair" data-price="599">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Repair</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -201,10 +343,10 @@
         <h3>Split AC Repair – ₹599</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 3 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Window AC Installation" data-price="999">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Installation</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -212,10 +354,10 @@
         <h3>Window AC Installation – ₹999</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 4 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Split AC Installation" data-price="1449">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Installation</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -223,10 +365,10 @@
         <h3>Split AC Installation – ₹1449</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 5 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Window AC Uninstallation" data-price="649">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Uninstallation</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -234,10 +376,10 @@
         <h3>Window AC Uninstallation – ₹649</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 6 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Split AC Uninstallation" data-price="849">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Uninstallation</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -245,10 +387,10 @@
         <h3>Split AC Uninstallation – ₹849</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 7 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Window AC Gas Filling" data-price="2499">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Gas Filling</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -256,10 +398,10 @@
         <h3>Window AC Gas Filling – ₹2499</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 8 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Split AC Gas Filling (1–2 Ton)" data-price="2499">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Gas Filling</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -267,10 +409,10 @@
         <h3>Split AC Gas Filling (1–2 Ton) – ₹2499</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 9 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Foam-Jet Cleaning (1 AC)" data-price="599">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Cleaning</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -278,10 +420,10 @@
         <h3>Foam-Jet Cleaning (1 AC) – ₹599</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 10 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Foam-Jet Cleaning (2 ACs)" data-price="1099">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Cleaning</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -289,10 +431,10 @@
         <h3>Foam-Jet Cleaning (2 ACs) – ₹1099</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 11 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Foam-Jet Cleaning (3 ACs)" data-price="1497">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Cleaning</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -300,10 +442,10 @@
         <h3>Foam-Jet Cleaning (3 ACs) – ₹1497</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 12 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Foam-Jet Cleaning (4 ACs)" data-price="1996">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Cleaning</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -311,10 +453,10 @@
         <h3>Foam-Jet Cleaning (4 ACs) – ₹1996</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 13 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="Foam-Jet Cleaning (5 ACs)" data-price="2495">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Cleaning</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -322,10 +464,10 @@
         <h3>Foam-Jet Cleaning (5 ACs) – ₹2495</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 14 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="AC AMC Plan (Annual)" data-price="999">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Maintenance</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -333,10 +475,10 @@
         <h3>AC AMC Plan (Annual) – ₹999+</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
     <!-- 15 -->
-    <a href="ac-service.html" class="card">
+    <div class="card" data-service="AC Health Check" data-price="299">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Diagnostic</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
@@ -344,10 +486,61 @@
         <h3>AC Health Check – ₹299</h3>
         <span class="btn">Book Now</span>
       </div>
-    </a>
+    </div>
 
   </div>
 </section>
+
+<!-- Payment Popup Structure -->
+<div class="popup-overlay"></div>
+
+<!-- Form Popup -->
+<div class="service-popup" id="serviceFormPopup">
+  <button class="popup-close-btn" onclick="closeAllPopups()">&times;</button>
+  <h2 style="text-align: center;">Confirm Your Booking</h2>
+  <br>
+  <h3 id="selectedServiceHeading" style="text-align: center; margin-top: -10px; color: #00ffcc;"></h3>
+  <br>
+  <p style="text-align:center; margin-top:-15px; margin-bottom:15px; font-size:0.9em; color:#ddd;">Please do not refresh or close the page.</p>
+  <form class="service-form">
+    <input type="text" name="name" required placeholder="Your Name" autocomplete="name" />
+    <input type="tel" name="phone" required placeholder="Phone Number" autocomplete="tel" />
+    <input type="email" name="email" required placeholder="Email" autocomplete="email" />
+    <input type="date" name="date" required />
+    <input type="text" name="city" required placeholder="City/Place" autocomplete="address-level2" />
+    <input type="text" name="address" required placeholder="Address" autocomplete="country-name" />
+    <span class="country-error">Please enter your country.</span>
+    <input type="hidden" name="service" id="serviceName" />
+    <input type="hidden" name="price" id="servicePrice" />
+    <input type="hidden" name="ticket" class="ticket-code" />
+    <button type="submit">Submit</button>
+    <span class="submit-message">Submitting... Please wait</span>
+  </form>
+</div>
+
+<!-- Payment Step Popup -->
+<div class="service-popup" id="paymentStepPopup">
+  <button class="popup-close-btn" onclick="closeAllPopups()">&times;</button>
+  <h2>Complete Your Payment</h2>
+  <p>Please complete the payment to confirm your booking. Click the button below.</p>
+  <div class="timer-display">Time remaining: 05:00</div>
+  <button class="razorpay-payment-btn">Pay with Razorpay</button>
+  <p style="margin-top: 10px; font-size: 0.9em; color: #ccc;">
+    After payment, please wait for automatic verification. Do not close this window.
+  </p>
+</div>
+
+<!-- Ticket Step Popup -->
+<div class="service-popup" id="ticketStepPopup">
+  <button class="popup-close-btn" onclick="closeAllPopups()">&times;</button>
+  <h2>🎉 Booking Confirmed! 🎉</h2>
+  <p>Your service has been booked successfully!</p>
+  <p>Booking reference:</p>
+  <div class="ticket-display"></div>
+  <div class="serial-number-display"></div>
+  <p style="margin-top: 15px;">📸 Please take a screenshot for your records.</p>
+  <button class="okay-btn">Okay, Got It!</button>
+</div>
 
   
    <!-- Footer Injection Target -->
@@ -355,5 +548,253 @@
 
   <!-- Load Injectors -->
   <script src="script.js" defer></script>
+  
+  <script>
+    // Service Booking Script
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elements
+      const cards = document.querySelectorAll('.card');
+      const popupOverlay = document.querySelector('.popup-overlay');
+      const serviceFormPopup = document.getElementById('serviceFormPopup');
+      const paymentStepPopup = document.getElementById('paymentStepPopup');
+      const ticketStepPopup = document.getElementById('ticketStepPopup');
+      const serviceForm = document.querySelector('.service-form');
+      const timerDisplay = document.querySelector('.timer-display');
+      const razorpayBtn = document.querySelector('.razorpay-payment-btn');
+      const okayBtn = document.querySelector('.okay-btn');
+      const submitMessage = document.querySelector('.submit-message');
+      const countryError = document.querySelector('.country-error');
+      const selectedServiceHeading = document.getElementById('selectedServiceHeading');
+      
+      // Variables
+      let currentService = '';
+      let currentPrice = '';
+      let generatedTicket = '';
+      let paymentTimeout = null;
+      let countdownInterval = null;
+      const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes in seconds
+      let currentSerialNumber = 0;
+      
+      // Google Sheets URLs for each service (replace with your actual URLs)
+      const serviceSheets = {
+        "Window AC Repair": "https://script.google.com/macros/s/AKfycbyLTugosWHHIbC1fv22aMxLYH_a-e8oOot7iQ4AqVvqauZbg3S1lSYsynOpZ4ZFeqbU/exec",
+        "Split AC Repair": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_2/exec",
+        "Window AC Installation": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_3/exec",
+        "Split AC Installation": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_4/exec",
+        "Window AC Uninstallation": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_5/exec",
+        "Split AC Uninstallation": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_6/exec",
+        "Window AC Gas Filling": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_7/exec",
+        "Split AC Gas Filling (1–2 Ton)": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_8/exec",
+        "Foam-Jet Cleaning (1 AC)": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_9/exec",
+        "Foam-Jet Cleaning (2 ACs)": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_10/exec",
+        "Foam-Jet Cleaning (3 ACs)": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_11/exec",
+        "Foam-Jet Cleaning (4 ACs)": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_12/exec",
+        "Foam-Jet Cleaning (5 ACs)": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_13/exec",
+        "AC AMC Plan (Annual)": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_14/exec",
+        "AC Health Check": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_15/exec"
+      };
+      
+      // Helper functions
+      function closeAllPopups() {
+        clearTimers();
+        popupOverlay.style.display = 'none';
+        serviceFormPopup.style.display = 'none';
+        paymentStepPopup.style.display = 'none';
+        ticketStepPopup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        submitMessage.style.display = 'none';
+      }
+      
+      function openPopup(popupElement) {
+        document.body.style.overflow = 'hidden';
+        popupOverlay.style.display = 'block';
+        popupElement.style.display = 'block';
+      }
+      
+      function clearTimers() {
+        if (paymentTimeout) clearTimeout(paymentTimeout);
+        if (countdownInterval) clearInterval(countdownInterval);
+        paymentTimeout = null;
+        countdownInterval = null;
+      }
+      
+      function generateFormattedTicket(...fields) {
+        const uniqueFields = [...fields, Date.now()];
+        const base = btoa(uniqueFields.join('')).replace(/[^A-Z0-9]/gi, '').toUpperCase();
+        let raw = base.padEnd(20, 'X').substring(0, 20);
+        return raw.match(/.{1,4}/g).join('-');
+      }
+      
+      function startPaymentTimer() {
+        let timeLeft = PAYMENT_TIME_LIMIT;
+        updateTimerDisplay(); // Initial display
+        
+        function updateTimerDisplay() {
+          const minutes = Math.floor(timeLeft / 60);
+          const seconds = timeLeft % 60;
+          timerDisplay.textContent = `Time remaining: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        countdownInterval = setInterval(() => {
+          timeLeft--;
+          updateTimerDisplay();
+          if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            alert("Payment time expired. Please try again.");
+            closeAllPopups();
+          }
+        }, 1000);
+        
+        paymentTimeout = setTimeout(() => {
+          if (paymentTimeout) {
+            clearTimers();
+            alert("Payment timed out. Please try again.");
+            closeAllPopups();
+          }
+        }, PAYMENT_TIME_LIMIT * 1000);
+      }
+      
+      function paymentSuccess() {
+        clearTimers();
+        paymentStepPopup.style.display = 'none';
+        openPopup(ticketStepPopup);
+        document.querySelector('.ticket-display').textContent = generatedTicket;
+        document.querySelector('.serial-number-display').textContent = `Serial Number: ${String(currentSerialNumber).padStart(6, '0')}`;
+      }
+      
+      // Razorpay Payment Integration
+      function handleRazorpayPayment() {
+        const options = {
+          key: "rzp_test_YOUR_KEY_ID", // Replace with your Razorpay key
+          amount: currentPrice * 100, // Amount in paise
+          currency: "INR",
+          name: "AC Service Booking",
+          description: `Payment for ${currentService}`,
+          image: "https://example.com/your_logo.png", // Your logo
+          order_id: "", // This will be generated in the backend
+          handler: function(response) {
+            // Handle successful payment
+            console.log(response);
+            paymentSuccess();
+          },
+          prefill: {
+            name: serviceForm.name.value,
+            email: serviceForm.email.value,
+            contact: serviceForm.phone.value
+          },
+          notes: {
+            address: serviceForm.address.value,
+            booking_reference: generatedTicket
+          },
+          theme: {
+            color: "#3399cc"
+          }
+        };
+        
+        // In a production environment, you would:
+        // 1. First create an order on your backend
+        // 2. Then get the order_id and pass it to options
+        // For demo, we'll proceed directly with the payment
+        
+        const rzp = new Razorpay(options);
+        rzp.open();
+        
+        rzp.on('payment.failed', function(response) {
+          console.error(response.error);
+          alert("Payment failed. Please try again.");
+        });
+        
+        // Check for payment status periodically
+        const paymentCheckInterval = setInterval(() => {
+          if (document.hasFocus()) return;
+          clearInterval(paymentCheckInterval);
+        }, 2000);
+      }
+      
+      // Event Listeners
+      cards.forEach(card => {
+        card.addEventListener('click', function() {
+          currentService = this.getAttribute('data-service');
+          currentPrice = this.getAttribute('data-price');
+          document.getElementById('serviceName').value = currentService;
+          document.getElementById('servicePrice').value = currentPrice;
+          selectedServiceHeading.textContent = currentService;
+          openPopup(serviceFormPopup);
+        });
+      });
+      
+      serviceForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const data = {
+          name: serviceForm.name.value,
+          phone: serviceForm.phone.value,
+          email: serviceForm.email.value,
+          date: serviceForm.date.value,
+          city: serviceForm.city.value,
+          address: serviceForm.address.value,
+          service: currentService,
+          price: currentPrice
+        };
+        
+        if (!data.address.trim()) {
+          countryError.style.display = 'block';
+          return;
+        }
+        countryError.style.display = 'none';
+        
+        submitMessage.style.display = 'block';
+        serviceForm.querySelector('button[type="submit"]').disabled = true;
+        
+        data.ticket = generateFormattedTicket(...Object.values(data));
+        generatedTicket = data.ticket;
+        document.querySelector('.ticket-code').value = data.ticket;
+        
+        currentSerialNumber++;
+        data.serialNumber = String(currentSerialNumber).padStart(6, '0');
+        
+        const urlEncoded = new URLSearchParams(data);
+        const sheetUrl = serviceSheets[currentService] || serviceSheets["Window AC Repair"]; // Default fallback
+        
+        fetch(sheetUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: urlEncoded
+        })
+        .then(res => res.text())
+        .then(res => {
+          submitMessage.style.display = 'none';
+          serviceForm.querySelector('button[type="submit"]').disabled = false;
+          
+          if (res === "Success") {
+            serviceFormPopup.style.display = 'none';
+            openPopup(paymentStepPopup);
+            startPaymentTimer();
+          } else {
+            console.error("Submission failed: " + res);
+            alert("There was an error submitting your form. Please try again.");
+          }
+        })
+        .catch(err => {
+          submitMessage.style.display = 'none';
+          serviceForm.querySelector('button[type="submit"]').disabled = false;
+          console.error("Error: " + err.message);
+          alert("An unexpected error occurred. Please check your connection and try again.");
+        });
+      });
+      
+      razorpayBtn.addEventListener('click', handleRazorpayPayment);
+      okayBtn.addEventListener('click', closeAllPopups);
+    });
+
+    // Make closeAllPopups available globally for the close buttons
+    window.closeAllPopups = function() {
+      document.querySelectorAll('.service-popup').forEach(popup => {
+        popup.style.display = 'none';
+      });
+      document.querySelector('.popup-overlay').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    };
+  </script>
 </body>
 </html>
