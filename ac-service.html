@@ -507,8 +507,8 @@
     <input type="tel" name="phone" required placeholder="Phone Number" autocomplete="tel" />
     <input type="email" name="email" required placeholder="Email" autocomplete="email" />
     <input type="date" name="date" required />
-    <input type="text" name="city" required placeholder="City/Place" autocomplete="address-level2" />
-    <input type="text" name="address" required placeholder="Address" autocomplete="country-name" />
+    <input type="text" name="city" required placeholder="Address" autocomplete="address-level2" />
+    <input type="text" name="address" required placeholder="location" autocomplete="country-name" />
     <span class="country-error">Please enter your country.</span>
     <input type="hidden" name="service" id="serviceName" />
     <input type="hidden" name="price" id="servicePrice" />
@@ -665,7 +665,7 @@
       // Razorpay Payment Integration
       function handleRazorpayPayment() {
         const options = {
-          key: "rzp_test_YOUR_KEY_ID", // Replace with your Razorpay key
+          key: "rzp_live_opiqkRmGpjG1hF", // Replace with your Razorpay key
           amount: currentPrice * 100, // Amount in paise
           currency: "INR",
           name: "AC Service Booking",
