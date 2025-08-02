@@ -318,19 +318,68 @@
       padding: 10px;
     }
   }
+  
+  /* Payment details on card */
+  .payment-details {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 20;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+  }
+  
+  .payment-details h4 {
+    margin: 10px 0;
+    color: #4CAF50;
+  }
+  
+  .payment-details p {
+    margin: 5px 0;
+    font-size: 0.9em;
+  }
+  
+  .payment-details .close-payment-details {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
 </style>
  <section class="products-section"> 
   <h2 class="section-title">AC-Services</h2>
   <div class="cards-container1">
 
     <!-- 1 -->
-    <div class="card" data-service="Window AC Repair" data-price="499">
+    <div class="card" data-service="Window AC Repair" data-price="499" data-razorpay-price="1">
       <div class="corner-ribbon"></div>
       <div class="card-category-badge">Repair</div>
       <div class="card-background" style="background-image: url('one.png');"></div>
       <div class="card-content2">
-        <h3>Window AC Repair – ₹1</h3>
+        <h3>Window AC Repair – ₹499</h3>
         <span class="btn">Book Now</span>
+      </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Window AC Repair</h4>
+        <p>Service Price: ₹499</p>
+        <p>Payment Amount: ₹1</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
       </div>
     </div>
 
@@ -343,6 +392,13 @@
         <h3>Split AC Repair – ₹599</h3>
         <span class="btn">Book Now</span>
       </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Split AC Repair</h4>
+        <p>Service Price: ₹599</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
+      </div>
     </div>
 
     <!-- 3 -->
@@ -353,6 +409,13 @@
       <div class="card-content2">
         <h3>Window AC Installation – ₹999</h3>
         <span class="btn">Book Now</span>
+      </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Window AC Installation</h4>
+        <p>Service Price: ₹999</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
       </div>
     </div>
 
@@ -365,6 +428,13 @@
         <h3>Split AC Installation – ₹1449</h3>
         <span class="btn">Book Now</span>
       </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Split AC Installation</h4>
+        <p>Service Price: ₹1449</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
+      </div>
     </div>
 
     <!-- 5 -->
@@ -375,6 +445,13 @@
       <div class="card-content2">
         <h3>Window AC Uninstallation – ₹649</h3>
         <span class="btn">Book Now</span>
+      </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Window AC Uninstallation</h4>
+        <p>Service Price: ₹649</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
       </div>
     </div>
 
@@ -387,6 +464,13 @@
         <h3>Split AC Uninstallation – ₹849</h3>
         <span class="btn">Book Now</span>
       </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Split AC Uninstallation</h4>
+        <p>Service Price: ₹849</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
+      </div>
     </div>
 
     <!-- 7 -->
@@ -397,6 +481,13 @@
       <div class="card-content2">
         <h3>Window AC Gas Filling – ₹2499</h3>
         <span class="btn">Book Now</span>
+      </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Window AC Gas Filling</h4>
+        <p>Service Price: ₹2499</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
       </div>
     </div>
 
@@ -409,6 +500,13 @@
         <h3>Split AC Gas Filling (1–2 Ton) – ₹2499</h3>
         <span class="btn">Book Now</span>
       </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Split AC Gas Filling (1–2 Ton)</h4>
+        <p>Service Price: ₹2499</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
+      </div>
     </div>
 
     <!-- 9 -->
@@ -419,6 +517,13 @@
       <div class="card-content2">
         <h3>Foam-Jet Cleaning (1 AC) – ₹599</h3>
         <span class="btn">Book Now</span>
+      </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Foam-Jet Cleaning (1 AC)</h4>
+        <p>Service Price: ₹599</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
       </div>
     </div>
 
@@ -431,6 +536,13 @@
         <h3>Foam-Jet Cleaning (2 ACs) – ₹1099</h3>
         <span class="btn">Book Now</span>
       </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Foam-Jet Cleaning (2 ACs)</h4>
+        <p>Service Price: ₹1099</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
+      </div>
     </div>
 
     <!-- 11 -->
@@ -441,6 +553,13 @@
       <div class="card-content2">
         <h3>Foam-Jet Cleaning (3 ACs) – ₹1497</h3>
         <span class="btn">Book Now</span>
+      </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Foam-Jet Cleaning (3 ACs)</h4>
+        <p>Service Price: ₹1497</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
       </div>
     </div>
 
@@ -453,6 +572,13 @@
         <h3>Foam-Jet Cleaning (4 ACs) – ₹1996</h3>
         <span class="btn">Book Now</span>
       </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Foam-Jet Cleaning (4 ACs)</h4>
+        <p>Service Price: ₹1996</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
+      </div>
     </div>
 
     <!-- 13 -->
@@ -463,6 +589,13 @@
       <div class="card-content2">
         <h3>Foam-Jet Cleaning (5 ACs) – ₹2495</h3>
         <span class="btn">Book Now</span>
+      </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>Foam-Jet Cleaning (5 ACs)</h4>
+        <p>Service Price: ₹2495</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
       </div>
     </div>
 
@@ -475,6 +608,13 @@
         <h3>AC AMC Plan (Annual) – ₹999+</h3>
         <span class="btn">Book Now</span>
       </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>AC AMC Plan (Annual)</h4>
+        <p>Service Price: ₹999+</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
+      </div>
     </div>
 
     <!-- 15 -->
@@ -485,6 +625,13 @@
       <div class="card-content2">
         <h3>AC Health Check – ₹299</h3>
         <span class="btn">Book Now</span>
+      </div>
+      <div class="payment-details">
+        <button class="close-payment-details">&times;</button>
+        <h4>AC Health Check</h4>
+        <p>Service Price: ₹299</p>
+        <p>Payment Method: RazorPay</p>
+        <p>Status: Pending</p>
       </div>
     </div>
 
@@ -565,19 +712,23 @@
       const submitMessage = document.querySelector('.submit-message');
       const countryError = document.querySelector('.country-error');
       const selectedServiceHeading = document.getElementById('selectedServiceHeading');
+      const paymentDetailsElements = document.querySelectorAll('.payment-details');
+      const closePaymentDetailsButtons = document.querySelectorAll('.close-payment-details');
       
       // Variables
       let currentService = '';
       let currentPrice = '';
+      let razorpayPrice = '';
       let generatedTicket = '';
       let paymentTimeout = null;
       let countdownInterval = null;
       const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes in seconds
       let currentSerialNumber = 0;
+      let currentCardElement = null;
       
       // Google Sheets URLs for each service (replace with your actual URLs)
       const serviceSheets = {
-        "Window AC Repair": "https://script.google.com/macros/s/AKfycbyLTugosWHHIbC1fv22aMxLYH_a-e8oOot7iQ4AqVvqauZbg3S1lSYsynOpZ4ZFeqbU/exec",
+        "Window AC Repair": "https://script.google.com/macros/s/AKfycbwzAnmRl7I2DDPciGyWVoDcdDbgy34R7SnxWJpTBMAGLwdcjUYJEaFRi5W21weijCzDJQ/exec",
         "Split AC Repair": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_2/exec",
         "Window AC Installation": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_3/exec",
         "Split AC Installation": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_4/exec",
@@ -660,13 +811,25 @@
         openPopup(ticketStepPopup);
         document.querySelector('.ticket-display').textContent = generatedTicket;
         document.querySelector('.serial-number-display').textContent = `Serial Number: ${String(currentSerialNumber).padStart(6, '0')}`;
+        
+        // Show payment details on the card
+        if (currentCardElement) {
+          const paymentDetails = currentCardElement.querySelector('.payment-details');
+          if (paymentDetails) {
+            paymentDetails.style.display = 'flex';
+            paymentDetails.querySelector('p:nth-of-type(3)').textContent = 'Status: Paid';
+          }
+        }
       }
       
       // Razorpay Payment Integration
       function handleRazorpayPayment() {
+        // Use razorpay-price if available, otherwise use regular price
+        const paymentAmount = razorpayPrice || currentPrice;
+        
         const options = {
           key: "rzp_live_opiqkRmGpjG1hF", // Replace with your Razorpay key
-          amount: currentPrice * 100, // Amount in paise
+          amount: paymentAmount * 100, // Amount in paise (₹1 = 100 paise)
           currency: "INR",
           name: "AC Service Booking",
           description: `Payment for ${currentService}`,
@@ -691,11 +854,6 @@
           }
         };
         
-        // In a production environment, you would:
-        // 1. First create an order on your backend
-        // 2. Then get the order_id and pass it to options
-        // For demo, we'll proceed directly with the payment
-        
         const rzp = new Razorpay(options);
         rzp.open();
         
@@ -713,13 +871,28 @@
       
       // Event Listeners
       cards.forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function(e) {
+          // Don't process click if it's on the payment details close button
+          if (e.target.closest('.payment-details')) {
+            return;
+          }
+          
           currentService = this.getAttribute('data-service');
           currentPrice = this.getAttribute('data-price');
+          razorpayPrice = this.getAttribute('data-razorpay-price') || currentPrice;
           document.getElementById('serviceName').value = currentService;
           document.getElementById('servicePrice').value = currentPrice;
-          selectedServiceHeading.textContent = currentService;
+          selectedServiceHeading.textContent = `${currentService} – ₹${currentPrice}`;
+          currentCardElement = this;
           openPopup(serviceFormPopup);
+        });
+      });
+      
+      // Close payment details when clicking the close button
+      closePaymentDetailsButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.stopPropagation();
+          this.closest('.payment-details').style.display = 'none';
         });
       });
       
@@ -734,7 +907,8 @@
           city: serviceForm.city.value,
           address: serviceForm.address.value,
           service: currentService,
-          price: currentPrice
+          price: currentPrice,
+          razorpay_price: razorpayPrice || currentPrice
         };
         
         if (!data.address.trim()) {
