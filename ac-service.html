@@ -653,10 +653,10 @@
     <input type="text" name="name" required placeholder="Your Name" autocomplete="name" />
     <input type="tel" name="phone" required placeholder="Phone Number" autocomplete="tel" />
     <input type="email" name="email" required placeholder="Email" autocomplete="email" />
-    <input type="date" name="date" required />
-    <input type="text" name="city" required placeholder="Address" autocomplete="address-level2" />
-    <input type="text" name="address" required placeholder="location" autocomplete="country-name" />
-    <span class="country-error">Please enter your country.</span>
+    <input type="date" name="dob" required placeholder="Date of Birth" />
+    <input type="text" name="address" required placeholder="Address" autocomplete="address-level1" />
+    <input type="text" name="location" required placeholder="Location" autocomplete="address-level2" />
+    <span class="country-error">Please enter all fields.</span>
     <input type="hidden" name="service" id="serviceName" />
     <input type="hidden" name="price" id="servicePrice" />
     <input type="hidden" name="ticket" class="ticket-code" />
@@ -728,7 +728,7 @@
       
       // Google Sheets URLs for each service (replace with your actual URLs)
       const serviceSheets = {
-        "Window AC Repair": "https://script.google.com/macros/s/AKfycbwzAnmRl7I2DDPciGyWVoDcdDbgy34R7SnxWJpTBMAGLwdcjUYJEaFRi5W21weijCzDJQ/exec",
+        "Window AC Repair": "https://script.google.com/macros/s/AKfycbyLTugosWHHIbC1fv22aMxLYH_a-e8oOot7iQ4AqVvqauZbg3S1lSYsynOpZ4ZFeqbU/exec",
         "Split AC Repair": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_2/exec",
         "Window AC Installation": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_3/exec",
         "Split AC Installation": "https://script.google.com/macros/s/YOUR_SCRIPT_ID_4/exec",
@@ -817,7 +817,7 @@
           const paymentDetails = currentCardElement.querySelector('.payment-details');
           if (paymentDetails) {
             paymentDetails.style.display = 'flex';
-            paymentDetails.querySelector('p:nth-of-type(3)').textContent = 'Status: Paid';
+            paymentDetails.querySelector('p:nth-of-type(4)').textContent = 'Status: Paid';
           }
         }
       }
@@ -903,15 +903,15 @@
           name: serviceForm.name.value,
           phone: serviceForm.phone.value,
           email: serviceForm.email.value,
-          date: serviceForm.date.value,
-          city: serviceForm.city.value,
+          dob: serviceForm.dob.value,
           address: serviceForm.address.value,
+          location: serviceForm.location.value,
           service: currentService,
           price: currentPrice,
           razorpay_price: razorpayPrice || currentPrice
         };
         
-        if (!data.address.trim()) {
+        if (!data.address.trim() || !data.location.trim() || !data.dob.trim()) {
           countryError.style.display = 'block';
           return;
         }
@@ -927,7 +927,22 @@
         currentSerialNumber++;
         data.serialNumber = String(currentSerialNumber).padStart(6, '0');
         
-        const urlEncoded = new URLSearchParams(data);
+        // Format the data exactly as requested
+        const formattedData = {
+          Name: data.name,
+          Phone: data.phone,
+          Email: data.email,
+          DOB: data.dob,
+          Address: data.address,
+          Location: data.location,
+          TICKET: data.ticket,
+          Service: data.service,
+          Price: data.price,
+          Razorpay_Price: data.razorpay_price,
+          Serial_Number: data.serialNumber
+        };
+        
+        const urlEncoded = new URLSearchParams(formattedData);
         const sheetUrl = serviceSheets[currentService] || serviceSheets["Window AC Repair"]; // Default fallback
         
         fetch(sheetUrl, {
