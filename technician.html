@@ -47,7 +47,972 @@
 </div>
 <br><br><br>
 
-    
+        <style>
+    /* ======= Main Section ======= */
+    .products-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ======= Title Styling ======= */
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #005f99;
+      text-transform: uppercase;
+      border-bottom: 3px solid #007bff;
+      display: inline-block;
+      padding-bottom: 6px;
+    }
+
+    /* ======= Card Layout ======= */
+    .cards-container1 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cards-container1 > .card {
+      width: calc(33.333% - 1.34rem);
+      box-sizing: border-box;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* ======= Card Styling ======= */
+    .card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 270px;
+      max-width: 399px;
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      border-color: #007bff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ======= Background Image Area ======= */
+    .card-background {
+      height: 65%;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #e0e0e0;
+    }
+
+    /* ======= Card Content ======= */
+    .card-content2 {
+      height: 35%;
+      background: #f9f9f9;
+      color: #222;
+      padding: 0.6rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .card-content2 h3 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: #005f99;
+      letter-spacing: 0.5px;
+    }
+
+    /* ======= Button Style ======= */
+    .btn {
+      display: block;
+      width: 100%;
+      font-size: 0.95rem;
+      padding: 10px 0;
+      border-radius: 999px;
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+      color: #fff;
+    }
+
+    /* ======= Top Corner Ribbon ======= */
+    .corner-ribbon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-top: 60px solid #007bff;
+      border-right: 60px solid transparent;
+      z-index: 10;
+    }
+
+    /* ======= Top Badge ======= */
+    .card-category-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #e9ecef;
+      color: #333;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ======= Form Popup Styles ======= */
+    .form-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .form-popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .form-popup-container {
+      background: white;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .form-popup-overlay.active .form-popup-container {
+      transform: scale(1);
+    }
+
+    .form-popup-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #333;
+    }
+
+    .form-popup-title {
+      font-size: 1.8rem;
+      color: #005f99;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    /* Form Styles */
+    .registration-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .services-checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .service-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f0f8ff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: 1px solid #cce0ff;
+    }
+
+    .service-checkbox input {
+      margin: 0;
+    }
+
+    .submit-btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 1rem;
+    }
+
+    .submit-btn:hover {
+      background: #0056b3;
+    }
+
+    /* Error Message Styles */
+    .error-message {
+      color: #dc3545;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .input-error {
+      border-color: #dc3545 !important;
+    }
+
+    /* Success Popup Styles */
+    .success-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .success-popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .success-popup-container {
+      background: white;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .success-popup-overlay.active .success-popup-container {
+      transform: scale(1);
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      color: #28a745;
+      margin-bottom: 1rem;
+    }
+
+    .success-title {
+      font-size: 1.8rem;
+      color: #005f99;
+      margin-bottom: 1rem;
+    }
+
+    .employee-id {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #28a745;
+      margin: 1rem 0;
+      padding: 0.5rem;
+      background: #f0fff0;
+      border-radius: 5px;
+    }
+
+    .success-message {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .success-btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .success-btn:hover {
+      background: #0056b3;
+    }
+
+    /* Loading Spinner */
+    .spinner {
+      display: none;
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ======= Tablet ======= */
+    @media (max-width: 1024px) {
+      .cards-container1 > .card {
+        width: calc(50% - 1rem);
+      }
+    }
+
+    /* ======= Mobile ======= */
+    @media (max-width: 768px) {
+      .products-section {
+        padding: 2rem 1rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .cards-container1 > .card {
+        width: 100%;
+        max-width: 90%;
+      }
+      .form-popup-container {
+        padding: 1.5rem;
+      }
+      .form-popup-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .corner-ribbon {
+        border-top: 40px solid #007bff;
+        border-right: 40px solid transparent;
+      }
+      .btn {
+        font-size: 0.85rem;
+        padding: 8px 0;
+      }
+      .form-popup-container {
+        width: 95%;
+        padding: 1rem;
+      }
+      .form-popup-title {
+        font-size: 1.3rem;
+      }
+      .service-checkbox {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+
+
+  <section class="products-section">
+    <h2 class="section-title">Our Services</h2>
+    <div class="cards-container1">
+
+      <div class="card" onclick="showFormPopup('AC Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">AC Services</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/007bff/ffffff?text=AC+Service');"></div>
+        <div class="card-content2">
+          <h3>AC Installation & Repair</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Refrigerator Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Fridge</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/28a745/ffffff?text=Fridge+Repair');"></div>
+        <div class="card-content2">
+          <h3>Refrigerator Repair</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Washing Machine Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Washing Machine</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/ffc107/333333?text=Washing+Machine');"></div>
+        <div class="card-content2">
+          <h3>Washing Machine Repair</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Cooler Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Cooler</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/17a2b8/ffffff?text=Cooler+Service');"></div>
+        <div class="card-content2">
+          <h3>Air Cooler Service</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Geyser Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Geyser</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/dc3545/ffffff?text=Geyser+Installation');"></div>
+        <div class="card-content2">
+          <h3>Geyser Installation</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Kitchen Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Kitchen</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/6f42c1/ffffff?text=Chimney+Cleaning');"></div>
+        <div class="card-content2">
+          <h3>Chimney Cleaning</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Electrical Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Electrical</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/fd7e14/ffffff?text=Electrician');"></div>
+        <div class="card-content2">
+          <h3>Electrician Services</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Plumbing Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Plumbing</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/007bff/ffffff?text=Plumber+Services');"></div>
+        <div class="card-content2">
+          <h3>Plumber Services</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Cleaning Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Cleaning</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/28a745/ffffff?text=Carpet+Cleaning');"></div>
+        <div class="card-content2">
+          <h3>Carpet Cleaning</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Salon Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Salon</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/ffc107/333333?text=Salon+Services');"></div>
+        <div class="card-content2">
+          <h3>Barber Services</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Handyman Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Handyman</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/17a2b8/ffffff?text=Handyman');"></div>
+        <div class="card-content2">
+          <h3>Mistri Services</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="showFormPopup('Security Services')">
+        <div class="corner-ribbon"></div>
+        <div class="card-category-badge">Security</div>
+        <div class="card-background" style="background-image: url('https://via.placeholder.com/400x260/dc3545/ffffff?text=CCTV+Solutions');"></div>
+        <div class="card-content2">
+          <h3>CCTV Solutions</h3>
+          <span class="btn">Register Now</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="form-popup-overlay" id="formPopup">
+    <div class="form-popup-container">
+      <button class="form-popup-close" onclick="closeFormPopup()">&times;</button>
+      <h2 class="form-popup-title">Register for Free</h2>
+      <form id="registrationForm" class="registration-form" onsubmit="submitForm(event)">
+        <input type="hidden" id="serviceCategory" name="serviceCategory">
+
+        <div class="form-group">
+          <label for="fullName">Full Name*</label>
+          <input type="text" id="fullName" name="fullName" required minlength="3" maxlength="50" pattern="[A-Za-z ]+">
+          <div class="error-message" id="fullNameError">Please enter a valid name (letters and spaces only, 3-50 characters)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number*</label>
+          <input type="tel" id="phoneNumber" name="phoneNumber" required minlength="10" maxlength="15" pattern="[0-9]{10,15}">
+          <div class="error-message" id="phoneError">Please enter a valid 10-15 digit phone number</div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email">
+          <div class="error-message" id="emailError">Please enter a valid email address</div>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth*</label>
+          <input type="date" id="dob" name="dob" required max="">
+          <div class="error-message" id="dobError">Please select a valid date of birth</div>
+        </div>
+
+        <div class="form-group">
+          <label for="block">Block*</label>
+          <input type="text" id="block" name="block" required minlength="2" maxlength="50">
+          <div class="error-message" id="blockError">Please enter a valid block name (2-50 characters)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="area">Area*</label>
+          <input type="text" id="area" name="area" required minlength="2" maxlength="50">
+          <div class="error-message" id="areaError">Please enter a valid area name (2-50 characters)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="district">District*</label>
+          <input type="text" id="district" name="district" required minlength="2" maxlength="50">
+          <div class="error-message" id="districtError">Please enter a valid district name (2-50 characters)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="fullAddress">Full Address*</label>
+          <textarea id="fullAddress" name="fullAddress" required minlength="10" maxlength="200"></textarea>
+          <div class="error-message" id="addressError">Please enter a valid address (10-200 characters)</div>
+        </div>
+
+        <div class="form-group">
+          <label>Select Services (Choose at least one)*</label>
+          <div class="services-checkbox-group" id="servicesCheckboxGroup">
+            </div>
+          <div class="error-message" id="servicesError">Please select at least one service</div>
+        </div>
+
+        <div class="spinner" id="formSpinner"></div>
+        <button type="submit" class="submit-btn" id="submitBtn">Submit Registration</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="success-popup-overlay" id="successPopup">
+    <div class="success-popup-container">
+      <div class="success-icon">✓</div>
+      <h2 class="success-title">Registration Successful!</h2>
+      <p class="success-message">Thank you for joining us, <span id="successUserName"></span>! We're excited to have you on board.</p>
+      <div class="employee-id">Your Employee ID: <span id="employeeIdDisplay"></span></div>
+      <p class="success-message">Please note down your Employee ID for future reference. Our team will contact you shortly.</p>
+      <button class="success-btn" onclick="redirectToTechnician()">Okay</button>
+    </div>
+  </div>
+
+  <script>
+    // Service data for each category with corresponding Google Sheets endpoint
+    const serviceData = {
+      'AC Services': {
+        services: ['AC Installation', 'AC Repair', 'AC Gas Refill', 'AC Maintenance', 'Split AC Service', 'Window AC Service', 'AC Copper Pipe', 'AC PCB Repair', 'AC Water Leak', 'AC Remote Repair', 'AC Deep Cleaning', 'AC Thermostat', 'AC Capacitor', 'AC Compressor', 'AC Fan Motor', 'AC Drain Cleaning', 'AC Duct Cleaning', 'AC Installation Estimate', 'AC Annual Contract', 'AC Brand Specialists'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbz_98j4qSg7J08b-G8D_g2_I0P_j9_uYg1-l_0/exec'
+      },
+      'Refrigerator Services': {
+        services: ['Fridge Repair', 'Freezer Repair', 'Coolant Refill', 'Compressor Repair', 'Thermostat Repair', 'Water Dispenser', 'Ice Maker Repair', 'Door Seal Replacement', 'Defrost System', 'Electrical Issues', 'Noise Problems', 'Leakage Issues', 'Deep Freezer', 'Commercial Fridge', 'Fridge Installation', 'Fridge Maintenance', 'Fridge Cleaning', 'Brand Specialists', 'Emergency Repair', 'Annual Contract'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbw6Y4qSg1M8G2_J_l1O-a0oD_g9_I0g-1O_uYg/exec'
+      },
+      'Washing Machine Services': {
+        services: ['WM Repair', 'WM Installation', 'WM Drain Issues', 'WM Spin Problems', 'WM Water Leak', 'WM Drum Issues', 'WM Motor Repair', 'WM PCB Repair', 'WM Door Seal', 'WM Detergent Tray', 'WM Not Starting', 'WM No Power', 'WM Noisy', 'WM Water Inlet', 'WM Drain Pump', 'WM Maintenance', 'WM Deep Clean', 'WM Brand Specialists', 'WM Emergency', 'WM Annual Contract'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbz1P_hA2k_G7X08_Q9T5B-G8D_g2_I0P_j9_uYg/exec'
+      },
+      'Cooler Services': {
+        services: ['Cooler Installation', 'Cooler Repair', 'Water Pump Repair', 'Cooler Fan Repair', 'Cooler Cleaning', 'Cooler Pad Replacement', 'Cooler Water Leak', 'Cooler Not Cooling', 'Cooler Maintenance', 'Commercial Cooler'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbw-B_g_I_uYg_98j4qSg7J08b-G8D_g2_I0P/exec'
+      },
+      'Geyser Services': {
+        services: ['Geyser Installation', 'Geyser Repair', 'Geyser Element', 'Geyser Thermostat', 'Geyser Leakage', 'Geyser Not Heating', 'Geyser Maintenance', 'Solar Geyser', 'Instant Geyser', 'Geyser Pressure Valve'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbz_98j4qSg7J08b-G8D_g2_I0P_j9_uYg_uYg/exec'
+      },
+      'Kitchen Services': {
+        services: ['Chimney Cleaning', 'Chimney Repair', 'Chimney Installation', 'Microwave Repair', 'Oven Repair', 'Induction Repair', 'Mixer/Grinder Repair', 'Food Processor Repair', 'Water Purifier Service', 'Kitchen Exhaust Fan'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbz_1O_P_j9_uYg-G8D_g2_I0P_j9_uYg/exec'
+      },
+      'Electrical Services': {
+        services: ['Wiring Installation', 'Switchboard Repair', 'Light Fixtures', 'Power Outage', 'Circuit Breaker', 'Socket Installation', 'Fan Installation', 'Inverter Setup', 'Generator Setup', 'Home Automation', 'Electrical Safety', 'Emergency Electrician', 'Commercial Electrical', 'LED Installation', 'Chandelier Install'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbz_98j4qSg7J08b-G8D_g2_I0P_j9_uYg-98j4qSg/exec'
+      },
+      'Plumbing Services': {
+        services: ['Pipe Leak Repair', 'Bathroom Fitting', 'Tap Repair', 'Water Tank Cleaning', 'Blocked Drain', 'Water Pump Repair', 'Bathroom Renovation', 'Pipe Installation', 'Septic Tank', 'Water Heater'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbz_98j4qSg7J08b-G8D_g2_I0P_j9_uYg_uYg_1O/exec'
+      },
+      'Cleaning Services': {
+        services: ['Carpet Cleaning', 'Sofa Cleaning', 'House Deep Cleaning', 'Office Cleaning', 'Window Cleaning', 'Post Construction', 'Mattress Cleaning', 'Curtain Cleaning', 'Car Interior', 'Disinfection'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbz_98j4qSg7J08b-G8D_g2_I0P_j9_uYg_0P_j9/exec'
+      },
+      'Salon Services': {
+        services: ['Haircut', 'Hair Color', 'Hair Spa', 'Beard Trim', 'Shave', 'Facial', 'Waxing', 'Manicure', 'Pedicure', 'Massage'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbz_98j4qSg7J08b-G8D_g2_I0P_j9_uYg-9_uYg/exec'
+      },
+      'Handyman Services': {
+        services: ['Furniture Assembly', 'Painting', 'TV Mounting', 'Shelving', 'Door Repair', 'Window Repair', 'Lock Installation', 'Wall Mounting', 'Minor Carpentry', 'General Repairs'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbz_98j4qSg7J08b-G8D_g2_I0P_j9_uYg_uYg_1/exec'
+      },
+      'Security Services': {
+        services: ['CCTV Installation', 'CCTV Repair', 'Alarm System', 'Security Camera', 'Smart Lock', 'Access Control', 'Home Security', 'Commercial Security', 'Security Audit', 'Security Guards'],
+        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbz_98j4qSg7J08b-G8D_g2_I0P_j9_uYg_98j4q/exec'
+      }
+    };
+
+    // Initialize form when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set max date for DOB (minimum age 18 years)
+      const dobInput = document.getElementById('dob');
+      const today = new Date();
+      const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+      dobInput.max = maxDate.toISOString().split('T')[0];
+
+      // Setup form validation
+      setupFormValidation();
+    });
+
+    // Setup form validation
+    function setupFormValidation() {
+      const form = document.getElementById('registrationForm');
+      const inputs = form.querySelectorAll('input, textarea, select');
+
+      inputs.forEach(input => {
+        // Validate on blur
+        input.addEventListener('blur', function() {
+          validateField(this);
+        });
+
+        // Clear error when user starts typing
+        input.addEventListener('input', function() {
+          if (this.classList.contains('input-error')) {
+            this.classList.remove('input-error');
+            const errorElement = document.getElementById(`${this.id}Error`);
+            if (errorElement) errorElement.style.display = 'none';
+          }
+        });
+      });
+
+      // Special validation for checkboxes
+      const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const servicesError = document.getElementById('servicesError');
+          servicesError.style.display = 'none';
+        });
+      });
+    }
+
+    // Validate individual form field
+    function validateField(field) {
+      const errorElement = document.getElementById(`${field.id}Error`);
+
+      if (field.required && !field.value.trim()) {
+        showError(field, errorElement, 'This field is required');
+        return false;
+      }
+
+      if (field.type === 'text' || field.type === 'textarea') {
+        if (field.hasAttribute('minlength') && field.value.length < field.getAttribute('minlength')) {
+          showError(field, errorElement, `Minimum ${field.getAttribute('minlength')} characters required`);
+          return false;
+        }
+
+        if (field.hasAttribute('maxlength') && field.value.length > field.getAttribute('maxlength')) {
+          showError(field, errorElement, `Maximum ${field.getAttribute('maxlength')} characters allowed`);
+          return false;
+        }
+
+        if (field.hasAttribute('pattern')) {
+          const pattern = new RegExp(field.getAttribute('pattern'));
+          if (!pattern.test(field.value)) {
+            showError(field, errorElement, 'Invalid format');
+            return false;
+          }
+        }
+      }
+
+      if (field.type === 'email' && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+        showError(field, errorElement, 'Please enter a valid email address');
+        return false;
+      }
+
+      if (field.type === 'tel' && !/^[0-9]{10,15}$/.test(field.value)) {
+        showError(field, errorElement, 'Please enter a valid 10-15 digit phone number');
+        return false;
+      }
+
+      if (field.type === 'date' && field.value) {
+        const selectedDate = new Date(field.value);
+        const maxDate = new Date(field.max);
+        if (selectedDate > maxDate) {
+          showError(field, errorElement, 'You must be at least 18 years old');
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // Show error message
+    function showError(field, errorElement, message) {
+      field.classList.add('input-error');
+      if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+      }
+    }
+
+    // Validate entire form
+    function validateForm() {
+      let isValid = true;
+      const form = document.getElementById('registrationForm');
+      const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+
+      // Validate all required fields
+      inputs.forEach(input => {
+        if (!validateField(input)) {
+          isValid = false;
+        }
+      });
+
+      // Validate at least one service is selected
+      const checkedServices = form.querySelectorAll('input[name="services"]:checked');
+      if (checkedServices.length === 0) {
+        const servicesError = document.getElementById('servicesError');
+        servicesError.style.display = 'block';
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    // Show form popup with relevant services
+    function showFormPopup(category) {
+      const popup = document.getElementById('formPopup');
+      const servicesCheckboxGroup = document.getElementById('servicesCheckboxGroup');
+      const serviceCategoryInput = document.getElementById('serviceCategory');
+
+      // Reset form
+      const form = document.getElementById('registrationForm');
+      form.reset();
+
+      // Clear previous errors
+      const errorMessages = form.querySelectorAll('.error-message');
+      errorMessages.forEach(error => {
+        error.style.display = 'none';
+      });
+
+      const inputErrors = form.querySelectorAll('.input-error');
+      inputErrors.forEach(input => {
+        input.classList.remove('input-error');
+      });
+
+      // Set the service category
+      serviceCategoryInput.value = category;
+
+      // Clear previous checkboxes
+      servicesCheckboxGroup.innerHTML = '';
+
+      // Add new checkboxes for services
+      if (serviceData[category] && serviceData[category].services) {
+        serviceData[category].services.forEach(service => {
+          const checkboxDiv = document.createElement('div');
+          checkboxDiv.className = 'service-checkbox';
+          checkboxDiv.innerHTML = `
+            <input type="checkbox" id="service-${service.replace(/\s+/g, '-')}" name="services" value="${service}">
+            <label for="service-${service.replace(/\s+/g, '-')}">${service}</label>
+          `;
+          servicesCheckboxGroup.appendChild(checkboxDiv);
+        });
+      }
+
+      // Show popup
+      popup.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close form popup
+    function closeFormPopup() {
+      const popup = document.getElementById('formPopup');
+      popup.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close form popup when clicking outside
+    document.getElementById('formPopup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeFormPopup();
+      }
+    });
+
+    // Generate a random employee ID
+    function generateEmployeeId() {
+      const prefix = 'EMP';
+      const randomNum = Math.floor(10000 + Math.random() * 90000);
+      return `${prefix}${randomNum}`;
+    }
+
+    // Submit form data
+    function submitForm(event) {
+      event.preventDefault();
+
+      // Validate form
+      if (!validateForm()) {
+        return;
+      }
+
+      // Disable submit button and show spinner
+      const submitBtn = document.getElementById('submitBtn');
+      const spinner = document.getElementById('formSpinner');
+      submitBtn.disabled = true;
+      spinner.style.display = 'block';
+
+      const form = document.getElementById('registrationForm');
+      const formData = new FormData(form);
+
+      // Get selected services from checkboxes
+      const checkedServices = Array.from(form.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value);
+
+      // Add services and employee ID to form data
+      const employeeId = generateEmployeeId();
+      formData.append('employeeId', employeeId);
+      formData.append('selectedServices', checkedServices.join(', '));
+
+      // Determine the correct endpoint based on the selected category
+      const category = formData.get('serviceCategory');
+      const endpoint = serviceData[category] ? serviceData[category].sheetEndpoint : '';
+
+      if (!endpoint) {
+        alert('Error: Could not find a valid endpoint for this service category.');
+        submitBtn.disabled = false;
+        spinner.style.display = 'none';
+        return;
+      }
+
+      fetch(endpoint, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Check for success from the Google Apps Script
+          if (data.result === 'success') {
+            const userName = formData.get('fullName');
+            document.getElementById('successUserName').textContent = userName;
+            document.getElementById('employeeIdDisplay').textContent = employeeId;
+
+            // Hide the form popup
+            closeFormPopup();
+
+            // Show the success popup
+            document.getElementById('successPopup').classList.add('active');
+          } else {
+            alert('Registration failed. Please try again later.');
+            console.error('Submission error:', data);
+          }
+        })
+        .catch(error => {
+          alert('An error occurred during submission. Please check your internet connection and try again.');
+          console.error('Submission error:', error);
+        })
+        .finally(() => {
+          // Re-enable button and hide spinner regardless of success or failure
+          submitBtn.disabled = false;
+          spinner.style.display = 'none';
+        });
+    }
+
+    // Redirect to a specific page or close the success popup
+    function redirectToTechnician() {
+      // You can replace this with a URL to a new page or a different action
+      closeSuccessPopup();
+      // Example: window.location.href = 'thank-you-page.html';
+    }
+
+    // Close success popup
+    function closeSuccessPopup() {
+      const successPopup = document.getElementById('successPopup');
+      successPopup.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+
   </main>
 
   <!-- Footer Injection Target -->
