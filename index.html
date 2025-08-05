@@ -123,773 +123,761 @@
 </div>
 <br><br><br>
           <!-- Product Sections -->
-       <style>
-  /* ======= Main Section ======= */
-  .products-section {
-    padding: 4rem 2rem;
-    text-align: center;
-    background: #f4f4f4;
-  }
+       Please find the updated HTML code below. I've modified the `showPopup` function in the JavaScript to use the same background image for the popup cards as the main card that was clicked.
 
-  /* ======= Title Styling ======= */
-  .section-title {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: #005f99;
-    text-transform: uppercase;
-    border-bottom: 3px solid #007bff;
-    display: inline-block;
-    padding-bottom: 6px;
-  }
-
-  /* ======= Card Layout ======= */
-  .cards-container1 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .cards-container1 > .card {
-    width: calc(33.333% - 1.34rem);
-    box-sizing: border-box;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  /* ======= Card Styling ======= */
-  .card {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 270px;
-    max-width: 399px;
-    width: 100%;
-    background: #ffffff;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .card:hover {
-    transform: scale(1.03);
-    border-color: #007bff;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-  }
-
-  /* ======= Background Image Area ======= */
-  .card-background {
-    height: 65%;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #e0e0e0;
-  }
-
-  /* ======= Card Content ======= */
-  .card-content2 {
-    height: 35%;
-    background: #f9f9f9;
-    color: #222;
-    padding: 0.6rem 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #ccc;
-    text-align: center;
-  }
-
-  .card-content2 h3 {
-    font-size: 1.2rem;
-    margin-bottom: 6px;
-    color: #005f99;
-    letter-spacing: 0.5px;
-  }
-
-  /* ======= Button Style ======= */
-  .btn {
-    display: block;
-    width: 100%;
-    font-size: 0.95rem;
-    padding: 10px 0;
-    border-radius: 999px;
-    background: #007bff;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: background 0.3s ease;
-  }
-
-  .btn:hover {
-    background: #0056b3;
-    color: #fff;
-  }
-
-  /* ======= Top Corner Ribbon ======= */
-  .corner-ribbon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-top: 60px solid #007bff;
-    border-right: 60px solid transparent;
-    z-index: 10;
-  }
-
-  /* ======= Top Badge ======= */
-  .card-category-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: #e9ecef;
-    color: #333;
-    font-weight: bold;
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 0.9rem;
-    z-index: 10;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
-
-  /* ======= Popup Styles ======= */
-  .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .popup-overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .popup-container {
-    background: white;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 1200px;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 2rem;
-    position: relative;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-  }
-
-  .popup-overlay.active .popup-container {
-    transform: scale(1);
-  }
-
-  .popup-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: #333;
-  }
-
-  .popup-title {
-    font-size: 1.8rem;
-    color: #005f99;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-
-  .popup-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-  }
-
-  .popup-card {
-    width: calc(25% - 1.2rem);
-    min-width: 200px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-    text-decoration: none;
-    position: relative;
-    background: white;
-  }
-
-  .popup-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .popup-card-image {
-    height: 100px;
-    background-size: cover;
-    background-position: center;
-    background-color: #e0e0e0;
-  }
-
-  .popup-card-content {
-    padding: 1rem 0.8rem;
-    text-align: center;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .popup-card-title {
-    font-size: 1rem;
-    color: #005f99;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
-
-  .popup-card-btn {
-    display: inline-block;
-    padding: 6px 12px;
-    background: #007bff;
-    color: white;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-
-  .popup-card-btn:hover {
-    background: #0056b3;
-  }
-
-  .popup-card-badge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 0.7rem;
-    z-index: 2;
-  }
-
-  /* ======= Tablet ======= */
-  @media (max-width: 1024px) {
-    .cards-container1 > .card {
-      width: calc(50% - 1rem);
-    }
-    .popup-card {
-      width: calc(33.333% - 1.2rem);
-    }
-  }
-
-  /* ======= Mobile ======= */
-  @media (max-width: 768px) {
+```html
+<style>
+    /* ======= Main Section ======= */
     .products-section {
-      padding: 2rem 1rem;
+        padding: 4rem 2rem;
+        text-align: center;
+        background: #f4f4f4;
     }
-    .section-title {
-      font-size: 1.8rem;
-    }
-    .cards-container1 > .card {
-      width: 100%;
-      max-width: 90%;
-    }
-    .popup-card {
-      width: calc(50% - 1rem);
-      min-width: 160px;
-    }
-    .popup-card-image {
-      height: 90px;
-    }
-    .popup-card-content {
-      height: 110px;
-      padding: 0.8rem 0.6rem;
-    }
-  }
 
-  @media (max-width: 480px) {
-    .corner-ribbon {
-      border-top: 40px solid #007bff;
-      border-right: 40px solid transparent;
+    /* ======= Title Styling ======= */
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #005f99;
+        text-transform: uppercase;
+        border-bottom: 3px solid #007bff;
+        display: inline-block;
+        padding-bottom: 6px;
     }
+
+    /* ======= Card Layout ======= */
+    .cards-container1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .cards-container1 > .card {
+        width: calc(33.333% - 1.34rem);
+        box-sizing: border-box;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* ======= Card Styling ======= */
+    .card {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 270px;
+        max-width: 399px;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+        border-color: #007bff;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    /* ======= Background Image Area ======= */
+    .card-background {
+        height: 65%;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #e0e0e0;
+    }
+
+    /* ======= Card Content ======= */
+    .card-content2 {
+        height: 35%;
+        background: #f9f9f9;
+        color: #222;
+        padding: 0.6rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-top: 1px solid #ccc;
+        text-align: center;
+    }
+
+    .card-content2 h3 {
+        font-size: 1.2rem;
+        margin-bottom: 6px;
+        color: #005f99;
+        letter-spacing: 0.5px;
+    }
+
+    /* ======= Button Style ======= */
     .btn {
-      font-size: 0.85rem;
-      padding: 8px 0;
+        display: block;
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 10px 0;
+        border-radius: 999px;
+        background: #007bff;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        transition: background 0.3s ease;
     }
+
+    .btn:hover {
+        background: #0056b3;
+        color: #fff;
+    }
+
+    /* ======= Top Corner Ribbon ======= */
+    .corner-ribbon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top: 60px solid #007bff;
+        border-right: 60px solid transparent;
+        z-index: 10;
+    }
+
+    /* ======= Top Badge ======= */
+    .card-category-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: #e9ecef;
+        color: #333;
+        font-weight: bold;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        z-index: 10;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* ======= Popup Styles ======= */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .popup-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .popup-container {
+        background: white;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 1200px;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 2rem;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .popup-overlay.active .popup-container {
+        transform: scale(1);
+    }
+
+    .popup-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #333;
+    }
+
+    .popup-title {
+        font-size: 1.8rem;
+        color: #005f99;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .popup-cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
     .popup-card {
-      width: 100%;
-      max-width: 300px;
+        width: calc(25% - 1.2rem);
+        min-width: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        text-decoration: none;
+        position: relative;
+        background: white;
     }
+
+    .popup-card:hover {
+        transform: translateY(-5px);
+    }
+
     .popup-card-image {
-      height: 110px;
+        height: 100px;
+        background-size: cover;
+        background-position: center;
+        background-color: #e0e0e0;
     }
+
     .popup-card-content {
-      height: auto;
+        padding: 1rem 0.8rem;
+        text-align: center;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
-  }
+
+    .popup-card-title {
+        font-size: 1rem;
+        color: #005f99;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+
+    .popup-card-btn {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #007bff;
+        color: white;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    .popup-card-btn:hover {
+        background: #0056b3;
+    }
+
+    .popup-card-badge {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        z-index: 2;
+    }
+
+    /* ======= Tablet ======= */
+    @media (max-width: 1024px) {
+        .cards-container1 > .card {
+            width: calc(50% - 1rem);
+        }
+        .popup-card {
+            width: calc(33.333% - 1.2rem);
+        }
+    }
+
+    /* ======= Mobile ======= */
+    @media (max-width: 768px) {
+        .products-section {
+            padding: 2rem 1rem;
+        }
+        .section-title {
+            font-size: 1.8rem;
+        }
+        .cards-container1 > .card {
+            width: 100%;
+            max-width: 90%;
+        }
+        .popup-card {
+            width: calc(50% - 1rem);
+            min-width: 160px;
+        }
+        .popup-card-image {
+            height: 90px;
+        }
+        .popup-card-content {
+            height: 110px;
+            padding: 0.8rem 0.6rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .corner-ribbon {
+            border-top: 40px solid #007bff;
+            border-right: 40px solid transparent;
+        }
+        .btn {
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+        .popup-card {
+            width: 100%;
+            max-width: 300px;
+        }
+        .popup-card-image {
+            height: 110px;
+        }
+        .popup-card-content {
+            height: auto;
+        }
+    }
 </style>
 
 <section class="products-section">
-  <h2 class="section-title">Our Services</h2>
-  <div class="cards-container1">
+    <h2 class="section-title">Our Services</h2>
+    <div class="cards-container1">
 
-    <!-- AC Service Card -->
-    <div class="card" onclick="showPopup('AC Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">AC Services</div>
-      <div class="card-background" style="background-image: url('drng1.png');"></div>
-      <div class="card-content2">
-        <h3>AC Installation & Repair</h3>
-        <span class="btn">View Services</span>
-      </div>
+        <div class="card" onclick="showPopup('AC Services', 'drng1.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">AC Services</div>
+            <div class="card-background" style="background-image: url('drng1.png');"></div>
+            <div class="card-content2">
+                <h3>AC Installation & Repair</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Refrigerator Services', 'drng2.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Fridge</div>
+            <div class="card-background" style="background-image: url('drng2.png');"></div>
+            <div class="card-content2">
+                <h3>Refrigerator Repair</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Washing Machine Services', 'drng3.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Washing Machine</div>
+            <div class="card-background" style="background-image: url('drng3.png');"></div>
+            <div class="card-content2">
+                <h3>Washing Machine Repair</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Cooler Services', 'drng4.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Cooler</div>
+            <div class="card-background" style="background-image: url('drng4.png');"></div>
+            <div class="card-content2">
+                <h3>Air Cooler Service</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Geyser Services', 'five.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Geyser</div>
+            <div class="card-background" style="background-image: url('five.png');"></div>
+            <div class="card-content2">
+                <h3>Geyser Installation</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Kitchen Services', 'six.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Kitchen</div>
+            <div class="card-background" style="background-image: url('six.png');"></div>
+            <div class="card-content2">
+                <h3>Chimney Cleaning</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Electrical Services', 'drng7.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Electrical</div>
+            <div class="card-background" style="background-image: url('drng7.png');"></div>
+            <div class="card-content2">
+                <h3>Electrician Services</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Plumbing Services', 'drng8.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Plumbing</div>
+            <div class="card-background" style="background-image: url('drng8.png');"></div>
+            <div class="card-content2">
+                <h3>Plumber Services</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Cleaning Services', 'drng9.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Cleaning</div>
+            <div class="card-background" style="background-image: url('drng9.png');"></div>
+            <div class="card-content2">
+                <h3>Carpet Cleaning</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Salon Services', 'drng10.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Salon</div>
+            <div class="card-background" style="background-image: url('drng10.png');"></div>
+            <div class="card-content2">
+                <h3>Barber Services</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Handyman Services', 'drng11.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Handyman</div>
+            <div class="card-background" style="background-image: url('drng11.png');"></div>
+            <div class="card-content2">
+                <h3>Mistri Services</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="showPopup('Security Services', 'drng12.png')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Security</div>
+            <div class="card-background" style="background-image: url('drng12.png');"></div>
+            <div class="card-content2">
+                <h3>CCTV Solutions</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
+
     </div>
-
-    <!-- Fridge Repair Card -->
-    <div class="card" onclick="showPopup('Refrigerator Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Fridge</div>
-      <div class="card-background" style="background-image: url('drng2.png');"></div>
-      <div class="card-content2">
-        <h3>Refrigerator Repair</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-    <!-- Washing Machine Card -->
-    <div class="card" onclick="showPopup('Washing Machine Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Washing Machine</div>
-      <div class="card-background" style="background-image: url('drng3.png');"></div>
-      <div class="card-content2">
-        <h3>Washing Machine Repair</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-    <!-- Cooler Repair Card -->
-    <div class="card" onclick="showPopup('Cooler Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Cooler</div>
-      <div class="card-background" style="background-image: url('drng4.png');"></div>
-      <div class="card-content2">
-        <h3>Air Cooler Service</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-    <!-- Geyser Repair Card -->
-    <div class="card" onclick="showPopup('Geyser Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Geyser</div>
-      <div class="card-background" style="background-image: url('five.png');"></div>
-      <div class="card-content2">
-        <h3>Geyser Installation</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-    <!-- Chimney Cleaning Card -->
-    <div class="card" onclick="showPopup('Kitchen Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Kitchen</div>
-      <div class="card-background" style="background-image: url('six.png');"></div>
-      <div class="card-content2">
-        <h3>Chimney Cleaning</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-    <!-- Electrician Card -->
-    <div class="card" onclick="showPopup('Electrical Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Electrical</div>
-      <div class="card-background" style="background-image: url('drng7.png');"></div>
-      <div class="card-content2">
-        <h3>Electrician Services</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-    <!-- Plumber Card -->
-    <div class="card" onclick="showPopup('Plumbing Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Plumbing</div>
-      <div class="card-background" style="background-image: url('drng8.png');"></div>
-      <div class="card-content2">
-        <h3>Plumber Services</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-    <!-- Carpet Cleaner Card -->
-    <div class="card" onclick="showPopup('Cleaning Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Cleaning</div>
-      <div class="card-background" style="background-image: url('drng9.png');"></div>
-      <div class="card-content2">
-        <h3>Carpet Cleaning</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-    <!-- Barber Card -->
-    <div class="card" onclick="showPopup('Salon Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Salon</div>
-      <div class="card-background" style="background-image: url('drng10.png');"></div>
-      <div class="card-content2">
-        <h3>Barber Services</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-    <!-- Mistri Card -->
-    <div class="card" onclick="showPopup('Handyman Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Handyman</div>
-      <div class="card-background" style="background-image: url('drng11.png');"></div>
-      <div class="card-content2">
-        <h3>Mistri Services</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-    <!-- CCTV Card -->
-    <div class="card" onclick="showPopup('Security Services')">
-      <div class="corner-ribbon"></div>
-      <div class="card-category-badge">Security</div>
-      <div class="card-background" style="background-image: url('drng12.png');"></div>
-      <div class="card-content2">
-        <h3>CCTV Solutions</h3>
-        <span class="btn">View Services</span>
-      </div>
-    </div>
-
-  </div>
 </section>
 
-<!-- Popup Overlay -->
 <div class="popup-overlay" id="servicePopup">
-  <div class="popup-container">
-    <button class="popup-close" onclick="closePopup()">&times;</button>
-    <h2 class="popup-title" id="popupTitle">Services</h2>
-    <div class="popup-cards-container" id="popupCardsContainer">
-      <!-- Cards will be dynamically inserted here -->
+    <div class="popup-container">
+        <button class="popup-close" onclick="closePopup()">&times;</button>
+        <h2 class="popup-title" id="popupTitle">Services</h2>
+        <div class="popup-cards-container" id="popupCardsContainer">
+            </div>
     </div>
-  </div>
 </div>
 
 <script>
-  // Service data for each category
-  const serviceData = {
-    'AC Services': [
-      { title: 'AC Installation', link: 'ac-installation.html', image: 'ac-install.jpg' },
-      { title: 'AC Repair', link: 'ac-repair.html', image: 'ac-repair.jpg' },
-      { title: 'AC Gas Refill', link: 'ac-gas-refill.html', image: 'ac-gas.jpg' },
-      { title: 'AC Maintenance', link: 'ac-maintenance.html', image: 'ac-maintenance.jpg' },
-      { title: 'Split AC Service', link: 'split-ac-service.html', image: 'split-ac.jpg' },
-      { title: 'Window AC Service', link: 'window-ac-service.html', image: 'window-ac.jpg' },
-      { title: 'AC Copper Pipe', link: 'ac-copper-pipe.html', image: 'copper-pipe.jpg' },
-      { title: 'AC PCB Repair', link: 'ac-pcb-repair.html', image: 'pcb-repair.jpg' },
-      { title: 'AC Water Leak', link: 'ac-water-leak.html', image: 'water-leak.jpg' },
-      { title: 'AC Remote Repair', link: 'ac-remote.html', image: 'ac-remote.jpg' },
-      { title: 'AC Deep Cleaning', link: 'ac-deep-clean.html', image: 'deep-clean.jpg' },
-      { title: 'AC Thermostat', link: 'ac-thermostat.html', image: 'thermostat.jpg' },
-      { title: 'AC Capacitor', link: 'ac-capacitor.html', image: 'capacitor.jpg' },
-      { title: 'AC Compressor', link: 'ac-compressor.html', image: 'compressor.jpg' },
-      { title: 'AC Fan Motor', link: 'ac-fan-motor.html', image: 'fan-motor.jpg' },
-      { title: 'AC Drain Cleaning', link: 'ac-drain.html', image: 'drain-clean.jpg' },
-      { title: 'AC Duct Cleaning', link: 'ac-duct.html', image: 'duct-clean.jpg' },
-      { title: 'AC Installation Estimate', link: 'ac-estimate.html', image: 'estimate.jpg' },
-      { title: 'AC Annual Contract', link: 'ac-contract.html', image: 'contract.jpg' },
-      { title: 'AC Brand Specialists', link: 'ac-brands.html', image: 'brands.jpg' }
-    ],
-    'Refrigerator Services': [
-      { title: 'Fridge Repair', link: 'fridge-repair.html', image: 'fridge-repair.jpg' },
-      { title: 'Freezer Repair', link: 'freezer-repair.html', image: 'freezer-repair.jpg' },
-      { title: 'Coolant Refill', link: 'coolant-refill.html', image: 'coolant.jpg' },
-      { title: 'Compressor Repair', link: 'compressor-repair.html', image: 'compressor.jpg' },
-      { title: 'Thermostat Repair', link: 'thermostat-repair.html', image: 'thermostat.jpg' },
-      { title: 'Water Dispenser', link: 'water-dispenser.html', image: 'dispenser.jpg' },
-      { title: 'Ice Maker Repair', link: 'ice-maker.html', image: 'ice-maker.jpg' },
-      { title: 'Door Seal Replacement', link: 'door-seal.html', image: 'door-seal.jpg' },
-      { title: 'Defrost System', link: 'defrost-system.html', image: 'defrost.jpg' },
-      { title: 'Electrical Issues', link: 'fridge-electrical.html', image: 'electrical.jpg' },
-      { title: 'Noise Problems', link: 'fridge-noise.html', image: 'noise.jpg' },
-      { title: 'Leakage Issues', link: 'fridge-leak.html', image: 'leak.jpg' },
-      { title: 'Deep Freezer', link: 'deep-freezer.html', image: 'deep-freezer.jpg' },
-      { title: 'Commercial Fridge', link: 'commercial-fridge.html', image: 'commercial.jpg' },
-      { title: 'Fridge Installation', link: 'fridge-install.html', image: 'install.jpg' },
-      { title: 'Fridge Maintenance', link: 'fridge-maintenance.html', image: 'maintenance.jpg' },
-      { title: 'Fridge Cleaning', link: 'fridge-cleaning.html', image: 'cleaning.jpg' },
-      { title: 'Brand Specialists', link: 'fridge-brands.html', image: 'brands.jpg' },
-      { title: 'Emergency Repair', link: 'fridge-emergency.html', image: 'emergency.jpg' },
-      { title: 'Annual Contract', link: 'fridge-contract.html', image: 'contract.jpg' }
-    ],
-    'Washing Machine Services': [
-      { title: 'WM Repair', link: 'wm-repair.html', image: 'wm-repair.jpg' },
-      { title: 'WM Installation', link: 'wm-install.html', image: 'wm-install.jpg' },
-      { title: 'WM Drain Issues', link: 'wm-drain.html', image: 'drain.jpg' },
-      { title: 'WM Spin Problems', link: 'wm-spin.html', image: 'spin.jpg' },
-      { title: 'WM Water Leak', link: 'wm-leak.html', image: 'leak.jpg' },
-      { title: 'WM Drum Issues', link: 'wm-drum.html', image: 'drum.jpg' },
-      { title: 'WM Motor Repair', link: 'wm-motor.html', image: 'motor.jpg' },
-      { title: 'WM PCB Repair', link: 'wm-pcb.html', image: 'pcb.jpg' },
-      { title: 'WM Door Seal', link: 'wm-door.html', image: 'door.jpg' },
-      { title: 'WM Detergent Tray', link: 'wm-tray.html', image: 'tray.jpg' },
-      { title: 'WM Not Starting', link: 'wm-start.html', image: 'start.jpg' },
-      { title: 'WM No Power', link: 'wm-power.html', image: 'power.jpg' },
-      { title: 'WM Noisy', link: 'wm-noise.html', image: 'noise.jpg' },
-      { title: 'WM Water Inlet', link: 'wm-inlet.html', image: 'inlet.jpg' },
-      { title: 'WM Drain Pump', link: 'wm-pump.html', image: 'pump.jpg' },
-      { title: 'WM Maintenance', link: 'wm-maintenance.html', image: 'maintenance.jpg' },
-      { title: 'WM Deep Clean', link: 'wm-clean.html', image: 'clean.jpg' },
-      { title: 'WM Brand Specialists', link: 'wm-brands.html', image: 'brands.jpg' },
-      { title: 'WM Emergency', link: 'wm-emergency.html', image: 'emergency.jpg' },
-      { title: 'WM Annual Contract', link: 'wm-contract.html', image: 'contract.jpg' }
-    ],
-    'Cooler Services': [
-      { title: 'Cooler Installation', link: 'cooler-install.html', image: 'cooler-install.jpg' },
-      { title: 'Cooler Repair', link: 'cooler-repair.html', image: 'cooler-repair.jpg' },
-      { title: 'Water Pump Repair', link: 'cooler-pump.html', image: 'cooler-pump.jpg' },
-      { title: 'Cooler Fan Repair', link: 'cooler-fan.html', image: 'cooler-fan.jpg' },
-      { title: 'Cooler Cleaning', link: 'cooler-cleaning.html', image: 'cooler-cleaning.jpg' },
-      { title: 'Cooler Pad Replacement', link: 'cooler-pad.html', image: 'cooler-pad.jpg' },
-      { title: 'Cooler Water Leak', link: 'cooler-leak.html', image: 'cooler-leak.jpg' },
-      { title: 'Cooler Not Cooling', link: 'cooler-not-cooling.html', image: 'cooler-notcooling.jpg' },
-      { title: 'Cooler Maintenance', link: 'cooler-maintenance.html', image: 'cooler-maintenance.jpg' },
-      { title: 'Commercial Cooler', link: 'commercial-cooler.html', image: 'commercial-cooler.jpg' }
-    ],
-    'Geyser Services': [
-      { title: 'Geyser Installation', link: 'geyser-install.html', image: 'geyser-install.jpg' },
-      { title: 'Geyser Repair', link: 'geyser-repair.html', image: 'geyser-repair.jpg' },
-      { title: 'Geyser Element', link: 'geyser-element.html', image: 'geyser-element.jpg' },
-      { title: 'Geyser Thermostat', link: 'geyser-thermostat.html', image: 'geyser-thermostat.jpg' },
-      { title: 'Geyser Leakage', link: 'geyser-leak.html', image: 'geyser-leak.jpg' },
-      { title: 'Geyser Not Heating', link: 'geyser-not-heating.html', image: 'geyser-noheat.jpg' },
-      { title: 'Geyser Maintenance', link: 'geyser-maintenance.html', image: 'geyser-maintenance.jpg' },
-      { title: 'Solar Geyser', link: 'solar-geyser.html', image: 'solar-geyser.jpg' },
-      { title: 'Instant Geyser', link: 'instant-geyser.html', image: 'instant-geyser.jpg' },
-      { title: 'Geyser Pressure Valve', link: 'geyser-valve.html', image: 'geyser-valve.jpg' }
-    ],
-    'Kitchen Services': [
-      { title: 'Chimney Cleaning', link: 'chimney-cleaning.html', image: 'chimney-cleaning.jpg' },
-      { title: 'Chimney Repair', link: 'chimney-repair.html', image: 'chimney-repair.jpg' },
-      { title: 'Chimney Installation', link: 'chimney-install.html', image: 'chimney-install.jpg' },
-      { title: 'Microwave Repair', link: 'microwave-repair.html', image: 'microwave-repair.jpg' },
-      { title: 'Oven Repair', link: 'oven-repair.html', image: 'oven-repair.jpg' },
-      { title: 'Induction Repair', link: 'induction-repair.html', image: 'induction-repair.jpg' },
-      { title: 'Mixer/Grinder Repair', link: 'mixer-repair.html', image: 'mixer-repair.jpg' },
-      { title: 'Food Processor Repair', link: 'foodprocessor-repair.html', image: 'foodprocessor-repair.jpg' },
-      { title: 'Water Purifier Service', link: 'purifier-service.html', image: 'purifier-service.jpg' },
-      { title: 'Kitchen Exhaust Fan', link: 'kitchen-fan.html', image: 'kitchen-fan.jpg' }
-    ],
-    'Electrical Services': [
-      { title: 'Wiring Installation', link: 'wiring-install.html', image: 'wiring.jpg' },
-      { title: 'Switchboard Repair', link: 'switchboard.html', image: 'switchboard.jpg' },
-      { title: 'Light Fixtures', link: 'light-fixtures.html', image: 'lights.jpg' },
-      { title: 'Power Outage', link: 'power-outage.html', image: 'outage.jpg' },
-      { title: 'Circuit Breaker', link: 'circuit-breaker.html', image: 'breaker.jpg' },
-      { title: 'Socket Installation', link: 'socket-install.html', image: 'socket.jpg' },
-      { title: 'Fan Installation', link: 'fan-install.html', image: 'fan.jpg' },
-      { title: 'Inverter Setup', link: 'inverter-setup.html', image: 'inverter.jpg' },
-      { title: 'Generator Setup', link: 'generator-setup.html', image: 'generator.jpg' },
-      { title: 'Home Automation', link: 'home-automation.html', image: 'automation.jpg' },
-      { title: 'Electrical Safety', link: 'electrical-safety.html', image: 'safety.jpg' },
-      { title: 'Emergency Electrician', link: 'emergency-electrician.html', image: 'emergency.jpg' },
-      { title: 'Commercial Electrical', link: 'commercial-electrical.html', image: 'commercial.jpg' },
-      { title: 'LED Installation', link: 'led-install.html', image: 'led.jpg' },
-      { title: 'Chandelier Install', link: 'chandelier.html', image: 'chandelier.jpg' }
-    ],
-    'Plumbing Services': [
-      { title: 'Pipe Leak Repair', link: 'pipe-leak.html', image: 'pipe-leak.jpg' },
-      { title: 'Bathroom Fitting', link: 'bathroom-fitting.html', image: 'bathroom-fitting.jpg' },
-      { title: 'Tap Repair', link: 'tap-repair.html', image: 'tap-repair.jpg' },
-      { title: 'Water Tank Cleaning', link: 'tank-cleaning.html', image: 'tank-cleaning.jpg' },
-      { title: 'Blocked Drain', link: 'blocked-drain.html', image: 'blocked-drain.jpg' },
-      { title: 'Water Pump Repair', link: 'water-pump.html', image: 'water-pump.jpg' },
-      { title: 'Bathroom Renovation', link: 'bathroom-reno.html', image: 'bathroom-reno.jpg' },
-      { title: 'Pipe Installation', link: 'pipe-install.html', image: 'pipe-install.jpg' },
-      { title: 'Septic Tank', link: 'septic-tank.html', image: 'septic-tank.jpg' },
-      { title: 'Water Heater', link: 'water-heater.html', image: 'water-heater.jpg' }
-    ],
-    'Cleaning Services': [
-      { title: 'Carpet Cleaning', link: 'carpet-cleaning.html', image: 'carpet-cleaning.jpg' },
-      { title: 'Sofa Cleaning', link: 'sofa-cleaning.html', image: 'sofa-cleaning.jpg' },
-      { title: 'House Deep Cleaning', link: 'deep-cleaning.html', image: 'deep-cleaning.jpg' },
-      { title: 'Office Cleaning', link: 'office-cleaning.html', image: 'office-cleaning.jpg' },
-      { title: 'Window Cleaning', link: 'window-cleaning.html', image: 'window-cleaning.jpg' },
-      { title: 'Post Construction', link: 'post-construction.html', image: 'post-construction.jpg' },
-      { title: 'Mattress Cleaning', link: 'mattress-cleaning.html', image: 'mattress-cleaning.jpg' },
-      { title: 'Curtain Cleaning', link: 'curtain-cleaning.html', image: 'curtain-cleaning.jpg' },
-      { title: 'Car Interior', link: 'car-interior.html', image: 'car-interior.jpg' },
-      { title: 'Disinfection', link: 'disinfection.html', image: 'disinfection.jpg' }
-    ],
-    'Salon Services': [
-      { title: 'Haircut', link: 'haircut.html', image: 'haircut.jpg' },
-      { title: 'Hair Color', link: 'hair-color.html', image: 'hair-color.jpg' },
-      { title: 'Hair Spa', link: 'hair-spa.html', image: 'hair-spa.jpg' },
-      { title: 'Beard Trim', link: 'beard-trim.html', image: 'beard-trim.jpg' },
-      { title: 'Shave', link: 'shave.html', image: 'shave.jpg' },
-      { title: 'Facial', link: 'facial.html', image: 'facial.jpg' },
-      { title: 'Waxing', link: 'waxing.html', image: 'waxing.jpg' },
-      { title: 'Manicure', link: 'manicure.html', image: 'manicure.jpg' },
-      { title: 'Pedicure', link: 'pedicure.html', image: 'pedicure.jpg' },
-      { title: 'Massage', link: 'massage.html', image: 'massage.jpg' }
-    ],
-    'Handyman Services': [
-      { title: 'Furniture Assembly', link: 'furniture-assembly.html', image: 'furniture-assembly.jpg' },
-      { title: 'Painting', link: 'painting.html', image: 'painting.jpg' },
-      { title: 'TV Mounting', link: 'tv-mounting.html', image: 'tv-mounting.jpg' },
-      { title: 'Shelving', link: 'shelving.html', image: 'shelving.jpg' },
-      { title: 'Door Repair', link: 'door-repair.html', image: 'door-repair.jpg' },
-      { title: 'Window Repair', link: 'window-repair.html', image: 'window-repair.jpg' },
-      { title: 'Lock Installation', link: 'lock-install.html', image: 'lock-install.jpg' },
-      { title: 'Wall Mounting', link: 'wall-mounting.html', image: 'wall-mounting.jpg' },
-      { title: 'Minor Carpentry', link: 'carpentry.html', image: 'carpentry.jpg' },
-      { title: 'General Repairs', link: 'general-repairs.html', image: 'general-repairs.jpg' }
-    ],
-    'Security Services': [
-      { title: 'CCTV Installation', link: 'cctv-install.html', image: 'cctv-install.jpg' },
-      { title: 'CCTV Repair', link: 'cctv-repair.html', image: 'cctv-repair.jpg' },
-      { title: 'Alarm System', link: 'alarm-system.html', image: 'alarm-system.jpg' },
-      { title: 'Security Camera', link: 'security-camera.html', image: 'security-camera.jpg' },
-      { title: 'Smart Lock', link: 'smart-lock.html', image: 'smart-lock.jpg' },
-      { title: 'Access Control', link: 'access-control.html', image: 'access-control.jpg' },
-      { title: 'Home Security', link: 'home-security.html', image: 'home-security.jpg' },
-      { title: 'Commercial Security', link: 'commercial-security.html', image: 'commercial-security.jpg' },
-      { title: 'Security Audit', link: 'security-audit.html', image: 'security-audit.jpg' },
-      { title: 'Security Guards', link: 'security-guards.html', image: 'security-guards.jpg' }
-    ]
-  };
+    // Service data for each category
+    const serviceData = {
+        'AC Services': [
+            { title: 'AC Installation', link: 'ac-installation.html' },
+            { title: 'AC Repair', link: 'ac-repair.html' },
+            { title: 'AC Gas Refill', link: 'ac-gas-refill.html' },
+            { title: 'AC Maintenance', link: 'ac-maintenance.html' },
+            { title: 'Split AC Service', link: 'split-ac-service.html' },
+            { title: 'Window AC Service', link: 'window-ac-service.html' },
+            { title: 'AC Copper Pipe', link: 'ac-copper-pipe.html' },
+            { title: 'AC PCB Repair', link: 'ac-pcb-repair.html' },
+            { title: 'AC Water Leak', link: 'ac-water-leak.html' },
+            { title: 'AC Remote Repair', link: 'ac-remote.html' },
+            { title: 'AC Deep Cleaning', link: 'ac-deep-clean.html' },
+            { title: 'AC Thermostat', link: 'ac-thermostat.html' },
+            { title: 'AC Capacitor', link: 'ac-capacitor.html' },
+            { title: 'AC Compressor', link: 'ac-compressor.html' },
+            { title: 'AC Fan Motor', link: 'ac-fan-motor.html' },
+            { title: 'AC Drain Cleaning', link: 'ac-drain.html' },
+            { title: 'AC Duct Cleaning', link: 'ac-duct.html' },
+            { title: 'AC Installation Estimate', link: 'ac-estimate.html' },
+            { title: 'AC Annual Contract', link: 'ac-contract.html' },
+            { title: 'AC Brand Specialists', link: 'ac-brands.html' }
+        ],
+        'Refrigerator Services': [
+            { title: 'Fridge Repair', link: 'fridge-repair.html' },
+            { title: 'Freezer Repair', link: 'freezer-repair.html' },
+            { title: 'Coolant Refill', link: 'coolant-refill.html' },
+            { title: 'Compressor Repair', link: 'compressor-repair.html' },
+            { title: 'Thermostat Repair', link: 'thermostat-repair.html' },
+            { title: 'Water Dispenser', link: 'water-dispenser.html' },
+            { title: 'Ice Maker Repair', link: 'ice-maker.html' },
+            { title: 'Door Seal Replacement', link: 'door-seal.html' },
+            { title: 'Defrost System', link: 'defrost-system.html' },
+            { title: 'Electrical Issues', link: 'fridge-electrical.html' },
+            { title: 'Noise Problems', link: 'fridge-noise.html' },
+            { title: 'Leakage Issues', link: 'fridge-leak.html' },
+            { title: 'Deep Freezer', link: 'deep-freezer.html' },
+            { title: 'Commercial Fridge', link: 'commercial-fridge.html' },
+            { title: 'Fridge Installation', link: 'fridge-install.html' },
+            { title: 'Fridge Maintenance', link: 'fridge-maintenance.html' },
+            { title: 'Fridge Cleaning', link: 'fridge-cleaning.html' },
+            { title: 'Brand Specialists', link: 'fridge-brands.html' },
+            { title: 'Emergency Repair', link: 'fridge-emergency.html' },
+            { title: 'Annual Contract', link: 'fridge-contract.html' }
+        ],
+        'Washing Machine Services': [
+            { title: 'WM Repair', link: 'wm-repair.html' },
+            { title: 'WM Installation', link: 'wm-install.html' },
+            { title: 'WM Drain Issues', link: 'wm-drain.html' },
+            { title: 'WM Spin Problems', link: 'wm-spin.html' },
+            { title: 'WM Water Leak', link: 'wm-leak.html' },
+            { title: 'WM Drum Issues', link: 'wm-drum.html' },
+            { title: 'WM Motor Repair', link: 'wm-motor.html' },
+            { title: 'WM PCB Repair', link: 'wm-pcb.html' },
+            { title: 'WM Door Seal', link: 'wm-door.html' },
+            { title: 'WM Detergent Tray', link: 'wm-tray.html' },
+            { title: 'WM Not Starting', link: 'wm-start.html' },
+            { title: 'WM No Power', link: 'wm-power.html' },
+            { title: 'WM Noisy', link: 'wm-noise.html' },
+            { title: 'WM Water Inlet', link: 'wm-inlet.html' },
+            { title: 'WM Drain Pump', link: 'wm-pump.html' },
+            { title: 'WM Maintenance', link: 'wm-maintenance.html' },
+            { title: 'WM Deep Clean', link: 'wm-clean.html' },
+            { title: 'WM Brand Specialists', link: 'wm-brands.html' },
+            { title: 'WM Emergency', link: 'wm-emergency.html' },
+            { title: 'WM Annual Contract', link: 'wm-contract.html' }
+        ],
+        'Cooler Services': [
+            { title: 'Cooler Installation', link: 'cooler-install.html' },
+            { title: 'Cooler Repair', link: 'cooler-repair.html' },
+            { title: 'Water Pump Repair', link: 'cooler-pump.html' },
+            { title: 'Cooler Fan Repair', link: 'cooler-fan.html' },
+            { title: 'Cooler Cleaning', link: 'cooler-cleaning.html' },
+            { title: 'Cooler Pad Replacement', link: 'cooler-pad.html' },
+            { title: 'Cooler Water Leak', link: 'cooler-leak.html' },
+            { title: 'Cooler Not Cooling', link: 'cooler-not-cooling.html' },
+            { title: 'Cooler Maintenance', link: 'cooler-maintenance.html' },
+            { title: 'Commercial Cooler', link: 'commercial-cooler.html' }
+        ],
+        'Geyser Services': [
+            { title: 'Geyser Installation', link: 'geyser-install.html' },
+            { title: 'Geyser Repair', link: 'geyser-repair.html' },
+            { title: 'Geyser Element', link: 'geyser-element.html' },
+            { title: 'Geyser Thermostat', link: 'geyser-thermostat.html' },
+            { title: 'Geyser Leakage', link: 'geyser-leak.html' },
+            { title: 'Geyser Not Heating', link: 'geyser-not-heating.html' },
+            { title: 'Geyser Maintenance', link: 'geyser-maintenance.html' },
+            { title: 'Solar Geyser', link: 'solar-geyser.html' },
+            { title: 'Instant Geyser', link: 'instant-geyser.html' },
+            { title: 'Geyser Pressure Valve', link: 'geyser-valve.html' }
+        ],
+        'Kitchen Services': [
+            { title: 'Chimney Cleaning', link: 'chimney-cleaning.html' },
+            { title: 'Chimney Repair', link: 'chimney-repair.html' },
+            { title: 'Chimney Installation', link: 'chimney-install.html' },
+            { title: 'Microwave Repair', link: 'microwave-repair.html' },
+            { title: 'Oven Repair', link: 'oven-repair.html' },
+            { title: 'Induction Repair', link: 'induction-repair.html' },
+            { title: 'Mixer/Grinder Repair', link: 'mixer-repair.html' },
+            { title: 'Food Processor Repair', link: 'foodprocessor-repair.html' },
+            { title: 'Water Purifier Service', link: 'purifier-service.html' },
+            { title: 'Kitchen Exhaust Fan', link: 'kitchen-fan.html' }
+        ],
+        'Electrical Services': [
+            { title: 'Wiring Installation', link: 'wiring-install.html' },
+            { title: 'Switchboard Repair', link: 'switchboard.html' },
+            { title: 'Light Fixtures', link: 'light-fixtures.html' },
+            { title: 'Power Outage', link: 'power-outage.html' },
+            { title: 'Circuit Breaker', link: 'circuit-breaker.html' },
+            { title: 'Socket Installation', link: 'socket-install.html' },
+            { title: 'Fan Installation', link: 'fan-install.html' },
+            { title: 'Inverter Setup', link: 'inverter-setup.html' },
+            { title: 'Generator Setup', link: 'generator-setup.html' },
+            { title: 'Home Automation', link: 'home-automation.html' },
+            { title: 'Electrical Safety', link: 'electrical-safety.html' },
+            { title: 'Emergency Electrician', link: 'emergency-electrician.html' },
+            { title: 'Commercial Electrical', link: 'commercial-electrical.html' },
+            { title: 'LED Installation', link: 'led-install.html' },
+            { title: 'Chandelier Install', link: 'chandelier.html' }
+        ],
+        'Plumbing Services': [
+            { title: 'Pipe Leak Repair', link: 'pipe-leak.html' },
+            { title: 'Bathroom Fitting', link: 'bathroom-fitting.html' },
+            { title: 'Tap Repair', link: 'tap-repair.html' },
+            { title: 'Water Tank Cleaning', link: 'tank-cleaning.html' },
+            { title: 'Blocked Drain', link: 'blocked-drain.html' },
+            { title: 'Water Pump Repair', link: 'water-pump.html' },
+            { title: 'Bathroom Renovation', link: 'bathroom-reno.html' },
+            { title: 'Pipe Installation', link: 'pipe-install.html' },
+            { title: 'Septic Tank', link: 'septic-tank.html' },
+            { title: 'Water Heater', link: 'water-heater.html' }
+        ],
+        'Cleaning Services': [
+            { title: 'Carpet Cleaning', link: 'carpet-cleaning.html' },
+            { title: 'Sofa Cleaning', link: 'sofa-cleaning.html' },
+            { title: 'House Deep Cleaning', link: 'deep-cleaning.html' },
+            { title: 'Office Cleaning', link: 'office-cleaning.html' },
+            { title: 'Window Cleaning', link: 'window-cleaning.html' },
+            { title: 'Post Construction', link: 'post-construction.html' },
+            { title: 'Mattress Cleaning', link: 'mattress-cleaning.html' },
+            { title: 'Curtain Cleaning', link: 'curtain-cleaning.html' },
+            { title: 'Car Interior', link: 'car-interior.html' },
+            { title: 'Disinfection', link: 'disinfection.html' }
+        ],
+        'Salon Services': [
+            { title: 'Haircut', link: 'haircut.html' },
+            { title: 'Hair Color', link: 'hair-color.html' },
+            { title: 'Hair Spa', link: 'hair-spa.html' },
+            { title: 'Beard Trim', link: 'beard-trim.html' },
+            { title: 'Shave', link: 'shave.html' },
+            { title: 'Facial', link: 'facial.html' },
+            { title: 'Waxing', link: 'waxing.html' },
+            { title: 'Manicure', link: 'manicure.html' },
+            { title: 'Pedicure', link: 'pedicure.html' },
+            { title: 'Massage', link: 'massage.html' }
+        ],
+        'Handyman Services': [
+            { title: 'Furniture Assembly', link: 'furniture-assembly.html' },
+            { title: 'Painting', link: 'painting.html' },
+            { title: 'TV Mounting', link: 'tv-mounting.html' },
+            { title: 'Shelving', link: 'shelving.html' },
+            { title: 'Door Repair', link: 'door-repair.html' },
+            { title: 'Window Repair', link: 'window-repair.html' },
+            { title: 'Lock Installation', link: 'lock-install.html' },
+            { title: 'Wall Mounting', link: 'wall-mounting.html' },
+            { title: 'Minor Carpentry', link: 'carpentry.html' },
+            { title: 'General Repairs', link: 'general-repairs.html' }
+        ],
+        'Security Services': [
+            { title: 'CCTV Installation', link: 'cctv-install.html' },
+            { title: 'CCTV Repair', link: 'cctv-repair.html' },
+            { title: 'Alarm System', link: 'alarm-system.html' },
+            { title: 'Security Camera', link: 'security-camera.html' },
+            { title: 'Smart Lock', link: 'smart-lock.html' },
+            { title: 'Access Control', link: 'access-control.html' },
+            { title: 'Home Security', link: 'home-security.html' },
+            { title: 'Commercial Security', link: 'commercial-security.html' },
+            { title: 'Security Audit', link: 'security-audit.html' },
+            { title: 'Security Guards', link: 'security-guards.html' }
+        ]
+    };
 
-  // Show popup with relevant services
-  function showPopup(category) {
-    const popup = document.getElementById('servicePopup');
-    const popupTitle = document.getElementById('popupTitle');
-    const popupCardsContainer = document.getElementById('popupCardsContainer');
-    
-    // Set popup title
-    popupTitle.textContent = category;
-    
-    // Clear previous cards
-    popupCardsContainer.innerHTML = '';
-    
-    // Add new cards
-    if (serviceData[category]) {
-      serviceData[category].forEach(service => {
-        const card = document.createElement('a');
-        card.className = 'popup-card';
-        card.href = service.link;
-        card.innerHTML = `
-          <span class="popup-card-badge">${category.split(' ')[0]}</span>
-          <div class="popup-card-image" style="background-image: url('${service.image}')"></div>
-          <div class="popup-card-content">
-            <h4 class="popup-card-title">${service.title}</h4>
-            <span class="popup-card-btn">Book Now</span>
-          </div>
-        `;
-        popupCardsContainer.appendChild(card);
-      });
-    }
-    
-    // Show popup
-    popup.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  // Close popup
-  function closePopup() {
-    const popup = document.getElementById('servicePopup');
-    popup.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-
-  // Close popup when clicking outside
-  document.getElementById('servicePopup').addEventListener('click', function(e) {
-    if (e.target === this) {
-      closePopup();
-    }
-  });
-</script>
-    <!-- Container Injected Sections -->
-        <div id="Container1"></div>
-  </main>
-
-  <!-- Footer Injection Target -->
-  <div id="footer-container"></div>
-
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slider-background img');
-    const totalSlides = slides.length;
-    const slideInterval = 7000;
-
-    function showSlide(index) {
-      slides.forEach((img, i) => {
-        img.classList.remove('active');
-        if (i === index) {
-          img.classList.add('active');
+    // Show popup with relevant services
+    function showPopup(category, imageUrl) {
+        const popup = document.getElementById('servicePopup');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupCardsContainer = document.getElementById('popupCardsContainer');
+        
+        // Set popup title
+        popupTitle.textContent = category;
+        
+        // Clear previous cards
+        popupCardsContainer.innerHTML = '';
+        
+        // Add new cards
+        if (serviceData[category]) {
+            serviceData[category].forEach(service => {
+                const card = document.createElement('a');
+                card.className = 'popup-card';
+                card.href = service.link;
+                card.innerHTML = `
+                    <span class="popup-card-badge">${category.split(' ')[0]}</span>
+                    <div class="popup-card-image" style="background-image: url('${imageUrl}')"></div>
+                    <div class="popup-card-content">
+                        <h4 class="popup-card-title">${service.title}</h4>
+                        <span class="popup-card-btn">Book Now</span>
+                    </div>
+                `;
+                popupCardsContainer.appendChild(card);
+            });
         }
-      });
+        
+        // Show popup
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      showSlide(currentSlide);
+    // Close popup
+    function closePopup() {
+        const popup = document.getElementById('servicePopup');
+        popup.classList.remove('active');
+        document.body.style.overflow = 'auto';
     }
 
-    setInterval(nextSlide, slideInterval);
-  </script>
-
-  <script>
-    // Add animations to cards
-    document.addEventListener('DOMContentLoaded', function () {
-      const cards = document.querySelectorAll('.feature-card');
-      setTimeout(() => {
-        cards.forEach((card, index) => {
-          setTimeout(() => {
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-          }, 200 * index);
-        });
-      }, 500);
-
-      cards.forEach(card => {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(30px)";
-        card.style.transition = "all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-
-        card.addEventListener('mouseenter', function () {
-          this.style.transform = 'translateY(-15px)';
-        });
-
-        card.addEventListener('mouseleave', function () {
-          this.style.transform = 'translateY(0)';
-        });
-      });
+    // Close popup when clicking outside
+    document.getElementById('servicePopup').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closePopup();
+        }
     });
-  </script>
+</script>
+    <div id="Container1"></div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-background img');
+        const totalSlides = slides.length;
+        const slideInterval = 7000;
+
+        function showSlide(index) {
+            slides.forEach((img, i) => {
+                img.classList.remove('active');
+                if (i === index) {
+                    img.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, slideInterval);
+    </script>
+
+    <script>
+        // Add animations to cards
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.feature-card');
+            setTimeout(() => {
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = "1";
+                        card.style.transform = "translateY(0)";
+                    }, 200 * index);
+                });
+            }, 500);
+
+            cards.forEach(card => {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(30px)";
+                card.style.transition = "all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-15px)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
 
   <!-- Load Injectors -->
   <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
