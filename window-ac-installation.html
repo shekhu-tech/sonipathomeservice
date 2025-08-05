@@ -885,7 +885,7 @@
             form.querySelector('button[type="submit"]').disabled = true;
 
             data.ticket = generateFormattedTickets(...Object.values(data));
-            data.tab = "acinstallation";  // Changed to acinstallation
+            data.tab = "window-ac-installation";  // 👈 INSERT THIS LINE
             ticketInput.value = data.ticket;
 
             const urlEncoded = new URLSearchParams(data);
