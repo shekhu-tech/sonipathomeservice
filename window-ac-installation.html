@@ -1,14 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoolAir - AC Installation Service</title>
-    <!-- Font Awesome for icons -->
+    <title>SonipatHomeService.com - Window AC Installation Service</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Tailwind CSS CDN for responsive utilities -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Razorpay Checkout Script -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
         /* Custom CSS for CoolAir - Overrides and enhancements for responsiveness */
@@ -539,10 +537,8 @@
 </head>
 <body>
    
-    <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
         
-        <!-- Product Section -->
         <section class="product-section rounded-2xl shadow-lg mb-8">
             <div class="product-header rounded-t-2xl">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">Window AC Installation Service</h2>
@@ -586,7 +582,6 @@
             </div>
         </section>
 
-        <!-- Stats Section -->
         <div class="lottery-stats grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="stat-card rounded-xl shadow-lg">
                 <h3 class="text-blue-300 text-lg font-medium mb-1">Total Members</h3>
@@ -607,10 +602,8 @@
         </div>
     </main>
 
-    <!-- Popup Overlay and Forms -->
     <div id="popup-overlay"></div>
     
-    <!-- Participation Form Popup -->
     <div class="popup" id="popupForm">
         <h2 class="text-2xl font-bold text-center mb-4">Get AC Installation Service</h2>
         <form id="lotteryForm">
@@ -639,8 +632,7 @@
                 <label for="ticketQuantity" class="text-blue-300 text-sm mb-2">Number of AC Installations (Max 5):</label>
                 <select id="ticketQuantity" name="ticketQuantity" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="" disabled selected>Select quantity</option>
-                    <!-- Options will be populated by JavaScript -->
-                </select>
+                    </select>
                 <div class="quantity-info flex justify-between mt-2 text-gray-400 text-sm">
                     <span>₹699 per Installation</span>
                     <span class="total-price font-bold text-accent text-lg">Total: ₹0</span>
@@ -653,7 +645,6 @@
         </form>
     </div>
 
-    <!-- Payment Step Popup -->
     <div class="popup" id="paymentStep">
         <h2 class="text-2xl font-bold text-center mb-4">Complete Your Payment</h2>
         <p class="text-gray-300 text-center mb-6">Please complete the payment to finalize your AC Installation purchase. Click the button below.</p>
@@ -665,10 +656,9 @@
         </p>
     </div>
 
-    <!-- Ticket Display Popup -->
     <div class="popup" id="ticketStep">
-        <h2 class="text-2xl font-bold text-center mb-4 text-green-400">🎉 Congratulations! Your AC Installation Booking is Confirmed! 🎉</h2>
-        <p class="text-gray-300 text-center mb-4">You have purchased <span id="ticketCountDisplay" class="font-bold text-blue-300"></span>:</p>
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center mb-4 text-green-400"></h2>
+        <p class="text-gray-300 text-center mb-4">You have successfully booked <span id="ticketCountDisplay" class="font-bold text-blue-300"></span>:</p>
         <div id="ticketDisplay" class="bg-gray-800 p-4 rounded-lg mb-6 text-center text-lg"></div>
         <button id="downloadTicketsBtn" class="w-full btn-primary py-3 rounded-xl font-bold text-white text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
             <i class="fas fa-download mr-2"></i> Download Booking Details
@@ -693,6 +683,7 @@
         const paymentSummary = document.getElementById('paymentSummary');
         const ticketCountDisplay = document.getElementById('ticketCountDisplay');
         const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
 
         // Form & Ticket Elements
         const form = document.getElementById('lotteryForm');
@@ -700,7 +691,7 @@
         const ticketDisplay = document.getElementById('ticketDisplay');
         const okayBtn = document.getElementById('okayBtn');
 
-        let generatedTickets = [];
+        let generatedTicket = ''; // Changed to a single string
         let paymentTimeout = null;
         let countdownInterval = null;
         const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes in seconds
@@ -732,27 +723,15 @@
             totalPriceDisplay.textContent = `Total: ₹${total}`;
         }
 
-        // Generate multiple tickets with incrementing last 2 digits
-        function generateFormattedTickets(...fields) {
-            generatedTickets = [];
-            const tickets = [];
-            
-            // Generate a base ticket code
+        // Generate a single formatted ticket
+        function generateFormattedTicket(...fields) {
             const uniqueFields = [...fields, Date.now()];
             const base = btoa(uniqueFields.join('')).replace(/[^A-Z0-9]/gi, '').toUpperCase();
-            let raw = base.padEnd(20, 'X').substring(0, 18); // Take first 18 characters to leave room for 2-digit suffix
+            let raw = base.padEnd(20, 'X').substring(0, 18);
+            const lastTwoDigits = (5).toString().padStart(2, '0');
+            const ticket = (raw + lastTwoDigits).match(/.{1,4}/g).join('-');
             
-            // Generate tickets with incrementing last 2 digits
-            for (let i = 0; i < selectedQuantity; i++) {
-                // Calculate last 2 digits (starting from 5 and incrementing)
-                const lastTwoDigits = (5 + i).toString().padStart(2, '0');
-                // Combine with the base
-                const ticket = (raw + lastTwoDigits).match(/.{1,4}/g).join('-');
-                generatedTickets.push(ticket);
-                tickets.push(ticket);
-            }
-            
-            return tickets.join(', '); // Return all tickets as comma-separated string
+            return ticket;
         }
 
         // Download tickets as text file
@@ -761,7 +740,7 @@
                                  `Customer Name: ${form.field1.value}\n` +
                                  `Contact: ${form.field2.value}\n` +
                                  `Location: ${form.field5.value}\n` +
-                                 `Booking Reference Numbers:\n${generatedTickets.join('\n')}\n\n` +
+                                 `Booking Reference Number: ${generatedTicket}\n\n` + // Use single ticket
                                  `Total Installations: ${selectedQuantity}\n` +
                                  `Total Amount Paid: ₹${selectedQuantity * TICKET_PRICE}`;
             
@@ -822,9 +801,10 @@
         });
         
         allPopups.forEach(p => p.addEventListener('click', e => e.stopPropagation()));
+        
+        // Modified okayBtn event listener to redirect to index.html
         okayBtn.addEventListener('click', function() {
-            allowClose = true; // Allow closing when user clicks "Okay"
-            closeAllPopups();
+            window.location.href = 'index.html';
         });
         
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
@@ -884,7 +864,8 @@
             submitMessage.style.display = 'block';
             form.querySelector('button[type="submit"]').disabled = true;
 
-            data.ticket = generateFormattedTickets(...Object.values(data));
+            generatedTicket = generateFormattedTicket(...Object.values(data)); // Generate single ticket
+            data.ticket = generatedTicket; // Assign single ticket to data
             data.tab = "window-ac-installation";  // 👈 INSERT THIS LINE
             ticketInput.value = data.ticket;
 
@@ -942,7 +923,7 @@
                 "key": "rzp_test_xGe3n7XgxLGqIT", // Replace with your actual Razorpay Key ID
                 "amount": totalAmount.toString(),
                 "currency": "INR",
-                "name": "CoolAir Services",
+                "name": document.querySelector('.product-header h2').textContent, // Dynamically get the title
                 "description": `Payment for ${selectedQuantity} AC Installation${selectedQuantity > 1 ? 's' : ''}`,
                 "image": "https://placehold.co/100x100/0066cc/ffffff?text=CA", // Placeholder logo
                 "handler": function (response){
@@ -1013,8 +994,17 @@
             paymentStep.style.display = 'none';
             openPopup(ticketStep);
             
-            // Display all tickets
-            ticketDisplay.textContent = generatedTickets.join('\n\n');
+            // Display welcome message with user's name
+            const userName = form.fullName.value;
+            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your AC Installation Booking is Confirmed! 🎉`;
+            
+            // Display the single ticket number and registration ID
+            ticketDisplay.innerHTML = `
+                <p>Registration ID: <span class="text-white">${generatedTicket}</span></p>
+                <p>AC Installation Count: <span class="text-white">${selectedQuantity}</span></p>
+            `;
+            
+            // Update download button content
             ticketCountDisplay.textContent = `${selectedQuantity} AC Installation${selectedQuantity > 1 ? 's' : ''}`;
             
             // Allow closing only from the ticket step
@@ -1037,7 +1027,7 @@
             });
         }
     </script>
-    <!-- Load Injectors (assuming script.js handles header/footer injection) -->
-  <script src="script.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
+```
