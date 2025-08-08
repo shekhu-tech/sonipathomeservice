@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
     <style>
         /* Custom CSS for CoolAir - Overrides and enhancements for responsiveness */
         /* Using Inter font for a modern look */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); 
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         :root {
             --primary: #0066cc;
@@ -247,8 +248,14 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -45%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+            from {
+                opacity: 0;
+                transform: translate(-50%, -45%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
         }
 
         .popup input,
@@ -262,25 +269,25 @@
             border: none;
             font-size: 1rem; /* Responsive font size */
         }
-        
+
         .popup input,
         .popup textarea {
             background: #f5f5f5;
             color: #000;
         }
-        
+
         .popup textarea {
             min-height: 6.25rem; /* 100px */
             resize: vertical;
         }
-        
+
         .popup label {
             display: block;
             margin-bottom: 0.3125rem; /* 5px */
             color: #00ccff;
             font-size: 0.95rem; /* Responsive font size */
         }
-        
+
         .popup button[type="submit"],
         .popup button#okayBtn,
         #razorpay-payment-btn,
@@ -305,7 +312,7 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 204, 255, 0.5);
         }
-        
+
         #ticketDisplay {
             font-weight: bold;
             color: #00ffcc;
@@ -315,7 +322,7 @@
             max-height: 12.5rem; /* 200px */
             overflow-y: auto;
             padding: 0.625rem; /* 10px */
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 0.625rem; /* 10px */
             margin: 0.625rem 0;
         }
@@ -335,7 +342,7 @@
             margin-top: 0.625rem; /* 10px */
             display: none;
         }
-        
+
         #timerDisplay {
             font-size: 1.1rem; /* Responsive font size */
             font-weight: bold;
@@ -347,13 +354,13 @@
         .quantity-selector {
             margin: 0.9375rem 0; /* Responsive margin */
         }
-        
+
         .quantity-selector label {
             display: block;
             margin-bottom: 0.5rem;
             color: #00ccff;
         }
-        
+
         .quantity-info {
             display: flex;
             justify-content: space-between;
@@ -361,7 +368,7 @@
             font-size: 0.85rem; /* Responsive font size */
             color: #ccc;
         }
-        
+
         .total-price {
             font-size: 1.1rem; /* Responsive font size */
             font-weight: bold;
@@ -381,7 +388,7 @@
             padding: 1.25rem 1.875rem; /* Responsive padding */
             border-radius: 0.625rem; /* 10px */
             z-index: 1002;
-            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4); /* 5px 15px */
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.4); /* 5px 15px */
             font-size: 1rem; /* Responsive font size */
             text-align: center;
             max-width: 90%; /* Responsive width */
@@ -389,10 +396,23 @@
         }
 
         @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, -40%); }
-            10% { opacity: 1; transform: translate(-50%, -50%); }
-            90% { opacity: 1; transform: translate(-50%, -50%); }
-            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+            10% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+            90% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+                display: none;
+            }
         }
 
         /* Media Queries for fine-tuning responsiveness */
@@ -400,45 +420,61 @@
             main {
                 padding: 5rem 1rem 2rem;
             }
+
             .product-header h2 {
                 font-size: 1.5rem;
             }
+
             .product-content {
                 flex-direction: column;
                 padding: 1rem;
             }
+
             .product-image {
                 min-height: 200px;
                 width: 100%;
             }
+
             .product-details {
                 min-width: unset; /* Remove min-width on smaller screens */
                 width: 100%;
                 text-align: center; /* Center text for better mobile layout */
             }
-            .price-container, .action-buttons {
+
+            .price-container,
+            .action-buttons {
                 justify-content: center; /* Center elements in these containers */
             }
+
             .btn {
                 width: 100%; /* Full width buttons on smaller screens */
                 max-width: 300px; /* Limit button width */
             }
+
             .lottery-stats {
                 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Even smaller min-width */
             }
+
             .stat-card {
                 padding: 0.8rem;
             }
+
             .stat-card h3 {
                 font-size: 0.85rem;
             }
+
             .stat-card p {
                 font-size: 1.3rem;
             }
+
             .popup {
                 padding: 1rem;
             }
-            .popup input, .popup button, .popup select, .popup textarea {
+
+            .popup input,
+            .popup button,
+            .popup select,
+            .popup textarea {
                 font-size: 0.9rem;
                 padding: 0.6rem;
             }
@@ -448,22 +484,28 @@
             main {
                 padding-top: 4rem;
             }
+
             .product-header h2 {
                 font-size: 1.3rem;
             }
+
             .original-price {
                 font-size: 1.3rem;
             }
+
             .lottery-price {
                 font-size: 1.8rem;
             }
+
             .features li {
                 font-size: 0.9rem;
             }
+
             .btn {
                 font-size: 0.85rem;
                 padding: 0.6rem 1rem;
             }
+
             .lottery-stats {
                 grid-template-columns: 1fr 1fr; /* Two columns on tablets */
             }
@@ -473,60 +515,81 @@
             main {
                 padding: 3rem 0.5rem 1rem;
             }
+
             .product-header h2 {
                 font-size: 1.2rem;
             }
+
             .product-content {
                 padding: 0.8rem;
             }
+
             .product-image {
                 min-height: 180px;
             }
+
             .original-price {
                 font-size: 1.2rem;
             }
+
             .lottery-price {
                 font-size: 1.6rem;
             }
+
             .features ul {
                 padding-left: 1rem;
             }
+
             .features li {
                 font-size: 0.85rem;
             }
+
             .action-buttons {
                 flex-direction: column; /* Stack buttons vertically on small phones */
             }
+
             .btn {
                 width: 100%;
                 max-width: unset; /* Remove max-width for full stretch */
             }
+
             .lottery-stats {
                 grid-template-columns: 1fr; /* Single column on phones */
             }
+
             .stat-card {
                 padding: 0.7rem;
             }
+
             .stat-card h3 {
                 font-size: 0.8rem;
             }
+
             .stat-card p {
                 font-size: 1.1rem;
             }
+
             .popup {
                 padding: 1rem;
                 width: 98%; /* Even wider on very small screens */
             }
+
             .popup h2 {
                 font-size: 1.3rem;
             }
-            .popup input, .popup button, .popup select, .popup textarea {
+
+            .popup input,
+            .popup button,
+            .popup select,
+            .popup textarea {
                 font-size: 0.85rem;
                 padding: 0.5rem;
             }
+
             #ticketDisplay {
                 font-size: 0.95rem;
             }
+
             .custom-alert {
                 font-size: 0.9rem;
                 padding: 1rem 1.5rem;
@@ -534,10 +597,11 @@
         }
     </style>
 </head>
+
 <body>
-   
+
     <main class="container mx-auto px-4 py-8">
-        
+
         <section class="product-section rounded-2xl shadow-lg mb-8">
             <div class="product-header rounded-t-2xl">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">Emergency AC Services</h2>
@@ -547,12 +611,12 @@
                 <div class="product-details w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
                     <h3 class="text-2xl md:text-3xl font-semibold text-white mb-3">Emergency AC Service & Diagnosis</h3>
                     <p class="text-gray-300 mb-4 text-base md:text-lg">Facing an urgent AC issue? Our Emergency AC Services provide rapid diagnosis and immediate solutions. A standard visiting charge of ₹299 applies, which is adjustable based on your exact location within Sonipat. Our certified technicians will swiftly identify the problem, provide a detailed estimate for repairs including parts, and get your AC running smoothly again.</p>
-                    
+
                     <div class="price-container flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 my-6">
                         <div class="original-price text-gray-400 text-xl md:text-2xl line-through">Market Price: ₹500</div>
                         <div class="lottery-price text-accent text-3xl md:text-4xl font-bold">Visiting Charge: ₹299 (Adjustable)</div>
                     </div>
-                    
+
                     <div class="features text-left my-6">
                         <h3 class="text-xl md:text-2xl font-semibold text-blue-300 mb-3">Service Features:</h3>
                         <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
@@ -565,7 +629,7 @@
                             <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Priority scheduling for quick resolution</li>
                         </ul>
                     </div>
-                    
+
                     <div class="action-buttons flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
                         <button class="btn btn-primary shadow-lg hover:shadow-xl" id="participate-btn">
                             <i class="fas fa-exclamation-triangle"></i> Get Emergency AC Service
@@ -599,42 +663,42 @@
     </main>
 
     <div id="popup-overlay"></div>
-    
+
     <div class="popup" id="popupForm">
         <h2 class="text-2xl font-bold text-center mb-4">Emergency AC Service Booking</h2>
         <form id="lotteryForm">
             <label for="fullName" class="text-blue-300 text-sm mb-1">Your Full Name (min 10 characters)</label>
             <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            
+
             <label for="phone" class="text-blue-300 text-sm mb-1">Phone Number (10 digits)</label>
             <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            
+
             <label for="email" class="text-blue-300 text-sm mb-1">Email Address</label>
             <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            
+
             <div class="mb-3">
                 <label for="dobField" class="text-blue-300 text-sm mb-1">Date of Birth:</label>
                 <input type="date" id="dobField" name="field4" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
-            
-            <label for="location" class="text-blue-300 text-sm mb-1">Your Location (e.g. Mumbai, Delhi)</label>
-            <input type="text" id="location" name="field5" required placeholder="Mumbai" autocomplete="address-level2" list="locations" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            
+
+            <label for="location" class="text-blue-300 text-sm mb-1">Your Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
             <label for="address" class="text-blue-300 text-sm mb-1">Complete Address (min 30 characters)</label>
             <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
             <span id="countryError" class="text-red-400 text-xs mt-1 hidden">Please enter your complete address with at least 30 characters.</span>
-            
+
             <div class="quantity-selector my-4">
                 <label for="ticketQuantity" class="text-blue-300 text-sm mb-2">Number of Emergency Services (Max 5):</label>
                 <select id="ticketQuantity" name="ticketQuantity" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="" disabled selected>Select quantity</option>
-                    </select>
+                </select>
                 <div class="quantity-info flex justify-between mt-2 text-gray-400 text-sm">
                     <span>₹299 per Service (Initial Visiting Charge)</span>
                     <span class="total-price font-bold text-accent text-lg">Total: ₹0</span>
                 </div>
             </div>
-            
+
             <input type="hidden" name="ticket" id="ticketCode" />
             <button type="submit" class="w-full btn-primary mt-4 py-3 rounded-xl font-bold text-white text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Submit Details</button>
             <span id="submitMessage" class="text-green-400 text-center mt-3 hidden">Submitting... Please wait</span>
@@ -662,7 +726,7 @@
         <p class="mt-4 text-sm text-gray-400 text-center">📸 Please take a screenshot for proof and reference.</p>
         <button id="okayBtn" class="w-full btn-secondary py-3 rounded-xl font-bold text-white text-lg mt-4 transition-all duration-300 hover:scale-105 hover:bg-opacity-20">Okay, Got It!</button>
     </div>
-   
+
     <script>
         // Popup Elements
         const participateBtn = document.getElementById('participate-btn');
@@ -697,16 +761,16 @@
 
         // Initialize quantity selector
         function initQuantitySelector() {
-            const maxTickets = 5; 
+            const maxTickets = 5;
             ticketQuantity.innerHTML = '<option value="" disabled selected>Select quantity</option>';
-            
+
             for (let i = 1; i <= maxTickets; i++) {
                 const option = document.createElement('option');
                 option.value = i;
                 option.textContent = i + (i === 1 ? ' service' : ' services');
                 ticketQuantity.appendChild(option);
             }
-            
+
             // Set default value to 1
             ticketQuantity.value = 1;
             updateTotalPrice();
@@ -720,30 +784,31 @@
         }
 
         // Generate a single formatted ticket
-        function generateFormattedTicket(...fields) {
-            const uniqueFields = [...fields, Date.now()];
-            const base = btoa(uniqueFields.join('')).replace(/[^A-Z0-9]/gi, '').toUpperCase();
-            let raw = base.padEnd(20, 'X').substring(0, 18);
-            const lastTwoDigits = (5).toString().padStart(2, '0');
-            const ticket = (raw + lastTwoDigits).match(/.{1,4}/g).join('-');
-            
-            return ticket;
+        function generateFormattedTicket() {
+            const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0,
+                    v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+            return uuid.toUpperCase().replace(/-/g, '').match(/.{1,4}/g).join('-');
         }
 
         // Download tickets as text file
         function downloadTickets() {
             const ticketContent = `Emergency AC Service Booking Details\n\n` +
-                                 `Customer Name: ${form.field1.value}\n` +
-                                 `Contact: ${form.field2.value}\n` +
-                                 `Location: ${form.field5.value}\n` +
-                                 `Booking Reference Number: ${generatedTicket}\n\n` + // Use single ticket
-                                 `Total Services: ${selectedQuantity}\n` +
-                                 `Initial Visiting Charge: ₹${selectedQuantity * TICKET_PRICE}\n\n` +
-                                 `Note: Final charges for parts and labor will be communicated by the technician after diagnosis. Visiting charge is adjustable based on location.`;
-            
-            const blob = new Blob([ticketContent], { type: 'text/plain' });
+                `Customer Name: ${form.field1.value}\n` +
+                `Contact: ${form.field2.value}\n` +
+                `Location: ${form.field5.value}\n` +
+                `Booking Reference Number: ${generatedTicket}\n\n` + // Use single ticket
+                `Total Services: ${selectedQuantity}\n` +
+                `Initial Visiting Charge: ₹${selectedQuantity * TICKET_PRICE}\n\n` +
+                `Note: Final charges for parts and labor will be communicated by the technician after diagnosis. Visiting charge is adjustable based on location.`;
+
+            const blob = new Blob([ticketContent], {
+                type: 'text/plain'
+            });
             const url = URL.createObjectURL(blob);
-            
+
             const a = document.createElement('a');
             a.href = url;
             a.download = 'emergency_ac_service_booking.txt';
@@ -756,7 +821,7 @@
         // --- FUNCTIONS TO CONTROL POPUPS ---
         function closeAllPopups() {
             if (!allowClose) return; // Only close if allowed
-            
+
             clearTimers();
             popupOverlay.style.display = 'none';
             allPopups.forEach(p => p.style.display = 'none');
@@ -784,9 +849,9 @@
             initQuantitySelector();
             openPopup(popupForm);
         });
-        
+
         ticketQuantity.addEventListener('change', updateTotalPrice);
-        
+
         // Modified overlay click handler
         popupOverlay.addEventListener('click', function(e) {
             if (allowClose) {
@@ -796,62 +861,49 @@
                 showCustomAlert("Please complete the form or payment process before closing.");
             }
         });
-        
+
         allPopups.forEach(p => p.addEventListener('click', e => e.stopPropagation()));
-        
+
         // Modified okayBtn event listener to redirect to index.html
         okayBtn.addEventListener('click', function() {
             window.location.href = 'index.html';
         });
-        
+
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
         downloadTicketsBtn.addEventListener('click', downloadTickets);
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const data = {
-                field1: form.field1.value.trim(),
-                field2: form.field2.value.trim(),
-                field3: form.field3.value.trim(),
-                field4: form.field4.value,
-                field5: form.field5.value.trim(),
-                field6: form.field6.value.trim(),
-                quantity: selectedQuantity
-            };
+            // Client-side validation
+            const fullName = form.fullName.value.trim();
+            const phone = form.phone.value.trim();
+            const email = form.email.value.trim();
+            const dob = form.dobField.value;
+            const location = form.location.value.trim();
+            const address = form.address.value.trim();
 
-            // Validate name (min 10 characters)
-            if (data.field1.length < 10) {
+            if (fullName.length < 10) {
                 showCustomAlert("Please enter your full name (minimum 10 characters)");
                 return;
             }
-
-            // Validate phone (exactly 10 digits)
-            if (!/^\d{10}$/.test(data.field2)) {
+            if (!/^\d{10}$/.test(phone)) {
                 showCustomAlert("Please enter a valid 10-digit phone number");
                 return;
             }
-
-            // Validate email
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.field3)) {
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 showCustomAlert("Please enter a valid email address");
                 return;
             }
-
-            // Validate date of birth
-            if (!data.field4) {
+            if (!dob) {
                 showCustomAlert("Please select your date of birth");
                 return;
             }
-
-            // Validate location
-            if (data.field5.length < 3) {
+            if (location.length < 3) {
                 showCustomAlert("Please enter a valid location name");
                 return;
             }
-
-            // Validate address (min 30 characters)
-            if (data.field6.length < 30) {
+            if (address.length < 30) {
                 document.getElementById('countryError').style.display = 'block';
                 showCustomAlert("Please enter a complete address with at least 30 characters.");
                 return;
@@ -861,18 +913,26 @@
             submitMessage.style.display = 'block';
             form.querySelector('button[type="submit"]').disabled = true;
 
-            data.ticket = generateFormattedTickets(...Object.values(data));
-            data.tab = "ac-services";
-            data.serviceType = document.querySelector("h1").innerText; // 👈 NEW LINE
-            ticketInput.value = data.ticket;
+            // Generate a unique ticket code
+            generatedTicket = generateFormattedTicket();
 
-            const urlEncoded = new URLSearchParams(data);
+            // Create FormData object to handle all form inputs
+            const formData = new FormData(form);
+            formData.set('field1', fullName);
+            formData.set('field2', phone);
+            formData.set('field3', email);
+            formData.set('field4', dob);
+            formData.set('field5', location);
+            formData.set('field6', address);
+            formData.set('ticket', generatedTicket);
+            formData.set('tab', 'ac-services');
+            formData.set('serviceType', 'Emergency AC Service & Diagnosis');
+            formData.set('ticketQuantity', selectedQuantity);
 
             fetch(
                 "https://script.google.com/macros/s/AKfycbxx5AVVkC_cC3Hn4b4Sl3R0Hk7t32NzC_Rkg3nlR3REVm-m0T-tDoHjTUat_Usy_0GP/exec", {
                     method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: urlEncoded
+                    body: formData,
                 }
             ).then(res => res.text()).then(res => {
                 submitMessage.style.display = 'none';
@@ -881,7 +941,6 @@
                 if (res === "Success") {
                     popupForm.style.display = 'none';
                     openPopup(paymentStep);
-                    // Update payment summary
                     paymentSummary.innerHTML = `
                         <p class="text-gray-300 text-lg mb-2">You are purchasing <span class="font-bold text-blue-300">${selectedQuantity}</span> Emergency AC Service${selectedQuantity > 1 ? 's' : ''}.</p>
                         <p class="total-price text-accent text-2xl font-bold">Initial Visiting Charge: ₹${selectedQuantity * TICKET_PRICE}</p>
@@ -899,7 +958,7 @@
                 showCustomAlert("An unexpected error occurred. Please check your connection and try again.");
             });
         });
-        
+
         // Custom Alert Function (replaces browser's alert)
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
@@ -907,7 +966,6 @@
             alertBox.textContent = message;
             document.body.appendChild(alertBox);
 
-            // No need to inject style sheet repeatedly, it's in the head.
             setTimeout(() => {
                 alertBox.remove();
             }, 4000); // Remove after 4 seconds
@@ -916,7 +974,7 @@
         // --- RAZORPAY PAYMENT HANDLING ---
         function handleRazorpayPayment() {
             const totalAmount = selectedQuantity * TICKET_PRICE * 100; // Convert to paise
-            
+
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF", // Replace with your actual Razorpay Key ID
                 "amount": totalAmount.toString(),
@@ -924,7 +982,7 @@
                 "name": document.querySelector('.product-header h2').textContent, // Dynamically get the title
                 "description": `Payment for ${selectedQuantity} Emergency AC Service${selectedQuantity > 1 ? 's' : ''} (Initial Visiting Charge)`,
                 "image": "https://placehold.co/100x100/0066cc/ffffff?text=CA", // Placeholder logo
-                "handler": function (response){
+                "handler": function(response) {
                     console.log("Payment successful:", response);
                     console.log("Razorpay Payment ID:", response.razorpay_payment_id);
                     paymentSuccess();
@@ -943,14 +1001,14 @@
                     "color": "#0066cc"
                 },
                 "modal": {
-                    "ondismiss": function(){
+                    "ondismiss": function() {
                         console.log('Razorpay checkout modal closed.');
                     }
                 }
             };
 
             const rzp1 = new Razorpay(options);
-            rzp1.on('payment.failed', function (response){
+            rzp1.on('payment.failed', function(response) {
                 console.error("Payment Failed:", response.error);
                 showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
             });
@@ -992,11 +1050,11 @@
             clearTimers();
             paymentStep.style.display = 'none';
             openPopup(ticketStep);
-            
+
             // Display welcome message with user's name
             const userName = form.fullName.value;
-            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your Emergency AC Service Booking is Confirmed! �`;
-            
+            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your Emergency AC Service Booking is Confirmed! 🎉`;
+
             // Display the single ticket number and registration ID
             ticketDisplay.innerHTML = `
                 <p>Registration ID: <span class="text-white">${generatedTicket}</span></p>
@@ -1004,22 +1062,15 @@
                 <p class="text-gray-400 text-sm mt-2">Initial Visiting Charge: ₹${selectedQuantity * TICKET_PRICE}</p>
                 <p class="text-gray-400 text-sm">Final charges for parts and labor will be communicated by the technician after diagnosis. Visiting charge is adjustable based on location.</p>
             `;
-            
+
             // Update download button content
             ticketCountDisplay.textContent = `${selectedQuantity} Emergency AC Service${selectedQuantity > 1 ? 's' : ''}`;
-            
+
             // Allow closing only from the ticket step
-            allowClose = false;
+            allowClose = true;
         }
-        
-        // ----------------------------------------------------------------------
-        // Slider Logic (Removed as it's not present in the provided HTML structure)
-        // If you intend to add a slider, please provide its HTML structure.
-        // ----------------------------------------------------------------------
-        
+
         // Mobile menu toggle (Assuming an external script or injected header handles this)
-        // If you intend to have a mobile menu, ensure its HTML and CSS are provided
-        // or generated in the header-container.
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         if (hamburger && navLinks) {
@@ -1028,7 +1079,5 @@
             });
         }
     </script>
-    <script src="script.js" defer></script>
 </body>
 </html>
-�
