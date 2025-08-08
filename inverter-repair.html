@@ -8,10 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
-        /* Custom CSS for CoolAir - Overrides and enhancements for responsiveness */
-        /* Using Inter font for a modern look */
+        /* CSS is unchanged */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
         :root {
             --primary: #0066cc;
             --secondary: #0099ff;
@@ -24,196 +22,159 @@
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif; /* Applied Inter font */
+            font-family: 'Inter', sans-serif;
         }
-
         body {
             background: linear-gradient(135deg, #003366 0%, #006699 100%);
             color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
         }
-
-        /* Main content area styling - Adjusted for better responsiveness */
         main {
-            padding-top: 6rem; /* Adjusted for header height on smaller screens */
+            padding-top: 6rem;
             max-width: 1700px;
             margin: 0 auto;
-            padding: 6rem 1rem 3rem; /* Responsive padding */
+            padding: 6rem 1rem 3rem;
         }
-
-        /* Lottery Stats Section - Using Grid for responsiveness */
         .lottery-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller min-width for mobile */
-            gap: 1rem; /* Responsive gap */
-            margin-bottom: 2rem; /* Responsive margin */
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
-
         .stat-card {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.625rem; /* 10px */
-            padding: 1rem; /* Responsive padding */
+            border-radius: 0.625rem;
+            padding: 1rem;
             text-align: center;
             backdrop-filter: blur(10px);
             transition: var(--transition);
             border: 1px solid rgba(0, 153, 255, 0.2);
         }
-
         .stat-card:hover {
-            transform: translateY(-0.3125rem); /* 5px */
+            transform: translateY(-0.3125rem);
             box-shadow: var(--shadow);
             border-color: var(--secondary);
         }
-
         .stat-card h3 {
-            font-size: 0.95rem; /* Smaller font for mobile */
+            font-size: 0.95rem;
             margin-bottom: 0.3rem;
             color: #00ccff;
         }
-
         .stat-card p {
-            font-size: 1.5rem; /* Responsive font size */
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--light);
         }
-
-        /* Product Section Styling */
         .product-section {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.9375rem; /* 15px */
+            border-radius: 0.9375rem;
             overflow: hidden;
-            margin-bottom: 2rem; /* Responsive margin */
+            margin-bottom: 2rem;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 153, 255, 0.2);
         }
-
         .product-header {
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            padding: 1.25rem; /* Responsive padding */
+            padding: 1.25rem;
             text-align: center;
         }
-
         .product-header h2 {
-            font-size: 1.75rem; /* Responsive font size */
+            font-size: 1.75rem;
             margin-bottom: 0.5rem;
         }
-
         .product-content {
             display: flex;
-            flex-wrap: wrap; /* Allows wrapping on smaller screens */
-            padding: 1.5rem; /* Responsive padding */
+            flex-wrap: wrap;
+            padding: 1.5rem;
             align-items: center;
             justify-content: center;
-            gap: 1.5rem; /* Gap between image and details */
+            gap: 1.5rem;
         }
-
         .product-image {
-            flex: 1; /* Allows image to take available space */
-            min-width: 280px; /* Minimum width for the image container */
-            max-width: 100%; /* Ensure it doesn't overflow */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 0.625rem; /* Rounded corners for the image container */
-            overflow: hidden; /* Hide overflow for rounded corners */
-            background: url('https://placehold.co/600x400/0066cc/ffffff?text=Inverter+Repair') no-repeat center center; /* Placeholder image */
+            flex: 1;
+            min-width: 280px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.625rem;
+            overflow: hidden;
+            background: url('https://placehold.co/600x400/0066cc/ffffff?text=Inverter+Repair') no-repeat center center;
             background-size: cover;
-            min-height: 250px; /* Minimum height for the image container */
+            min-height: 250px;
         }
-
         .product-details {
             flex: 2;
-            min-width: 280px; /* Minimum width for details */
+            min-width: 280px;
             padding: 1rem;
         }
-
         .price-container {
             display: flex;
-            flex-wrap: wrap; /* Allow prices to wrap */
+            flex-wrap: wrap;
             align-items: center;
-            gap: 1rem; /* Responsive gap */
+            gap: 1rem;
             margin: 1rem 0;
         }
-
         .original-price {
-            font-size: 1.5rem; /* Responsive font size */
+            font-size: 1.5rem;
             text-decoration: line-through;
             color: #b0b0b0;
         }
-
         .lottery-price {
-            font-size: 2rem; /* Responsive font size */
+            font-size: 2rem;
             font-weight: 700;
             color: var(--accent);
         }
-
         .features {
             margin: 1rem 0;
         }
-
         .features h3 {
             margin-bottom: 0.8rem;
             color: #00ccff;
         }
-
         .features ul {
             padding-left: 1.2rem;
         }
-
         .features li {
             margin-bottom: 0.4rem;
-            font-size: 0.95rem; /* Responsive font size */
+            font-size: 0.95rem;
         }
-
         .action-buttons {
             display: flex;
-            gap: 0.8rem; /* Responsive gap */
-            flex-wrap: wrap; /* Allow buttons to wrap */
+            gap: 0.8rem;
+            flex-wrap: wrap;
             margin-top: 1.5rem;
         }
-
         .btn {
-            padding: 0.75rem 1.25rem; /* Responsive padding */
+            padding: 0.75rem 1.25rem;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             border: none;
-            font-size: 0.95rem; /* Responsive font size */
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             text-decoration: none;
             justify-content: center;
-            flex-grow: 1; /* Allow buttons to grow and fill space */
-            max-width: 100%; /* Ensure buttons don't overflow */
+            flex-grow: 1;
+            max-width: 100%;
         }
-
         .btn-primary {
             background: linear-gradient(90deg, var(--accent), #00a8ff);
             color: white;
         }
-
         .btn-primary:hover {
-            transform: translateY(-0.1875rem); /* 3px */
-            box-shadow: 0 0.3125rem 0.9375rem rgba(0, 204, 255, 0.4); /* 5px 15px */
+            transform: translateY(-0.1875rem);
+            box-shadow: 0 4px 10px rgba(0, 204, 255, 0.5);
         }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--light);
-            border: 2px solid var(--secondary);
-        }
-
         .btn-secondary:hover {
             background: rgba(0, 153, 255, 0.2);
         }
-
-        /* Popup Styles */
         #popup-overlay {
             display: none;
             position: fixed;
@@ -221,66 +182,65 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
-            backdrop-filter: blur(12px); /* Stronger blur */
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 999;
         }
-
         .popup {
             display: none;
             background: #002b4d;
             color: #fff;
-            padding: 1.5rem; /* Responsive padding */
-            border-radius: 1.25rem; /* 20px */
-            box-shadow: 0 0 1.875rem rgba(0, 204, 255, 0.5); /* 30px, stronger shadow */
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            box-shadow: 0 0 1.875rem rgba(0, 204, 255, 0.5);
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000;
-            width: 95%; /* Wider on small screens */
-            max-width: 550px; /* Slightly larger max-width */
-            max-height: 95vh; /* Max height for scrollable content */
+            width: 95%;
+            max-width: 550px;
+            max-height: 95vh;
             overflow-y: auto;
-            animation: fadeIn 0.3s ease-out forwards; /* Fade in animation */
+            animation: fadeIn 0.3s ease-out forwards;
         }
-
         @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -45%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+            from {
+                opacity: 0;
+                transform: translate(-50%, -45%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
         }
-
         .popup input,
         .popup button,
         .popup select,
         .popup textarea {
             width: 100%;
-            padding: 0.75rem; /* Responsive padding */
-            margin: 0.625rem 0; /* Responsive margin */
-            border-radius: 0.625rem; /* 10px */
+            padding: 0.75rem;
+            margin: 0.625rem 0;
+            border-radius: 0.625rem;
             border: none;
-            font-size: 1rem; /* Responsive font size */
+            font-size: 1rem;
         }
-        
         .popup input,
         .popup textarea {
             background: #f5f5f5;
             color: #000;
         }
-        
         .popup textarea {
-            min-height: 6.25rem; /* 100px */
+            min-height: 6.25rem;
             resize: vertical;
         }
-        
         .popup label {
             display: block;
-            margin-bottom: 0.3125rem; /* 5px */
+            margin-bottom: 0.3125rem;
             color: #00ccff;
-            font-size: 0.95rem; /* Responsive font size */
+            font-size: 0.95rem;
         }
-        
         .popup button[type="submit"],
         .popup button#okayBtn,
         #razorpay-payment-btn,
@@ -290,14 +250,13 @@
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            padding: 0.75rem; /* Responsive padding */
-            margin-top: 0.9375rem; /* 15px */
-            border-radius: 0.625rem; /* 10px */
+            padding: 0.75rem;
+            margin-top: 0.9375rem;
+            border-radius: 0.625rem;
             border: none;
-            font-size: 1rem; /* Responsive font size */
+            font-size: 1rem;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-
         .popup button[type="submit"]:hover,
         .popup button#okayBtn:hover,
         #razorpay-payment-btn:hover,
@@ -305,72 +264,62 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 204, 255, 0.5);
         }
-        
         #ticketDisplay {
             font-weight: bold;
             color: #00ffcc;
-            font-size: 1.1rem; /* Responsive font size */
+            font-size: 1.1rem;
             word-break: break-word;
             text-align: center;
-            max-height: 12.5rem; /* 200px */
+            max-height: 12.5rem;
             overflow-y: auto;
-            padding: 0.625rem; /* 10px */
-            background: rgba(0,0,0,0.2);
-            border-radius: 0.625rem; /* 10px */
+            padding: 0.625rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0.625rem;
             margin: 0.625rem 0;
         }
-
         #countryError {
             color: red;
-            font-size: 0.8rem; /* Responsive font size */
+            font-size: 0.8rem;
             display: none;
-            margin-top: -0.3125rem; /* -5px */
-            margin-bottom: 0.625rem; /* 10px */
+            margin-top: -0.3125rem;
+            margin-bottom: 0.625rem;
         }
-
         #submitMessage {
             color: #00ffcc;
-            font-size: 1rem; /* Responsive font size */
+            font-size: 1rem;
             text-align: center;
-            margin-top: 0.625rem; /* 10px */
+            margin-top: 0.625rem;
             display: none;
         }
-        
         #timerDisplay {
-            font-size: 1.1rem; /* Responsive font size */
+            font-size: 1.1rem;
             font-weight: bold;
             color: var(--accent);
             text-align: center;
-            margin-top: 0.9375rem; /* 15px */
+            margin-top: 0.9375rem;
         }
-
         .quantity-selector {
-            margin: 0.9375rem 0; /* Responsive margin */
+            margin: 0.9375rem 0;
         }
-        
         .quantity-selector label {
             display: block;
             margin-bottom: 0.5rem;
             color: #00ccff;
         }
-        
         .quantity-info {
             display: flex;
             justify-content: space-between;
-            margin-top: 0.3125rem; /* 5px */
-            font-size: 0.85rem; /* Responsive font size */
+            margin-top: 0.3125rem;
+            font-size: 0.85rem;
             color: #ccc;
         }
-        
         .total-price {
-            font-size: 1.1rem; /* Responsive font size */
+            font-size: 1.1rem;
             font-weight: bold;
             color: var(--accent);
             text-align: right;
             margin: 0.625rem 0;
         }
-
-        /* Custom Alert Box */
         .custom-alert {
             position: fixed;
             top: 50%;
@@ -378,24 +327,34 @@
             transform: translate(-50%, -50%);
             background: #00a8ff;
             color: white;
-            padding: 1.25rem 1.875rem; /* Responsive padding */
-            border-radius: 0.625rem; /* 10px */
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
             z-index: 1002;
-            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4); /* 5px 15px */
-            font-size: 1rem; /* Responsive font size */
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.4);
+            font-size: 1rem;
             text-align: center;
-            max-width: 90%; /* Responsive width */
+            max-width: 90%;
             animation: fadeInOut 4s forwards;
         }
-
         @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, -40%); }
-            10% { opacity: 1; transform: translate(-50%, -50%); }
-            90% { opacity: 1; transform: translate(-50%, -50%); }
-            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+            10% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+            90% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+                display: none;
+            }
         }
-
-        /* Media Queries for fine-tuning responsiveness */
         @media (max-width: 1024px) {
             main {
                 padding: 5rem 1rem 2rem;
@@ -412,19 +371,20 @@
                 width: 100%;
             }
             .product-details {
-                min-width: unset; /* Remove min-width on smaller screens */
+                min-width: unset;
                 width: 100%;
-                text-align: center; /* Center text for better mobile layout */
+                text-align: center;
             }
-            .price-container, .action-buttons {
-                justify-content: center; /* Center elements in these containers */
+            .price-container,
+            .action-buttons {
+                justify-content: center;
             }
             .btn {
-                width: 100%; /* Full width buttons on smaller screens */
-                max-width: 300px; /* Limit button width */
+                width: 100%;
+                max-width: 300px;
             }
             .lottery-stats {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Even smaller min-width */
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             }
             .stat-card {
                 padding: 0.8rem;
@@ -438,12 +398,14 @@
             .popup {
                 padding: 1rem;
             }
-            .popup input, .popup button, .popup select, .popup textarea {
+            .popup input,
+            .popup button,
+            .popup select,
+            .popup textarea {
                 font-size: 0.9rem;
                 padding: 0.6rem;
             }
         }
-
         @media (max-width: 768px) {
             main {
                 padding-top: 4rem;
@@ -465,10 +427,9 @@
                 padding: 0.6rem 1rem;
             }
             .lottery-stats {
-                grid-template-columns: 1fr 1fr; /* Two columns on tablets */
+                grid-template-columns: 1fr 1fr;
             }
         }
-
         @media (max-width: 480px) {
             main {
                 padding: 3rem 0.5rem 1rem;
@@ -495,14 +456,14 @@
                 font-size: 0.85rem;
             }
             .action-buttons {
-                flex-direction: column; /* Stack buttons vertically on small phones */
+                flex-direction: column;
             }
             .btn {
                 width: 100%;
-                max-width: unset; /* Remove max-width for full stretch */
+                max-width: unset;
             }
             .lottery-stats {
-                grid-template-columns: 1fr; /* Single column on phones */
+                grid-template-columns: 1fr;
             }
             .stat-card {
                 padding: 0.7rem;
@@ -515,12 +476,15 @@
             }
             .popup {
                 padding: 1rem;
-                width: 98%; /* Even wider on very small screens */
+                width: 98%;
             }
             .popup h2 {
                 font-size: 1.3rem;
             }
-            .popup input, .popup button, .popup select, .popup textarea {
+            .popup input,
+            .popup button,
+            .popup select,
+            .popup textarea {
                 font-size: 0.85rem;
                 padding: 0.5rem;
             }
@@ -534,10 +498,11 @@
         }
     </style>
 </head>
+
 <body>
-   
+
     <main class="container mx-auto px-4 py-8">
-        
+
         <section class="product-section rounded-2xl shadow-lg mb-8">
             <div class="product-header rounded-t-2xl">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">Inverter Repair Service</h2>
@@ -546,16 +511,16 @@
             <div class="product-content flex flex-col md:flex-row items-center justify-center p-6 md:p-8 gap-6">
                 <div class="product-details w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
                     <h3 class="text-2xl md:text-3xl font-semibold text-white mb-3">Professional Inverter Repair</h3>
-                    <p class="text-gray-300 mb-4 text-base md:text-lg">Get expert repair for your AC inverter board. 
-                        Our certified technicians will diagnose and fix complex issues with the inverter PCB, 
+                    <p class="text-gray-300 mb-4 text-base md:text-lg">Get expert repair for your AC inverter board.
+                        Our certified technicians will diagnose and fix complex issues with the inverter PCB,
                         restoring variable speed compressor functionality and energy efficiency to your AC unit.
                     </p>
-                    
+
                     <div class="price-container flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 my-6">
                         <div class="original-price text-gray-400 text-xl md:text-2xl line-through">Market Price: ₹5000</div>
                         <div class="lottery-price text-accent text-3xl md:text-4xl font-bold">Access Fee: ₹2999 per Inverter Repair</div>
                     </div>
-                    
+
                     <div class="features text-left my-6">
                         <h3 class="text-xl md:text-2xl font-semibold text-blue-300 mb-3">Service Features:</h3>
                         <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
@@ -567,7 +532,7 @@
                             <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Excludes full board replacement (if irreparable)</li>
                         </ul>
                     </div>
-                    
+
                     <div class="action-buttons flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
                         <button class="btn btn-primary shadow-lg hover:shadow-xl" id="participate-btn">
                             <i class="fas fa-bolt"></i> Get Inverter Repair
@@ -601,42 +566,42 @@
     </main>
 
     <div id="popup-overlay"></div>
-    
+
     <div class="popup" id="popupForm">
         <h2 class="text-2xl font-bold text-center mb-4">Inverter Repair Service</h2>
         <form id="lotteryForm">
             <label for="fullName" class="text-blue-300 text-sm mb-1">Your Full Name (min 10 characters)</label>
             <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            
+
             <label for="phone" class="text-blue-300 text-sm mb-1">Phone Number (10 digits)</label>
             <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            
+
             <label for="email" class="text-blue-300 text-sm mb-1">Email Address</label>
             <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            
+
             <div class="mb-3">
                 <label for="dobField" class="text-blue-300 text-sm mb-1">Date of Birth:</label>
                 <input type="date" id="dobField" name="field4" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
-            
-            <label for="location" class="text-blue-300 text-sm mb-1">Your Location (e.g. Mumbai, Delhi)</label>
-            <input type="text" id="location" name="field5" required placeholder="Mumbai" autocomplete="address-level2" list="locations" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            
+
+            <label for="location" class="text-blue-300 text-sm mb-1">Your Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
             <label for="address" class="text-blue-300 text-sm mb-1">Complete Address (min 30 characters)</label>
             <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
             <span id="countryError" class="text-red-400 text-xs mt-1 hidden">Please enter your complete address with at least 30 characters.</span>
-            
+
             <div class="quantity-selector my-4">
                 <label for="ticketQuantity" class="text-blue-300 text-sm mb-2">Number of Inverter Repairs (Max 5):</label>
                 <select id="ticketQuantity" name="ticketQuantity" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="" disabled selected>Select quantity</option>
-                    </select>
+                </select>
                 <div class="quantity-info flex justify-between mt-2 text-gray-400 text-sm">
                     <span>₹2999 per Repair</span>
                     <span class="total-price font-bold text-accent text-lg">Total: ₹0</span>
                 </div>
             </div>
-            
+
             <input type="hidden" name="ticket" id="ticketCode" />
             <button type="submit" class="w-full btn-primary mt-4 py-3 rounded-xl font-bold text-white text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Submit Details</button>
             <span id="submitMessage" class="text-green-400 text-center mt-3 hidden">Submitting... Please wait</span>
@@ -664,7 +629,7 @@
         <p class="mt-4 text-sm text-gray-400 text-center">📸 Please take a screenshot for proof and reference.</p>
         <button id="okayBtn" class="w-full btn-secondary py-3 rounded-xl font-bold text-white text-lg mt-4 transition-all duration-300 hover:scale-105 hover:bg-opacity-20">Okay, Got It!</button>
     </div>
-   
+
     <script>
         // Popup Elements
         const participateBtn = document.getElementById('participate-btn');
@@ -682,69 +647,55 @@
         const ticketCountDisplay = document.getElementById('ticketCountDisplay');
         const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
         const welcomeMessage = document.getElementById('welcomeMessage');
-
         // Form & Ticket Elements
         const form = document.getElementById('lotteryForm');
         const ticketInput = document.getElementById('ticketCode');
         const ticketDisplay = document.getElementById('ticketDisplay');
         const okayBtn = document.getElementById('okayBtn');
-
-        let generatedTicket = ''; // Changed to a single string
+        let generatedTicket = '';
         let paymentTimeout = null;
         let countdownInterval = null;
-        const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes in seconds
-        const TICKET_PRICE = 2999; // Price per ticket set to ₹2999 for Inverter Repair
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+        const TICKET_PRICE = 2999;
         let selectedQuantity = 1;
-        let allowClose = false; // Flag to control when popup can be closed
-
-        // Initialize quantity selector
+        let allowClose = false;
         function initQuantitySelector() {
-            const maxTickets = 5; 
+            const maxTickets = 5;
             ticketQuantity.innerHTML = '<option value="" disabled selected>Select quantity</option>';
-            
             for (let i = 1; i <= maxTickets; i++) {
                 const option = document.createElement('option');
                 option.value = i;
                 option.textContent = i + (i === 1 ? ' repair' : ' repairs');
                 ticketQuantity.appendChild(option);
             }
-            
-            // Set default value to 1
             ticketQuantity.value = 1;
             updateTotalPrice();
         }
-
-        // Update total price display
         function updateTotalPrice() {
             selectedQuantity = parseInt(ticketQuantity.value) || 1;
             const total = selectedQuantity * TICKET_PRICE;
             totalPriceDisplay.textContent = `Total: ₹${total}`;
         }
-
-        // Generate a single formatted ticket
-        function generateFormattedTicket(...fields) {
-            const uniqueFields = [...fields, Date.now()];
-            const base = btoa(uniqueFields.join('')).replace(/[^A-Z0-9]/gi, '').toUpperCase();
-            let raw = base.padEnd(20, 'X').substring(0, 18);
-            const lastTwoDigits = (5).toString().padStart(2, '0');
-            const ticket = (raw + lastTwoDigits).match(/.{1,4}/g).join('-');
-            
-            return ticket;
+        function generateFormattedTicket() {
+            const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0,
+                    v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+            return uuid.toUpperCase().replace(/-/g, '').match(/.{1,4}/g).join('-');
         }
-
-        // Download tickets as text file
         function downloadTickets() {
             const ticketContent = `Inverter Repair Booking Details\n\n` +
-                                 `Customer Name: ${form.field1.value}\n` +
-                                 `Contact: ${form.field2.value}\n` +
-                                 `Location: ${form.field5.value}\n` +
-                                 `Booking Reference Number: ${generatedTicket}\n\n` + // Use single ticket
-                                 `Total Repairs: ${selectedQuantity}\n` +
-                                 `Total Amount Paid: ₹${selectedQuantity * TICKET_PRICE}`;
-            
-            const blob = new Blob([ticketContent], { type: 'text/plain' });
+                `Customer Name: ${form.field1.value}\n` +
+                `Contact: ${form.field2.value}\n` +
+                `Location: ${form.field5.value}\n` +
+                `Booking Reference Number: ${generatedTicket}\n\n` +
+                `Total Repairs: ${selectedQuantity}\n` +
+                `Total Amount Paid: ₹${selectedQuantity * TICKET_PRICE}`;
+            const blob = new Blob([ticketContent], {
+                type: 'text/plain'
+            });
             const url = URL.createObjectURL(blob);
-            
             const a = document.createElement('a');
             a.href = url;
             a.download = 'inverter_repair_booking.txt';
@@ -753,136 +704,104 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
-
-        // --- FUNCTIONS TO CONTROL POPUPS ---
         function closeAllPopups() {
-            if (!allowClose) return; // Only close if allowed
-            
+            if (!allowClose) return;
             clearTimers();
             popupOverlay.style.display = 'none';
             allPopups.forEach(p => p.style.display = 'none');
             document.body.style.overflow = 'auto';
             submitMessage.style.display = 'none';
-            allowClose = false; // Reset the flag
+            allowClose = false;
         }
-
         function openPopup(popupElement) {
             document.body.style.overflow = 'hidden';
             popupOverlay.style.display = 'block';
             popupElement.style.display = 'block';
-            allowClose = false; // Don't allow closing when opening a new popup
+            allowClose = false;
         }
-
         function clearTimers() {
             if (paymentTimeout) clearTimeout(paymentTimeout);
             if (countdownInterval) clearInterval(countdownInterval);
             paymentTimeout = null;
             countdownInterval = null;
         }
-
-        // --- EVENT LISTENERS ---
         participateBtn.addEventListener('click', () => {
             initQuantitySelector();
             openPopup(popupForm);
         });
-        
         ticketQuantity.addEventListener('change', updateTotalPrice);
-        
-        // Modified overlay click handler
         popupOverlay.addEventListener('click', function(e) {
             if (allowClose) {
                 closeAllPopups();
             } else {
-                // Show a message that the form must be completed
                 showCustomAlert("Please complete the form or payment process before closing.");
             }
         });
-        
         allPopups.forEach(p => p.addEventListener('click', e => e.stopPropagation()));
-        
-        // Modified okayBtn event listener to redirect to index.html
         okayBtn.addEventListener('click', function() {
             window.location.href = 'index.html';
         });
-        
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
         downloadTicketsBtn.addEventListener('click', downloadTickets);
-
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-
-            const data = {
-                field1: form.field1.value.trim(),
-                field2: form.field2.value.trim(),
-                field3: form.field3.value.trim(),
-                field4: form.field4.value,
-                field5: form.field5.value.trim(),
-                field6: form.field6.value.trim(),
-                quantity: selectedQuantity
-            };
-
-            // Validate name (min 10 characters)
-            if (data.field1.length < 10) {
+            const fullName = form.fullName.value.trim();
+            const phone = form.phone.value.trim();
+            const email = form.email.value.trim();
+            const dob = form.dobField.value;
+            const location = form.location.value.trim();
+            const address = form.address.value.trim();
+            if (fullName.length < 10) {
                 showCustomAlert("Please enter your full name (minimum 10 characters)");
                 return;
             }
-
-            // Validate phone (exactly 10 digits)
-            if (!/^\d{10}$/.test(data.field2)) {
+            if (!/^\d{10}$/.test(phone)) {
                 showCustomAlert("Please enter a valid 10-digit phone number");
                 return;
             }
-
-            // Validate email
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.field3)) {
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 showCustomAlert("Please enter a valid email address");
                 return;
             }
-
-            // Validate date of birth
-            if (!data.field4) {
+            if (!dob) {
                 showCustomAlert("Please select your date of birth");
                 return;
             }
-
-            // Validate location
-            if (data.field5.length < 3) {
+            if (location.length < 3) {
                 showCustomAlert("Please enter a valid location name");
                 return;
             }
-
-            // Validate address (min 30 characters)
-            if (data.field6.length < 30) {
+            if (address.length < 30) {
                 document.getElementById('countryError').style.display = 'block';
-                showCustomAlert("Please enter a complete address with at least 30 characters");
+                showCustomAlert("Please enter a complete address with at least 30 characters.");
                 return;
             }
             document.getElementById('countryError').style.display = 'none';
-
             submitMessage.style.display = 'block';
             form.querySelector('button[type="submit"]').disabled = true;
-
-            generatedTicket = generateFormattedTicket(...Object.values(data)); // Generate single ticket
-            data.ticket = generatedTicket; // Assign single ticket to data
-            data.tab = "inverter-repair";  // 👈 UPDATED THIS LINE
-            ticketInput.value = data.ticket;
-
-            const urlEncoded = new URLSearchParams(data);
-
+            generatedTicket = generateFormattedTicket(fullName, phone, email, dob, location, address);
+            const formData = new FormData(form);
+            formData.set('field1', fullName);
+            formData.set('field2', phone);
+            formData.set('field3', email);
+            formData.set('field4', dob);
+            formData.set('field5', location);
+            formData.set('field6', address);
+            formData.set('ticket', generatedTicket);
+            formData.set('tab', "inverter-repair");
+            formData.set('serviceType', 'Professional Inverter Repair');
+            formData.set('ticketQuantity', selectedQuantity);
             fetch(
-                "https://script.google.com/macros/s/AKfycbxhhJWrT05w2cafkDVIaQUoE5Z-xXonWqXqSW59Dlzt4pDhtPwHmXLoyjuaqHL1Olcq8A/exec", {
+                "https://script.google.com/macros/s/AKfycbxx5AVVkC_cC3Hn4b4Sl3R0Hk7t32NzC_Rkg3nlR3REVm-m0T-tDoHjTUat_Usy_0GP/exec", {
                     method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: urlEncoded
+                    body: formData,
                 }
             ).then(res => res.text()).then(res => {
                 submitMessage.style.display = 'none';
                 form.querySelector('button[type="submit"]').disabled = false;
-
                 if (res === "Success") {
                     popupForm.style.display = 'none';
                     openPopup(paymentStep);
-                    // Update payment summary
                     paymentSummary.innerHTML = `
                         <p class="text-gray-300 text-lg mb-2">You are purchasing <span class="font-bold text-blue-300">${selectedQuantity}</span> Inverter Repair${selectedQuantity > 1 ? 's' : ''} at ₹${TICKET_PRICE} each</p>
                         <p class="total-price text-accent text-2xl font-bold">Total Amount: ₹${selectedQuantity * TICKET_PRICE}</p>
@@ -899,32 +818,25 @@
                 showCustomAlert("An unexpected error occurred. Please check your connection and try again.");
             });
         });
-        
-        // Custom Alert Function (replaces browser's alert)
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert'; // Apply the custom-alert class
+            alertBox.className = 'custom-alert';
             alertBox.textContent = message;
             document.body.appendChild(alertBox);
-
-            // No need to inject style sheet repeatedly, it's in the head.
             setTimeout(() => {
                 alertBox.remove();
-            }, 4000); // Remove after 4 seconds
+            }, 4000);
         }
-
-        // --- RAZORPAY PAYMENT HANDLING ---
         function handleRazorpayPayment() {
-            const totalAmount = selectedQuantity * TICKET_PRICE * 100; // Convert to paise
-            
+            const totalAmount = selectedQuantity * TICKET_PRICE * 100;
             const options = {
-                "key": "rzp_live_opiqkRmGpjG1hF", // Replace with your actual Razorpay Key ID
+                "key": "rzp_live_opiqkRmGpjG1hF",
                 "amount": totalAmount.toString(),
                 "currency": "INR",
-                "name": document.querySelector('.product-header h2').textContent, // Dynamically get the title
+                "name": document.querySelector('.product-header h2').textContent,
                 "description": `Payment for ${selectedQuantity} Inverter Repair${selectedQuantity > 1 ? 's' : ''}`,
-                "image": "https://placehold.co/100x100/0066cc/ffffff?text=CA", // Placeholder logo
-                "handler": function (response){
+                "image": "https://placehold.co/100x100/0066cc/ffffff?text=CA",
+                "handler": function(response) {
                     console.log("Payment successful:", response);
                     console.log("Razorpay Payment ID:", response.razorpay_payment_id);
                     paymentSuccess();
@@ -942,81 +854,58 @@
                     "color": "#0066cc"
                 },
                 "modal": {
-                    "ondismiss": function(){
+                    "ondismiss": function() {
                         console.log('Razorpay checkout modal closed.');
                     }
                 }
             };
-
             const rzp1 = new Razorpay(options);
-            rzp1.on('payment.failed', function (response){
+            rzp1.on('payment.failed', function(response) {
                 console.error("Payment Failed:", response.error);
                 showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
             });
             rzp1.open();
         }
-
         function startPaymentTimer() {
             let timeLeft = PAYMENT_TIME_LIMIT;
-            updateTimerDisplay(); // Initial display
-
+            updateTimerDisplay();
             function updateTimerDisplay() {
                 const minutes = Math.floor(timeLeft / 60);
                 const seconds = timeLeft % 60;
                 timerDisplay.textContent = `Time remaining: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }
-
             countdownInterval = setInterval(() => {
                 timeLeft--;
                 updateTimerDisplay();
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
                     showCustomAlert("Payment time expired. Please try again.");
-                    allowClose = true; // Allow closing after timeout
+                    allowClose = true;
                     closeAllPopups();
                 }
             }, 1000);
-
             paymentTimeout = setTimeout(() => {
                 if (paymentTimeout) {
                     clearTimers();
                     showCustomAlert("Payment timed out. Please try again.");
-                    allowClose = true; // Allow closing after timeout
+                    allowClose = true;
                     closeAllPopups();
                 }
             }, PAYMENT_TIME_LIMIT * 1000);
         }
-
         function paymentSuccess() {
             clearTimers();
             paymentStep.style.display = 'none';
             openPopup(ticketStep);
-            
-            // Display welcome message with user's name
             const userName = form.fullName.value;
             welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your Inverter Repair Booking is Confirmed! 🎉`;
-            
-            // Display the single ticket number and registration ID
             ticketDisplay.innerHTML = `
                 <p>Registration ID: <span class="text-white">${generatedTicket}</span></p>
                 <p>Inverter Repair Count: <span class="text-white">${selectedQuantity}</span></p>
             `;
-            
-            // Update download button content
             ticketCountDisplay.textContent = `${selectedQuantity} Inverter Repair${selectedQuantity > 1 ? 's' : ''}`;
-            
-            // Allow closing only from the ticket step
-            allowClose = false;
+            allowClose = true;
         }
-        
-        // ----------------------------------------------------------------------
-        // Slider Logic (Removed as it's not present in the provided HTML structure)
-        // If you intend to add a slider, please provide its HTML structure.
-        // ----------------------------------------------------------------------
-        
-        // Mobile menu toggle (Assuming an external script or injected header handles this)
-        // If you intend to have a mobile menu, ensure its HTML and CSS are provided
-        // or generated in the header-container.
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         if (hamburger && navLinks) {
