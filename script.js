@@ -62,7 +62,7 @@ function injectFooter() {
 <style>
 /* General Styles */
 #site-footer {
-  background-color: #003366; /* Light blue background */
+  background-color: Black; /* Light blue background */
   color: #fff;
   padding: 3rem 2rem;
   font-family: 'Segoe UI', sans-serif;
@@ -902,4 +902,5 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
