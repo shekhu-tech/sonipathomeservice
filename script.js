@@ -59,9 +59,10 @@ function injectFooter() {
 
   const style = `
     <style>
-
-     #site-footer {
-  background-color: #000;
+<style>
+/* General Styles */
+#site-footer {
+  background-color: #003366; /* Light blue background */
   color: #fff;
   padding: 3rem 2rem;
   font-family: 'Segoe UI', sans-serif;
@@ -75,7 +76,7 @@ function injectFooter() {
 }
 .footer-heading {
   font-size: 2.2rem;
-  background: linear-gradient(to right, #ffd700, #ffaa00);
+  background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
@@ -83,14 +84,44 @@ function injectFooter() {
   text-transform: uppercase;
 }
 .footer-lines {
-  color: #ccc;
+  color: white;
   font-size: 1.1rem;
   line-height: 1.6;
-  max-width: 600px;
+  max-width: 100%; /* Paragraph width is now auto */
   margin: 0 auto;
   text-align: center;
   font-weight: 400;
 }
+
+/* Office Address Section */
+.footer-contact {
+  text-align: center;
+  margin-bottom: 25px;
+   color: white;
+}
+
+.footer-contact p {
+  margin: 0;
+  font-size: 1rem;
+  color: white;
+  font-weight: 500;
+}
+
+.footer-contact strong {
+  color: white;
+}
+
+.location-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.location-link:hover {
+  color: white;
+}
+
 
 /* Buttons */
 .footer-buttons {
@@ -103,10 +134,10 @@ function injectFooter() {
 .footer-btn {
   width: 40px;
   height: 40px;
-  background-color: #111;
-  border: 2px solid #ffd700;
+  background-color: #f1f1f1;
+  border: 2px solid #000;
   border-radius: 50%;
-  color: #ffd700;
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,10 +146,10 @@ function injectFooter() {
   transition: 0.3s ease;
 }
 .footer-btn:hover {
-  background-color: #ffd700;
-  color: #000;
+  background-color: #000;
+  color: #fff;
   transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Social Icons */
@@ -131,8 +162,8 @@ function injectFooter() {
 .social-links a {
   width: 45px;
   height: 45px;
-  background-color: #222;
-  color: #fff;
+  background-color: #f1f1f1;
+  color: #000;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -141,8 +172,8 @@ function injectFooter() {
   transition: all 0.3s ease;
 }
 .social-links a:hover {
-  background-color: #ffd700;
-  color: #000;
+  background-color: #000;
+  color: #fff;
   transform: translateY(-5px);
 }
 
@@ -151,7 +182,7 @@ function injectFooter() {
   text-align: center;
   font-size: 0.95rem;
   opacity: 0.7;
-  color: #aaa;
+  color: #333;
 }
 
 /* Scroll To Top Button */
@@ -161,14 +192,14 @@ function injectFooter() {
   right: 30px;
   width: 45px;
   height: 45px;
-  background: #ffd700;
-  color: #000;
+  background: #000;
+  color: #fff;
   border-radius: 50%;
   font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
@@ -182,13 +213,29 @@ function injectFooter() {
 .scroll-to-top:hover {
   transform: translateY(-5px) scale(1.05);
 }
+ /* New CSS for the Responsive Map */
+.map-container {
+  overflow: hidden;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  position: relative;
+  height: 0;
+  margin-top: 20px;
+}
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border: none;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
   .footer-heading {
     font-size: 1.8rem;
   }
-  .footer-lines {
+  .footer-lines, .footer-contact p {
     font-size: 1rem;
   }
   .footer-btn {
@@ -211,7 +258,7 @@ function injectFooter() {
   .footer-heading {
     font-size: 1.6rem;
   }
-  .footer-lines {
+  .footer-lines, .footer-contact p {
     font-size: 0.95rem;
   }
   .footer-buttons {
@@ -234,20 +281,31 @@ function injectFooter() {
   `;
 
   const html = `
-    <footer id="site-footer" style="background: #000; padding: 3rem 2rem;">
+    <footer id="site-footer">
   <div class="footer-container">
     <div class="footer-header">
-      <!-- Centered Logo -->
-    <div class="footer-logo">
-      <a href="index.html">
-        <img src="win.png" alt="Sonipat AC Service Logo">
-      </a>
-    </div>
+      <div class="footer-logo">
+        <a href="index.html">
+          <img src="win.png" alt="Sonipat AC Service Logo">
+        </a>
+      </div>
       <p class="footer-lines">
         Trusted appliance service in Sonipat<br>
         Fast doorstep repair for AC, fridge, cooler, geyser, washing machine, and more<br>
         Genuine parts • Affordable rates • Trained technicians
       </p>
+    </div>
+
+    <div class="footer-contact">
+      <p><strong>Office Address:</strong> 128 , Sainipura , Sonipat 131001, India</p>
+    </div>
+
+    <div class="map-container">
+      <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d34720.67137834575!2d76.99427357497125!3d28.995055050854477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390da652a9756b19%3A0x633454378f4a1389!2sSonipat%2C%20Haryana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
     </div>
 
     <div class="footer-buttons">
@@ -259,7 +317,7 @@ function injectFooter() {
       <a href="chimney-cleaning.html" class="footer-btn" title="Chimney"><i class="fas fa-wind"></i></a>
       <a href="policy.html" class="footer-btn" title="Privacy Policy"><i class="fas fa-shield-alt"></i></a>
       <a href="terms.html" class="footer-btn" title="Terms & Conditions"><i class="fas fa-file-contract"></i></a>
-     <a href="refund.html" class="footer-btn" title="Refund & Cancellation Policy"><i class="fas fa-undo-alt"></i></a>
+      <a href="refund.html" class="footer-btn" title="Refund & Cancellation Policy"><i class="fas fa-undo-alt"></i></a>
     </div>
 
     <div class="social-links">
@@ -270,7 +328,7 @@ function injectFooter() {
     </div>
 
     <div class="copyright">
-      &copy; <span id="year"></span> Sonipat AC Service. All rights reserved.
+      © <span id="year"></span> Sonipat AC Service. All rights reserved.
     </div>
   </div>
 
@@ -844,3 +902,4 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
