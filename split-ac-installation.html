@@ -863,9 +863,9 @@
             submitMessage.style.display = 'block';
             form.querySelector('button[type="submit"]').disabled = true;
 
-            generatedTicket = generateFormattedTicket(...Object.values(data)); // Generate single ticket
-            data.ticket = generatedTicket; // Assign single ticket to data
-            data.tab = "split-ac-installation";  // 👈 UPDATED THIS LINE
+            data.ticket = generateFormattedTickets(...Object.values(data));
+            data.tab = "ac-services";
+            data.serviceType = document.querySelector("h1").innerText; // 👈 NEW LINE
             ticketInput.value = data.ticket;
 
             const urlEncoded = new URLSearchParams(data);
