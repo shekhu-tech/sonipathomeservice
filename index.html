@@ -900,11 +900,20 @@
             });
         });
     </script>
+  <script>
+document.querySelector('.slider-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector('#products-section').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
+</script>
 
   <!-- Load Injectors -->
   <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
 
