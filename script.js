@@ -4,33 +4,13 @@ function injectHeader() {
   if (!headerContainer) return;
 
   headerContainer.innerHTML = `
-    Based on your request to move the phone number and "Become a Partner" section above the main header, here is the full improvised HTML and CSS code.
-
-This new code creates a top-bar section that sits above your existing header. This keeps the main header with your logo and navigation clean, while still prominently displaying the contact information.
-
-HTML Code
-HTML
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        /* All CSS from below goes here */
-    </style>
-</head>
-<body>
-
     <div class="top-bar">
         <div class="top-bar-content">
-            <a href="tel:+919876543210" class="phone-number-top">
+            <a href="tel:+918816014071" class="phone-number-top">
                 <i class="fas fa-phone-alt"></i>
-                <span>+91-9876543210</span>
+                <span>+91-8816014071</span>
             </a>
-            <a href="partner.html" class="partner-button-top">Become a Partner</a>
+            <a href="technician.html" class="partner-button-top">Become a Partner</a>
         </div>
     </div>
 
@@ -934,6 +914,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
