@@ -26,14 +26,6 @@
       
 
 /* ======= GENERAL STYLES ======= */
-Sure, I've updated the CSS code to ensure that the phone number and "Become a Partner" options are only visible in the top bar and are removed from the sidebar. The rest of your code remains the same.
-
-This approach keeps your header and top bar clean and consistent across all devices, while a separate, focused navigation is used in the sidebar.
-
-CSS Code
-CSS
-
-/* ======= GENERAL STYLES ======= */
 body {
     /* Adjust margin to accommodate both top-bar and main header */
     margin-top: 100px;
@@ -122,7 +114,7 @@ header.scrolled {
     align-items: center;
 }
 .logo img {
-    height: 50px;
+    height: 40px;
     transition: transform 0.3s ease;
 }
 
@@ -239,14 +231,6 @@ nav {
     transform: translateX(8px);
 }
 
-/* === REMOVED from sidebar === */
-.sidebar-button.partner-btn,
-.sidebar-button a[href^="tel"] {
-    display: none;
-}
-/* This CSS rule will hide the phone number and partner button from the sidebar */
-
-
 /* ======= RESPONSIVE ======= */
 @media (max-width: 1300px) {
     /* Hide desktop navigation and show menu toggle */
@@ -273,7 +257,7 @@ nav {
         padding: 12px 24px; /* Smaller padding for main header */
     }
     .logo img {
-        height: 38px; /* Smaller logo */
+        height: 30px; /* Smaller logo */
     }
 }
 
@@ -291,7 +275,7 @@ nav {
         top: 40px; /* Ensure main header is positioned correctly */
     }
     .logo img {
-        height: 35px;
+        height: 25px;
     }
     body {
         margin-top: 85px; /* Adjust body margin for mobile */
@@ -604,6 +588,7 @@ nav {
       
 
  
+
 
 
 
