@@ -23,10 +23,12 @@
       color: var(--white);
     }
 
-       /* ======= HEADER (Classic Black Theme) ======= */
-Here is the complete and improved CSS code to ensure the phone number and "Become a Partner" options appear above the main header, even on mobile devices.
+      
 
-I have updated the CSS by adjusting the media queries to ensure the top-bar remains visible on smaller screens. This makes your contact information easily accessible to all users.
+/* ======= GENERAL STYLES ======= */
+Sure, I've updated the CSS code to ensure that the phone number and "Become a Partner" options are only visible in the top bar and are removed from the sidebar. The rest of your code remains the same.
+
+This approach keeps your header and top bar clean and consistent across all devices, while a separate, focused navigation is used in the sidebar.
 
 CSS Code
 CSS
@@ -34,7 +36,7 @@ CSS
 /* ======= GENERAL STYLES ======= */
 body {
     /* Adjust margin to accommodate both top-bar and main header */
-    margin-top: 100px; /* Increased margin for the two-tiered header */
+    margin-top: 100px;
     font-family: Arial, sans-serif;
 }
 
@@ -120,7 +122,7 @@ header.scrolled {
     align-items: center;
 }
 .logo img {
-    height: 40px;
+    height: 50px;
     transition: transform 0.3s ease;
 }
 
@@ -171,6 +173,7 @@ nav {
     transform: scale(1.2);
 }
 
+/* ======= SIDEBAR ======= */
 .sidebar {
     position: fixed;
     top: 0;
@@ -236,16 +239,13 @@ nav {
     transform: translateX(8px);
 }
 
-.sidebar-button.partner-btn {
-    background: #ffd700;
-    color: #000;
-    font-weight: 700;
-    border: none;
+/* === REMOVED from sidebar === */
+.sidebar-button.partner-btn,
+.sidebar-button a[href^="tel"] {
+    display: none;
 }
-.sidebar-button.partner-btn:hover {
-    background: #fff;
-    color: #007bff;
-}
+/* This CSS rule will hide the phone number and partner button from the sidebar */
+
 
 /* ======= RESPONSIVE ======= */
 @media (max-width: 1300px) {
@@ -273,7 +273,7 @@ nav {
         padding: 12px 24px; /* Smaller padding for main header */
     }
     .logo img {
-        height: 30px; /* Smaller logo */
+        height: 38px; /* Smaller logo */
     }
 }
 
@@ -291,13 +291,12 @@ nav {
         top: 40px; /* Ensure main header is positioned correctly */
     }
     .logo img {
-        height: 25px;
+        height: 35px;
     }
     body {
         margin-top: 85px; /* Adjust body margin for mobile */
     }
 }
-
   /* === Slider Container === */
 .image-slider {
   width: 100%;
@@ -605,6 +604,7 @@ nav {
       
 
  
+
 
 
 
