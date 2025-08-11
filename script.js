@@ -56,10 +56,6 @@ function injectFooter() {
   if (!footerContainer) return;
 
   const style = `
-    Here is the complete, updated code for your footer with the background color changed to #007bff (a bright, professional blue). This color is a great choice as it conveys reliability and trust, which is perfect for a home services business.
-
-Updated CSS
-CSS
 
 <style>
 /* General Styles */
@@ -134,8 +130,8 @@ CSS
 .map-container iframe {
   left: 0;
   top: 0;
-  height: 100%;
-  width: 100%;
+  height: 60%;
+  width: 60%;
   position: absolute;
   border: none;
 }
@@ -302,11 +298,7 @@ CSS
     </div>
 
     <div class="map-container">
-      <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d34720.67137834575!2d76.99427357497125!3d28.995055050854477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390da652a9756b19%3A0x633454378f4a1389!2sSonipat%2C%20Haryana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                    allowfullscreen="" 
-                    loading="lazy">
-                </iframe>
+     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13957.575864214023!2d77.02190145!3d29.00532435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390db07098d44d29%3A0x9883a5e1ec9c2f8b!2sSainipura%20Colony%2C%20Jamalpura%2C%20Sonipat%2C%20Haryana%20131001!5e0!3m2!1sen!2sin!4v1754913952124!5m2!1sen!2sin" width="150" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <div class="footer-buttons">
@@ -325,7 +317,6 @@ CSS
       <a href="#"><i class="fab fa-facebook-f"></i></a>
       <a href="#"><i class="fab fa-instagram"></i></a>
       <a href="#"><i class="fab fa-whatsapp"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
     </div>
 
     <div class="copyright">
@@ -904,6 +895,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
