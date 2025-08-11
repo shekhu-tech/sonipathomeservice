@@ -58,12 +58,16 @@ function injectFooter() {
   if (!footerContainer) return;
 
   const style = `
-    <style>
+    Here is the complete, updated code for your footer with the background color changed to #007bff (a bright, professional blue). This color is a great choice as it conveys reliability and trust, which is perfect for a home services business.
+
+Updated CSS
+CSS
+
 <style>
 /* General Styles */
 #site-footer {
-  background-color: #007bff; /* Light blue background */
-  color: #fff;
+  background-color: #007bff; /* Bright, professional blue background */
+  color: #fff; /* Changed text color to white for contrast */
   padding: 3rem 2rem;
   font-family: 'Segoe UI', sans-serif;
 }
@@ -76,7 +80,7 @@ function injectFooter() {
 }
 .footer-heading {
   font-size: 2.2rem;
-  background: white;
+  background: linear-gradient(to right, #fff, #ddd); /* Adjusted gradient for light text */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
@@ -84,7 +88,7 @@ function injectFooter() {
   text-transform: uppercase;
 }
 .footer-lines {
-  color: white;
+  color: #f0f0f0; /* Light grey text for readability */
   font-size: 1.1rem;
   line-height: 1.6;
   max-width: 100%; /* Paragraph width is now auto */
@@ -97,31 +101,46 @@ function injectFooter() {
 .footer-contact {
   text-align: center;
   margin-bottom: 25px;
-   color: white;
 }
 
 .footer-contact p {
   margin: 0;
   font-size: 1rem;
-  color: white;
+  color: #fff;
   font-weight: 500;
 }
 
 .footer-contact strong {
-  color: white;
+  color: #fff;
 }
 
 .location-link {
-  color: white;
+  color: #ffd700; /* Gold link for visibility */
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .location-link:hover {
-  color: white;
+  color: #ffc400;
 }
 
+/* New CSS for the Responsive Map */
+.map-container {
+  overflow: hidden;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  position: relative;
+  height: 0;
+  margin-top: 20px;
+}
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border: none;
+}
 
 /* Buttons */
 .footer-buttons {
@@ -134,10 +153,10 @@ function injectFooter() {
 .footer-btn {
   width: 40px;
   height: 40px;
-  background-color: #f1f1f1;
-  border: 2px solid #000;
+  background-color: #0069d9; /* A slightly darker blue for buttons */
+  border: 2px solid #fff;
   border-radius: 50%;
-  color: #000;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,8 +165,8 @@ function injectFooter() {
   transition: 0.3s ease;
 }
 .footer-btn:hover {
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  color: #007bff;
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -162,8 +181,8 @@ function injectFooter() {
 .social-links a {
   width: 45px;
   height: 45px;
-  background-color: #f1f1f1;
-  color: #000;
+  background-color: #0069d9;
+  color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -172,8 +191,8 @@ function injectFooter() {
   transition: all 0.3s ease;
 }
 .social-links a:hover {
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  color: #007bff;
   transform: translateY(-5px);
 }
 
@@ -181,8 +200,8 @@ function injectFooter() {
 .copyright {
   text-align: center;
   font-size: 0.95rem;
-  opacity: 0.7;
-  color: #333;
+  opacity: 0.8;
+  color: #fff;
 }
 
 /* Scroll To Top Button */
@@ -192,8 +211,8 @@ function injectFooter() {
   right: 30px;
   width: 45px;
   height: 45px;
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #007bff;
   border-radius: 50%;
   font-size: 1.3rem;
   display: flex;
@@ -212,22 +231,6 @@ function injectFooter() {
 }
 .scroll-to-top:hover {
   transform: translateY(-5px) scale(1.05);
-}
- /* New CSS for the Responsive Map */
-.map-container {
-  overflow: hidden;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  position: relative;
-  height: 0;
-  margin-top: 20px;
-}
-.map-container iframe {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  border: none;
 }
 
 /* Responsive */
@@ -277,7 +280,7 @@ function injectFooter() {
   max-width: 100%;
   transition: transform 0.3s ease;
 }
-    </style>
+</style>
   `;
 
   const html = `
@@ -902,6 +905,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
