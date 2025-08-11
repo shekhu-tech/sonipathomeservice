@@ -4,60 +4,80 @@ function injectHeader() {
   if (!headerContainer) return;
 
   headerContainer.innerHTML = `
+    Based on your request to move the phone number and "Become a Partner" section above the main header, here is the full improvised HTML and CSS code.
+
+This new code creates a top-bar section that sits above your existing header. This keeps the main header with your logo and navigation clean, while still prominently displaying the contact information.
+
+HTML Code
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* All CSS from below goes here */
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <a href="tel:+919876543210" class="phone-number-top">
+                <i class="fas fa-phone-alt"></i>
+                <span>+91-9876543210</span>
+            </a>
+            <a href="partner.html" class="partner-button-top">Become a Partner</a>
+        </div>
+    </div>
+
     <header id="main-header">
-  <div class="logo">
-    <a href="index.html">
-      <img src="win.png" alt="SonipatACService" />
-    </a>
-  </div>
+        <div class="logo">
+            <a href="index.html">
+                <img src="win.png" alt="SonipatACService" />
+            </a>
+        </div>
 
-  <nav>
-    <div class="nav-item"><a href="ac-service.html">AC Service</a></div>
-    <div class="nav-item"><a href="fridge-repair.html">Fridge Repair</a></div>
-    <div class="nav-item"><a href="cooler-repair.html">Cooler</a></div>
-    <div class="nav-item"><a href="geyser-repair.html">Geyser</a></div>
-    <div class="nav-item"><a href="washing-machine.html">Washing Machine</a></div>
-    <div class="nav-item"><a href="chimney-cleaning.html">Chimney</a></div>
-  </nav>
+        <nav>
+            <div class="nav-item"><a href="ac-service.html">AC Service</a></div>
+            <div class="nav-item"><a href="fridge-repair.html">Fridge Repair</a></div>
+            <div class="nav-item"><a href="cooler-repair.html">Cooler</a></div>
+            <div class="nav-item"><a href="geyser-repair.html">Geyser</a></div>
+            <div class="nav-item"><a href="washing-machine.html">Washing Machine</a></div>
+            <div class="nav-item"><a href="chimney-cleaning.html">Chimney</a></div>
+        </nav>
 
-  <div class="header-contact">
-    <a href="tel:+919876543210" class="phone-number">
-      <i class="fas fa-phone-alt"></i>
-      <span>+91-9876543210</span>
-    </a>
-    <a href="partner.html" class="partner-button">Become a Partner</a>
-  </div>
+        <div class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
 
-  <div class="menu-toggle" onclick="toggleSidebar()">
-    <i class="fas fa-bars"></i>
-  </div>
-
-  <div class="sidebar" id="sidebar">
-    <div class="close-btn" onclick="toggleSidebar()">
-      <i class="fas fa-times"></i>
-    </div>
-
-    <div class="sidebar-logo">
-      <a href="index.html">
-        <img src="win.png" alt="SonipatACService" />
-      </a>
-    </div>
-
-    <ul>
-      <li><a class="sidebar-button" href="tel:+919876543210"><span><i class="fas fa-phone-alt"></i> +91-9876543210</span></a></li>
-      <li><a class="sidebar-button partner-btn" href="partner.html"><span><i class="fas fa-handshake"></i> Become a Partner</span></a></li>
-      <li><a class="sidebar-button" href="ac-service.html"><span><i class="fas fa-fan"></i> AC Service</span></a></li>
-      <li><a class="sidebar-button" href="fridge-repair.html"><span><i class="fas fa-snowflake"></i> Fridge Repair</span></a></li>
-      <li><a class="sidebar-button" href="cooler-repair.html"><span><i class="fas fa-water"></i> Cooler</span></a></li>
-      <li><a class="sidebar-button" href="geyser-repair.html"><span><i class="fas fa-burn"></i> Geyser</span></a></li>
-      <li><a class="sidebar-button" href="washing-machine.html"><span><i class="fas fa-soap"></i> Washing Machine</span></a></li>
-      <li><a class="sidebar-button" href="chimney-cleaning.html"><span><i class="fas fa-wind"></i> Chimney</span></a></li>
-      <li><a class="sidebar-button" href="policy.html"><span><i class="fas fa-shield-alt"></i> Privacy Policy</span></a></li>
-      <li><a class="sidebar-button" href="terms.html"><span><i class="fas fa-file-contract"></i> Terms & Conditions</span></a></li>
-      <li><a class="sidebar-button" href="refund.html"><span><i class="fas fa-undo-alt"></i> Refund Policy</span></a></li>
-    </ul>
-  </div>
-</header>
+        <div class="sidebar" id="sidebar">
+            <div class="close-btn" onclick="toggleSidebar()">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="sidebar-logo">
+                <a href="index.html">
+                    <img src="win.png" alt="SonipatACService" />
+                </a>
+            </div>
+            <ul>
+                <li><a class="sidebar-button" href="tel:+919876543210"><span><i class="fas fa-phone-alt"></i> +91-9876543210</span></a></li>
+                <li><a class="sidebar-button partner-btn" href="partner.html"><span><i class="fas fa-handshake"></i> Become a Partner</span></a></li>
+                <li><a class="sidebar-button" href="ac-service.html"><span><i class="fas fa-fan"></i> AC Service</span></a></li>
+                <li><a class="sidebar-button" href="fridge-repair.html"><span><i class="fas fa-snowflake"></i> Fridge Repair</span></a></li>
+                <li><a class="sidebar-button" href="cooler-repair.html"><span><i class="fas fa-water"></i> Cooler</span></a></li>
+                <li><a class="sidebar-button" href="geyser-repair.html"><span><i class="fas fa-burn"></i> Geyser</span></a></li>
+                <li><a class="sidebar-button" href="washing-machine.html"><span><i class="fas fa-soap"></i> Washing Machine</span></a></li>
+                <li><a class="sidebar-button" href="chimney-cleaning.html"><span><i class="fas fa-wind"></i> Chimney</span></a></li>
+                <li><a class="sidebar-button" href="policy.html"><span><i class="fas fa-shield-alt"></i> Privacy Policy</span></a></li>
+                <li><a class="sidebar-button" href="terms.html"><span><i class="fas fa-file-contract"></i> Terms & Conditions</span></a></li>
+                <li><a class="sidebar-button" href="refund.html"><span><i class="fas fa-undo-alt"></i> Refund Policy</span></a></li>
+            </ul>
+        </div>
+    </header>
   `;
 }
 
@@ -914,6 +934,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
