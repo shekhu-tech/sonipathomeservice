@@ -24,9 +24,18 @@
     }
 
        /* ======= HEADER (Classic Black Theme) ======= */
+Here is the complete and improved CSS code to ensure the phone number and "Become a Partner" options appear above the main header, even on mobile devices.
+
+I have updated the CSS by adjusting the media queries to ensure the top-bar remains visible on smaller screens. This makes your contact information easily accessible to all users.
+
+CSS Code
+CSS
+
 /* ======= GENERAL STYLES ======= */
 body {
-    margin-top: 80px; /* Add margin to body to prevent content from being hidden behind the fixed header */
+    /* Adjust margin to accommodate both top-bar and main header */
+    margin-top: 100px; /* Increased margin for the two-tiered header */
+    font-family: Arial, sans-serif;
 }
 
 /* ======= TOP BAR (New Section) ======= */
@@ -101,7 +110,6 @@ header {
     transition: all 0.3s ease;
 }
 
-/* Your other header, logo, navigation, and sidebar styles remain the same as you provided */
 header.scrolled {
     padding: 12px 32px;
     box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
@@ -114,11 +122,6 @@ header.scrolled {
 .logo img {
     height: 40px;
     transition: transform 0.3s ease;
-}
-@media (max-width: 480px) {
-    .logo img {
-        height: 30px;
-    }
 }
 
 nav {
@@ -207,11 +210,6 @@ nav {
     max-width: 100%;
     transition: all 0.3s ease;
 }
-@media (max-width: 480px) {
-    .sidebar-logo img {
-        height: 30px;
-    }
-}
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -238,7 +236,6 @@ nav {
     transform: translateX(8px);
 }
 
-/* Updated sidebar button for partner to make it stand out */
 .sidebar-button.partner-btn {
     background: #ffd700;
     color: #000;
@@ -252,21 +249,52 @@ nav {
 
 /* ======= RESPONSIVE ======= */
 @media (max-width: 1300px) {
+    /* Hide desktop navigation and show menu toggle */
     nav {
         display: none;
     }
     .menu-toggle {
         display: block;
     }
-    /* Hide top bar on mobile for a cleaner look, sidebar will have the info */
-    .top-bar {
-        display: none;
+}
+
+@media (max-width: 768px) {
+    /* Adjustments for tablets and smaller devices */
+    .top-bar-content {
+        gap: 15px; /* Reduce gap between items */
+    }
+    .phone-number-top span {
+        display: none; /* Hide number text to save space, keeping only the icon */
+    }
+    .partner-button-top {
+        padding: 6px 12px; /* Smaller padding for button */
     }
     header {
-        top: 0; /* Move header to top when top-bar is hidden */
+        padding: 12px 24px; /* Smaller padding for main header */
+    }
+    .logo img {
+        height: 30px; /* Smaller logo */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Adjustments for mobile phones */
+    .top-bar {
+        padding: 8px 16px; /* Reduced padding */
+        justify-content: space-between; /* Align items to opposite ends for better spacing */
+    }
+    .partner-button-top {
+        font-size: 14px; /* Smaller font size for button */
+    }
+    header {
+        padding: 10px 16px;
+        top: 40px; /* Ensure main header is positioned correctly */
+    }
+    .logo img {
+        height: 25px;
     }
     body {
-        margin-top: 70px; /* Adjust body margin for mobile header */
+        margin-top: 85px; /* Adjust body margin for mobile */
     }
 }
 
@@ -577,5 +605,6 @@ nav {
       
 
  
+
 
 
