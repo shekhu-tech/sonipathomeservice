@@ -22,12 +22,7 @@ function injectHeader() {
         </div>
 
         <nav>
-            <div class="nav-item"><a href="ac-service.html"></a></div>
-            <div class="nav-item"><a href="fridge-repair.html"></a></div>
-            <div class="nav-item"><a href="cooler-repair.html"></a></div>
-            <div class="nav-item"><a href="geyser-repair.html"></a></div>
-            <div class="nav-item"><a href="washing-machine.html"></a></div>
-            <div class="nav-item"><a href="chimney-cleaning.html"></a></div>
+           
         </nav>
 
         <div class="menu-toggle" onclick="toggleSidebar()">
@@ -40,15 +35,7 @@ function injectHeader() {
             </div>
             
             <ul>
-                <li><a class="sidebar-button" href="ac-service.html"><span><i class="fas fa-fan"></i> </span></a></li>
-                <li><a class="sidebar-button" href="fridge-repair.html"><span><i class="fas fa-snowflake"></i> </span></a></li>
-                <li><a class="sidebar-button" href="cooler-repair.html"><span><i class="fas fa-water"></i> </span></a></li>
-                <li><a class="sidebar-button" href="geyser-repair.html"><span><i class="fas fa-burn"></i></span></a></li>
-                <li><a class="sidebar-button" href="washing-machine.html"><span><i class="fas fa-soap"></i> </span></a></li>
-                <li><a class="sidebar-button" href="chimney-cleaning.html"><span><i class="fas fa-wind"></i> </span></a></li>
-                <li><a class="sidebar-button" href="policy.html"><span><i class="fas fa-shield-alt"></i></span></a></li>
-                <li><a class="sidebar-button" href="terms.html"><span><i class="fas fa-file-contract"></i> Terms & Conditions</span></a></li>
-                <li><a class="sidebar-button" href="refund.html"><span><i class="fas fa-undo-alt"></i> Refund Policy</span></a></li>
+                
             </ul>
         </div>
     </header>
@@ -662,6 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
