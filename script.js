@@ -44,8 +44,6 @@ function injectHeader() {
                 </a>
             </div>
             <ul>
-                <li><a class="sidebar-button" href="tel:+919876543210"><span><i class="fas fa-phone-alt"></i> +91-9876543210</span></a></li>
-                <li><a class="sidebar-button partner-btn" href="partner.html"><span><i class="fas fa-handshake"></i> Become a Partner</span></a></li>
                 <li><a class="sidebar-button" href="ac-service.html"><span><i class="fas fa-fan"></i> AC Service</span></a></li>
                 <li><a class="sidebar-button" href="fridge-repair.html"><span><i class="fas fa-snowflake"></i> Fridge Repair</span></a></li>
                 <li><a class="sidebar-button" href="cooler-repair.html"><span><i class="fas fa-water"></i> Cooler</span></a></li>
@@ -914,6 +912,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
