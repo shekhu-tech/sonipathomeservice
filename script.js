@@ -38,11 +38,7 @@ function injectHeader() {
             <div class="close-btn" onclick="toggleSidebar()">
                 <i class="fas fa-times"></i>
             </div>
-            <div class="sidebar-logo">
-                <a href="index.html">
-                    <img src="win.png" alt="SonipatACService" />
-                </a>
-            </div>
+            
             <ul>
                 <li><a class="sidebar-button" href="ac-service.html"><span><i class="fas fa-fan"></i> AC Service</span></a></li>
                 <li><a class="sidebar-button" href="fridge-repair.html"><span><i class="fas fa-snowflake"></i> Fridge Repair</span></a></li>
@@ -912,6 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
