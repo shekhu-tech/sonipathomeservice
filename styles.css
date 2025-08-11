@@ -29,7 +29,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #000;
+  background: #007bff;
   padding: 16px 32px;
   border-bottom: 2px solid #ffd700;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
@@ -497,3 +497,4 @@ nav {
       
 
  
+
