@@ -22,12 +22,12 @@ function injectHeader() {
         </div>
 
         <nav>
-            <div class="nav-item"><a href="ac-service.html">AC Service</a></div>
-            <div class="nav-item"><a href="fridge-repair.html">Fridge Repair</a></div>
-            <div class="nav-item"><a href="cooler-repair.html">Cooler</a></div>
-            <div class="nav-item"><a href="geyser-repair.html">Geyser</a></div>
-            <div class="nav-item"><a href="washing-machine.html">Washing Machine</a></div>
-            <div class="nav-item"><a href="chimney-cleaning.html">Chimney</a></div>
+            <div class="nav-item"><a href="ac-service.html"></a></div>
+            <div class="nav-item"><a href="fridge-repair.html"></a></div>
+            <div class="nav-item"><a href="cooler-repair.html"></a></div>
+            <div class="nav-item"><a href="geyser-repair.html"></a></div>
+            <div class="nav-item"><a href="washing-machine.html"></a></div>
+            <div class="nav-item"><a href="chimney-cleaning.html"></a></div>
         </nav>
 
         <div class="menu-toggle" onclick="toggleSidebar()">
@@ -40,13 +40,13 @@ function injectHeader() {
             </div>
             
             <ul>
-                <li><a class="sidebar-button" href="ac-service.html"><span><i class="fas fa-fan"></i> AC Service</span></a></li>
-                <li><a class="sidebar-button" href="fridge-repair.html"><span><i class="fas fa-snowflake"></i> Fridge Repair</span></a></li>
-                <li><a class="sidebar-button" href="cooler-repair.html"><span><i class="fas fa-water"></i> Cooler</span></a></li>
-                <li><a class="sidebar-button" href="geyser-repair.html"><span><i class="fas fa-burn"></i> Geyser</span></a></li>
-                <li><a class="sidebar-button" href="washing-machine.html"><span><i class="fas fa-soap"></i> Washing Machine</span></a></li>
-                <li><a class="sidebar-button" href="chimney-cleaning.html"><span><i class="fas fa-wind"></i> Chimney</span></a></li>
-                <li><a class="sidebar-button" href="policy.html"><span><i class="fas fa-shield-alt"></i> Privacy Policy</span></a></li>
+                <li><a class="sidebar-button" href="ac-service.html"><span><i class="fas fa-fan"></i> </span></a></li>
+                <li><a class="sidebar-button" href="fridge-repair.html"><span><i class="fas fa-snowflake"></i> </span></a></li>
+                <li><a class="sidebar-button" href="cooler-repair.html"><span><i class="fas fa-water"></i> </span></a></li>
+                <li><a class="sidebar-button" href="geyser-repair.html"><span><i class="fas fa-burn"></i></span></a></li>
+                <li><a class="sidebar-button" href="washing-machine.html"><span><i class="fas fa-soap"></i> </span></a></li>
+                <li><a class="sidebar-button" href="chimney-cleaning.html"><span><i class="fas fa-wind"></i> </span></a></li>
+                <li><a class="sidebar-button" href="policy.html"><span><i class="fas fa-shield-alt"></i></span></a></li>
                 <li><a class="sidebar-button" href="terms.html"><span><i class="fas fa-file-contract"></i> Terms & Conditions</span></a></li>
                 <li><a class="sidebar-button" href="refund.html"><span><i class="fas fa-undo-alt"></i> Refund Policy</span></a></li>
             </ul>
@@ -662,6 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
