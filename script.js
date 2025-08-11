@@ -342,6 +342,253 @@ CSS
   document.head.insertAdjacentHTML('beforeend', style);
   footerContainer.innerHTML = html;
 }
+
+// Function to inject product section
+function injectProductSection() {
+  const container = document.getElementById('product-section');
+  if (!container) return;
+
+  const style = `
+    <style>
+  /* ======= Main Section ======= */
+  .products-section {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: #f4f4f4;
+  }
+
+  /* ======= Title Styling ======= */
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #005f99;
+    text-transform: uppercase;
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+    padding-bottom: 6px;
+  }
+
+  /* ======= Card Layout ======= */
+  .cards-container1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .cards-container1 > .card {
+    width: calc(33.333% - 1.34rem);
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+
+  /* ======= Card Styling ======= */
+  .card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 270px;
+    max-width: 399px;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+    border-color: #007bff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  }
+
+  /* ======= Background Image Area ======= */
+  .card-background {
+    height: 65%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #e0e0e0;
+  }
+
+  /* ======= Card Content ======= */
+  .card-content2 {
+    height: 35%;
+    background: #f9f9f9;
+    color: #222;
+    padding: 0.6rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    text-align: center;
+  }
+
+  .card-content2 h3 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    color: #005f99;
+    letter-spacing: 0.5px;
+  }
+
+  /* ======= Button Style ======= */
+  .btn {
+    display: block;
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 10px 0;
+    border-radius: 999px;
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
+  }
+
+  .btn:hover {
+    background: #0056b3;
+    color: #fff;
+  }
+
+  /* ======= Top Corner Ribbon (Classic Restyle) ======= */
+  .corner-ribbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top: 60px solid #007bff;
+    border-right: 60px solid transparent;
+    z-index: 10;
+  }
+
+  /* ======= Top Badge (Classic Restyle) ======= */
+  .card-category-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #e9ecef;
+    color: #333;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  /* ======= Tablet ======= */
+  @media (max-width: 1024px) {
+    .cards-container1 > .card {
+      width: 100%;
+      max-width: 90%;
+    }
+    .card {
+      height: 270px;
+    }
+  }
+
+  /* ======= Mobile ======= */
+  @media (max-width: 480px) {
+    .products-section {
+      padding: 2rem 1rem;
+    }
+    .section-title {
+      font-size: 1.8rem;
+    }
+    .corner-ribbon {
+      border-top: 40px solid #007bff;
+      border-right: 40px solid transparent;
+    }
+    .btn {
+      font-size: 0.85rem;
+      padding: 8px 0;
+    }
+  }
+</style>
+
+  `;
+
+  const html = `
+    <section class="products-section">
+  <h2 class="section-title">Our Services</h2>
+  <div class="cards-container1">
+
+    <a href="ac-service.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">AC Services</div>
+      <div class="card-background" style="background-image: url('one.png');"></div>
+      <div class="card-content2">
+        <h3>AC Installation & Repair</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <a href="fridge-repair.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Fridge</div>
+      <div class="card-background" style="background-image: url('two.png');"></div>
+      <div class="card-content2">
+        <h3>Refrigerator Repair</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <a href="washing-machine.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Washing Machine</div>
+      <div class="card-background" style="background-image: url('three.png');"></div>
+      <div class="card-content2">
+        <h3>Washing Machine Repair</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <a href="cooler-repair.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Cooler</div>
+      <div class="card-background" style="background-image: url('four.png');"></div>
+      <div class="card-content2">
+        <h3>Air Cooler Service</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <a href="geyser-repair.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Geyser</div>
+      <div class="card-background" style="background-image: url('five.png');"></div>
+      <div class="card-content2">
+        <h3>Geyser Installation</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+    <a href="chimney-cleaning.html" class="card">
+      <div class="corner-ribbon"></div>
+      <div class="card-category-badge">Kitchen</div>
+      <div class="card-background" style="background-image: url('six.png');"></div>
+      <div class="card-content2">
+        <h3>Chimney Cleaning</h3>
+        <span class="btn">Book Now</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+  `;
+
+  document.head.insertAdjacentHTML('beforeend', style);
+  container.innerHTML = html;
+}
+
 // Function to inject Container1
 function injectContainer1() {
   const container = document.getElementById('Container1');
@@ -657,6 +904,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
