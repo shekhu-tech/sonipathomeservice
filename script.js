@@ -137,8 +137,8 @@ function injectFooter() {
   position: absolute;
   top: 50%;
   left: 50%;
-  height: 60%;
-  width: 60%;
+  height: 80%;
+  width: 80%;
   border: none;
   transform: translate(-50%, -50%);
 }
@@ -902,6 +902,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
