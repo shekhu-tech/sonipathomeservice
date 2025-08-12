@@ -127,13 +127,20 @@ function injectFooter() {
   height: 0;
   margin-top: 20px;
 }
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .map-container iframe {
-  left: 0;
-  top: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   height: 60%;
   width: 60%;
-  position: absolute;
   border: none;
+  transform: translate(-50%, -50%);
 }
 
 /* Buttons */
@@ -895,6 +902,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
