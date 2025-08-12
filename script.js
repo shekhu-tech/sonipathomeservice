@@ -10,7 +10,7 @@ function injectHeader() {
                 <i class="fas fa-phone-alt"></i>
                 <span>+91-8816014071</span>
             </a>
-            <a href="technician.html" class="partner-button-top">I am A Machenic</a>
+            <a href="technician.html" class="partner-button-top">I am A Machanic</a>
         </div>
     </div>
 
@@ -896,6 +896,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
