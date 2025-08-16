@@ -598,6 +598,16 @@
                 <span class="btn">View Services</span>
             </div>
         </div>
+
+      <div class="card" onclick="showPopup('Automobile Repairing Services', 'drng15.jpeg')">
+            <div class="corner-ribbon"></div>
+            <div class="card-category-badge">Automobile</div>
+            <div class="card-background" style="background-image: url('drng15.jpeg');"></div>
+            <div class="card-content2">
+                <h3>Car Repair Services</h3>
+                <span class="btn">View Services</span>
+            </div>
+        </div>
        
     </div>
 </section>
@@ -754,7 +764,13 @@
             { title: '', link: 'cctv-install.html' },
             { title: '', link: 'cctv-repair.html' },
             { title: '', link: 'security-guards.html' }
+        ],
+        'Automobile Repairing Services': [
+            { title: 'Car Repair Services', link: 'automobile-repairing-services.html' },
+            
         ]
+
+      
     };
 
     // Show popup with relevant services
@@ -875,6 +891,7 @@ document.querySelector('.slider-btn').addEventListener('click', function(e) {
   <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
 
