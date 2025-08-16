@@ -420,11 +420,11 @@
                 justify-content: center; /* Center elements in these containers */
             }
             .btn {
-                width: 100%; /* Full width buttons on smaller screens */
-                max-width: 300px; /* Limit button width */
+                width: 100%;
+                max-width: 300px;
             }
             .lottery-stats {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Even smaller min-width */
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             }
             .stat-card {
                 padding: 0.8rem;
@@ -465,7 +465,7 @@
                 padding: 0.6rem 1rem;
             }
             .lottery-stats {
-                grid-template-columns: 1fr 1fr; /* Two columns on tablets */
+                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -495,14 +495,14 @@
                 font-size: 0.85rem;
             }
             .action-buttons {
-                flex-direction: column; /* Stack buttons vertically on small phones */
+                flex-direction: column;
             }
             .btn {
                 width: 100%;
-                max-width: unset; /* Remove max-width for full stretch */
+                max-width: unset;
             }
             .lottery-stats {
-                grid-template-columns: 1fr; /* Single column on phones */
+                grid-template-columns: 1fr;
             }
             .stat-card {
                 padding: 0.7rem;
@@ -515,7 +515,7 @@
             }
             .popup {
                 padding: 1rem;
-                width: 98%; /* Even wider on very small screens */
+                width: 98%;
             }
             .popup h2 {
                 font-size: 1.3rem;
@@ -540,7 +540,7 @@
         
         <section class="product-section rounded-2xl shadow-lg mb-8">
             <div class="product-header rounded-t-2xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Compressor Change Service</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Fridge Compressor Change Service</h2>
             </div>
 
             <div class="product-content flex flex-col md:flex-row items-center justify-center p-6 md:p-8 gap-6">
@@ -639,6 +639,17 @@
                 </div>
             </div>
 
+            <div class="quantity-selector my-4">
+                <label for="ticketQuantity" class="text-accent text-sm mb-2">Number of Services (Max 5):</label>
+                <select id="ticketQuantity" name="ticketQuantity" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <option value="" disabled selected>Select quantity</option>
+                    </select>
+                <div class="quantity-info flex justify-between mt-2 text-gray-400 text-sm">
+                    <span>Price per service based on capacity</span>
+                    <span class="total-price-quantity font-bold text-accent text-lg">Total: ₹0</span>
+                </div>
+            </div>
+
             <input type="hidden" name="ticket" id="ticketCode" />
             <input type="hidden" name="finalPrice" id="finalPrice" />
             <button type="submit" class="w-full btn-primary mt-4 py-3 rounded-xl font-bold text-white text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Submit Details</button>
@@ -680,8 +691,10 @@
         const razorpayBtn = document.getElementById('razorpay-payment-btn');
         const submitMessage = document.getElementById('submitMessage');
         const fridgeCapacitySelect = document.getElementById('fridgeCapacity');
-        const totalPriceDisplay = document.querySelector('.total-price');
+        const ticketQuantitySelect = document.getElementById('ticketQuantity'); 
         const capacityPriceInfo = document.getElementById('capacityPriceInfo');
+        const totalPriceDisplay = document.querySelector('.total-price'); 
+        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity'); 
         const paymentSummary = document.getElementById('paymentSummary');
         const ticketCountDisplay = document.getElementById('ticketCountDisplay');
         const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
@@ -713,23 +726,43 @@
             "210": 4000
         };
 
+        // Initialize quantity selector
+        function initQuantitySelector() {
+            const maxServices = 5; 
+            ticketQuantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
+            
+            for (let i = 1; i <= maxServices; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i + (i === 1 ? ' service' : ' services');
+                ticketQuantitySelect.appendChild(option);
+            }
+            
+            // Set default value to 1
+            ticketQuantitySelect.value = 1;
+        }
+
         // Update total price display based on selected capacity and quantity
-        function updateTotalPrice() {
+        function updatePrices() {
             const selectedCapacity = fridgeCapacitySelect.value;
-            selectedQuantity = 1; // For compressor change, usually 1 service
+            selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
 
             if (selectedCapacity && capacityPrices[selectedCapacity]) {
                 currentServicePrice = capacityPrices[selectedCapacity];
                 capacityPriceInfo.textContent = `₹${currentServicePrice} per service`;
-                totalPriceDisplay.textContent = `Total: ₹${currentServicePrice * selectedQuantity}`;
+                totalPriceDisplay.textContent = `Total: ₹${currentServicePrice}`; // Price for one service of selected capacity
                 displayPriceElement.textContent = `Service Charge: ₹${currentServicePrice}`;
-                displayPriceElement.style.display = 'block'; // Show price
+                displayPriceElement.style.display = 'block';
+
+                // Update total price for selected quantity
+                totalPriceQuantityDisplay.textContent = `Total: ₹${currentServicePrice * selectedQuantity}`;
             } else {
                 currentServicePrice = 0;
                 capacityPriceInfo.textContent = '';
                 totalPriceDisplay.textContent = 'Total: ₹0';
+                totalPriceQuantityDisplay.textContent = 'Total: ₹0';
                 displayPriceElement.textContent = 'Please select capacity';
-                displayPriceElement.style.display = 'block'; // Keep text visible
+                displayPriceElement.style.display = 'block';
             }
             finalPriceInput.value = currentServicePrice * selectedQuantity; // Update hidden input
         }
@@ -800,14 +833,16 @@
 
         // --- EVENT LISTENERS ---
         participateBtn.addEventListener('click', () => {
-            // Reset quantity and price display when opening form
+            // Reset capacity and price display when opening form
             fridgeCapacitySelect.value = ""; // Reset dropdown
-            updateTotalPrice(); // Reset price display
+            initQuantitySelector(); // Re-initialize quantity selector
+            updatePrices(); // Reset price display
             openPopup(popupForm);
         });
         
-        fridgeCapacitySelect.addEventListener('change', updateTotalPrice);
-        
+        fridgeCapacitySelect.addEventListener('change', updatePrices);
+        ticketQuantitySelect.addEventListener('change', updatePrices); // Listen to quantity change
+
         // Modified overlay click handler
         popupOverlay.addEventListener('click', function(e) {
             if (allowClose) {
@@ -839,6 +874,8 @@
             const location = form.location.value.trim();
             const address = form.address.value.trim();
             const selectedCapacity = fridgeCapacitySelect.value;
+            const selectedQuantityValue = parseInt(ticketQuantitySelect.value);
+
 
             if (fullName.length < 10) {
                 showCustomAlert("Please enter your full name (minimum 10 characters).");
@@ -875,6 +912,10 @@
                 showCustomAlert("Price not available for the selected capacity.");
                 return;
             }
+            if (!selectedQuantityValue || selectedQuantityValue <= 0) {
+                showCustomAlert("Please select the number of services.");
+                return;
+            }
 
             submitMessage.style.display = 'block';
             form.querySelector('button[type="submit"]').disabled = true;
@@ -893,8 +934,8 @@
             formData.append('tab', 'compressor-change'); // Updated tab name
             formData.append('serviceType', `Compressor Change Service (${selectedCapacity} Ltr)`); // Updated service type
             formData.append('fridgeCapacity', selectedCapacity);
-            formData.append('servicePrice', currentServicePrice); // Send the actual service price
-            formData.append('ticketQuantity', selectedQuantity); // Always 1 for this service
+            formData.append('servicePrice', currentServicePrice); // Send the actual service price for one unit
+            formData.append('ticketQuantity', selectedQuantityValue); // Send the selected quantity
             
             fetch(
                 "https://script.google.com/macros/s/AKfycbxx5AVVkC_cC3Hn4b4Sl3R0Hk7t32NzC_Rkg3nlR3REVm-m0T-tDoHjTUat_Usy_0GP/exec", {
@@ -910,8 +951,8 @@
                     openPopup(paymentStep);
                     // Update payment summary
                     paymentSummary.innerHTML = `
-                        <p class="text-gray-300 text-lg mb-2">You are booking <span class="font-bold text-accent">${selectedQuantity}</span> Compressor Change Service (${selectedCapacity} Ltr).</p>
-                        <p class="total-price text-accent text-2xl font-bold">Service Charge: ₹${currentServicePrice * selectedQuantity}</p>
+                        <p class="text-gray-300 text-lg mb-2">You are booking <span class="font-bold text-accent">${selectedQuantityValue}</span> Compressor Change Service (${selectedCapacity} Ltr).</p>
+                        <p class="total-price text-accent text-2xl font-bold">Service Charge: ₹${currentServicePrice * selectedQuantityValue}</p>
                         <p class="text-gray-400 text-sm mt-2">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
                     `;
                     startPaymentTimer();
@@ -1025,7 +1066,7 @@
             // Display welcome message with user's name
             const userName = form.fullName.value;
             const selectedCapacity = fridgeCapacitySelect.value;
-            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your Compressor Change Service (${selectedCapacity} Ltr) Booking is Confirmed! �`;
+            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your Compressor Change Service (${selectedCapacity} Ltr) Booking is Confirmed! 🎉`;
             
             // Display the single ticket number and registration ID
             ticketDisplay.innerHTML = `
@@ -1053,4 +1094,3 @@
     </script>
 </body>
 </html>
-�
