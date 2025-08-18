@@ -251,6 +251,29 @@
             to { opacity: 1; transform: translate(-50%, -50%); }
         }
 
+        /* Specific style for the car model selection popup to ensure centering */
+        #carModelSelectionPopup {
+            position: fixed; /* Ensures it's positioned relative to the viewport */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centers the element */
+            z-index: 1001; /* Higher than overlay, lower than main popups if needed */
+            background: #212121; /* Dark grey */
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            box-shadow: 0 0 1.875rem rgba(255, 215, 0, 0.5);
+            width: 95%;
+            max-width: 550px;
+            max-height: 95vh;
+            overflow-y: auto;
+            display: none; /* Hidden by default */
+        }
+
+        #carModelCheckboxes {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjust column width for checkboxes */
+        }
+        
         .popup input,
         .popup button,
         .popup select,
@@ -651,8 +674,14 @@
             
             <div class="quantity-selector my-4">
                 <label class="text-accent text-sm mb-2">Select Car Model(s):</label>
-                <div id="carModelCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-light">
-                    <!-- Checkboxes will be populated by JavaScript -->
+                <div id="selectedCarModelsDisplay" class="bg-gray-700 text-light p-3 rounded-lg cursor-pointer mb-3" onclick="openCarModelSelectionPopup()">Click to select car models</div>
+                <div id="carModelSelectionPopup" class="popup hidden">
+                    <h3 class="text-xl font-bold text-center mb-4">Select Car Model(s)</h3>
+                    <div id="carModelCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-light max-h-60 overflow-y-auto">
+                        <!-- Checkboxes will be populated by JavaScript -->
+                    </div>
+                    <button type="button" class="btn btn-primary mt-4 py-2 rounded-xl font-bold text-lg" onclick="applySelectedCarModels()">Apply Selection</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg" onclick="closeCarModelSelectionPopup()">Cancel</button>
                 </div>
             </div>
 
@@ -769,6 +798,8 @@
         const razorpayBtn = document.getElementById('razorpay-payment-btn');
         const submitMessage = document.getElementById('submitMessage');
         const carModelCheckboxesContainer = document.getElementById('carModelCheckboxes'); // Container for checkboxes
+        const selectedCarModelsDisplay = document.getElementById('selectedCarModelsDisplay'); // Element to show selected models
+        const carModelSelectionPopup = document.getElementById('carModelSelectionPopup'); // The new popup for car selection
         const serviceTypeOptions = document.querySelectorAll('input[name="serviceTypeOption"]');
         const servicePriceInfo = document.getElementById('servicePriceInfo');
         const totalPriceCarServiceDisplay = document.querySelector('.total-price-car-service');
@@ -800,9 +831,9 @@
             carModelCheckboxesContainer.innerHTML = ''; // Clear previous options
             carServiceData.forEach(car => {
                 const checkboxHtml = `
-                    <label class="inline-flex items-center text-light">
+                    <label class="inline-flex items-center text-light w-full">
                         <input type="checkbox" name="carModel" value="${car.Name}" data-brand="${car.Brand}" 
-                               class="form-checkbox h-5 w-5 text-yellow-500">
+                               class="form-checkbox h-5 w-5 text-yellow-500 rounded focus:ring-yellow-500">
                         <span class="ml-2">${car.Name} (${car.Brand})</span>
                     </label>
                 `;
@@ -868,6 +899,13 @@
                 displayPriceElement.style.display = 'block';
             }
             finalPriceInput.value = currentServicePrice * selectedQuantity; // Update hidden input
+            
+            // Update the display in the main form
+            if (selectedCarModelNames.length > 0) {
+                selectedCarModelsDisplay.textContent = selectedCarModelNames.join(', ');
+            } else {
+                selectedCarModelsDisplay.textContent = 'Click to select car models';
+            }
         }
 
         // Generate a single formatted ticket
@@ -913,6 +951,7 @@
         }
 
         // --- FUNCTIONS TO CONTROL POPUPS ---
+        // Main popup (form and payment steps)
         function closeAllPopups() {
             if (!allowClose) {
                 showCustomAlert("Please complete the form or payment process before closing.");
@@ -941,15 +980,43 @@
             countdownInterval = null;
         }
 
+        // --- Car Model Selection Popup Functions ---
+        function openCarModelSelectionPopup() {
+            populateCarModels(); // Ensure checkboxes are up-to-date
+            // Re-check previously selected boxes
+            const currentlySelectedModels = selectedCarModelsDisplay.textContent.split(', ').map(s => s.split(' (')[0].trim());
+            carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]').forEach(checkbox => {
+                if (currentlySelectedModels.includes(checkbox.value)) {
+                    checkbox.checked = true;
+                } else {
+                    checkbox.checked = false;
+                }
+            });
+            // Open the car model selection popup and overlay
+            carModelSelectionPopup.style.display = 'block';
+            popupOverlay.style.display = 'block'; // Ensure overlay is visible
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeCarModelSelectionPopup() {
+            carModelSelectionPopup.style.display = 'none';
+            popupOverlay.style.display = 'none'; // Hide overlay when this specific popup closes
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        function applySelectedCarModels() {
+            updatePrices(); // Update prices based on current checkbox selection
+            closeCarModelSelectionPopup();
+        }
+
+
         // --- EVENT LISTENERS ---
         participateBtn.addEventListener('click', () => {
-            populateCarModels(); // Populate checkboxes when opening form
+            // This button now triggers the main form popup, which will then handle car model selection
             initQuantitySelector(); // Initialize quantity selector
-            // Ensure no car models are pre-selected
-            carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]').forEach(checkbox => checkbox.checked = false);
             // Set initial default selection for service type and update prices
             document.querySelector('input[name="serviceTypeOption"][value="Half Rate"]').checked = true;
-            updatePrices(); 
+            updatePrices(); // This will update the price based on no car selected initially
             openPopup(popupForm);
         });
         
@@ -959,11 +1026,19 @@
 
         // Modified overlay click handler
         popupOverlay.addEventListener('click', function(e) {
-            if (allowClose) {
-                closeAllPopups();
-            } else {
-                // Show a message that the form must be completed
-                showCustomAlert("Please complete the form or payment process before closing.");
+            // Check if the click is on the overlay itself, not inside a popup
+            if (e.target === popupOverlay) {
+                // Determine which popup is currently open and if it allows closing
+                if (carModelSelectionPopup.style.display === 'block') {
+                    // Car model selection popup is open, close it
+                    closeCarModelSelectionPopup();
+                } else if (ticketStep.style.display === 'block' && allowClose) {
+                    // Ticket step is open and allows closing
+                    closeAllPopups();
+                } else {
+                    // Other popups are open and do not allow closing from overlay
+                    showCustomAlert("Please complete the form or payment process before closing.");
+                }
             }
         });
         
