@@ -650,10 +650,10 @@
             <span id="countryError" class="text-red-400 text-xs mt-1 hidden">Please enter your complete address with at least 30 characters.</span>
             
             <div class="quantity-selector my-4">
-                <label for="carModelSelect" class="text-accent text-sm mb-2">Select Car Model:</label>
-                <select id="carModelSelect" name="carModel" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                    <option value="" disabled selected>Select car model</option>
-                </select>
+                <label class="text-accent text-sm mb-2">Select Car Model(s):</label>
+                <div id="carModelCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-light">
+                    <!-- Checkboxes will be populated by JavaScript -->
+                </div>
             </div>
 
             <div class="quantity-selector my-4">
@@ -768,7 +768,7 @@
         const timerDisplay = document.getElementById('timerDisplay');
         const razorpayBtn = document.getElementById('razorpay-payment-btn');
         const submitMessage = document.getElementById('submitMessage');
-        const carModelSelect = document.getElementById('carModelSelect');
+        const carModelCheckboxesContainer = document.getElementById('carModelCheckboxes'); // Container for checkboxes
         const serviceTypeOptions = document.querySelectorAll('input[name="serviceTypeOption"]');
         const servicePriceInfo = document.getElementById('servicePriceInfo');
         const totalPriceCarServiceDisplay = document.querySelector('.total-price-car-service');
@@ -792,17 +792,26 @@
         let paymentTimeout = null;
         let countdownInterval = null;
         const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes in seconds
-        let currentServicePrice = 0; // Dynamic price based on car model and service type
+        let currentServicePrice = 0; // Dynamic price based on car model(s) and service type
         let selectedQuantity = 1; // Default quantity
 
-        // Populate car model dropdown
+        // Populate car model checkboxes
         function populateCarModels() {
-            carModelSelect.innerHTML = '<option value="" disabled selected>Select car model</option>';
+            carModelCheckboxesContainer.innerHTML = ''; // Clear previous options
             carServiceData.forEach(car => {
-                const option = document.createElement('option');
-                option.value = car.Name;
-                option.textContent = `${car.Name} (${car.Brand})`;
-                carModelSelect.appendChild(option);
+                const checkboxHtml = `
+                    <label class="inline-flex items-center text-light">
+                        <input type="checkbox" name="carModel" value="${car.Name}" data-brand="${car.Brand}" 
+                               class="form-checkbox h-5 w-5 text-yellow-500">
+                        <span class="ml-2">${car.Name} (${car.Brand})</span>
+                    </label>
+                `;
+                carModelCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
+            });
+
+            // Add event listeners to new checkboxes
+            carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]').forEach(checkbox => {
+                checkbox.addEventListener('change', updatePrices);
             });
         }
 
@@ -822,25 +831,29 @@
             ticketQuantitySelect.value = 1;
         }
 
-        // Update prices based on selected car model, service type, and quantity
+        // Update prices based on selected car model(s), service type, and quantity
         function updatePrices() {
-            const selectedCarModelName = carModelSelect.value;
+            const selectedCarModelNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]:checked')).map(checkbox => checkbox.value);
             const selectedServiceType = document.querySelector('input[name="serviceTypeOption"]:checked')?.value;
             selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
 
-            const selectedCar = carServiceData.find(car => car.Name === selectedCarModelName);
+            let totalCalculatedPrice = 0;
 
-            if (selectedCar && selectedServiceType) {
-                if (selectedServiceType === "Half Rate") {
-                    currentServicePrice = selectedCar["Half Rate"];
-                } else if (selectedServiceType === "Full Cost") {
-                    currentServicePrice = selectedCar["Full Cost"];
-                } else {
-                    currentServicePrice = 0;
-                }
+            if (selectedCarModelNames.length > 0 && selectedServiceType) {
+                selectedCarModelNames.forEach(modelName => {
+                    const selectedCar = carServiceData.find(car => car.Name === modelName);
+                    if (selectedCar) {
+                        if (selectedServiceType === "Half Rate") {
+                            totalCalculatedPrice += selectedCar["Half Rate"];
+                        } else if (selectedServiceType === "Full Cost") {
+                            totalCalculatedPrice += selectedCar["Full Cost"];
+                        }
+                    }
+                });
+                currentServicePrice = totalCalculatedPrice;
 
-                servicePriceInfo.textContent = `₹${currentServicePrice} per service`;
-                totalPriceCarServiceDisplay.textContent = `Total: ₹${currentServicePrice}`; // Price for one service of selected type
+                servicePriceInfo.textContent = `₹${currentServicePrice} per service (for selected models)`;
+                totalPriceCarServiceDisplay.textContent = `Total: ₹${currentServicePrice}`; // Price for one service of selected type for all selected cars
                 displayPriceElement.textContent = `Service Charge: ₹${currentServicePrice}`;
                 displayPriceElement.style.display = 'block';
 
@@ -851,7 +864,7 @@
                 servicePriceInfo.textContent = '';
                 totalPriceCarServiceDisplay.textContent = 'Total: ₹0';
                 totalPriceQuantityDisplay.textContent = 'Total: ₹0';
-                displayPriceElement.textContent = 'Select Car & Service Type';
+                displayPriceElement.textContent = 'Select Car(s) & Service Type';
                 displayPriceElement.style.display = 'block';
             }
             finalPriceInput.value = currentServicePrice * selectedQuantity; // Update hidden input
@@ -869,14 +882,18 @@
 
         // Download tickets as text file
         function downloadTickets() {
-            const selectedCar = carServiceData.find(car => car.Name === carModelSelect.value);
+            const selectedCarModelNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]:checked')).map(checkbox => checkbox.value);
             const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
+            const selectedCarsDetails = selectedCarModelNames.map(modelName => {
+                const car = carServiceData.find(c => c.Name === modelName);
+                return car ? `${car.Name} (${car.Brand})` : modelName;
+            }).join(', ');
 
             const ticketContent = `Automobile Repairing Service Booking Details\n\n` +
                                  `Customer Name: ${form.field1.value}\n` +
                                  `Contact: ${form.field2.value}\n` +
                                  `Location: ${form.field5.value}\n` +
-                                 `Car Model: ${selectedCar ? selectedCar.Name : 'N/A'} (${selectedCar ? selectedCar.Brand : 'N/A'})\n` +
+                                 `Car Model(s): ${selectedCarsDetails}\n` +
                                  `Service Type: ${serviceTypeName}\n` +
                                  `Booking Reference Number: ${generatedTicket}\n\n` + 
                                  `Total Services: ${selectedQuantity}\n` +
@@ -926,15 +943,17 @@
 
         // --- EVENT LISTENERS ---
         participateBtn.addEventListener('click', () => {
-            populateCarModels(); // Populate dropdown when opening form
+            populateCarModels(); // Populate checkboxes when opening form
             initQuantitySelector(); // Initialize quantity selector
-            // Set default service type to Half Service and update prices
+            // Ensure no car models are pre-selected
+            carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]').forEach(checkbox => checkbox.checked = false);
+            // Set initial default selection for service type and update prices
             document.querySelector('input[name="serviceTypeOption"][value="Half Rate"]').checked = true;
             updatePrices(); 
             openPopup(popupForm);
         });
         
-        carModelSelect.addEventListener('change', updatePrices);
+        // Event listeners for checkboxes are added inside populateCarModels
         serviceTypeOptions.forEach(radio => radio.addEventListener('change', updatePrices));
         ticketQuantitySelect.addEventListener('change', updatePrices); 
 
@@ -968,7 +987,7 @@
             const dob = form.dobField.value;
             const location = form.location.value.trim();
             const address = form.address.value.trim();
-            const selectedCarModelName = carModelSelect.value;
+            const selectedCarModelNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]:checked')).map(checkbox => checkbox.value);
             const selectedServiceType = document.querySelector('input[name="serviceTypeOption"]:checked')?.value;
             const selectedQuantityValue = parseInt(ticketQuantitySelect.value);
 
@@ -1000,8 +1019,8 @@
             }
             document.getElementById('countryError').style.display = 'none';
 
-            if (!selectedCarModelName) {
-                showCustomAlert("Please select a car model.");
+            if (selectedCarModelNames.length === 0) {
+                showCustomAlert("Please select at least one car model.");
                 return;
             }
             if (!selectedServiceType) {
@@ -1009,7 +1028,7 @@
                 return;
             }
             if (currentServicePrice === 0) {
-                showCustomAlert("Price not available for the selected car model and service type.");
+                showCustomAlert("Price not available for the selected car model(s) and service type.");
                 return;
             }
             if (!selectedQuantityValue || selectedQuantityValue <= 0) {
@@ -1032,7 +1051,7 @@
             formData.append('field6', address);
             formData.append('ticket', generatedTicket);
             formData.append('tab', 'automobile-repairing'); // Updated tab name
-            formData.append('carModel', selectedCarModelName);
+            formData.append('carModel', selectedCarModelNames.join(', ')); // Send all selected car models
             formData.append('serviceType', selectedServiceType === "Half Rate" ? "Half Service" : "Full Service"); // Send user-friendly name
             formData.append('servicePrice', currentServicePrice); // Send the actual service price for one unit
             formData.append('ticketQuantity', selectedQuantityValue); // Send the selected quantity
@@ -1050,11 +1069,10 @@
                     popupForm.style.display = 'none';
                     openPopup(paymentStep);
                     // Update payment summary
-                    const selectedCar = carServiceData.find(car => car.Name === selectedCarModelName);
                     const serviceTypeName = selectedServiceType === "Half Rate" ? "Half Service" : "Full Service";
 
                     paymentSummary.innerHTML = `
-                        <p class="text-gray-300 text-lg mb-2">You are booking <span class="font-bold text-accent">${selectedQuantityValue}</span> ${serviceTypeName} for ${selectedCar ? selectedCar.Name : 'N/A'}.</p>
+                        <p class="text-gray-300 text-lg mb-2">You are booking <span class="font-bold text-accent">${selectedQuantityValue}</span> ${serviceTypeName} for ${selectedCarModelNames.join(', ')}.</p>
                         <p class="total-price text-accent text-2xl font-bold">Service Charge: ₹${currentServicePrice * selectedQuantityValue}</p>
                         <p class="text-gray-400 text-sm mt-2">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
                     `;
@@ -1086,7 +1104,7 @@
         // --- RAZORPAY PAYMENT HANDLING ---
         function handleRazorpayPayment() {
             const totalAmount = currentServicePrice * selectedQuantity * 100; // Convert to paise
-            const selectedCar = carServiceData.find(car => car.Name === carModelSelect.value);
+            const selectedCarModelNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]:checked')).map(checkbox => checkbox.value);
             const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
 
             const options = {
@@ -1094,7 +1112,7 @@
                 "amount": totalAmount.toString(),
                 "currency": "INR",
                 "name": document.querySelector('.product-header h2').textContent, 
-                "description": `Payment for ${selectedQuantity} ${serviceTypeName} for ${selectedCar ? selectedCar.Name : 'N/A'}`,
+                "description": `Payment for ${selectedQuantity} ${serviceTypeName} for ${selectedCarModelNames.join(', ')}`,
                 "image": "https://placehold.co/100x100/212121/FFD700?text=AR", // Placeholder logo with dark grey and gold text
                 "handler": function (response){
                     console.log("Payment successful:", response);
@@ -1109,7 +1127,7 @@
                 "notes": {
                     "address": `${form.field5.value}, ${form.field6.value}`,
                     "service_count": selectedQuantity.toString(),
-                    "car_model": selectedCar ? selectedCar.Name : 'N/A',
+                    "car_model": selectedCarModelNames.join(', '),
                     "service_type": serviceTypeName,
                     "service_price": currentServicePrice.toString(),
                     "initial_charge_note": "Final charges for parts and labor will be communicated by the technician after diagnosis."
@@ -1170,15 +1188,15 @@
             
             // Display welcome message with user's name
             const userName = form.fullName.value;
-            const selectedCar = carServiceData.find(car => car.Name === carModelSelect.value);
+            const selectedCarModelNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]:checked')).map(checkbox => checkbox.value);
             const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
 
-            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your Automobile ${serviceTypeName} Booking for ${selectedCar ? selectedCar.Name : 'N/A'} is Confirmed! 🎉`;
+            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your Automobile ${serviceTypeName} Booking for ${selectedCarModelNames.join(', ')} is Confirmed! 🎉`;
             
             // Display the single ticket number and registration ID
             ticketDisplay.innerHTML = `
                 <p>Registration ID: <span class="text-white">${generatedTicket}</span></p>
-                <p>Service: <span class="text-white">${serviceTypeName} for ${selectedCar ? selectedCar.Name : 'N/A'}</span></p>
+                <p>Service: <span class="text-white">${serviceTypeName} for ${selectedCarModelNames.join(', ')}</span></p>
                 <p>Quantity: <span class="text-white">${selectedQuantity}</span></p>
                 <p class="text-gray-400 text-sm mt-2">Service Charge: ₹${currentServicePrice * selectedQuantity}</p>
                 <p class="text-gray-400 text-sm">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
