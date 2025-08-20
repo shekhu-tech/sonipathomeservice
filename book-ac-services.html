@@ -1105,14 +1105,14 @@
             formData.append('field5', location);
             formData.append('field6', address);
             formData.append('ticket', generatedTicket);
-            formData.append('tab', 'automobile-ac-service'); // Updated tab name for AC service
+            formData.append('tab', 'ac-service'); // Updated tab name for AC service
             formData.append('acServiceCategory', selectedAcServiceCategoryNames.join(', ')); // Send all selected AC service categories
             formData.append('serviceType', "AC Service"); // Send user-friendly name
             formData.append('servicePrice', currentServicePrice); // Send the actual service price for one unit
             formData.append('ticketQuantity', selectedQuantityValue); // Send the selected quantity
             
             fetch(
-                "https://script.google.com/macros/s/AKfycbySGY-M1-ocdEsYYpCpBrA2LE6euCwQ5ULBPEfAv7e_xELtjzeCgnMwV87FVMuGqvYw-w/exec", {
+                "https://script.google.com/macros/s/AKfycbySMwu5qzcIvr8x31T3NYA2T2GfueRcFe4AI6pBLmelVx7zxGq3HpWY8dn91hIsFlBlrQ/exec", {
                     method: "POST",
                     body: formData
                 }
