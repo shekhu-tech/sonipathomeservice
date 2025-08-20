@@ -315,9 +315,9 @@ function injectFooter() {
     </div>
 
     <div class="social-links">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.facebook.com/sonipathomeservice"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/sonipathomeservice/"><i class="fab fa-instagram"></i></a>
+      <a href="https://whatsapp.com/channel/0029Vb6ZIzI2UPBO43l8952V"><i class="fab fa-whatsapp"></i></a>
     </div>
 
     <div class="copyright">
@@ -896,6 +896,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
