@@ -8,14 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
-        /* Custom CSS for Automobile Repairing Service */
-        /* Using Inter font for a modern look */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         :root {
-            --primary: #212121; /* Dark Grey */
-            --secondary: #424242; /* Medium Grey */
-            --accent: #FFD700; /* Gold */
+            --primary: #212121;
+            --secondary: #424242;
+            --accent: #FFD700;
             --light: #f5f5f5;
             --dark: #212121;
             --success: #4caf50;
@@ -29,126 +27,123 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif; /* Applied Inter font */
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #333333 0%, #555555 100%); /* Darker grey gradient */
+            background: linear-gradient(135deg, #333333 0%, #555555 100%);
             color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Main content area styling - Adjusted for better responsiveness */
         main {
-            padding-top: 6rem; /* Adjusted for header height on smaller screens */
+            padding-top: 6rem;
             max-width: 1700px;
             margin: 0 auto;
-            padding: 6rem 1rem 3rem; /* Responsive padding */
+            padding: 6rem 1rem 3rem;
         }
 
-        /* Stats Section - Using Grid for responsiveness */
         .lottery-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller min-width for mobile */
-            gap: 1rem; /* Responsive gap */
-            margin-bottom: 2rem; /* Responsive margin */
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .stat-card {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.625rem; /* 10px */
-            padding: 1rem; /* Responsive padding */
+            border-radius: 0.625rem;
+            padding: 1rem;
             text-align: center;
             backdrop-filter: blur(10px);
             transition: var(--transition);
-            border: 1px solid rgba(255, 215, 0, 0.2); /* Accent gold border */
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         .stat-card:hover {
-            transform: translateY(-0.3125rem); /* 5px */
+            transform: translateY(-0.3125rem);
             box-shadow: var(--shadow);
-            border-color: var(--accent); /* Accent gold border on hover */
+            border-color: var(--accent);
         }
 
         .stat-card h3 {
-            font-size: 0.95rem; /* Smaller font for mobile */
+            font-size: 0.95rem;
             margin-bottom: 0.3rem;
-            color: var(--accent); /* Accent gold */
+            color: var(--accent);
         }
 
         .stat-card p {
-            font-size: 1.5rem; /* Responsive font size */
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--light);
         }
 
-        /* Product Section Styling */
         .product-section {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.9375rem; /* 15px */
+            border-radius: 0.9375rem;
             overflow: hidden;
-            margin-bottom: 2rem; /* Responsive margin */
+            margin-bottom: 2rem;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 215, 0, 0.2); /* Accent gold border */
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         .product-header {
-            background: linear-gradient(90deg, var(--primary), var(--secondary)); /* Grey gradient */
-            padding: 1.25rem; /* Responsive padding */
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            padding: 1.25rem;
             text-align: center;
         }
 
         .product-header h2 {
-            font-size: 1.75rem; /* Responsive font size */
+            font-size: 1.75rem;
             margin-bottom: 0.5rem;
         }
 
         .product-content {
             display: flex;
-            flex-wrap: wrap; /* Allows wrapping on smaller screens */
-            padding: 1.5rem; /* Responsive padding */
+            flex-wrap: wrap;
+            padding: 1.5rem;
             align-items: center;
             justify-content: center;
-            gap: 1.5rem; /* Gap between image and details */
+            gap: 1.5rem;
         }
 
         .product-image {
-            flex: 1; /* Allows image to take available space */
-            min-width: 280px; /* Minimum width for the image container */
-            max-width: 100%; /* Ensure it doesn't overflow */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 0.625rem; /* Rounded corners for the image container */
-            overflow: hidden; /* Hide overflow for rounded corners */
-            background: url('https://placehold.co/600x400/212121/FFD700?text=Automobile+Repair') no-repeat center center; /* Placeholder image with dark grey and gold text */
+            flex: 1;
+            min-width: 280px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.625rem;
+            overflow: hidden;
+            background: url('https://placehold.co/600x400/212121/FFD700?text=Automobile+Repair') no-repeat center center;
             background-size: cover;
-            min-height: 250px; /* Minimum height for the image container */
+            min-height: 250px;
         }
 
         .product-details {
             flex: 2;
-            min-width: 280px; /* Minimum width for details */
+            min-width: 280px;
             padding: 1rem;
         }
 
         .price-container {
             display: flex;
-            flex-wrap: wrap; /* Allow prices to wrap */
+            flex-wrap: wrap;
             align-items: center;
-            gap: 1rem; /* Responsive gap */
+            gap: 1rem;
             margin: 1rem 0;
         }
 
         .original-price {
-            font-size: 1.5rem; /* Responsive font size */
+            font-size: 1.5rem;
             text-decoration: line-through;
             color: #b0b0b0;
         }
 
         .lottery-price {
-            font-size: 2rem; /* Responsive font size */
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--accent); /* Accent gold */
+            color: var(--accent);
         }
 
         .features {
@@ -157,7 +152,7 @@
 
         .features h3 {
             margin-bottom: 0.8rem;
-            color: var(--accent); /* Accent gold */
+            color: var(--accent);
         }
 
         .features ul {
@@ -166,54 +161,53 @@
 
         .features li {
             margin-bottom: 0.4rem;
-            font-size: 0.95rem; /* Responsive font size */
+            font-size: 0.95rem;
         }
 
         .action-buttons {
             display: flex;
-            gap: 0.8rem; /* Responsive gap */
-            flex-wrap: wrap; /* Allow buttons to wrap */
+            gap: 0.8rem;
+            flex-wrap: wrap;
             margin-top: 1.5rem;
         }
 
         .btn {
-            padding: 0.75rem 1.25rem; /* Responsive padding */
+            padding: 0.75rem 1.25rem;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             border: none;
-            font-size: 0.95rem; /* Responsive font size */
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             text-decoration: none;
             justify-content: center;
-            flex-grow: 1; /* Allow buttons to grow and fill space */
-            max-width: 100%; /* Ensure buttons don't overflow */
+            flex-grow: 1;
+            max-width: 100%;
         }
 
         .btn-primary {
-            background: linear-gradient(90deg, var(--accent), #FFC107); /* Gold to Amber gradient */
-            color: #212121; /* Dark text for contrast */
+            background: linear-gradient(90deg, var(--accent), #FFC107);
+            color: #212121;
         }
 
         .btn-primary:hover {
-            transform: translateY(-0.1875rem); /* 3px */
-            box-shadow: 0 0.3125rem 0.9375rem rgba(255, 215, 0, 0.4); /* Accent gold shadow */
+            transform: translateY(-0.1875rem);
+            box-shadow: 0 0.3125rem 0.9375rem rgba(255, 215, 0, 0.4);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--light);
-            border: 2px solid var(--secondary); /* Medium grey border */
+            border: 2px solid var(--secondary);
         }
 
         .btn-secondary:hover {
-            background: rgba(66, 66, 66, 0.2); /* Medium grey transparent background */
+            background: rgba(66, 66, 66, 0.2);
         }
 
-        /* Popup Styles */
         #popup-overlay {
             display: none;
             position: fixed;
@@ -221,29 +215,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
-            backdrop-filter: blur(12px); /* Stronger blur */
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 999;
         }
 
         .popup {
             display: none;
-            background: #212121; /* Dark grey */
+            background: #212121;
             color: #fff;
-            padding: 1.5rem; /* Responsive padding */
-            border-radius: 1.25rem; /* 20px */
-            box-shadow: 0 0 1.875rem rgba(255, 215, 0, 0.5); /* Accent gold shadow */
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            box-shadow: 0 0 1.875rem rgba(255, 215, 0, 0.5);
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000;
-            width: 95%; /* Wider on small screens */
-            max-width: 550px; /* Slightly larger max-width */
-            max-height: 95vh; /* Max height for scrollable content */
+            width: 95%;
+            max-width: 550px;
+            max-height: 95vh;
             overflow-y: auto;
-            animation: fadeIn 0.3s ease-out forwards; /* Fade in animation */
+            animation: fadeIn 0.3s ease-out forwards;
         }
 
         @keyframes fadeIn {
@@ -251,14 +245,13 @@
             to { opacity: 1; transform: translate(-50%, -50%); }
         }
 
-        /* Specific style for the car model selection popup to ensure centering */
-        #carModelSelectionPopup {
-            position: fixed; /* Ensures it's positioned relative to the viewport */
+        #serviceCategorySelectionPopup {
+            position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* Centers the element */
-            z-index: 1001; /* Higher than overlay, lower than main popups if needed */
-            background: #212121; /* Dark grey */
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+            background: #212121;
             color: #fff;
             padding: 1.5rem;
             border-radius: 1.25rem;
@@ -267,11 +260,11 @@
             max-width: 550px;
             max-height: 95vh;
             overflow-y: auto;
-            display: none; /* Hidden by default */
+            display: none;
         }
 
-        #carModelCheckboxes {
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjust column width for checkboxes */
+        #serviceCategoryCheckboxes {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         }
         
         .popup input,
@@ -279,11 +272,11 @@
         .popup select,
         .popup textarea {
             width: 100%;
-            padding: 0.75rem; /* Responsive padding */
-            margin: 0.625rem 0; /* Responsive margin */
-            border-radius: 0.625rem; /* 10px */
+            padding: 0.75rem;
+            margin: 0.625rem 0;
+            border-radius: 0.625rem;
             border: none;
-            font-size: 1rem; /* Responsive font size */
+            font-size: 1rem;
         }
         
         .popup input,
@@ -293,31 +286,31 @@
         }
         
         .popup textarea {
-            min-height: 6.25rem; /* 100px */
+            min-height: 6.25rem;
             resize: vertical;
         }
         
         .popup label {
             display: block;
-            margin-bottom: 0.3125rem; /* 5px */
-            color: var(--accent); /* Accent gold */
-            font-size: 0.95rem; /* Responsive font size */
+            margin-bottom: 0.3125rem;
+            color: var(--accent);
+            font-size: 0.95rem;
         }
         
         .popup button[type="submit"],
         .popup button#okayBtn,
         #razorpay-payment-btn,
         #downloadTicketsBtn {
-            background: linear-gradient(90deg, var(--accent), #FFC107); /* Gold to Amber gradient */
-            color: #212121; /* Dark text for contrast */
+            background: linear-gradient(90deg, var(--accent), #FFC107);
+            color: #212121;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            padding: 0.75rem; /* Responsive padding */
-            margin-top: 0.9375rem; /* 15px */
-            border-radius: 0.625rem; /* 10px */
+            padding: 0.75rem;
+            margin-top: 0.9375rem;
+            border-radius: 0.625rem;
             border: none;
-            font-size: 1rem; /* Responsive font size */
+            font-size: 1rem;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -326,88 +319,87 @@
         #razorpay-payment-btn:hover,
         #downloadTicketsBtn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5); /* Accent gold shadow */
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
         }
         
         #ticketDisplay {
             font-weight: bold;
-            color: #FFECB3; /* Light gold for contrast */
-            font-size: 1.1rem; /* Responsive font size */
+            color: #FFECB3;
+            font-size: 1.1rem;
             word-break: break-word;
             text-align: center;
-            max-height: 12.5rem; /* 200px */
+            max-height: 12.5rem;
             overflow-y: auto;
-            padding: 0.625rem; /* 10px */
+            padding: 0.625rem;
             background: rgba(0,0,0,0.2);
-            border-radius: 0.625rem; /* 10px */
+            border-radius: 0.625rem;
             margin: 0.625rem 0;
         }
 
         #countryError {
             color: red;
-            font-size: 0.8rem; /* Responsive font size */
+            font-size: 0.8rem;
             display: none;
-            margin-top: -0.3125rem; /* -5px */
-            margin-bottom: 0.625rem; /* 10px */
+            margin-top: -0.3125rem;
+            margin-bottom: 0.625rem;
         }
 
         #submitMessage {
-            color: #FFECB3; /* Light gold */
-            font-size: 1rem; /* Responsive font size */
+            color: #FFECB3;
+            font-size: 1rem;
             text-align: center;
-            margin-top: 0.625rem; /* 10px */
+            margin-top: 0.625rem;
             display: none;
         }
         
         #timerDisplay {
-            font-size: 1.1rem; /* Responsive font size */
+            font-size: 1.1rem;
             font-weight: bold;
-            color: var(--accent); /* Accent gold */
+            color: var(--accent);
             text-align: center;
-            margin-top: 0.9375rem; /* 15px */
+            margin-top: 0.9375rem;
         }
 
         .quantity-selector {
-            margin: 0.9375rem 0; /* Responsive margin */
+            margin: 0.9375rem 0;
         }
         
         .quantity-selector label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--accent); /* Accent gold */
+            color: var(--accent);
         }
         
         .quantity-info {
             display: flex;
             justify-content: space-between;
-            margin-top: 0.3125rem; /* 5px */
-            font-size: 0.85rem; /* Responsive font size */
+            margin-top: 0.3125rem;
+            font-size: 0.85rem;
             color: #ccc;
         }
         
         .total-price {
-            font-size: 1.1rem; /* Responsive font size */
+            font-size: 1.1rem;
             font-weight: bold;
-            color: var(--accent); /* Accent gold */
+            color: var(--accent);
             text-align: right;
             margin: 0.625rem 0;
         }
 
-        /* Custom Alert Box */
         .custom-alert {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #FFC107; /* Amber */
-            color: #212121; /* Dark text for contrast */
-            padding: 1.25rem 1.875rem; /* Responsive padding */
-            border-radius: 0.625rem; /* 10px */
+            background: #FFC107;
+            color: #212121;
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
             z-index: 1002;
-            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4); /* 5px 15px */
-            font-size: 1rem; /* Responsive font size */
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
+            font-size: 1rem;
             text-align: center;
-            max-width: 90%; /* Responsive width */
+            max-width: 90%;
             animation: fadeInOut 4s forwards;
         }
 
@@ -418,142 +410,52 @@
             100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
         }
 
-        /* Media Queries for fine-tuning responsiveness */
         @media (max-width: 1024px) {
-            main {
-                padding: 5rem 1rem 2rem;
-            }
-            .product-header h2 {
-                font-size: 1.5rem;
-            }
-            .product-content {
-                flex-direction: column;
-                padding: 1rem;
-            }
-            .product-image {
-                min-height: 200px;
-                width: 100%;
-            }
-            .product-details {
-                min-width: unset; /* Remove min-width on smaller screens */
-                width: 100%;
-                text-align: center; /* Center text for better mobile layout */
-            }
-            .price-container, .action-buttons {
-                justify-content: center; /* Center elements in these containers */
-            }
-            .btn {
-                width: 100%; /* Full width buttons on smaller screens */
-                max-width: 300px; /* Limit button width */
-            }
-            .lottery-stats {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Even smaller min-width */
-            }
-            .stat-card {
-                padding: 0.8rem;
-            }
-            .stat-card h3 {
-                font-size: 0.85rem;
-            }
-            .stat-card p {
-                font-size: 1.3rem;
-            }
-            .popup {
-                padding: 1rem;
-            }
-            .popup input, .popup button, .popup select, .popup textarea {
-                font-size: 0.9rem;
-                padding: 0.6rem;
-            }
+            main { padding: 5rem 1rem 2rem; }
+            .product-header h2 { font-size: 1.5rem; }
+            .product-content { flex-direction: column; padding: 1rem; }
+            .product-image { min-height: 200px; width: 100%; }
+            .product-details { min-width: unset; width: 100%; text-align: center; }
+            .price-container, .action-buttons { justify-content: center; }
+            .btn { width: 100%; max-width: 300px; }
+            .lottery-stats { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+            .stat-card { padding: 0.8rem; }
+            .stat-card h3 { font-size: 0.85rem; }
+            .stat-card p { font-size: 1.3rem; }
+            .popup { padding: 1rem; }
+            .popup input, .popup button, .popup select, .popup textarea { font-size: 0.9rem; padding: 0.6rem; }
         }
 
         @media (max-width: 768px) {
-            main {
-                padding-top: 4rem;
-            }
-            .product-header h2 {
-                font-size: 1.3rem;
-            }
-            .original-price {
-                font-size: 1.3rem;
-            }
-            .lottery-price {
-                font-size: 1.8rem;
-            }
-            .features li {
-                font-size: 0.9rem;
-            }
-            .btn {
-                font-size: 0.85rem;
-                padding: 0.6rem 1rem;
-            }
-            .lottery-stats {
-                grid-template-columns: 1fr 1fr; /* Two columns on tablets */
-            }
+            main { padding-top: 4rem; }
+            .product-header h2 { font-size: 1.3rem; }
+            .original-price { font-size: 1.3rem; }
+            .lottery-price { font-size: 1.8rem; }
+            .features li { font-size: 0.9rem; }
+            .btn { font-size: 0.85rem; padding: 0.6rem 1rem; }
+            .lottery-stats { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 480px) {
-            main {
-                padding: 3rem 0.5rem 1rem;
-            }
-            .product-header h2 {
-                font-size: 1.2rem;
-            }
-            .product-content {
-                padding: 0.8rem;
-            }
-            .product-image {
-                min-height: 180px;
-            }
-            .original-price {
-                font-size: 1.2rem;
-            }
-            .lottery-price {
-                font-size: 1.6rem;
-            }
-            .features ul {
-                padding-left: 1rem;
-            }
-            .features li {
-                font-size: 0.85rem;
-            }
-            .action-buttons {
-                flex-direction: column; /* Stack buttons vertically on small phones */
-            }
-            .btn {
-                width: 100%;
-                max-width: unset; /* Remove max-width for full stretch */
-            }
-            .lottery-stats {
-                grid-template-columns: 1fr; /* Single column on phones */
-            }
-            .stat-card {
-                padding: 0.7rem;
-            }
-            .stat-card h3 {
-                font-size: 0.8rem;
-            }
-            .stat-card p {
-                font-size: 1.1rem;
-            }
-            .popup {
-                padding: 1rem;
-                width: 98%; /* Even wider on very small screens */
-            }
-            .popup h2 {
-                font-size: 1.3rem;
-            }
-            .popup input, .popup button, .popup select, .popup textarea {
-                font-size: 0.85rem;
-                padding: 0.5rem;
-            }
-            #ticketDisplay {
-                font-size: 0.95rem;
-            }
-            .custom-alert {
-                font-size: 0.9rem;
-                padding: 1rem 1.5rem;
-            }
+            main { padding: 3rem 0.5rem 1rem; }
+            .product-header h2 { font-size: 1.2rem; }
+            .product-content { padding: 0.8rem; }
+            .product-image { min-height: 180px; }
+            .original-price { font-size: 1.2rem; }
+            .lottery-price { font-size: 1.6rem; }
+            .features ul { padding-left: 1rem; }
+            .features li { font-size: 0.85rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { width: 100%; max-width: unset; }
+            .lottery-stats { grid-template-columns: 1fr; }
+            .stat-card { padding: 0.7rem; }
+            .stat-card h3 { font-size: 0.8rem; }
+            .stat-card p { font-size: 1.1rem; }
+            .popup { padding: 1rem; width: 98%; }
+            .popup h2 { font-size: 1.3rem; }
+            .popup input, .popup button, .popup select, .popup textarea { font-size: 0.85rem; padding: 0.5rem; }
+            #ticketDisplay { font-size: 0.95rem; }
+            .custom-alert { font-size: 0.9rem; padding: 1rem 1.5rem; }
         }
     </style>
 </head>
@@ -674,14 +576,14 @@
             
             <div class="quantity-selector my-4">
                 <label class="text-accent text-sm mb-2">Select Car Model(s):</label>
-                <div id="selectedCarModelsDisplay" class="bg-gray-700 text-light p-3 rounded-lg cursor-pointer mb-3" onclick="openCarModelSelectionPopup()">Click to select car models</div>
-                <div id="carModelSelectionPopup" class="popup hidden">
+                <div id="selectedServiceCategoriesDisplay" class="bg-gray-700 text-light p-3 rounded-lg cursor-pointer mb-3" onclick="openServiceCategorySelectionPopup()">Click to select car models</div>
+                <div id="serviceCategorySelectionPopup" class="popup hidden">
                     <h3 class="text-xl font-bold text-center mb-4">Select Car Model(s)</h3>
-                    <div id="carModelCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-light max-h-60 overflow-y-auto">
+                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-light max-h-60 overflow-y-auto">
                         <!-- Checkboxes will be populated by JavaScript -->
                     </div>
-                    <button type="button" class="btn btn-primary mt-4 py-2 rounded-xl font-bold text-lg" onclick="applySelectedCarModels()">Apply Selection</button>
-                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg" onclick="closeCarModelSelectionPopup()">Cancel</button>
+                    <button type="button" class="btn btn-primary mt-4 py-2 rounded-xl font-bold text-lg" onclick="applySelectedServiceCategories()">Apply Selection</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
                 </div>
             </div>
 
@@ -696,10 +598,6 @@
                         <input type="radio" name="serviceTypeOption" value="Full Cost" class="form-radio text-yellow-500 h-5 w-5">
                         <span class="ml-2">Full Service</span>
                     </label>
-                </div>
-                <div class="quantity-info flex justify-between mt-2 text-gray-400 text-sm">
-                    <span id="servicePriceInfo"></span>
-                    <span class="total-price-car-service font-bold text-accent text-lg">Total: ₹0</span>
                 </div>
             </div>
 
@@ -744,50 +642,56 @@
     </div>
    
     <script>
-        // CSV Data (hardcoded from your provided Excel sheet)
-        const carServiceData = [
-            { "Sr No.": 1, "Name": "Alto (Alto 800, Alto K10)", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 2, "Name": "WagonR", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 3, "Name": "Celerio", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 4, "Name": "Swift", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 5, "Name": "Dzire", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 6, "Name": "Baleno", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 7, "Name": "Ignis", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 8, "Name": "A-Star (discontinued)", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 9, "Name": "Ritz (discontinued)", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 10, "Name": "Ciaz", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 11, "Name": "Eeco", "Brand": "Maruti", "Half Rate": 3499, "Full Cost": 5499 },
-            { "Sr No.": 12, "Name": "Ertiga", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 13, "Name": "XL6", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999 },
-            { "Sr No.": 14, "Name": "Brezza (Vitara Brezza earlier)", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999 },
-            { "Sr No.": 15, "Name": "Grand Vitara", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999 },
-            { "Sr No.": 16, "Name": "S-Cross (discontinued)", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999 },
-            { "Sr No.": 17, "Name": "Jimny", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999 },
-            { "Sr No.": 18, "Name": "Fronx", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 19, "Name": "Venue", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 20, "Name": "Creta", "Brand": "Hyundai", "Half Rate": 2999, "Full Cost": 4999 },
-            { "Sr No.": 21, "Name": "Grand i10 Nios", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 22, "Name": "i20", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 23, "Name": "Verna", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 24, "Name": "Alcazar", "Brand": "Hyundai", "Half Rate": 3399, "Full Cost": 5499 },
-            { "Sr No.": 25, "Name": "Tucson", "Brand": "Hyundai", "Half Rate": 3399, "Full Cost": 5499 },
-            { "Sr No.": 26, "Name": "Kona Electric", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 27, "Name": "Aura", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 28, "Name": "Santro (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 29, "Name": "Eon (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 30, "Name": "i10 (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 31, "Name": "i20 Active (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 32, "Name": "Xcent", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 33, "Name": "Bolero", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499 },
-            { "Sr No.": 34, "Name": "Scorpio N", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499 },
-            { "Sr No.": 36, "Name": "TUV300", "Brand": "Mahindra", "Half Rate": 2999, "Full Cost": 4999 },
-            { "Sr No.": 38, "Name": "XUV500", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499 },
-            { "Sr No.": 39, "Name": "XUV700", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499 },
-            { "Sr No.": 40, "Name": "Etios", "Brand": "Toyota", "Half Rate": 2499, "Full Cost": 4499 },
-            { "Sr No.": 41, "Name": "Glenza", "Brand": "Toyota", "Half Rate": 2499, "Full Cost": 4499 }
+        // Data for Automobile services
+        const serviceData = [
+            { "Name": "Alto (Alto 800, Alto K10)", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "WagonR", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Celerio", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Swift", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Dzire", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Baleno", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Ignis", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "A-Star (discontinued)", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Ritz (discontinued)", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Ciaz", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Eeco", "Brand": "Maruti", "Half Rate": 3499, "Full Cost": 5499 },
+            { "Name": "Ertiga", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "XL6", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999 },
+            { "Name": "Brezza (Vitara Brezza earlier)", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999 },
+            { "Name": "Grand Vitara", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999 },
+            { "Name": "S-Cross (discontinued)", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999 },
+            { "Name": "Jimny", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999 },
+            { "Name": "Fronx", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Venue", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Creta", "Brand": "Hyundai", "Half Rate": 2999, "Full Cost": 4999 },
+            { "Name": "Grand i10 Nios", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "i20", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Verna", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Alcazar", "Brand": "Hyundai", "Half Rate": 3399, "Full Cost": 5499 },
+            { "Name": "Tucson", "Brand": "Hyundai", "Half Rate": 3399, "Full Cost": 5499 },
+            { "Name": "Kona Electric", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Aura", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Santro (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Eon (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "i10 (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "i20 Active (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Xcent", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Bolero", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499 },
+            { "Name": "Scorpio N", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499 },
+            { "Name": "TUV300", "Brand": "Mahindra", "Half Rate": 2999, "Full Cost": 4999 },
+            { "Name": "XUV500", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499 },
+            { "Name": "XUV700", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499 },
+            { "Name": "Etios", "Brand": "Toyota", "Half Rate": 2499, "Full Cost": 4499 },
+            { "Name": "Glenza", "Brand": "Toyota", "Half Rate": 2499, "Full Cost": 4499 }
         ];
 
-        // Popup Elements
+        // --- Generic constants for the service page ---
+        const SERVICE_NAME = "Automobile Service";
+        const SERVICE_TAB_ID = "shs-service";
+        const SERVICE_FORM_DATA_KEY = "carModel";
+        const RAZORPAY_IMAGE_TEXT = "AR";
+
+        // --- DOM Element Selection ---
         const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
         const allPopups = document.querySelectorAll('.popup');
@@ -797,12 +701,10 @@
         const timerDisplay = document.getElementById('timerDisplay');
         const razorpayBtn = document.getElementById('razorpay-payment-btn');
         const submitMessage = document.getElementById('submitMessage');
-        const carModelCheckboxesContainer = document.getElementById('carModelCheckboxes'); // Container for checkboxes
-        const selectedCarModelsDisplay = document.getElementById('selectedCarModelsDisplay'); // Element to show selected models
-        const carModelSelectionPopup = document.getElementById('carModelSelectionPopup'); // The new popup for car selection
+        const serviceCategoryCheckboxesContainer = document.getElementById('serviceCategoryCheckboxes');
+        const selectedServiceCategoriesDisplay = document.getElementById('selectedServiceCategoriesDisplay');
+        const serviceCategorySelectionPopup = document.getElementById('serviceCategorySelectionPopup');
         const serviceTypeOptions = document.querySelectorAll('input[name="serviceTypeOption"]');
-        const servicePriceInfo = document.getElementById('servicePriceInfo');
-        const totalPriceCarServiceDisplay = document.querySelector('.total-price-car-service');
         const ticketQuantitySelect = document.getElementById('ticketQuantity');
         const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
         const paymentSummary = document.getElementById('paymentSummary');
@@ -811,158 +713,135 @@
         const welcomeMessage = document.getElementById('welcomeMessage');
         const displayPriceElement = document.getElementById('displayPrice');
         const finalPriceInput = document.getElementById('finalPrice');
-
-
-        // Form & Ticket Elements
         const form = document.getElementById('lotteryForm');
         const ticketInput = document.getElementById('ticketCode');
         const ticketDisplay = document.getElementById('ticketDisplay');
         const okayBtn = document.getElementById('okayBtn');
 
+        // --- State Variables ---
         let generatedTicket = ''; 
         let paymentTimeout = null;
         let countdownInterval = null;
-        const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes in seconds
-        let currentServicePrice = 0; // Dynamic price based on car model(s) and service type
-        let selectedQuantity = 1; // Default quantity
+        const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes
+        let currentServicePrice = 0;
+        let selectedQuantity = 1;
+        let allowClose = false;
 
-        // Populate car model checkboxes
-        function populateCarModels() {
-            carModelCheckboxesContainer.innerHTML = ''; // Clear previous options
-            carServiceData.forEach(car => {
+        // --- Core Functions ---
+
+        function populateServiceCategories() {
+            serviceCategoryCheckboxesContainer.innerHTML = '';
+            serviceData.forEach(service => {
                 const checkboxHtml = `
                     <label class="inline-flex items-center text-light w-full">
-                        <input type="checkbox" name="carModel" value="${car.Name}" data-brand="${car.Brand}" 
+                        <input type="checkbox" name="serviceCategory" value="${service.Name}" 
+                               data-half-rate="${service['Half Rate']}" data-full-cost="${service['Full Cost']}"
                                class="form-checkbox h-5 w-5 text-yellow-500 rounded focus:ring-yellow-500">
-                        <span class="ml-2">${car.Name} (${car.Brand})</span>
+                        <span class="ml-2">${service.Name} (${service.Brand})</span>
                     </label>
                 `;
-                carModelCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
+                serviceCategoryCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
             });
-
-            // Add event listeners to new checkboxes
-            carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]').forEach(checkbox => {
+            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(checkbox => {
                 checkbox.addEventListener('change', updatePrices);
             });
         }
 
-        // Initialize quantity selector
         function initQuantitySelector() {
             const maxServices = 5; 
-            ticketQuantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
-            
+            ticketQuantitySelect.innerHTML = '<option value="" disabled>Select quantity</option>';
             for (let i = 1; i <= maxServices; i++) {
                 const option = document.createElement('option');
                 option.value = i;
                 option.textContent = i + (i === 1 ? ' service' : ' services');
                 ticketQuantitySelect.appendChild(option);
             }
-            
-            // Set default value to 1
             ticketQuantitySelect.value = 1;
         }
 
-        // Update prices based on selected car model(s), service type, and quantity
         function updatePrices() {
-            const selectedCarModelNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]:checked')).map(checkbox => checkbox.value);
+            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
             const selectedServiceType = document.querySelector('input[name="serviceTypeOption"]:checked')?.value;
             selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
-
+            
             let totalCalculatedPrice = 0;
 
-            if (selectedCarModelNames.length > 0 && selectedServiceType) {
-                selectedCarModelNames.forEach(modelName => {
-                    const selectedCar = carServiceData.find(car => car.Name === modelName);
-                    if (selectedCar) {
-                        if (selectedServiceType === "Half Rate") {
-                            totalCalculatedPrice += selectedCar["Half Rate"];
-                        } else if (selectedServiceType === "Full Cost") {
-                            totalCalculatedPrice += selectedCar["Full Cost"];
-                        }
+            if (selectedCategories.length > 0 && selectedServiceType) {
+                selectedCategories.forEach(checkbox => {
+                    if (selectedServiceType === "Half Rate") {
+                        totalCalculatedPrice += parseFloat(checkbox.dataset.halfRate);
+                    } else if (selectedServiceType === "Full Cost") {
+                        totalCalculatedPrice += parseFloat(checkbox.dataset.fullCost);
                     }
                 });
-                currentServicePrice = totalCalculatedPrice;
-
-                servicePriceInfo.textContent = `₹${currentServicePrice} per service (for selected models)`;
-                totalPriceCarServiceDisplay.textContent = `Total: ₹${currentServicePrice}`; // Price for one service of selected type for all selected cars
-                displayPriceElement.textContent = `Service Charge: ₹${currentServicePrice}`;
-                displayPriceElement.style.display = 'block';
-
-                // Update total price for selected quantity
-                totalPriceQuantityDisplay.textContent = `Total: ₹${currentServicePrice * selectedQuantity}`;
-            } else {
-                currentServicePrice = 0;
-                servicePriceInfo.textContent = '';
-                totalPriceCarServiceDisplay.textContent = 'Total: ₹0';
-                totalPriceQuantityDisplay.textContent = 'Total: ₹0';
-                displayPriceElement.textContent = 'Select Car(s) & Service Type';
-                displayPriceElement.style.display = 'block';
             }
-            finalPriceInput.value = currentServicePrice * selectedQuantity; // Update hidden input
             
-            // Update the display in the main form
-            if (selectedCarModelNames.length > 0) {
-                selectedCarModelsDisplay.textContent = selectedCarModelNames.join(', ');
+            currentServicePrice = totalCalculatedPrice;
+            const totalFinalPrice = currentServicePrice * selectedQuantity;
+
+            if (selectedCategories.length > 0) {
+                selectedServiceCategoriesDisplay.textContent = selectedCategories.map(cb => cb.value).join(', ');
+                displayPriceElement.textContent = `Service Charge: ₹${currentServicePrice}`;
             } else {
-                selectedCarModelsDisplay.textContent = 'Click to select car models';
+                selectedServiceCategoriesDisplay.textContent = `Click to select ${SERVICE_NAME} category`;
+                displayPriceElement.textContent = `Select Car & Service Type`;
             }
+            
+            totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
+            finalPriceInput.value = totalFinalPrice;
         }
 
-        // Generate a single formatted ticket
         function generateFormattedTicket() {
-            const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                const r = Math.random() * 16 | 0,
-                    v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
                 return v.toString(16);
-            });
-            return uuid.toUpperCase().replace(/-/g, '').match(/.{1,4}/g).join('-');
+            }).toUpperCase();
         }
 
-        // Download tickets as text file
         function downloadTickets() {
-            const selectedCarModelNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]:checked')).map(checkbox => checkbox.value);
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
             const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
-            const selectedCarsDetails = selectedCarModelNames.map(modelName => {
-                const car = carServiceData.find(c => c.Name === modelName);
-                return car ? `${car.Name} (${car.Brand})` : modelName;
-            }).join(', ');
-
-            const ticketContent = `Automobile Repairing Service Booking Details\n\n` +
+            
+            const ticketContent = `${SERVICE_NAME} Booking Details\n\n` +
                                  `Customer Name: ${form.field1.value}\n` +
                                  `Contact: ${form.field2.value}\n` +
                                  `Location: ${form.field5.value}\n` +
-                                 `Car Model(s): ${selectedCarsDetails}\n` +
+                                 `Car Model(s): ${selectedCategoryNames}\n` +
                                  `Service Type: ${serviceTypeName}\n` +
                                  `Booking Reference Number: ${generatedTicket}\n\n` + 
                                  `Total Services: ${selectedQuantity}\n` +
-                                 `Service Charge: ₹${currentServicePrice * selectedQuantity}\n\n` +
+                                 `Service Charge: ₹${finalPriceInput.value}\n\n` +
                                  `Note: Final charges for parts and labor will be communicated by the technician after diagnosis.`;
             
             const blob = new Blob([ticketContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
-            
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'automobile_service_booking.txt';
+            a.download = `${SERVICE_TAB_ID}_booking.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
+        
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert'; 
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => alertBox.remove(), 4000); 
+        }
 
-        // --- FUNCTIONS TO CONTROL POPUPS ---
-        // Main popup (form and payment steps)
         function closeAllPopups() {
             if (!allowClose) {
-                showCustomAlert("Please complete the form or payment process before closing.");
+                showCustomAlert("Please complete the process before closing.");
                 return;
             }
-            
             clearTimers();
             popupOverlay.style.display = 'none';
             allPopups.forEach(p => p.style.display = 'none');
             document.body.style.overflow = 'auto';
-            submitMessage.style.display = 'none';
             allowClose = false; 
         }
 
@@ -970,274 +849,50 @@
             document.body.style.overflow = 'hidden';
             popupOverlay.style.display = 'block';
             popupElement.style.display = 'block';
-            allowClose = false; 
+            allowClose = false;
         }
 
+        function openServiceCategorySelectionPopup() {
+            populateServiceCategories();
+            const currentlySelected = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim());
+            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(cb => {
+                cb.checked = currentlySelected.includes(cb.value);
+            });
+            serviceCategorySelectionPopup.style.display = 'block';
+            popupOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeServiceCategorySelectionPopup() {
+            serviceCategorySelectionPopup.style.display = 'none';
+            if (popupForm.style.display !== 'block') {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function applySelectedServiceCategories() {
+            updatePrices();
+            closeServiceCategorySelectionPopup();
+        }
+        
         function clearTimers() {
             if (paymentTimeout) clearTimeout(paymentTimeout);
             if (countdownInterval) clearInterval(countdownInterval);
-            paymentTimeout = null;
-            countdownInterval = null;
-        }
-
-        // --- Car Model Selection Popup Functions ---
-        function openCarModelSelectionPopup() {
-            populateCarModels(); // Ensure checkboxes are up-to-date
-            // Re-check previously selected boxes
-            const currentlySelectedModels = selectedCarModelsDisplay.textContent.split(', ').map(s => s.split(' (')[0].trim());
-            carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]').forEach(checkbox => {
-                if (currentlySelectedModels.includes(checkbox.value)) {
-                    checkbox.checked = true;
-                } else {
-                    checkbox.checked = false;
-                }
-            });
-            // Open the car model selection popup and overlay
-            carModelSelectionPopup.style.display = 'block';
-            popupOverlay.style.display = 'block'; // Ensure overlay is visible
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
-
-        function closeCarModelSelectionPopup() {
-            carModelSelectionPopup.style.display = 'none';
-            popupOverlay.style.display = 'none'; // Hide overlay when this specific popup closes
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
-        }
-
-        function applySelectedCarModels() {
-            updatePrices(); // Update prices based on current checkbox selection
-            closeCarModelSelectionPopup();
-        }
-
-
-        // --- EVENT LISTENERS ---
-        participateBtn.addEventListener('click', () => {
-            // This button now triggers the main form popup, which will then handle car model selection
-            initQuantitySelector(); // Initialize quantity selector
-            // Set initial default selection for service type and update prices
-            document.querySelector('input[name="serviceTypeOption"][value="Half Rate"]').checked = true;
-            updatePrices(); // This will update the price based on no car selected initially
-            openPopup(popupForm);
-        });
-        
-        // Event listeners for checkboxes are added inside populateCarModels
-        serviceTypeOptions.forEach(radio => radio.addEventListener('change', updatePrices));
-        ticketQuantitySelect.addEventListener('change', updatePrices); 
-
-        // Modified overlay click handler
-        popupOverlay.addEventListener('click', function(e) {
-            // Check if the click is on the overlay itself, not inside a popup
-            if (e.target === popupOverlay) {
-                // Determine which popup is currently open and if it allows closing
-                if (carModelSelectionPopup.style.display === 'block') {
-                    // Car model selection popup is open, close it
-                    closeCarModelSelectionPopup();
-                } else if (ticketStep.style.display === 'block' && allowClose) {
-                    // Ticket step is open and allows closing
-                    closeAllPopups();
-                } else {
-                    // Other popups are open and do not allow closing from overlay
-                    showCustomAlert("Please complete the form or payment process before closing.");
-                }
-            }
-        });
-        
-        allPopups.forEach(p => p.addEventListener('click', e => e.stopPropagation()));
-        
-        // Modified okayBtn event listener to redirect to index.html
-        okayBtn.addEventListener('click', function() {
-            window.location.href = 'index.html';
-        });
-        
-        razorpayBtn.addEventListener('click', handleRazorpayPayment);
-        downloadTicketsBtn.addEventListener('click', downloadTickets);
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Client-side validation
-            const fullName = form.fullName.value.trim();
-            const phone = form.phone.value.trim();
-            const email = form.email.value.trim();
-            const dob = form.dobField.value;
-            const location = form.location.value.trim();
-            const address = form.address.value.trim();
-            const selectedCarModelNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]:checked')).map(checkbox => checkbox.value);
-            const selectedServiceType = document.querySelector('input[name="serviceTypeOption"]:checked')?.value;
-            const selectedQuantityValue = parseInt(ticketQuantitySelect.value);
-
-
-            if (fullName.length < 10) {
-                showCustomAlert("Please enter your full name (minimum 10 characters).");
-                return;
-            }
-            if (!/^\d{10}$/.test(phone)) {
-                showCustomAlert("Please enter a valid 10-digit phone number.");
-                return;
-            }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                showCustomAlert("Please enter a valid email address.");
-                return;
-            }
-            if (!dob) {
-                showCustomAlert("Please select your date of birth.");
-                return;
-            }
-            if (location.length < 3) {
-                showCustomAlert("Please enter a valid location name.");
-                return;
-            }
-            if (address.length < 30) {
-                document.getElementById('countryError').style.display = 'block';
-                showCustomAlert("Please enter a complete address with at least 30 characters.");
-                return;
-            }
-            document.getElementById('countryError').style.display = 'none';
-
-            if (selectedCarModelNames.length === 0) {
-                showCustomAlert("Please select at least one car model.");
-                return;
-            }
-            if (!selectedServiceType) {
-                showCustomAlert("Please select a service type (Half Service or Full Service).");
-                return;
-            }
-            if (currentServicePrice === 0) {
-                showCustomAlert("Price not available for the selected car model(s) and service type.");
-                return;
-            }
-            if (!selectedQuantityValue || selectedQuantityValue <= 0) {
-                showCustomAlert("Please select the number of services.");
-                return;
-            }
-
-            submitMessage.style.display = 'block';
-            form.querySelector('button[type="submit"]').disabled = true;
-
-            generatedTicket = generateFormattedTicket(); 
-            
-            // Create FormData object to handle all form inputs
-            const formData = new FormData();
-            formData.append('field1', fullName);
-            formData.append('field2', phone);
-            formData.append('field3', email);
-            formData.append('field4', dob);
-            formData.append('field5', location);
-            formData.append('field6', address);
-            formData.append('ticket', generatedTicket);
-            formData.append('tab', 'automobile-repairing'); // Updated tab name
-            formData.append('carModel', selectedCarModelNames.join(', ')); // Send all selected car models
-            formData.append('serviceType', selectedServiceType === "Half Rate" ? "Half Service" : "Full Service"); // Send user-friendly name
-            formData.append('servicePrice', currentServicePrice); // Send the actual service price for one unit
-            formData.append('ticketQuantity', selectedQuantityValue); // Send the selected quantity
-            
-            fetch(
-                "https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
-                    method: "POST",
-                    body: formData
-                }
-            ).then(res => res.text()).then(res => {
-                submitMessage.style.display = 'none';
-                form.querySelector('button[type="submit"]').disabled = false;
-
-                if (res === "Success") {
-                    popupForm.style.display = 'none';
-                    openPopup(paymentStep);
-                    // Update payment summary
-                    const serviceTypeName = selectedServiceType === "Half Rate" ? "Half Service" : "Full Service";
-
-                    paymentSummary.innerHTML = `
-                        <p class="text-gray-300 text-lg mb-2">You are booking <span class="font-bold text-accent">${selectedQuantityValue}</span> ${serviceTypeName} for ${selectedCarModelNames.join(', ')}.</p>
-                        <p class="total-price text-accent text-2xl font-bold">Service Charge: ₹${currentServicePrice * selectedQuantityValue}</p>
-                        <p class="text-gray-400 text-sm mt-2">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
-                    `;
-                    startPaymentTimer();
-                } else {
-                    console.error("Submission failed: " + res);
-                    showCustomAlert("There was an error submitting your form. Please try again.");
-                }
-            }).catch(err => {
-                submitMessage.style.display = 'none';
-                form.querySelector('button[type="submit"]').disabled = false;
-                console.error("An unexpected error occurred. Please check your connection and try again:", err);
-                showCustomAlert("An unexpected error occurred. Please check your connection and try again.");
-            });
-        });
-        
-        // Custom Alert Function (replaces browser's alert)
-        function showCustomAlert(message) {
-            const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert'; 
-            alertBox.textContent = message;
-            document.body.appendChild(alertBox);
-
-            setTimeout(() => {
-                alertBox.remove();
-            }, 4000); 
-        }
-
-        // --- RAZORPAY PAYMENT HANDLING ---
-        function handleRazorpayPayment() {
-            const totalAmount = currentServicePrice * selectedQuantity * 100; // Convert to paise
-            const selectedCarModelNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]:checked')).map(checkbox => checkbox.value);
-            const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
-
-            const options = {
-                "key": "rzp_live_opiqkRmGpjG1hF", // Replace with your actual Razorpay Key ID
-                "amount": totalAmount.toString(),
-                "currency": "INR",
-                "name": document.querySelector('.product-header h2').textContent, 
-                "description": `Payment for ${selectedQuantity} ${serviceTypeName} for ${selectedCarModelNames.join(', ')}`,
-                "image": "https://placehold.co/100x100/212121/FFD700?text=AR", // Placeholder logo with dark grey and gold text
-                "handler": function (response){
-                    console.log("Payment successful:", response);
-                    console.log("Razorpay Payment ID:", response.razorpay_payment_id);
-                    paymentSuccess();
-                },
-                "prefill": {
-                    "name": form.field1.value,
-                    "email": form.field3.value,
-                    "contact": form.field2.value
-                },
-                "notes": {
-                    "address": `${form.field5.value}, ${form.field6.value}`,
-                    "service_count": selectedQuantity.toString(),
-                    "car_model": selectedCarModelNames.join(', '),
-                    "service_type": serviceTypeName,
-                    "service_price": currentServicePrice.toString(),
-                    "initial_charge_note": "Final charges for parts and labor will be communicated by the technician after diagnosis."
-                },
-                "theme": {
-                    "color": "#212121" /* Dark grey theme color */
-                },
-                "modal": {
-                    "ondismiss": function(){
-                        console.log('Razorpay checkout modal closed.');
-                    }
-                }
-            };
-
-            const rzp1 = new Razorpay(options);
-            rzp1.on('payment.failed', function (response){
-                console.error("Payment Failed:", response.error);
-                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
-            });
-            rzp1.open();
         }
 
         function startPaymentTimer() {
             let timeLeft = PAYMENT_TIME_LIMIT;
-            updateTimerDisplay(); 
-
-            function updateTimerDisplay() {
+            const updateDisplay = () => {
                 const minutes = Math.floor(timeLeft / 60);
                 const seconds = timeLeft % 60;
-                timerDisplay.textContent = `Time remaining: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            updateDisplay();
 
             countdownInterval = setInterval(() => {
                 timeLeft--;
-                updateTimerDisplay();
+                updateDisplay();
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
                     showCustomAlert("Payment time expired. Please try again.");
@@ -1245,15 +900,108 @@
                     closeAllPopups();
                 }
             }, 1000);
+        }
+        
+        function handleFormSubmit(e) {
+            e.preventDefault();
 
-            paymentTimeout = setTimeout(() => {
-                if (paymentTimeout) {
-                    clearTimers();
-                    showCustomAlert("Payment timed out. Please try again.");
-                    allowClose = true; 
-                    closeAllPopups();
+            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
+            if (!form.dobField.value) { showCustomAlert("Please select your date of birth."); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
+            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
+            if (selectedCategories.length === 0) { showCustomAlert(`Please select at least one Car Model.`); return; }
+            if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of services."); return; }
+
+            submitMessage.style.display = 'block';
+            form.querySelector('button[type="submit"]').disabled = true;
+
+            generatedTicket = generateFormattedTicket(); 
+            
+            const formData = new FormData();
+            formData.append('field1', form.fullName.value);
+            formData.append('field2', form.phone.value);
+            formData.append('field3', form.email.value);
+            formData.append('field4', form.dobField.value);
+            formData.append('field5', form.location.value);
+            formData.append('field6', form.address.value);
+            formData.append('ticket', generatedTicket);
+            formData.append('tab', SERVICE_TAB_ID);
+            formData.append(SERVICE_FORM_DATA_KEY, selectedCategories.map(cb => cb.value).join(', '));
+            formData.append('serviceType', document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service");
+            formData.append('servicePrice', currentServicePrice);
+            formData.append('ticketQuantity', selectedQuantity);
+            
+            fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res === "Success") {
+                    popupForm.style.display = 'none';
+                    openPopup(paymentStep);
+                    const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
+                    const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
+                    paymentSummary.innerHTML = `
+                        <p class="text-gray-300 text-lg mb-2">You are booking <span class="font-bold text-accent">${selectedQuantity}</span> ${serviceTypeName} for ${selectedCategoryNames}.</p>
+                        <p class="total-price text-accent text-2xl font-bold">Service Charge: ₹${finalPriceInput.value}</p>
+                        <p class="text-gray-400 text-sm mt-2">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
+                    `;
+                    startPaymentTimer();
+                } else {
+                    showCustomAlert("There was an error submitting your form. Please try again.");
                 }
-            }, PAYMENT_TIME_LIMIT * 1000);
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("An unexpected error occurred. Please check your connection and try again.");
+            })
+            .finally(() => {
+                submitMessage.style.display = 'none';
+                form.querySelector('button[type="submit"]').disabled = false;
+            });
+        }
+
+        function handleRazorpayPayment() {
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
+            const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
+            const options = {
+                "key": "rzp_live_opiqkRmGpjG1hF",
+                "amount": finalPriceInput.value * 100,
+                "currency": "INR",
+                "name": `SonipatHomeService - ${SERVICE_NAME}`,
+                "description": `Payment for ${selectedQuantity} ${serviceTypeName}(s) for ${selectedCategoryNames}`,
+                "image": `https://placehold.co/100x100/212121/FFD700?text=${RAZORPAY_IMAGE_TEXT}`,
+                "handler": function (response){
+                    console.log("Payment successful:", response.razorpay_payment_id);
+                    paymentSuccess();
+                },
+                "prefill": {
+                    "name": form.fullName.value,
+                    "email": form.email.value,
+                    "contact": form.phone.value
+                },
+                "notes": {
+                    "address": `${form.location.value}, ${form.address.value}`,
+                    "service_details": selectedCategoryNames,
+                },
+                "theme": {
+                    "color": "#212121"
+                },
+                "modal": {
+                    "ondismiss": () => console.log('Razorpay checkout modal closed.')
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                console.error("Payment Failed:", response.error);
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
         }
 
         function paymentSuccess() {
@@ -1261,44 +1009,53 @@
             paymentStep.style.display = 'none';
             openPopup(ticketStep);
             
-            // Display welcome message with user's name
             const userName = form.fullName.value;
-            const selectedCarModelNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="carModel"]:checked')).map(checkbox => checkbox.value);
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
             const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
 
-            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your Automobile ${serviceTypeName} Booking for ${selectedCarModelNames.join(', ')} is Confirmed! 🎉`;
+            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your ${serviceTypeName} Booking for ${selectedCategoryNames} is Confirmed! 🎉`;
             
-            // Display the single ticket number and registration ID
             ticketDisplay.innerHTML = `
                 <p>Registration ID: <span class="text-white">${generatedTicket}</span></p>
-                <p>Service: <span class="text-white">${serviceTypeName} for ${selectedCarModelNames.join(', ')}</span></p>
+                <p>Service: <span class="text-white">${serviceTypeName} for ${selectedCategoryNames}</span></p>
                 <p>Quantity: <span class="text-white">${selectedQuantity}</span></p>
-                <p class="text-gray-400 text-sm mt-2">Service Charge: ₹${currentServicePrice * selectedQuantity}</p>
+                <p class="text-gray-400 text-sm mt-2">Service Charge: ₹${finalPriceInput.value}</p>
                 <p class="text-gray-400 text-sm">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
             `;
             
-            // Update download button content
-            ticketCountDisplay.textContent = `${selectedQuantity} Automobile ${serviceTypeName}`;
-            
-            // Allow closing only from the ticket step
+            ticketCountDisplay.textContent = `${selectedQuantity} ${serviceTypeName}(s)`;
             allowClose = true;
         }
         
-        // Mobile menu toggle (Assuming an external script or injected header handles this)
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        if (hamburger && navLinks) {
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-        }
+        participateBtn.addEventListener('click', () => {
+            initQuantitySelector();
+            updatePrices();
+            openPopup(popupForm);
+        });
+        
+        ticketQuantitySelect.addEventListener('change', updatePrices); 
+        serviceTypeOptions.forEach(radio => radio.addEventListener('change', updatePrices));
 
-        // Initial population of car models when the page loads
+        popupOverlay.addEventListener('click', e => {
+            if (e.target === popupOverlay) {
+                if (serviceCategorySelectionPopup.style.display === 'block') {
+                    closeServiceCategorySelectionPopup();
+                } else if (ticketStep.style.display === 'block' && allowClose) {
+                    closeAllPopups();
+                } else {
+                    showCustomAlert("Please complete the form or payment process before closing.");
+                }
+            }
+        });
+        
+        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
+        razorpayBtn.addEventListener('click', handleRazorpayPayment);
+        downloadTicketsBtn.addEventListener('click', downloadTickets);
+        form.addEventListener('submit', handleFormSubmit);
+
         document.addEventListener('DOMContentLoaded', () => {
-            populateCarModels();
-            initQuantitySelector(); // Initialize quantity selector on load
-            // Set initial default selection for service type and update prices
-            document.querySelector('input[name="serviceTypeOption"][value="Half Rate"]').checked = true;
+            populateServiceCategories();
+            initQuantitySelector();
             updatePrices();
         });
     </script>
