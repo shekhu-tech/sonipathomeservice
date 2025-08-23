@@ -410,6 +410,18 @@
             100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
         }
 
+        #priceListContainer table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #priceListContainer th, #priceListContainer td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+        #priceListContainer thead {
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+
         @media (max-width: 1024px) {
             main { padding: 5rem 1rem 2rem; }
             .product-header h2 { font-size: 1.5rem; }
@@ -434,6 +446,38 @@
             .features li { font-size: 0.9rem; }
             .btn { font-size: 0.85rem; padding: 0.6rem 1rem; }
             .lottery-stats { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            #priceListContainer thead {
+                display: none; 
+            }
+            #priceListContainer tr {
+                display: block;
+                margin-bottom: 1rem;
+                border: 1px solid rgba(255, 215, 0, 0.2);
+                border-radius: 0.5rem;
+            }
+            #priceListContainer td {
+                display: block;
+                text-align: right; 
+                position: relative;
+                padding-left: 50%; 
+                border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            }
+            #priceListContainer td:last-child {
+                border-bottom: none;
+            }
+            #priceListContainer td::before {
+                content: attr(data-label); 
+                position: absolute;
+                left: 0.75rem;
+                width: 45%;
+                padding-right: 0.75rem;
+                font-weight: bold;
+                text-align: left;
+                color: var(--accent);
+            }
         }
 
         @media (max-width: 480px) {
@@ -478,42 +522,13 @@
                         <div class="lottery-price text-accent text-3xl md:text-4xl font-bold" id="displayPrice">Select Car & Service Type</div>
                     </div>
                     
-                    <div class="features text-left my-6">
-                        <h3 class="text-xl md:text-2xl font-semibold text-accent mb-3">Service Features:</h3>
-                        <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Expert diagnosis and repair for various car issues</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Certified technicians with extensive automotive experience</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Transparent pricing for all services (Half Service & Full Service)</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Use of genuine parts for replacements (cost extra)</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Ensuring optimal vehicle performance and safety</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Convenient scheduling and quick turnaround times</li>
-                        </ul>
-                        <h4 class="text-xl md:text-2xl font-semibold text-accent mt-6 mb-3">Half Service Includes:</h4>
-                        <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Synthetic Engine Oil Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Air Filter Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Oil Filter Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Brake Oil Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Wiper Shampoo </li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Battery Acid Check</Change/li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Spark Plug Clean Check/change</li>
-                        </ul>
-                        <h4 class="text-xl md:text-2xl font-semibold text-accent mt-6 mb-3">Full Service Includes:</h4>
-                        <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Synthetic Engine Oil Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Air Filter Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Oil Filter Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Gear Oil Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Coolant Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Brake Grease Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Engine Flush Check/change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Washing</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>AC Filter Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Brake Oil checck /Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Wiper Shampoo</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Battery Acid Check/Change</li>
-                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Spark Plug Clean Check/Change</li>
-                        </ul>
+                    <div class="features text-left my-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <button class="btn btn-primary" id="seePriceListBtn">
+                            <i class="fas fa-tags"></i> See Price List
+                        </button>
+                        <button class="btn btn-secondary" id="conditionsBtn">
+                            <i class="fas fa-info-circle"></i> Conditions Applied
+                        </button>
                     </div>
                     
                     <div class="action-buttons flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
@@ -553,6 +568,17 @@
     <div class="popup" id="popupForm">
         <h2 class="text-2xl font-bold text-center mb-4">Automobile Service Booking</h2>
         <form id="lotteryForm">
+            <div class="quantity-selector my-4">
+                <label class="text-accent text-sm mb-2">Select Car Model(s):</label>
+                <div id="selectedServiceCategoriesDisplay" class="bg-gray-700 text-light p-3 rounded-lg cursor-pointer mb-3" onclick="openServiceCategorySelectionPopup()">Click to select car models</div>
+                <div id="serviceCategorySelectionPopup" class="popup hidden">
+                    <h3 class="text-xl font-bold text-center mb-4">Select Car Model(s)</h3>
+                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-light max-h-60 overflow-y-auto">
+                        </div>
+                    <button type="button" class="btn btn-primary mt-4 py-2 rounded-xl font-bold text-lg" onclick="applySelectedServiceCategories()">Apply Selection</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
+                </div>
+            </div>
             <label for="fullName" class="text-accent text-sm mb-1">Your Full Name (min 10 characters)</label>
             <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
             
@@ -562,11 +588,6 @@
             <label for="email" class="text-accent text-sm mb-1">Email Address</label>
             <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
             
-            <div class="mb-3">
-                <label for="dobField" class="text-accent text-sm mb-1">Date of Birth:</label>
-                <input type="date" id="dobField" name="field4" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-            </div>
-            
             <label for="location" class="text-accent text-sm mb-1">Your Location (e.g. Sonipat, Delhi)</label>
             <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
             
@@ -574,19 +595,6 @@
             <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full mb-2 focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
             <span id="countryError" class="text-red-400 text-xs mt-1 hidden">Please enter your complete address with at least 30 characters.</span>
             
-            <div class="quantity-selector my-4">
-                <label class="text-accent text-sm mb-2">Select Car Model(s):</label>
-                <div id="selectedServiceCategoriesDisplay" class="bg-gray-700 text-light p-3 rounded-lg cursor-pointer mb-3" onclick="openServiceCategorySelectionPopup()">Click to select car models</div>
-                <div id="serviceCategorySelectionPopup" class="popup hidden">
-                    <h3 class="text-xl font-bold text-center mb-4">Select Car Model(s)</h3>
-                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-light max-h-60 overflow-y-auto">
-                        <!-- Checkboxes will be populated by JavaScript -->
-                    </div>
-                    <button type="button" class="btn btn-primary mt-4 py-2 rounded-xl font-bold text-lg" onclick="applySelectedServiceCategories()">Apply Selection</button>
-                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
-                </div>
-            </div>
-
             <div class="quantity-selector my-4">
                 <label class="text-accent text-sm mb-2">Select Service Type:</label>
                 <div class="flex flex-col sm:flex-row gap-4 mt-2">
@@ -640,6 +648,55 @@
         <p class="mt-4 text-sm text-gray-400 text-center">📸 Please take a screenshot for proof and reference.</p>
         <button id="okayBtn" class="w-full btn-secondary py-3 rounded-xl font-bold text-white text-lg mt-4 transition-all duration-300 hover:scale-105 hover:bg-opacity-20">Okay, Got It!</button>
     </div>
+
+    <div class="popup" id="priceListPopup">
+        <h2 class="text-2xl font-bold text-center mb-4">Service Price List</h2>
+        <div id="priceListContainer" class="max-h-[70vh] overflow-y-auto">
+            </div>
+        <button class="btn btn-primary mt-4" onclick="closeInfoPopup('priceListPopup')">Close</button>
+    </div>
+
+    <div class="popup" id="conditionsPopup">
+        <h2 class="text-2xl font-bold text-center mb-4">Service Features & Conditions</h2>
+        <div class="max-h-[70vh] overflow-y-auto text-left p-2">
+            <h3 class="text-xl md:text-2xl font-semibold text-accent mb-3">Service Features:</h3>
+            <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Expert diagnosis and repair for various car issues</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Certified technicians with extensive automotive experience</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Transparent pricing for all services (Half Service & Full Service)</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Use of genuine parts for replacements (cost extra)</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Ensuring optimal vehicle performance and safety</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Convenient scheduling and quick turnaround times</li>
+            </ul>
+            <h4 class="text-xl md:text-2xl font-semibold text-accent mt-6 mb-3">Half Service Includes:</h4>
+            <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Synthetic Engine Oil Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Air Filter Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Oil Filter Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Brake Oil Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Wiper Shampoo </li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Battery Acid Check</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Spark Plug Clean Check/change</li>
+            </ul>
+            <h4 class="text-xl md:text-2xl font-semibold text-accent mt-6 mb-3">Full Service Includes:</h4>
+            <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Synthetic Engine Oil Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Air Filter Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Oil Filter Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Gear Oil Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Coolant Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Brake Grease Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Engine Flush Check/change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Washing</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>AC Filter Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Brake Oil checck /Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Wiper Shampoo</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Battery Acid Check/Change</li>
+                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Spark Plug Clean Check/Change</li>
+            </ul>
+        </div>
+        <button class="btn btn-primary mt-4" onclick="closeInfoPopup('conditionsPopup')">Close</button>
+    </div>
    
     <script>
         // Data for Automobile services
@@ -685,13 +742,11 @@
             { "Name": "Glenza", "Brand": "Toyota", "Half Rate": 2499, "Full Cost": 4499 }
         ];
 
-        // --- Generic constants for the service page ---
         const SERVICE_NAME = "Automobile Service";
         const SERVICE_TAB_ID = "shs-service";
         const SERVICE_FORM_DATA_KEY = "carModel";
         const RAZORPAY_IMAGE_TEXT = "AR";
 
-        // --- DOM Element Selection ---
         const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
         const allPopups = document.querySelectorAll('.popup');
@@ -718,7 +773,13 @@
         const ticketDisplay = document.getElementById('ticketDisplay');
         const okayBtn = document.getElementById('okayBtn');
 
-        // --- State Variables ---
+        const seePriceListBtn = document.getElementById('seePriceListBtn');
+        const conditionsBtn = document.getElementById('conditionsBtn');
+        const priceListPopup = document.getElementById('priceListPopup');
+        const conditionsPopup = document.getElementById('conditionsPopup');
+        const priceListContainer = document.getElementById('priceListContainer');
+
+
         let generatedTicket = ''; 
         let paymentTimeout = null;
         let countdownInterval = null;
@@ -726,8 +787,6 @@
         let currentServicePrice = 0;
         let selectedQuantity = 1;
         let allowClose = false;
-
-        // --- Core Functions ---
 
         function populateServiceCategories() {
             serviceCategoryCheckboxesContainer.innerHTML = '';
@@ -795,8 +854,8 @@
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
                 const r = Math.random() * 16 | 0;
                 const v = c === 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            }).toUpperCase();
+                return v.toString(16).toUpperCase();
+            });
         }
 
         function downloadTickets() {
@@ -908,7 +967,6 @@
             if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
             if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
-            if (!form.dobField.value) { showCustomAlert("Please select your date of birth."); return; }
             if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
             if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
             const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
@@ -924,7 +982,6 @@
             formData.append('field1', form.fullName.value);
             formData.append('field2', form.phone.value);
             formData.append('field3', form.email.value);
-            formData.append('field4', form.dobField.value);
             formData.append('field5', form.location.value);
             formData.append('field6', form.address.value);
             formData.append('ticket', generatedTicket);
@@ -1026,25 +1083,77 @@
             ticketCountDisplay.textContent = `${selectedQuantity} ${serviceTypeName}(s)`;
             allowClose = true;
         }
-        
+
+        function openInfoPopup(popupId) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            document.getElementById(popupId).style.display = 'block';
+        }
+
+        function closeInfoPopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+            
+            const isAnotherPopupVisible = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupVisible) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function generatePriceTable() {
+            let tableHTML = `
+                <table class="w-full text-left text-gray-300">
+                    <thead>
+                        <tr class="bg-gray-800 border-b border-gray-600">
+                            <th class="p-3">Car Model (Brand)</th>
+                            <th class="p-3">Half Service</th>
+                            <th class="p-3">Full Service</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            serviceData.forEach(service => {
+                tableHTML += `
+                    <tr class="border-b border-gray-700">
+                        <td class="p-3" data-label="Car Model">${service.Name} (${service.Brand})</td>
+                        <td class="p-3" data-label="Half Service">₹${service['Half Rate']}</td>
+                        <td class="p-3" data-label="Full Service">₹${service['Full Cost']}</td>
+                    </tr>
+                `;
+            });
+            tableHTML += `</tbody></table>`;
+            priceListContainer.innerHTML = tableHTML;
+        }
+
         participateBtn.addEventListener('click', () => {
             initQuantitySelector();
             updatePrices();
             openPopup(popupForm);
+        });
+
+        seePriceListBtn.addEventListener('click', () => {
+            generatePriceTable();
+            openInfoPopup('priceListPopup');
+        });
+
+        conditionsBtn.addEventListener('click', () => {
+            openInfoPopup('conditionsPopup');
         });
         
         ticketQuantitySelect.addEventListener('change', updatePrices); 
         serviceTypeOptions.forEach(radio => radio.addEventListener('change', updatePrices));
 
         popupOverlay.addEventListener('click', e => {
-            if (e.target === popupOverlay) {
-                if (serviceCategorySelectionPopup.style.display === 'block') {
-                    closeServiceCategorySelectionPopup();
-                } else if (ticketStep.style.display === 'block' && allowClose) {
-                    closeAllPopups();
-                } else {
-                    showCustomAlert("Please complete the form or payment process before closing.");
-                }
+            if (e.target !== popupOverlay) return;
+
+            if (priceListPopup.style.display === 'block') closeInfoPopup('priceListPopup');
+            if (conditionsPopup.style.display === 'block') closeInfoPopup('conditionsPopup');
+            if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
+
+            if (ticketStep.style.display === 'block' && allowClose) {
+                closeAllPopups();
+            } else if ((popupForm.style.display === 'block' || paymentStep.style.display === 'block') && !allowClose) {
+                showCustomAlert("Please complete the form or payment process before closing.");
             }
         });
         
