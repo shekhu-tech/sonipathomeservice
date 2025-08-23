@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonipatHomeService.com - Book Barber Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap');
+
+        :root {
+            --primary: #2c3e50; /* Midnight Blue */
+            --secondary: #3498db; /* Peter River Blue */
+            --accent: #1abc9c; /* Turquoise */
+            --light: #ecf0f1; /* Clouds White */
+            --dark: #2c3e50; /* Darker Midnight Blue */
+            --text-primary: #34495e; /* Wet Asphalt */
+            --text-secondary: #7f8c8d; /* Asbestos */
+            --bg-main: #ffffff; /* White */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3 {
+             font-family: 'Playfair Display', serif;
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        main {
+            padding-top: 6rem;
+            max-width: 1700px;
+            margin: 0 auto;
+            padding: 6rem 1rem 3rem;
+        }
+
+        .lottery-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--light);
+            border-radius: 0.625rem;
+            padding: 1rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #bdc3c7;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-0.3125rem);
+            border-color: var(--secondary);
+        }
+
+        .stat-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            color: var(--primary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .stat-card p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .product-section {
+            background: var(--light);
+            border-radius: 0.9375rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid #bdc3c7;
+            box-shadow: var(--shadow);
+        }
+
+        .product-header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .product-header h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .product-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 1.5rem;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 280px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.625rem;
+            overflow: hidden;
+            background: url('https://placehold.co/600x400/2c3e50/FFFFFF?text=Barber+Service') no-repeat center center;
+            background-size: cover;
+            min-height: 250px;
+        }
+
+        .product-details {
+            flex: 2;
+            min-width: 280px;
+            padding: 1rem;
+        }
+
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .original-price {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            color: var(--text-secondary);
+        }
+
+        .lottery-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            justify-content: center;
+            flex-grow: 1;
+            max-width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent), #16a085);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-0.1875rem);
+            box-shadow: 0 0.3125rem 0.9375rem rgba(26, 188, 156, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #ecf0f1;
+        }
+
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 62, 80, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 999;
+        }
+
+        .popup {
+            display: none;
+            background: #ffffff;
+            color: var(--text-primary);
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 95%;
+            max-width: 550px;
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -45%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        #serviceCategorySelectionPopup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+        }
+
+        #serviceCategoryCheckboxes {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        }
+        
+        .popup input,
+        .popup button,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.625rem 0;
+            border-radius: 0.625rem;
+            border: 1px solid #bdc3c7;
+            font-size: 1rem;
+        }
+        
+        .popup input,
+        .popup textarea,
+        .popup select {
+            background: #f9f9f9;
+            color: #333;
+        }
+        
+        .popup textarea {
+            min-height: 6.25rem;
+            resize: vertical;
+        }
+        
+        .popup label {
+            display: block;
+            margin-bottom: 0.3125rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        
+        .popup button[type="submit"],
+        .popup button.close-btn,
+        #razorpay-payment-btn,
+        #downloadTicketsBtn {
+            background: linear-gradient(90deg, var(--accent), #16a085);
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.9375rem;
+            border-radius: 0.625rem;
+            border: none;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .popup button[type="submit"]:hover,
+        .popup button.close-btn:hover,
+        #razorpay-payment-btn:hover,
+        #downloadTicketsBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(26, 188, 156, 0.5);
+        }
+        
+        #ticketDisplay {
+            font-weight: bold;
+            color: var(--dark);
+            font-size: 1.1rem;
+            word-break: break-word;
+            text-align: center;
+            max-height: 12.5rem;
+            overflow-y: auto;
+            padding: 0.625rem;
+            background: var(--light);
+            border: 1px solid var(--accent);
+            border-radius: 0.625rem;
+            margin: 0.625rem 0;
+        }
+
+        #submitMessage {
+            color: #4caf50;
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 0.625rem;
+            display: none;
+        }
+        
+        #timerDisplay {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            margin-top: 0.9375rem;
+        }
+
+        .quantity-selector {
+            margin: 0.9375rem 0;
+        }
+        
+        .quantity-selector label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .quantity-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.3125rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .total-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: right;
+            margin: 0.625rem 0;
+        }
+
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--accent);
+            color: var(--dark);
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
+            z-index: 1002;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeInOut 4s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -40%); }
+            10% { opacity: 1; transform: translate(-50%, -50%); }
+            90% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+        }
+
+        @media (max-width: 1024px) {
+            main { padding: 5rem 1rem 2rem; }
+            .product-header h2 { font-size: 1.5rem; }
+            .product-content { flex-direction: column; padding: 1rem; }
+            .product-image { min-height: 200px; width: 100%; }
+            .product-details { min-width: unset; width: 100%; text-align: center; }
+            .price-container, .action-buttons { justify-content: center; }
+            .btn { width: 100%; max-width: 300px; }
+        }
+
+        @media (max-width: 768px) {
+            main { padding-top: 4rem; }
+            .product-header h2 { font-size: 1.3rem; }
+            .lottery-price { font-size: 1.8rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { width: 100%; max-width: unset; }
+        }
+    </style>
+</head>
+<body>
+   
+    <main class="container mx-auto px-4 py-8">
+        
+        <section class="product-section rounded-2xl shadow-lg mb-8">
+            <div class="product-header rounded-t-2xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-light">Book Barber Service</h2>
+            </div>
+
+            <div class="product-content flex flex-col md:flex-row items-center justify-center p-6 md:p-8 gap-6">
+                <div class="product-details w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
+                    <h3 class="text-2xl md:text-3xl font-semibold text-dark mb-3">Professional At-Home Barber Services</h3>
+                    <p class="text-text-secondary mb-4 text-base md:text-lg">Experience premium grooming in the comfort of your home. Select a service to see our transparent pricing. Our skilled barbers are ready to give you the perfect look.</p>
+                    
+                    <div class="price-container flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 my-6">
+                        <div class="original-price text-text-secondary text-xl md:text-2xl line-through">Varies by service</div>
+                        <div class="lottery-price text-primary text-3xl md:text-4xl font-bold" id="displayPrice">Select Service</div>
+                    </div>
+                    
+                    <div class="action-buttons flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
+                        <button class="btn btn-primary shadow-lg hover:shadow-xl" id="participate-btn">
+                            <i class="fas fa-cut"></i> Book Now
+                        </button>
+                        <button id="price-list-btn" class="btn btn-secondary shadow-lg hover:shadow-xl">
+                            <i class="fas fa-tags"></i> See Price List
+                        </button>
+                         <button id="conditions-btn" class="btn btn-secondary shadow-lg hover:shadow-xl">
+                            <i class="fas fa-file-alt"></i> Our Services
+                        </button>
+                        <button class="btn btn-secondary shadow-lg hover:shadow-xl" onclick="window.open('index.html')">
+                            <i class="fas fa-external-link-alt"></i> Go Back To Home
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="lottery-stats grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="stat-card rounded-xl shadow-lg">
+                <h3 class="text-primary text-lg font-medium mb-1">Happy Clients</h3>
+                <p class="text-dark text-3xl font-bold">15,000+</p>
+            </div>
+            <div class="stat-card rounded-xl shadow-lg">
+                <h3 class="text-primary text-lg font-medium mb-1">Services This Month</h3>
+                <p class="text-dark text-3xl font-bold">800+</p>
+            </div>
+            <div class="stat-card rounded-xl shadow-lg">
+                <h3 class="text-primary text-lg font-medium mb-1">Average Rating</h3>
+                <p class="text-dark text-3xl font-bold">4.8/5 Stars</p>
+            </div>
+            <div class="stat-card rounded-xl shadow-lg">
+                <h3 class="text-primary text-lg font-medium mb-1">Available Today</h3>
+                <p class="text-dark text-3xl font-bold">Yes!</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="popup-overlay"></div>
+    
+    <div class="popup" id="popupForm">
+        <h2 class="text-2xl font-bold text-center mb-4 text-dark">Barber Service Booking</h2>
+        <form id="lotteryForm">
+            <div class="quantity-selector my-4">
+                <label class="text-primary text-sm mb-2">Select Service(s):</label>
+                <div id="selectedServiceCategoriesDisplay" class="bg-gray-200 text-gray-800 p-3 rounded-lg cursor-pointer mb-3" onclick="openServiceCategorySelectionPopup()">Click to select services</div>
+                <div id="serviceCategorySelectionPopup" class="popup hidden">
+                    <h3 class="text-xl font-bold text-center mb-4 text-dark">Select Your Services</h3>
+                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-800 max-h-60 overflow-y-auto">
+                        <!-- Checkboxes will be populated by JavaScript -->
+                    </div>
+                    <button type="button" class="btn btn-primary mt-4 py-2 rounded-xl font-bold text-lg" onclick="applySelectedServiceCategories()">Apply Selection</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg close-btn" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
+                </div>
+            </div>
+
+            <label for="fullName" class="text-primary text-sm mb-1">Your Full Name (min 10 characters)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
+            
+            <label for="phone" class="text-primary text-sm mb-1">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
+            
+            <label for="email" class="text-primary text-sm mb-1">Email Address</label>
+            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
+            
+            <label for="location" class="text-primary text-sm mb-1">Your Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
+            
+            <label for="address" class="text-primary text-sm mb-1">Complete Address (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
+            
+            <div class="quantity-selector my-4">
+                <label for="ticketQuantity" class="text-primary text-sm mb-2">Number of Persons (Max 5):</label>
+                <select id="ticketQuantity" name="ticketQuantity" required>
+                    <option value="" disabled selected>Select quantity</option>
+                </select>
+                <div class="quantity-info flex justify-between mt-2 text-gray-600 text-sm">
+                    <span>Price for multiple persons</span>
+                    <span class="total-price-quantity font-bold text-primary text-lg">Total: ₹0</span>
+                </div>
+            </div>
+
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="finalPrice" id="finalPrice" />
+            <button type="submit">Submit Details</button>
+            <span id="submitMessage">Submitting... Please wait</span>
+        </form>
+    </div>
+
+    <div class="popup" id="paymentStep">
+        <h2 class="text-2xl font-bold text-center mb-4 text-dark">Complete Your Payment</h2>
+        <p class="text-text-secondary text-center mb-6">Please complete the payment to finalize your Barber Service booking.</p>
+        <div id="paymentSummary" class="bg-gray-100 p-4 rounded-lg mb-6 text-center text-dark"></div>
+        <div id="timerDisplay">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn">Pay for Get Service</button>
+        <p class="mt-4 text-sm text-gray-600 text-center">
+            After payment, please wait for automatic verification. Do not close this window.
+        </p>
+    </div>
+
+    <div class="popup" id="ticketStep">
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center mb-4 text-green-600"></h2>
+        <p class="text-text-secondary text-center mb-4">You have successfully booked <span id="ticketCountDisplay" class="font-bold text-primary"></span>:</p>
+        <div id="ticketDisplay"></div>
+        <button id="downloadTicketsBtn">
+            <i class="fas fa-download mr-2"></i> Download Booking Details
+        </button>
+        <p class="mt-4 text-sm text-gray-600 text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="w-full btn-secondary py-3 rounded-xl font-bold text-dark text-lg mt-4 transition-all duration-300 hover:scale-105 hover:bg-opacity-20 close-btn">Okay, Got It!</button>
+    </div>
+    
+    <div class="popup" id="priceListPopup">
+        <h2 class="text-2xl font-bold text-center mb-4">Barber Service Price List</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-gray-50 rounded-lg">
+                <thead>
+                    <tr class="text-left text-primary">
+                        <th class="py-2 px-4 border-b border-gray-200">Service</th>
+                        <th class="py-2 px-4 border-b border-gray-200 text-right">Our Price</th>
+                        <th class="py-2 px-4 border-b border-gray-200 text-right">Market Price</th>
+                    </tr>
+                </thead>
+                <tbody id="priceListTableBody">
+                    <!-- Rows will be injected by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <button id="closePriceListBtn" class="close-btn">Close</button>
+    </div>
+
+    <div class="popup" id="conditionsPopup">
+        <h2 class="text-2xl font-bold text-center mb-4">Our Grooming Services</h2>
+        <div id="conditionsContent" class="text-text-secondary text-sm space-y-2 max-h-96 overflow-y-auto pr-2">
+            <ul class="list-disc list-inside text-base md:text-lg space-y-3">
+                <li class="font-bold text-dark">✂️ Stylish Haircuts</li>
+                <li>Classic, modern, and trendy styles tailored to your preference.</li>
+                
+                <li class="font-bold text-dark mt-4">🧔 Beard Trimming & Styling</li>
+                <li>Precision trimming, shaping, and styling for a sharp look.</li>
+
+                <li class="font-bold text-dark mt-4">🪒 Shaving / Royal Shave</li>
+                <li>Clean shaves and luxurious royal shaves with hot towels.</li>
+
+                <li class="font-bold text-dark mt-4">🎨 Hair Coloring</li>
+                <li>Professional hair coloring using quality products like Garnier.</li>
+
+                <li class="font-bold text-dark mt-4">👦 Kids Haircut</li>
+                <li>Patient and friendly haircuts for children of all ages.</li>
+
+                <li class="font-bold text-dark mt-4">💆‍♂️ Head Massage</li>
+                <li>Relaxing 10-minute head massage to de-stress and rejuvenate.</li>
+                
+                <li class="font-bold text-dark mt-4">✨ Facial & Grooming</li>
+                <li>Complete grooming packages for a refreshed and polished look.</li>
+            </ul>
+        </div>
+        <button id="closeConditionsBtn" class="close-btn">Close</button>
+    </div>
+   
+    <script>
+        const serviceData = [
+            { "Category": "Hair Cutting Men", "Price": 249 },
+            { "Category": "Beard Treaming", "Price": 199 },
+            { "Category": "Kids Hair Cutting", "Price": 249 },
+            { "Category": "Saving Men / Beard Grooming", "Price": 199 },
+            { "Category": "Hair Colour (Garnier)", "Price": 299 },
+            { "Category": "Hair Cutting Men & Massage (10 Mins)", "Price": 349 },
+            { "Category": "Hair Cuting Men & Saving", "Price": 399 }
+        ];
+
+        // --- Generic constants ---
+        const SERVICE_NAME = "Barber Service";
+        const SERVICE_TAB_ID = "barber-service";
+        const SERVICE_FORM_DATA_KEY = "barberServiceCategory";
+        const RAZORPAY_IMAGE_TEXT = "BS";
+
+        // --- DOM Element Selection ---
+        const participateBtn = document.getElementById('participate-btn');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const allPopups = document.querySelectorAll('.popup');
+        const popupForm = document.getElementById('popupForm');
+        const paymentStep = document.getElementById('paymentStep');
+        const ticketStep = document.getElementById('ticketStep');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const razorpayBtn = document.getElementById('razorpay-payment-btn');
+        const submitMessage = document.getElementById('submitMessage');
+        const serviceCategoryCheckboxesContainer = document.getElementById('serviceCategoryCheckboxes');
+        const selectedServiceCategoriesDisplay = document.getElementById('selectedServiceCategoriesDisplay');
+        const serviceCategorySelectionPopup = document.getElementById('serviceCategorySelectionPopup');
+        const ticketQuantitySelect = document.getElementById('ticketQuantity');
+        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
+        const paymentSummary = document.getElementById('paymentSummary');
+        const ticketCountDisplay = document.getElementById('ticketCountDisplay');
+        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const displayPriceElement = document.getElementById('displayPrice');
+        const finalPriceInput = document.getElementById('finalPrice');
+        const form = document.getElementById('lotteryForm');
+        const ticketInput = document.getElementById('ticketCode');
+        const ticketDisplay = document.getElementById('ticketDisplay');
+        const okayBtn = document.getElementById('okayBtn');
+        
+        const priceListBtn = document.getElementById('price-list-btn');
+        const conditionsBtn = document.getElementById('conditions-btn');
+        const priceListPopup = document.getElementById('priceListPopup');
+        const conditionsPopup = document.getElementById('conditionsPopup');
+        const closePriceListBtn = document.getElementById('closePriceListBtn');
+        const closeConditionsBtn = document.getElementById('closeConditionsBtn');
+        const priceListTableBody = document.getElementById('priceListTableBody');
+
+        // --- State Variables ---
+        let generatedTicket = ''; 
+        let paymentTimeout = null;
+        let countdownInterval = null;
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+        let currentServicePrice = 0;
+        let selectedQuantity = 1;
+        let allowClose = false;
+
+        // --- Core Functions ---
+
+        function populateServiceCategories() {
+            serviceCategoryCheckboxesContainer.innerHTML = '';
+            serviceData.forEach(service => {
+                const checkboxHtml = `
+                    <label class="inline-flex items-center text-gray-800 w-full p-2 hover:bg-gray-100 rounded-md">
+                        <input type="checkbox" name="serviceCategory" value="${service.Category}" data-price="${service.Price}" 
+                               class="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
+                        <span class="ml-3">${service.Category} (₹${service.Price})</span>
+                    </label>
+                `;
+                serviceCategoryCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
+            });
+            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(checkbox => {
+                checkbox.addEventListener('change', updatePrices);
+            });
+        }
+
+        function initQuantitySelector() {
+            const maxServices = 5;
+            ticketQuantitySelect.innerHTML = '<option value="" disabled>Select quantity</option>';
+            for (let i = 1; i <= maxServices; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i + (i === 1 ? ' Person' : ' Persons');
+                ticketQuantitySelect.appendChild(option);
+            }
+            ticketQuantitySelect.value = 1;
+        }
+
+        function updatePrices() {
+            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => ({
+                category: cb.value,
+                price: parseFloat(cb.dataset.price)
+            }));
+            
+            selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
+            
+            currentServicePrice = selectedCategories.reduce((total, service) => total + service.price, 0);
+            const totalFinalPrice = currentServicePrice * selectedQuantity;
+
+            if (selectedCategories.length > 0) {
+                selectedServiceCategoriesDisplay.textContent = selectedCategories.map(s => s.category).join(', ');
+                displayPriceElement.textContent = `Total: ₹${totalFinalPrice}`;
+            } else {
+                selectedServiceCategoriesDisplay.textContent = `Click to select services`;
+                displayPriceElement.textContent = `Select Service`;
+            }
+            
+            totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
+            finalPriceInput.value = totalFinalPrice;
+        }
+
+        function generateFormattedTicket() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            }).toUpperCase();
+        }
+
+        function downloadTickets() {
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
+            const ticketContent = `${SERVICE_NAME} Booking Details\n\n` +
+                                 `Customer Name: ${form.field1.value}\n` +
+                                 `Contact: ${form.field2.value}\n` +
+                                 `Location: ${form.field5.value}\n` +
+                                 `Service(s): ${selectedCategoryNames}\n` +
+                                 `Number of Persons: ${selectedQuantity}\n` +
+                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
+                                 `Total Amount: ₹${finalPriceInput.value}\n\n` +
+                                 `Thank you for choosing Sonipat Home Service!`;
+            
+            const blob = new Blob([ticketContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${SERVICE_TAB_ID}_booking.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert'; 
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => alertBox.remove(), 4000); 
+        }
+
+        // --- Popup Control Functions ---
+        function closeAllPopups() {
+            if (!allowClose) {
+                showCustomAlert("Please complete the process before closing.");
+                return;
+            }
+            clearTimers();
+            popupOverlay.style.display = 'none';
+            allPopups.forEach(p => p.style.display = 'none');
+            document.body.style.overflow = 'auto';
+            allowClose = false; 
+        }
+
+        function openPopup(popupElement) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            popupElement.style.display = 'block';
+            allowClose = false;
+        }
+
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function openServiceCategorySelectionPopup() {
+            populateServiceCategories();
+            const currentlySelected = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim());
+            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(cb => {
+                cb.checked = currentlySelected.includes(cb.value);
+            });
+            serviceCategorySelectionPopup.style.display = 'block';
+            popupOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeServiceCategorySelectionPopup() {
+            serviceCategorySelectionPopup.style.display = 'none';
+            if (popupForm.style.display !== 'block') {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function applySelectedServiceCategories() {
+            updatePrices();
+            closeServiceCategorySelectionPopup();
+        }
+        
+        // --- Timer Functions ---
+        function clearTimers() {
+            if (paymentTimeout) clearTimeout(paymentTimeout);
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        function startPaymentTimer() {
+            let timeLeft = PAYMENT_TIME_LIMIT;
+            const updateDisplay = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            updateDisplay();
+
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    showCustomAlert("Payment time expired. Please try again.");
+                    allowClose = true; 
+                    closeAllPopups();
+                }
+            }, 1000);
+        }
+        
+        function populatePriceList() {
+            priceListTableBody.innerHTML = '';
+            serviceData.forEach(service => {
+                const marketPrice = Math.round(service.Price * 1.25); // 25% higher for market rate
+                const row = `
+                    <tr class="text-text-secondary">
+                        <td class="py-3 px-4 border-b border-gray-200">${service.Category}</td>
+                        <td class="py-3 px-4 border-b border-gray-200 text-right font-semibold text-primary">₹${service.Price}</td>
+                        <td class="py-3 px-4 border-b border-gray-200 text-right text-gray-500 line-through">₹${marketPrice}</td>
+                    </tr>
+                `;
+                priceListTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        // --- Payment and Submission Logic ---
+        
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
+            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
+            if (selectedCategories.length === 0) { showCustomAlert(`Please select at least one ${SERVICE_NAME}.`); return; }
+            if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of persons."); return; }
+
+            submitMessage.style.display = 'block';
+            form.querySelector('button[type="submit"]').disabled = true;
+
+            generatedTicket = generateFormattedTicket(); 
+            
+            const formData = new FormData();
+            formData.append('field1', form.fullName.value);
+            formData.append('field2', form.phone.value);
+            formData.append('field3', form.email.value);
+            formData.append('field5', form.location.value);
+            formData.append('field6', form.address.value);
+            formData.append('ticket', generatedTicket);
+            formData.append('tab', SERVICE_TAB_ID);
+            formData.append(SERVICE_FORM_DATA_KEY, selectedCategories.map(cb => cb.value).join(', '));
+            formData.append('serviceType', SERVICE_NAME);
+            formData.append('servicePrice', currentServicePrice);
+            formData.append('ticketQuantity', selectedQuantity);
+            
+            fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res === "Success") {
+                    popupForm.style.display = 'none';
+                    openPopup(paymentStep);
+                    const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-secondary text-lg mb-2">You are booking: <span class="font-bold text-primary">${selectedCategoryNames}</span> for ${selectedQuantity} person(s).</p>
+                        <p class="total-price text-primary text-2xl font-bold">Total Amount: ₹${finalPriceInput.value}</p>
+                    `;
+                    startPaymentTimer();
+                } else {
+                    showCustomAlert("There was an error submitting your form. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("An unexpected error occurred. Please check your connection and try again.");
+            })
+            .finally(() => {
+                submitMessage.style.display = 'none';
+                form.querySelector('button[type="submit"]').disabled = false;
+            });
+        }
+
+        function handleRazorpayPayment() {
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
+            const options = {
+                "key": "rzp_live_opiqkRmGpjG1hF",
+                "amount": finalPriceInput.value * 100,
+                "currency": "INR",
+                "name": `SonipatHomeService - ${SERVICE_NAME}`,
+                "description": `Payment for ${selectedCategoryNames}`,
+                "image": `https://placehold.co/100x100/2c3e50/FFFFFF?text=${RAZORPAY_IMAGE_TEXT}`,
+                "handler": function (response){
+                    paymentSuccess();
+                },
+                "prefill": {
+                    "name": form.fullName.value,
+                    "email": form.email.value,
+                    "contact": form.phone.value
+                },
+                "notes": {
+                    "address": `${form.location.value}, ${form.address.value}`,
+                    "service_details": selectedCategoryNames,
+                },
+                "theme": { "color": "#2c3e50" },
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
+        }
+
+        function paymentSuccess() {
+            clearTimers();
+            paymentStep.style.display = 'none';
+            openPopup(ticketStep);
+            
+            const userName = form.fullName.value;
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
+
+            welcomeMessage.textContent = `🎉 Thank You, ${userName}! Your Booking is Confirmed! 🎉`;
+            
+            ticketDisplay.innerHTML = `
+                <p>Booking ID: <span class="text-dark">${generatedTicket}</span></p>
+                <p>Service(s): <span class="text-dark">${selectedCategoryNames}</span></p>
+                <p>Persons: <span class="text-dark">${selectedQuantity}</span></p>
+                <p class="text-text-secondary text-sm mt-2">Total Amount: ₹${finalPriceInput.value}</p>
+            `;
+            
+            ticketCountDisplay.textContent = `${SERVICE_NAME} for ${selectedQuantity} person(s)`;
+            allowClose = true;
+        }
+        
+        // --- Event Listeners Initialization ---
+        participateBtn.addEventListener('click', () => {
+            initQuantitySelector();
+            updatePrices();
+            openPopup(popupForm);
+        });
+        
+        ticketQuantitySelect.addEventListener('change', updatePrices);
+
+        popupOverlay.addEventListener('click', e => {
+            if (e.target === popupOverlay) {
+                if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (conditionsPopup.style.display === 'block') closeSpecificPopup(conditionsPopup);
+                else if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
+                else if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
+                else showCustomAlert("Please complete the process before closing.");
+            }
+        });
+        
+        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
+        razorpayBtn.addEventListener('click', handleRazorpayPayment);
+        downloadTicketsBtn.addEventListener('click', downloadTickets);
+        form.addEventListener('submit', handleFormSubmit);
+
+        priceListBtn.addEventListener('click', () => {
+            populatePriceList();
+            openPopup(priceListPopup);
+        });
+        conditionsBtn.addEventListener('click', () => openPopup(conditionsPopup));
+        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
+        closeConditionsBtn.addEventListener('click', () => closeSpecificPopup(conditionsPopup));
+
+        // --- Page Load Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            populateServiceCategories();
+            initQuantitySelector();
+            updatePrices();
+        });
+    </script>
+</body>
+</html>
