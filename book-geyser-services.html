@@ -11,14 +11,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         :root {
-            --primary: #F0F0F0;
-            --secondary: #E0E0E0;
-            --accent: #FFD700;
-            --light: #212121;
-            --dark: #424242;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --card-bg: #ffffff;
+            --primary: #D32F2F; /* Red */
+            --secondary: #FF5252; /* Lighter Red */
+            --accent: #FFC107; /* Amber */
+            --light: #FFFFFF;
+            --dark: #212121;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --bg-main: #FBE9E7; /* Very light red */
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
@@ -31,8 +31,8 @@
         }
 
         body {
-            background: linear-gradient(135deg, #F0F0F0 0%, #E0E0E0 100%);
-            color: var(--light);
+            background: var(--bg-main);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -52,44 +52,43 @@
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.8);
+            background: var(--light);
             border-radius: 0.625rem;
             padding: 1rem;
             text-align: center;
-            backdrop-filter: blur(5px);
             transition: var(--transition);
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            border: 1px solid #FFCCBC;
+            box-shadow: var(--shadow);
         }
 
         .stat-card:hover {
             transform: translateY(-0.3125rem);
-            box-shadow: var(--shadow);
-            border-color: var(--accent);
+            border-color: var(--secondary);
         }
 
         .stat-card h3 {
             font-size: 0.95rem;
             margin-bottom: 0.3rem;
-            color: var(--dark);
+            color: var(--primary);
         }
 
         .stat-card p {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--light);
+            color: var(--dark);
         }
 
         .product-section {
-            background: rgba(255, 255, 255, 0.8);
+            background: var(--light);
             border-radius: 0.9375rem;
             overflow: hidden;
             margin-bottom: 2rem;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            border: 1px solid #FFCCBC;
+            box-shadow: var(--shadow);
         }
 
         .product-header {
-            background: linear-gradient(90deg, #D0D0D0, #C0C0C0);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             padding: 1.25rem;
             text-align: center;
         }
@@ -97,7 +96,7 @@
         .product-header h2 {
             font-size: 1.75rem;
             margin-bottom: 0.5rem;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .product-content {
@@ -116,7 +115,7 @@
             height: auto;
             border-radius: 0.625rem;
             overflow: hidden;
-            background: url('https://placehold.co/600x400/D0D0D0/FFD700?text=Geyser+Service') no-repeat center center;
+            background: url('https://placehold.co/600x400/FF5252/FFFFFF?text=Geyser+Service') no-repeat center center;
             background-size: cover;
             min-height: 250px;
         }
@@ -138,32 +137,13 @@
         .original-price {
             font-size: 1.5rem;
             text-decoration: line-through;
-            color: #888;
+            color: var(--text-secondary);
         }
 
         .lottery-price {
             font-size: 2rem;
             font-weight: 700;
-            color: var(--accent);
-        }
-
-        .features {
-            margin: 1rem 0;
-        }
-
-        .features h3 {
-            margin-bottom: 0.8rem;
-            color: var(--dark);
-        }
-
-        .features ul {
-            padding-left: 1.2rem;
-        }
-
-        .features li {
-            margin-bottom: 0.4rem;
-            font-size: 0.95rem;
-            color: var(--light);
+            color: var(--primary);
         }
 
         .action-buttons {
@@ -191,23 +171,23 @@
         }
 
         .btn-primary {
-            background: linear-gradient(90deg, var(--accent), #FFC107);
+            background: linear-gradient(90deg, var(--accent), #FFB300);
             color: #212121;
         }
 
         .btn-primary:hover {
             transform: translateY(-0.1875rem);
-            box-shadow: 0 0.3125rem 0.9375rem rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0.3125rem 0.9375rem rgba(255, 193, 7, 0.4);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--dark);
-            border: 2px solid var(--dark);
+            color: var(--primary);
+            border: 2px solid var(--secondary);
         }
 
         .btn-secondary:hover {
-            background: rgba(66, 66, 66, 0.1);
+            background: #FFEBEE;
         }
 
         #popup-overlay {
@@ -225,8 +205,8 @@
 
         .popup {
             display: none;
-            background: #fdfdfd;
-            color: var(--light);
+            background: #ffffff;
+            color: var(--text-primary);
             padding: 1.5rem;
             border-radius: 1.25rem;
             box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.2);
@@ -253,8 +233,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1001;
-            background: #fdfdfd;
-            color: var(--light);
+            background: #ffffff;
+            color: var(--text-primary);
             padding: 1.5rem;
             border-radius: 1.25rem;
             box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.2);
@@ -277,14 +257,15 @@
             padding: 0.75rem;
             margin: 0.625rem 0;
             border-radius: 0.625rem;
-            border: none;
+            border: 1px solid #ddd;
             font-size: 1rem;
         }
         
         .popup input,
-        .popup textarea {
-            background: #e0e0e0;
-            color: #000;
+        .popup textarea,
+        .popup select {
+            background: #f1f1f1;
+            color: #333;
         }
         
         .popup textarea {
@@ -295,15 +276,15 @@
         .popup label {
             display: block;
             margin-bottom: 0.3125rem;
-            color: var(--dark);
+            color: var(--primary);
             font-size: 0.95rem;
         }
         
         .popup button[type="submit"],
-        .popup button#okayBtn,
+        .popup button.close-btn,
         #razorpay-payment-btn,
         #downloadTicketsBtn {
-            background: linear-gradient(90deg, var(--accent), #FFC107);
+            background: linear-gradient(90deg, var(--accent), #FFB300);
             color: #212121;
             font-weight: bold;
             cursor: pointer;
@@ -317,33 +298,25 @@
         }
 
         .popup button[type="submit"]:hover,
-        .popup button#okayBtn:hover,
+        .popup button.close-btn:hover,
         #razorpay-payment-btn:hover,
         #downloadTicketsBtn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(255, 193, 7, 0.5);
         }
         
         #ticketDisplay {
             font-weight: bold;
-            color: var(--light);
+            color: var(--dark);
             font-size: 1.1rem;
             word-break: break-word;
             text-align: center;
             max-height: 12.5rem;
             overflow-y: auto;
             padding: 0.625rem;
-            background: rgba(0,0,0,0.05);
+            background: #FFF3E0;
             border-radius: 0.625rem;
             margin: 0.625rem 0;
-        }
-
-        #countryError {
-            color: red;
-            font-size: 0.8rem;
-            display: none;
-            margin-top: -0.3125rem;
-            margin-bottom: 0.625rem;
         }
 
         #submitMessage {
@@ -357,7 +330,7 @@
         #timerDisplay {
             font-size: 1.1rem;
             font-weight: bold;
-            color: var(--accent);
+            color: var(--primary);
             text-align: center;
             margin-top: 0.9375rem;
         }
@@ -369,7 +342,7 @@
         .quantity-selector label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--dark);
+            color: var(--primary);
         }
         
         .quantity-info {
@@ -383,7 +356,7 @@
         .total-price {
             font-size: 1.1rem;
             font-weight: bold;
-            color: var(--accent);
+            color: var(--primary);
             text-align: right;
             margin: 0.625rem 0;
         }
@@ -433,7 +406,6 @@
             .product-header h2 { font-size: 1.3rem; }
             .original-price { font-size: 1.3rem; }
             .lottery-price { font-size: 1.8rem; }
-            .features li { font-size: 0.9rem; }
             .btn { font-size: 0.85rem; padding: 0.6rem 1rem; }
             .lottery-stats { grid-template-columns: 1fr 1fr; }
         }
@@ -445,8 +417,6 @@
             .product-image { min-height: 180px; }
             .original-price { font-size: 1.2rem; }
             .lottery-price { font-size: 1.6rem; }
-            .features ul { padding-left: 1rem; }
-            .features li { font-size: 0.85rem; }
             .action-buttons { flex-direction: column; }
             .btn { width: 100%; max-width: unset; }
             .lottery-stats { grid-template-columns: 1fr; }
@@ -467,49 +437,28 @@
         
         <section class="product-section rounded-2xl shadow-lg mb-8">
             <div class="product-header rounded-t-2xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-dark">Book Geyser Service</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-light">Book Geyser Service</h2>
             </div>
 
             <div class="product-content flex flex-col md:flex-row items-center justify-center p-6 md:p-8 gap-6">
                 <div class="product-details w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
                     <h3 class="text-2xl md:text-3xl font-semibold text-dark mb-3">Book Professional Geyser Service & Repair</h3>
-                    <p class="text-gray-600 mb-4 text-base md:text-lg">Get expert geyser service. Select your geyser service category to see the transparent pricing. Our certified technicians will ensure your geyser is running at peak performance.</p>
+                    <p class="text-text-secondary mb-4 text-base md:text-lg">Get expert geyser service. Select your geyser service category to see the transparent pricing. Our certified technicians will ensure your geyser is running at peak performance.</p>
                     
                     <div class="price-container flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 my-6">
-                        <div class="original-price text-gray-500 text-xl md:text-2xl line-through">Varies by service category</div>
-                        <div class="lottery-price text-accent text-3xl md:text-4xl font-bold" id="displayPrice">Select Geyser Service Category</div>
-                    </div>
-                    
-                   <div class="features text-left my-6">
-                        <h3 class="text-xl md:text-2xl font-semibold text-dark mb-3">Geyser Service Features:</h3>
-                        <ul class="list-disc list-inside text-gray-600 text-base md:text-lg space-y-2">
-                            <li class="font-bold text-dark mt-4">👨‍🔧 Professional Technicians</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>All work carried out by certified and experienced technicians</li>
-                            <li class="font-bold text-dark mt-4">🔍 Diagnosis & Inspection</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>On-site diagnosis and detailed problem assessment</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Rapid response for urgent geyser breakdowns</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Initial visiting charge ₹299 (adjustable based on distance in Sonipat)</li>
-                            <li class="font-bold text-dark mt-4">🛠️ Repair & Maintenance</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Geyser Heating Rod Change Service</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Geyser Sensor Change Service</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Solutions for various emergency geyser problems (e.g., no hot water, leakage, heating issues)</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Transparent pricing for parts and additional labor provided after diagnosis</li>
-                            <li class="font-bold text-dark mt-4">💰 Transparency & Pricing</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Transparent pricing for parts and additional labor charges</li>
-                            <li class="font-bold text-dark mt-4">📞 Customer Support</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Free basic demonstration of geyser functions</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Priority scheduling for urgent service</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Quick resolution (special attention for emergency calls)</li>
-                            <li class="font-bold text-dark mt-4">✅ Warranty & Guarantee</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>1-year service warranty on installation work</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>1-month warranty on repairs and part replacements</li>
-                            <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Long-lasting and reliable performance</li>
-                        </ul>
+                        <div class="original-price text-text-secondary text-xl md:text-2xl line-through">Varies by service</div>
+                        <div class="lottery-price text-primary text-3xl md:text-4xl font-bold" id="displayPrice">Select Service</div>
                     </div>
                     
                     <div class="action-buttons flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
                         <button class="btn btn-primary shadow-lg hover:shadow-xl" id="participate-btn">
                             <i class="fas fa-thermometer-half"></i> Book Geyser Service
+                        </button>
+                        <button id="price-list-btn" class="btn btn-secondary shadow-lg hover:shadow-xl">
+                            <i class="fas fa-tags"></i> See Price List
+                        </button>
+                         <button id="conditions-btn" class="btn btn-secondary shadow-lg hover:shadow-xl">
+                            <i class="fas fa-file-alt"></i> Conditions Applied
                         </button>
                         <button class="btn btn-secondary shadow-lg hover:shadow-xl" onclick="window.open('index.html')">
                             <i class="fas fa-external-link-alt"></i> Go Back To Home
@@ -521,19 +470,19 @@
 
         <div class="lottery-stats grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Total Customers</h3>
+                <h3 class="text-primary text-lg font-medium mb-1">Total Customers</h3>
                 <p class="text-dark text-3xl font-bold">28,500+</p>
             </div>
             <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Geysers Serviced</h3>
+                <h3 class="text-primary text-lg font-medium mb-1">Geysers Serviced</h3>
                 <p class="text-dark text-3xl font-bold">1000+ Monthly</p>
             </div>
             <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Customer Rating</h3>
+                <h3 class="text-primary text-lg font-medium mb-1">Customer Rating</h3>
                 <p class="text-dark text-3xl font-bold">4.9/5 Stars</p>
             </div>
             <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Next Available Slot</h3>
+                <h3 class="text-primary text-lg font-medium mb-1">Next Available Slot</h3>
                 <p class="text-dark text-3xl font-bold">Today!</p>
             </div>
         </div>
@@ -544,64 +493,58 @@
     <div class="popup" id="popupForm">
         <h2 class="text-2xl font-bold text-center mb-4 text-dark">Geyser Service Booking</h2>
         <form id="lotteryForm">
-            <label for="fullName" class="text-dark text-sm mb-1">Your Full Name (min 10 characters)</label>
-            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" class="rounded-lg bg-gray-200 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-            
-            <label for="phone" class="text-dark text-sm mb-1">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" class="rounded-lg bg-gray-200 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-            
-            <label for="email" class="text-dark text-sm mb-1">Email Address</label>
-            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" class="rounded-lg bg-gray-200 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-            
-            <div class="mb-3">
-                <label for="dobField" class="text-dark text-sm mb-1">Date of Birth:</label>
-                <input type="date" id="dobField" name="field4" required class="rounded-lg bg-gray-200 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-            </div>
-            
-            <label for="location" class="text-dark text-sm mb-1">Your Location (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" class="rounded-lg bg-gray-200 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-            
-            <label for="address" class="text-dark text-sm mb-1">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" class="rounded-lg bg-gray-200 text-gray-900 p-3 w-full mb-2 focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
-            <span id="countryError" class="text-red-600 text-xs mt-1 hidden">Please enter your complete address with at least 30 characters.</span>
-            
             <div class="quantity-selector my-4">
-                <label class="text-dark text-sm mb-2">Select Geyser Service Category:</label>
-                <div id="selectedServiceCategoriesDisplay" class="bg-gray-300 text-gray-800 p-3 rounded-lg cursor-pointer mb-3" onclick="openServiceCategorySelectionPopup()">Click to select Geyser service category</div>
+                <label class="text-primary text-sm mb-2">Select Geyser Service Category:</label>
+                <div id="selectedServiceCategoriesDisplay" class="bg-gray-200 text-gray-800 p-3 rounded-lg cursor-pointer mb-3" onclick="openServiceCategorySelectionPopup()">Click to select Geyser service category</div>
                 <div id="serviceCategorySelectionPopup" class="popup hidden">
                     <h3 class="text-xl font-bold text-center mb-4 text-dark">Select Geyser Service Category</h3>
                     <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-gray-800 max-h-60 overflow-y-auto">
                         <!-- Checkboxes will be populated by JavaScript -->
                     </div>
                     <button type="button" class="btn btn-primary mt-4 py-2 rounded-xl font-bold text-lg" onclick="applySelectedServiceCategories()">Apply Selection</button>
-                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg close-btn" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
                 </div>
             </div>
 
+            <label for="fullName" class="text-primary text-sm mb-1">Your Full Name (min 10 characters)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
+            
+            <label for="phone" class="text-primary text-sm mb-1">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
+            
+            <label for="email" class="text-primary text-sm mb-1">Email Address</label>
+            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
+            
+            <label for="location" class="text-primary text-sm mb-1">Your Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
+            
+            <label for="address" class="text-primary text-sm mb-1">Complete Address (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
+            
             <div class="quantity-selector my-4">
-                <label for="ticketQuantity" class="text-dark text-sm mb-2">Number of Services (Max 5):</label>
-                <select id="ticketQuantity" name="ticketQuantity" required class="rounded-lg bg-gray-200 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                <label for="ticketQuantity" class="text-primary text-sm mb-2">Number of Services (Max 5):</label>
+                <select id="ticketQuantity" name="ticketQuantity" required>
                     <option value="" disabled selected>Select quantity</option>
-                    </select>
+                </select>
                 <div class="quantity-info flex justify-between mt-2 text-gray-600 text-sm">
                     <span>Quantity based price</span>
-                    <span class="total-price-quantity font-bold text-accent text-lg">Total: ₹0</span>
+                    <span class="total-price-quantity font-bold text-primary text-lg">Total: ₹0</span>
                 </div>
             </div>
 
             <input type="hidden" name="ticket" id="ticketCode" />
             <input type="hidden" name="finalPrice" id="finalPrice" />
-            <button type="submit" class="w-full btn-primary mt-4 py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Submit Details</button>
-            <span id="submitMessage" class="text-green-600 text-center mt-3 hidden">Submitting... Please wait</span>
+            <button type="submit">Submit Details</button>
+            <span id="submitMessage">Submitting... Please wait</span>
         </form>
     </div>
 
     <div class="popup" id="paymentStep">
-        <h2 class="text-2xl font-bold text-center mb-4 text-dark">Complete Your Payment for Geyser Service</h2>
-        <p class="text-gray-600 text-center mb-6">Please complete the payment to finalize your Geyser Service booking. Click the button below.</p>
+        <h2 class="text-2xl font-bold text-center mb-4 text-dark">Complete Your Payment</h2>
+        <p class="text-text-secondary text-center mb-6">Please complete the payment to finalize your Geyser Service booking.</p>
         <div id="paymentSummary" class="bg-gray-100 p-4 rounded-lg mb-6 text-center text-dark"></div>
-        <div id="timerDisplay" class="text-accent text-xl font-bold text-center mb-6">Time remaining: 05:00</div>
-        <button id="razorpay-payment-btn" class="w-full btn-primary py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Pay with Razorpay</button>
+        <div id="timerDisplay">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn">Pay with Razorpay</button>
         <p class="mt-4 text-sm text-gray-600 text-center">
             After payment, please wait for automatic verification. Do not close this window.
         </p>
@@ -609,29 +552,76 @@
 
     <div class="popup" id="ticketStep">
         <h2 id="welcomeMessage" class="text-2xl font-bold text-center mb-4 text-green-600"></h2>
-        <p class="text-gray-600 text-center mb-4">You have successfully booked <span id="ticketCountDisplay" class="font-bold text-accent"></span>:</p>
-        <div id="ticketDisplay" class="bg-gray-100 p-4 rounded-lg mb-6 text-center text-lg text-dark"></div>
-        <button id="downloadTicketsBtn" class="w-full btn-primary py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+        <p class="text-text-secondary text-center mb-4">You have successfully booked <span id="ticketCountDisplay" class="font-bold text-primary"></span>:</p>
+        <div id="ticketDisplay"></div>
+        <button id="downloadTicketsBtn">
             <i class="fas fa-download mr-2"></i> Download Service Details
         </button>
         <p class="mt-4 text-sm text-gray-600 text-center">📸 Please take a screenshot for proof and reference.</p>
-        <button id="okayBtn" class="w-full btn-secondary py-3 rounded-xl font-bold text-dark text-lg mt-4 transition-all duration-300 hover:scale-105 hover:bg-opacity-20">Okay, Got It!</button>
+        <button id="okayBtn" class="w-full btn-secondary py-3 rounded-xl font-bold text-dark text-lg mt-4 transition-all duration-300 hover:scale-105 hover:bg-opacity-20 close-btn">Okay, Got It!</button>
+    </div>
+    
+    <div class="popup" id="priceListPopup">
+        <h2 class="text-2xl font-bold text-center mb-4">Geyser Service Price List</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-gray-50 rounded-lg">
+                <thead>
+                    <tr class="text-left text-primary">
+                        <th class="py-2 px-4 border-b border-gray-200">Service</th>
+                        <th class="py-2 px-4 border-b border-gray-200 text-right">Our Price</th>
+                        <th class="py-2 px-4 border-b border-gray-200 text-right">Market Price</th>
+                    </tr>
+                </thead>
+                <tbody id="priceListTableBody">
+                    <!-- Rows will be injected by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <button id="closePriceListBtn" class="close-btn">Close</button>
+    </div>
+
+    <div class="popup" id="conditionsPopup">
+        <h2 class="text-2xl font-bold text-center mb-4">Conditions Applied</h2>
+        <div id="conditionsContent" class="text-text-secondary text-sm space-y-2 max-h-96 overflow-y-auto pr-2">
+            <ul class="list-disc list-inside text-base md:text-lg space-y-2">
+                <li class="font-bold text-dark mt-4">👨‍🔧 Professional Technicians</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>All work carried out by certified and experienced technicians</li>
+                <li class="font-bold text-dark mt-4">🔍 Diagnosis & Inspection</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>On-site diagnosis and detailed problem assessment</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Rapid response for urgent geyser breakdowns</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Initial visiting charge ₹299 (adjustable based on distance in Sonipat)</li>
+                <li class="font-bold text-dark mt-4">🛠️ Repair & Maintenance</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Geyser Heating Rod Change Service</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Geyser Sensor Change Service</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Solutions for various emergency geyser problems (e.g., no hot water, leakage, heating issues)</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Transparent pricing for parts and additional labor provided after diagnosis</li>
+                <li class="font-bold text-dark mt-4">💰 Transparency & Pricing</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Transparent pricing for parts and additional labor charges</li>
+                <li class="font-bold text-dark mt-4">📞 Customer Support</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Free basic demonstration of geyser functions</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Priority scheduling for urgent service</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Quick resolution (special attention for emergency calls)</li>
+                <li class="font-bold text-dark mt-4">✅ Warranty & Guarantee</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>1-year service warranty on installation work</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>1-month warranty on repairs and part replacements</li>
+                <li><i class="fas fa-check-circle text-green-600 mr-2"></i>Long-lasting and reliable performance</li>
+            </ul>
+        </div>
+        <button id="closeConditionsBtn" class="close-btn">Close</button>
     </div>
    
     <script>
-        // Data for Geyser services
         const serviceData = [
             { "Category": "Emergency Geyser Service & Diagnosis", "Price": 299 },
             { "Category": "Geyser Heating Rod Change Service", "Price": 699 },
             { "Category": "Geyser Sensor Change Service", "Price": 249 }
         ];
 
-        // --- Generic constants for the service page ---
+        // --- Generic constants ---
         const SERVICE_NAME = "Geyser Service";
         const SERVICE_TAB_ID = "shs-service";
-        const SERVICE_FORM_DATA_KEY = "serviceCategory"; // Corrected generic key
+        const SERVICE_FORM_DATA_KEY = "serviceCategory";
         const RAZORPAY_IMAGE_TEXT = "GS";
-
 
         // --- DOM Element Selection ---
         const participateBtn = document.getElementById('participate-btn');
@@ -658,21 +648,27 @@
         const ticketInput = document.getElementById('ticketCode');
         const ticketDisplay = document.getElementById('ticketDisplay');
         const okayBtn = document.getElementById('okayBtn');
+        
+        // New elements
+        const priceListBtn = document.getElementById('price-list-btn');
+        const conditionsBtn = document.getElementById('conditions-btn');
+        const priceListPopup = document.getElementById('priceListPopup');
+        const conditionsPopup = document.getElementById('conditionsPopup');
+        const closePriceListBtn = document.getElementById('closePriceListBtn');
+        const closeConditionsBtn = document.getElementById('closeConditionsBtn');
+        const priceListTableBody = document.getElementById('priceListTableBody');
 
         // --- State Variables ---
         let generatedTicket = ''; 
         let paymentTimeout = null;
         let countdownInterval = null;
-        const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes
+        const PAYMENT_TIME_LIMIT = 5 * 60;
         let currentServicePrice = 0;
         let selectedQuantity = 1;
         let allowClose = false;
 
         // --- Core Functions ---
 
-        /**
-         * Populates the service category selection popup with checkboxes.
-         */
         function populateServiceCategories() {
             serviceCategoryCheckboxesContainer.innerHTML = '';
             serviceData.forEach(service => {
@@ -690,9 +686,6 @@
             });
         }
 
-        /**
-         * Initializes the quantity dropdown selector.
-         */
         function initQuantitySelector() {
             const maxServices = 5; 
             ticketQuantitySelect.innerHTML = '<option value="" disabled>Select quantity</option>';
@@ -702,12 +695,9 @@
                 option.textContent = i + (i === 1 ? ' service' : ' services');
                 ticketQuantitySelect.appendChild(option);
             }
-            ticketQuantitySelect.value = 1; // Default to 1
+            ticketQuantitySelect.value = 1;
         }
 
-        /**
-         * Updates all price displays based on selected categories and quantity.
-         */
         function updatePrices() {
             const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => ({
                 category: cb.value,
@@ -731,10 +721,6 @@
             finalPriceInput.value = totalFinalPrice;
         }
 
-        /**
-         * Generates a unique ticket/reference number.
-         * @returns {string} The formatted ticket number.
-         */
         function generateFormattedTicket() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
                 const r = Math.random() * 16 | 0;
@@ -743,9 +729,6 @@
             }).toUpperCase();
         }
 
-        /**
-         * Creates and triggers a download for a text file with booking details.
-         */
         function downloadTickets() {
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
             const ticketContent = `${SERVICE_NAME} Booking Details\n\n` +
@@ -769,10 +752,6 @@
             URL.revokeObjectURL(url);
         }
         
-        /**
-         * Displays a custom, temporary alert message.
-         * @param {string} message - The message to display.
-         */
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
             alertBox.className = 'custom-alert'; 
@@ -799,6 +778,15 @@
             popupOverlay.style.display = 'block';
             popupElement.style.display = 'block';
             allowClose = false;
+        }
+
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         }
 
         function openServiceCategorySelectionPopup() {
@@ -851,13 +839,25 @@
                 }
             }, 1000);
         }
+        
+        // --- Price List Function ---
+        function populatePriceList() {
+            priceListTableBody.innerHTML = '';
+            serviceData.forEach(service => {
+                const marketPrice = Math.round(service.Price * 1.3); // 30% higher for market rate
+                const row = `
+                    <tr class="text-text-secondary">
+                        <td class="py-3 px-4 border-b border-gray-200">${service.Category}</td>
+                        <td class="py-3 px-4 border-b border-gray-200 text-right font-semibold text-primary">₹${service.Price}</td>
+                        <td class="py-3 px-4 border-b border-gray-200 text-right text-gray-500 line-through">₹${marketPrice}</td>
+                    </tr>
+                `;
+                priceListTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
 
         // --- Payment and Submission Logic ---
         
-        /**
-         * Handles the form submission process.
-         * @param {Event} e - The form submission event.
-         */
         function handleFormSubmit(e) {
             e.preventDefault();
 
@@ -865,7 +865,6 @@
             if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
             if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
-            if (!form.dobField.value) { showCustomAlert("Please select your date of birth."); return; }
             if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
             if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
             const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
@@ -881,7 +880,6 @@
             formData.append('field1', form.fullName.value);
             formData.append('field2', form.phone.value);
             formData.append('field3', form.email.value);
-            formData.append('field4', form.dobField.value);
             formData.append('field5', form.location.value);
             formData.append('field6', form.address.value);
             formData.append('ticket', generatedTicket);
@@ -902,9 +900,9 @@
                     openPopup(paymentStep);
                     const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
                     paymentSummary.innerHTML = `
-                        <p class="text-gray-600 text-lg mb-2">You are booking <span class="font-bold text-accent">${selectedQuantity}</span> ${SERVICE_NAME} for ${selectedCategoryNames}.</p>
-                        <p class="total-price text-accent text-2xl font-bold">Service Charge: ₹${finalPriceInput.value}</p>
-                        <p class="text-gray-600 text-sm mt-2">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
+                        <p class="text-text-secondary text-lg mb-2">You are booking <span class="font-bold text-primary">${selectedQuantity}</span> ${SERVICE_NAME} for ${selectedCategoryNames}.</p>
+                        <p class="total-price text-primary text-2xl font-bold">Service Charge: ₹${finalPriceInput.value}</p>
+                        <p class="text-text-secondary text-sm mt-2">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
                     `;
                     startPaymentTimer();
                 } else {
@@ -921,18 +919,15 @@
             });
         }
 
-        /**
-         * Initiates the Razorpay payment process.
-         */
         function handleRazorpayPayment() {
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": finalPriceInput.value * 100, // Amount in paise
+                "amount": finalPriceInput.value * 100,
                 "currency": "INR",
                 "name": `SonipatHomeService - ${SERVICE_NAME}`,
                 "description": `Payment for ${selectedQuantity} ${SERVICE_NAME}(s) for ${selectedCategoryNames}`,
-                "image": `https://placehold.co/100x100/D0D0D0/FFD700?text=${RAZORPAY_IMAGE_TEXT}`,
+                "image": `https://placehold.co/100x100/FF5252/FFFFFF?text=${RAZORPAY_IMAGE_TEXT}`,
                 "handler": function (response){
                     console.log("Payment successful:", response.razorpay_payment_id);
                     paymentSuccess();
@@ -946,12 +941,8 @@
                     "address": `${form.location.value}, ${form.address.value}`,
                     "service_details": selectedCategoryNames,
                 },
-                "theme": {
-                    "color": "#F0F0F0"
-                },
-                "modal": {
-                    "ondismiss": () => console.log('Razorpay checkout modal closed.')
-                }
+                "theme": { "color": "#D32F2F" },
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
             };
 
             const rzp = new Razorpay(options);
@@ -962,9 +953,6 @@
             rzp.open();
         }
 
-        /**
-         * Handles the UI changes after a successful payment.
-         */
         function paymentSuccess() {
             clearTimers();
             paymentStep.style.display = 'none';
@@ -973,14 +961,14 @@
             const userName = form.fullName.value;
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
 
-            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your ${SERVICE_NAME} Booking for ${selectedCategoryNames} is Confirmed! 🎉`;
+            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your ${SERVICE_NAME} Booking is Confirmed! 🎉`;
             
             ticketDisplay.innerHTML = `
                 <p>Registration ID: <span class="text-dark">${generatedTicket}</span></p>
                 <p>Service: <span class="text-dark">${SERVICE_NAME} for ${selectedCategoryNames}</span></p>
                 <p>Quantity: <span class="text-dark">${selectedQuantity}</span></p>
-                <p class="text-gray-600 text-sm mt-2">Service Charge: ₹${finalPriceInput.value}</p>
-                <p class="text-gray-600 text-sm">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
+                <p class="text-text-secondary text-sm mt-2">Service Charge: ₹${finalPriceInput.value}</p>
+                <p class="text-text-secondary text-sm">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
             `;
             
             ticketCountDisplay.textContent = `${selectedQuantity} ${SERVICE_NAME}(s)`;
@@ -998,13 +986,11 @@
 
         popupOverlay.addEventListener('click', e => {
             if (e.target === popupOverlay) {
-                if (serviceCategorySelectionPopup.style.display === 'block') {
-                    closeServiceCategorySelectionPopup();
-                } else if (ticketStep.style.display === 'block' && allowClose) {
-                    closeAllPopups();
-                } else {
-                    showCustomAlert("Please complete the form or payment process before closing.");
-                }
+                if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (conditionsPopup.style.display === 'block') closeSpecificPopup(conditionsPopup);
+                else if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
+                else if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
+                else showCustomAlert("Please complete the process before closing.");
             }
         });
         
@@ -1012,6 +998,15 @@
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
         downloadTicketsBtn.addEventListener('click', downloadTickets);
         form.addEventListener('submit', handleFormSubmit);
+
+        // New listeners
+        priceListBtn.addEventListener('click', () => {
+            populatePriceList();
+            openPopup(priceListPopup);
+        });
+        conditionsBtn.addEventListener('click', () => openPopup(conditionsPopup));
+        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
+        closeConditionsBtn.addEventListener('click', () => closeSpecificPopup(conditionsPopup));
 
         // --- Page Load Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
