@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonipatHomeService.com - RO Services</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Razorpay for payment integration -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        /* Import Google Font 'Inter' */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        /* Define new CSS custom properties for a softer, more soothing color scheme */
+        :root {
+            --primary: #5A7E9F; /* A calming, muted blue */
+            --secondary: #9F5A7E; /* A complementary muted pink */
+            --accent: #FFC107; /* A soft yellow for accents */
+            --text-dark: #333333; /* Darker text for readability */
+            --text-light: #f0f0f0; /* Light text on dark backgrounds */
+            --background-light: #F0F4F8; /* A very light, calming gray-blue background */
+            --card-bg: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        main {
+            padding-top: 6rem;
+            max-width: 1700px;
+            margin: 0 auto;
+            padding: 6rem 1rem 3rem;
+        }
+
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background: linear-gradient(90deg, var(--primary), #4876a6);
+            box-shadow: var(--shadow);
+            z-index: 100;
+            gap: 1rem;
+        }
+
+        .top-bar select {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%208l5%205%205-5H5z%22%20fill%3D%22%23F0F4F8%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+        
+        .top-bar select {
+            color: var(--text-dark);
+        }
+
+        .product-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 0.9375rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(90, 126, 159, 0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .product-header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .product-header h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .product-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 1.5rem;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 280px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.625rem;
+            overflow: hidden;
+            min-height: 250px;
+            object-fit: cover;
+            border: 1px solid rgba(90, 126, 159, 0.2);
+        }
+
+        .product-details {
+            flex: 2;
+            min-width: 280px;
+            padding: 1rem;
+            color: var(--text-dark);
+        }
+
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .original-price {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            color: #b0b0b0;
+        }
+
+        .lottery-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .features {
+            margin: 1rem 0;
+        }
+
+        .features h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+
+        .features ul {
+            padding-left: 1.2rem;
+        }
+
+        .features li {
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            justify-content: center;
+            flex-grow: 1;
+            max-width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), #4876a6);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-0.1875rem);
+            box-shadow: 0 0.3125rem 0.9375rem rgba(90, 126, 159, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(159, 90, 126, 0.2);
+        }
+
+        /* Popups */
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 999;
+        }
+
+        .popup {
+            display: none;
+            background: var(--background-light);
+            color: var(--text-dark);
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            box-shadow: 0 0 1.875rem rgba(90, 126, 159, 0.5);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 95%;
+            max-width: 550px;
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -45%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .popup input,
+        .popup button,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.625rem 0;
+            border-radius: 0.625rem;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .popup input,
+        .popup textarea {
+            background: #e9e9e9;
+            color: var(--text-dark);
+        }
+        
+        /* New styling for service type radio buttons to make them more visible */
+        .service-type-option {
+            background-color: #e9e9e9;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            transition: all 0.2s ease;
+        }
+        .service-type-option:hover {
+            background-color: #dcdcdc;
+        }
+        .service-type-option input:checked + span {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .popup textarea {
+            min-height: 6.25rem;
+            resize: vertical;
+        }
+
+        .popup label {
+            display: block;
+            margin-bottom: 0.3125rem;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .popup button[type="submit"],
+        .popup button#okayBtn,
+        #razorpay-payment-btn,
+        #downloadTicketsBtn {
+            background: linear-gradient(90deg, var(--primary), #4876a6);
+            color: var(--text-light);
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.9375rem;
+            border-radius: 0.625rem;
+            border: none;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .popup button[type="submit"]:hover,
+        .popup button#okayBtn:hover,
+        #razorpay-payment-btn:hover,
+        #downloadTicketsBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(90, 126, 159, 0.5);
+        }
+
+        #ticketDisplay {
+            font-weight: bold;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            word-break: break-word;
+            text-align: center;
+            max-height: 12.5rem;
+            overflow-y: auto;
+            padding: 0.625rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 0.625rem;
+            margin: 0.625rem 0;
+        }
+
+        #countryError {
+            color: red;
+            font-size: 0.8rem;
+            display: none;
+            margin-top: -0.3125rem;
+            margin-bottom: 0.625rem;
+        }
+
+        #submitMessage {
+            color: var(--text-dark);
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 0.625rem;
+            display: none;
+        }
+
+        #timerDisplay {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            margin-top: 0.9375rem;
+        }
+
+        .quantity-selector {
+            margin: 0.9375rem 0;
+        }
+
+        .quantity-selector label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .quantity-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.3125rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .total-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: right;
+            margin: 0.625rem 0;
+        }
+
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
+            z-index: 1002;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeInOut 4s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -40%); }
+            10% { opacity: 1; transform: translate(-50%, -50%); }
+            90% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+        }
+
+        /* New styles for stat cards */
+        .lottery-stats {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            box-shadow: 0 0 10px rgba(90, 126, 159, 0.2);
+            animation: glow 2s infinite alternate;
+        }
+        
+        /* Centering the text inside stat cards */
+        .stat-card h3, .stat-card p {
+            text-align: center;
+        }
+
+        /* Glowing border effect for stat cards */
+        @keyframes glow {
+            from { box-shadow: 0 0 5px var(--primary); }
+            to { box-shadow: 0 0 15px var(--primary); }
+        }
+
+        /* Price table styling */
+        #priceListContainer table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #priceListContainer th, #priceListContainer td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+        #priceListContainer thead {
+            background-color: rgba(90, 126, 159, 0.1);
+        }
+
+        /* Responsive design for tablets */
+        @media (max-width: 1024px) {
+            main { padding: 5rem 1rem 2rem; }
+            .product-header h2 { font-size: 1.5rem; }
+            .product-content { flex-direction: column; padding: 1rem; }
+            .product-image { min-height: 200px; width: 100%; }
+            .product-details { min-width: unset; width: 100%; text-align: center; }
+            .price-container, .action-buttons { justify-content: center; }
+            .btn { width: 100%; max-width: 300px; }
+            .lottery-stats { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+            .stat-card { padding: 0.8rem; }
+            .stat-card h3 { font-size: 0.85rem; }
+            .stat-card p { font-size: 1.3rem; }
+            .popup { padding: 1rem; }
+            .popup input, .popup button, .popup select, .popup textarea { font-size: 0.9rem; padding: 0.6rem; }
+        }
+
+        /* Responsive design for smaller tablets and large phones */
+        @media (max-width: 768px) {
+            main { padding-top: 4rem; }
+            .product-header h2 { font-size: 1.3rem; }
+            .original-price { font-size: 1.3rem; }
+            .lottery-price { font-size: 1.8rem; }
+            .features li { font-size: 0.9rem; }
+            .btn { font-size: 0.85rem; padding: 0.6rem 1rem; }
+            .lottery-stats { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* Responsive design for mobile price table */
+        @media (max-width: 640px) {
+            #priceListContainer thead { display: none; }
+            #priceListContainer tr {
+                display: block;
+                margin-bottom: 1rem;
+                border: 1px solid rgba(90, 126, 159, 0.2);
+                border-radius: 0.5rem;
+            }
+            #priceListContainer td {
+                display: block;
+                text-align: right;
+                position: relative;
+                padding-left: 50%;
+                border-bottom: 1px solid rgba(90, 126, 159, 0.1);
+            }
+            #priceListContainer td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0.75rem;
+                width: 45%;
+                padding-right: 0.75rem;
+                font-weight: bold;
+                text-align: left;
+                color: var(--primary);
+            }
+        }
+
+        /* Responsive design for mobile phones */
+        @media (max-width: 480px) {
+            main { padding: 3rem 0.5rem 1rem; }
+            .product-header h2 { font-size: 1.2rem; }
+            .product-content { padding: 0.8rem; }
+            .product-image { min-height: 180px; }
+            .original-price { font-size: 1.2rem; }
+            .lottery-price { font-size: 1.6rem; }
+            .features ul { padding-left: 1rem; }
+            .features li { font-size: 0.85rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { width: 100%; max-width: unset; }
+            .lottery-stats { grid-template-columns: 1fr; }
+            .stat-card { padding: 0.7rem; }
+            .stat-card h3 { font-size: 0.8rem; }
+            .stat-card p { font-size: 1.1rem; }
+            .popup { padding: 1rem; width: 98%; }
+            .popup h2 { font-size: 1.3rem; }
+            .popup input, .popup button, .popup select, .popup textarea { font-size: 0.85rem; padding: 0.5rem; }
+            #ticketDisplay { font-size: 0.95rem; }
+            .custom-alert { font-size: 0.9rem; padding: 1rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <label for="roBrandSelect" class="text-white text-lg">Select RO Services</label>
+        <select id="roBrandSelect" class="rounded-lg bg-gray-100 text-gray-900 p-2">
+            <option value="Aquaguard">Aquaguard</option>
+            <option value="Kent">Kent</option>
+            <option value="Livpure">Livpure</option>
+            <option value="Pureit">Pureit</option>
+            <option value="Eureka Forbes">Eureka Forbes</option>
+            <option value="Havells">Havells</option>
+            <option value="AO Smith">AO Smith</option>
+            <option value="HUL Pureit">HUL Pureit</option>
+            <option value="Blue Star">Blue Star</option>
+            <option value="LG">LG</option>
+        </select>
+    </div>
+   
+    <main class="container mx-auto px-4 py-8">
+        
+        <section class="product-section rounded-2xl shadow-lg mb-8">
+            <div class="product-header rounded-t-2xl">
+                
+            </div>
+            
+            <div class="brand-info-container">
+                <div class="brand-content p-6">
+                    <!-- Updated image source to simulate a unique image per brand -->
+                    <img id="brandImage" src="https://placehold.co/800x400/5A7E9F/ffffff?text=Aquaguard+RO+Service" alt="Aquaguard RO Service" class="w-full h-auto rounded-lg shadow-md mb-4">
+                    <div class="product-details w-full text-center md:text-left">
+                        <h3 class="text-2xl md:text-3xl font-semibold text-primary mb-3" id="brandHeading">Aquaguard RO Service</h3>
+                        <p class="text-gray-600 mb-4 text-base md:text-lg">Get top-notch repair and servicing for your RO system. Our certified technicians ensure quality and efficient service for pure drinking water.</p>
+                        
+                        <div class="price-container flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 my-6">
+                            <div class="original-price text-gray-400 text-xl md:text-2xl line-through">₹2500</div>
+                            <div class="lottery-price text-primary text-3xl md:text-4xl font-bold" id="displayPrice">₹1299</div>
+                        </div>
+                        
+                        <div class="features text-left my-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                            <button class="btn btn-primary" id="seePriceListBtn">
+                                <i class="fas fa-tags"></i> Price List
+                            </button>
+                            <button class="btn btn-secondary" id="conditionsBtn">
+                                <i class="fas fa-info-circle"></i> Conditions
+                            </button>
+                        </div>
+                        
+                        <div class="action-buttons flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
+                            <button class="btn btn-primary shadow-lg hover:shadow-xl" id="participate-btn">
+                                <i class="fas fa-water"></i> Book RO Service
+                            </button>
+                            <button class="btn btn-secondary shadow-lg hover:shadow-xl" onclick="window.open('index.html')">
+                                <i class="fas fa-external-link-alt"></i> Go Back To Home
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stat Cards with centered text and glowing border effect -->
+        <div class="lottery-stats grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="stat-card rounded-xl shadow-lg">
+                <h3 class="text-primary text-lg font-medium mb-1 text-center">Total Customers</h3>
+                <p class="text-dark text-3xl font-bold text-center">18,000+</p>
+            </div>
+            <div class="stat-card rounded-xl shadow-lg">
+                <h3 class="text-primary text-lg font-medium mb-1 text-center">ROs Serviced</h3>
+                <p class="text-dark text-3xl font-bold text-center">800+ Monthly</p>
+            </div>
+            <div class="stat-card rounded-xl shadow-lg">
+                <h3 class="text-primary text-lg font-medium mb-1 text-center">Customer Rating</h3>
+                <p class="text-dark text-3xl font-bold text-center">4.7/5 Stars</p>
+            </div>
+            <div class="stat-card rounded-xl shadow-lg">
+                <h3 class="text-primary text-lg font-medium mb-1 text-center">Next Available Slot</h3>
+                <p class="text-dark text-3xl font-bold text-center">Today!</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="popup-overlay"></div>
+    
+    <div class="popup" id="popupForm">
+        <h2 class="text-2xl font-bold text-center mb-4">RO Service Booking</h2>
+        <form id="lotteryForm">
+            <!-- New: RO Brand field populated automatically -->
+            <label for="roBrandDisplay" class="text-primary text-sm mb-1">Service for RO Brand:</label>
+            <input type="text" id="roBrandDisplay" name="roBrandDisplay" readonly class="rounded-lg bg-gray-200 text-gray-700 p-3 mb-3 focus:outline-none" />
+
+            <label for="fullName" class="text-primary text-sm mb-1">Your Full Name (min 10 characters)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            
+            <label for="phone" class="text-primary text-sm mb-1">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            
+            <label for="email" class="text-primary text-sm mb-1">Email Address</label>
+            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            
+            <label for="location" class="text-primary text-sm mb-1">Your Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            
+            <label for="address" class="text-primary text-sm mb-1">Complete Address (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            <span id="countryError" class="text-red-400 text-xs mt-1 hidden">Please enter your complete address with at least 30 characters.</span>
+            
+            <!-- Updated Service Type section with new options -->
+            <div class="quantity-selector my-4">
+                <label class="text-primary text-sm mb-2">Select Service Type:</label>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-2">
+                    <!-- Removed Basic and Full services as per request -->
+                    <label class="inline-flex items-center text-dark service-type-option cursor-pointer">
+                        <input type="radio" name="serviceTypeOption" value="Emergency" class="form-radio h-5 w-5 mr-2" checked>
+                        <span>Emergency RO Servicing</span>
+                    </label>
+                    <label class="inline-flex items-center text-dark service-type-option cursor-pointer">
+                        <input type="radio" name="serviceTypeOption" value="Installation" class="form-radio h-5 w-5 mr-2">
+                        <span>RO Installation Service</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="quantity-selector my-4">
+                <label for="ticketQuantity" class="text-primary text-sm mb-2">Number of Services (Max 5):</label>
+                <select id="ticketQuantity" name="ticketQuantity" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="1" disabled selected>1 service</option>
+                    <option value="2">2 services</option>
+                    <option value="3">3 services</option>
+                    <option value="4">4 services</option>
+                    <option value="5">5 services</option>
+                </select>
+                <div class="quantity-info flex justify-between mt-2 text-gray-400 text-sm">
+                    <span>Quantity based price</span>
+                    <span class="total-price-quantity font-bold text-primary text-lg">Total: ₹1299</span>
+                </div>
+            </div>
+
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="finalPrice" id="finalPrice" value="1299" />
+            <input type="hidden" name="roBrand" id="roBrandHidden" value="Aquaguard" />
+            <button type="submit" class="w-full btn-primary mt-4 py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Submit Details</button>
+            <span id="submitMessage" class="text-green-400 text-center mt-3 hidden">Submitting... Please wait</span>
+        </form>
+    </div>
+
+    <div class="popup" id="paymentStep">
+        <h2 class="text-2xl font-bold text-center mb-4">Complete Your Payment for RO Service</h2>
+        <p class="text-gray-600 text-center mb-6">Please complete the payment to finalize your RO Service booking. Click the button below.</p>
+        <div id="paymentSummary" class="bg-gray-200 p-4 rounded-lg mb-6 text-center"></div>
+        <div id="timerDisplay" class="text-primary text-xl font-bold text-center mb-6">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn" class="w-full btn-primary py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Pay with Razorpay</button>
+        <p class="mt-4 text-sm text-gray-600 text-center">
+            After payment, please wait for automatic verification. Do not close this window.
+        </p>
+    </div>
+
+    <div class="popup" id="ticketStep">
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center mb-4 text-primary"></h2>
+        <p class="text-gray-600 text-center mb-4">You have successfully booked <span id="ticketCountDisplay" class="font-bold text-primary"></span>:</p>
+        <div id="ticketDisplay" class="bg-gray-200 p-4 rounded-lg mb-6 text-center text-lg"></div>
+        <button id="downloadTicketsBtn" class="w-full btn-primary py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            <i class="fas fa-download mr-2"></i> Download Service Details
+        </button>
+        <p class="mt-4 text-sm text-gray-600 text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="w-full btn-secondary py-3 rounded-xl font-bold text-white text-lg mt-4 transition-all duration-300 hover:scale-105 hover:bg-opacity-20">Okay, Got It!</button>
+    </div>
+
+    <div class="popup" id="priceListPopup">
+        <h2 class="text-2xl font-bold text-center mb-4">Service Price List</h2>
+        <div id="priceListContainer" class="max-h-[70vh] overflow-y-auto">
+        </div>
+        <button class="btn btn-primary mt-4" onclick="closeInfoPopup('priceListPopup')">Close</button>
+    </div>
+
+    <div class="popup" id="conditionsPopup">
+        <h2 class="text-2xl font-bold text-center mb-4">Service Features & Conditions</h2>
+        <div id="conditionsContainer" class="max-h-[70vh] overflow-y-auto text-left p-2">
+        </div>
+        <button class="btn btn-primary mt-4" onclick="closeInfoPopup('conditionsPopup')">Close</button>
+    </div>
+   
+    <script>
+        // Updated data for RO services by brand, including new service types and unique images
+        const serviceData = {
+            "Aquaguard": {
+                "prices": { "Basic": 1299, "Full": 2499, "Emergency": 1899, "Installation": 1499 },
+                "features": [
+                    "Expert diagnosis and repair for all Aquaguard models.",
+                    "Certified technicians with extensive RO experience.",
+                    "Transparent pricing for all services.",
+                    "Use of genuine parts for replacements (cost extra).",
+                    "Ensuring optimal water purification performance.",
+                    "Convenient scheduling and quick turnaround times."
+                ],
+                "image": "https://placehold.co/800x400/5A7E9F/ffffff?text=Aquaguard+RO+Service",
+                "priceList": [
+                    { "Service": "Emergency RO Servicing", "Cost": 1899 },
+                    { "Service": "RO Installation Service", "Cost": 1499 }
+                ]
+            },
+            "Kent": {
+                "prices": { "Basic": 1499, "Full": 2799, "Emergency": 2099, "Installation": 1699 },
+                "features": [
+                    "Specialized service for all Kent RO models.",
+                    "Comprehensive inspection and filter check.",
+                    "Genuine Kent spares used for replacement.",
+                    "Ensuring 100% pure water output.",
+                    "Prompt service at your doorstep."
+                ],
+                "image": "https://placehold.co/800x400/9F5A7E/ffffff?text=Kent+RO+Service",
+                "priceList": [
+                    { "Service": "Emergency RO Servicing", "Cost": 2099 },
+                    { "Service": "RO Installation Service", "Cost": 1699 }
+                ]
+            },
+            "Livpure": {
+                "prices": { "Basic": 1199, "Full": 2399, "Emergency": 1799, "Installation": 1399 },
+                "features": [
+                    "Professional servicing for all Livpure RO systems.",
+                    "Thorough cleaning and maintenance.",
+                    "Quality check of all components.",
+                    "Ensuring high-quality drinking water.",
+                    "Quick and efficient service."
+                ],
+                "image": "https://placehold.co/800x400/80B09F/ffffff?text=Livpure+RO+Service",
+                "priceList": [
+                    { "Service": "Emergency RO Servicing", "Cost": 1799 },
+                    { "Service": "RO Installation Service", "Cost": 1399 }
+                ]
+            },
+            "Pureit": {
+                "prices": { "Basic": 1099, "Full": 2299, "Emergency": 1699, "Installation": 1299 },
+                "features": [
+                    "Expert repair and maintenance for all Pureit models.",
+                    "Replacing filters and membranes as needed.",
+                    "Ensuring the best water quality for your family.",
+                    "Doorstep service for your convenience.",
+                    "Use of authentic Pureit parts."
+                ],
+                "image": "https://placehold.co/800x400/7E9F5A/ffffff?text=Pureit+RO+Service",
+                "priceList": [
+                    { "Service": "Emergency RO Servicing", "Cost": 1699 },
+                    { "Service": "RO Installation Service", "Cost": 1299 }
+                ]
+            },
+            "Eureka Forbes": {
+                "prices": { "Basic": 1399, "Full": 2699, "Emergency": 1999, "Installation": 1599 },
+                "features": [
+                    "Trusted service for Eureka Forbes RO purifiers.",
+                    "Full system check and performance testing.",
+                    "Maintenance by trained professionals.",
+                    "Ensuring the longevity of your RO system.",
+                    "Quality parts and reliable service."
+                ],
+                "image": "https://placehold.co/800x400/9F7E5A/ffffff?text=Eureka+Forbes+Service",
+                "priceList": [
+                    { "Service": "Emergency RO Servicing", "Cost": 1999 },
+                    { "Service": "RO Installation Service", "Cost": 1599 }
+                ]
+            },
+            "Havells": {
+                "prices": { "Basic": 1599, "Full": 2899, "Emergency": 2199, "Installation": 1799 },
+                "features": [
+                    "Specialized service for Havells water purifiers.",
+                    "Advanced diagnostics for any issues.",
+                    "Comprehensive cleaning and maintenance.",
+                    "Ensuring the highest standard of water purification.",
+                    "Timely and professional service."
+                ],
+                "image": "https://placehold.co/800x400/5A9F7E/ffffff?text=Havells+RO+Service",
+                "priceList": [
+                    { "Service": "Emergency RO Servicing", "Cost": 2199 },
+                    { "Service": "RO Installation Service", "Cost": 1799 }
+                ]
+            },
+            "AO Smith": {
+                "prices": { "Basic": 1699, "Full": 3099, "Emergency": 2299, "Installation": 1899 },
+                "features": [
+                    "Premium service for AO Smith water purifiers.",
+                    "Filter and membrane replacement.",
+                    "Ensuring your RO operates at peak performance.",
+                    "Service by skilled and experienced technicians.",
+                    "Use of certified AO Smith components."
+                ],
+                "image": "https://placehold.co/800x400/7E5A9F/ffffff?text=AO+Smith+Service",
+                "priceList": [
+                    { "Service": "Emergency RO Servicing", "Cost": 2299 },
+                    { "Service": "RO Installation Service", "Cost": 1899 }
+                ]
+            },
+            "HUL Pureit": {
+                "prices": { "Basic": 1199, "Full": 2399, "Emergency": 1799, "Installation": 1399 },
+                "features": [
+                    "Dedicated servicing for HUL Pureit models.",
+                    "Ensuring the `Germkill Kit` is functioning correctly.",
+                    "Full system sanitization and cleaning.",
+                    "Prompt and reliable service.",
+                    "Use of genuine HUL Pureit parts."
+                ],
+                "image": "https://placehold.co/800x400/5A729F/ffffff?text=HUL+Pureit+Service",
+                "priceList": [
+                    { "Service": "Emergency RO Servicing", "Cost": 1799 },
+                    { "Service": "RO Installation Service", "Cost": 1399 }
+                ]
+            },
+            "Blue Star": {
+                "prices": { "Basic": 1499, "Full": 2899, "Emergency": 2099, "Installation": 1699 },
+                "features": [
+                    "Service for all Blue Star water purifier models.",
+                    "Detailed inspection and performance check.",
+                    "Ensuring pure and healthy drinking water.",
+                    "Expert technicians for quick repairs.",
+                    "Genuine filter and part replacements."
+                ],
+                "image": "https://placehold.co/800x400/7E5A9F/ffffff?text=Blue+Star+Service",
+                "priceList": [
+                    { "Service": "Emergency RO Servicing", "Cost": 2099 },
+                    { "Service": "RO Installation Service", "Cost": 1699 }
+                ]
+            },
+            "LG": {
+                "prices": { "Basic": 1799, "Full": 3299, "Emergency": 2399, "Installation": 1999 },
+                "features": [
+                    "High-quality service for LG water purifiers.",
+                    "Advanced cleaning and maintenance process.",
+                    "Use of original LG spare parts.",
+                    "Ensuring consistent water flow and taste.",
+                    "Professional and courteous technicians."
+                ],
+                "image": "https://placehold.co/800x400/9F5A9F/ffffff?text=LG+RO+Service",
+                "priceList": [
+                    { "Service": "Emergency RO Servicing", "Cost": 2399 },
+                    { "Service": "RO Installation Service", "Cost": 1999 }
+                ]
+            }
+        };
+
+        const SERVICE_NAME = "RO Service";
+        // Updated Google Sheet tab ID
+        const SERVICE_TAB_ID = "shs-service";
+        const SERVICE_FORM_DATA_KEY = "roBrand";
+        const RAZORPAY_IMAGE_TEXT = "RO";
+
+        const participateBtn = document.getElementById('participate-btn');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const allPopups = document.querySelectorAll('.popup');
+        const popupForm = document.getElementById('popupForm');
+        const paymentStep = document.getElementById('paymentStep');
+        const ticketStep = document.getElementById('ticketStep');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const razorpayBtn = document.getElementById('razorpay-payment-btn');
+        const submitMessage = document.getElementById('submitMessage');
+        const ticketQuantitySelect = document.getElementById('ticketQuantity');
+        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
+        const paymentSummary = document.getElementById('paymentSummary');
+        const ticketCountDisplay = document.getElementById('ticketCountDisplay');
+        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const displayPriceElement = document.getElementById('displayPrice');
+        const finalPriceInput = document.getElementById('finalPrice');
+        const form = document.getElementById('lotteryForm');
+        const ticketDisplay = document.getElementById('ticketDisplay');
+        const okayBtn = document.getElementById('okayBtn');
+
+        const seePriceListBtn = document.getElementById('seePriceListBtn');
+        const conditionsBtn = document.getElementById('conditionsBtn');
+        const priceListPopup = document.getElementById('priceListPopup');
+        const conditionsPopup = document.getElementById('conditionsPopup');
+        const priceListContainer = document.getElementById('priceListContainer');
+        const conditionsContainer = document.getElementById('conditionsContainer');
+        
+        const roBrandSelect = document.getElementById('roBrandSelect');
+        const roBrandDisplayInput = document.getElementById('roBrandDisplay'); // New element
+        const brandImage = document.getElementById('brandImage');
+        const brandHeading = document.getElementById('brandHeading');
+        const roBrandHiddenInput = document.getElementById('roBrandHidden');
+        
+        let generatedTicket = ''; 
+        let paymentTimeout = null;
+        let countdownInterval = null;
+        const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes
+        let currentServicePrice = 0;
+        let selectedQuantity = 1;
+        let allowClose = false;
+
+        /**
+         * Updates the displayed prices, image, and text based on selected brand and quantity.
+         */
+        function updatePricesAndInfo() {
+            const selectedBrand = roBrandSelect.value || 'Aquaguard';
+            const service = serviceData[selectedBrand];
+            selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
+            
+            let totalCalculatedPrice = 0;
+            let displayPriceText = 'Select a service';
+
+            if (service) {
+                const serviceType = document.querySelector('input[name="serviceTypeOption"]:checked')?.value;
+                currentServicePrice = parseFloat(service.prices[serviceType]);
+                totalCalculatedPrice = currentServicePrice * selectedQuantity;
+                displayPriceText = `₹${currentServicePrice}`;
+            } else {
+                currentServicePrice = 0;
+            }
+
+            displayPriceElement.textContent = displayPriceText;
+            totalPriceQuantityDisplay.textContent = `Total: ₹${totalCalculatedPrice}`;
+            finalPriceInput.value = totalCalculatedPrice;
+            roBrandHiddenInput.value = selectedBrand;
+            
+            // Update image and heading
+            brandImage.src = service.image;
+            brandHeading.textContent = `${selectedBrand} RO Service`;
+
+            // Update conditions and price list on the fly
+            generateConditions(service);
+            generatePriceTable(service);
+        }
+
+        /**
+         * Initializes the quantity selector dropdown with options from 1 to 5.
+         */
+        function initQuantitySelector() {
+            const maxServices = 5;
+            ticketQuantitySelect.innerHTML = '<option value="1">1 service</option>';
+            for (let i = 2; i <= maxServices; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i + ' services';
+                ticketQuantitySelect.appendChild(option);
+            }
+        }
+
+        /**
+         * Generates a unique formatted ticket ID.
+         * @returns {string} The generated ticket ID.
+         */
+        function generateFormattedTicket() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16).toUpperCase();
+            });
+        }
+
+        /**
+         * Downloads the booking details as a text file.
+         */
+        function downloadTickets() {
+            const selectedBrand = roBrandSelect.value;
+            const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value;
+            
+            const ticketContent = `${SERVICE_NAME} Booking Details\n\n` +
+                                 `Customer Name: ${form.field1.value}\n` +
+                                 `Contact: ${form.field2.value}\n` +
+                                 `Location: ${form.field5.value}\n` +
+                                 `RO Brand: ${selectedBrand}\n` +
+                                 `Service Type: ${serviceTypeName}\n` +
+                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
+                                 `Total Services: ${selectedQuantity}\n` +
+                                 `Service Charge: ₹${finalPriceInput.value}\n\n` +
+                                 `Note: Final charges for parts and labor will be communicated by the technician after diagnosis.`;
+            
+            const blob = new Blob([ticketContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${SERVICE_TAB_ID}_booking.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        /**
+         * Shows a custom alert message to the user.
+         * @param {string} message The message to display.
+         */
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert'; 
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => alertBox.remove(), 4000); 
+        }
+
+        /**
+         * Closes all popups and clears timers.
+         */
+        function closeAllPopups() {
+            if (!allowClose) {
+                showCustomAlert("Please complete the process before closing.");
+                return;
+            }
+            clearTimers();
+            popupOverlay.style.display = 'none';
+            allPopups.forEach(p => p.style.display = 'none');
+            document.body.style.overflow = 'auto';
+            allowClose = false; 
+        }
+
+        /**
+         * Opens a specified popup element.
+         * @param {HTMLElement} popupElement The popup element to show.
+         */
+        function openPopup(popupElement) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            popupElement.style.display = 'block';
+            allowClose = false;
+        }
+
+        /**
+         * Closes an info popup.
+         * @param {string} popupId The ID of the popup to close.
+         */
+        function closeInfoPopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+
+            const isAnotherPopupVisible = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupVisible) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        /**
+         * Clears all active timers and intervals.
+         */
+        function clearTimers() {
+            if (paymentTimeout) clearTimeout(paymentTimeout);
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        /**
+         * Starts the countdown timer for the payment step.
+         */
+        function startPaymentTimer() {
+            let timeLeft = PAYMENT_TIME_LIMIT;
+            const updateDisplay = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            updateDisplay();
+
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    showCustomAlert("Payment time expired. Please try again.");
+                    allowClose = true; 
+                    closeAllPopups();
+                }
+            }, 1000);
+        }
+        
+        /**
+         * Handles the form submission process.
+         * @param {Event} e The submit event.
+         */
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
+            if (!roBrandSelect.value) { showCustomAlert(`Please select an RO brand.`); return; }
+            if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of services."); return; }
+
+            submitMessage.style.display = 'block';
+            form.querySelector('button[type="submit"]').disabled = true;
+
+            generatedTicket = generateFormattedTicket(); 
+            
+            const formData = new FormData();
+            formData.append('field1', form.fullName.value);
+            formData.append('field2', form.phone.value);
+            formData.append('field3', form.email.value);
+            formData.append('field5', form.location.value);
+            formData.append('field6', form.address.value);
+            formData.append('ticket', generatedTicket);
+            formData.append('tab', SERVICE_TAB_ID);
+            formData.append(SERVICE_FORM_DATA_KEY, roBrandSelect.value);
+            formData.append('serviceType', document.querySelector('input[name="serviceTypeOption"]:checked')?.value);
+            formData.append('servicePrice', finalPriceInput.value);
+            formData.append('ticketQuantity', ticketQuantitySelect.value);
+            
+            fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res === "Success") {
+                    popupForm.style.display = 'none';
+                    openPopup(paymentStep);
+                    const selectedBrand = roBrandSelect.value;
+                    const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value;
+                    paymentSummary.innerHTML = `
+                        <p class="text-gray-600 text-lg mb-2">You are booking <span class="font-bold text-primary">${ticketQuantitySelect.value}</span> ${serviceTypeName}(s) for ${selectedBrand}.</p>
+                        <p class="total-price text-primary text-2xl font-bold">Service Charge: ₹${finalPriceInput.value}</p>
+                        <p class="text-gray-600 text-sm mt-2">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
+                    `;
+                    startPaymentTimer();
+                } else {
+                    showCustomAlert("There was an error submitting your form. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("An unexpected error occurred. Please check your connection and try again.");
+            })
+            .finally(() => {
+                submitMessage.style.display = 'none';
+                form.querySelector('button[type="submit"]').disabled = false;
+            });
+        }
+
+        /**
+         * Handles the Razorpay payment process.
+         */
+        function handleRazorpayPayment() {
+            const selectedBrand = roBrandSelect.value;
+            const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value;
+            const options = {
+                "key": "rzp_live_opiqkRmGpjG1hF",
+                "amount": finalPriceInput.value * 100,
+                "currency": "INR",
+                "name": `SonipatHomeService - ${SERVICE_NAME}`,
+                "description": `Payment for ${ticketQuantitySelect.value} ${serviceTypeName}(s) for ${selectedBrand}`,
+                "image": `https://placehold.co/100x100/F0F4F8/333333?text=${RAZORPAY_IMAGE_TEXT}`,
+                "handler": function (response){
+                    console.log("Payment successful:", response.razorpay_payment_id);
+                    paymentSuccess();
+                },
+                "prefill": {
+                    "name": form.fullName.value,
+                    "email": form.email.value,
+                    "contact": form.phone.value
+                },
+                "notes": {
+                    "address": `${form.location.value}, ${form.address.value}`,
+                    "service_details": `${selectedBrand}, ${serviceTypeName}`,
+                },
+                "theme": {
+                    "color": "#5A7E9F"
+                },
+                "modal": {
+                    "ondismiss": () => console.log('Razorpay checkout modal closed.')
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                console.error("Payment Failed:", response.error);
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
+        }
+
+        /**
+         * Handles actions after a successful payment.
+         */
+        function paymentSuccess() {
+            clearTimers();
+            paymentStep.style.display = 'none';
+            openPopup(ticketStep);
+
+            const userName = form.fullName.value;
+            const selectedBrand = roBrandSelect.value;
+            const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value;
+
+            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your ${serviceTypeName} Booking for ${selectedBrand} is Confirmed! 🎉`;
+
+            ticketDisplay.innerHTML = `
+                <p>Registration ID: <span class="text-dark">${generatedTicket}</span></p>
+                <p>Service: <span class="text-dark">${serviceTypeName} for ${selectedBrand}</span></p>
+                <p>Quantity: <span class="text-dark">${selectedQuantity}</span></p>
+                <p class="text-gray-600 text-sm mt-2">Service Charge: ₹${finalPriceInput.value}</p>
+                <p class="text-gray-600 text-sm">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
+            `;
+
+            ticketCountDisplay.textContent = `${selectedQuantity} ${serviceTypeName}(s)`;
+            allowClose = true;
+        }
+
+        /**
+         * Opens an info popup (e.g., price list, conditions).
+         * @param {string} popupId The ID of the popup to open.
+         */
+        function openInfoPopup(popupId) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            document.getElementById(popupId).style.display = 'block';
+        }
+
+        /**
+         * Generates and displays the price list table.
+         * @param {object} service - The service data for the selected brand.
+         */
+        function generatePriceTable(service) {
+            let tableHTML = `
+                <h3 class="text-xl md:text-2xl font-semibold text-primary mb-3">RO Service Price List</h3>
+                <table class="w-full text-left text-gray-600">
+                    <thead>
+                        <tr class="bg-gray-200 border-b border-gray-400">
+                            <th class="p-3">Service Type</th>
+                            <th class="p-3">Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            service.priceList.forEach(item => {
+                tableHTML += `
+                    <tr class="border-b border-gray-300">
+                        <td class="p-3" data-label="Service Type">${item.Service}</td>
+                        <td class="p-3" data-label="Cost">₹${item.Cost}</td>
+                    </tr>
+                `;
+            });
+            tableHTML += `</tbody></table>`;
+            priceListContainer.innerHTML = tableHTML;
+        }
+
+        /**
+         * Generates and displays the conditions list.
+         * @param {object} service - The service data for the selected brand.
+         */
+        function generateConditions(service) {
+            let conditionsHTML = `
+                <h3 class="text-xl md:text-2xl font-semibold text-primary mb-3">Service Features:</h3>
+                <ul class="list-disc list-inside text-gray-600 text-base md:text-lg space-y-2">
+            `;
+            service.features.forEach(feature => {
+                conditionsHTML += `<li><i class="fas fa-check-circle text-green-400 mr-2"></i>${feature}</li>`;
+            });
+            conditionsHTML += `
+                </ul>
+                <h4 class="text-xl md:text-2xl font-semibold text-primary mt-6 mb-3">Service Details:</h4>
+                <p class="text-gray-600 text-base md:text-lg">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
+            `;
+            conditionsContainer.innerHTML = conditionsHTML;
+        }
+
+        // Event Listeners
+        participateBtn.addEventListener('click', () => {
+            initQuantitySelector();
+            updatePricesAndInfo();
+            // Automatically fill the RO Brand display field with the current selection
+            roBrandDisplayInput.value = roBrandSelect.value;
+            openPopup(popupForm);
+        });
+
+        seePriceListBtn.addEventListener('click', () => {
+            const selectedBrand = roBrandSelect.value;
+            const service = serviceData[selectedBrand];
+            generatePriceTable(service);
+            openInfoPopup('priceListPopup');
+        });
+
+        conditionsBtn.addEventListener('click', () => {
+            const selectedBrand = roBrandSelect.value;
+            const service = serviceData[selectedBrand];
+            generateConditions(service);
+            openInfoPopup('conditionsPopup');
+        });
+        
+        ticketQuantitySelect.addEventListener('change', updatePricesAndInfo); 
+        document.querySelectorAll('input[name="serviceTypeOption"]').forEach(radio => radio.addEventListener('change', updatePricesAndInfo));
+        roBrandSelect.addEventListener('change', updatePricesAndInfo);
+        
+        popupOverlay.addEventListener('click', e => {
+            if (e.target !== popupOverlay) return;
+
+            if (priceListPopup.style.display === 'block') closeInfoPopup('priceListPopup');
+            if (conditionsPopup.style.display === 'block') closeInfoPopup('conditionsPopup');
+
+            if (ticketStep.style.display === 'block' && allowClose) {
+                closeAllPopups();
+            } else if ((popupForm.style.display === 'block' || paymentStep.style.display === 'block') && !allowClose) {
+                showCustomAlert("Please complete the form or payment process before closing.");
+            }
+        });
+        
+        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
+        razorpayBtn.addEventListener('click', handleRazorpayPayment);
+        downloadTicketsBtn.addEventListener('click', downloadTickets);
+        form.addEventListener('submit', handleFormSubmit);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initQuantitySelector();
+            roBrandSelect.value = "Aquaguard"; // Set default brand
+            updatePricesAndInfo();
+        });
+    </script>
+</body>
+</html>
