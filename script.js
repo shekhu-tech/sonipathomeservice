@@ -299,7 +299,7 @@ function injectFooter() {
     </div>
 
     <div class="map-container">
-     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13957.575864214023!2d77.02190145!3d29.00532435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390db07098d44d29%3A0x9883a5e1ec9c2f8b!2sSainipura%20Colony%2C%20Jamalpura%2C%20Sonipat%2C%20Haryana%20131001!5e0!3m2!1sen!2sin!4v1754913952124!5m2!1sen!2sin" width="150" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3489.400866032388!2d77.017595!3d29.005119999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390db100744c2e99%3A0xb9ebcfd7db64db74!2sSonipat%20Home%20Service.com!5e0!3m2!1sen!2sin!4v1756268444914!5m2!1sen!2sin" width="150" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <div class="footer-buttons">
@@ -896,6 +896,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
