@@ -553,40 +553,47 @@
         <h2 class="text-2xl font-bold text-center mb-4">Our Grooming Services</h2>
         <div id="conditionsContent" class="text-text-secondary text-sm space-y-2 max-h-96 overflow-y-auto pr-2">
             <ul class="list-disc list-inside text-base md:text-lg space-y-3">
-                <li class="font-bold text-dark">✂️ Stylish Haircuts</li>
-                <li>Classic, modern, and trendy styles tailored to your preference.</li>
+                <li class="font-bold text-dark">✂️ Haircuts & Styling</li>
+                <li>Classic, modern, and designer cuts for men and kids.</li>
                 
-                <li class="font-bold text-dark mt-4">🧔 Beard Trimming & Styling</li>
+                <li class="font-bold text-dark mt-4">🧔 Beard Care</li>
                 <li>Precision trimming, shaping, and styling for a sharp look.</li>
 
-                <li class="font-bold text-dark mt-4">🪒 Shaving / Royal Shave</li>
-                <li>Clean shaves and luxurious royal shaves with hot towels.</li>
+                <li class="font-bold text-dark mt-4">🪒 Shaving</li>
+                <li>Clean shaves and expert grooming.</li>
 
-                <li class="font-bold text-dark mt-4">🎨 Hair Coloring</li>
-                <li>Professional hair coloring using quality products like Garnier.</li>
+                <li class="font-bold text-dark mt-4">🎨 Hair Colouring</li>
+                <li>Transform your look with vibrant and lasting hair color. We use high-quality products like L'Oréal and Garnier to give you a fresh, stylish new shade. (Color pack not included).</li>
 
-                <li class="font-bold text-dark mt-4">👦 Kids Haircut</li>
-                <li>Patient and friendly haircuts for children of all ages.</li>
+                <li class="font-bold text-dark mt-4">💆‍♂️ Massage & Relaxation</li>
+                <li>Relaxing head and full body massages to de-stress and rejuvenate.</li>
 
-                <li class="font-bold text-dark mt-4">💆‍♂️ Head Massage</li>
-                <li>Relaxing 10-minute head massage to de-stress and rejuvenate.</li>
-                
                 <li class="font-bold text-dark mt-4">✨ Facial & Grooming</li>
-                <li>Complete grooming packages for a refreshed and polished look.</li>
+                <li>Single-step or full facials to refresh and polish your look.</li>
+
+                <li class="font-bold text-dark mt-4">🎁 Combo Packs</li>
+                <li>Special packages for haircuts, shaves, and massages at a bundled price.</li>
             </ul>
         </div>
         <button id="closeConditionsBtn" class="close-btn">Close</button>
     </div>
    
     <script>
+        // Updated serviceData to match the provided image.
         const serviceData = [
-            { "Category": "Hair Cutting Men", "Price": 249 },
+            { "Category": "Hair Cutting Normal - Gents", "Price": 249 },
+            { "Category": "Hair Cutting Design - Gents", "Price": 249 },
             { "Category": "Beard Treaming", "Price": 199 },
             { "Category": "Kids Hair Cutting", "Price": 249 },
             { "Category": "Saving Men / Beard Grooming", "Price": 199 },
-            { "Category": "Hair Colour (Garnier)", "Price": 299 },
-            { "Category": "Hair Cutting Men & Massage (10 Mins)", "Price": 349 },
-            { "Category": "Hair Cuting Men & Saving", "Price": 399 }
+            { "Category": "Hair Colour (Exclude Color Pack)", "Price": 299 },
+            { "Category": "Facial 1 Step (Exclude Face pack & Items)", "Price": 299 },
+            { "Category": "Facial Full (Exclude Face pack & Items)", "Price": 1399 },
+            { "Category": "Head Massage - 20 Mins (exclude Oil)", "Price": 299 },
+            { "Category": "Full Massage - 1 Hour (Exclude Oil)", "Price": 999 },
+            { "Category": "Combo Pack 1: Hair Cutting + Saving /Beard Grooming", "Price": 428 },
+            { "Category": "Combo Pack 2: Hair Cutting + Saving /Beard Grooming + Head Massage", "Price": 727 },
+            { "Category": "Combo Pack 3: Hair Cutting + Saving /Beard Grooming + Full Body Massage", "Price": 1427 }
         ];
 
         // --- Generic constants ---
@@ -659,7 +666,7 @@
 
         function initQuantitySelector() {
             const maxServices = 5;
-            ticketQuantitySelect.innerHTML = '<option value="" disabled>Select quantity</option>';
+            ticketQuantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
             for (let i = 1; i <= maxServices; i++) {
                 const option = document.createElement('option');
                 option.value = i;
