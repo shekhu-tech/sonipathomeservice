@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RO Water Supply - SonipatHomeService.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700&display=swap');
+
+        :root {
+            /* Lighter Color Palette - 60% light */
+            --primary: #526788; 
+            --secondary: #7091b2; 
+            --accent: #52c8b0; 
+            --light: #e0f2fe; 
+            --dark: #1e293b; 
+            --text-primary: #1e293b;
+            --text-secondary: #4a5568;
+            --bg-main: #f0f4f8; 
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3 {
+             font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        main {
+            padding-top: 6rem;
+            max-width: 1700px;
+            margin: 0 auto;
+            padding: 6rem 1rem 3rem;
+        }
+
+        .hero-section {
+            background: var(--primary);
+            color: var(--light);
+            padding: 4rem 1rem;
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .hero-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .price-section {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .price-category {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1.5rem;
+        }
+
+        .price-category:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .price-category h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .price-table th, .price-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .price-table th {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .price-table td {
+            color: var(--dark);
+        }
+
+        .price-table td:last-child {
+            text-align: right;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .rate-per-jug {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            justify-content: center;
+            flex-grow: 1;
+            max-width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 10px rgba(112, 145, 178, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #5d7d9f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(112, 145, 178, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 999;
+        }
+
+        .popup {
+            display: none;
+            background: white;
+            color: var(--text-primary);
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 95%;
+            max-width: 550px;
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -45%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        
+        .popup input,
+        .popup button,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.625rem 0;
+            border-radius: 0.625rem;
+            border: 1px solid #d1d5db;
+            font-size: 1rem;
+            background: #e2e8f0;
+            color: var(--dark);
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn,
+        .close-btn {
+            background: var(--accent);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.9375rem;
+            border-radius: 0.625rem;
+            border: none;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .popup button[type="submit"]:hover,
+        #razorpay-payment-btn:hover,
+        #downloadBtn:hover,
+        .close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(82, 200, 176, 0.5);
+        }
+
+        .popup button.close-btn {
+            background: var(--secondary);
+            color: white;
+        }
+        .popup button.close-btn:hover {
+            background: #5d7d9f;
+            box-shadow: none;
+        }
+        
+        .ticket-details {
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 1rem;
+            word-break: break-word;
+            padding: 0.625rem;
+            background: var(--light);
+            border: 1px solid var(--secondary);
+            border-radius: 0.625rem;
+            margin: 0.625rem 0;
+            text-align: left;
+        }
+        
+        #paymentSummary {
+            text-align: center;
+        }
+
+        .ticket-details strong {
+            color: var(--primary);
+        }
+
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--accent);
+            color: var(--dark);
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
+            z-index: 1002;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeInOut 4s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -40%); }
+            10% { opacity: 1; transform: translate(-50%, -50%); }
+            90% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+        }
+
+        .info-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+        }
+
+        #payment-summary p {
+            color: var(--dark);
+        }
+        #timerDisplay {
+            color: var(--primary);
+        }
+        #welcomeMessage {
+            color: var(--accent);
+        }
+        #ticketCountDisplay {
+            color: var(--primary);
+        }
+        #ticket-info p {
+            color: var(--dark);
+        }
+
+        #packSelectionPopup .popup-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        #packSelectionPopup .pack-card {
+            background: #f0f4f8;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        #packSelectionPopup .pack-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        #packSelectionPopup .pack-card.selected {
+            border-color: var(--secondary);
+            background: var(--light);
+            box-shadow: 0 0 10px rgba(112, 145, 178, 0.5);
+        }
+        
+        #packSelectionPopup .pack-card h4 {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        #packSelectionPopup .pack-card p {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h2 { font-size: 2rem; }
+            .hero-section p { font-size: 1rem; }
+            .action-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <main class="container mx-auto px-4 py-8">
+        <section class="hero-section">
+            <h2>Pure, Safe Water Delivered to Your Doorstep</h2>
+            <p>Reliable RO water supply for homes, shops, and events. Choose a plan that suits your needs.</p>
+        </section>
+
+        <section class="price-section">
+            <div class="price-category">
+                <h3>🏠 Home & Shop Rate</h3>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Pack Name</th>
+                            <th>Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody id="home-shop-table-body">
+                        <!-- Content will be populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="price-category">
+                <h3>🎉 Marriage / Party Rate</h3>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Pack Name</th>
+                            <th>Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody id="party-table-body">
+                        <!-- Content will be populated by JS -->
+                    </tbody>
+                </table>
+                <p class="rate-per-jug">Rate: ₹40 per Jug (Beyond 25 Jugs)</p>
+            </div>
+        </section>
+
+        <div class="action-buttons">
+            <button id="book-now-btn" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Book Now</button>
+            <button id="price-list-btn" class="btn btn-secondary"><i class="fas fa-tags"></i> See Price List</button>
+            <button id="description-btn" class="btn btn-secondary"><i class="fas fa-info-circle"></i> Service Description</button>
+            <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i> Go Back</button>
+        </div>
+
+        <div class="info-card">
+            <h3>Why Choose Us?</h3>
+            <p class="text-text-secondary">✅ <strong>Purity:</strong> Our water is purified through a multi-stage RO process to ensure it is free from contaminants and safe for consumption.</p>
+            <p class="text-text-secondary mt-2">✅ <strong>Timely Delivery:</strong> We ensure prompt and reliable delivery to your location, so you never run out of water.</p>
+            <p class="text-text-secondary mt-2">✅ <strong>Flexible Plans:</strong> Whether it's for your home or a large event, we have a plan that fits your requirements.</p>
+        </div>
+    </main>
+    
+    <div id="popup-overlay"></div>
+    
+    <!-- Booking Form Popup -->
+    <div id="booking-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center mb-4 text-dark">RO Water Booking</h2>
+        <form id="booking-form">
+            <label for="pack-selection-display" class="text-sm">Select Packs:</label>
+            <div id="pack-selection-display" class="w-full bg-gray-100 p-3 rounded-md cursor-pointer mb-3" onclick="openPackSelectionPopup()">Click to select packs</div>
+
+            <p id="calculated-price" class="text-right text-lg font-bold mt-4">Total: ₹0</p>
+            
+            <label for="name" class="text-sm">Full Name (min 10 characters)</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
+
+            <label for="phone" class="text-sm">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+
+            <label for="location" class="text-sm">Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
+            
+            <label for="address" class="text-sm">Complete Address (min 30 characters)</label>
+            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
+
+            <button type="submit">Submit Details</button>
+            <p id="submit-message" class="text-center text-sm text-gray-500 mt-2 hidden">Submitting...</p>
+        </form>
+    </div>
+
+    <!-- Pack Selection Popup -->
+    <div id="packSelectionPopup" class="popup">
+        <h3 class="text-xl font-bold text-center mb-4 text-dark">Select Your Packs</h3>
+        <div id="pack-selection-container" class="popup-content">
+            <!-- Packs will be dynamically populated here -->
+        </div>
+        <button id="apply-packs-btn" class="close-btn mt-4">Apply Selection</button>
+    </div>
+
+    <!-- Payment Popup -->
+    <div id="payment-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center mb-4 text-dark">Complete Your Payment</h2>
+        <p class="text-text-secondary text-center mb-6">Please complete the payment to finalize your RO water booking.</p>
+        <div id="payment-summary" class="ticket-details text-center mb-6"></div>
+        <div id="timer-display" class="text-primary font-bold text-center">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn">Pay for RO Water</button>
+        <p class="mt-4 text-sm text-text-secondary text-center">
+            After payment, please wait for automatic verification. Do not close this window.
+        </p>
+    </div>
+
+    <!-- Confirmation Popup -->
+    <div id="confirmation-popup" class="popup">
+        <h2 id="welcome-message" class="text-2xl font-bold text-center mb-4 text-accent"></h2>
+        <p class="text-text-secondary text-center mb-4">You have successfully booked your RO water delivery.</p>
+        <div id="ticket-info" class="ticket-details space-y-2">
+            <!-- Details will be injected here -->
+        </div>
+        <button id="downloadBtn"><i class="fas fa-download mr-2"></i> Download Details</button>
+        <p class="mt-4 text-sm text-text-secondary text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
+    </div>
+
+    <!-- Price List Popup -->
+    <div id="price-list-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center mb-4 text-primary">RO Water Price List</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-gray-100 rounded-lg">
+                <thead>
+                    <tr class="text-left text-primary">
+                        <th class="py-2 px-4 border-b border-gray-300">Pack Name</th>
+                        <th class="py-2 px-4 border-b border-gray-300 text-right">Rate</th>
+                    </tr>
+                </thead>
+                <tbody id="price-list-table-body">
+                    <!-- Rows will be injected by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <button id="close-price-list-btn" class="close-btn">Close</button>
+    </div>
+
+    <!-- Description Popup -->
+    <div id="description-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center mb-4 text-primary">Our RO Water Services</h2>
+        <div class="text-text-secondary text-base space-y-4 max-h-96 overflow-y-auto pr-2">
+            <ul class="list-disc list-inside space-y-2">
+                <li class="font-semibold text-primary">🏠 Home & Shop Packs:</li>
+                <li>Reliable water supply for your daily needs. Choose from a variety of packs to fit your consumption.</li>
+
+                <li class="font-semibold text-primary mt-4">🎉 Marriage / Party Packs:</li>
+                <li>Special packages for events and gatherings with flexible jug counts.</li>
+
+                <li class="font-semibold text-primary mt-4">💧 Multi-stage RO Purification:</li>
+                <li>Our water undergoes a thorough purification process to ensure it's pure, safe, and clean.</li>
+
+                <li class="font-semibold text-primary mt-4">🚀 Fast and Timely Delivery:</li>
+                <li>We guarantee quick and on-time delivery to your specified location within Sonipat City.</li>
+            </ul>
+        </div>
+        <button id="close-description-btn" class="close-btn">Close</button>
+    </div>
+    
+    <script>
+        // Data from the provided image
+        const allRates = [
+            { "name": "Marriage / Party Rate (15 Jug)", "rate": 600, "jugs": 15, "type": "party" },
+            { "name": "Marriage / Party Rate (20 Jug)", "rate": 800, "jugs": 20, "type": "party" },
+            { "name": "Marriage / Party Rate (25 Jug)", "rate": 1000, "jugs": 25, "type": "party" }
+        ];
+
+        // --- Generic constants ---
+        const SERVICE_NAME = "RO Water Supply";
+        const SERVICE_TAB_ID = "ro-water-supply";
+        const RAZORPAY_IMAGE_TEXT = "RO";
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+        const ADDITIONAL_JUG_RATE = 40;
+
+        // --- DOM Element Selection ---
+        const homeShopTableBody = document.getElementById('home-shop-table-body');
+        const partyTableBody = document.getElementById('party-table-body');
+        const bookNowBtn = document.getElementById('book-now-btn');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const allPopups = document.querySelectorAll('.popup');
+        const bookingPopup = document.getElementById('booking-popup');
+        const paymentPopup = document.getElementById('payment-popup');
+        const confirmationPopup = document.getElementById('confirmation-popup');
+        const bookingForm = document.getElementById('booking-form');
+        const packSelectionDisplay = document.getElementById('pack-selection-display');
+        const packSelectionPopup = document.getElementById('packSelectionPopup');
+        const packSelectionContainer = document.getElementById('pack-selection-container');
+        const applyPacksBtn = document.getElementById('apply-packs-btn');
+        const calculatedPriceDisplay = document.getElementById('calculated-price');
+        const submitMessage = document.getElementById('submit-message');
+        const paymentSummary = document.getElementById('payment-summary');
+        const timerDisplay = document.getElementById('timer-display');
+        const razorpayBtn = document.getElementById('razorpay-payment-btn');
+        const ticketInfo = document.getElementById('ticket-info');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const okayBtn = document.getElementById('okayBtn');
+        const welcomeMessage = document.getElementById('welcome-message');
+        
+        // New button popups
+        const priceListBtn = document.getElementById('price-list-btn');
+        const descriptionBtn = document.getElementById('description-btn');
+        const priceListPopup = document.getElementById('price-list-popup');
+        const descriptionPopup = document.getElementById('description-popup');
+        const closePriceListBtn = document.getElementById('close-price-list-btn');
+        const closeDescriptionBtn = document.getElementById('close-description-btn');
+        const priceListTableBody = document.getElementById('price-list-table-body');
+
+
+        // --- State variables ---
+        let currentCalculatedPrice = 0;
+        let generatedTicket = '';
+        let countdownInterval = null;
+        let allowClose = false;
+
+        // --- Core Functions ---
+
+        // Populate the price tables
+        function populateTables() {
+            homeShopTableBody.innerHTML = '';
+            partyTableBody.innerHTML = '';
+            
+            allRates.forEach(pack => {
+                const row = `
+                    <tr>
+                        <td>${pack.name}</td>
+                        <td>₹${pack.rate}</td>
+                    </tr>
+                `;
+                if (pack.type === "home_shop") {
+                    homeShopTableBody.insertAdjacentHTML('beforeend', row);
+                } else {
+                    partyTableBody.insertAdjacentHTML('beforeend', row);
+                }
+            });
+        }
+
+        // Populate the pack selection popup
+        function populatePackSelection() {
+            packSelectionContainer.innerHTML = '';
+            allRates.forEach(pack => {
+                const card = document.createElement('div');
+                card.className = 'pack-card';
+                card.dataset.name = pack.name;
+                card.dataset.rate = pack.rate;
+                card.dataset.type = pack.type;
+                card.innerHTML = `
+                    <h4>${pack.name}</h4>
+                    <p>₹${pack.rate}</p>
+                `;
+                card.addEventListener('click', () => {
+                    card.classList.toggle('selected');
+                });
+                packSelectionContainer.appendChild(card);
+            });
+        }
+        
+        // Update price based on selected packs
+        function updateCalculatedPrice() {
+            const selectedPacks = Array.from(packSelectionContainer.querySelectorAll('.pack-card.selected'));
+            let totalCost = 0;
+            let selectedPackNames = [];
+            
+            selectedPacks.forEach(packCard => {
+                const rate = parseFloat(packCard.dataset.rate);
+                totalCost += rate;
+                selectedPackNames.push(packCard.dataset.name);
+            });
+
+            packSelectionDisplay.textContent = selectedPackNames.length > 0 ? selectedPackNames.join(', ') : "Click to select packs";
+            calculatedPriceDisplay.textContent = `Total: ₹${totalCost}`;
+            currentCalculatedPrice = totalCost;
+        }
+
+        // Generate a unique booking ID
+        function generateTicketId() {
+            return 'RO-XXXXXX-XXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
+        }
+
+        // Show a custom alert (as `alert()` is not allowed)
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert'; 
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => alertBox.remove(), 4000); 
+        }
+
+        // Close all popups
+        function closeAllPopups() {
+            if (!allowClose) {
+                showCustomAlert("Please complete the process before closing.");
+                return;
+            }
+            clearTimers();
+            popupOverlay.style.display = 'none';
+            allPopups.forEach(p => p.style.display = 'none');
+            document.body.style.overflow = 'auto';
+            bookingForm.reset();
+            calculatedPriceDisplay.textContent = 'Total: ₹0';
+            allowClose = false;
+        }
+
+        // Open a specific popup
+        function openPopup(popupElement) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            popupElement.style.display = 'block';
+            allowClose = false;
+        }
+
+        // Open pack selection popup
+        function openPackSelectionPopup() {
+            populatePackSelection();
+            const currentPacks = packSelectionDisplay.textContent.split(', ').map(s => s.trim());
+            const packCards = packSelectionContainer.querySelectorAll('.pack-card');
+            packCards.forEach(card => {
+                if(currentPacks.includes(card.dataset.name)) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+            openPopup(packSelectionPopup);
+        }
+
+        // Close a specific popup
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Download booking details as a text file
+        function downloadTicketDetails() {
+            const name = bookingForm.name.value;
+            const phone = bookingForm.phone.value;
+            const location = bookingForm.location.value;
+            const address = bookingForm.address.value;
+            const selectedPacks = packSelectionDisplay.textContent;
+            const totalPrice = currentCalculatedPrice;
+
+            const content = `${SERVICE_NAME} Booking Details\n\n` +
+                            `Booking ID: ${generatedTicket}\n` +
+                            `Name: ${name}\n` +
+                            `Phone: ${phone}\n` +
+                            `Address: ${location}, ${address}\n` +
+                            `Packs: ${selectedPacks}\n` +
+                            `Total Price: ₹${totalPrice}\n\n` +
+                            `Thank you for choosing our service!`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ro-water-booking-${generatedTicket}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Start payment timer
+        function clearTimers() {
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        function startPaymentTimer() {
+            let timeLeft = PAYMENT_TIME_LIMIT;
+            const updateDisplay = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            updateDisplay();
+
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    showCustomAlert("Payment time expired. Please try again.");
+                    allowClose = true;
+                    closeAllPopups();
+                }
+            }, 1000);
+        }
+
+        // Handle Razorpay payment
+        function handleRazorpayPayment() {
+            const options = {
+                "key": "rzp_live_opiqkRmGpjG1hF",
+                "amount": currentCalculatedPrice * 100, // Razorpay amounts are in paisa
+                "currency": "INR",
+                "name": `SonipatHomeService - ${SERVICE_NAME}`,
+                "description": `Payment for RO Water Booking ID: ${generatedTicket}`,
+                "image": `https://placehold.co/100x100/526788/e0f2fe?text=${RAZORPAY_IMAGE_TEXT}`,
+                "handler": function (response){
+                    paymentSuccess();
+                },
+                "prefill": {
+                    "name": bookingForm.name.value,
+                    "phone": bookingForm.phone.value
+                },
+                "notes": {
+                    "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
+                    "jug_quantity": packSelectionDisplay.textContent,
+                },
+                "theme": { "color": "#7091b2" },
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
+        }
+
+        // After successful payment
+        function paymentSuccess() {
+            clearTimers();
+            paymentPopup.style.display = 'none';
+            openPopup(confirmationPopup);
+            
+            const name = bookingForm.name.value;
+            const selectedPacks = packSelectionDisplay.textContent;
+            const totalPrice = currentCalculatedPrice;
+
+            welcomeMessage.textContent = `🎉 Thank You, ${name}! Your Booking is Confirmed! 🎉`;
+            
+            ticketInfo.innerHTML = `
+                <p><strong>Booking ID:</strong> ${generatedTicket}</p>
+                <p><strong>Packs:</strong> ${selectedPacks}</p>
+                <p><strong>Total Price:</strong> ₹${totalPrice}</p>
+            `;
+            allowClose = true;
+        }
+
+        // Populate the price list popup table
+        function populatePriceList() {
+            priceListTableBody.innerHTML = '';
+            allRates.forEach(pack => {
+                const row = `
+                    <tr>
+                        <td class="py-3 px-4 border-b border-gray-300">${pack.name}</td>
+                        <td class="py-3 px-4 border-b border-gray-300 text-right font-semibold text-primary">₹${pack.rate}</td>
+                    </tr>
+                `;
+                priceListTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+        
+        // --- Event Listeners Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            populateTables();
+        });
+
+        bookNowBtn.addEventListener('click', () => {
+            updateCalculatedPrice();
+            openPopup(bookingPopup);
+        });
+
+        popupOverlay.addEventListener('click', e => {
+            if (e.target === popupOverlay) {
+                // Determine which popup is open and handle accordingly
+                if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
+                else if (packSelectionPopup.style.display === 'block') closeSpecificPopup(packSelectionPopup);
+                else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
+                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the process before closing.");
+                else if (bookingPopup.style.display === 'block') closeAllPopups();
+            }
+        });
+
+        applyPacksBtn.addEventListener('click', () => {
+            updateCalculatedPrice();
+            closeSpecificPopup(packSelectionPopup);
+        });
+        
+        okayBtn.addEventListener('click', closeAllPopups);
+        downloadBtn.addEventListener('click', downloadTicketDetails);
+
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate inputs
+            const selectedPacks = Array.from(packSelectionContainer.querySelectorAll('.pack-card.selected'));
+            if (selectedPacks.length === 0) { showCustomAlert("Please select at least one pack."); return; }
+            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (bookingForm.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
+            if (currentCalculatedPrice === 0) {
+                showCustomAlert("Please select a pack to calculate the price.");
+                return;
+            }
+
+            submitMessage.classList.remove('hidden');
+            bookingForm.querySelector('button[type="submit"]').disabled = true;
+            generatedTicket = generateTicketId();
+
+            // Simulate form submission to backend
+            setTimeout(() => {
+                submitMessage.classList.add('hidden');
+                bookingForm.querySelector('button[type="submit"]').disabled = false;
+                bookingPopup.style.display = 'none';
+
+                paymentSummary.innerHTML = `
+                    <p>You are booking: <strong>${packSelectionDisplay.textContent}</strong></p>
+                    <p class="mt-2 text-xl font-bold">Total Price: ₹${currentCalculatedPrice}</p>
+                `;
+                openPopup(paymentPopup);
+                startPaymentTimer();
+            }, 1000);
+        });
+
+        razorpayBtn.addEventListener('click', handleRazorpayPayment);
+
+        priceListBtn.addEventListener('click', () => {
+            populatePriceList();
+            openPopup(priceListPopup);
+        });
+
+        descriptionBtn.addEventListener('click', () => {
+            openPopup(descriptionPopup);
+        });
+
+        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
+        closeDescriptionBtn.addEventListener('click', () => closeSpecificPopup(descriptionPopup));
+    </script>
+</body>
+</html>
