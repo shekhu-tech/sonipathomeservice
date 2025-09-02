@@ -321,7 +321,7 @@ function injectFooter() {
     </div>
 
     <div class="copyright">
-      © <span id="year"></span> Sonipat AC Service. All rights reserved.
+      © <span id="year"></span> SonipatHomeService.com. All rights reserved.
     </div>
   </div>
 
@@ -896,6 +896,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
