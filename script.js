@@ -6,9 +6,7 @@ function injectHeader() {
   headerContainer.innerHTML = `
     <div class="top-bar">
         <div class="top-bar-content">
-            <a href="tel:+918816014071" class="phone-number-top">
-                <i class="fas fa-phone-alt"></i>
-                <span>+91-8816014071</span>
+                <span>8816014071</span>
             </a>
             <a href="technician.html" class="partner-button-top">Become A mechanic</a>
         </div>
@@ -890,6 +888,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
