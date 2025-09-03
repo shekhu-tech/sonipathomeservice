@@ -124,13 +124,7 @@
             }
         }
 
-        /* Just for demo purposes, so the top bar is visible */
-        body {
-            font-family: Arial, sans-serif;
-            margin-top: 80px; /* Add margin to avoid content hiding under the fixed top bar */
-            text-align: center;
-            padding: 20px;
-        }
+       
 
 /* ======= HEADER (Classic Black Theme) ======= */
 header {
@@ -632,6 +626,7 @@ nav {
       
 
  
+
 
 
 
