@@ -32,61 +32,114 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* ======= TOP BAR (New Section) ======= */
-.top-bar {
-    background: #0056b3; /* Darker blue for a subtle contrast */
-    color: #fff;
-    padding: 8px 32px;
-    display: flex;
-    justify-content: flex-end; /* Align items to the right */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1001; /* Higher z-index to be on top */
-    transition: all 0.3s ease;
-}
+/* A more attractive and centered top bar */
+        .top-bar {
+            /* Gradient background for a modern look */
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            /* Center content horizontally */
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
+            /* Add a subtle shadow for depth */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
 
-.top-bar-content {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
+        .top-bar-content {
+            display: flex;
+            align-items: center;
+            /* Adjust spacing between elements */
+            gap: 20px;
+        }
 
-.phone-number-top {
-    display: flex;
-    align-items: center;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 15px;
-    transition: color 0.3s ease;
-}
+        .phone-number-top {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            /* Bolder font for visibility */
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
 
-.phone-number-top i {
-    color: #ffd700;
-    margin-right: 8px;
-}
+        .phone-number-top:hover {
+            color: #ffd700;
+        }
 
-.phone-number-top:hover {
-    color: #ffd700;
-}
+        /* Default state: show the icon for desktop */
+        .phone-number-top i {
+            display: block;
+            color: #ffd700;
+            margin-right: 8px;
+        }
 
-.partner-button-top {
-    background: #ffd700;
-    color: #000;
-    font-weight: 600;
-    padding: 6px 16px;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
+        .partner-button-top {
+            background: #ffd700;
+            color: #000;
+            font-weight: 700;
+            padding: 8px 18px;
+            /* Make it more pill-shaped */
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
 
-.partner-button-top:hover {
-    background: #fff;
-    color: #007bff;
-    transform: translateY(-1px);
-}
+        .partner-button-top:hover {
+            background: #fff;
+            color: #007bff;
+            /* Add a more noticeable lift effect */
+            transform: translateY(-2px);
+        }
+
+        /*
+            --- Media Query for Mobile ---
+            Styles applied only when the screen width is 768px or less.
+        */
+        @media (max-width: 768px) {
+            .top-bar {
+                /* Use space-around to distribute items if needed, or just center */
+                justify-content: center;
+                padding: 10px 10px;
+            }
+
+            .top-bar-content {
+                /* Reduce gap for smaller screens */
+                gap: 15px;
+                flex-direction: row;
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Hide the icon specifically on mobile */
+            .phone-number-top i {
+                display: none;
+            }
+
+            .partner-button-top {
+                font-size: 14px;
+                padding: 6px 14px;
+            }
+
+            .phone-number-top span {
+                font-size: 14px;
+            }
+        }
+
+        /* Just for demo purposes, so the top bar is visible */
+        body {
+            font-family: Arial, sans-serif;
+            margin-top: 80px; /* Add margin to avoid content hiding under the fixed top bar */
+            text-align: center;
+            padding: 20px;
+        }
 
 /* ======= HEADER (Classic Black Theme) ======= */
 header {
@@ -588,6 +641,7 @@ nav {
       
 
  
+
 
 
 
