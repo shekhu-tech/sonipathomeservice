@@ -6,6 +6,7 @@ function injectHeader() {
   headerContainer.innerHTML = `
     <div class="top-bar">
         <div class="top-bar-content">
+                <!-- Icon is no longer displayed -->
                 <span>8816014071</span>
             </a>
             <a href="technician.html" class="partner-button-top">Become A mechanic</a>
@@ -888,6 +889,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
