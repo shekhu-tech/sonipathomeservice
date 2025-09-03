@@ -23,7 +23,7 @@
       color: var(--white);
     }
 
- /* A more attractive and centered top bar */
+/* A more attractive and centered top bar */
         .top-bar {
             /* Gradient background for a modern look */
             background: linear-gradient(90deg, #007bff, #0056b3);
@@ -64,7 +64,7 @@
             color: #ffd700;
         }
 
-       
+
         .partner-button-top {
             background: #ffd700;
             color: #000;
@@ -613,6 +613,7 @@ nav {
       
 
  
+
 
 
 
