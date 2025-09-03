@@ -10,7 +10,7 @@ function injectHeader() {
                 <i class="fas fa-phone-alt"></i>
                 <span>+91-8816014071</span>
             </a>
-            <a href="technician.html" class="partner-button-top">I am A Mechanic</a>
+            <a href="technician.html" class="partner-button-top">Become A mechanic</a>
         </div>
     </div>
 
@@ -303,12 +303,6 @@ function injectFooter() {
     </div>
 
     <div class="footer-buttons">
-      <a href="ac-service.html" class="footer-btn" title="AC"><i class="fas fa-fan"></i></a>
-      <a href="fridge-repair.html" class="footer-btn" title="Fridge"><i class="fas fa-snowflake"></i></a>
-      <a href="cooler-repair.html" class="footer-btn" title="Cooler"><i class="fas fa-water"></i></a>
-      <a href="geyser-repair.html" class="footer-btn" title="Geyser"><i class="fas fa-burn"></i></a>
-      <a href="washing-machine.html" class="footer-btn" title="Washing Machine"><i class="fas fa-soap"></i></a>
-      <a href="chimney-cleaning.html" class="footer-btn" title="Chimney"><i class="fas fa-wind"></i></a>
       <a href="policy.html" class="footer-btn" title="Privacy Policy"><i class="fas fa-shield-alt"></i></a>
       <a href="terms.html" class="footer-btn" title="Terms & Conditions"><i class="fas fa-file-contract"></i></a>
       <a href="refund.html" class="footer-btn" title="Refund & Cancellation Policy"><i class="fas fa-undo-alt"></i></a>
@@ -896,6 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
