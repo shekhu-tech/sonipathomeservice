@@ -23,15 +23,6 @@
       color: var(--white);
     }
 
-      
-
-/* ======= GENERAL STYLES ======= */
-body {
-    /* Adjust margin to accommodate both top-bar and main header */
-    margin-top: 100px;
-    font-family: Arial, sans-serif;
-}
-
 /* A more attractive and centered top bar */
         .top-bar {
             /* Gradient background for a modern look */
@@ -641,6 +632,7 @@ nav {
       
 
  
+
 
 
 
