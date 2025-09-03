@@ -51,7 +51,6 @@
         }
 
         .phone-number-top {
-            display: flex;
             align-items: center;
             color: #fff;
             text-decoration: none;
@@ -65,11 +64,7 @@
             color: #ffd700;
         }
 
-        /* Call icon is now hidden on all devices */
-        .phone-number-top i {
-            display: none;
-        }
-
+       
         .partner-button-top {
             background: #ffd700;
             color: #000;
@@ -618,6 +613,7 @@ nav {
       
 
  
+
 
 
 
