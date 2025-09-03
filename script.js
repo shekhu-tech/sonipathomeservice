@@ -34,6 +34,8 @@ function injectHeader() {
             </div>
             
             <ul>
+            <li>
+            <a class="sidebar-button" href="index.html"><span><i class="fas fa-home"></i>Home</span></a></li>
             <li><a class="sidebar-button" href="policy.html"><span><i class="fas fa-shield-alt"></i> Privacy Policy</span></a></li>
             <li><a class="sidebar-button" href="terms.html"><span><i class="fas fa-file-contract"></i> Terms & Conditions</span></a></li>
             <li><a class="sidebar-button" href="refund.html"><span><i class="fas fa-undo-alt"></i> Refund Policy</span></a></li>
@@ -889,6 +891,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
