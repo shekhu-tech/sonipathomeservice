@@ -316,7 +316,10 @@ function injectFooter() {
     </div>
 
     <div class="copyright">
-      © <span id="year"></span> SonipatHomeService.com. All rights reserved.
+      © <span id="year"></span> SonipatHomeService.com. All rights reserved. For any refund or cancellation requests, please contact our customer support team:
+
+ Customer Care: +91-88160-14071
+ Email: care@sonipathomeservice.com
     </div>
   </div>
 
@@ -891,6 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
