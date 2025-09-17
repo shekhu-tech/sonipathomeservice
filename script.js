@@ -6,7 +6,6 @@ function injectHeader() {
   headerContainer.innerHTML = `
     <div class="top-bar">
         <div class="top-bar-content">
-                <!-- Icon is no longer displayed -->
                 <span>8816014071</span>
             </a>
             <a href="technician.html" class="partner-button-top">Become A mechanic</a>
@@ -50,8 +49,15 @@ function injectFooter() {
   const footerContainer = document.getElementById('footer-container');
   if (!footerContainer) return;
 
-  const style = `
+  // Add a media query check to prevent footer injection on small screens
+  // We'll use a CSS-based approach for simplicity and performance.
+  // The CSS in styles.css already handles hiding, but this is a fail-safe.
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    console.log("Hiding footer on mobile.");
+    return;
+  }
 
+  const style = `
 <style>
 /* General Styles */
 #site-footer {
@@ -275,6 +281,13 @@ function injectFooter() {
   height: 50px;
   max-width: 100%;
   transition: transform 0.3s ease;
+}
+
+/* Hide footer on screens smaller than or equal to 768px */
+@media (max-width: 768px) {
+  #site-footer {
+    display: none;
+  }
 }
 </style>
   `;
@@ -894,31 +907,3 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
