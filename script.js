@@ -758,6 +758,12 @@ function injectContainer1() {
       font-size: 0.8rem;
     }
   }
+  /* Hide footer on screens smaller than or equal to 768px */
+@media (max-width: 768px) {
+  #site-footer {
+    display: none;
+  }
+}
 </style>
 
   `;
@@ -907,3 +913,4 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
