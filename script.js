@@ -760,7 +760,7 @@ function injectContainer1() {
   }
   /* Hide footer on screens smaller than or equal to 768px */
 @media (max-width: 768px) {
-  #site-footer {
+  #container1 {
     display: none;
   }
 }
@@ -913,4 +913,5 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
