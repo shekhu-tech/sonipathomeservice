@@ -599,248 +599,268 @@ function injectContainer1() {
 
   const style = `
    <style>
-  .container1 {
-    text-align: center;
-    background: #f7f9fc;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    color: #222;
-  }
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  .section-title {
-    font-size: 1.6rem;
-    margin-bottom: 30px;
-    color: #005f99;
-    font-weight: bold;
-    letter-spacing: 1px;
-    position: relative;
-    display: inline-block;
-    text-transform: uppercase;
-  }
+        .container1 {
+            text-align: center;
+            background: #f7f9fc;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            color: #222;
+        }
 
-  .section-title:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 2px;
-    background: #005f99;
-    border-radius: 2px;
-  }
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            color: #005f99;
+            font-weight: bold;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            text-transform: uppercase;
+        }
 
-  .features-section {
-    padding: 40px 0;
-  }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: #005f99;
+            border-radius: 2px;
+        }
 
-  .cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    max-width: 1100px;
-    margin: 0 auto;
-    justify-content: center;
-  }
+        .features-section {
+            padding: 40px 0;
+        }
 
-  .feature-card {
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
-    transition: all 0.3s ease;
-    height: 216px; /* Reduced from 360px */
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #e0e0e0;
-    padding: 20px 15px;
-    text-align: center;
-  }
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+            justify-content: center;
+        }
 
-  .feature-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    border-color: #007bff;
-  }
+        .feature-card {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
+            height: 216px; /* Reduced from 360px */
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e0e0e0;
+            padding: 20px 15px;
+            text-align: center;
+            position: relative;
+        }
 
-  .card-icon {
-    font-size: 2.2rem;
-    color: #007bff;
-    margin-bottom: 12px;
-    position: relative;
-    display: inline-block;
-    transition: all 0.3s ease;
-  }
+        .jackpot-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff5722;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-  .feature-card:hover .card-icon {
-    transform: scale(1.05);
-    color: #0056b3;
-  }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-color: #007bff;
+        }
 
-  .card-icon:after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 2px;
-    background: #005f99;
-    border-radius: 1px;
-  }
+        .card-icon {
+            font-size: 2.2rem;
+            color: #007bff;
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
 
-  .card-content1 {
-    padding: 10px 0;
-    color: #333;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
+        .feature-card:hover .card-icon {
+            transform: scale(1.05);
+            color: #0056b3;
+        }
 
-  .card-content1 h3 {
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-    color: #005f99;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
+        .card-icon:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background: #005f99;
+            border-radius: 1px;
+        }
 
-  .card-content1 p {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    color: #555;
-    max-width: 280px;
-    margin: 0 auto;
-  }
+        .card-content1 {
+            padding: 10px 0;
+            color: #333;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-  /* Responsive */
-  @media (max-width: 992px) {
-    .cards-container {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .section-title {
-      font-size: 1.4rem;
-    }
-  }
+        .card-content1 h3 {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            color: #005f99;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
 
-  @media (max-width: 768px) {
-    .cards-container {
-      grid-template-columns: 1fr;
-      max-width: 90%;
-    }
+        .card-content1 p {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #555;
+            max-width: 280px;
+            margin: 0 auto;
+        }
 
-    .feature-card {
-      height: auto;
-      padding: 18px 15px;
-    }
+        /* Responsive */
+        @media (max-width: 992px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
 
-    .card-content1 h3 {
-      font-size: 0.9rem;
-    }
-  }
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+                max-width: 90%;
+            }
 
-  @media (max-width: 480px) {
-    .section-title {
-      font-size: 1.3rem;
-    }
+            .feature-card {
+                height: auto;
+                padding: 18px 15px;
+            }
 
-    .card-icon {
-      font-size: 1.8rem;
-    }
+            .card-content1 h3 {
+                font-size: 0.9rem;
+            }
+            /* The key rule you requested: Hides the entire section */
+            #container1 {
+                display: none;
+            }
+        }
 
-    .card-content1 h3 {
-      font-size: 0.85rem;
-    }
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.3rem;
+            }
 
-    .card-content1 p {
-      font-size: 0.8rem;
-    }
-  }
-  /* Hide footer on screens smaller than or equal to 768px */
-@media (max-width: 768px) {
-  #container1 {
-    display: none;
-  }
-}
+            .card-icon {
+                font-size: 1.8rem;
+            }
+
+            .card-content1 h3 {
+                font-size: 0.85rem;
+            }
+
+            .card-content1 p {
+                font-size: 0.8rem;
+            }
+        }
 </style>
 
   `;
 
   const html = `
-  <div class="container1">
-  <section class="features-section">
-    <h2 class="section-title">Why Choose Us?</h2>
-    <div class="cards-container">
+  <div class="container1" id="container1">
+    <section class="features-section">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="cards-container">
+            <div class="feature-card">
+                <span class="jackpot-badge">Trusted</span>
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="card-content1">
+                    <h3>Verified Technicians</h3>
+                    <p>All our professionals are background-verified, experienced, and trained to handle any appliance with care and accuracy.</p>
+                </div>
+            </div>
 
-      <div class="feature-card">
-        <span class="jackpot-badge">Trusted</span>
-        <div class="card-icon">
-          <i class="fas fa-shield-alt"></i>
-        </div>
-        <div class="card-content1">
-          <h3>Verified Technicians</h3>
-          <p>All our professionals are background-verified, experienced, and trained to handle any appliance with care and accuracy.</p>
-        </div>
-      </div>
+            <div class="feature-card">
+                <span class="jackpot-badge">Top Rated</span>
+                <div class="card-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="card-content1">
+                    <h3>100% Customer Satisfaction</h3>
+                    <p>With 10,000+ satisfied clients in Sonipat, we pride ourselves on delivering timely, professional, and affordable services.</p>
+                </div>
+            </div>
 
-      <div class="feature-card">
-        <span class="jackpot-badge">Top Rated</span>
-        <div class="card-icon">
-          <i class="fas fa-star"></i>
-        </div>
-        <div class="card-content1">
-          <h3>100% Customer Satisfaction</h3>
-          <p>With 10,000+ satisfied clients in Sonipat, we pride ourselves on delivering timely, professional, and affordable services.</p>
-        </div>
-      </div>
+            <div class="feature-card">
+                <span class="jackpot-badge">Fast Service</span>
+                <div class="card-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="card-content1">
+                    <h3>Quick Response Time</h3>
+                    <p>We attend service requests within 30 minutes across all localities. Our field experts come fully equipped for same-day fixes.</p>
+                </div>
+            </div>
 
-      <div class="feature-card">
-        <span class="jackpot-badge">Fast Service</span>
-        <div class="card-icon">
-          <i class="fas fa-bolt"></i>
-        </div>
-        <div class="card-content1">
-          <h3>Quick Response Time</h3>
-          <p>We attend service requests within 30 minutes across all localities. Our field experts come fully equipped for same-day fixes.</p>
-        </div>
-      </div>
+            <div class="feature-card">
+                <span class="jackpot-badge">Affordable</span>
+                <div class="card-icon">
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                <div class="card-content1">
+                    <h3>Transparent Pricing</h3>
+                    <p>No hidden charges! Get reliable repair and installation services at standard market rates with proper invoicing.</p>
+                </div>
+            </div>
 
-      <div class="feature-card">
-        <span class="jackpot-badge">Affordable</span>
-        <div class="card-icon">
-          <i class="fas fa-rupee-sign"></i>
-        </div>
-        <div class="card-content1">
-          <h3>Transparent Pricing</h3>
-          <p>No hidden charges! Get reliable repair and installation services at standard market rates with proper invoicing.</p>
-        </div>
-      </div>
+            <div class="feature-card">
+                <span class="jackpot-badge">Reliable</span>
+                <div class="card-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="card-content1">
+                    <h3>All Appliance Brands</h3>
+                    <p>From LG to Samsung, Whirlpool to Voltas — we service all major appliance brands with genuine parts & guaranteed results.</p>
+                </div>
+            </div>
 
-      <div class="feature-card">
-        <span class="jackpot-badge">Reliable</span>
-        <div class="card-icon">
-          <i class="fas fa-tools"></i>
+            <div class="feature-card">
+                <span class="jackpot-badge">24/7 Help</span>
+                <div class="card-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="card-content1">
+                    <h3>24x7 Customer Support</h3>
+                    <p>Need help late night or on weekends? Our support team is always on standby — call, WhatsApp, or email us anytime.</p>
+                </div>
+            </div>
         </div>
-        <div class="card-content1">
-          <h3>All Appliance Brands</h3>
-          <p>From LG to Samsung, Whirlpool to Voltas — we service all major appliance brands with genuine parts & guaranteed results.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <span class="jackpot-badge">24/7 Help</span>
-        <div class="card-icon">
-          <i class="fas fa-headset"></i>
-        </div>
-        <div class="card-content1">
-          <h3>24x7 Customer Support</h3>
-          <p>Need help late night or on weekends? Our support team is always on standby — call, WhatsApp, or email us anytime.</p>
-        </div>
-      </div>
-
-    </div>
   </section>
 </div>
 
@@ -913,5 +933,6 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
