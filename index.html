@@ -62,6 +62,18 @@
 
 
   <style>
+    :root {
+      /* Reverting to golden colors for the bottom nav as per trail.html */
+      --golden-light: #3a321f;     
+      --golden-medium: #FFE5A3;    
+      --golden-dark: #A37A00;      
+      --text-light: #f3f4f6;       
+      --popup-bg: #1f2937;         
+      --popup-overlay-bg: rgba(0, 0, 0, 0.85);
+      --popup-link-hover: #4b5563; 
+      --list-link-text: #e5e7eb;   
+    }
+
     .hidden-h1 { position: absolute; left: -9999px; visibility: hidden; }
 
     #products-section {
@@ -307,7 +319,7 @@
     }
 
     .popup-card-btn:hover {
-        background: #0056b3;
+        background-color: #0056b3;
     }
 
     .popup-card-badge {
@@ -353,6 +365,80 @@
         .popup-card-content {
             height: auto;
         }
+    }
+
+    /* Bottom Navigation CSS from trail.html */
+    .bottom-nav {
+        background-color: #000;
+        border-top: 2px solid var(--golden-dark);
+        box-shadow: 0 -5px 20px rgba(163, 122, 0, 0.2);
+        height: 64px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 10px;
+        z-index: 50;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #9ca3af; 
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 0.75rem;
+    }
+
+    .nav-item:hover, .nav-item.active {
+        color: #fff; 
+    }
+    
+    .nav-icon {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 2px;
+    }
+    
+    .nav-item-central {
+        transform: translateY(-20px);
+        position: relative;
+    }
+
+    .central-icon-wrapper {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, #4f46e5 0%, #312e81 100%);
+        border: 3px solid #fff;
+        box-shadow: 0 0 15px #4f46e5, 0 5px 20px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease;
+    }
+
+    .nav-item-central:hover .central-icon-wrapper {
+        transform: scale(1.1);
+    }
+
+    .nav-item-central .nav-text {
+        position: absolute;
+        bottom: -18px;
+        font-size: 0.75rem;
+        color: #fff;
+    }
+
+    /* Utility to hide on desktop */
+    @media (min-width: 768px) {
+      .bottom-nav {
+        display: none;
+      }
     }
   
 </style>
@@ -416,153 +502,200 @@
     <h2 class="section-title" >Our Services</h2>
    
     <div id="services-container">
-        <div class="card" onclick="showPopup('AC Services', 'drng1.png')">
+        <a class="card" href="book-ac-services.html">
             <img src="drng1.png" alt="AC Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">AC Installation & Repair</h3>
                 <p class="card-category">AC Services</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Refrigerator Services', 'drng2.png')">
+        <a class="card" href="book-fridge-refrigrator-services.html">
             <img src="drng2.png" alt="Refrigerator Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Refrigerator Repair</h3>
                 <p class="card-category">Fridge</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Washing Machine Services', 'drng3.jpeg')">
+        <a class="card" href="book-washing-machine-services.html">
             <img src="drng3.jpeg" alt="Washing Machine Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Washing Machine Repair</h3>
                 <p class="card-category">Washing Machine</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Cooler Services', 'drng4.png')">
+        <a class="card" href="cooler-install.html">
             <img src="drng4.png" alt="Cooler Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Air Cooler Service</h3>
                 <p class="card-category">Cooler</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Geyser Services', 'five.png')">
+        <a class="card" href="book-geyser-services.html">
             <img src="five.png" alt="Geyser Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Geyser Installation</h3>
                 <p class="card-category">Geyser</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Kitchen Services', 'six.png')">
+        <a class="card" href="chimney-cleaning.html">
             <img src="six.png" alt="Kitchen Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Chimney Cleaning</h3>
                 <p class="card-category">Kitchen</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Electrical Services', 'drng7.png')">
+        <a class="card" href="wiring-install.html">
             <img src="drng7.png" alt="Electrical Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Electrician Services</h3>
                 <p class="card-category">Electrical</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Plumbing Services', 'drng8.png')">
+        <a class="card" href="pipe-leak.html">
             <img src="drng8.png" alt="Plumbing Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Plumber Services</h3>
                 <p class="card-category">Plumbing</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Cleaning Services', 'drng9.png')">
+        <a class="card" href="carpet-cleaning.html">
             <img src="drng9.png" alt="Cleaning Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Carpet Cleaning</h3>
                 <p class="card-category">Cleaning</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Salon Services', 'drng10.png')">
+        <a class="card" href="book-barber-service.html">
             <img src="drng10.png" alt="Salon Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Barber Services</h3>
                 <p class="card-category">Salon</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Handyman Services', 'drng11.png')">
+        <a class="card" href="furniture-assembly.html">
             <img src="drng11.png" alt="Handyman Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Mistri Services</h3>
                 <p class="card-category">Handyman</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-        <div class="card" onclick="showPopup('Security Services', 'drng12.png')">
+        <a class="card" href="book-cctv-service.html">
             <img src="drng12.png" alt="Security Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">CCTV Solutions</h3>
                 <p class="card-category">Security</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-       <div class="card" onclick="showPopup('R.O Services', 'drng13.png')">
+       <a class="card" href="book-ro-service.html">
             <img src="drng13.png" alt="R.O Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">R.O & Water Services</h3>
                 <p class="card-category">Water-Purification</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-       <div class="card" onclick="showPopup('Vehicle Booking', 'drng14.png')">
+       <a class="card" href="bike-service.html">
             <img src="drng14.png" alt="Vehicle Booking" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Vehicle Booking</h3>
                 <p class="card-category">Transportation</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
 
-      <div class="card" onclick="showPopup('Automobile Repairing Services', 'drng15.jpeg')">
+      <a class="card" href="automobile-repairing-services.html">
             <img src="drng15.jpeg" alt="Automobile Repairing Services" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Car Repair Services</h3>
                 <p class="card-category">Automobile</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
       
-       <div class="card" onclick="showPopup('Parcel Delivery Service', 'drng13.png')">
-            <img src="drng13.png" alt="Parcel Delivery Service" class="card-image">
+       <a class="card" href="book-parcel-delivery.html">
+            <img src="drng16.png" alt="Parcel Delivery Service" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Fast Parcel Delivery</h3>
                 <p class="card-category">Parcel-Delivery</p>
-                <span class="card-button">View Services</span>
+                <span class="card-button">Book Now</span>
             </div>
-        </div>
+        </a>
+
+        <a class="card" href="tv-repair.html">
+            <img src="drng17.png" alt="TV Repair Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">TV Repair & Installation</h3>
+                <p class="card-category">Electronics</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="solar-installation.html">
+            <img src="drng18.png" alt="Solar Installation Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Solar Panel Installation</h3>
+                <p class="card-category">Energy</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="bike-battery.html">
+            <img src="drng19.png" alt="Battery Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Battery Repair & Replacement</h3>
+                <p class="card-category">Automotive</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+        
+        <a class="card" href="halwai-booking.html">
+            <img src="drng20.png" alt="Waiter & Catering Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Halwai & Catering Booking</h3>
+                <p class="card-category">Events</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="wifi-connection.html">
+            <img src="drng21.png" alt="Dish & Wifi Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Wifi & Dish TV Installation</h3>
+                <p class="card-category">Connectivity</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
     </div>
 </section>
 
-<div class="popup-overlay" id="servicePopup">
+<!-- Removed the popup overlay and its script since it's no longer needed -->
+<div class="popup-overlay" id="servicePopup" style="display: none;">
     <div class="popup-container">
         <button class="popup-close" onclick="closePopup()">&times;</button>
         <h2 class="popup-title" id="popupTitle">Services</h2>
@@ -570,12 +703,12 @@
             </div>
     </div>
 </div>
-  
+  <br><br><br>
 <script>
+    // The serviceData object and popup functions are no longer needed for card clicks, but are kept for reference if needed elsewhere.
     const serviceData = {
         'AC Services': [
             { title: 'Book-AC-Services', link: 'book-ac-services.html' },
-         
         ],
         'Refrigerator Services': [
             { title: 'Book-Fridge-Services', link: 'book-fridge-refrigrator-services.html' },    
@@ -585,111 +718,70 @@
         ],
         'Cooler Services': [
             { title: 'Cooler Installation', link: 'cooler-install.html' },
-            { title: 'Cooler Repair', link: 'cooler-repair.html' },
-            { title: 'Water Pump Repair', link: 'cooler-pump.html' },
-            
         ],
         'Geyser Services': [
             { title: 'Book-Geyser-Service', link: 'book-geyser-services.html' },
-              
         ],
         'Kitchen Services': [
             { title: 'Chimney Cleaning', link: 'chimney-cleaning.html' },
-            { title: 'Chimney Repair', link: 'chimney-repair.html' },
-            { title: 'Chimney Installation', link: 'chimney-install.html' },
-            { title: 'Microwave Repair', link: 'microwave-repair.html' },
-            { title: 'Oven Repair', link: 'oven-repair.html' },
-            { title: 'Induction Repair', link: 'induction-repair.html' },
-            { title: 'Mixer/Grinder Repair', link: 'mixer-repair.html' },
-            { title: 'Food Processor Repair', link: 'foodprocessor-repair.html' },
-            { title: 'Water Purifier Service', link: 'purifier-service.html' },
-            { title: 'Kitchen Exhaust Fan', link: 'kitchen-fan.html' }
+            
         ],
         'Electrical Services': [
             { title: 'Wiring Installation', link: 'wiring-install.html' },
-            { title: 'Switchboard Repair', link: 'switchboard.html' },
-            { title: 'Light Fixtures', link: 'light-fixtures.html' },
-            { title: 'Power Outage', link: 'power-outage.html' },
-            { title: 'Circuit Breaker', link: 'circuit-breaker.html' },
-            { title: 'Socket Installation', link: 'socket-install.html' },
-            { title: 'Fan Installation', link: 'fan-install.html' },
-            { title: 'Inverter Setup', link: 'inverter-setup.html' },
-            { title: 'Generator Setup', link: 'generator-setup.html' },
-            { title: 'Home Automation', link: 'home-automation.html' },
-            { title: 'Electrical Safety', link: 'electrical-safety.html' },
-            { title: 'Emergency Electrician', link: 'emergency-electrician.html' },
-            { title: 'Commercial Electrical', link: 'commercial-electrical.html' },
-            { title: 'LED Installation', link: 'led-install.html' },
-            { title: 'Chandelier Install', link: 'chandelier.html' }
+            
         ],
         'Plumbing Services': [
             { title: 'Pipe Leak Repair', link: 'pipe-leak.html' },
-            { title: 'Bathroom Fitting', link: 'bathroom-fitting.html' },
-            { title: 'Tap Repair', link: 'tap-repair.html' },
-            { title: 'Water Tank Cleaning', link: 'tank-cleaning.html' },
-            { title: 'Blocked Drain', link: 'blocked-drain.html' },
-            { title: 'Water Pump Repair', link: 'water-pump.html' },
-            { title: 'Bathroom Renovation', link: 'bathroom-reno.html' },
-            { title: 'Pipe Installation', link: 'pipe-install.html' },
-            { title: 'Septic Tank', link: 'septic-tank.html' },
-            { title: 'Water Heater', link: 'water-heater.html' }
+           
         ],
         'Cleaning Services': [
             { title: 'Carpet Cleaning', link: 'carpet-cleaning.html' },
-            { title: 'Sofa Cleaning', link: 'sofa-cleaning.html' },
-            { title: 'House Deep Cleaning', link: 'deep-cleaning.html' },
-            { title: 'Office Cleaning', link: 'office-cleaning.html' },
-            { title: 'Window Cleaning', link: 'window-cleaning.html' },
-            { title: 'Post Construction', link: 'post-construction.html' },
-            { title: 'Mattress Cleaning', link: 'mattress-cleaning.html' },
-            { title: 'Curtain Cleaning', link: 'curtain-cleaning.html' },
-            { title: 'Car Interior', link: 'car-interior.html' },
-            { title: 'Disinfection', link: 'disinfection.html' }
+            
         ],
         'Salon Services': [
             { title: 'Barber Service', link: 'book-barber-service.html' },
         ],
         'Handyman Services': [
             { title: 'Furniture Assembly', link: 'furniture-assembly.html' },
-            { title: 'Painting', link: 'painting.html' },
-            { title: 'TV Mounting', link: 'tv-mounting.html' },
-            { title: 'Shelving', link: 'shelving.html' },
-            { title: 'Door Repair', link: 'door-repair.html' },
-            { title: 'Window Repair', link: 'window-repair.html' },
-            { title: 'Lock Installation', link: 'lock-install.html' },
-            { title: 'Wall Mounting', link: 'wall-mounting.html' },
-            { title: 'Minor Carpentry', link: 'carpentry.html' },
-            { title: 'General Repairs', link: 'general-repairs.html' }
+           
         ],
         'Security Services': [
             { title: 'CCTV Installation', link: 'book-cctv-service.html' },    
         ],
         'R.O Services': [
             { title: 'R.O Service', link: 'book-ro-service.html' },
-            { title: 'Water Purifier Service', link: 'purifier-service.html' },
-            { title: 'Water Purifier Installation', link: 'water-purifier-installation.html' },
-            { title: 'R.O Repair', link: 'ro-repair.html' },
-            { title: 'Water Filter Replacement', link: 'water-filter-replacement.html' },
-            { title: 'R.O AMC Plan', link: 'ro-amc-plan.html' },
+            
         ],
         'Vehicle Booking': [
             { title: 'Bike Service', link: 'bike-service.html' },
-            { title: 'Car Wash', link: 'car-wash.html' },
-            { title: 'Driver Booking', link: 'driver-booking.html' },
-            { title: 'Taxi Booking', link: 'taxi-booking.html' },
+           
         ],
         'Automobile Repairing Services': [
             { title: 'Car Repairing Services', link: 'automobile-repairing-services.html' },
-            { title: 'Two Wheeler Repair', link: 'two-wheeler-repair.html' },
-            { title: 'Car AC Service', link: 'car-ac-service.html' },
-            { title: 'Vehicle Denting & Painting', link: 'vehicle-denting.html' },
-            { title: 'Vehicle Interior Cleaning', link: 'vehicle-interior.html' },
+            
         ],
         'Parcel Delivery Service': [
             { title: 'Fast Parcel Delivery', link: 'book-parcel-delivery.html' },
-            { title: 'Courier Service', link: 'courier-service.html' },
-            { title: 'Local Delivery', link: 'local-delivery.html' },
+            
         ],
+        'TV Repair Services': [
+            { title: 'TV Repair', link: 'tv-repair.html' },
+            
+        ],
+        'Solar Installation Services': [
+            { title: 'Solar Panel Installation', link: 'solar-installation.html' }
+        ],
+        'Battery Services': [
+            { title: 'Bike Battery', link: 'bike-battery.html' },
+            
+        ],
+        'Waiter & Catering Services': [
+            { title: 'Halwai Booking', link: 'halwai-booking.html' },
+            
+        ],
+        'Dish & Wifi Services': [
+            { title: 'Wifi Connection', link: 'wifi-connection.html' },
+            
     };
 
     function showPopup(category, imageUrl) {
@@ -799,5 +891,32 @@ document.querySelector('.slider-btn').addEventListener('click', function(e) {
 </script>
 
   <script src="script.js" defer></script>
+
+<!-- Bottom Navigation from trail.html -->
+<div class="fixed bottom-0 left-0 w-full md:hidden bottom-nav z-50">
+    <a href="#govt-exam-section" class="nav-item">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+        <span class="nav-text"></span>
+    </a>
+    <a href="#private-sector-section" class="nav-item">
+         <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.75h16.5v8.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V9.75z M3.75 9.75L7.5 3.375h9L20.25 9.75" /></svg>
+        <span class="nav-text"></span>
+    </a>
+    <a href="index.html" class="nav-item nav-item-central">
+        <div class="central-icon-wrapper">
+            <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>
+        </div>
+        <span class="nav-text">Home</span>
+    </a>
+    <a href="#contact" class="nav-item">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+        <span class="nav-text"></span>
+    </a>
+    <a href="#ai-guide-section" class="nav-item">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5a6 6 0 00-6-6v-1.5a6 6 0 00-6 6v1.5a6 6 0 006 6z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75V15m0-6.75V6" /></svg>
+        <span class="nav-text"></span>
+    </a>
+</div>
+
 </body>
 </html>
