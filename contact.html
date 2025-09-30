@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Sonipat Home Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Added Inter for modern feel */
+        }
+        
+        body {
+            background-color: #f1f4f9; /* Slightly darker background for contrast */
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 350px; /* Slightly taller hero */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Deeper overlay */
+        }
+        
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem; /* Punchier headline */
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+            font-weight: 900;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 0; /* Increased padding */
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem; /* More spacing */
+            color: #0f4f1d;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #2ecc71;
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0.75rem auto 0;
+        }
+        
+        /* Contact Container - Centered and max-width added */
+        .contact-container {
+            display: flex; 
+            justify-content: center; /* Center the single item */
+            gap: 2rem;
+            /* PC width change: Now fills the full container width */
+            max-width: 100%; 
+        }
+
+        .contact-info { 
+            width: 100%; /* Occupies full available width in container */
+            background: white;
+            padding: 3rem; /* Increased padding */
+            border-radius: 15px; /* More rounding */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Deep, modern shadow */
+            transition: transform 0.3s;
+        }
+        
+        .contact-info:hover {
+            transform: translateY(-5px); /* Lift on hover */
+        }
+
+        .contact-info h3 {
+            color: #0f4f1d;
+            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #2ecc71;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .info-icon {
+            /* Stylish Gradient Icon - applies to all screens */
+            background: linear-gradient(45deg, #2ecc71, #1a6b2c); 
+            color: white;
+            width: 50px; /* Larger icon */
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+        
+        .info-content h4 {
+            margin-bottom: 0.4rem;
+            color: #1a6b2c;
+            font-weight: 600;
+        }
+        
+        .info-content p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 2rem 0 5rem;
+        }
+        
+        .map-container {
+            height: 450px; /* Slightly taller map */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%; 
+            height: 100%;
+            display: block;
+        }
+        
+        /* Social Section */
+        .social-section {
+            background: #e9ecef; /* Light gray background */
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .social-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bounce transition */
+            width: 120px;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1) translateY(-10px); /* Lift and enlarge on hover */
+            color: #1a6b2c;
+        }
+        
+        .social-icon i {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            background: white;
+            width: 70px; /* Larger targets */
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* PC Shadow */
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover i {
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.5); /* Glowing shadow on hover */
+            background: #2ecc71;
+            color: white;
+        }
+        
+        /* Specific Colors - Applies to all screens */
+        .facebook i { color: #3b5998; }
+        .instagram i { color: #e4405f; }
+        .google i { color: #dd4b39; }
+        .play-store i { color: #34a853; }
+        
+        /* Footer */
+        footer {
+            background: #0f4f1d; /* Deeper footer color */
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px; 
+            margin-bottom: 1.5rem;
+            text-align: left;
+            padding: 0 10px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.2rem;
+            color: #f1c40f;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ecf0f1;
+            margin-bottom: 0.6rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-section a:hover {
+            color: #2ecc71;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        /* --- Mobile Responsiveness (iPhone 12 Mini size and up) --- */
+        @media (max-width: 768px) {
+            
+            /* Header adjustments */
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            nav ul {
+                margin-top: 0.5rem; 
+                justify-content: center;
+                flex-wrap: wrap;
+                padding-bottom: 0.5rem;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0.5rem; 
+            }
+            
+            nav ul li a::after {
+                height: 2px;
+                bottom: -3px;
+            }
+
+            /* Hero adjustments */
+            .hero {
+                height: 200px; /* Shorter hero on mobile */
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2::after {
+                bottom: -5px;
+                height: 3px;
+            }
+
+            /* Contact section stacking */
+            .contact-section {
+                padding: 3rem 0;
+            }
+
+            .contact-container {
+                flex-direction: column; 
+                gap: 1.5rem;
+            }
+            
+            .contact-info { 
+                padding: 2rem 1.5rem; 
+                border-radius: 10px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            }
+            
+            .info-item {
+                margin-bottom: 1rem;
+            }
+
+            /* Map section adjustments */
+            .map-container {
+                height: 250px; 
+                border-radius: 10px;
+            }
+
+            /* Social section adjustments: Ensure icons are in one row and look stylish */
+            .social-icons {
+                gap: 0.5rem; 
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: space-evenly; /* Even distribution of space */
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none;  /* IE and Edge */
+            }
+            /* Hide scrollbar for cleaner look */
+            .social-icons::-webkit-scrollbar {
+                display: none; 
+            }
+
+            .social-icon {
+                /* Set minimum width to prevent collapse */
+                min-width: 75px; 
+                width: 20%; 
+                flex-shrink: 0;
+            }
+            
+            .social-icon i {
+                /* Reduced size but retains global PC styling (shadow, colors, background) */
+                width: 50px; 
+                height: 50px;
+                font-size: 2rem;
+            }
+
+            /* Footer stacking */
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-section {
+                text-align: center;
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <div id="header-container"></div>
+    <br><br><br>
+    
+    
+    
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Information</h2>
+                <p>Reach out to us through any of the following channels</p>
+            </div>
+            
+            <div class="contact-container">
+                
+                <!-- Contact Info Section (Now occupies center position, full width of container) -->
+                <div class="contact-info">
+                    <h3>Our Office Details</h3>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Office Address</h4>
+                            <p>Sonipat Home Service (A Venture of Lakhdeep Network Service)<br>
+                                128/1, Sainipura, Sonipat - 131001 (Haryana)</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Customer Care</h4>
+                            <p>+91-88160-14071</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Email Address</h4>
+                            <p>care@sonipathomeservice.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Service Hours</h4>
+                            <p>Monday - Sunday: 8:00 AM - 8:00 PM<br>Emergency services available 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Find Us on Map</h2>
+                <p>Visit our office or check our location on Google Maps</p>
+            </div>
+            <div class="map-container">
+                <!-- Embedded Google Map - Dimensions set to 100% via CSS for responsiveness -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3489.3601847235377!2d77.0173349!3d29.006324799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390db100744c2e99%3A0xb9ebcfd7db64db74!2sSonipat%20Home%20Service.com!5e0!3m2!1sen!2sin!4v1758969619256!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+    
+    <section class="social-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Connect With Us</h2>
+                <p>Follow us on social media and download our mobile app</p>
+            </div>
+            <div class="social-icons">
+                <a href="https://maps.app.goo.gl/S14MC5DoPrB9edSdA" class="social-icon google" target="_blank">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Map</span>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice" class="social-icon play-store" target="_blank">
+                    <i class="fab fa-google-play"></i>
+                    <span>Apk</span>
+                </a>
+                <a href="https://facebook.com/sonipathomeservice" class="social-icon facebook" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="https://instagram.com/sonipathomeservice" class="social-icon instagram" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                    <span>Meta</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Sonipat Home Service is a trusted provider of home maintenance and repair services in Sonipat. We are committed to delivering quality service with professionalism.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 128/1, Sainipura, Sonipat - 131001</p>
+                    <p><i class="fas fa-phone"></i> +91-88160-14071</p>
+                    <p><i class="fas fa-envelope"></i> care@sonipathomeservice.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Sonipat Home Service . All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
