@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- यह 'viewport-fit=cover' टैग पूरे स्क्रीन को उपयोग करने की अनुमति देता है, जिसे अब हम CSS Safe Area Variables से सुरक्षित करेंगे -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="google-site-verification" content="o2aVfORGFZbKqnl38ZA7GPMdA9nv9Icy_ksU1AMY1jU" />
 
@@ -22,8 +23,8 @@
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Sonipat Home Service – Trusted Appliance Repair at Your Doorstep" />
-<meta name="twitter:description" content="Expert repair of AC, fridge, geyser, cooler, washing machine & more in Sonipat. Book now!" />
-<meta name="twitter:image" content="https://sonipathomeservice.com/images/twitter-card.jpg" />
+<meta property="twitter:description" content="Expert repair of AC, fridge, geyser, cooler, washing machine & more in Sonipat. Book now!" />
+<meta property="twitter:image" content="https://sonipathomeservice.com/images/twitter-card.jpg" />
 <meta name="twitter:creator" content="@sonipathomeservice" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -74,6 +75,27 @@
       --list-link-text: #e5e7eb;   
     }
 
+    /* ----------------------------------------------------- */
+    /* सुरक्षित क्षेत्र (Safe Area) फिक्स: टॉप और बॉटम ओवरले को रोकना */
+    /* ----------------------------------------------------- */
+    body {
+        /*
+         * टॉप फिक्स: 
+         * body को fixed header (अनुमानित 60px) और टॉप सिस्टम बार 
+         * (safe-area-inset-top) के लिए padding दे रहे हैं ताकि कंटेंट 
+         * ऊपर छिप न जाए।
+         */
+        padding-top: calc(60px + env(safe-area-inset-top, 0px));
+        
+        /*
+         * बॉटम फिक्स: 
+         * body को fixed bottom nav (64px) और बॉटम सिस्टम बार 
+         * (safe-area-inset-bottom) के लिए padding दे रहे हैं।
+         */
+        padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    }
+
+
     .hidden-h1 { position: absolute; left: -9999px; visibility: hidden; }
 
     #products-section {
@@ -81,7 +103,9 @@
         text-align: center;
         background: #f4f4f4;
     }
-
+    
+    /* ... (Rest of existing CSS for sections, cards, and popups) ... */
+    
     .section-title {
         font-size: 2.5rem;
         margin-bottom: 3rem;
@@ -382,6 +406,12 @@
         bottom: 0;
         left: 0;
         width: 100%;
+        
+        /* * FIX: बॉटम नेविगेशन के कंटेंट को बॉटम नॉच/होम इंडिकेटर से ऊपर 
+         * रखने के लिए padding-bottom और box-sizing का उपयोग करें।
+         */
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        box-sizing: content-box; 
     }
 
     .nav-item {
@@ -465,15 +495,8 @@
   <img src="drng11.png" alt="chimney" loading="lazy">
   <img src="drng12.png" alt="chimney" loading="lazy">
   <img src="drng13.png" alt="chimney" loading="lazy">
-  <img src="drng14.jpg" alt="chimney" loading="lazy">
+  <img src="drng14.png" alt="chimney" loading="lazy">
   <img src="drng15.jpeg" alt="chimney" loading="lazy">
-    <img src="drng16.png" alt="chimney" loading="lazy">
-    <img src="drng17.png" alt="chimney" loading="lazy">
-    <img src="drng18.png" alt="chimney" loading="lazy">
-    <img src="drng19.png" alt="chimney" loading="lazy">
-    <img src="drng20.png" alt="chimney" loading="lazy">
-    <img src="drng21.png" alt="chimney" loading="lazy">
-    <img src="drng22.png" alt="chimney" loading="lazy">
 </div>
   <div class="slider-overlay">
     <h1>Professional Appliance Repair in Sonipat</h1>
@@ -627,7 +650,7 @@
         </a>
 
        <a class="card" href="bike-service.html">
-            <img src="drng14.jpg" alt="Vehicle Booking" class="card-image">
+            <img src="drng14.png" alt="Vehicle Booking" class="card-image">
             <div class="card-content-wrapper">
                 <h3 class="card-heading">Vehicle Booking</h3>
                 <p class="card-category">Transportation</p>
@@ -690,18 +713,9 @@
         </a>
 
         <a class="card" href="wifi-connection.html">
-            <img src="drng21.png" alt="Wifi Services" class="card-image">
+            <img src="drng21.png" alt="Dish & Wifi Services" class="card-image">
             <div class="card-content-wrapper">
-                <h3 class="card-heading">Wifi Installation</h3>
-                <p class="card-category">Connectivity</p>
-                <span class="card-button">Book Now</span>
-            </div>
-        </a>
-
-      <a class="card" href="wifi-connection.html">
-            <img src="drng22.png" alt="DTH Services" class="card-image">
-            <div class="card-content-wrapper">
-                <h3 class="card-heading">DTH Installation</h3>
+                <h3 class="card-heading">Wifi & Dish TV Installation</h3>
                 <p class="card-category">Connectivity</p>
                 <span class="card-button">Book Now</span>
             </div>
@@ -797,10 +811,8 @@
         ],
         'Dish & Wifi Services': [
             { title: 'Wifi Connection', link: 'wifi-connection.html' },
-          ],
-        'DTH Services': [
-            { title: 'DTH Connection', link: 'dthconection.html' },
             
+        ] // Missing closing bracket added here
     };
 
     function showPopup(category, imageUrl) {
@@ -931,7 +943,7 @@ document.querySelector('.slider-btn').addEventListener('click', function(e) {
         <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
         <span class="nav-text">Contact</span>
     </a>
-    <a href="#contact.html" class="nav-item">
+    <a href="#ai-guide-section" class="nav-item">
         <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5a6 6 0 00-6-6v-1.5a6 6 0 00-6 6v1.5a6 6 0 006 6z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75V15m0-6.75V6" /></svg>
         <span class="nav-text"></span>
     </a>
@@ -939,10 +951,3 @@ document.querySelector('.slider-btn').addEventListener('click', function(e) {
 
 </body>
 </html>
-
-
-
-
-
-
-
