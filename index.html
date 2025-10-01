@@ -78,21 +78,48 @@
     /* ----------------------------------------------------- */
     /* सुरक्षित क्षेत्र (Safe Area) फिक्स: टॉप और बॉटम ओवरले को रोकना */
     /* ----------------------------------------------------- */
+    
+    /* * NOTE: Agar aapka header fixed nahi hai, to body padding theek kaam karega. 
+     * Agar fixed hai, to hamein fixed header mein padding/margin adjust karna hoga.
+     */
     body {
-        /*
-         * टॉप फिक्स: 
-         * body को fixed header (अनुमानित 60px) और टॉप सिस्टम बार 
-         * (safe-area-inset-top) के लिए padding दे रहे हैं ताकि कंटेंट 
-         * ऊपर छिप न जाए।
-         */
-        padding-top: calc(60px + env(safe-area-inset-top, 0px));
+        /* body ko padding sirf bottom nav space ke liye chahiye */
+        padding-top: 0; /* Default padding-top hata diya */
         
         /*
-         * बॉटम फिक्स: 
-         * body को fixed bottom nav (64px) और बॉटम सिस्टम बार 
-         * (safe-area-inset-bottom) के लिए padding दे रहे हैं।
+         * बॉटम फिक्स: (64px bottom nav height + safe area)
          */
         padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    }
+
+    /* Fixed Top Element Adjustment (Agar aapka header fixed hai) */
+    /* Agar aapka header-container fixed position mein hai, to yeh use karein */
+    #header-container, .fixed-header { 
+        /* * Important: Aapki image se lagta hai ki aapka header fixed hai.
+         * Agar aapka header fixed hai, toh uspar yeh CSS lagana hoga.
+         * Agar yeh fixed nahi hai, to iski zarurat nahi hai.
+         * Mai maan raha hoon ki "#header-container" fixed hai.
+         */
+        position: fixed; /* Agar fixed nahi hai to yeh line add karein */
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50; /* Z-index high rakhein */
+        
+        /* Upar ke overlay ko theek karne ke liye padding aur box-sizing */
+        padding-top: env(safe-area-inset-top, 0px);
+        box-sizing: content-box; 
+    }
+    
+    /* Content ko header ke neeche shuru karne ke liye, 
+       main ya koi wrapper element mein top margin dena padega.
+       Hum main element mein margin de rahe hain. 
+       Header ki height (approx 60px) + safe area top margin.
+       Aapko apne header ki actual height ke hisaab se 60px change karna pad sakta hai.
+    */
+    main {
+        margin-top: calc(60px + env(safe-area-inset-top, 0px));
+        position: relative;
     }
 
 
@@ -475,7 +502,8 @@
 </head>
 
 <body>
-  <div id="header-container"></div>
+  <!-- Header container ko fixed-header bana diya gaya hai -->
+  <div id="header-container" class="fixed-header"></div>
   
 
   <h1 class="hidden-h1">No Any Subscription Gym, Yoga, Calisthenics, Detox & Diet Programs | LivFit.pro</h1>
@@ -812,7 +840,7 @@
         'Dish & Wifi Services': [
             { title: 'Wifi Connection', link: 'wifi-connection.html' },
             
-        ] // Missing closing bracket added here
+        ] 
     };
 
     function showPopup(category, imageUrl) {
@@ -939,7 +967,7 @@ document.querySelector('.slider-btn').addEventListener('click', function(e) {
         </div>
         <span class="nav-text">Home</span>
     </a>
-    <a href="contact.html" class="nav-item">
+     <a href="contact.html" class="nav-item">
         <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
         <span class="nav-text">Contact</span>
     </a>
