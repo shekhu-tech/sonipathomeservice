@@ -7,6 +7,16 @@
     }
     
     :root {
+      /* Reverting to golden colors for the bottom nav as per trail.html */
+      --golden-light: #3a321f;     
+      --golden-medium: #FFE5A3;    
+      --golden-dark: #A37A00;      
+      --text-light: #f3f4f6;       
+      --popup-bg: #1f2937;         
+      --popup-overlay-bg: rgba(0, 0, 0, 0.85);
+      --popup-link-hover: #4b5563; 
+      --list-link-text: #e5e7eb;
+      
       --deep-night: #080012;
       --neon-pink: #ff0080;
       --neon-blue: #00ffff;
@@ -15,297 +25,322 @@
       --muted-gray: #aaa;
     }
 
+    /* ----------------------------------------------------- */
+    /* सुरक्षित क्षेत्र (Safe Area) फिक्स: टॉप और बॉटम ओवरले को रोकना */
+    /* ----------------------------------------------------- */
+    
     body {
-      margin: 0;
-      padding: 0;
-      background: light gray;
-      font-family: 'Segoe UI', sans-serif;
-      color: var(--white);
+        margin: 0;
+        padding: 0;
+        background: light gray;
+        font-family: 'Segoe UI', sans-serif;
+        color: var(--white);
+        
+        /* Fixed headers ko margin-top aur padding-top handle karne denge */
+        padding-top: 0; 
+        
+        /*
+         * बॉटम फिक्स: (64px bottom nav height + safe area)
+         */
+        padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
     }
 
-/* A more attractive and centered top bar */
+    /* A more attractive and centered top bar */
+    .top-bar {
+        /* Gradient background for a modern look */
+        background: linear-gradient(90deg, #007bff, #0056b3);
+        color: #fff;
+        /* Original padding: 10px 20px */
+        padding: 10px 20px;
+        display: flex;
+        /* Center content horizontally */
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001;
+        /* Add a subtle shadow for depth */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s ease;
+        
+        /* **TOP FIX 1: top bar ko status bar se neeche dhakelna** */
+        padding-top: calc(10px + env(safe-area-inset-top, 0px)); /* Safe area ke liye padding adjust kiya */
+        box-sizing: border-box; /* Padding height mein shamil ho */
+    }
+
+    .top-bar-content {
+        display: flex;
+        align-items: center;
+        /* Adjust spacing between elements */
+        gap: 20px;
+    }
+
+    .phone-number-top {
+        align-items: center;
+        color: #fff;
+        text-decoration: none;
+        /* Bolder font for visibility */
+        font-weight: 600;
+        font-size: 16px;
+        transition: color 0.3s ease;
+    }
+
+    .phone-number-top:hover {
+        color: #ffd700;
+    }
+
+
+    .partner-button-top {
+        background: #ffd700;
+        color: #000;
+        font-weight: 700;
+        padding: 8px 18px;
+        /* Make it more pill-shaped */
+        border-radius: 25px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .partner-button-top:hover {
+        background: #fff;
+        color: #007bff;
+        /* Add a more noticeable lift effect */
+        transform: translateY(-2px);
+    }
+
+    /*
+     * --- Media Query for Mobile ---
+     */
+    @media (max-width: 768px) {
         .top-bar {
-            /* Gradient background for a modern look */
-            background: linear-gradient(90deg, #007bff, #0056b3);
-            color: #fff;
-            padding: 10px 20px;
-            display: flex;
-            /* Center content horizontally */
+            /* Use space-around to distribute items if needed, or just center */
             justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1001;
-            /* Add a subtle shadow for depth */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
+            padding: 10px 10px;
         }
 
         .top-bar-content {
-            display: flex;
-            align-items: center;
-            /* Adjust spacing between elements */
-            gap: 20px;
+            /* Reduce gap for smaller screens */
+            gap: 15px;
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
         }
-
-        .phone-number-top {
-            align-items: center;
-            color: #fff;
-            text-decoration: none;
-            /* Bolder font for visibility */
-            font-weight: 600;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-
-        .phone-number-top:hover {
-            color: #ffd700;
-        }
-
 
         .partner-button-top {
-            background: #ffd700;
-            color: #000;
-            font-weight: 700;
-            padding: 8px 18px;
-            /* Make it more pill-shaped */
-            border-radius: 25px;
-            text-decoration: none;
-            transition: all 0.3s ease;
+            font-size: 14px;
+            padding: 6px 14px;
         }
 
-        .partner-button-top:hover {
-            background: #fff;
-            color: #007bff;
-            /* Add a more noticeable lift effect */
-            transform: translateY(-2px);
+        .phone-number-top span {
+            font-size: 14px;
         }
+    }
 
-        /*
-            --- Media Query for Mobile ---
-            Styles applied only when the screen width is 768px or less.
-            Icon hiding rule is no longer needed here.
-        */
-        @media (max-width: 768px) {
-            .top-bar {
-                /* Use space-around to distribute items if needed, or just center */
-                justify-content: center;
-                padding: 10px 10px;
-            }
+    /* ======= HEADER (Classic Black Theme) ======= */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #007bff;
+        padding: 16px 32px;
+        border-bottom: 2px solid #ffd700;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        
+        /* **TOP FIX 2: header ko .top-bar aur safe area ke neeche position karna** */
+        /* Original top: 45px. Safe Area ke liye yeh calc() use karenge: */
+        top: calc(45px + env(safe-area-inset-top, 0px)); 
+    }
 
-            .top-bar-content {
-                /* Reduce gap for smaller screens */
-                gap: 15px;
-                flex-direction: row;
-                width: 100%;
-                justify-content: center;
-            }
+    header.scrolled {
+        padding: 12px 32px;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+    }
 
-            .partner-button-top {
-                font-size: 14px;
-                padding: 6px 14px;
-            }
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    .logo img {
+        height: 40px;
+        transition: transform 0.3s ease;
+    }
 
-            .phone-number-top span {
-                font-size: 14px;
-            }
-        }
-
-/* ======= HEADER (Classic Black Theme) ======= */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #007bff;
-    padding: 16px 32px;
-    border-bottom: 2px solid #ffd700;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
-    position: fixed;
-    top: 45px; /* Adjust top position to be below the top-bar */
-    width: 100%;
-    z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-header.scrolled {
-    padding: 12px 32px;
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-.logo img {
-    height: 40px;
-    transition: transform 0.3s ease;
-}
-
-nav {
-    display: flex;
-    gap: 18px;
-}
-.nav-item {
-    position: relative;
-}
-.nav-item > a {
-    color: #fff;
-    font-weight: 600;
-    padding: 10px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    position: relative;
-    transition: all 0.3s ease;
-}
-.nav-item > a::after {
-    content: "";
-    position: absolute;
-    bottom: 2px;
-    left: 0;
-    height: 2px;
-    width: 0%;
-    background: #ffd700;
-    transition: width 0.3s ease;
-}
-.nav-item > a:hover {
-    background: rgba(255, 215, 0, 0.15);
-    color: #ffd700;
-    transform: translateY(-1px);
-}
-.nav-item > a:hover::after {
-    width: 100%;
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 26px;
-    color: #ffd700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.menu-toggle:hover {
-    color: #fff;
-    transform: scale(1.2);
-}
-
-/* ======= SIDEBAR ======= */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    padding: 40px 24px;
-    background: #000;
-    backdrop-filter: blur(12px);
-    transform: translateX(-100%);
-    transition: 0.5s ease-in-out;
-    z-index: 9999;
-    overflow-y: auto;
-    box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
-}
-.sidebar.active {
-    transform: translateX(0);
-}
-.sidebar .close-btn {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 26px;
-    color: #ffd700;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-.sidebar .close-btn:hover {
-    transform: rotate(90deg) scale(1.2);
-}
-.sidebar-logo {
-    text-align: center;
-    margin-bottom: 32px;
-}
-.sidebar-logo img {
-    height: 40px;
-    max-width: 100%;
-    transition: all 0.3s ease;
-}
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-.sidebar li {
-    margin: 14px 0;
-}
-.sidebar-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #111;
-    padding: 14px 18px;
-    border-radius: 8px;
-    font-size: 18px;
-    color: #fff;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border: 1px solid #ffd70033;
-}
-.sidebar-button:hover {
-    background: #ffd700;
-    color: #000;
-    transform: translateX(8px);
-}
-
-/* ======= RESPONSIVE ======= */
-@media (max-width: 1300px) {
-    /* Hide desktop navigation and show menu toggle */
     nav {
-        display: none;
+        display: flex;
+        gap: 18px;
     }
+    .nav-item {
+        position: relative;
+    }
+    .nav-item > a {
+        color: #fff;
+        font-weight: 600;
+        padding: 10px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    .nav-item > a::after {
+        content: "";
+        position: absolute;
+        bottom: 2px;
+        left: 0;
+        height: 2px;
+        width: 0%;
+        background: #ffd700;
+        transition: width 0.3s ease;
+    }
+    .nav-item > a:hover {
+        background: rgba(255, 215, 0, 0.15);
+        color: #ffd700;
+        transform: translateY(-1px);
+    }
+    .nav-item > a:hover::after {
+        width: 100%;
+    }
+
     .menu-toggle {
-        display: block;
+        display: none;
+        font-size: 26px;
+        color: #ffd700;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
-}
+    .menu-toggle:hover {
+        color: #fff;
+        transform: scale(1.2);
+    }
 
-@media (max-width: 768px) {
-    /* Adjustments for tablets and smaller devices */
-    .top-bar-content {
-        gap: 15px; /* Reduce gap between items */
+    /* ======= SIDEBAR (No safe area changes needed) ======= */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        padding: 40px 24px;
+        background: #000;
+        backdrop-filter: blur(12px);
+        transform: translateX(-100%);
+        transition: 0.5s ease-in-out;
+        z-index: 9999;
+        overflow-y: auto;
+        box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
     }
-    .phone-number-top span {
-        display: none; /* Hide number text to save space, keeping only the icon */
+    .sidebar.active {
+        transform: translateX(0);
     }
-    .partner-button-top {
-        padding: 6px 12px; /* Smaller padding for button */
+    .sidebar .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 26px;
+        color: #ffd700;
+        cursor: pointer;
+        transition: transform 0.3s ease;
     }
-    header {
-        padding: 12px 24px; /* Smaller padding for main header */
+    .sidebar .close-btn:hover {
+        transform: rotate(90deg) scale(1.2);
     }
-    .logo img {
-        height: 30px; /* Smaller logo */
+    .sidebar-logo {
+        text-align: center;
+        margin-bottom: 32px;
     }
-}
+    .sidebar-logo img {
+        height: 40px;
+        max-width: 100%;
+        transition: all 0.3s ease;
+    }
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+    .sidebar li {
+        margin: 14px 0;
+    }
+    .sidebar-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #111;
+        padding: 14px 18px;
+        border-radius: 8px;
+        font-size: 18px;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid #ffd70033;
+    }
+    .sidebar-button:hover {
+        background: #ffd700;
+        color: #000;
+        transform: translateX(8px);
+    }
 
-@media (max-width: 480px) {
-    /* Adjustments for mobile phones */
-    .top-bar {
-        padding: 8px 16px; /* Reduced padding */
-        justify-content: space-between; /* Align items to opposite ends for better spacing */
+    /* ======= RESPONSIVE (Adjusted for Fixed Headers) ======= */
+    @media (max-width: 1300px) {
+        /* Hide desktop navigation and show menu toggle */
+        nav {
+            display: none;
+        }
+        .menu-toggle {
+            display: block;
+        }
     }
-    .partner-button-top {
-        font-size: 14px; /* Smaller font size for button */
+
+    @media (max-width: 768px) {
+        /* Adjustments for tablets and smaller devices */
+        .top-bar-content {
+            gap: 15px; /* Reduce gap between items */
+        }
+        .phone-number-top span {
+            display: none; /* Hide number text to save space, keeping only the icon */
+        }
+        .partner-button-top {
+            padding: 6px 12px; /* Smaller padding for button */
+        }
+        header {
+            padding: 12px 24px; /* Smaller padding for main header */
+        }
+        .logo img {
+            height: 30px; /* Smaller logo */
+        }
     }
-    header {
-        padding: 10px 16px;
-        top: 40px; /* Ensure main header is positioned correctly */
+
+    @media (max-width: 480px) {
+        /* Adjustments for mobile phones */
+        .top-bar {
+            padding: 8px 16px; /* Reduced padding */
+            justify-content: space-between; /* Align items to opposite ends for better spacing */
+        }
+        .partner-button-top {
+            font-size: 14px; /* Smaller font size for button */
+        }
+        header {
+            padding: 10px 16px;
+            /* top: calc(...) is already applied, so we override the old top: 40px */
+        }
+        .logo img {
+            height: 25px;
+        }
+        /* body margin-top: 85px; ko ab main block handle karega */
     }
-    .logo img {
-        height: 25px;
+
+    /* **TOP FIX 3: main content ko dono fixed headers se neeche dhakelna** */
+    /* .top-bar height ~45px, header height ~45px. Total ~90px. */
+    main {
+        margin-top: calc(90px + env(safe-area-inset-top, 0px)); 
+        position: relative;
     }
-    body {
-        margin-top: 85px; /* Adjust body margin for mobile */
-    }
-}
+
+    /* End of your header styles */
   /* === Slider Container === */
 /* === Slider Container === */
     .image-slider {
@@ -640,6 +675,7 @@ nav {
       
 
  
+
 
 
 
