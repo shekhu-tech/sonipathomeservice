@@ -407,11 +407,10 @@
                             </ul>
                         </div>
                         
-                        <!-- UPDATED: Converted <a> to <button> and added JS call -->
+                        <!-- Register button: Calls form popup -->
                         <button onclick="showFormPopup('Registrations')" class="apply-btn block w-full text-center bg-accent hover:bg-orange-600 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg mt-6">
                             Register Right Know
                         </button>
-                        <!-- END UPDATED BLOCK -->
                     </div>
                 </div>
             </div>
@@ -463,6 +462,7 @@
                 <p class="text-base sm:text-lg mb-6 opacity-90 max-w-2xl mx-auto">
                     यदि आपके पास ये कौशल और अनुभव है, तो तुरंत हमसे संपर्क करें और हमारी बढ़ती टीम का हिस्सा बनें।
                 </p>
+                <!-- CTA Button: Uses tel: protocol (works seamlessly in browsers and apps) -->
                 <a href="tel:8816014071" class="cta-btn inline-block bg-accent hover:bg-orange-600 text-white font-extrabold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-xl">
                     कॉल करें: 88160-14071
                 </a>
@@ -474,13 +474,16 @@
                 <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
                     <i class="fas fa-phone-alt text-3xl text-primary-light mb-2"></i>
                     <h3 class="text-lg font-semibold text-primary">कॉल करें</h3>
-                    <p class="text-gray-600">88160-14071</p>
+                    <!-- FIX: Added <a> tag with tel: protocol to make it clickable on all devices -->
+                    <p class="text-gray-600">
+                        <a href="tel:8816014071" class="text-gray-600 hover:text-primary-dark transition duration-150">88160-14071</a>
+                    </p>
                 </div>
                 
                 <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
                     <i class="fas fa-envelope text-3xl text-primary-light mb-2"></i>
                     <h3 class="text-lg font-semibold text-primary">ईमेल करें</h3>
-                    <p class="text-gray-600 truncate">care@sonipathomeservice.com</p>
+                    <p class="text-gray-600 truncate"><a href="mailto:care@sonipathomeservice.com" class="text-gray-600 hover:text-primary-dark transition duration-150">care@sonipathomeservice.com</a></p>
                 </div>
                 
                 <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
