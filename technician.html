@@ -589,8 +589,8 @@
         // Service data is kept only for the endpoint, as the list for populating checkboxes is removed.
         const serviceData = {
             // CHANGED KEY from 'Multi-Service Technician' to 'Registrations' to avoid sheet name conflict
+            // Endpoint is the same for all services as provided in the original technician.html
             'Registrations': { 
-                // Removed long list of services. Keeping the endpoint.
                 sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
             },
             // Keeping original data structure for completeness, though only 'Registrations' is used here
@@ -751,8 +751,8 @@
                 input.classList.remove('input-error');
             });
 
-            // Set the service category
-            serviceCategoryInput.value = category;
+            // Set the service category to the new key 'Registrations'
+            serviceCategoryInput.value = 'Registrations';
 
             // Removed the code that generated checkboxes
 
@@ -805,8 +805,6 @@
             const form = document.getElementById('registrationForm');
             const formData = new FormData(form);
 
-            // The 'selectedServices' field is now automatically included from the textarea
-
             // Add employee ID to form data
             const employeeId = generateEmployeeId();
             formData.append('employeeId', employeeId);
@@ -815,8 +813,7 @@
             formData.append('action', 'submitTechnicianRegistration');
 
 
-            // Determine the correct endpoint based on the selected category
-            // UPDATED KEY: Now using 'Registrations'
+            // Determine the correct endpoint based on the hardcoded 'Registrations' key
             const endpoint = serviceData['Registrations'].sheetEndpoint; 
 
             if (!endpoint) {
