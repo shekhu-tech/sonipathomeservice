@@ -1,1010 +1,243 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic Meta Tags -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="google-site-verification" content="o2aVfORGFZbKqnl38ZA7GPMdA9nv9Icy_ksU1AMY1jU" />
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <!-- Viewport tag for ultra responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonipat Home Service - करियर के अवसर</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#2e7d32', // Dark Green
+                        'primary-light': '#4caf50', // Medium Green
+                        'accent': '#ff9800', // Orange
+                        'primary-dark': '#1b5e20', // Very Dark Green
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for better look and feel */
+        .job-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: theme('colors.accent');
+            border-radius: 9999px;
+        }
+        
+        .job-card-header {
+            background: linear-gradient(135deg, theme('colors.primary-light'), theme('colors.primary-dark'));
+        }
 
- <!-- Primary SEO -->
-<title>Sonipat AC Service – Trusted Home Appliance Repair in Sonipat</title>
+        /* Added text shadow for better heading visibility */
+        .card-title-shadow {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+        }
+    </style>
 </head>
-
-<body>
-   <main>
-<br>
-
-<!-- Service Stats Section -->
-<div class="lottery-stats">
-  <div class="stat-card">
-    <h3>Verified Technicians</h3>
-    <p>12+</p>
-  </div>
-  <div class="stat-card">
-    <h3>Households Served</h3>
-    <p>10,000+</p>
-  </div>
-  <div class="stat-card">
-    <h3>Avg Response Time</h3>
-    <p>30 Mins</p>
-  </div>
-  <div class="stat-card">
-    <h3>Service Availability</h3>
-    <p>24x7</p>
-  </div>
-</div>
-<br><br><br>
-
-        <style>
-    /* ======= Main Section ======= */
-    .products-section {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: #f4f4f4;
-      font-family: Arial, sans-serif;
-    }
-
-    /* ======= Title Styling ======= */
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: #005f99;
-      text-transform: uppercase;
-      border-bottom: 3px solid #007bff;
-      display: inline-block;
-      padding-bottom: 6px;
-    }
-
-    /* ======= Card Layout ======= */
-    .cards-container1 {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .cards-container1 > .card {
-      width: calc(33.333% - 1.34rem);
-      box-sizing: border-box;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    /* ======= Card Styling ======= */
-    .card {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      height: 270px;
-      max-width: 399px;
-      width: 100%;
-      background: #ffffff;
-      border: 1px solid #ccc;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-      border-color: #007bff;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-    }
-
-    /* ======= Background Image Area ======= */
-    .card-background {
-      height: 65%;
-      width: 100%;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: #e0e0e0;
-    }
-
-    /* ======= Card Content ======= */
-    .card-content2 {
-      height: 35%;
-      background: #f9f9f9;
-      color: #222;
-      padding: 0.6rem 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border-top: 1px solid #ccc;
-      text-align: center;
-    }
-
-    .card-content2 h3 {
-      font-size: 1.2rem;
-      margin-bottom: 6px;
-      color: #005f99;
-      letter-spacing: 0.5px;
-    }
-
-    /* ======= Button Style ======= */
-    .btn {
-      display: block;
-      width: 100%;
-      font-size: 0.95rem;
-      padding: 10px 0;
-      border-radius: 999px;
-      background: #007bff;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      transition: background 0.3s ease;
-    }
-
-    .btn:hover {
-      background: #0056b3;
-      color: #fff;
-    }
-
-    /* ======= Top Corner Ribbon ======= */
-    .corner-ribbon {
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-top: 60px solid #007bff;
-      border-right: 60px solid transparent;
-      z-index: 10;
-    }
-
-    /* ======= Top Badge ======= */
-    .card-category-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: #e9ecef;
-      color: #333;
-      font-weight: bold;
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      z-index: 10;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* ======= Form Popup Styles ======= */
-    .form-popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .form-popup-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .form-popup-container {
-      background: white;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 600px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 2rem;
-      position: relative;
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
-
-    .form-popup-overlay.active .form-popup-container {
-      transform: scale(1);
-    }
-
-    .form-popup-close {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: #333;
-    }
-
-    .form-popup-title {
-      font-size: 1.8rem;
-      color: #005f99;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    /* Form Styles */
-    .registration-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .form-group label {
-      font-weight: 600;
-      color: #333;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      padding: 0.8rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    .form-group textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
-
-    .services-checkbox-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 0.5rem;
-    }
-
-    .service-checkbox {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #f0f8ff;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      border: 1px solid #cce0ff;
-    }
-
-    .service-checkbox input {
-      margin: 0;
-    }
-
-    .submit-btn {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 1rem;
-      border-radius: 5px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s;
-      margin-top: 1rem;
-    }
-
-    .submit-btn:hover {
-      background: #0056b3;
-    }
-
-    /* Error Message Styles */
-    .error-message {
-      color: #dc3545;
-      font-size: 0.85rem;
-      margin-top: 0.25rem;
-      display: none;
-    }
-
-    .input-error {
-      border-color: #dc3545 !important;
-    }
-
-    /* Success Popup Styles */
-    .success-popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1001;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .success-popup-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .success-popup-container {
-      background: white;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 500px;
-      padding: 2rem;
-      text-align: center;
-      position: relative;
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
-
-    .success-popup-overlay.active .success-popup-container {
-      transform: scale(1);
-    }
-
-    .success-icon {
-      font-size: 4rem;
-      color: #28a745;
-      margin-bottom: 1rem;
-    }
-
-    .success-title {
-      font-size: 1.8rem;
-      color: #005f99;
-      margin-bottom: 1rem;
-    }
-
-    .employee-id {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #28a745;
-      margin: 1rem 0;
-      padding: 0.5rem;
-      background: #f0fff0;
-      border-radius: 5px;
-    }
-
-    .success-message {
-      font-size: 1.1rem;
-      color: #333;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-
-    .success-btn {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 5px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .success-btn:hover {
-      background: #0056b3;
-    }
-
-    /* Loading Spinner */
-    .spinner {
-      display: none;
-      width: 40px;
-      height: 40px;
-      margin: 0 auto;
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* ======= Tablet ======= */
-    @media (max-width: 1024px) {
-      .cards-container1 > .card {
-        width: calc(50% - 1rem);
-      }
-    }
-
-    /* ======= Mobile ======= */
-    @media (max-width: 768px) {
-      .products-section {
-        padding: 2rem 1rem;
-      }
-      .section-title {
-        font-size: 1.8rem;
-      }
-      .cards-container1 > .card {
-        width: 100%;
-        max-width: 90%;
-      }
-      .form-popup-container {
-        padding: 1.5rem;
-      }
-      .form-popup-title {
-        font-size: 1.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .corner-ribbon {
-        border-top: 40px solid #007bff;
-        border-right: 40px solid transparent;
-      }
-      .btn {
-        font-size: 0.85rem;
-        padding: 8px 0;
-      }
-      .form-popup-container {
-        width: 95%;
-        padding: 1rem;
-      }
-      .form-popup-title {
-        font-size: 1.3rem;
-      }
-      .service-checkbox {
-        padding: 0.3rem 0.8rem;
-        font-size: 0.9rem;
-      }
-    }
-  </style>
-
-
-  <section class="products-section">
-    <h2 class="section-title">Become a Partner</h2>
-    <div class="cards-container1">
-
-      <div class="card" onclick="showFormPopup('AC Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">AC Services</div>
-        <div class="card-background" style="background-image: url('drng1.png');"></div>
-        <div class="card-content2">
-          <h3>AC Installation & Repair</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="showFormPopup('Refrigerator Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">Fridge</div>
-        <div class="card-background" style="background-image: url('drng2.png');"></div>
-        <div class="card-content2">
-          <h3>Refrigerator Repair</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="showFormPopup('Washing Machine Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">Washing Machine</div>
-        <div class="card-background" style="background-image: url('drng3.png');"></div>
-        <div class="card-content2">
-          <h3>Washing Machine Repair</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="showFormPopup('Cooler Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">Cooler</div>
-        <div class="card-background" style="background-image: url('drng4.png');"></div>
-        <div class="card-content2">
-          <h3>Air Cooler Service</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="showFormPopup('Geyser Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">Geyser</div>
-        <div class="card-background" style="background-image: url('five.png');"></div>
-        <div class="card-content2">
-          <h3>Geyser Installation</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="showFormPopup('Kitchen Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">Kitchen</div>
-        <div class="card-background" style="background-image: url('six.png');"></div>
-        <div class="card-content2">
-          <h3>Chimney Cleaning</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="showFormPopup('Electrical Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">Electrical</div>
-        <div class="card-background" style="background-image: url('drng7.png');"></div>
-        <div class="card-content2">
-          <h3>Electrician Services</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="showFormPopup('Plumbing Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">Plumbing</div>
-        <div class="card-background" style="background-image: url('drng8.png');"></div>
-        <div class="card-content2">
-          <h3>Plumber Services</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="showFormPopup('Cleaning Services')">
-  <div class="corner-ribbon"></div>
-  <div class="card-category-badge">Cleaning</div>
-  <div class="card-background" style="background-image: url('drng9.png');"></div>
-  <div class="card-content2">
-    <h3>Civarage Cleaning</h3>
-    <span class="btn">Register Now</span>
-  </div>
-</div>
-
-      <div class="card" onclick="showFormPopup('Salon Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">Salon</div>
-        <div class="card-background" style="background-image: url('drng10.png');"></div>
-        <div class="card-content2">
-          <h3>Barber Services</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="showFormPopup('Handyman Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">Handyman</div>
-        <div class="card-background" style="background-image: url('drng11.png');"></div>
-        <div class="card-content2">
-          <h3>Mistri Services</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-
-      <div class="card" onclick="showFormPopup('Security Services')">
-        <div class="corner-ribbon"></div>
-        <div class="card-category-badge">Security</div>
-        <div class="card-background" style="background-image: url('drng12.png');"></div>
-        <div class="card-content2">
-          <h3>CCTV Solutions</h3>
-          <span class="btn">Register Now</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="form-popup-overlay" id="formPopup">
-    <div class="form-popup-container">
-      <button class="form-popup-close" onclick="closeFormPopup()">&times;</button>
-      <h2 class="form-popup-title">Register for Free</h2>
-      <form id="registrationForm" class="registration-form" onsubmit="submitForm(event)">
-        <input type="hidden" id="serviceCategory" name="serviceCategory">
-
-        <div class="form-group">
-          <label for="fullName">Full Name*</label>
-          <input type="text" id="fullName" name="fullName" required minlength="3" maxlength="50" pattern="[A-Za-z ]+">
-          <div class="error-message" id="fullNameError">Please enter a valid name (letters and spaces only, 3-50 characters)</div>
-        </div>
-
-        <div class="form-group">
-          <label for="phoneNumber">Phone Number*</label>
-          <input type="tel" id="phoneNumber" name="phoneNumber" required minlength="10" maxlength="15" pattern="[0-9]{10,15}">
-          <div class="error-message" id="phoneError">Please enter a valid 10-15 digit phone number</div>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email">
-          <div class="error-message" id="emailError">Please enter a valid email address</div>
-        </div>
-
-        <div class="form-group">
-          <label for="dob">Date of Birth*</label>
-          <input type="date" id="dob" name="dob" required max="">
-          <div class="error-message" id="dobError">Please select a valid date of birth</div>
-        </div>
-
-        <div class="form-group">
-          <label for="block">Block*</label>
-          <input type="text" id="block" name="block" required minlength="2" maxlength="50">
-          <div class="error-message" id="blockError">Please enter a valid block name (2-50 characters)</div>
-        </div>
-
-        <div class="form-group">
-          <label for="area">Area*</label>
-          <input type="text" id="area" name="area" required minlength="2" maxlength="50">
-          <div class="error-message" id="areaError">Please enter a valid area name (2-50 characters)</div>
-        </div>
-
-        <div class="form-group">
-          <label for="district">District*</label>
-          <input type="text" id="district" name="district" required minlength="2" maxlength="50">
-          <div class="error-message" id="districtError">Please enter a valid district name (2-50 characters)</div>
-        </div>
-
-        <div class="form-group">
-          <label for="fullAddress">Full Address*</label>
-          <textarea id="fullAddress" name="fullAddress" required minlength="10" maxlength="200"></textarea>
-          <div class="error-message" id="addressError">Please enter a valid address (10-200 characters)</div>
-        </div>
-
-        <div class="form-group">
-          <label>Select Services (Choose at least one)*</label>
-          <div class="services-checkbox-group" id="servicesCheckboxGroup">
+<body class="font-sans min-h-screen p-4 sm:p-6 md:p-10 bg-gradient-to-br from-primary-light to-primary text-gray-800">
+
+    <div class="container max-w-7xl mx-auto">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-8 sm:mb-12 p-5 text-white bg-primary rounded-xl shadow-2xl">
+            <div class="text-4xl sm:text-5xl font-extrabold mb-2 text-white">
+                Sonipat Home Service
             </div>
-          <div class="error-message" id="servicesError">Please select at least one service</div>
+            <p class="text-lg sm:text-xl opacity-90 font-light">
+                हमारे साथ जुड़ें और अपना करियर शुरू करें
+            </p>
+        </header>
+        
+        <!-- Main Content Container -->
+        <div class="bg-white rounded-2xl p-6 sm:p-10 shadow-3xl">
+            
+            <!-- Title Section -->
+            <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-primary-light text-center relative pb-3 job-heading">
+                करियर के अवसर (Career Opportunities)
+            </h1>
+            
+            <p class="text-center mb-8 sm:mb-12 text-gray-600 max-w-4xl mx-auto text-base sm:text-lg">
+                हम अपनी बढ़ती टीम में अनुभवी और कुशल तकनीशियनों की तलाश कर रहे हैं। सोनीपत होम सर्विस में, हम व्यावसायिकता, विशेषज्ञता और ग्राहकों की संतुष्टि को महत्व देते हैं।
+            </p>
+            
+            <!-- Single Universal Job Card - Ultra Responsive -->
+            <div class="job-grid flex justify-center">
+                <!-- Universal Card: Multi-Service Technician -->
+                <!-- Removed max-w-lg to make the card fully fluid (auto) within its container -->
+                <div class="universal-card w-full bg-gray-50 border border-primary-light/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    
+                    <div class="job-card-header text-white p-6 sm:p-8 flex items-center gap-4">
+                        <div class="job-icon text-3xl p-3 bg-white/30 text-white rounded-full mr-2 shadow-md flex-shrink-0">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <!-- Changed text-white to text-accent (Orange) for high visibility on the green background -->
+                        <h2 class="text-2xl sm:text-3xl font-bold card-title-shadow text-accent">
+                            बहु-सेवा होम अप्लायंस तकनीशियन
+                        </h2>
+                    </div>
+                    
+                    <div class="p-6 sm:p-8">
+                        
+                        <!-- Fixed Job Details -->
+                        <div class="job-details mb-6 border-b pb-4">
+                            <!-- Changed text-primary to text-primary-dark for strong contrast -->
+                            <h3 class="font-semibold text-xl text-primary-dark mb-3">
+                                पद का विवरण (Position Details):
+                            </h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-gray-700 text-sm sm:text-base">
+                                <div class="flex items-center">
+                                    <span class="font-bold text-primary-dark w-20">वेतन:</span>
+                                    <span class="flex-1">₹13,000 - ₹18,000/माह</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="font-bold text-primary-dark w-20">अनुभव:</span>
+                                    <span class="flex-1">न्यूनतम 2 वर्ष</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="font-bold text-primary-dark w-20">लोकेशन:</span>
+                                    <span class="flex-1">सोनीपत और आसपास के इलाके</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="font-bold text-primary-dark w-20">प्रकार:</span>
+                                    <span class="flex-1">फुल टाइम</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Combined Requirements for All Services -->
+                        <div class="requirements">
+                            <!-- Changed text-primary to text-primary-dark for strong contrast -->
+                            <h3 class="font-semibold text-xl text-primary-dark mb-3">
+                                आवश्यक कौशल और जिम्मेदारियाँ:
+                            </h3>
+                            <ul class="space-y-2 text-sm sm:text-base pl-5 text-gray-700 list-disc">
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-primary-light"><i class="fas fa-screwdriver-wrench"></i></span>
+                                    **एसी:** इंस्टॉलेशन, रिपेयरिंग, गैस चार्जिंग और डीप क्लीनिंग का ज्ञान।
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-primary-light"><i class="fas fa-hand-holding-water"></i></span>
+                                    **आरओ/वॉटर प्यूरीफायर:** सभी प्रकार के फिल्टर बदलने और रिपेयरिंग का अनुभव।
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-primary-light"><i class="fas fa-washing-machine"></i></span>
+                                    **वॉशिंग मशीन:** फुली/सेमी-ऑटोमैटिक मशीन की मोटर, ड्रायर और पीसीबी मरम्मत।
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-primary-light"><i class="fas fa-temperature-low"></i></span>
+                                    **फ्रिज/गीज़र:** फ्रिज कंप्रेसर और गीज़र हीटिंग एलिमेंट की मरम्मत और इंस्टॉलेशन।
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-primary-light"><i class="fas fa-user-check"></i></span>
+                                    उत्कृष्ट ग्राहक सेवा और समस्या-समाधान कौशल होना अनिवार्य है।
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <a href="tel:8816014071" class="apply-btn block w-full text-center bg-accent hover:bg-orange-600 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg mt-6">
+                            Register Right Know
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Why Work With Us Section - Responsive -->
+            <div class="mt-12 sm:mt-16 p-6 sm:p-10 bg-gray-100 rounded-xl shadow-inner">
+                <h2 class="text-2xl sm:text-3xl font-bold text-primary-dark text-center mb-6">
+                    हमारे साथ क्यों काम करें?
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-primary-light">
+                        <div class="benefit-icon text-xl p-3 bg-primary-light/10 text-primary-dark rounded-full flex-shrink-0">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-primary-dark">आकर्षक वेतन</h3>
+                            <p class="text-sm text-gray-600">प्रदर्शन बोनस के साथ प्रतिस्पर्धी भुगतान।</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-primary-light">
+                        <div class="benefit-icon text-xl p-3 bg-primary-light/10 text-primary-dark rounded-full flex-shrink-0">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-primary-dark">सहयोगी टीम</h3>
+                            <p class="text-sm text-gray-600">अनुभवी पेशेवरों के साथ काम करने का मौका।</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-primary-light">
+                        <div class="benefit-icon text-xl p-3 bg-primary-light/10 text-primary-dark rounded-full flex-shrink-0">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-primary-dark">करियर ग्रोथ</h3>
+                            <p class="text-sm text-gray-600">आगे बढ़ने और सीखने के लिए भरपूर अवसर।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- CTA Section - Fully Responsive -->
+            <div class="cta-section text-center mt-12 sm:mt-16 p-6 sm:p-10 bg-primary rounded-xl text-white shadow-2xl">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-3">
+                    क्या आप तैयार हैं?
+                </h2>
+                <p class="text-base sm:text-lg mb-6 opacity-90 max-w-2xl mx-auto">
+                    यदि आपके पास ये कौशल और अनुभव है, तो तुरंत हमसे संपर्क करें और हमारी बढ़ती टीम का हिस्सा बनें।
+                </p>
+                <a href="tel:8816014071" class="cta-btn inline-block bg-accent hover:bg-orange-600 text-white font-extrabold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-xl">
+                    कॉल करें: 88160-14071
+                </a>
+            </div>
+            
+            <!-- Contact Info Section - Fully Responsive with Flex-Wrap -->
+            <div class="contact-info flex flex-wrap justify-around gap-6 mt-12 p-6 sm:p-8 bg-gray-100 rounded-xl shadow-inner">
+                
+                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
+                    <i class="fas fa-phone-alt text-3xl text-primary-light mb-2"></i>
+                    <h3 class="text-lg font-semibold text-primary">कॉल करें</h3>
+                    <p class="text-gray-600">88160-14071</p>
+                </div>
+                
+                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
+                    <i class="fas fa-envelope text-3xl text-primary-light mb-2"></i>
+                    <h3 class="text-lg font-semibold text-primary">ईमेल करें</h3>
+                    <p class="text-gray-600 truncate">care@sonipathomeservice.com</p>
+                </div>
+                
+                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
+                    <i class="fas fa-map-marker-alt text-3xl text-primary-light mb-2"></i>
+                    <h3 class="text-lg font-semibold text-primary">पता</h3>
+                    <p class="text-gray-600">सोनीपत-131001</p>
+                </div>
+            </div>
+
         </div>
-
-        <div class="spinner" id="formSpinner"></div>
-        <button type="submit" class="submit-btn" id="submitBtn">Submit Registration</button>
-      </form>
+        
+        <!-- Footer Section -->
+        <footer class="text-center mt-8 text-white p-4 text-sm opacity-90">
+            <p>&copy; 2023 Sonipat Home Service. All rights reserved.</p>
+        </footer>
     </div>
-  </div>
-
-  <div class="success-popup-overlay" id="successPopup">
-    <div class="success-popup-container">
-      <div class="success-icon">✓</div>
-      <h2 class="success-title">Registration Successful!</h2>
-      <p class="success-message">Thank you for joining us, <span id="successUserName"></span>! We're excited to have you on board.</p>
-      <div class="employee-id">Your Employee ID: <span id="employeeIdDisplay"></span></div>
-      <p class="success-message">Please note down your Employee ID for future reference. Our team will contact you shortly.</p>
-      <button class="success-btn" onclick="redirectToTechnician()">Okay</button>
-    </div>
-  </div>
-
-  <script>
-    // Service data for each category with corresponding Google Sheets endpoint
-    const serviceData = {
-      'AC Services': {
-        services: ['AC Installation', 'AC Repair', 'AC Gas Refill', 'AC Maintenance', 'Split AC Service', 'Window AC Service', 'AC Copper Pipe', 'AC PCB Repair', 'AC Water Leak', 'AC Remote Repair', 'AC Deep Cleaning', 'AC Thermostat', 'AC Capacitor', 'AC Compressor', 'AC Fan Motor', 'AC Drain Cleaning', 'AC Duct Cleaning', 'AC Installation Estimate', 'AC Annual Contract', 'AC Brand Specialists'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Refrigerator Services': {
-        services: ['Fridge Repair', 'Freezer Repair', 'Coolant Refill', 'Compressor Repair', 'Thermostat Repair', 'Water Dispenser', 'Ice Maker Repair', 'Door Seal Replacement', 'Defrost System', 'Electrical Issues', 'Noise Problems', 'Leakage Issues', 'Deep Freezer', 'Commercial Fridge', 'Fridge Installation', 'Fridge Maintenance', 'Fridge Cleaning', 'Brand Specialists', 'Emergency Repair', 'Annual Contract'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Washing Machine Services': {
-        services: ['WM Repair', 'WM Installation', 'WM Drain Issues', 'WM Spin Problems', 'WM Water Leak', 'WM Drum Issues', 'WM Motor Repair', 'WM PCB Repair', 'WM Door Seal', 'WM Detergent Tray', 'WM Not Starting', 'WM No Power', 'WM Noisy', 'WM Water Inlet', 'WM Drain Pump', 'WM Maintenance', 'WM Deep Clean', 'WM Brand Specialists', 'WM Emergency', 'WM Annual Contract'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Cooler Services': {
-        services: ['Cooler Installation', 'Cooler Repair', 'Water Pump Repair', 'Cooler Fan Repair', 'Cooler Cleaning', 'Cooler Pad Replacement', 'Cooler Water Leak', 'Cooler Not Cooling', 'Cooler Maintenance', 'Commercial Cooler'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Geyser Services': {
-        services: ['Geyser Installation', 'Geyser Repair', 'Geyser Element', 'Geyser Thermostat', 'Geyser Leakage', 'Geyser Not Heating', 'Geyser Maintenance', 'Solar Geyser', 'Instant Geyser', 'Geyser Pressure Valve'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Kitchen Services': {
-        services: ['Chimney Cleaning', 'Chimney Repair', 'Chimney Installation', 'Microwave Repair', 'Oven Repair', 'Induction Repair', 'Mixer/Grinder Repair', 'Food Processor Repair', 'Water Purifier Service', 'Kitchen Exhaust Fan'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Electrical Services': {
-        services: ['Wiring Installation', 'Switchboard Repair', 'Light Fixtures', 'Power Outage', 'Circuit Breaker', 'Socket Installation', 'Fan Installation', 'Inverter Setup', 'Generator Setup', 'Home Automation', 'Electrical Safety', 'Emergency Electrician', 'Commercial Electrical', 'LED Installation', 'Chandelier Install'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Plumbing Services': {
-        services: ['Pipe Leak Repair', 'Bathroom Fitting', 'Tap Repair', 'Water Tank Cleaning', 'Blocked Drain', 'Water Pump Repair', 'Bathroom Renovation', 'Pipe Installation', 'Septic Tank', 'Water Heater'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Cleaning Services': {
-       services: ['Civarage Cleaning', 'Sofa Cleaning', 'House Deep Cleaning', 'Office Cleaning', 'Window Cleaning', 'Post Construction', 'Mattress Cleaning', 'Curtain Cleaning', 'Car Interior', 'Disinfection'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Salon Services': {
-        services: ['Haircut', 'Hair Color', 'Hair Spa', 'Beard Trim', 'Shave', 'Facial', 'Waxing', 'Manicure', 'Pedicure', 'Massage'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Handyman Services': {
-        services: ['Furniture Assembly', 'Painting', 'TV Mounting', 'Shelving', 'Door Repair', 'Window Repair', 'Lock Installation', 'Wall Mounting', 'Minor Carpentry', 'General Repairs'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      },
-      'Security Services': {
-        services: ['CCTV Installation', 'CCTV Repair', 'Alarm System', 'Security Camera', 'Smart Lock', 'Access Control', 'Home Security', 'Commercial Security', 'Security Audit', 'Security Guards'],
-        sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-      }
-    };
-
-    // Initialize form when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set max date for DOB (minimum age 18 years)
-      const dobInput = document.getElementById('dob');
-      const today = new Date();
-      const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-      dobInput.max = maxDate.toISOString().split('T')[0];
-
-      // Setup form validation
-      setupFormValidation();
-    });
-
-    // Setup form validation
-    function setupFormValidation() {
-      const form = document.getElementById('registrationForm');
-      const inputs = form.querySelectorAll('input, textarea, select');
-
-      inputs.forEach(input => {
-        // Validate on blur
-        input.addEventListener('blur', function() {
-          validateField(this);
-        });
-
-        // Clear error when user starts typing
-        input.addEventListener('input', function() {
-          if (this.classList.contains('input-error')) {
-            this.classList.remove('input-error');
-            const errorElement = document.getElementById(`${this.id}Error`);
-            if (errorElement) errorElement.style.display = 'none';
-          }
-        });
-      });
-
-      // Special validation for checkboxes
-      const checkboxes = form.querySelectorAll('input[type="checkbox"]');
-      checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-          const servicesError = document.getElementById('servicesError');
-          servicesError.style.display = 'none';
-        });
-      });
-    }
-
-    // Validate individual form field
-    function validateField(field) {
-      const errorElement = document.getElementById(`${field.id}Error`);
-
-      if (field.required && !field.value.trim()) {
-        showError(field, errorElement, 'This field is required');
-        return false;
-      }
-
-      if (field.type === 'text' || field.type === 'textarea') {
-        if (field.hasAttribute('minlength') && field.value.length < field.getAttribute('minlength')) {
-          showError(field, errorElement, `Minimum ${field.getAttribute('minlength')} characters required`);
-          return false;
-        }
-
-        if (field.hasAttribute('maxlength') && field.value.length > field.getAttribute('maxlength')) {
-          showError(field, errorElement, `Maximum ${field.getAttribute('maxlength')} characters allowed`);
-          return false;
-        }
-
-        if (field.hasAttribute('pattern')) {
-          const pattern = new RegExp(field.getAttribute('pattern'));
-          if (!pattern.test(field.value)) {
-            showError(field, errorElement, 'Invalid format');
-            return false;
-          }
-        }
-      }
-
-      if (field.type === 'email' && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
-        showError(field, errorElement, 'Please enter a valid email address');
-        return false;
-      }
-
-      if (field.type === 'tel' && !/^[0-9]{10,15}$/.test(field.value)) {
-        showError(field, errorElement, 'Please enter a valid 10-15 digit phone number');
-        return false;
-      }
-
-      if (field.type === 'date' && field.value) {
-        const selectedDate = new Date(field.value);
-        const maxDate = new Date(field.max);
-        if (selectedDate > maxDate) {
-          showError(field, errorElement, 'You must be at least 18 years old');
-          return false;
-        }
-      }
-
-      return true;
-    }
-
-    // Show error message
-    function showError(field, errorElement, message) {
-      field.classList.add('input-error');
-      if (errorElement) {
-        errorElement.textContent = message;
-        errorElement.style.display = 'block';
-      }
-    }
-
-    // Validate entire form
-    function validateForm() {
-      let isValid = true;
-      const form = document.getElementById('registrationForm');
-      const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
-
-      // Validate all required fields
-      inputs.forEach(input => {
-        if (!validateField(input)) {
-          isValid = false;
-        }
-      });
-
-      // Validate at least one service is selected
-      const checkedServices = form.querySelectorAll('input[name="services"]:checked');
-      if (checkedServices.length === 0) {
-        const servicesError = document.getElementById('servicesError');
-        servicesError.style.display = 'block';
-        isValid = false;
-      }
-
-      return isValid;
-    }
-
-    // Show form popup with relevant services
-    function showFormPopup(category) {
-      const popup = document.getElementById('formPopup');
-      const servicesCheckboxGroup = document.getElementById('servicesCheckboxGroup');
-      const serviceCategoryInput = document.getElementById('serviceCategory');
-
-      // Reset form
-      const form = document.getElementById('registrationForm');
-      form.reset();
-
-      // Clear previous errors
-      const errorMessages = form.querySelectorAll('.error-message');
-      errorMessages.forEach(error => {
-        error.style.display = 'none';
-      });
-
-      const inputErrors = form.querySelectorAll('.input-error');
-      inputErrors.forEach(input => {
-        input.classList.remove('input-error');
-      });
-
-      // Set the service category
-      serviceCategoryInput.value = category;
-
-      // Clear previous checkboxes
-      servicesCheckboxGroup.innerHTML = '';
-
-      // Add new checkboxes for services
-      if (serviceData[category] && serviceData[category].services) {
-        serviceData[category].services.forEach(service => {
-          const checkboxDiv = document.createElement('div');
-          checkboxDiv.className = 'service-checkbox';
-          checkboxDiv.innerHTML = `
-            <input type="checkbox" id="service-${service.replace(/\s+/g, '-')}" name="services" value="${service}">
-            <label for="service-${service.replace(/\s+/g, '-')}">${service}</label>
-          `;
-          servicesCheckboxGroup.appendChild(checkboxDiv);
-        });
-      }
-
-      // Show popup
-      popup.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    // Close form popup
-    function closeFormPopup() {
-      const popup = document.getElementById('formPopup');
-      popup.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Close form popup when clicking outside
-    document.getElementById('formPopup').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeFormPopup();
-      }
-    });
-
-    // Generate a random employee ID
-    function generateEmployeeId() {
-      const prefix = 'EMP';
-      const randomNum = Math.floor(10000 + Math.random() * 90000);
-      return `${prefix}${randomNum}`;
-    }
-
-    // Submit form data
-    function submitForm(event) {
-      event.preventDefault();
-
-      // Validate form
-      if (!validateForm()) {
-        return;
-      }
-
-      // Disable submit button and show spinner
-      const submitBtn = document.getElementById('submitBtn');
-      const spinner = document.getElementById('formSpinner');
-      submitBtn.disabled = true;
-      spinner.style.display = 'block';
-
-      const form = document.getElementById('registrationForm');
-      const formData = new FormData(form);
-
-      // Get selected services from checkboxes
-      const checkedServices = Array.from(form.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value);
-
-      // Add services and employee ID to form data
-      const employeeId = generateEmployeeId();
-      formData.append('employeeId', employeeId);
-      formData.append('selectedServices', checkedServices.join(', '));
-
-      // Determine the correct endpoint based on the selected category
-      const category = formData.get('serviceCategory');
-      const endpoint = serviceData[category] ? serviceData[category].sheetEndpoint : '';
-
-      if (!endpoint) {
-        alert('Error: Could not find a valid endpoint for this service category.');
-        submitBtn.disabled = false;
-        spinner.style.display = 'none';
-        return;
-      }
-
-      fetch(endpoint, {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-          // Check for success from the Google Apps Script
-          if (data.result === 'success') {
-            const userName = formData.get('fullName');
-            document.getElementById('successUserName').textContent = userName;
-            document.getElementById('employeeIdDisplay').textContent = employeeId;
-
-            // Hide the form popup
-            closeFormPopup();
-
-            // Show the success popup
-            document.getElementById('successPopup').classList.add('active');
-          } else {
-            alert('Registration failed. Please try again later.');
-            console.error('Submission error:', data);
-          }
-        })
-        .catch(error => {
-          alert('An error occurred during submission. Please check your internet connection and try again.');
-          console.error('Submission error:', error);
-        })
-        .finally(() => {
-          // Re-enable button and hide spinner regardless of success or failure
-          submitBtn.disabled = false;
-          spinner.style.display = 'none';
-        });
-    }
-
-    // Redirect to a specific page or close the success popup
-    function redirectToTechnician() {
-      // You can replace this with a URL to a new page or a different action
-      closeSuccessPopup();
-      // Example: window.location.href = 'thank-you-page.html';
-    }
-
-    // Close success popup
-    function closeSuccessPopup() {
-      const successPopup = document.getElementById('successPopup');
-      successPopup.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-  </script>
-
-  </main>
-  <!-- Load Injectors -->
-  <script src="script.js" defer></script>
 </body>
 </html>
