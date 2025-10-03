@@ -3,193 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - Book Fridge/Refrigerator Service</title>
+    <title>SonipatHomeService.com - Premium Fridge/Refrigerator Service</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
         :root {
-            --primary: #006633;
-            --secondary: #00994C;
-            --accent: #00CC66;
-            --light: #f5f5f5;
-            --dark: #212121;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --card-bg: #ffffff;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            /* Theme: Deep Arctic Blue & Electric Yellow */
+            --bg-dark: #101827; /* Deep Space Black */
+            --bg-card: #1C2738; /* Dark Navy Card */
+            --primary: #52D1DC; /* Arctic Teal Accent */
+            --secondary: #FFD700; /* Electric Gold Accent */
+            --text-light: #E0E7FF; /* Off-White Text */
+            --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
+            --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #004d26 0%, #008040 100%);
-            color: var(--light);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         main {
-            padding-top: 6rem;
-            max-width: 1700px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 6rem 1rem 3rem;
+            padding: 4rem 1.5rem;
         }
 
-        .lottery-stats {
+        /* --- Custom Components --- */
+
+        .stat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.625rem;
-            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
             text-align: center;
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-depth);
             transition: var(--transition);
-            border: 1px solid rgba(0, 204, 102, 0.2);
+            border: 1px solid rgba(82, 209, 220, 0.2);
         }
 
         .stat-card:hover {
-            transform: translateY(-0.3125rem);
-            box-shadow: var(--shadow);
-            border-color: var(--accent);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(82, 209, 220, 0.3);
         }
 
         .stat-card h3 {
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
-            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         .stat-card p {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--light);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .product-section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.9375rem;
+            background: linear-gradient(135deg, var(--bg-card), #22324C);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            margin-bottom: 3rem;
             overflow: hidden;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 204, 102, 0.2);
+            border: 2px solid var(--secondary);
         }
 
         .product-header {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            padding: 1.25rem;
+            background: linear-gradient(90deg, #101827, #22324C);
+            padding: 2rem;
             text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .product-header h2 {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
         }
 
         .product-content {
             display: flex;
             flex-wrap: wrap;
-            padding: 1.5rem;
-            align-items: center;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: center; 
             justify-content: center;
-            gap: 1.5rem;
-        }
-
-        .product-image {
-            flex: 1;
-            min-width: 280px;
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.625rem;
-            overflow: hidden;
-            background: url('https://placehold.co/600x400/212121/00CC66?text=Fridge+Service') no-repeat center center;
-            background-size: cover;
-            min-height: 250px;
         }
 
         .product-details {
-            flex: 2;
-            min-width: 280px;
-            padding: 1rem;
+            flex: 1; 
+            min-width: 300px;
+            text-align: center; 
         }
 
         .price-container {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem;
-            margin: 1rem 0;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px dashed var(--text-subtle);
+            border-bottom: 1px dashed var(--text-subtle);
+            justify-content: center; 
         }
 
         .original-price {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             text-decoration: line-through;
-            color: #b0b0b0;
+            color: var(--text-subtle);
+            font-weight: 400;
         }
 
-        .lottery-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
+        .current-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .action-buttons {
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
         }
 
         .btn {
-            padding: 0.75rem 1.25rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
-            border: none;
-            font-size: 0.95rem;
+            border: 2px solid transparent;
+            font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             text-decoration: none;
             justify-content: center;
             flex-grow: 1;
-            max-width: 100%;
+            max-width: 300px;
+            min-width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
         .btn-primary {
-            background: linear-gradient(90deg, var(--accent), #00e673);
-            color: #212121;
+            background: var(--primary);
+            color: var(--bg-dark);
+            border-color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-primary:hover {
-            transform: translateY(-0.1875rem);
-            box-shadow: 0 0.3125rem 0.9375rem rgba(0, 204, 102, 0.4);
+            background: #42C2CC;
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(82, 209, 220, 0.5);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--light);
-            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-color: var(--secondary);
         }
 
         .btn-secondary:hover {
-            background: rgba(0, 204, 102, 0.1);
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.03);
         }
 
+        /* --- Popup Styling (Crucial for ProMax look) --- */
         #popup-overlay {
             display: none;
             position: fixed;
@@ -197,177 +206,148 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             z-index: 999;
         }
 
         .popup {
             display: none;
-            background: #2a3d34;
-            color: #fff;
-            padding: 1.5rem;
-            border-radius: 1.25rem;
-            box-shadow: 0 0 1.875rem rgba(0, 204, 102, 0.5);
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000;
             width: 95%;
-            max-width: 550px;
+            max-width: 650px;
             max-height: 95vh;
             overflow-y: auto;
-            animation: fadeIn 0.3s ease-out forwards;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            border: 1px solid var(--primary);
         }
-
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -45%); }
+            from { opacity: 0; transform: translate(-50%, -60%); }
             to { opacity: 1; transform: translate(-50%, -50%); }
         }
 
-        #serviceCategorySelectionPopup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1001;
-            background: #2a3d34;
-            color: #fff;
-            padding: 1.5rem;
-            border-radius: 1.25rem;
-            box-shadow: 0 0 1.875rem rgba(0, 204, 102, 0.5);
-            width: 95%;
-            max-width: 550px;
-            max-height: 95vh;
-            overflow-y: auto;
-            display: none;
+        .popup h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        #serviceCategoryCheckboxes {
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        .popup label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 500;
         }
         
         .popup input,
-        .popup button,
         .popup select,
         .popup textarea {
             width: 100%;
-            padding: 0.75rem;
-            margin: 0.625rem 0;
-            border-radius: 0.625rem;
-            border: none;
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
             font-size: 1rem;
+            background: #22324C;
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
         }
         
-        .popup input,
-        .popup textarea,
-        .popup select {
-            background: #e8f5e9;
-            color: #1b5e20;
+        .popup input:focus,
+        .popup select:focus,
+        .popup textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(82, 209, 220, 0.2);
         }
-        
+
         .popup textarea {
-            min-height: 6.25rem;
+            min-height: 8rem;
             resize: vertical;
         }
-        
-        .popup label {
-            display: block;
-            margin-bottom: 0.3125rem;
-            color: var(--accent);
-            font-size: 0.95rem;
-        }
-        
+
         .popup button[type="submit"],
-        .popup button.close-btn,
+        #razorpay-payment-btn,
+        #downloadTicketsBtn,
+        .popup button.close-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
         #razorpay-payment-btn,
         #downloadTicketsBtn {
-            background: linear-gradient(90deg, var(--accent), #00e673);
-            color: #212121;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            padding: 0.75rem;
-            margin-top: 0.9375rem;
-            border-radius: 0.625rem;
-            border: none;
-            font-size: 1rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: linear-gradient(45deg, var(--primary), #42C2CC);
+            color: var(--bg-dark);
         }
 
         .popup button[type="submit"]:hover,
-        .popup button.close-btn:hover,
         #razorpay-payment-btn:hover,
         #downloadTicketsBtn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 204, 102, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(82, 209, 220, 0.6);
         }
         
+        .quantity-selector-container {
+            background: #22324C;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+        }
+
+        .total-price-quantity {
+            font-size: 1.8rem !important;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary) !important;
+        }
+
+        #selectedServiceCategoriesDisplay {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            border: 1px solid var(--primary);
+            cursor: pointer;
+        }
+
         #ticketDisplay {
-            font-weight: bold;
-            color: #e0ffe0;
-            font-size: 1.1rem;
+            background: #22324C;
+            border: 1px solid var(--primary);
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
             word-break: break-word;
-            text-align: center;
-            max-height: 12.5rem;
-            overflow-y: auto;
-            padding: 0.625rem;
-            background: rgba(0,0,0,0.2);
-            border-radius: 0.625rem;
-            margin: 0.625rem 0;
-        }
-
-        #submitMessage {
-            color: #e0ffe0;
-            font-size: 1rem;
-            text-align: center;
-            margin-top: 0.625rem;
-            display: none;
         }
         
-        #timerDisplay {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-align: center;
-            margin-top: 0.9375rem;
-        }
-
-        .quantity-selector {
-            margin: 0.9375rem 0;
-        }
-        
-        .quantity-selector label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-        
-        .quantity-info {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 0.3125rem;
-            font-size: 0.85rem;
-            color: #ccc;
-        }
-        
-        .total-price {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-align: right;
-            margin: 0.625rem 0;
-        }
-
+        /* Custom Alert Styling */
         .custom-alert {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #00CC66;
-            color: #212121;
+            background: var(--primary);
+            color: var(--bg-dark);
             padding: 1.25rem 1.875rem;
             border-radius: 0.625rem;
             z-index: 1002;
@@ -376,6 +356,8 @@
             text-align: center;
             max-width: 90%;
             animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         @keyframes fadeInOut {
@@ -385,105 +367,121 @@
             100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
         }
 
+        /* Price List Specific */
+        #priceListTableBody tr:nth-child(even) {
+            background-color: #22324C;
+        }
+        #priceListTableBody td {
+            font-family: 'Roboto', sans-serif;
+        }
+        #priceListTableBody .font-semibold {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
+
+        /* Tablet/Desktop Tweaks (1024px and below) */
         @media (max-width: 1024px) {
-            main { padding: 5rem 1rem 2rem; }
-            .product-header h2 { font-size: 1.5rem; }
-            .product-content { flex-direction: column; padding: 1rem; }
-            .product-image { min-height: 200px; width: 100%; }
-            .product-details { min-width: unset; width: 100%; text-align: center; }
+            .product-content { padding: 2rem; flex-direction: column; }
+            .product-details { text-align: center; }
             .price-container, .action-buttons { justify-content: center; }
-            .btn { width: 100%; max-width: 300px; }
-            .lottery-stats { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-            .stat-card { padding: 0.8rem; }
-            .stat-card h3 { font-size: 0.85rem; }
-            .stat-card p { font-size: 1.3rem; }
-            .popup { padding: 1rem; }
-            .popup input, .popup button, .popup select, .popup textarea { font-size: 0.9rem; padding: 0.6rem; }
+            .btn { max-width: 400px; } 
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            main { padding: 3rem 1rem; }
         }
 
-        @media (max-width: 768px) {
-            main { padding-top: 4rem; }
-            .product-header h2 { font-size: 1.3rem; }
-            .original-price { font-size: 1.3rem; }
-            .lottery-price { font-size: 1.8rem; }
-            .btn { font-size: 0.85rem; padding: 0.6rem 1rem; }
-            .lottery-stats { grid-template-columns: 1fr 1fr; }
-        }
-
-        @media (max-width: 480px) {
-            main { padding: 3rem 0.5rem 1rem; }
-            .product-header h2 { font-size: 1.2rem; }
-            .product-content { padding: 0.8rem; }
-            .product-image { min-height: 180px; }
-            .original-price { font-size: 1.2rem; }
-            .lottery-price { font-size: 1.6rem; }
+        /* Mobile Tweaks (600px and below) */
+        @media (max-width: 600px) {
+            main { padding: 2rem 1rem; }
+            .product-header h2 { font-size: 2rem; }
+            .product-details h3 { font-size: 2rem; }
+            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
+            .current-price { font-size: 2.5rem; }
+            .popup { padding: 1.5rem; }
+            .popup h2 { font-size: 1.5rem; }
             .action-buttons { flex-direction: column; }
-            .btn { width: 100%; max-width: unset; }
-            .lottery-stats { grid-template-columns: 1fr; }
-            .stat-card { padding: 0.7rem; }
-            .stat-card h3 { font-size: 0.8rem; }
-            .stat-card p { font-size: 1.1rem; }
-            .popup { padding: 1rem; width: 98%; }
-            .popup h2 { font-size: 1.3rem; }
-            .popup input, .popup button, .popup select, .popup textarea { font-size: 0.85rem; padding: 0.5rem; }
-            #ticketDisplay { font-size: 0.95rem; }
-            .custom-alert { font-size: 0.9rem; padding: 1rem 1.5rem; }
+            .btn { min-width: 100%; max-width: 100%; }
+            
+            /* Category selection popup for very small screens */
+            #serviceCategorySelectionPopup {
+                width: 98%;
+                padding: 1rem;
+            }
+            #serviceCategoryCheckboxes {
+                grid-template-columns: 1fr; 
+            }
+            .popup input, .popup select, .popup textarea {
+                padding: 0.7rem 1rem;
+            }
+        }
+        
+        /* Smallest Mobile Tweaks (400px and below) */
+        @media (max-width: 400px) {
+            .current-price { font-size: 2rem; }
+            .original-price { font-size: 1rem; }
+            .stat-card p { font-size: 1.8rem; }
+            .popup { padding: 1rem; }
         }
     </style>
 </head>
 <body>
    
-    <main class="container mx-auto px-4 py-8">
+    <main class="container">
         
-        <section class="product-section rounded-2xl shadow-lg mb-8">
-            <div class="product-header rounded-t-2xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Book Fridge/Refrigerator Service</h2>
+        <section class="product-section">
+            <div class="product-header">
+                <h2 class="text-white">Professional Fridge & Refrigerator Service</h2>
+                <p class="text-sm text-gray-400 mt-2">Book the best cooling appliance service in Sonipat - Quick, Reliable, and Transparent.</p>
             </div>
 
-            <div class="product-content flex flex-col md:flex-row items-center justify-center p-6 md:p-8 gap-6">
-                <div class="product-details w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
-                    <h3 class="text-2xl md:text-3xl font-semibold text-white mb-3">Book Professional Fridge/Refrigerator Service & Repair</h3>
-                    <p class="text-gray-300 mb-4 text-base md:text-lg">Get expert fridge/refrigerator service. Select your fridge service category to see the transparent pricing. Our certified technicians will ensure your fridge is running at peak performance.</p>
+            <div class="product-content">
+                
+                <div class="product-details">
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">Certified & Guaranteed Fridge Repair</h3>
+                    <p class="text-text-subtle mb-4 text-base">
+                        Get expert service from our certified technicians for all major fridge brands and models. Select your service category for instant, transparent pricing.
+                    </p>
                     
-                    <div class="price-container flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 my-6">
-                        <div class="original-price text-gray-400 text-xl md:text-2xl line-through">Varies by service</div>
-                        <div class="lottery-price text-accent text-3xl md:text-4xl font-bold" id="displayPrice">Select Service</div>
+                    <div class="price-container">
+                        <div class="original-price">Market Price Varies</div>
+                        <div class="current-price" id="displayPrice">Select Service</div>
                     </div>
                     
-                    <div class="action-buttons flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
-                        <button class="btn btn-primary shadow-lg hover:shadow-xl" id="participate-btn">
-                            <i class="fas fa-snowflake"></i> Book Fridge Service
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="participate-btn">
+                            <i class="fas fa-snowflake"></i> Book Fridge Service Now
                         </button>
-                        <button id="price-list-btn" class="btn btn-secondary shadow-lg hover:shadow-xl">
-                            <i class="fas fa-tags"></i> See Price List
+                        <button id="price-list-btn" class="btn btn-secondary">
+                            <i class="fas fa-tags"></i> Transparent Price List
                         </button>
-                         <button id="conditions-btn" class="btn btn-secondary shadow-lg hover:shadow-xl">
-                            <i class="fas fa-file-alt"></i> Conditions Applied
+                         <button id="conditions-btn" class="btn btn-secondary">
+                            <i class="fas fa-file-contract"></i> Service Conditions
                         </button>
-                        <button class="btn btn-secondary shadow-lg hover:shadow-xl" onclick="window.open('index.html')">
-                            <i class="fas fa-external-link-alt"></i> Go Back To Home
+                        <button class="btn btn-secondary" onclick="window.open('index.html')">
+                            <i class="fas fa-home"></i> Back To Home
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="lottery-stats grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Total Customers</h3>
-                <p class="text-white text-3xl font-bold">28,500+</p>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>Total Customers Trusting Us</h3>
+                <p>28,500+</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Fridges Serviced</h3>
-                <p class="text-white text-3xl font-bold">1000+ Monthly</p>
+            <div class="stat-card">
+                <h3>Monthly Fridges Serviced</h3>
+                <p>1000+</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Customer Rating</h3>
-                <p class="text-white text-3xl font-bold">4.9/5 Stars</p>
+            <div class="stat-card">
+                <h3>Customer Satisfaction Score</h3>
+                <p>4.9/5 Stars</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Next Available Slot</h3>
-                <p class="text-white text-3xl font-bold">Today!</p>
+            <div class="stat-card">
+                <h3>Quickest Slot Available</h3>
+                <p>Today!</p>
             </div>
         </div>
     </main>
@@ -491,85 +489,85 @@
     <div id="popup-overlay"></div>
     
     <div class="popup" id="popupForm">
-        <h2 class="text-2xl font-bold text-center mb-4">Fridge Service Booking</h2>
+        <h2 class="text-2xl font-bold text-center">Fridge Service Booking Form</h2>
         <form id="lotteryForm">
-            <div class="quantity-selector my-4">
-                <label class="text-accent text-sm mb-2">Select Fridge Service Category:</label>
-                <div id="selectedServiceCategoriesDisplay" class="bg-gray-700 text-light p-3 rounded-lg cursor-pointer mb-3" onclick="openServiceCategorySelectionPopup()">Click to select Fridge service category</div>
-                <div id="serviceCategorySelectionPopup" class="popup hidden">
-                    <h3 class="text-xl font-bold text-center mb-4">Select Fridge Service Category</h3>
-                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-light max-h-60 overflow-y-auto">
-                        <!-- Checkboxes will be populated by JavaScript -->
-                    </div>
-                    <button type="button" class="btn btn-primary mt-4 py-2 rounded-xl font-bold text-lg" onclick="applySelectedServiceCategories()">Apply Selection</button>
-                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg close-btn" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
+            <div class="quantity-selector-container my-4">
+                <label>Select Fridge Service Category:</label>
+                <div id="selectedServiceCategoriesDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openServiceCategorySelectionPopup()">Click to select service(s)</div>
+                
+                <div id="serviceCategorySelectionPopup" class="popup" style="display: none;">
+                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Select Fridge Service Category</h3>
+                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-80 overflow-y-auto p-2">
+                        </div>
+                    <button type="button" class="btn btn-primary mt-4 py-3" onclick="applySelectedServiceCategories()">Apply Selection</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-3 close-btn" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
+                </div>
+
+                <label for="ticketQuantity" class="mt-4">Number of Services (Max 5):</label>
+                <select id="ticketQuantity" name="ticketQuantity" required class="bg-bg-dark border-primary">
+                    <option value="" disabled selected>Select quantity</option>
+                </select>
+
+                <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
+                    <span>Quantity based total service price</span>
+                    <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">Total: ₹0</span>
                 </div>
             </div>
 
-            <label for="fullName" class="text-accent text-sm mb-1">Your Full Name (min 10 characters)</label>
+            <label for="fullName">Your Full Name (min 10 characters)</label>
             <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
             
-            <label for="phone" class="text-accent text-sm mb-1">Phone Number (10 digits)</label>
+            <label for="phone">Phone Number (10 digits)</label>
             <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
             
-            <label for="email" class="text-accent text-sm mb-1">Email Address</label>
+            <label for="email">Email Address</label>
             <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
             
-            <label for="location" class="text-accent text-sm mb-1">Your Location (e.g. Sonipat, Delhi)</label>
+            <label for="location">Your Location (e.g. Sonipat, Delhi)</label>
             <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
             
-            <label for="address" class="text-accent text-sm mb-1">Complete Address (min 30 characters)</label>
+            <label for="address">Complete Address (min 30 characters)</label>
             <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
-            
-            <div class="quantity-selector my-4">
-                <label for="ticketQuantity" class="text-accent text-sm mb-2">Number of Services (Max 5):</label>
-                <select id="ticketQuantity" name="ticketQuantity" required>
-                    <option value="" disabled selected>Select quantity</option>
-                </select>
-                <div class="quantity-info flex justify-between mt-2 text-gray-400 text-sm">
-                    <span>Quantity based price</span>
-                    <span class="total-price-quantity font-bold text-accent text-lg">Total: ₹0</span>
-                </div>
-            </div>
 
             <input type="hidden" name="ticket" id="ticketCode" />
             <input type="hidden" name="finalPrice" id="finalPrice" />
-            <button type="submit">Submit Details</button>
-            <span id="submitMessage">Submitting... Please wait</span>
+            
+            <button type="submit">Submit Details & Proceed to Payment</button>
+            <p id="submitMessage" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
         </form>
     </div>
 
     <div class="popup" id="paymentStep">
-        <h2 class="text-2xl font-bold text-center mb-4">Complete Your Payment</h2>
-        <p class="text-gray-300 text-center mb-6">Please complete the payment to finalize your Fridge Service booking.</p>
-        <div id="paymentSummary" class="bg-gray-800 p-4 rounded-lg mb-6 text-center"></div>
-        <div id="timerDisplay">Time remaining: 05:00</div>
-        <button id="razorpay-payment-btn">Pay with Razorpay</button>
-        <p class="mt-4 text-sm text-gray-400 text-center">
-            After payment, please wait for automatic verification. Do not close this window.
+        <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
+        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your Fridge Service booking.</p>
+        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
+        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
+        <p class="mt-4 text-xs text-text-subtle text-center">
+            Note: Do not close this window during payment processing.
         </p>
     </div>
 
     <div class="popup" id="ticketStep">
-        <h2 id="welcomeMessage" class="text-2xl font-bold text-center mb-4 text-green-400"></h2>
-        <p class="text-gray-300 text-center mb-4">You have successfully booked <span id="ticketCountDisplay" class="font-bold text-accent"></span>:</p>
-        <div id="ticketDisplay"></div>
-        <button id="downloadTicketsBtn">
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below for <span id="ticketCountDisplay" class="font-bold text-secondary"></span>:</p>
+        <div id="ticketDisplay" class="space-y-2"></div>
+        <button id="downloadTicketsBtn" class="mt-4">
             <i class="fas fa-download mr-2"></i> Download Service Details
         </button>
-        <p class="mt-4 text-sm text-gray-400 text-center">📸 Please take a screenshot for proof and reference.</p>
-        <button id="okayBtn" class="w-full btn-secondary py-3 rounded-xl font-bold text-white text-lg mt-4 transition-all duration-300 hover:scale-105 hover:bg-opacity-20 close-btn">Okay, Got It!</button>
+        <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
     </div>
     
     <div class="popup" id="priceListPopup">
-        <h2 class="text-2xl font-bold text-center mb-4">Fridge Service Price List</h2>
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-gray-800 rounded-lg">
+        <h2 class="text-2xl font-bold text-center">Fridge Service Transparent Price List</h2>
+        <div class="overflow-x-auto mt-4">
+            <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
                 <thead>
-                    <tr class="text-left text-accent">
-                        <th class="py-2 px-4 border-b border-gray-700">Service</th>
-                        <th class="py-2 px-4 border-b border-gray-700 text-right">Our Price</th>
-                        <th class="py-2 px-4 border-b border-gray-700 text-right">Market Price</th>
+                    <tr class="text-left text-secondary">
+                        <th class="py-3 px-4 border-b border-text-subtle">Service</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Our Price</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Market Price</th>
                     </tr>
                 </thead>
                 <tbody id="priceListTableBody">
@@ -577,56 +575,40 @@
                 </tbody>
             </table>
         </div>
-        <button id="closePriceListBtn" class="close-btn">Close</button>
+        <button id="closePriceListBtn" class="btn btn-secondary close-btn mt-4">Close Price List</button>
     </div>
 
     <div class="popup" id="conditionsPopup">
-        <h2 class="text-2xl font-bold text-center mb-4">Conditions Applied</h2>
-        <div id="conditionsContent" class="text-gray-300 text-sm space-y-2 max-h-96 overflow-y-auto pr-2">
-            <ul class="list-disc list-inside text-base md:text-lg space-y-2">
-                <li class="font-bold text-accent mt-4">👨‍🔧 Professional Technicians</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>All work carried out by certified and experienced technicians</li>
-                <li class="font-bold text-accent mt-4">🔍 Diagnosis & Inspection</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>On-site diagnosis and detailed problem assessment</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Gas leak detection and minor repair included</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Electrical connections and wiring inspection</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Cleaning and inspection of drain tray and pipe</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Performance and cooling efficiency testing</li>
-                <li class="font-bold text-accent mt-4">⚙️ Installation & Uninstallation</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Proper electrical connections and safety checks</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Correct positioning and mounting for maximum efficiency</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Vacuuming of pipes for efficient cooling</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Standard mounting kit included (brackets, copper pipes, wiring, drain pipe, etc.)</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Proper gas recovery to prevent leakage</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Disconnection and sealing of copper pipes</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Basic cleanup of installation/uninstallation area</li>
-                <li class="font-bold text-accent mt-4">🛠️ Repair & Maintenance</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Thorough cleaning of indoor/outdoor unit filters and coils</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Diagnosis and minor repairs of PCB and inverter boards</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Testing of repaired PCB/inverter boards for functionality</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Refrigerant level check and top-up if required (extra)</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Water leakage diagnosis, drain pipe cleaning, and proper drainage setup</li>
-                <li class="font-bold text-accent mt-4">🔩 Parts & Materials</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>High-quality refrigerant gas</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>High-grade copper pipes (charged per meter)</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Standard accessories included in installation and repair</li>
-                <li class="font-bold text-accent mt-4">💰 Transparency & Pricing</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Initial visiting charge ₹299 (adjustable based on distance in Sonipat)</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Transparent pricing for parts and additional labor charges</li>
-                <li class="font-bold text-accent mt-4">📞 Customer Support</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Free basic demonstration of fridge functions</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Priority scheduling for urgent service</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Quick resolution (special attention for emergency calls)</li>
-                <li class="font-bold text-accent mt-4">✅ Warranty & Guarantee</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>1-year service warranty on installation work</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>1-month warranty on repairs, gas refills, and leakage fixes</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Long-lasting and reliable performance</li>
+        <h2 class="text-2xl font-bold text-center">Detailed Service Conditions & Guarantee</h2>
+        <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
+             <ul class="list-disc list-inside space-y-3">
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Professional Technicians</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>All work carried out by certified and experienced technicians</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-magnifying-glass mr-2"></i> Diagnosis & Inspection</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>On-site diagnosis and detailed problem assessment</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Gas leak detection and minor repair included</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Electrical connections and wiring inspection</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Cleaning and inspection of drain tray and pipe</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Performance and cooling efficiency testing</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-cogs mr-2"></i> Repair & Maintenance</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Thorough cleaning of condenser coils and interior</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Diagnosis and minor repairs of PCB and controls</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Testing of repaired PCB/controls for functionality</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Refrigerant level check and top-up if required (extra charges apply)</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Water drainage system cleaning and proper setup</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Initial visiting charge ₹299 (adjustable based on distance in Sonipat)</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Transparent pricing for parts and additional labor charges will be provided before work begins</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Customer Support & Warranty</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>1-year service warranty on major parts replacement (e.g., Compressor)</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>1-month warranty on minor repairs and gas refills</li>
             </ul>
         </div>
-        <button id="closeConditionsBtn" class="close-btn">Close</button>
+        <button id="closeConditionsBtn" class="btn btn-secondary close-btn mt-4">I Understand</button>
     </div>
    
     <script>
+        // Data from the original Fridge file (book-fridge-refrigrator-services.html)
         const serviceData = [
             { "Category": "Emergency Fridge Service & Diagnosis", "Price": 299 },
             { "Category": "Fridge Gas Refill Service (185 LTR)", "Price": 699 },
@@ -642,10 +624,10 @@
 
         // --- Generic constants ---
         const SERVICE_NAME = "Fridge Service";
-        const SERVICE_TAB_ID = "shs-service";
-        const SERVICE_FORM_DATA_KEY = "refrigeratorServiceCategory";
+        const SERVICE_TAB_ID = "fridge-service"; // Changed tab ID for clarity
+        const LOCAL_STORAGE_KEY = 'fridgeServiceFormData'; // Unique key for Local Storage
         const RAZORPAY_IMAGE_TEXT = "FR";
-
+        
         // --- DOM Element Selection ---
         const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
@@ -668,17 +650,13 @@
         const displayPriceElement = document.getElementById('displayPrice');
         const finalPriceInput = document.getElementById('finalPrice');
         const form = document.getElementById('lotteryForm');
-        const ticketInput = document.getElementById('ticketCode');
-        const ticketDisplay = document.getElementById('ticketDisplay');
         const okayBtn = document.getElementById('okayBtn');
         
-        // New elements
+        // New elements for popups
         const priceListBtn = document.getElementById('price-list-btn');
         const conditionsBtn = document.getElementById('conditions-btn');
         const priceListPopup = document.getElementById('priceListPopup');
         const conditionsPopup = document.getElementById('conditionsPopup');
-        const closePriceListBtn = document.getElementById('closePriceListBtn');
-        const closeConditionsBtn = document.getElementById('closeConditionsBtn');
         const priceListTableBody = document.getElementById('priceListTableBody');
 
         // --- State Variables ---
@@ -690,16 +668,50 @@
         let selectedQuantity = 1;
         let allowClose = false;
 
+
+        // --- Local Storage Functions for Autofill ---
+
+        function saveFormData() {
+            const formData = {
+                fullName: form.fullName.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                location: form.location.value,
+                address: form.address.value
+            };
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+            } catch (e) {
+                console.warn("Local storage saving failed:", e);
+            }
+        }
+
+        function loadFormData() {
+            try {
+                const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    form.fullName.value = data.fullName || '';
+                    form.phone.value = data.phone || '';
+                    form.email.value = data.email || '';
+                    form.location.value = data.location || '';
+                    form.address.value = data.address || '';
+                }
+            } catch (e) {
+                console.warn("Local storage loading failed:", e);
+            }
+        }
+        
         // --- Core Functions ---
 
         function populateServiceCategories() {
             serviceCategoryCheckboxesContainer.innerHTML = '';
             serviceData.forEach(service => {
                 const checkboxHtml = `
-                    <label class="inline-flex items-center text-light w-full">
+                    <label class="inline-flex items-center text-text-light w-full p-2 bg-bg-dark rounded-md border border-primary hover:bg-bg-card transition duration-200 cursor-pointer">
                         <input type="checkbox" name="serviceCategory" value="${service.Category}" data-price="${service.Price}" 
-                               class="form-checkbox h-5 w-5 text-yellow-500 rounded focus:ring-yellow-500">
-                        <span class="ml-2">${service.Category} (₹${service.Price})</span>
+                               class="form-checkbox h-5 w-5 text-secondary rounded focus:ring-secondary checked:bg-secondary">
+                        <span class="ml-2 text-sm">${service.Category} (<span class="text-secondary">₹${service.Price}</span>)</span>
                     </label>
                 `;
                 serviceCategoryCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
@@ -734,10 +746,10 @@
 
             if (selectedCategories.length > 0) {
                 selectedServiceCategoriesDisplay.textContent = selectedCategories.map(s => s.category).join(', ');
-                displayPriceElement.textContent = `Service Charge: ₹${currentServicePrice}`;
+                displayPriceElement.textContent = `₹${currentServicePrice}`;
             } else {
-                selectedServiceCategoriesDisplay.textContent = `Click to select ${SERVICE_NAME} category`;
-                displayPriceElement.textContent = `Select ${SERVICE_NAME} Category`;
+                selectedServiceCategoriesDisplay.textContent = `Click to select service(s)`;
+                displayPriceElement.textContent = `Select Service`;
             }
             
             totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
@@ -754,21 +766,22 @@
 
         function downloadTickets() {
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
-            const ticketContent = `${SERVICE_NAME} Booking Details\n\n` +
+            const ticketContent = `PREMIUM ${SERVICE_NAME} BOOKING DETAILS\n\n` +
                                  `Customer Name: ${form.field1.value}\n` +
                                  `Contact: ${form.field2.value}\n` +
                                  `Location: ${form.field5.value}\n` +
-                                 `${SERVICE_NAME} Category(s): ${selectedCategoryNames}\n` +
+                                 `Service Category(s): ${selectedCategoryNames}\n` +
                                  `Booking Reference Number: ${generatedTicket}\n\n` + 
                                  `Total Services: ${selectedQuantity}\n` +
-                                 `Service Charge: ₹${finalPriceInput.value}\n\n` +
-                                 `Note: Final charges for parts and labor will be communicated by the technician after diagnosis.`;
+                                 `Service Charge Paid: ₹${finalPriceInput.value}\n\n` +
+                                 `--- IMPORTANT NOTE ---\n` +
+                                 `Final charges for parts and additional labor (beyond the selected service) will be transparently communicated by the technician after a full on-site diagnosis.`;
             
             const blob = new Blob([ticketContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${SERVICE_TAB_ID}_booking.txt`;
+            a.download = `${SERVICE_TAB_ID}_booking_${generatedTicket.substring(0, 8)}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -786,7 +799,7 @@
         // --- Popup Control Functions ---
         function closeAllPopups() {
             if (!allowClose) {
-                showCustomAlert("Please complete the process before closing.");
+                showCustomAlert("Please complete the booking process before closing.");
                 return;
             }
             clearTimers();
@@ -799,6 +812,7 @@
         function openPopup(popupElement) {
             document.body.style.overflow = 'hidden';
             popupOverlay.style.display = 'block';
+            allPopups.forEach(p => p.style.display = 'none');
             popupElement.style.display = 'block';
             allowClose = false;
         }
@@ -814,9 +828,9 @@
 
         function openServiceCategorySelectionPopup() {
             populateServiceCategories();
-            const currentlySelected = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim());
-            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(cb => {
-                cb.checked = currentlySelected.includes(cb.value);
+            const currentlySelectedCategories = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select service(s)');
+            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(checkbox => {
+                checkbox.checked = currentlySelectedCategories.includes(checkbox.value);
             });
             serviceCategorySelectionPopup.style.display = 'block';
             popupOverlay.style.display = 'block';
@@ -825,7 +839,7 @@
 
         function closeServiceCategorySelectionPopup() {
             serviceCategorySelectionPopup.style.display = 'none';
-            if (popupForm.style.display !== 'block') {
+            if (popupForm.style.display !== 'block' && priceListPopup.style.display !== 'block' && conditionsPopup.style.display !== 'block') {
                 popupOverlay.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
@@ -862,17 +876,17 @@
                 }
             }, 1000);
         }
-        
+
         // --- Price List Function ---
         function populatePriceList() {
             priceListTableBody.innerHTML = '';
             serviceData.forEach(service => {
-                const marketPrice = Math.round(service.Price * 1.3); // 30% higher for market rate
+                const marketPrice = Math.round(service.Price * 1.3); 
                 const row = `
-                    <tr class="text-gray-300">
+                    <tr class="text-text-light hover:bg-bg-dark">
                         <td class="py-3 px-4 border-b border-gray-700">${service.Category}</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-accent">₹${service.Price}</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right text-gray-500 line-through">₹${marketPrice}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.Price}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle line-through">₹${marketPrice}</td>
                     </tr>
                 `;
                 priceListTableBody.insertAdjacentHTML('beforeend', row);
@@ -884,14 +898,14 @@
         function handleFormSubmit(e) {
             e.preventDefault();
 
-            // Validation
+            // Validation 
+            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
+            if (selectedCategories.length === 0) { showCustomAlert("Please select at least one service category."); return; }
             if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
             if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
             if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
             if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
-            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
-            if (selectedCategories.length === 0) { showCustomAlert(`Please select at least one ${SERVICE_NAME} category.`); return; }
             if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of services."); return; }
 
             submitMessage.style.display = 'block';
@@ -899,42 +913,51 @@
 
             generatedTicket = generateFormattedTicket(); 
             
+            const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
+
+            // --- Form Data for Google Sheet (using original field names) ---
             const formData = new FormData();
-            formData.append('field1', form.fullName.value);
-            formData.append('field2', form.phone.value);
-            formData.append('field3', form.email.value);
-            formData.append('field5', form.location.value);
-            formData.append('field6', form.address.value);
-            formData.append('ticket', generatedTicket);
-            formData.append('tab', SERVICE_TAB_ID);
-            formData.append(SERVICE_FORM_DATA_KEY, selectedCategories.map(cb => cb.value).join(', '));
-            formData.append('serviceType', SERVICE_NAME);
-            formData.append('servicePrice', currentServicePrice);
-            formData.append('ticketQuantity', selectedQuantity);
-            
+            formData.append('field1', form.fullName.value); 
+            formData.append('field2', form.phone.value);    
+            formData.append('field3', form.email.value);    
+            formData.append('field4', selectedCategoryNames); 
+            formData.append('field5', form.location.value); 
+            formData.append('field6', form.address.value);  
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', SERVICE_NAME);   
+            formData.append('servicePrice', currentServicePrice); 
+            formData.append('ticketQuantity', selectedQuantity); 
+            formData.append('finalPrice', finalPriceInput.value);
+
+            // --- Google Script URL ---
             fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
                 method: "POST",
                 body: formData
             })
             .then(res => res.text())
             .then(res => {
-                if (res === "Success") {
+                if (res.includes("Success") || res.includes("success")) { 
+                    // Save data to local storage on successful submission
+                    saveFormData(); 
+                    
                     popupForm.style.display = 'none';
                     openPopup(paymentStep);
-                    const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
                     paymentSummary.innerHTML = `
-                        <p class="text-gray-300 text-lg mb-2">You are booking <span class="font-bold text-accent">${selectedQuantity}</span> ${SERVICE_NAME} for ${selectedCategoryNames}.</p>
-                        <p class="total-price text-accent text-2xl font-bold">Service Charge: ₹${finalPriceInput.value}</p>
-                        <p class="text-gray-400 text-sm mt-2">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
+                        <p class="text-text-light text-base mb-1">Service(s): <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
+                        <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${selectedQuantity}</span></p>
+                        <p class="current-price text-secondary text-3xl font-bold">Total Payable: ₹${finalPriceInput.value}</p>
+                        <p class="text-gray-400 text-sm mt-2">The amount paid covers the services selected. Extra charges for parts/labor, if needed, will be discussed by the technician.</p>
                     `;
                     startPaymentTimer();
                 } else {
-                    showCustomAlert("There was an error submitting your form. Please try again.");
+                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
                 }
             })
             .catch(err => {
                 console.error("Submission error:", err);
-                showCustomAlert("An unexpected error occurred. Please check your connection and try again.");
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
             })
             .finally(() => {
                 submitMessage.style.display = 'none';
@@ -946,14 +969,14 @@
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": finalPriceInput.value * 100,
+                "amount": finalPriceInput.value * 100, // Amount in paise
                 "currency": "INR",
                 "name": `SonipatHomeService - ${SERVICE_NAME}`,
                 "description": `Payment for ${selectedQuantity} ${SERVICE_NAME}(s) for ${selectedCategoryNames}`,
-                "image": `https://placehold.co/100x100/212121/00CC66?text=${RAZORPAY_IMAGE_TEXT}`,
+                "image": `https://placehold.co/100x100/1C2738/52D1DC?text=${RAZORPAY_IMAGE_TEXT}`,
                 "handler": function (response){
                     console.log("Payment successful:", response.razorpay_payment_id);
-                    paymentSuccess();
+                    paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
                     "name": form.fullName.value,
@@ -963,8 +986,9 @@
                 "notes": {
                     "address": `${form.location.value}, ${form.address.value}`,
                     "service_details": selectedCategoryNames,
+                    "booking_ref": generatedTicket
                 },
-                "theme": { "color": "#2a3d34" },
+                "theme": { "color": "#52D1DC" },
                 "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
             };
 
@@ -976,22 +1000,23 @@
             rzp.open();
         }
 
-        function paymentSuccess() {
+        function paymentSuccess(paymentId) {
             clearTimers();
             paymentStep.style.display = 'none';
             openPopup(ticketStep);
             
-            const userName = form.fullName.value;
+            const userName = form.fullName.value.split(' ')[0];
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
 
-            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your ${SERVICE_NAME} Booking is Confirmed! 🎉`;
+            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
             
             ticketDisplay.innerHTML = `
-                <p>Registration ID: <span class="text-white">${generatedTicket}</span></p>
-                <p>Service: <span class="text-white">${SERVICE_NAME} for ${selectedCategoryNames}</span></p>
-                <p>Quantity: <span class="text-white">${selectedQuantity}</span></p>
-                <p class="text-gray-400 text-sm mt-2">Service Charge: ₹${finalPriceInput.value}</p>
-                <p class="text-gray-400 text-sm">Final charges for parts and labor will be communicated by the technician after diagnosis.</p>
+                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p>Service: <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
+                <p>Quantity: <span class="font-bold text-text-light">${selectedQuantity}</span></p>
+                <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${finalPriceInput.value}</p>
+                <p class="text-text-subtle text-sm mt-3">Our technician will contact you shortly to schedule the service at your location: ${form.location.value}.</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
             
             ticketCountDisplay.textContent = `${selectedQuantity} ${SERVICE_NAME}(s)`;
@@ -1002,37 +1027,52 @@
         participateBtn.addEventListener('click', () => {
             initQuantitySelector();
             updatePrices();
+            loadFormData(); // Load data on popup open
             openPopup(popupForm);
         });
         
         ticketQuantitySelect.addEventListener('change', updatePrices); 
 
+        // Centralized Overlay Click Handling
         popupOverlay.addEventListener('click', e => {
             if (e.target === popupOverlay) {
-                if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
+                else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
                 else if (conditionsPopup.style.display === 'block') closeSpecificPopup(conditionsPopup);
-                else if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
                 else if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
-                else showCustomAlert("Please complete the process before closing.");
+                else if (popupForm.style.display === 'block' || paymentStep.style.display === 'block') showCustomAlert("Please complete the booking process before closing.");
+                else closeAllPopups();
             }
         });
         
+        // Popup Close buttons
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const parentPopup = e.target.closest('.popup');
+                if (parentPopup.id === 'ticketStep') {
+                    window.location.href = 'index.html';
+                } else {
+                    closeSpecificPopup(parentPopup);
+                }
+            });
+        });
+
+        // Specific listeners
         okayBtn.addEventListener('click', () => window.location.href = 'index.html');
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
         downloadTicketsBtn.addEventListener('click', downloadTickets);
         form.addEventListener('submit', handleFormSubmit);
 
-        // New listeners
+        // Listeners for new popups
         priceListBtn.addEventListener('click', () => {
             populatePriceList();
             openPopup(priceListPopup);
         });
         conditionsBtn.addEventListener('click', () => openPopup(conditionsPopup));
-        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
-        closeConditionsBtn.addEventListener('click', () => closeSpecificPopup(conditionsPopup));
 
         // --- Page Load Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
+            // NOTE: loadFormData() is now called on participateBtn click
             populateServiceCategories();
             initQuantitySelector();
             updatePrices();
