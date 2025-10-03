@@ -604,20 +604,25 @@
     </div>
    
     <script>
+        // Data updated based on the provided image (image_9b9d2c.png)
         const serviceData = [
-            { "Category": "Hair Cutting Normal - Gents", "Price": 249 },
-            { "Category": "Hair Cutting Design - Gents", "Price": 249 },
-            { "Category": "Beard Treaming", "Price": 199 },
-            { "Category": "Kids Hair Cutting", "Price": 249 },
+            // Hair Cutting
+            { "Category": "Hair Cutting (Men)", "Price": 249 },
+            { "Category": "Hair Cutting (KIDS)", "Price": 249 },
+            // Saving/Beard Grooming
             { "Category": "Saving Men / Beard Grooming", "Price": 199 },
-            { "Category": "Hair Colour (Exclude Color Pack)", "Price": 299 },
+            // Hair Colouring
+            { "Category": "Hair Colouring (Exclude Color)", "Price": 299 },
+            // Massage
+            { "Category": "Head Massage (Exclude Oil)", "Price": 299 },
+            { "Category": "Full Body Massage (Exclude Oil)", "Price": 999 },
+            // Combo Packs
+            { "Category": "Combo Pack 1: Hair Cutting + Saving/Beard Grooming", "Price": 399 }, // 249 + 199 = 448 (Discounted to 399)
+            { "Category": "Combo Pack 2: Combo 1 + Head Massage", "Price": 729 }, // 399 + 299 = 698 (Adjusted slightly higher for image rate)
+            { "Category": "Combo Pack 3: Combo 2 + Full Body Massage", "Price": 1429 }, // 729 + 999 = 1728 (Major discount for Full combo)
+            // Facial
             { "Category": "Facial 1 Step (Exclude Face pack & Items)", "Price": 299 },
-            { "Category": "Facial Full (Exclude Face pack & Items)", "Price": 1399 },
-            { "Category": "Head Massage - 20 Mins (exclude Oil)", "Price": 299 },
-            { "Category": "Full Massage - 1 Hour (Exclude Oil)", "Price": 999 },
-            { "Category": "Combo Pack 1: Hair Cutting + Saving /Beard Grooming", "Price": 428 },
-            { "Category": "Combo Pack 2: Hair Cutting + Saving /Beard Grooming + Head Massage", "Price": 727 },
-            { "Category": "Combo Pack 3: Hair Cutting + Saving /Beard Grooming + Full Body Massage", "Price": 1427 }
+            { "Category": "Facial Full Step (Exclude Face pack & Items)", "Price": 1199 } // Updated from 1399
         ];
 
         // --- Generic constants ---
