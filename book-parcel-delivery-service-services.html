@@ -3,152 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parcel Delivery - SonipatHomeService.com</title>
+    <title>SonipatHomeService.com - Premium Parcel Delivery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
         :root {
-            /* Goldenrod Color Palette */
-            --primary: #9d8032; /* Goldenrod */
-            --secondary: #c2954a; /* Lighter Goldenrod */
-            --accent: #e5c100; /* Bright Yellow */
-            --light: #f5e6b7; /* Very Light Goldenrod */
-            --dark: #2c2925; /* Dark Brown/Black */
-            --text-primary: #2c293b;
-            --text-secondary: #5a534c;
-            --bg-main: #fcf1d8; /* Pale Yellow */
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            --transition: all 0.3s ease;
+            /* Premium Dark Teal & Gold Theme (Matching AC Service File) */
+            --bg-dark: #101827; /* Deep Space Black */
+            --bg-card: #1C2738; /* Dark Navy Card */
+            --primary: #00FFFF; /* Electric Teal Accent */
+            --secondary: #FFC72C; /* Sunset Gold Accent */
+            --text-light: #E0E7FF; /* Off-White Text */
+            --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
+            --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        h1, h2, h3 {
-             font-family: 'Playfair Display', serif;
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
-            background: var(--bg-main);
-            color: var(--text-primary);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         main {
-            padding-top: 6rem;
-            max-width: 1700px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 6rem 1rem 3rem;
+            padding: 4rem 1.5rem;
         }
-        
+
+        /* --- Custom Components (Matching Dark Theme) --- */
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-depth);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 255, 255, 0.1); 
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .stat-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .stat-card p {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
         .product-section {
-            background: var(--light);
-            border-radius: 0.9375rem;
+            background: linear-gradient(135deg, var(--bg-card), #22324C); 
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            margin-bottom: 3rem;
             overflow: hidden;
-            margin-bottom: 2rem;
-            border: 1px solid var(--secondary);
-            box-shadow: var(--shadow);
+            border: 2px solid var(--secondary);
         }
 
         .product-header {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            padding: 1.25rem;
+            background: linear-gradient(90deg, #101827, #22324C);
+            padding: 2rem;
             text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .product-header h2 {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
-            color: var(--light);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
         }
-        
+
         .product-content {
             display: flex;
             flex-wrap: wrap;
-            padding: 1.5rem;
-            align-items: center;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: center; 
             justify-content: center;
-            gap: 1.5rem;
         }
 
         .product-details {
-            flex: 2;
-            min-width: 280px;
-            padding: 1rem;
-            text-align: center;
+            flex: 1; 
+            min-width: 300px;
+            text-align: center; 
         }
 
         .price-container {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem;
-            margin: 1rem 0;
-            justify-content: center;
-        }
-        
-        .lottery-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
+            align-items: baseline;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px dashed var(--text-subtle);
+            border-bottom: 1px dashed var(--text-subtle);
+            justify-content: center; 
         }
 
+        .original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: var(--text-subtle);
+            font-weight: 400;
+        }
+
+        .current-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
         .action-buttons {
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             justify-content: center;
         }
 
         .btn {
-            padding: 0.75rem 1.25rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
-            border: none;
-            font-size: 0.95rem;
+            border: 2px solid transparent;
+            font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             text-decoration: none;
             justify-content: center;
             flex-grow: 1;
-            max-width: 100%;
+            max-width: 300px;
+            min-width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
         .btn-primary {
-            background: var(--accent);
-            color: var(--dark);
-            box-shadow: 0 4px 10px rgba(229, 193, 0, 0.4);
+            background: var(--primary);
+            color: var(--bg-dark);
+            border-color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-primary:hover {
-            background: #d6b800;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(229, 193, 0, 0.5);
+            background: #00D5D5; 
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5); 
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            color: var(--secondary);
+            border-color: var(--secondary);
         }
 
         .btn-secondary:hover {
-            background: var(--light);
-            color: var(--primary);
+            background: rgba(255, 199, 44, 0.1); 
+            transform: scale(1.03);
         }
 
+        /* --- Popup Styling (Matching Dark Theme) --- */
         #popup-overlay {
             display: none;
             position: fixed;
@@ -156,112 +206,156 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(44, 41, 37, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             z-index: 999;
         }
 
         .popup {
             display: none;
-            background: var(--light);
-            color: var(--text-primary);
-            padding: 1.5rem;
-            border-radius: 1.25rem;
-            box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.5);
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000;
             width: 95%;
-            max-width: 550px;
+            max-width: 650px;
             max-height: 95vh;
             overflow-y: auto;
-            animation: fadeIn 0.3s ease-out forwards;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            border: 1px solid var(--primary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -45%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+        .popup h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 500;
         }
         
         .popup input,
-        .popup button,
         .popup select,
         .popup textarea {
             width: 100%;
-            padding: 0.75rem;
-            margin: 0.625rem 0;
-            border-radius: 0.625rem;
-            border: 1px solid var(--secondary);
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
             font-size: 1rem;
-            background: var(--bg-main);
-            color: var(--dark);
+            background: #22324C; 
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+        
+        .popup input:focus,
+        .popup select:focus,
+        .popup textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.2); 
+        }
+
+        .popup textarea {
+            min-height: 8rem;
+            resize: vertical;
         }
 
         .popup button[type="submit"],
         #razorpay-payment-btn,
         #downloadBtn,
-        .close-btn {
-            background: var(--accent);
-            color: var(--dark);
-            font-weight: bold;
-            cursor: pointer;
+        .popup button.close-btn {
             width: 100%;
-            padding: 0.75rem;
-            margin-top: 0.9375rem;
-            border-radius: 0.625rem;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
             border: none;
-            font-size: 1rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn {
+            background: linear-gradient(45deg, var(--primary), #00D5D5); 
+            color: var(--bg-dark);
         }
 
         .popup button[type="submit"]:hover,
         #razorpay-payment-btn:hover,
-        #downloadBtn:hover,
-        .close-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(229, 193, 0, 0.5);
-        }
-
-        .popup button.close-btn {
-            background: var(--secondary);
-            color: var(--dark);
-        }
-        .popup button.close-btn:hover {
-            background: #ab8140;
-            box-shadow: none;
+        #downloadBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6); 
         }
         
-        .ticket-details {
-            font-weight: 500;
-            color: var(--dark);
-            font-size: 1rem;
+        .quantity-selector-container {
+            background: #22324C;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+        }
+
+        .total-price-quantity {
+            font-size: 1.8rem !important;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary) !important;
+        }
+        
+        /* Specific elements for Parcel Delivery */
+        #selectedServiceCategoriesDisplay {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            border: 1px solid var(--primary);
+            cursor: pointer;
+            display: none; /* Hide the unused selection box for Parcel */
+        }
+        
+        #parcel-selection {
+            background: #22324C;
+            border-color: var(--primary);
+            color: var(--text-light);
+        }
+
+        #ticketDisplay {
+            background: #22324C;
+            border: 1px solid var(--primary);
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
             word-break: break-word;
-            padding: 0.625rem;
-            background: var(--bg-main);
-            border: 1px solid var(--secondary);
-            border-radius: 0.625rem;
-            margin: 0.625rem 0;
-            text-align: left;
         }
         
-        #paymentSummary {
-            text-align: center;
-        }
-
-        .ticket-details strong {
-            color: var(--primary);
-        }
-
+        /* Custom Alert Styling */
         .custom-alert {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: var(--accent);
-            color: var(--dark);
+            background: var(--secondary);
+            color: var(--bg-dark);
             padding: 1.25rem 1.875rem;
             border-radius: 0.625rem;
             z-index: 1002;
@@ -270,6 +364,8 @@
             text-align: center;
             max-width: 90%;
             animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         @keyframes fadeInOut {
@@ -279,338 +375,270 @@
             100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
         }
 
-        .lottery-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
+        /* Price List Specific */
+        #priceListTableBody tr:nth-child(even) {
+            background-color: #22324C;
         }
-
-        .stat-card {
-            background: var(--light);
-            border-radius: 0.625rem;
-            padding: 1rem;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid var(--secondary); /* Added border */
-            box-shadow: var(--shadow);
-            text-align: center; /* Centered text */
+        #priceListTableBody th {
+            color: var(--secondary);
         }
-
-        .stat-card:hover {
-            transform: translateY(-0.3125rem);
-            border-color: var(--secondary);
+        #priceListTableBody td {
+            font-family: 'Roboto', sans-serif;
         }
-
-        .stat-card h3 {
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
+        #priceListTableBody .font-semibold {
             color: var(--primary);
-            font-family: 'Inter', sans-serif;
-            text-align: center;
-        }
-
-        .stat-card p {
-            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--dark);
-            text-align: center;
         }
-
-        #payment-summary p {
-            color: var(--dark);
+        
+        .why-choose-us {
+            background: #151f2e; /* Slightly darker inner section */
+            border: 1px solid var(--primary);
         }
-        #timerDisplay {
+        
+        .why-choose-us h3 {
+            color: var(--secondary);
+        }
+        .why-choose-us .fa-check-circle {
             color: var(--primary);
         }
-        #welcomeMessage {
-            color: var(--accent);
-        }
-        #ticketCountDisplay {
-            color: var(--primary);
-        }
-        #ticket-info p {
-            color: var(--dark);
+        .why-choose-us .font-bold {
+            color: var(--text-light);
         }
 
-        .quantity-selector {
-            margin: 0.9375rem 0;
-        }
-        
-        .quantity-selector label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        
-        .quantity-info {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 0.3125rem;
-            font-size: 0.85rem;
-            color: #666;
-        }
-        
-        .total-price-quantity {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--primary);
-            text-align: right;
-            margin: 0.625rem 0;
+
+        /* --- RESPONSIVENESS TWEAKS --- */
+
+        @media (max-width: 1024px) {
+            .product-content { padding: 2rem; flex-direction: column; }
+            .product-details { text-align: center; }
+            .price-container, .action-buttons { justify-content: center; }
+            .btn { max-width: 400px; } 
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            main { padding: 3rem 1rem; }
         }
 
-        #parcel-selection-display {
-            background-color: var(--light);
-            color: var(--dark);
-            padding: 0.75rem;
-            border-radius: 0.625rem;
-            border: 1px solid var(--secondary);
-            cursor: pointer;
-            text-align: left;
-            margin-top: 0.625rem;
-        }
-        
-        #parcelSelectionPopup .popup-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            max-height: 300px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        #parcelSelectionPopup .pack-card {
-            background: var(--bg-main);
-            border: 1px solid var(--secondary);
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-        
-        #parcelSelectionPopup .pack-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        #parcelSelectionPopup .pack-card.selected {
-            border-color: var(--secondary);
-            background: var(--light);
-            box-shadow: 0 0 10px rgba(194, 149, 74, 0.5);
-        }
-        
-        #parcelSelectionPopup .pack-card h4 {
-            font-weight: bold;
-            color: var(--primary);
-        }
-        
-        #parcelSelectionPopup .pack-card p {
-            color: var(--text-secondary);
-        }
-        
-        /* Hide the price columns by default */
-        .price-table .price-column {
-            display: none;
-        }
-        /* Show the price columns when the table has the 'show-prices' class */
-        .price-table.show-prices .price-column {
-            display: table-cell;
-        }
-
-        @media (max-width: 768px) {
-            .hero-section h2 { font-size: 2rem; }
-            .hero-section p { font-size: 1rem; }
+        @media (max-width: 600px) {
+            main { padding: 2rem 1rem; }
+            .product-header h2 { font-size: 2rem; }
+            .product-details h3 { font-size: 2rem; }
+            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
+            .current-price { font-size: 2.5rem; }
+            .popup { padding: 1.5rem; }
+            .popup h2 { font-size: 1.5rem; }
             .action-buttons { flex-direction: column; }
+            .btn { min-width: 100%; max-width: 100%; }
+            .popup input, .popup select, .popup textarea {
+                padding: 0.7rem 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .current-price { font-size: 2rem; }
+            .original-price { font-size: 1rem; }
+            .stat-card p { font-size: 1.8rem; }
+            .popup { padding: 1rem; }
         }
     </style>
 </head>
 <body>
-    <main class="container mx-auto px-4 py-8">
+   
+    <main class="container">
+        
         <section class="product-section">
             <div class="product-header">
-                <h2 class="text-3xl md:text-4xl font-bold">Parcel Delivery</h2>
+                <h2 class="text-white">Premium Parcel Delivery Service</h2>
+                <p class="text-sm text-gray-400 mt-2">Fast, Safe, and Reliable Door-to-Door Delivery by Bike.</p>
             </div>
-            <div class="product-content flex flex-col md:flex-row items-center justify-center p-6 md:p-8 gap-6">
-                 <div class="product-details w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
-                    <h3 class="text-2xl md:text-3xl font-semibold text-dark mb-3">Fast & Reliable Parcel Delivery</h3>
-                    <p class="text-text-secondary mb-4 text-base md:text-lg">On-time delivery by bike riders. Choose a plan that suits your needs.</p>
-                    
-                    <div class="price-container flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 my-6">
-                        <div class="lottery-price text-primary text-3xl md:text-4xl font-bold" id="displayPrice">Select Option</div>
-                    </div>
 
+            <div class="product-content">
+                
+                <div class="product-details">
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">On-Time Delivery for Packages & Documents</h3>
+                    <p class="text-text-subtle mb-4 text-base">
+                        Select your parcel's distance/weight option below to view the transparent base price for booking a rider.
+                    </p>
+                    
+                    <div class="price-container">
+                        <div class="original-price">Price Varies by Distance/Weight</div>
+                        <div class="current-price" id="displayPrice">Select Option</div>
+                    </div>
+                    
                     <!-- Why Choose Us Section -->
-                    <div class="bg-bg-main p-4 rounded-xl shadow-inner mb-6 border border-secondary text-left">
-                        <h3 class="text-xl font-bold text-center mb-4 text-primary">Why Choose Us?</h3>
+                    <div class="why-choose-us p-4 rounded-xl shadow-inner mb-6 text-left">
+                        <h3 class="text-xl font-bold text-center mb-4">Why Choose Us?</h3>
                         <div class="space-y-3">
                             <div class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-green-600 text-lg mt-1"></i>
+                                <i class="fas fa-check-circle text-lg mt-1"></i>
                                 <div>
-                                    <h4 class="font-bold text-dark">Timely Delivery</h4>
-                                    <p class="text-text-secondary text-sm">We ensure prompt and reliable delivery to your location, so your parcel reaches on time.</p>
+                                    <h4 class="font-bold">Timely Delivery</h4>
+                                    <p class="text-text-subtle text-sm">Prompt and reliable service guaranteed. Your parcel reaches its destination quickly.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-green-600 text-lg mt-1"></i>
+                                <i class="fas fa-check-circle text-lg mt-1"></i>
                                 <div>
-                                    <h4 class="font-bold text-dark">Safe & Secure</h4>
-                                    <p class="text-text-secondary text-sm">Your parcels are handled with care to ensure they are free from damage and safe during transit.</p>
+                                    <h4 class="font-bold">Safe & Secure</h4>
+                                    <p class="text-text-subtle text-sm">Parcels are handled with professional care by our dedicated riders.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-green-600 text-lg mt-1"></i>
+                                <i class="fas fa-check-circle text-lg mt-1"></i>
                                 <div>
-                                    <h4 class="font-bold text-dark">Transparent Plans</h4>
-                                    <p class="text-text-secondary text-sm">Whether it's a small document or a large box, we have a plan that fits your requirements with clear pricing.</p>
+                                    <h4 class="font-bold">Transparent Pricing</h4>
+                                    <p class="text-text-subtle text-sm">Clear rates based on fixed distance and weight categories.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="action-buttons flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
-                        <button class="btn btn-primary shadow-lg hover:shadow-xl" id="book-now-btn">
-                            <i class="fas fa-cart-plus"></i> Book Now
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="book-now-btn">
+                            <i class="fas fa-motorcycle"></i> Book Rider Now
                         </button>
-                        <button id="price-list-btn" class="btn btn-secondary shadow-lg hover:shadow-xl">
-                            <i class="fas fa-tags"></i> See Price List
+                        <button id="price-list-btn" class="btn btn-secondary">
+                            <i class="fas fa-tags"></i> Price Chart
                         </button>
-                        <button id="description-btn" class="btn btn-secondary shadow-lg hover:shadow-xl">
-                            <i class="fas fa-info-circle"></i> Service Description
+                         <button id="description-btn" class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i> Service Info
                         </button>
-                        <button id="go-back-btn" class="btn btn-secondary shadow-lg hover:shadow-xl" onclick="window.location.href='index.html'">
-                            <i class="fas fa-arrow-left"></i> Go Back
+                        <button class="btn btn-secondary" onclick="window.open('index.html')">
+                            <i class="fas fa-home"></i> Back To Home
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="lottery-stats grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-primary text-lg font-medium mb-1">Happy Clients</h3>
-                <p class="text-dark text-3xl font-bold">10,000+</p>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>Total Deliveries</h3>
+                <p>5,000+</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-primary text-lg font-medium mb-1">Parcels Delivered</h3>
-                <p class="text-dark text-3xl font-bold">5,000+</p>
+            <div class="stat-card">
+                <h3>Happy Clients</h3>
+                <p>10,000+</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-primary text-lg font-medium mb-1">Average Rating</h3>
-                <p class="text-dark text-3xl font-bold">4.7/5 Stars</p>
+            <div class="stat-card">
+                <h3>Average Rating</h3>
+                <p>4.7/5 Stars</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-primary text-lg font-medium mb-1">Available Today</h3>
-                <p class="text-dark text-3xl font-bold">Yes!</p>
+            <div class="stat-card">
+                <h3>Rider Availability</h3>
+                <p>Now!</p>
             </div>
         </div>
     </main>
-    
+
     <div id="popup-overlay"></div>
     
-    <!-- Booking Form Popup -->
-    <div id="booking-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center mb-4 text-dark">Parcel Booking</h2>
+    <!-- Booking Form Popup (popupForm) -->
+    <div class="popup" id="booking-popup">
+        <h2 class="text-2xl font-bold text-center">Parcel Booking Form</h2>
         <form id="booking-form">
-            <div class="quantity-selector my-4">
-                <label for="parcel-selection" class="text-primary text-sm mb-2">Select Parcel Option:</label>
+            <div class="quantity-selector-container my-4">
+                <label for="parcel-selection">Select Parcel Option:</label>
                 <select id="parcel-selection" name="parcel-selection" required>
-                    <option value="" disabled selected>Select a Parcel Option</option>
+                    <option value="" disabled selected>Select a Parcel Option (Distance & Weight)</option>
                 </select>
-            </div>
-            
-            <label for="name" class="text-primary text-sm mb-1">Full Name (min 10 characters)</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
-
-            <label for="phone" class="text-primary text-sm mb-1">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
-
-            <label for="pickup-location" class="text-primary text-sm mb-1">Pickup Location (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="pickup-location" name="pickup-location" placeholder="Sonipat" autocomplete="address-level2" required>
-
-            <label for="delivery-location" class="text-primary text-sm mb-1">Delivery Location (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="delivery-location" name="delivery-location" placeholder="Sonipat" autocomplete="address-level2" required>
-            
-            <label for="address" class="text-primary text-sm mb-1">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
-            
-            <div class="quantity-selector my-4">
-                <label for="quantity" class="text-primary text-sm mb-2">Quantity (Max 5):</label>
-                <select id="quantity" name="quantity" required>
+                
+                <label for="quantity" class="mt-4">Number of Items (Max 5):</label>
+                <select id="quantity" name="quantity" required class="bg-bg-dark border-primary">
                     <option value="" disabled selected>Select quantity</option>
-                    <option value="1">1 Item</option>
-                    <option value="2">2 Items</option>
-                    <option value="3">3 Items</option>
-                    <option value="4">4 Items</option>
-                    <option value="5">5 Items</option>
                 </select>
-                <div class="quantity-info flex justify-between mt-2 text-gray-600 text-sm">
-                    <span>Quantity based price</span>
-                    <span class="total-price-quantity font-bold text-primary text-lg">Total: ₹0</span>
+
+                <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
+                    <span>Quantity based total price</span>
+                    <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">Total: ₹0</span>
                 </div>
             </div>
 
-            <button type="submit">Submit Details</button>
-            <p id="submit-message" class="text-center text-sm text-gray-500 mt-2 hidden">Submitting...</p>
+            <label for="name">Your Full Name (min 10 characters)</label>
+            <input type="text" id="name" name="name" required placeholder="John Doe" autocomplete="name" minlength="10" />
+            
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="phone" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
+            
+            <label for="pickup-location">Pickup Location (e.g. Sector 10, Sonipat)</label>
+            <input type="text" id="pickup-location" name="pickup-location" required placeholder="Pickup Address/Landmark" autocomplete="address-level2" />
+            
+            <label for="delivery-location">Delivery Location (e.g. City Mall, Panipat)</label>
+            <input type="text" id="delivery-location" name="delivery-location" required placeholder="Delivery Address/Landmark" autocomplete="address-level2" />
+            
+            <label for="address">Full Pickup/Delivery Address Details (min 30 characters)</label>
+            <textarea id="address" name="address" required placeholder="Complete address for both pickup and delivery, including desired timing and recipient name/contact." autocomplete="street-address" minlength="30" rows="4"></textarea>
+
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="finalPrice" id="finalPrice" />
+            
+            <button type="submit">Submit Details & Proceed to Payment</button>
+            <p id="submit-message" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
         </form>
     </div>
-
-    <!-- Payment Popup -->
-    <div id="payment-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center mb-4 text-dark">Complete Your Payment</h2>
-        <p class="text-text-secondary text-center mb-6">Please complete the payment to finalize your parcel booking.</p>
-        <div id="payment-summary" class="ticket-details text-center mb-6"></div>
-        <div id="timer-display" class="text-primary font-bold text-center">Time remaining: 05:00</div>
-        <button id="razorpay-payment-btn">Pay for Parcel</button>
-        <p class="mt-4 text-sm text-text-secondary text-center">
-            After payment, please wait for automatic verification. Do not close this window.
+    
+    <!-- Payment Step (paymentPopup) -->
+    <div class="popup" id="payment-popup">
+        <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
+        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your Parcel Delivery booking.</p>
+        <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
+        <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
+        <p class="mt-4 text-xs text-text-subtle text-center">
+            Note: Do not close this window during payment processing.
         </p>
     </div>
 
-    <!-- Confirmation Popup -->
-    <div id="confirmation-popup" class="popup">
-        <h2 id="welcome-message" class="text-2xl font-bold text-center mb-4 text-accent"></h2>
-        <p class="text-text-secondary text-center mb-4">You have successfully booked your parcel delivery.</p>
-        <div id="ticket-info" class="ticket-details space-y-2">
-            <!-- Details will be injected here -->
-        </div>
-        <button id="downloadBtn"><i class="fas fa-download mr-2"></i> Download Details</button>
-        <p class="mt-4 text-sm text-text-secondary text-center">📸 Please take a screenshot for proof and reference.</p>
-        <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
+    <!-- Ticket Confirmation (confirmationPopup) -->
+    <div class="popup" id="confirmation-popup">
+        <h2 id="welcome-message" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below:</p>
+        <div id="ticket-info" class="space-y-2 bg-bg-dark p-5 rounded-lg mb-6 text-center border border-primary"></div>
+        <button id="downloadBtn" class="mt-4">
+            <i class="fas fa-download mr-2"></i> Download Booking Details
+        </button>
+        <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
     </div>
-
-    <!-- Price List Popup -->
-    <div id="price-list-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center mb-4 text-primary">Parcel Price List</h2>
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-light rounded-lg">
+    
+    <!-- Price List Popup (priceListPopup) -->
+    <div class="popup" id="price-list-popup">
+        <h2 class="text-2xl font-bold text-center">Parcel Delivery Price Chart</h2>
+        <div id="priceListContainer" class="overflow-x-auto mt-4">
+            <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
                 <thead>
-                    <tr class="text-left text-primary">
-                        <th class="py-2 px-4 border-b border-gray-300">Distance & Weight</th>
-                        <th class="py-2 px-4 border-b border-gray-300 text-right">Rate</th>
+                    <tr class="text-left text-secondary">
+                        <th class="py-3 px-4 border-b border-text-subtle">Distance & Weight</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Base Rate</th>
                     </tr>
                 </thead>
-                <tbody id="price-list-table-body">
-                    <!-- Rows will be injected by JavaScript -->
+                <tbody id="priceListTableBody">
+                    <!-- Content populated by JS -->
                 </tbody>
             </table>
         </div>
-        <button id="close-price-list-btn" class="close-btn">Close</button>
+        <button id="close-price-list-btn" class="btn btn-secondary close-btn mt-4">Close Price Chart</button>
     </div>
 
-    <!-- Description Popup -->
-    <div id="description-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center mb-4 text-primary">Our Parcel Services</h2>
-        <div class="text-text-secondary text-base space-y-4 max-h-96 overflow-y-auto pr-2">
-            <p>Our bike riders deliver your parcels safely and quickly to your desired location. We offer a transparent pricing model based on distance and parcel weight to give you the best possible value.</p>
-            <p>Whether you need a document sent across the city or a package delivered to a nearby town, our team is ready to serve you with prompt and reliable service.</p>
-            <p>Experience seamless logistics and peace of mind with our dedicated parcel delivery service. We are committed to ensuring every package arrives in perfect condition and on time.</p>
-            <p>Book your delivery now and let us handle the rest, from pickup to drop-off. We are your reliable partner for all your parcel needs.</p>
+    <!-- Description Popup (descriptionPopup) -->
+    <div class="popup" id="description-popup">
+        <h2 class="text-2xl font-bold text-center">Our Parcel Services</h2>
+        <div id="descriptionContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
+             <ul class="list-disc list-inside space-y-3">
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-motorcycle mr-2"></i> Fast Bike Delivery</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Dedicated bike riders ensure the fastest delivery times within the city and surrounding areas.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-box-open mr-2"></i> Flexible Parcel Options</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Options available for small documents (Upto 5 Kg) and medium packages (Upto 10 Kg).</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Pricing is fixed based on your selected distance and weight bracket.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-location-dot mr-2"></i> Door-to-Door Service</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Seamless pickup from your location and direct delivery to the recipient's door.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparent Pricing</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>The price paid covers the full delivery charge as per the selected bracket. No hidden fees.</li>
+            </ul>
         </div>
-        <button id="close-description-btn" class="close-btn">Close</button>
+        <button id="close-description-btn" class="btn btn-secondary close-btn mt-4">Close Info</button>
     </div>
-    
+   
     <script>
+        // Data for parcel rates (from the uploaded file)
         const parcelRates = [
             { "name": "0-10 Kms (Upto 5 Kg)", "rate": 149 },
             { "name": "0-10 Kms (Upto 6-10 Kg)", "rate": 199 },
@@ -620,10 +648,10 @@
             { "name": "15-20 Kms (Upto 6-10 Kg)", "rate": 380 }
         ];
 
-        // --- Generic constants ---
+        // --- Constants ---
         const SERVICE_NAME = "Parcel Delivery";
-        const SERVICE_TAB_ID = "parcel-service";
-        const RAZORPAY_IMAGE_TEXT = "PS";
+        const SERVICE_TAB_ID = "parcel-delivery";
+        const RAZORPAY_IMAGE_TEXT = "PD";
         const PAYMENT_TIME_LIMIT = 5 * 60;
         
         // --- DOM Element Selection ---
@@ -651,23 +679,50 @@
         const descriptionPopup = document.getElementById('description-popup');
         const closePriceListBtn = document.getElementById('close-price-list-btn');
         const closeDescriptionBtn = document.getElementById('close-description-btn');
-        const priceListTableBody = document.getElementById('price-list-table-body');
-        
+        const priceListTableBody = document.getElementById('priceListTableBody');
+        const bookingForm = document.getElementById('booking-form');
+
         // --- State variables ---
         let currentCalculatedPrice = 0;
         let selectedQuantity = 1;
         let generatedTicket = '';
         let countdownInterval = null;
         let allowClose = false;
+        const LOCAL_STORAGE_KEY = 'parcelBookingFormData'; 
 
+        // --- Local Storage Functions ---
+
+        function saveFormData() {
+            const formData = {
+                name: bookingForm.name.value,
+                phone: bookingForm.phone.value,
+                pickupLocation: bookingForm['pickup-location'].value,
+                deliveryLocation: bookingForm['delivery-location'].value,
+                address: bookingForm.address.value
+            };
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+        }
+
+        function loadFormData() {
+            const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                bookingForm.name.value = data.name || '';
+                bookingForm.phone.value = data.phone || '';
+                bookingForm['pickup-location'].value = data.pickupLocation || '';
+                bookingForm['delivery-location'].value = data.deliveryLocation || '';
+                bookingForm.address.value = data.address || '';
+            }
+        }
+        
         // --- Core Functions ---
         
         function populateParcelOptions() {
-            parcelSelection.innerHTML = '<option value="" disabled selected>Select a Parcel Option</option>';
+            parcelSelection.innerHTML = '<option value="" disabled selected>Select a Parcel Option (Distance & Weight)</option>';
             parcelRates.forEach(rate => {
                 const option = document.createElement('option');
                 option.value = rate.name;
-                option.textContent = rate.name;
+                option.textContent = `${rate.name} (₹${rate.rate})`;
                 option.dataset.rate = rate.rate;
                 parcelSelection.appendChild(option);
             });
@@ -686,7 +741,12 @@
             totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
             currentCalculatedPrice = totalFinalPrice;
             
-            displayPrice.textContent = selectedOptionName;
+            // Only show base rate on the main card if a selection has been made
+            if (selectedOption && selectedOption.value) {
+                 displayPrice.textContent = `₹${basePrice}`;
+            } else {
+                 displayPrice.textContent = 'Select Option';
+            }
         }
 
         // Generate a unique booking ID
@@ -706,9 +766,9 @@
         // Close all popups
         function closeAllPopups() {
             if (!allowClose) {
-                // This check is relaxed for the main booking form
-                if (bookingPopup.style.display !== 'block') {
-                    showCustomAlert("Please complete the process before closing.");
+                // Prevent closing if payment is pending
+                if (paymentPopup.style.display === 'block') {
+                    showCustomAlert("Please complete the payment process before closing.");
                     return;
                 }
             }
@@ -716,10 +776,7 @@
             popupOverlay.style.display = 'none';
             allPopups.forEach(p => p.style.display = 'none');
             document.body.style.overflow = 'auto';
-            const bookingForm = document.getElementById('booking-form');
-            bookingForm.reset();
-            totalPriceQuantityDisplay.textContent = 'Total: ₹0';
-            displayPrice.textContent = 'Select Option';
+            // Do not reset form on close, let loadFormData handle it on next open
             allowClose = false;
         }
 
@@ -727,6 +784,7 @@
         function openPopup(popupElement) {
             document.body.style.overflow = 'hidden';
             popupOverlay.style.display = 'block';
+            allPopups.forEach(p => p.style.display = 'none');
             popupElement.style.display = 'block';
             allowClose = (popupElement === bookingPopup); // Allow closing for booking popup
         }
@@ -743,7 +801,6 @@
 
         // Download booking details as a text file
         function downloadTicketDetails() {
-            const bookingForm = document.getElementById('booking-form');
             const name = bookingForm.name.value;
             const phone = bookingForm.phone.value;
             const pickupLocation = bookingForm['pickup-location'].value;
@@ -761,7 +818,7 @@
                             `Address: ${address}\n` +
                             `Option: ${selectedOption}\n` +
                             `Quantity: ${selectedQuantity}\n` +
-                            `Total Price: ₹${totalPrice}\n\n` +
+                            `Total Price Paid: ₹${totalPrice}\n\n` +
                             `Thank you for choosing our service!`;
 
             const blob = new Blob([content], { type: 'text/plain' });
@@ -803,28 +860,30 @@
 
         // Handle Razorpay payment
         function handleRazorpayPayment() {
-            const bookingForm = document.getElementById('booking-form');
             const selectedOptionName = parcelSelection.options[parcelSelection.selectedIndex].textContent;
+            const totalPrice = currentCalculatedPrice;
+            
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": currentCalculatedPrice * 100, // Razorpay amounts are in paisa
+                "amount": totalPrice * 100, // Razorpay amounts are in paisa
                 "currency": "INR",
                 "name": `SonipatHomeService - ${SERVICE_NAME}`,
                 "description": `Payment for Parcel Booking ID: ${generatedTicket}`,
-                "image": `https://placehold.co/100x100/9d8032/f5e6b7?text=${RAZORPAY_IMAGE_TEXT}`,
+                "image": `https://placehold.co/100x100/1C2738/FFC72C?text=${RAZORPAY_IMAGE_TEXT}`,
                 "handler": function (response){
-                    paymentSuccess();
+                    paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
                     "name": bookingForm.name.value,
-                    "phone": bookingForm.phone.value
+                    "contact": bookingForm.phone.value
                 },
                 "notes": {
                     "pickup_location": bookingForm['pickup-location'].value,
                     "delivery_location": bookingForm['delivery-location'].value,
                     "address": bookingForm.address.value,
+                    "booking_ref": generatedTicket
                 },
-                "theme": { "color": "#c2954a" },
+                "theme": { "color": "#00FFFF" },
                 "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
             };
 
@@ -836,21 +895,23 @@
         }
 
         // After successful payment
-        function paymentSuccess() {
+        function paymentSuccess(paymentId) {
             clearTimers();
             paymentPopup.style.display = 'none';
             openPopup(confirmationPopup);
-            const bookingForm = document.getElementById('booking-form');
-            const name = bookingForm.name.value;
+            
+            const name = bookingForm.name.value.split(' ')[0];
             const selectedOptionName = parcelSelection.options[parcelSelection.selectedIndex].textContent;
             const totalPrice = currentCalculatedPrice;
 
-            welcomeMessage.textContent = `🎉 Thank You, ${name}! Your Booking is Confirmed! �`;
+            welcomeMessage.textContent = `🎉 Bravo, ${name}! Booking Confirmed! 🎉`;
             
             ticketInfo.innerHTML = `
-                <p><strong>Booking ID:</strong> ${generatedTicket}</p>
-                <p><strong>Parcels:</strong> ${selectedOptionName}</p>
-                <p><strong>Total Price:</strong> ₹${totalPrice}</p>
+                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p>Parcel Option: <span class="font-bold text-text-light">${selectedOptionName}</span></p>
+                <p>Quantity: <span class="font-bold text-text-light">${selectedQuantity}</span></p>
+                <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${totalPrice}</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
             allowClose = true;
         }
@@ -860,58 +921,100 @@
             priceListTableBody.innerHTML = '';
             parcelRates.forEach(rate => {
                 const row = `
-                    <tr>
-                        <td class="py-3 px-4 border-b border-secondary">${rate.name}</td>
-                        <td class="py-3 px-4 border-b border-secondary text-right font-semibold text-primary">₹${rate.rate}</td>
+                    <tr class="text-text-light hover:bg-bg-dark">
+                        <td class="py-3 px-4 border-b border-gray-700">${rate.name}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${rate.rate}</td>
                     </tr>
                 `;
                 priceListTableBody.insertAdjacentHTML('beforeend', row);
             });
         }
         
-        // --- Event Listeners Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const bookingForm = document.getElementById('booking-form');
-            // The function call below was causing an error because the element 'parcel-table-body' was not found.
-            // This error stopped the script from continuing, so populateParcelOptions() was never called.
-            // I have commented it out to fix the dropdown issue.
-            // populateTables(); 
-            populateParcelOptions();
+        // --- Form Submission Logic ---
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const selectedOption = parcelSelection.value;
+            if (!selectedOption) { showCustomAlert("Please select a parcel option."); return; }
+            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (bookingForm['pickup-location'].value.trim().length < 3) { showCustomAlert("Please enter a valid pickup location."); return; }
+            if (bookingForm['delivery-location'].value.trim().length < 3) { showCustomAlert("Please enter a valid delivery location."); return; }
+            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("Please enter complete address details (minimum 30 characters)."); return; }
+            if (currentCalculatedPrice === 0) {
+                showCustomAlert("Please select a valid option and quantity to calculate the price.");
+                return;
+            }
+
+            submitMessage.style.display = 'block';
+            bookingForm.querySelector('button[type="submit"]').disabled = true;
+            generatedTicket = generateTicketId();
             
-            bookingForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+            // --- Google Sheet Submission ---
+            const formData = new FormData();
+            formData.append('field1', bookingForm.name.value); 
+            formData.append('field2', bookingForm.phone.value);    
+            formData.append('field3', parcelSelection.options[parcelSelection.selectedIndex].textContent); // Parcel Option
+            formData.append('field5', bookingForm['pickup-location'].value); // Pickup
+            formData.append('field6', bookingForm.address.value);  // Full Address
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', 'Parcel Delivery');   
+            formData.append('servicePrice', currentCalculatedPrice); // Final calculated price
+            formData.append('ticketQuantity', selectedQuantity); 
+            formData.append('delivery_location', bookingForm['delivery-location'].value); // New field for clarity
 
-                const selectedOption = parcelSelection.value;
-                if (!selectedOption) { showCustomAlert("Please select a parcel option."); return; }
-                if (bookingForm.name.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-                if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-                if (bookingForm['pickup-location'].value.trim().length < 3) { showCustomAlert("Please enter a valid pickup location."); return; }
-                if (bookingForm['delivery-location'].value.trim().length < 3) { showCustomAlert("Please enter a valid delivery location."); return; }
-                if (bookingForm.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
-                if (currentCalculatedPrice === 0) {
-                    showCustomAlert("Please select a valid option and quantity to calculate the price.");
-                    return;
-                }
-
-                submitMessage.classList.remove('hidden');
-                bookingForm.querySelector('button[type="submit"]').disabled = true;
-                generatedTicket = generateTicketId();
-
-                setTimeout(() => {
-                    submitMessage.classList.add('hidden');
-                    bookingForm.querySelector('button[type="submit"]').disabled = false;
+            fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success")) { 
+                    saveFormData(); 
+                    
                     bookingPopup.style.display = 'none';
-
                     paymentSummary.innerHTML = `
-                        <p>You are booking: <strong>${parcelSelection.options[parcelSelection.selectedIndex].textContent}</strong></p>
-                        <p>Quantity: <strong>${selectedQuantity}</strong></p>
-                        <p class="mt-2 text-xl font-bold">Total Price: ₹${currentCalculatedPrice}</p>
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Summary:</p>
+                        <p class="text-text-light text-base mb-1">Option: <span class="font-bold text-primary">${parcelSelection.options[parcelSelection.selectedIndex].textContent}</span></p>
+                        <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${selectedQuantity}</span></p>
+                        <p class="current-price text-secondary text-3xl font-bold">Total Payable: ₹${currentCalculatedPrice}</p>
                     `;
                     openPopup(paymentPopup);
                     startPaymentTimer();
-                }, 1000);
+                } else {
+                    showCustomAlert("Submission Error: Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("Network Error: An unexpected error occurred. Please try again.");
+            })
+            .finally(() => {
+                submitMessage.style.display = 'none';
+                bookingForm.querySelector('button[type="submit"]').disabled = false;
             });
+        }
+        
+        // --- Event Listeners Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            populateParcelOptions();
             
+            // Set up initial quantity selector options (1 to 5)
+            const maxQuantity = 5; 
+            quantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
+            for (let i = 1; i <= maxQuantity; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i + (i === 1 ? ' Item' : ' Items');
+                quantitySelect.appendChild(option);
+            }
+            quantitySelect.value = 1;
+            
+            loadFormData(); // Load saved data
+            updatePrices(); 
+            
+            bookingForm.addEventListener('submit', handleFormSubmit);
             quantitySelect.addEventListener('change', updatePrices);
             parcelSelection.addEventListener('change', updatePrices);
         });
@@ -926,12 +1029,13 @@
                 if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
                 else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
                 else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
-                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the process before closing.");
+                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
                 else if (bookingPopup.style.display === 'block') closeAllPopups();
             }
         });
         
-        okayBtn.addEventListener('click', closeAllPopups);
+        // Use window.location.href = 'index.html' for okayBtn for consistency
+        okayBtn.addEventListener('click', () => window.location.href = 'index.html'); 
         downloadBtn.addEventListener('click', downloadTicketDetails);
 
         priceListBtn.addEventListener('click', () => {
@@ -944,6 +1048,7 @@
         });
 
         closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
+        // Fixed the event listener to use the correct variable/ID
         closeDescriptionBtn.addEventListener('click', () => closeSpecificPopup(descriptionPopup));
 
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
