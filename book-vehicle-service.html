@@ -3,225 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - Vehicle Booking Services</title>
-    <!-- Font Awesome for icons -->
+    <title>SonipatHomeService.com - Premium Vehicle Booking</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Razorpay for payment integration -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
-        /* Import Google Font 'Inter' */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
-        /* Define CSS custom properties for a bright, transportation-themed color scheme */
         :root {
-            --primary: #212121; /* Dark gray */
-            --secondary: #424242; /* Medium gray */
-            --accent: #FF5722; /* Bright Orange */
-            --light: #f5f5f5;
-            --dark: #212121;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --card-bg: #ffffff;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            /* Premium Dark Teal & Gold Theme (Matching AC Service File) */
+            --bg-dark: #101827; /* Deep Space Black */
+            --bg-card: #1C2738; /* Dark Navy Card */
+            --primary: #00FFFF; /* Electric Teal Accent */
+            --secondary: #FFC72C; /* Sunset Gold Accent */
+            --text-light: #E0E7FF; /* Off-White Text */
+            --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
+            --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* Global styles for all elements */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
 
-        /* Body background and text color */
         body {
-            background: linear-gradient(135deg, #333333 0%, #555555 100%);
-            color: var(--light);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Main container for content */
         main {
-            padding-top: 6rem;
-            max-width: 1700px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 6rem 1rem 3rem;
+            padding: 4rem 1.5rem;
         }
 
-        /* Section for key statistics */
-        .lottery-stats {
+        /* --- Custom Components --- */
+
+        .stat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
-        /* Styling for each stat card */
         .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.625rem;
-            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
             text-align: center;
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-depth);
             transition: var(--transition);
-            border: 1px solid rgba(255, 87, 34, 0.2); /* Changed accent color */
+            border: 1px solid rgba(0, 255, 255, 0.1); /* Teal border subtle */
         }
 
         .stat-card:hover {
-            transform: translateY(-0.3125rem);
-            box-shadow: var(--shadow);
-            border-color: var(--accent);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
         }
 
         .stat-card h3 {
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
-            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         .stat-card p {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--light);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Product section styling */
         .product-section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.9375rem;
+            background: linear-gradient(135deg, var(--bg-card), #22324C); 
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            margin-bottom: 3rem;
             overflow: hidden;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 87, 34, 0.2); /* Changed accent color */
+            border: 2px solid var(--secondary);
         }
 
         .product-header {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            padding: 1.25rem;
+            background: linear-gradient(90deg, #101827, #22324C);
+            padding: 2rem;
             text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .product-header h2 {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
         }
 
         .product-content {
             display: flex;
             flex-wrap: wrap;
-            padding: 1.5rem;
-            align-items: center;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: center; 
             justify-content: center;
-            gap: 1.5rem;
-        }
-
-        /* Product image styling */
-        .product-image {
-            flex: 1;
-            min-width: 280px;
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.625rem;
-            overflow: hidden;
-            background: url('https://placehold.co/600x400/212121/FF5722?text=Vehicle+Booking') no-repeat center center; /* Changed accent color */
-            background-size: cover;
-            min-height: 250px;
         }
 
         .product-details {
-            flex: 2;
-            min-width: 280px;
-            padding: 1rem;
+            flex: 1; 
+            min-width: 300px;
+            text-align: center; 
         }
 
         .price-container {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem;
-            margin: 1rem 0;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px dashed var(--text-subtle);
+            border-bottom: 1px dashed var(--text-subtle);
+            justify-content: center; 
         }
 
         .original-price {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             text-decoration: line-through;
-            color: #b0b0b0;
+            color: var(--text-subtle);
+            font-weight: 400;
         }
 
-        .lottery-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .features {
-            margin: 1rem 0;
-        }
-
-        .features h3 {
-            margin-bottom: 0.8rem;
-            color: var(--accent);
-        }
-
-        .features ul {
-            padding-left: 1.2rem;
-        }
-
-        .features li {
-            margin-bottom: 0.4rem;
-            font-size: 0.95rem;
+        .current-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .action-buttons {
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
         }
 
-        /* Button styling */
         .btn {
-            padding: 0.75rem 1.25rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
-            border: none;
-            font-size: 0.95rem;
+            border: 2px solid transparent;
+            font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             text-decoration: none;
             justify-content: center;
             flex-grow: 1;
-            max-width: 100%;
+            max-width: 300px;
+            min-width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
         .btn-primary {
-            background: linear-gradient(90deg, var(--accent), #FF9800); /* Changed gradient colors */
-            color: #212121;
+            background: var(--primary);
+            color: var(--bg-dark);
+            border-color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-primary:hover {
-            transform: translateY(-0.1875rem);
-            box-shadow: 0 0.3125rem 0.9375rem rgba(255, 87, 34, 0.4); /* Changed shadow color */
+            background: #00D5D5; 
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5); 
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--light);
-            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-color: var(--secondary);
         }
 
         .btn-secondary:hover {
-            background: rgba(66, 66, 66, 0.2);
+            background: rgba(255, 199, 44, 0.1); 
+            transform: scale(1.03);
         }
 
-        /* Popup overlay and styling */
+        /* --- Popup Styling --- */
         #popup-overlay {
             display: none;
             position: fixed;
@@ -229,184 +206,157 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             z-index: 999;
         }
 
         .popup {
             display: none;
-            background: #212121;
-            color: #fff;
-            padding: 1.5rem;
-            border-radius: 1.25rem;
-            box-shadow: 0 0 1.875rem rgba(255, 87, 34, 0.5); /* Changed shadow color */
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000;
             width: 95%;
-            max-width: 550px;
+            max-width: 650px;
             max-height: 95vh;
             overflow-y: auto;
-            animation: fadeIn 0.3s ease-out forwards;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            border: 1px solid var(--primary);
         }
-
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -45%); }
+            from { opacity: 0; transform: translate(-50%, -60%); }
             to { opacity: 1; transform: translate(-50%, -50%); }
         }
 
-        #serviceCategorySelectionPopup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1001;
-            background: #212121;
-            color: #fff;
-            padding: 1.5rem;
-            border-radius: 1.25rem;
-            box-shadow: 0 0 1.875rem rgba(255, 87, 34, 0.5); /* Changed shadow color */
-            width: 95%;
-            max-width: 550px;
-            max-height: 95vh;
-            overflow-y: auto;
-            display: none;
-        }
-
-        #serviceCategoryCheckboxes {
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        }
-
-        .popup input,
-        .popup button,
-        .popup select,
-        .popup textarea {
-            width: 100%;
-            padding: 0.75rem;
-            margin: 0.625rem 0;
-            border-radius: 0.625rem;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .popup input,
-        .popup textarea {
-            background: #f5f5f5;
-            color: #000;
-        }
-
-        .popup textarea {
-            min-height: 6.25rem;
-            resize: vertical;
+        .popup h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .popup label {
             display: block;
-            margin-bottom: 0.3125rem;
-            color: var(--accent);
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
             font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .popup input,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            font-size: 1rem;
+            background: #22324C; 
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+        
+        .popup input:focus,
+        .popup select:focus,
+        .popup textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.2); 
+        }
+
+        .popup textarea {
+            min-height: 8rem;
+            resize: vertical;
         }
 
         .popup button[type="submit"],
-        .popup button#okayBtn,
+        #razorpay-payment-btn,
+        #downloadTicketsBtn,
+        .popup button.close-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
         #razorpay-payment-btn,
         #downloadTicketsBtn {
-            background: linear-gradient(90deg, var(--accent), #FF9800); /* Changed gradient colors */
-            color: #212121;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            padding: 0.75rem;
-            margin-top: 0.9375rem;
-            border-radius: 0.625rem;
-            border: none;
-            font-size: 1rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: linear-gradient(45deg, var(--primary), #00D5D5); 
+            color: var(--bg-dark);
         }
 
         .popup button[type="submit"]:hover,
-        .popup button#okayBtn:hover,
         #razorpay-payment-btn:hover,
         #downloadTicketsBtn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 87, 34, 0.5); /* Changed shadow color */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6); 
+        }
+        
+        .quantity-selector-container {
+            background: #22324C;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+        }
+
+        .total-price-quantity {
+            font-size: 1.8rem !important;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary) !important;
+        }
+
+        #selectedServiceCategoriesDisplay {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            border: 1px solid var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Service Type Radio Buttons - Retained structure but not used for Vehicle Booking */
+        .service-type-radio {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            /* Hide since Night Stay is now a dropdown */
+            display: none; 
         }
 
         #ticketDisplay {
-            font-weight: bold;
-            color: #FFDAB9; /* Peach-toned light color */
-            font-size: 1.1rem;
+            background: #22324C;
+            border: 1px solid var(--primary);
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
             word-break: break-word;
-            text-align: center;
-            max-height: 12.5rem;
-            overflow-y: auto;
-            padding: 0.625rem;
-            background: rgba(0,0,0,0.2);
-            border-radius: 0.625rem;
-            margin: 0.625rem 0;
         }
-
-        #countryError {
-            color: red;
-            font-size: 0.8rem;
-            display: none;
-            margin-top: -0.3125rem;
-            margin-bottom: 0.625rem;
-        }
-
-        #submitMessage {
-            color: #FFDAB9;
-            font-size: 1rem;
-            text-align: center;
-            margin-top: 0.625rem;
-            display: none;
-        }
-
-        #timerDisplay {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-align: center;
-            margin-top: 0.9375rem;
-        }
-
-        .quantity-selector {
-            margin: 0.9375rem 0;
-        }
-
-        .quantity-selector label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-
-        .quantity-info {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 0.3125rem;
-            font-size: 0.85rem;
-            color: #ccc;
-        }
-
-        .total-price {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-align: right;
-            margin: 0.625rem 0;
-        }
-
+        
+        /* Custom Alert Styling */
         .custom-alert {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #FF9800; /* Changed color */
-            color: #212121;
+            background: var(--secondary);
+            color: var(--bg-dark);
             padding: 1.25rem 1.875rem;
             border-radius: 0.625rem;
             z-index: 1002;
@@ -415,6 +365,8 @@
             text-align: center;
             max-width: 90%;
             animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         @keyframes fadeInOut {
@@ -424,277 +376,261 @@
             100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
         }
 
-        /* Price table styling */
-        #priceListContainer table {
-            width: 100%;
-            border-collapse: collapse;
+        /* Price List Specific */
+        #priceListTableBody tr:nth-child(even) {
+            background-color: #22324C;
         }
-        #priceListContainer th, #priceListContainer td {
-            padding: 0.75rem;
-            text-align: left;
+        #priceListTableBody td {
+            font-family: 'Roboto', sans-serif;
         }
-        #priceListContainer thead {
-            background-color: rgba(255, 87, 34, 0.1); /* Changed accent color */
+        #priceListTableBody .font-semibold {
+            color: var(--secondary);
+            font-weight: 700;
         }
 
-        /* Responsive design for tablets */
+        /* --- RESPONSIVENESS TWEAKS --- */
+
         @media (max-width: 1024px) {
-            main { padding: 5rem 1rem 2rem; }
-            .product-header h2 { font-size: 1.5rem; }
-            .product-content { flex-direction: column; padding: 1rem; }
-            .product-image { min-height: 200px; width: 100%; }
-            .product-details { min-width: unset; width: 100%; text-align: center; }
+            .product-content { padding: 2rem; flex-direction: column; }
+            .product-details { text-align: center; }
             .price-container, .action-buttons { justify-content: center; }
-            .btn { width: 100%; max-width: 300px; }
-            .lottery-stats { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-            .stat-card { padding: 0.8rem; }
-            .stat-card h3 { font-size: 0.85rem; }
-            .stat-card p { font-size: 1.3rem; }
-            .popup { padding: 1rem; }
-            .popup input, .popup button, .popup select, .popup textarea { font-size: 0.9rem; padding: 0.6rem; }
+            .btn { max-width: 400px; } 
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            main { padding: 3rem 1rem; }
         }
 
-        /* Responsive design for smaller tablets and large phones */
-        @media (max-width: 768px) {
-            main { padding-top: 4rem; }
-            .product-header h2 { font-size: 1.3rem; }
-            .original-price { font-size: 1.3rem; }
-            .lottery-price { font-size: 1.8rem; }
-            .features li { font-size: 0.9rem; }
-            .btn { font-size: 0.85rem; padding: 0.6rem 1rem; }
-            .lottery-stats { grid-template-columns: 1fr 1fr; }
-        }
-
-        /* Responsive design for mobile price table */
-        @media (max-width: 640px) {
-            #priceListContainer thead {
-                display: none;
-            }
-            #priceListContainer tr {
-                display: block;
-                margin-bottom: 1rem;
-                border: 1px solid rgba(255, 87, 34, 0.2); /* Changed accent color */
-                border-radius: 0.5rem;
-            }
-            #priceListContainer td {
-                display: block;
-                text-align: right;
-                position: relative;
-                padding-left: 50%;
-                border-bottom: 1px solid rgba(255, 87, 34, 0.1); /* Changed accent color */
-            }
-            #priceListContainer td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 0.75rem;
-                width: 45%;
-                padding-right: 0.75rem;
-                font-weight: bold;
-                text-align: left;
-                color: var(--accent);
-            }
-        }
-
-        /* Responsive design for mobile phones */
-        @media (max-width: 480px) {
-            main { padding: 3rem 0.5rem 1rem; }
-            .product-header h2 { font-size: 1.2rem; }
-            .product-content { padding: 0.8rem; }
-            .product-image { min-height: 180px; }
-            .original-price { font-size: 1.2rem; }
-            .lottery-price { font-size: 1.6rem; }
-            .features ul { padding-left: 1rem; }
-            .features li { font-size: 0.85rem; }
+        @media (max-width: 600px) {
+            main { padding: 2rem 1rem; }
+            .product-header h2 { font-size: 2rem; }
+            .product-details h3 { font-size: 2rem; }
+            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
+            .current-price { font-size: 2.5rem; }
+            .popup { padding: 1.5rem; }
+            .popup h2 { font-size: 1.5rem; }
             .action-buttons { flex-direction: column; }
-            .btn { width: 100%; max-width: unset; }
-            .lottery-stats { grid-template-columns: 1fr; }
-            .stat-card { padding: 0.7rem; }
-            .stat-card h3 { font-size: 0.8rem; }
-            .stat-card p { font-size: 1.1rem; }
-            .popup { padding: 1rem; width: 98%; }
-            .popup h2 { font-size: 1.3rem; }
-            .popup input, .popup button, .popup select, .popup textarea { font-size: 0.85rem; padding: 0.5rem; }
-            #ticketDisplay { font-size: 0.95rem; }
-            .custom-alert { font-size: 0.9rem; padding: 1rem 1.5rem; }
+            .btn { min-width: 100%; max-width: 100%; }
+            
+            #serviceCategorySelectionPopup {
+                width: 98%;
+                padding: 1rem;
+            }
+            #serviceCategoryCheckboxes {
+                grid-template-columns: 1fr; 
+            }
+            .popup input, .popup select, .popup textarea {
+                padding: 0.7rem 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .current-price { font-size: 2rem; }
+            .original-price { font-size: 1rem; }
+            .stat-card p { font-size: 1.8rem; }
+            .popup { padding: 1rem; }
         }
     </style>
 </head>
 <body>
-    <main class="container mx-auto px-4 py-8">
-        <!-- Main content section for Vehicle Booking services -->
-        <section class="product-section rounded-2xl shadow-lg mb-8">
-            <div class="product-header rounded-t-2xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Vehicle Booking Services</h2>
+   
+    <main class="container">
+        
+        <section class="product-section">
+            <div class="product-header">
+                <h2 class="text-white">Premium Vehicle Booking & Rental</h2>
+                <p class="text-sm text-gray-400 mt-2">Book comfortable and reliable transportation in Sonipat and beyond.</p>
             </div>
 
-            <div class="product-content flex flex-col md:flex-row items-center justify-center p-6 md:p-8 gap-6">
-                <!-- Product details and call to action -->
-                <div class="product-details w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
-                    <h3 class="text-2xl md:text-3xl font-semibold text-white mb-3">Book Your Ride: Comfortable & Affordable Travel</h3>
-                    <p class="text-gray-300 mb-4 text-base md:text-lg">Need a vehicle for local travel or outstation trips? Book a ride that fits your needs. Choose from our range of 5-seater cars to large tempo travellers. We offer transparent pricing based on distance and vehicle type. Book now for a hassle-free journey!</p>
-
-                    <div class="price-container flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 my-6">
-                        <div class="original-price text-gray-400 text-xl md:text-2xl line-through">Varies by vehicle type</div>
-                        <div class="lottery-price text-accent text-3xl md:text-4xl font-bold" id="displayPrice">Select Vehicle Type</div>
+            <div class="product-content">
+                
+                <div class="product-details">
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">5-Seater Cars to Tempo Travellers</h3>
+                    <p class="text-text-subtle mb-4 text-base">
+                        Select your desired vehicle type, route (Local/Outstation), and any required night stays for instant, transparent base pricing.
+                    </p>
+                    
+                    <div class="price-container">
+                        <div class="original-price">Final Price Varies by KM</div>
+                        <div class="current-price" id="displayPrice">Select Vehicle Type</div>
                     </div>
-
-                    <div class="features text-left my-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <button class="btn btn-primary" id="seePriceListBtn">
-                            <i class="fas fa-tags"></i> See Price List
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="participate-btn">
+                            <i class="fas fa-car-side"></i> Book Vehicle Now
                         </button>
-                        <button class="btn btn-secondary" id="conditionsBtn">
-                            <i class="fas fa-info-circle"></i> Conditions Applied
+                        <button id="price-list-btn" class="btn btn-secondary">
+                            <i class="fas fa-tags"></i> Base Price & Per KM Rate
                         </button>
-                    </div>
-
-                    <div class="action-buttons flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
-                        <button class="btn btn-primary shadow-lg hover:shadow-xl" id="participate-btn">
-                            <i class="fas fa-car"></i> Book Vehicle
+                         <button id="conditions-btn" class="btn btn-secondary">
+                            <i class="fas fa-file-contract"></i> Booking Conditions
                         </button>
-                        <button class="btn btn-secondary shadow-lg hover:shadow-xl" onclick="window.open('index.html')">
-                            <i class="fas fa-external-link-alt"></i> Go Back To Home
+                        <button class="btn btn-secondary" onclick="window.open('index.html')">
+                            <i class="fas fa-home"></i> Back To Home
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Stats section to showcase service highlights -->
-        <div class="lottery-stats grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Total Trips</h3>
-                <p class="text-white text-3xl font-bold">50,000+</p>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>Total Trips Completed</h3>
+                <p>50,000+</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Satisfied Customers</h3>
-                <p class="text-white text-3xl font-bold">25,000+</p>
+            <div class="stat-card">
+                <h3>Vehicles Available</h3>
+                <p>25+</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Customer Rating</h3>
-                <p class="text-white text-3xl font-bold">4.9/5 Stars</p>
+            <div class="stat-card">
+                <h3>Customer Satisfaction Score</h3>
+                <p>4.9/5 Stars</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Next Available Vehicle</h3>
-                <p class="text-white text-3xl font-bold">Now!</p>
+            <div class="stat-card">
+                <h3>Quickest Availability</h3>
+                <p>Now!</p>
             </div>
         </div>
     </main>
 
-    <!-- Overlay for popups -->
     <div id="popup-overlay"></div>
-
-    <!-- Main booking form popup -->
+    
+    <!-- Service Booking Form (popupForm) -->
     <div class="popup" id="popupForm">
-        <h2 class="text-2xl font-bold text-center mb-4">Vehicle Booking Form</h2>
+        <h2 class="text-2xl font-bold text-center">Vehicle Booking Form</h2>
         <form id="lotteryForm">
-            <div class="quantity-selector my-4">
-                <label class="text-accent text-sm mb-2">Select Vehicle Type(s):</label>
-                <div id="selectedServiceCategoriesDisplay" class="bg-gray-700 text-light p-3 rounded-lg cursor-pointer mb-3" onclick="openServiceCategorySelectionPopup()">Click to select vehicle(s)</div>
-                <div id="serviceCategorySelectionPopup" class="popup hidden">
-                    <h3 class="text-xl font-bold text-center mb-4">Select Vehicle Type(s)</h3>
-                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-light max-h-60 overflow-y-auto">
+            <div class="quantity-selector-container my-4">
+                <label>Select Vehicle Type(s):</label>
+                <div id="selectedServiceCategoriesDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openServiceCategorySelectionPopup()">Click to select vehicle type(s)</div>
+                
+                <!-- Inner Popup for Model Selection -->
+                <div id="serviceCategorySelectionPopup" class="popup" style="display: none;">
+                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Select Vehicle Type(s)</h3>
+                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-80 overflow-y-auto p-2">
+                        <!-- Checkboxes will be populated here by JS -->
                     </div>
-                    <button type="button" class="btn btn-primary mt-4 py-2 rounded-xl font-bold text-lg" onclick="applySelectedServiceCategories()">Apply Selection</button>
-                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
+                    <button type="button" class="btn btn-primary mt-4 py-3" onclick="applySelectedServiceCategories()">Apply Selection</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-3 close-btn" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
                 </div>
-            </div>
-            <label for="fullName" class="text-accent text-sm mb-1">Your Full Name (min 10 characters)</label>
-            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+                <!-- End Inner Popup -->
 
-            <label for="phone" class="text-accent text-sm mb-1">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-orange-500" />
-
-            <!-- Email field changed to Night Stay dropdown -->
-            <label for="nightStay" class="text-accent text-sm mb-1">Night Stay</label>
-            <select id="nightStay" name="field3" class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-orange-500">
-                <option value="0">No night stay</option>
-                <option value="1">One night stay</option>
-                <option value="2">Two night stay</option>
-                <option value="3">Three night stay</option>
-                <option value="4">Four night stay</option>
-                <option value="5">Five night stay</option>
-            </select>
-
-            <label for="location" class="text-accent text-sm mb-1">From And To Like(Delhi To Mumbai )</label>
-            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-orange-500" />
-
-            <label for="address" class="text-accent text-sm mb-1">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full mb-2 focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
-            <span id="countryError" class="text-red-400 text-xs mt-1 hidden">Please enter your complete address with at least 30 characters.</span>
-            
-            <div class="quantity-selector my-4">
-                <label for="ticketQuantity" class="text-accent text-sm mb-2">Number of Vehicles (Max 5):</label>
-                <select id="ticketQuantity" name="ticketQuantity" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <label for="ticketQuantity" class="mt-4">Number of Vehicles (Max 5):</label>
+                <select id="ticketQuantity" name="ticketQuantity" required class="bg-bg-dark border-primary">
                     <option value="" disabled selected>Select quantity</option>
                 </select>
-                <div class="quantity-info flex justify-between mt-2 text-gray-400 text-sm">
-                    <span>Quantity based price</span>
-                    <span class="total-price-quantity font-bold text-accent text-lg">Total: ₹0</span>
+
+                <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
+                    <span>Quantity based total base fare</span>
+                    <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">Total: ₹0</span>
                 </div>
             </div>
+
+            <label for="fullName">Your Full Name (min 10 characters)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
+            
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
+            
+            <!-- Replaced Email field (field3) with Night Stay dropdown -->
+            <label for="nightStay">Number of Night Stays (Extra ₹500/night per vehicle)</label>
+            <select id="nightStay" name="field3" class="bg-bg-dark border-primary" required>
+                <option value="0">No night stay (0 Nights)</option>
+                <option value="1">One night stay (1 Night)</option>
+                <option value="2">Two night stay (2 Nights)</option>
+                <option value="3">Three night stay (3 Nights)</option>
+                <option value="4">Four night stay (4 Nights)</option>
+                <option value="5">Five night stay (5 Nights)</option>
+            </select>
+            
+            <label for="location">Travel Route (e.g., Delhi To Mumbai)</label>
+            <input type="text" id="location" name="field5" required placeholder="Delhi To Chandigarh" autocomplete="address-level2" list="locations" />
+            
+            <label for="address">Pickup/Drop Address Details (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code, and desired pick-up time" autocomplete="street-address" minlength="30" rows="4"></textarea>
 
             <input type="hidden" name="ticket" id="ticketCode" />
             <input type="hidden" name="finalPrice" id="finalPrice" />
-            <button type="submit" class="w-full btn-primary mt-4 py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Submit Details</button>
-            <span id="submitMessage" class="text-green-400 text-center mt-3 hidden">Submitting... Please wait</span>
+            
+            <button type="submit">Submit Details & Proceed to Payment</button>
+            <p id="submitMessage" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
         </form>
     </div>
-
-    <!-- Payment step popup -->
+    
+    <!-- Payment Step (paymentStep) -->
     <div class="popup" id="paymentStep">
-        <h2 class="text-2xl font-bold text-center mb-4">Complete Your Payment for Vehicle Booking</h2>
-        <p class="text-gray-300 text-center mb-6">Please complete the payment to finalize your booking. Click the button below.</p>
-        <div id="paymentSummary" class="bg-gray-800 p-4 rounded-lg mb-6 text-center"></div>
-        <div id="timerDisplay" class="text-accent text-xl font-bold text-center mb-6">Time remaining: 05:00</div>
-        <button id="razorpay-payment-btn" class="w-full btn-primary py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Pay with Razorpay</button>
-        <p class="mt-4 text-sm text-gray-400 text-center">
-            After payment, please wait for automatic verification. Do not close this window.
+        <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
+        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your Vehicle Booking.</p>
+        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
+        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
+        <p class="mt-4 text-xs text-text-subtle text-center">
+            Note: The amount paid covers the base fare and night charges. Final amount based on actual KM/Tolls is settled with the driver.
         </p>
     </div>
 
-    <!-- Ticket confirmation popup -->
+    <!-- Ticket Confirmation (ticketStep) -->
     <div class="popup" id="ticketStep">
-        <h2 id="welcomeMessage" class="text-2xl font-bold text-center mb-4 text-green-400"></h2>
-        <p class="text-gray-300 text-center mb-4">You have successfully booked <span id="ticketCountDisplay" class="font-bold text-accent"></span>:</p>
-        <div id="ticketDisplay" class="bg-gray-800 p-4 rounded-lg mb-6 text-center text-lg"></div>
-        <button id="downloadTicketsBtn" class="w-full btn-primary py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below for <span id="ticketCountDisplay" class="font-bold text-secondary"></span>:</p>
+        <div id="ticketDisplay" class="space-y-2"></div>
+        <button id="downloadTicketsBtn" class="mt-4">
             <i class="fas fa-download mr-2"></i> Download Booking Details
         </button>
-        <p class="mt-4 text-sm text-gray-400 text-center">📸 Please take a screenshot for proof and reference.</p>
-        <button id="okayBtn" class="w-full btn-secondary py-3 rounded-xl font-bold text-white text-lg mt-4 transition-all duration-300 hover:scale-105 hover:bg-opacity-20">Okay, Got It!</button>
+        <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
     </div>
-
-    <!-- Price list popup -->
+    
+    <!-- Price List Popup (priceListPopup) -->
     <div class="popup" id="priceListPopup">
-        <h2 class="text-2xl font-bold text-center mb-4">Vehicle Price List</h2>
-        <div id="priceListContainer" class="max-h-[70vh] overflow-y-auto">
+        <h2 class="text-2xl font-bold text-center">Vehicle Booking Transparent Price List</h2>
+        <div id="priceListContainer" class="overflow-x-auto mt-4">
+            <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
+                <thead>
+                    <tr class="text-left text-secondary">
+                        <th class="py-3 px-4 border-b border-text-subtle">Vehicle Type</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Base Fare (&lt; 80KM)</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Per KM Rate</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Night Charge/Night</th>
+                    </tr>
+                </thead>
+                <tbody id="priceListTableBody">
+                    <!-- Content populated by JS -->
+                </tbody>
+            </table>
         </div>
-        <button class="btn btn-primary mt-4" onclick="closeInfoPopup('priceListPopup')">Close</button>
+        <button id="closePriceListBtn" class="btn btn-secondary close-btn mt-4">Close Price List</button>
     </div>
 
-    <!-- Conditions popup -->
+    <!-- Conditions Popup (conditionsPopup) -->
     <div class="popup" id="conditionsPopup">
-        <h2 class="text-2xl font-bold text-center mb-4">Booking Conditions</h2>
-        <div class="max-h-[70vh] overflow-y-auto text-left p-2">
-            <h3 class="text-xl md:text-2xl font-semibold text-accent mb-3">Pricing Structure:</h3>
-            <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Prices are based on a base rate for travel less than 80KM.</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>A per-kilometer rate applies to distances over 80KM.</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>A flat night charge of ₹500 is applied.</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>All prices are transparent and subject to final confirmation.</li>
+        <h2 class="text-2xl font-bold text-center">Detailed Booking Conditions</h2>
+        <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
+            <h3 class="text-xl font-semibold text-primary mt-4"><i class="fas fa-route mr-2"></i> Pricing Structure</h3>
+            <ul class="list-disc list-inside space-y-2 pl-4">
+                <li>The price displayed in the app is the **Total Base Fare** for the selected vehicle(s). This base fare includes travel up to a specific limit (e.g., 80KM) and driver charges.</li>
+                <li>**Per Kilometer (KM) Rate:** A rate is charged for every kilometer traveled *beyond* the base fare limit. This is settled with the driver upon completion of the trip.</li>
+                <li>**Night Charges:** A flat fee (₹500 per night per vehicle) applies for each night stay selected. This fee is **included in your initial payment**.</li>
+                <li>**Tolls/Parking:** All road tolls, state taxes, and parking fees are excluded from the fare and must be paid directly by the customer.</li>
             </ul>
-            <h4 class="text-xl md:text-2xl font-semibold text-accent mt-6 mb-3">Terms & Conditions:</h4>
-            <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Final amount may vary based on actual distance and toll charges.</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>The driver will contact you after booking confirmation.</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Please be ready at the pickup location at the scheduled time.</li>
+
+            <h3 class="text-xl font-semibold text-primary mt-6"><i class="fas fa-car mr-2"></i> Vehicle Details</h3>
+            <ul class="list-disc list-inside space-y-2 pl-4">
+                <li>All vehicles are well-maintained and commercially registered.</li>
+                <li>Booking confirms the vehicle *type* (e.g., ECCO, Tempo Traveller), not a specific model or color.</li>
+                <li>The maximum number of passengers is strictly enforced as per RTO guidelines for the selected vehicle type.</li>
+            </ul>
+            
+            <h3 class="text-xl font-semibold text-primary mt-6"><i class="fas fa-receipt mr-2"></i> Booking & Payment Terms</h3>
+            <ul class="list-disc list-inside space-y-2 pl-4">
+                <li>Your payment covers the **Base Fare + Night Stay Charges**.</li>
+                <li>The driver will contact you via phone shortly after booking confirmation.</li>
+                <li>We recommend confirming all final rates, per KM charges, and expected travel time with the driver before starting the journey.</li>
+                <li>**Cancellations:** Subject to a fee if canceled within 4 hours of the scheduled pickup time.</li>
             </ul>
         </div>
-        <button class="btn btn-primary mt-4" onclick="closeInfoPopup('conditionsPopup')">Close</button>
+        <button id="closeConditionsBtn" class="btn btn-secondary close-btn mt-4">I Understand</button>
     </div>
-
+   
     <script>
-        // Data for vehicle booking services based on the provided image
+        // Data for vehicle booking services
         const serviceData = [
             {"Name": "ECCO 5 Seater", "Price": 1699, "PerKM": "10 Rs.", "NightCharge": 500},
             {"Name": "Desire 5 Seater", "Price": 1799, "PerKM": "10 Rs.", "NightCharge": 500},
@@ -705,12 +641,12 @@
             {"Name": "Tempo Traveller (25 Seater)", "Price": 8750, "PerKM": "35 Rs.", "NightCharge": 500},
         ];
 
+        // --- Constants and DOM Element Selection ---
         const SERVICE_NAME = "Vehicle Booking";
-        const SERVICE_TAB_ID = "shs-service";
+        const SERVICE_TAB_ID = "vehicle-booking";
         const SERVICE_FORM_DATA_KEY = "vehicleType";
         const RAZORPAY_IMAGE_TEXT = "VB";
 
-        // DOM elements
         const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
         const allPopups = document.querySelectorAll('.popup');
@@ -732,46 +668,78 @@
         const displayPriceElement = document.getElementById('displayPrice');
         const finalPriceInput = document.getElementById('finalPrice');
         const form = document.getElementById('lotteryForm');
-        const ticketInput = document.getElementById('ticketCode');
         const ticketDisplay = document.getElementById('ticketDisplay');
         const okayBtn = document.getElementById('okayBtn');
-        const nightStaySelect = document.getElementById('nightStay');
+        const nightStaySelect = document.getElementById('nightStay'); // NEW Element
 
-        let generatedTicket = '';
+        const priceListBtn = document.getElementById('price-list-btn');
+        const conditionsBtn = document.getElementById('conditions-btn');
+        const priceListPopup = document.getElementById('priceListPopup');
+        const conditionsPopup = document.getElementById('conditionsPopup');
+        const closePriceListBtn = document.getElementById('closePriceListBtn');
+        const closeConditionsBtn = document.getElementById('closeConditionsBtn');
+        const priceListTableBody = document.getElementById('priceListTableBody');
+        const priceListContainer = document.getElementById('priceListContainer');
+
+        // --- State Variables ---
+        let generatedTicket = ''; 
         let paymentTimeout = null;
         let countdownInterval = null;
         const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes
-        let currentServicePrice = 0;
+        let currentServicePrice = 0; // Represents only the base fare for display
         let selectedQuantity = 1;
         let allowClose = false;
+        const LOCAL_STORAGE_KEY = 'vehicleBookingFormData'; 
+        
+        // --- Core Functions ---
 
-        /**
-         * Populates the service selection checkboxes based on the serviceData array.
-         */
+        function saveFormData() {
+            const formData = {
+                fullName: form.fullName.value,
+                phone: form.phone.value,
+                // field3 is Night Stay
+                location: form.location.value,
+                address: form.address.value,
+                nightStay: nightStaySelect.value
+            };
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+        }
+
+        function loadFormData() {
+            const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                form.fullName.value = data.fullName || '';
+                form.phone.value = data.phone || '';
+                form.location.value = data.location || '';
+                form.address.value = data.address || '';
+                nightStaySelect.value = data.nightStay || '0';
+            }
+        }
+        
         function populateServiceCategories() {
             serviceCategoryCheckboxesContainer.innerHTML = '';
             serviceData.forEach(service => {
+                // Displaying the base price in the checkbox label
                 const checkboxHtml = `
-                    <label class="inline-flex items-center text-light w-full">
-                        <input type="checkbox" name="serviceCategory" value="${service.Name}"
-                               data-price="${service.Price}"
+                    <label class="inline-flex items-center text-text-light w-full p-2 bg-bg-dark rounded-md border border-primary hover:bg-bg-card transition duration-200 cursor-pointer">
+                        <input type="checkbox" name="serviceCategory" value="${service.Name}" 
+                               data-price="${service.Price}" 
                                data-night-charge="${service.NightCharge}"
-                               class="form-checkbox h-5 w-5 text-orange-500 rounded focus:ring-orange-500">
-                        <span class="ml-2">${service.Name}</span>
+                               class="form-checkbox h-5 w-5 text-secondary rounded focus:ring-secondary checked:bg-secondary">
+                        <span class="ml-2 text-sm">${service.Name} (<span class="text-secondary">₹${service.Price}</span>)</span>
                     </label>
                 `;
                 serviceCategoryCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
             });
             serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(checkbox => {
+                checkbox.removeEventListener('change', updatePrices);
                 checkbox.addEventListener('change', updatePrices);
             });
         }
 
-        /**
-         * Initializes the quantity selector dropdown with options from 1 to 5.
-         */
         function initQuantitySelector() {
-            const maxServices = 5;
+            const maxServices = 5; 
             ticketQuantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
             for (let i = 1; i <= maxServices; i++) {
                 const option = document.createElement('option');
@@ -782,47 +750,50 @@
             ticketQuantitySelect.value = 1;
         }
 
-        /**
-         * Updates the displayed prices based on selected packages and quantity.
-         */
         function updatePrices() {
             const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
             selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
-            const selectedNightStay = parseInt(nightStaySelect.value) || 0;
+            const selectedNightStay = parseInt(nightStaySelect.value) || 0; // NEW: Get night stay value
 
-            let totalBasePrice = 0;
-            let totalNightCharges = 0;
-
+            let totalBasePrice = 0; // Base fare for all selected vehicles (single quantity)
+            let totalNightChargesPerVehicle = 0; 
+            
             if (selectedCategories.length > 0) {
-                // Calculate total base price and total night charges for all selected vehicles combined.
                 selectedCategories.forEach(checkbox => {
-                    const basePrice = parseFloat(checkbox.dataset.price);
-                    const nightCharge = parseFloat(checkbox.dataset.nightCharge);
-                    totalBasePrice += basePrice;
-                    totalNightCharges += nightCharge;
+                    totalBasePrice += parseFloat(checkbox.dataset.price);
+                    totalNightChargesPerVehicle += parseFloat(checkbox.dataset.nightCharge);
                 });
             }
-
-            // The final total is now calculated with the correct multiplication:
-            // (total base price of all selected vehicles * quantity) + (total night charges of all selected vehicles * quantity * nights)
-            const totalFinalPrice = (totalBasePrice * selectedQuantity) + (totalNightCharges * selectedQuantity * selectedNightStay);
+            
+            // Calculate final price:
+            // (Total Base Price * Quantity) + (Total Night Charge * Quantity * Nights)
+            const baseFareComponent = totalBasePrice * selectedQuantity;
+            const nightChargeComponent = totalNightChargesPerVehicle * selectedQuantity * selectedNightStay;
+            
+            const totalFinalPrice = baseFareComponent + nightChargeComponent;
+            
+            currentServicePrice = totalBasePrice; // Keep this as the single-unit base price for simple display
 
             if (selectedCategories.length > 0) {
                 selectedServiceCategoriesDisplay.textContent = selectedCategories.map(cb => cb.value).join(', ');
                 displayPriceElement.textContent = `Base Fare: ₹${totalBasePrice}`;
             } else {
-                selectedServiceCategoriesDisplay.textContent = `Click to select ${SERVICE_NAME} type`;
-                displayPriceElement.textContent = `Select Vehicle Type`;
+                selectedServiceCategoriesDisplay.textContent = 'Click to select vehicle type(s)';
+                displayPriceElement.textContent = 'Select Vehicle Type';
             }
-
+            
             totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
             finalPriceInput.value = totalFinalPrice;
+            
+            // Re-check previously selected items if inner popup is open
+            if (serviceCategorySelectionPopup.style.display === 'block') {
+                const currentlySelected = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select vehicle type(s)');
+                serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(cb => {
+                    cb.checked = currentlySelected.includes(cb.value);
+                });
+            }
         }
 
-        /**
-         * Generates a unique formatted ticket ID.
-         * @returns {string} The generated ticket ID.
-         */
         function generateFormattedTicket() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
                 const r = Math.random() * 16 | 0;
@@ -831,116 +802,103 @@
             });
         }
 
-        /**
-         * Downloads the booking details as a text file.
-         */
         function downloadTickets() {
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
-
+            const selectedNightStayText = nightStaySelect.options[nightStaySelect.selectedIndex].text;
+            
             const ticketContent = `${SERVICE_NAME} Booking Details\n\n` +
                                  `Customer Name: ${form.field1.value}\n` +
                                  `Contact: ${form.field2.value}\n` +
-                                 `Night Stay: ${nightStaySelect.options[nightStaySelect.selectedIndex].text}\n` + // Use dropdown text
-                                 `Location: ${form.field5.value}\n` +
+                                 `Night Stay: ${selectedNightStayText}\n` +
+                                 `Route: ${form.field5.value}\n` +
                                  `Vehicle(s): ${selectedCategoryNames}\n` +
-                                 `Booking Reference Number: ${generatedTicket}\n\n` +
+                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
                                  `Total Vehicles: ${selectedQuantity}\n` +
-                                 `Total Fare: ₹${finalPriceInput.value}\n\n` +
-                                 `Note: Final charges may vary based on actual distance and toll charges.`;
-
+                                 `Amount Paid (Base + Night Charges): ₹${finalPriceInput.value}\n\n` +
+                                 `--- IMPORTANT NOTE ---\n` +
+                                 `The final amount based on actual KM travelled and Tolls is payable directly to the driver.`;
+            
             const blob = new Blob([ticketContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${SERVICE_TAB_ID}_booking.txt`;
+            a.download = `${SERVICE_TAB_ID}_booking_${generatedTicket.substring(0, 8)}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
-
-        /**
-         * Shows a custom alert message to the user.
-         * @param {string} message The message to display.
-         */
+        
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert';
+            alertBox.className = 'custom-alert'; 
             alertBox.textContent = message;
             document.body.appendChild(alertBox);
-            setTimeout(() => alertBox.remove(), 4000);
+            setTimeout(() => alertBox.remove(), 4000); 
         }
 
-        /**
-         * Closes all popups and clears timers.
-         */
+        // --- Popup Control Functions ---
+        function clearTimers() {
+            if (paymentTimeout) clearTimeout(paymentTimeout);
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
         function closeAllPopups() {
             if (!allowClose) {
-                showCustomAlert("Please complete the process before closing.");
+                showCustomAlert("Please complete the booking process before closing.");
                 return;
             }
             clearTimers();
             popupOverlay.style.display = 'none';
             allPopups.forEach(p => p.style.display = 'none');
             document.body.style.overflow = 'auto';
-            allowClose = false;
+            allowClose = false; 
         }
 
-        /**
-         * Opens a specified popup element.
-         * @param {HTMLElement} popupElement The popup element to show.
-         */
         function openPopup(popupElement) {
             document.body.style.overflow = 'hidden';
             popupOverlay.style.display = 'block';
+            allPopups.forEach(p => p.style.display = 'none');
             popupElement.style.display = 'block';
             allowClose = false;
         }
-
-        /**
-         * Opens the service category selection popup.
-         */
-        function openServiceCategorySelectionPopup() {
-            populateServiceCategories();
-            const currentlySelected = Array.from(selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim()));
-            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(cb => {
-                cb.checked = currentlySelected.includes(cb.value);
-            });
-            serviceCategorySelectionPopup.style.display = 'block';
-            popupOverlay.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        /**
-         * Closes the service category selection popup.
-         */
-        function closeServiceCategorySelectionPopup() {
-            serviceCategorySelectionPopup.style.display = 'none';
-            if (popupForm.style.display !== 'block') {
+        
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
                 popupOverlay.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
         }
 
-        /**
-         * Applies the selected service categories and updates prices.
-         */
+        function openServiceCategorySelectionPopup() {
+            populateServiceCategories(); 
+            
+            const currentlySelected = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select vehicle type(s)');
+            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(cb => {
+                cb.checked = currentlySelected.includes(cb.value);
+            });
+            
+            serviceCategorySelectionPopup.style.display = 'block';
+            popupOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeServiceCategorySelectionPopup() {
+            serviceCategorySelectionPopup.style.display = 'none';
+            if (popupForm.style.display !== 'block' && priceListPopup.style.display !== 'block' && conditionsPopup.style.display !== 'block') {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
         function applySelectedServiceCategories() {
             updatePrices();
             closeServiceCategorySelectionPopup();
         }
 
-        /**
-         * Clears all active timers and intervals.
-         */
-        function clearTimers() {
-            if (paymentTimeout) clearTimeout(paymentTimeout);
-            if (countdownInterval) clearInterval(countdownInterval);
-        }
-
-        /**
-         * Starts the countdown timer for the payment step.
-         */
+        // --- Timer Functions ---
         function startPaymentTimer() {
             let timeLeft = PAYMENT_TIME_LIMIT;
             const updateDisplay = () => {
@@ -956,72 +914,92 @@
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
                     showCustomAlert("Payment time expired. Please try again.");
-                    allowClose = true;
+                    allowClose = true; 
                     closeAllPopups();
                 }
             }, 1000);
         }
 
-        /**
-         * Handles the form submission process.
-         * @param {Event} e The submit event.
-         */
+        // --- Price List Function ---
+        function populatePriceList() {
+            priceListTableBody.innerHTML = '';
+            serviceData.forEach(service => {
+                const row = `
+                    <tr class="text-text-light hover:bg-bg-dark">
+                        <td class="py-3 px-4 border-b border-gray-700">${service.Name}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.Price}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-primary">${service.PerKM}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.NightCharge}</td>
+                    </tr>
+                `;
+                priceListTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        // --- Payment and Submission Logic ---
+        
         function handleFormSubmit(e) {
             e.preventDefault();
 
-            // Form validation checks
+            // Validation 
+            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
+            if (selectedCategories.length === 0) { showCustomAlert("Please select at least one Vehicle Type."); return; }
             if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
             if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
-            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
-            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
-            if (selectedCategories.length === 0) { showCustomAlert(`Please select at least one vehicle type.`); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid travel route (e.g., City A to City B)."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter complete pickup/drop address details (minimum 30 characters)."); return; }
             if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of vehicles."); return; }
 
             submitMessage.style.display = 'block';
             form.querySelector('button[type="submit"]').disabled = true;
 
-            generatedTicket = generateFormattedTicket();
+            generatedTicket = generateFormattedTicket(); 
+            
+            const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
+            const selectedNightStayText = nightStaySelect.options[nightStaySelect.selectedIndex].text;
 
-            // Prepare form data for submission
+            // --- Form Data for Google Sheet ---
             const formData = new FormData();
-            formData.append('field1', form.fullName.value);
-            formData.append('field2', form.phone.value);
-            formData.append('field3', nightStaySelect.value); // Use the value from the new dropdown
-            formData.append('field5', form.location.value);
-            formData.append('field6', form.address.value);
-            formData.append('ticket', generatedTicket);
-            formData.append('tab', SERVICE_TAB_ID);
-            formData.append(SERVICE_FORM_DATA_KEY, selectedCategories.map(cb => cb.value).join(', '));
-            formData.append('servicePrice', finalPriceInput.value); // Sending the final calculated price
-            formData.append('ticketQuantity', selectedQuantity);
+            formData.append('field1', form.fullName.value); 
+            formData.append('field2', form.phone.value);    
+            formData.append('field3', nightStaySelect.value); // Night Stay count
+            formData.append(SERVICE_FORM_DATA_KEY, selectedCategoryNames); 
+            formData.append('field5', form.location.value); // Route
+            formData.append('field6', form.address.value);  // Address
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', 'Vehicle Booking');   
+            formData.append('servicePrice', finalPriceInput.value); // Final calculated price
+            formData.append('ticketQuantity', selectedQuantity); 
 
-            // API call to Google Sheets
+            // --- Google Script URL (from original file) ---
             fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
                 method: "POST",
                 body: formData
             })
             .then(res => res.text())
             .then(res => {
-                if (res === "Success") {
+                if (res.includes("Success") || res.includes("success")) { 
+                    saveFormData(); 
+                    
                     popupForm.style.display = 'none';
                     openPopup(paymentStep);
-                    const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
-                    const selectedNightStayText = nightStaySelect.options[nightStaySelect.selectedIndex].text;
                     paymentSummary.innerHTML = `
-                        <p class="text-gray-300 text-lg mb-2">You are booking <span class="font-bold text-accent">${selectedQuantity}</span> vehicle(s) for ${selectedCategoryNames}.</p>
-                        <p class="text-gray-400 text-sm mt-2">Night Stay: <span class="text-accent">${selectedNightStayText}</span></p>
-                        <p class="total-price text-accent text-2xl font-bold">Total Fare: ₹${finalPriceInput.value}</p>
-                        <p class="text-gray-400 text-sm">Final charges may vary based on actual distance and toll charges.</p>
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
+                        <p class="text-text-light text-base mb-1">Vehicle(s): <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
+                        <p class="text-text-light text-base mb-1">Night Stay: <span class="font-bold text-primary">${selectedNightStayText}</span></p>
+                        <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${selectedQuantity}</span></p>
+                        <p class="current-price text-secondary text-3xl font-bold">Total Payable: ₹${finalPriceInput.value}</p>
+                        <p class="text-gray-400 text-sm mt-2">This includes the Base Fare and Night Charges. KM rate/Tolls are extra.</p>
                     `;
                     startPaymentTimer();
                 } else {
-                    showCustomAlert("There was an error submitting your form. Please try again.");
+                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
                 }
             })
             .catch(err => {
                 console.error("Submission error:", err);
-                showCustomAlert("An unexpected error occurred. Please check your connection and try again.");
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
             })
             .finally(() => {
                 submitMessage.style.display = 'none';
@@ -1029,38 +1007,33 @@
             });
         }
 
-        /**
-         * Handles the Razorpay payment process.
-         */
         function handleRazorpayPayment() {
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
+            const selectedNightStayText = nightStaySelect.options[nightStaySelect.selectedIndex].text;
+            
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": finalPriceInput.value * 100,
+                "amount": finalPriceInput.value * 100, // Amount in paise
                 "currency": "INR",
                 "name": `SonipatHomeService - ${SERVICE_NAME}`,
-                "description": `Payment for ${selectedQuantity} ${SERVICE_NAME} vehicle(s) for ${selectedCategoryNames}`,
-                "image": `https://placehold.co/100x100/212121/FF5722?text=${RAZORPAY_IMAGE_TEXT}`, /* Changed accent color */
+                "description": `Payment for ${selectedQuantity} ${SERVICE_NAME} vehicle(s) (${selectedNightStayText})`,
+                "image": `https://placehold.co/100x100/1C2738/FFC72C?text=${RAZORPAY_IMAGE_TEXT}`, 
                 "handler": function (response){
                     console.log("Payment successful:", response.razorpay_payment_id);
-                    paymentSuccess();
+                    paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
                     "name": form.fullName.value,
-                    "email": "not-provided@example.com", // Email is no longer a required field
                     "contact": form.phone.value
                 },
                 "notes": {
                     "address": `${form.location.value}, ${form.address.value}`,
                     "service_details": selectedCategoryNames,
-                    "night_stay": nightStaySelect.value,
+                    "booking_ref": generatedTicket,
+                    "night_stay_count": nightStaySelect.value
                 },
-                "theme": {
-                    "color": "#212121"
-                },
-                "modal": {
-                    "ondismiss": () => console.log('Razorpay checkout modal closed.')
-                }
+                "theme": { "color": "#00FFFF" },
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
             };
 
             const rzp = new Razorpay(options);
@@ -1071,130 +1044,85 @@
             rzp.open();
         }
 
-        /**
-         * Handles actions after a successful payment.
-         */
-        function paymentSuccess() {
+        function paymentSuccess(paymentId) {
             clearTimers();
             paymentStep.style.display = 'none';
             openPopup(ticketStep);
-
-            const userName = form.fullName.value;
+            
+            const userName = form.fullName.value.split(' ')[0];
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
             const selectedNightStayText = nightStaySelect.options[nightStaySelect.selectedIndex].text;
 
-            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your Vehicle Booking is Confirmed! 🎉`;
-
+            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
+            
             ticketDisplay.innerHTML = `
-                <p>Registration ID: <span class="text-white">${generatedTicket}</span></p>
-                <p>Service: <span class="text-white">${selectedCategoryNames}</span></p>
-                <p>Quantity: <span class="text-white">${selectedQuantity}</span></p>
-                <p>Night Stay: <span class="text-white">${selectedNightStayText}</span></p>
-                <p class="text-gray-400 text-sm mt-2">Total Fare: ₹${finalPriceInput.value}</p>
-                <p class="text-gray-400 text-sm">Final charges may vary based on actual distance and toll charges.</p>
+                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p>Vehicle(s): <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
+                <p>Route: <span class="font-bold text-text-light">${form.location.value}</span></p>
+                <p>Night Stay: <span class="font-bold text-text-light">${selectedNightStayText}</span></p>
+                <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${finalPriceInput.value}</p>
+                <p class="text-text-subtle text-sm mt-3">The driver will contact you shortly to confirm pickup details at: ${form.address.value.substring(0, 50)}...</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
-
-            ticketCountDisplay.textContent = `${selectedQuantity} vehicle(s)`;
+            
+            ticketCountDisplay.textContent = `${selectedQuantity} Vehicle(s)`;
             allowClose = true;
         }
-
-        /**
-         * Opens an info popup (e.g., price list, conditions).
-         * @param {string} popupId The ID of the popup to open.
-         */
-        function openInfoPopup(popupId) {
-            document.body.style.overflow = 'hidden';
-            popupOverlay.style.display = 'block';
-            document.getElementById(popupId).style.display = 'block';
-        }
-
-        /**
-         * Closes an info popup.
-         * @param {string} popupId The ID of the popup to close.
-         */
-        function closeInfoPopup(popupId) {
-            document.getElementById(popupId).style.display = 'none';
-
-            const isAnotherPopupVisible = Array.from(allPopups).some(p => p.style.display === 'block');
-            if (!isAnotherPopupVisible) {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        /**
-         * Generates and displays the price list table.
-         */
-        function generatePriceTable() {
-            let tableHTML = `
-                <table class="w-full text-left text-gray-300">
-                    <thead>
-                        <tr class="bg-gray-800 border-b border-gray-600">
-                            <th class="p-3">Vehicle</th>
-                            <th class="p-3">Base Fare (< 80KM)</th>
-                            <th class="p-3">Above 80KM</th>
-                            <th class="p-3">Night Charge</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-            serviceData.forEach(service => {
-                tableHTML += `
-                    <tr class="border-b border-gray-700">
-                        <td class="p-3" data-label="Vehicle">${service.Name}</td>
-                        <td class="p-3" data-label="Base Fare (< 80KM)">₹${service.Price}</td>
-                        <td class="p-3" data-label="Above 80KM">${service.PerKM} Per Km</td>
-                        <td class="p-3" data-label="Night Charge">₹${service.NightCharge}</td>
-                    </tr>
-                `;
-            });
-            tableHTML += `</tbody></table>`;
-            priceListContainer.innerHTML = tableHTML;
-        }
-
-        // Event Listeners
+        
+        // --- Event Listeners Initialization ---
         participateBtn.addEventListener('click', () => {
             initQuantitySelector();
             updatePrices();
             openPopup(popupForm);
         });
-
-        seePriceListBtn.addEventListener('click', () => {
-            generatePriceTable();
-            openInfoPopup('priceListPopup');
-        });
-
-        conditionsBtn.addEventListener('click', () => {
-            openInfoPopup('conditionsPopup');
-        });
-
-        ticketQuantitySelect.addEventListener('change', updatePrices);
-        nightStaySelect.addEventListener('change', updatePrices); // Added listener for night stay dropdown
-
+        
+        ticketQuantitySelect.addEventListener('change', updatePrices); 
+        nightStaySelect.addEventListener('change', updatePrices); // Added listener for Night Stay
+        
+        // Centralized Overlay Click Handling
         popupOverlay.addEventListener('click', e => {
-            if (e.target !== popupOverlay) return;
-
-            if (priceListPopup.style.display === 'block') closeInfoPopup('priceListPopup');
-            if (conditionsPopup.style.display === 'block') closeInfoPopup('conditionsPopup');
-            if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
-
-            if (ticketStep.style.display === 'block' && allowClose) {
-                closeAllPopups();
-            } else if ((popupForm.style.display === 'block' || paymentStep.style.display === 'block') && !allowClose) {
-                showCustomAlert("Please complete the form or payment process before closing.");
+            if (e.target === popupOverlay) {
+                if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
+                else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (conditionsPopup.style.display === 'block') closeSpecificPopup(conditionsPopup);
+                else if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
+                else if (popupForm.style.display === 'block' || paymentStep.style.display === 'block') showCustomAlert("Please complete the booking process before closing.");
+                else closeAllPopups();
             }
         });
+        
+        // Popup Close buttons
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const parentPopup = e.target.closest('.popup');
+                if (parentPopup.id === 'ticketStep') {
+                    window.location.href = 'index.html';
+                } else {
+                    closeSpecificPopup(parentPopup);
+                }
+            });
+        });
 
+        // Specific listeners
         okayBtn.addEventListener('click', () => window.location.href = 'index.html');
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
         downloadTicketsBtn.addEventListener('click', downloadTickets);
         form.addEventListener('submit', handleFormSubmit);
 
-        // Initial setup on page load
+        // Listeners for info popups
+        priceListBtn.addEventListener('click', () => {
+            populatePriceList();
+            openPopup(priceListPopup);
+        });
+        conditionsBtn.addEventListener('click', () => openPopup(conditionsPopup));
+
+
+        // --- Page Load Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
-            populateServiceCategories();
+            populateServiceCategories(); 
             initQuantitySelector();
-            updatePrices();
+            loadFormData(); 
+            updatePrices(); 
         });
     </script>
 </body>
