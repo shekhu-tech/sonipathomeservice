@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - Premium Parcel Delivery</title>
+    <title>SonipatHomeService.com - Premium AC Service</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -11,7 +11,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
         :root {
-            /* Premium Dark Teal & Gold Theme (Matching AC Service File) */
+            /* Premium Dark Teal & Gold Theme */
             --bg-dark: #101827; /* Deep Space Black */
             --bg-card: #1C2738; /* Dark Navy Card */
             --primary: #00FFFF; /* Electric Teal Accent */
@@ -43,7 +43,7 @@
             padding: 4rem 1.5rem;
         }
 
-        /* --- Custom Components (Matching Dark Theme) --- */
+        /* --- Custom Components --- */
 
         .stat-grid {
             display: grid;
@@ -59,7 +59,7 @@
             text-align: center;
             box-shadow: var(--shadow-depth);
             transition: var(--transition);
-            border: 1px solid rgba(0, 255, 255, 0.1); 
+            border: 1px solid rgba(0, 255, 255, 0.1);
         }
 
         .stat-card:hover {
@@ -84,7 +84,7 @@
         }
 
         .product-section {
-            background: linear-gradient(135deg, var(--bg-card), #22324C); 
+            background: linear-gradient(135deg, var(--bg-card), #22324C);
             border-radius: 1.5rem;
             box-shadow: var(--shadow-depth);
             margin-bottom: 3rem;
@@ -146,7 +146,7 @@
             color: var(--secondary);
             font-family: 'Montserrat', sans-serif;
         }
-        
+
         .action-buttons {
             display: flex;
             gap: 1rem;
@@ -182,9 +182,9 @@
         }
 
         .btn-primary:hover {
-            background: #00D5D5; 
+            background: #00D5D5;
             transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5); 
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5);
         }
 
         .btn-secondary {
@@ -194,11 +194,11 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 199, 44, 0.1); 
+            background: rgba(255, 199, 44, 0.1);
             transform: scale(1.03);
         }
 
-        /* --- Popup Styling (Matching Dark Theme) --- */
+        /* --- Popup Styling (Crucial for ProMax look) --- */
         #popup-overlay {
             display: none;
             position: fixed;
@@ -263,7 +263,7 @@
             border-radius: 0.75rem;
             border: 1px solid var(--text-subtle);
             font-size: 1rem;
-            background: #22324C; 
+            background: #22324C;
             color: var(--text-light);
             transition: border-color 0.3s ease;
         }
@@ -273,7 +273,7 @@
         .popup textarea:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.2); 
+            box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.2);
         }
 
         .popup textarea {
@@ -283,7 +283,7 @@
 
         .popup button[type="submit"],
         #razorpay-payment-btn,
-        #downloadBtn,
+        #downloadTicketsBtn,
         .popup button.close-btn {
             width: 100%;
             padding: 1rem;
@@ -299,16 +299,16 @@
 
         .popup button[type="submit"],
         #razorpay-payment-btn,
-        #downloadBtn {
-            background: linear-gradient(45deg, var(--primary), #00D5D5); 
+        #downloadTicketsBtn {
+            background: linear-gradient(45deg, var(--primary), #00D5D5);
             color: var(--bg-dark);
         }
 
         .popup button[type="submit"]:hover,
         #razorpay-payment-btn:hover,
-        #downloadBtn:hover {
+        #downloadTicketsBtn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6); 
+            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
         }
         
         .quantity-selector-container {
@@ -323,20 +323,12 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--secondary) !important;
         }
-        
-        /* Specific elements for Parcel Delivery */
-        #selectedServiceCategoriesDisplay {
+
+        #selectedCarModelsDisplay {
             background: var(--bg-dark);
             color: var(--text-light);
             border: 1px solid var(--primary);
             cursor: pointer;
-            display: none; /* Hide the unused selection box for Parcel */
-        }
-        
-        #parcel-selection {
-            background: #22324C;
-            border-color: var(--primary);
-            color: var(--text-light);
         }
 
         #ticketDisplay {
@@ -354,7 +346,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: var(--secondary);
+            background: var(--primary);
             color: var(--bg-dark);
             padding: 1.25rem 1.875rem;
             border-radius: 0.625rem;
@@ -379,59 +371,52 @@
         #priceListTableBody tr:nth-child(even) {
             background-color: #22324C;
         }
-        #priceListTableBody th {
-            color: var(--secondary);
-        }
         #priceListTableBody td {
             font-family: 'Roboto', sans-serif;
         }
         #priceListTableBody .font-semibold {
-            color: var(--primary);
+            color: var(--secondary);
             font-weight: 700;
         }
-        
-        .why-choose-us {
-            background: #151f2e; /* Slightly darker inner section */
-            border: 1px solid var(--primary);
-        }
-        
-        .why-choose-us h3 {
-            color: var(--secondary);
-        }
-        .why-choose-us .fa-check-circle {
-            color: var(--primary);
-        }
-        .why-choose-us .font-bold {
-            color: var(--text-light);
-        }
 
+        /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
 
-        /* --- RESPONSIVENESS TWEAKS --- */
-
+        /* Tablet/Desktop Tweaks (1024px and below) */
         @media (max-width: 1024px) {
             .product-content { padding: 2rem; flex-direction: column; }
             .product-details { text-align: center; }
             .price-container, .action-buttons { justify-content: center; }
-            .btn { max-width: 400px; } 
+            .btn { max-width: 400px; } /* Max width for buttons on small desktop/tablet */
             .stat-grid { grid-template-columns: 1fr 1fr; }
             main { padding: 3rem 1rem; }
         }
 
+        /* Mobile Tweaks (600px and below) */
         @media (max-width: 600px) {
             main { padding: 2rem 1rem; }
             .product-header h2 { font-size: 2rem; }
             .product-details h3 { font-size: 2rem; }
-            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
+            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} /* Stacks stats vertically */
             .current-price { font-size: 2.5rem; }
             .popup { padding: 1.5rem; }
             .popup h2 { font-size: 1.5rem; }
             .action-buttons { flex-direction: column; }
             .btn { min-width: 100%; max-width: 100%; }
+            
+            /* Category selection popup for very small screens */
+            #carModelSelectionPopup {
+                width: 98%;
+                padding: 1rem;
+            }
+            #carModelCheckboxes {
+                grid-template-columns: 1fr; /* Stack service categories for clarity */
+            }
             .popup input, .popup select, .popup textarea {
                 padding: 0.7rem 1rem;
             }
         }
         
+        /* Smallest Mobile Tweaks (400px and below) */
         @media (max-width: 400px) {
             .current-price { font-size: 2rem; }
             .original-price { font-size: 1rem; }
@@ -446,60 +431,32 @@
         
         <section class="product-section">
             <div class="product-header">
-                <h2 class="text-white">Premium Parcel Delivery Service</h2>
-                <p class="text-sm text-gray-400 mt-2">Fast, Safe, and Reliable Door-to-Door Delivery by Bike.</p>
+                <h2 class="text-white">Professional AC Service & Repair</h2>
+                <p class="text-sm text-gray-400 mt-2">Book the best service in Sonipat - Quick, Reliable, and Transparent.</p>
             </div>
 
             <div class="product-content">
                 
                 <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">On-Time Delivery for Packages & Documents</h3>
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">Certified & Guaranteed AC Service</h3>
                     <p class="text-text-subtle mb-4 text-base">
-                        Select your parcel's distance/weight option below to view the transparent base price for booking a rider.
+                        Get expert service from our certified technicians. Select your service category for instant, transparent pricing. We ensure peak performance for your AC unit.
                     </p>
                     
                     <div class="price-container">
-                        <div class="original-price">Price Varies by Distance/Weight</div>
-                        <div class="current-price" id="displayPrice">Select Option</div>
-                    </div>
-                    
-                    <!-- Why Choose Us Section -->
-                    <div class="why-choose-us p-4 rounded-xl shadow-inner mb-6 text-left">
-                        <h3 class="text-xl font-bold text-center mb-4">Why Choose Us?</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-lg mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold">Timely Delivery</h4>
-                                    <p class="text-text-subtle text-sm">Prompt and reliable service guaranteed. Your parcel reaches its destination quickly.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-lg mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold">Safe & Secure</h4>
-                                    <p class="text-text-subtle text-sm">Parcels are handled with professional care by our dedicated riders.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-lg mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold">Transparent Pricing</h4>
-                                    <p class="text-text-subtle text-sm">Clear rates based on fixed distance and weight categories.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="original-price">Market Price Varies</div>
+                        <div class="current-price" id="displayPrice">Select Service</div>
                     </div>
                     
                     <div class="action-buttons">
-                        <button class="btn btn-primary" id="book-now-btn">
-                            <i class="fas fa-motorcycle"></i> Book Rider Now
+                        <button class="btn btn-primary" id="participate-btn">
+                            <i class="fas fa-tools"></i> Book AC Service Now
                         </button>
                         <button id="price-list-btn" class="btn btn-secondary">
-                            <i class="fas fa-tags"></i> Price Chart
+                            <i class="fas fa-tags"></i> Transparent Price List
                         </button>
-                         <button id="description-btn" class="btn btn-secondary">
-                            <i class="fas fa-info-circle"></i> Service Info
+                         <button id="conditions-btn" class="btn btn-secondary">
+                            <i class="fas fa-file-contract"></i> Service Conditions
                         </button>
                         <button class="btn btn-secondary" onclick="window.open('index.html')">
                             <i class="fas fa-home"></i> Back To Home
@@ -511,194 +468,222 @@
 
         <div class="stat-grid">
             <div class="stat-card">
-                <h3>Total Deliveries</h3>
-                <p>5,000+</p>
+                <h3>Total Customers Trusting Us</h3>
+                <p>28,500+</p>
             </div>
             <div class="stat-card">
-                <h3>Happy Clients</h3>
-                <p>10,000+</p>
+                <h3>Monthly ACs Serviced</h3>
+                <p>1000+</p>
             </div>
             <div class="stat-card">
-                <h3>Average Rating</h3>
-                <p>4.7/5 Stars</p>
+                <h3>Customer Satisfaction Score</h3>
+                <p>4.9/5 Stars</p>
             </div>
             <div class="stat-card">
-                <h3>Rider Availability</h3>
-                <p>Now!</p>
+                <h3>Quickest Slot Available</h3>
+                <p>Today!</p>
             </div>
         </div>
     </main>
 
     <div id="popup-overlay"></div>
     
-    <!-- Booking Form Popup (popupForm) -->
-    <div class="popup" id="booking-popup">
-        <h2 class="text-2xl font-bold text-center">Parcel Booking Form</h2>
-        <form id="booking-form">
+    <div class="popup" id="popupForm">
+        <h2 class="text-2xl font-bold text-center">AC Service Booking Form</h2>
+        <form id="lotteryForm">
             <div class="quantity-selector-container my-4">
-                <label for="parcel-selection">Select Parcel Option:</label>
-                <select id="parcel-selection" name="parcel-selection" required>
-                    <option value="" disabled selected>Select a Parcel Option (Distance & Weight)</option>
-                </select>
+                <label>Select AC Service Category:</label>
+                <div id="selectedCarModelsDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openCarModelSelectionPopup()">Click to select service(s)</div>
                 
-                <label for="quantity" class="mt-4">Number of Items (Max 5):</label>
-                <select id="quantity" name="quantity" required class="bg-bg-dark border-primary">
+                <div id="carModelSelectionPopup" class="popup" style="display: none;">
+                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Select AC Service Category</h3>
+                    <div id="carModelCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-80 overflow-y-auto p-2">
+                        </div>
+                    <button type="button" class="btn btn-primary mt-4 py-3" onclick="applySelectedCarModels()">Apply Selection</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-3 close-btn" onclick="closeCarModelSelectionPopup()">Cancel</button>
+                </div>
+
+                <label for="ticketQuantity" class="mt-4">Number of Services (Max 5):</label>
+                <select id="ticketQuantity" name="ticketQuantity" required class="bg-bg-dark border-primary">
                     <option value="" disabled selected>Select quantity</option>
                 </select>
 
                 <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
-                    <span>Quantity based total price</span>
+                    <span>Quantity based total service price</span>
                     <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">Total: ₹0</span>
                 </div>
             </div>
 
-            <label for="name">Your Full Name (min 10 characters)</label>
-            <input type="text" id="name" name="name" required placeholder="John Doe" autocomplete="name" minlength="10" />
+            <label for="fullName">Your Full Name (min 10 characters)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
             
             <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="phone" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
+            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
             
-            <label for="pickup-location">Pickup Location (e.g. Sector 10, Sonipat)</label>
-            <input type="text" id="pickup-location" name="pickup-location" required placeholder="Pickup Address/Landmark" autocomplete="address-level2" />
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
             
-            <label for="delivery-location">Delivery Location (e.g. City Mall, Panipat)</label>
-            <input type="text" id="delivery-location" name="delivery-location" required placeholder="Delivery Address/Landmark" autocomplete="address-level2" />
+            <label for="location">Your Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
             
-            <label for="address">Full Pickup/Delivery Address Details (min 30 characters)</label>
-            <textarea id="address" name="address" required placeholder="Complete address for both pickup and delivery, including desired timing and recipient name/contact." autocomplete="street-address" minlength="30" rows="4"></textarea>
+            <label for="address">Complete Address (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
 
             <input type="hidden" name="ticket" id="ticketCode" />
             <input type="hidden" name="finalPrice" id="finalPrice" />
             
             <button type="submit">Submit Details & Proceed to Payment</button>
-            <p id="submit-message" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
+            <p id="submitMessage" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
         </form>
     </div>
-    
-    <!-- Payment Step (paymentPopup) -->
-    <div class="popup" id="payment-popup">
+
+    <div class="popup" id="paymentStep">
         <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
-        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your Parcel Delivery booking.</p>
-        <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
-        <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your AC Service booking.</p>
+        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
+        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
         <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
         <p class="mt-4 text-xs text-text-subtle text-center">
             Note: Do not close this window during payment processing.
         </p>
     </div>
 
-    <!-- Ticket Confirmation (confirmationPopup) -->
-    <div class="popup" id="confirmation-popup">
-        <h2 id="welcome-message" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below:</p>
-        <div id="ticket-info" class="space-y-2 bg-bg-dark p-5 rounded-lg mb-6 text-center border border-primary"></div>
-        <button id="downloadBtn" class="mt-4">
-            <i class="fas fa-download mr-2"></i> Download Booking Details
+    <div class="popup" id="ticketStep">
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below for <span id="ticketCountDisplay" class="font-bold text-secondary"></span>:</p>
+        <div id="ticketDisplay" class="space-y-2"></div>
+        <button id="downloadTicketsBtn" class="mt-4">
+            <i class="fas fa-download mr-2"></i> Download Service Details
         </button>
         <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
         <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
     </div>
     
-    <!-- Price List Popup (priceListPopup) -->
-    <div class="popup" id="price-list-popup">
-        <h2 class="text-2xl font-bold text-center">Parcel Delivery Price Chart</h2>
-        <div id="priceListContainer" class="overflow-x-auto mt-4">
+    <div class="popup" id="priceListPopup">
+        <h2 class="text-2xl font-bold text-center">AC Service Transparent Price List</h2>
+        <div class="overflow-x-auto mt-4">
             <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
                 <thead>
                     <tr class="text-left text-secondary">
-                        <th class="py-3 px-4 border-b border-text-subtle">Distance & Weight</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Base Rate</th>
+                        <th class="py-3 px-4 border-b border-text-subtle">Service</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Our Price</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Market Price</th>
                     </tr>
                 </thead>
                 <tbody id="priceListTableBody">
-                    <!-- Content populated by JS -->
-                </tbody>
+                    </tbody>
             </table>
         </div>
-        <button id="close-price-list-btn" class="btn btn-secondary close-btn mt-4">Close Price Chart</button>
+        <button id="closePriceListBtn" class="btn btn-secondary close-btn mt-4">Close Price List</button>
     </div>
 
-    <!-- Description Popup (descriptionPopup) -->
-    <div class="popup" id="description-popup">
-        <h2 class="text-2xl font-bold text-center">Our Parcel Services</h2>
-        <div id="descriptionContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
+    <div class="popup" id="conditionsPopup">
+        <h2 class="text-2xl font-bold text-center">Detailed Service Conditions & Guarantee</h2>
+        <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
              <ul class="list-disc list-inside space-y-3">
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-motorcycle mr-2"></i> Fast Bike Delivery</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Dedicated bike riders ensure the fastest delivery times within the city and surrounding areas.</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-box-open mr-2"></i> Flexible Parcel Options</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Options available for small documents (Upto 5 Kg) and medium packages (Upto 10 Kg).</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Pricing is fixed based on your selected distance and weight bracket.</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-location-dot mr-2"></i> Door-to-Door Service</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Seamless pickup from your location and direct delivery to the recipient's door.</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparent Pricing</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>The price paid covers the full delivery charge as per the selected bracket. No hidden fees.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Professional Technicians</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>All work carried out by certified and experienced technicians</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-magnifying-glass mr-2"></i> Diagnosis & Inspection</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>On-site diagnosis and detailed problem assessment</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Gas leak detection and minor repair included</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Electrical connections and wiring inspection</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Cleaning and inspection of drain tray and pipe</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Performance and cooling efficiency testing</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-cogs mr-2"></i> Installation & Uninstallation</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Proper electrical connections and safety checks</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Correct positioning and mounting for maximum efficiency</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Vacuuming of pipes for efficient cooling</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Standard mounting kit included (brackets, copper pipes, wiring, drain pipe, etc.)</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Proper gas recovery to prevent leakage</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Disconnection and sealing of copper pipes</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Basic cleanup of installation/uninstallation area</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-screwdriver-wrench mr-2"></i> Repair & Maintenance</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Thorough cleaning of indoor/outdoor unit filters and coils</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Diagnosis and minor repairs of PCB and inverter boards</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Testing of repaired PCB/inverter boards for functionality</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Refrigerant level check and top-up if required (extra charges apply)</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Water leakage diagnosis, drain pipe cleaning, and proper drainage setup</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Initial visiting charge ₹299 (adjustable based on distance in Sonipat)</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Transparent pricing for parts and additional labor charges will be provided before work begins</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Customer Support & Warranty</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>1-year service warranty on installation work</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>1-month warranty on repairs, gas refills, and leakage fixes</li>
             </ul>
         </div>
-        <button id="close-description-btn" class="btn btn-secondary close-btn mt-4">Close Info</button>
+        <button id="closeConditionsBtn" class="btn btn-secondary close-btn mt-4">I Understand</button>
     </div>
    
     <script>
-        // Data for parcel rates (from the uploaded file)
-        const parcelRates = [
-            { "name": "0-10 Kms (Upto 5 Kg)", "rate": 149 },
-            { "name": "0-10 Kms (Upto 6-10 Kg)", "rate": 199 },
-            { "name": "11-15 Kms (Upto 5 Kg)", "rate": 210 },
-            { "name": "11-15 Kms (Upto 6-10 Kg)", "rate": 299 },
-            { "name": "15-20 Kms (Upto 5 Kg)", "rate": 280 },
-            { "name": "15-20 Kms (Upto 6-10 Kg)", "rate": 380 }
+        // Updated AC Service Rates based on the provided image
+        const carServiceData = [
+            { "Category": "Emergency Diagnose", "Price": 299 }, // Renamed from "Emergency AC Services" to match image
+            { "Category": "Window AC Installation Service", "Price": 699 }, 
+            { "Category": "Split AC Installation Service", "Price": 1299 }, 
+            { "Category": "Window AC Gas Refill Service (Up to 1.5 Ton)", "Price": 2999 }, // Price updated from 1099 to 2999
+            { "Category": "Split AC Gas Refill Service (Up to 1.5 Ton)", "Price": 3199 }, // Price updated from 1299 to 3199
+            { "Category": "Split AC Service / Cleaning", "Price": 699 }, // Price updated from 499 to 699
+            { "Category": "Window AC Service / Cleaning", "Price": 499 }, // Price updated from 699 to 499
+            { "Category": "Split AC Uninstallation Service", "Price": 799 },
+            { "Category": "Window AC Uninstallation Service", "Price": 499 },
+            { "Category": "Normal PCB Repair Service", "Price": 1499 },
+            { "Category": "Inverter AC PCB Repair Service", "Price": 2999 }, // Renamed from "Inverter Repair Service" to match image
+            { "Category": "AC Copper Pipes Service (Per Foot)", "Price": 149 }, // Kept as is, added detail
+            { "Category": "AC Water Leakage Check/Fix", "Price": 499 } // Renamed from "AC Water Leakage Service" to match image
         ];
 
-        // --- Constants ---
-        const SERVICE_NAME = "Parcel Delivery";
-        const SERVICE_TAB_ID = "parcel-delivery";
-        const RAZORPAY_IMAGE_TEXT = "PD";
-        const PAYMENT_TIME_LIMIT = 5 * 60;
-        
         // --- DOM Element Selection ---
-        const bookNowBtn = document.getElementById('book-now-btn');
+        const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
         const allPopups = document.querySelectorAll('.popup');
-        const bookingPopup = document.getElementById('booking-popup');
-        const paymentPopup = document.getElementById('payment-popup');
-        const confirmationPopup = document.getElementById('confirmation-popup');
-        const quantitySelect = document.getElementById('quantity');
-        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
-        const parcelSelection = document.getElementById('parcel-selection');
-        const displayPrice = document.getElementById('displayPrice');
-        const submitMessage = document.getElementById('submit-message');
-        const paymentSummary = document.getElementById('payment-summary');
-        const timerDisplay = document.getElementById('timer-display');
+        const popupForm = document.getElementById('popupForm');
+        const paymentStep = document.getElementById('paymentStep');
+        const ticketStep = document.getElementById('ticketStep');
+        const timerDisplay = document.getElementById('timerDisplay');
         const razorpayBtn = document.getElementById('razorpay-payment-btn');
-        const ticketInfo = document.getElementById('ticket-info');
-        const downloadBtn = document.getElementById('downloadBtn');
+        const submitMessage = document.getElementById('submitMessage');
+        const carModelCheckboxesContainer = document.getElementById('carModelCheckboxes');
+        const selectedCarModelsDisplay = document.getElementById('selectedCarModelsDisplay');
+        const carModelSelectionPopup = document.getElementById('carModelSelectionPopup');
+        const ticketQuantitySelect = document.getElementById('ticketQuantity');
+        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
+        const paymentSummary = document.getElementById('paymentSummary');
+        const ticketCountDisplay = document.getElementById('ticketCountDisplay');
+        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const displayPriceElement = document.getElementById('displayPrice');
+        const finalPriceInput = document.getElementById('finalPrice');
+        const form = document.getElementById('lotteryForm');
         const okayBtn = document.getElementById('okayBtn');
-        const welcomeMessage = document.getElementById('welcome-message');
-        const priceListBtn = document.getElementById('price-list-btn');
-        const descriptionBtn = document.getElementById('description-btn');
-        const priceListPopup = document.getElementById('price-list-popup');
-        const descriptionPopup = document.getElementById('description-popup');
-        const closePriceListBtn = document.getElementById('close-price-list-btn');
-        const closeDescriptionBtn = document.getElementById('close-description-btn');
-        const priceListTableBody = document.getElementById('priceListTableBody');
-        const bookingForm = document.getElementById('booking-form');
 
-        // --- State variables ---
-        let currentCalculatedPrice = 0;
-        let selectedQuantity = 1;
-        let generatedTicket = '';
+        // New elements for Price List and Conditions
+        const priceListBtn = document.getElementById('price-list-btn');
+        const conditionsBtn = document.getElementById('conditions-btn');
+        const priceListPopup = document.getElementById('priceListPopup');
+        const conditionsPopup = document.getElementById('conditionsPopup');
+        const closePriceListBtn = document.getElementById('closePriceListBtn');
+        const closeConditionsBtn = document.getElementById('closeConditionsBtn');
+        const priceListTableBody = document.getElementById('priceListTableBody');
+
+        // --- State Variables ---
+        let generatedTicket = ''; 
+        let paymentTimeout = null;
         let countdownInterval = null;
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+        let currentServicePrice = 0;
+        let selectedQuantity = 1;
         let allowClose = false;
-        const LOCAL_STORAGE_KEY = 'parcelBookingFormData'; 
+        const LOCAL_STORAGE_KEY = 'acServiceFormData'; // Key for Local Storage
 
         // --- Local Storage Functions ---
 
         function saveFormData() {
             const formData = {
-                name: bookingForm.name.value,
-                phone: bookingForm.phone.value,
-                pickupLocation: bookingForm['pickup-location'].value,
-                deliveryLocation: bookingForm['delivery-location'].value,
-                address: bookingForm.address.value
+                fullName: form.fullName.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                location: form.location.value,
+                address: form.address.value
             };
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
         }
@@ -707,54 +692,99 @@
             const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
             if (savedData) {
                 const data = JSON.parse(savedData);
-                bookingForm.name.value = data.name || '';
-                bookingForm.phone.value = data.phone || '';
-                bookingForm['pickup-location'].value = data.pickupLocation || '';
-                bookingForm['delivery-location'].value = data.deliveryLocation || '';
-                bookingForm.address.value = data.address || '';
+                form.fullName.value = data.fullName || '';
+                form.phone.value = data.phone || '';
+                form.email.value = data.email || '';
+                form.location.value = data.location || '';
+                form.address.value = data.address || '';
             }
         }
         
-        // --- Core Functions ---
-        
-        function populateParcelOptions() {
-            parcelSelection.innerHTML = '<option value="" disabled selected>Select a Parcel Option (Distance & Weight)</option>';
-            parcelRates.forEach(rate => {
-                const option = document.createElement('option');
-                option.value = rate.name;
-                option.textContent = `${rate.name} (₹${rate.rate})`;
-                option.dataset.rate = rate.rate;
-                parcelSelection.appendChild(option);
+        // --- Core Functions (Unchanged) ---
+
+        function populateCarModels() {
+            carModelCheckboxesContainer.innerHTML = '';
+            carServiceData.forEach(service => {
+                const checkboxHtml = `
+                    <label class="inline-flex items-center text-text-light w-full p-2 bg-bg-dark rounded-md border border-primary hover:bg-bg-card transition duration-200 cursor-pointer">
+                        <input type="checkbox" name="acServiceCategory" value="${service.Category}" data-price="${service.Price}" 
+                               class="form-checkbox h-5 w-5 text-secondary rounded focus:ring-secondary checked:bg-secondary">
+                        <span class="ml-2 text-sm">${service.Category} (<span class="text-secondary">₹${service.Price}</span>)</span>
+                    </label>
+                `;
+                carModelCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
+            });
+            carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]').forEach(checkbox => {
+                checkbox.addEventListener('change', updatePrices);
             });
         }
-        
-        // Update price based on selected parcels
-        function updatePrices() {
-            const selectedOption = parcelSelection.options[parcelSelection.selectedIndex];
-            const basePrice = selectedOption ? parseFloat(selectedOption.dataset.rate) : 0;
-            
-            selectedQuantity = parseInt(quantitySelect.value) || 1;
-            
-            const totalFinalPrice = basePrice * selectedQuantity;
 
-            const selectedOptionName = selectedOption && selectedOption.value ? selectedOption.textContent : "Select Option";
-            totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
-            currentCalculatedPrice = totalFinalPrice;
-            
-            // Only show base rate on the main card if a selection has been made
-            if (selectedOption && selectedOption.value) {
-                 displayPrice.textContent = `₹${basePrice}`;
-            } else {
-                 displayPrice.textContent = 'Select Option';
+        function initQuantitySelector() {
+            const maxServices = 5; 
+            ticketQuantitySelect.innerHTML = '<option value="" disabled>Select quantity</option>';
+            for (let i = 1; i <= maxServices; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i + (i === 1 ? ' service' : ' services');
+                ticketQuantitySelect.appendChild(option);
             }
+            ticketQuantitySelect.value = 1;
         }
 
-        // Generate a unique booking ID
-        function generateTicketId() {
-            return 'PARCEL-XXXXXX-XXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
+        function updatePrices() {
+            const selectedAcServiceCategories = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]:checked')).map(checkbox => ({
+                category: checkbox.value,
+                price: parseFloat(checkbox.dataset.price)
+            }));
+            selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
+
+            currentServicePrice = selectedAcServiceCategories.reduce((total, service) => total + service.price, 0);
+            const totalFinalPrice = currentServicePrice * selectedQuantity;
+
+            if (selectedAcServiceCategories.length > 0) {
+                selectedCarModelsDisplay.textContent = selectedAcServiceCategories.map(s => s.category).join(', ');
+                displayPriceElement.textContent = `₹${currentServicePrice}`;
+            } else {
+                selectedCarModelsDisplay.textContent = 'Click to select AC service category';
+                displayPriceElement.textContent = 'Select Service';
+            }
+            
+            totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
+            finalPriceInput.value = totalFinalPrice;
         }
 
-        // Show a custom alert (as `alert()` is not allowed)
+        function generateFormattedTicket() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            }).toUpperCase();
+        }
+
+        function downloadTickets() {
+            const selectedAcServiceCategoryNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]:checked')).map(checkbox => checkbox.value).join(', ');
+            const ticketContent = `PREMIUM AC SERVICE BOOKING DETAILS\n\n` +
+                                 `Customer Name: ${form.field1.value}\n` +
+                                 `Contact: ${form.field2.value}\n` +
+                                 `Location: ${form.field5.value}\n` +
+                                 `AC Service Category(s): ${selectedAcServiceCategoryNames}\n` +
+                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
+                                 `Total Services: ${selectedQuantity}\n` +
+                                 `Service Charge Paid: ₹${finalPriceInput.value}\n\n` +
+                                 `--- IMPORTANT NOTE ---\n` +
+                                 `Final charges for parts and additional labor (beyond the selected service) will be transparently communicated by the technician after a full on-site diagnosis.`;
+            
+            const blob = new Blob([ticketContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ac_service_booking_${generatedTicket.substring(0, 8)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
             alertBox.className = 'custom-alert'; 
@@ -763,33 +793,27 @@
             setTimeout(() => alertBox.remove(), 4000); 
         }
 
-        // Close all popups
+        // --- Popup Control Functions (Unchanged) ---
         function closeAllPopups() {
             if (!allowClose) {
-                // Prevent closing if payment is pending
-                if (paymentPopup.style.display === 'block') {
-                    showCustomAlert("Please complete the payment process before closing.");
-                    return;
-                }
+                showCustomAlert("Please complete the booking process before closing.");
+                return;
             }
             clearTimers();
             popupOverlay.style.display = 'none';
             allPopups.forEach(p => p.style.display = 'none');
             document.body.style.overflow = 'auto';
-            // Do not reset form on close, let loadFormData handle it on next open
-            allowClose = false;
+            allowClose = false; 
         }
 
-        // Open a specific popup
         function openPopup(popupElement) {
             document.body.style.overflow = 'hidden';
             popupOverlay.style.display = 'block';
             allPopups.forEach(p => p.style.display = 'none');
             popupElement.style.display = 'block';
-            allowClose = (popupElement === bookingPopup); // Allow closing for booking popup
+            allowClose = false;
         }
-
-        // Close a specific popup
+        
         function closeSpecificPopup(popupElement) {
             popupElement.style.display = 'none';
             const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
@@ -799,41 +823,33 @@
             }
         }
 
-        // Download booking details as a text file
-        function downloadTicketDetails() {
-            const name = bookingForm.name.value;
-            const phone = bookingForm.phone.value;
-            const pickupLocation = bookingForm['pickup-location'].value;
-            const deliveryLocation = bookingForm['delivery-location'].value;
-            const address = bookingForm.address.value;
-            const selectedOption = parcelSelection.options[parcelSelection.selectedIndex].textContent;
-            const totalPrice = currentCalculatedPrice;
-
-            const content = `${SERVICE_NAME} Booking Details\n\n` +
-                            `Booking ID: ${generatedTicket}\n` +
-                            `Name: ${name}\n` +
-                            `Phone: ${phone}\n` +
-                            `Pickup Location: ${pickupLocation}\n` +
-                            `Delivery Location: ${deliveryLocation}\n` +
-                            `Address: ${address}\n` +
-                            `Option: ${selectedOption}\n` +
-                            `Quantity: ${selectedQuantity}\n` +
-                            `Total Price Paid: ₹${totalPrice}\n\n` +
-                            `Thank you for choosing our service!`;
-
-            const blob = new Blob([content], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `parcel-booking-${generatedTicket}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+        function openCarModelSelectionPopup() {
+            populateCarModels();
+            const currentlySelectedCategories = selectedCarModelsDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select service(s)');
+            carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]').forEach(checkbox => {
+                checkbox.checked = currentlySelectedCategories.includes(checkbox.value);
+            });
+            carModelSelectionPopup.style.display = 'block';
+            popupOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
 
-        // Start payment timer
+        function closeCarModelSelectionPopup() {
+            carModelSelectionPopup.style.display = 'none';
+            if (popupForm.style.display !== 'block' && priceListPopup.style.display !== 'block' && conditionsPopup.style.display !== 'block') {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function applySelectedCarModels() {
+            updatePrices();
+            closeCarModelSelectionPopup();
+        }
+        
+        // --- Timer Functions (Unchanged) ---
         function clearTimers() {
+            if (paymentTimeout) clearTimeout(paymentTimeout);
             if (countdownInterval) clearInterval(countdownInterval);
         }
 
@@ -852,35 +868,122 @@
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
                     showCustomAlert("Payment time expired. Please try again.");
-                    allowClose = true;
+                    allowClose = true; 
                     closeAllPopups();
                 }
             }, 1000);
         }
 
-        // Handle Razorpay payment
-        function handleRazorpayPayment() {
-            const selectedOptionName = parcelSelection.options[parcelSelection.selectedIndex].textContent;
-            const totalPrice = currentCalculatedPrice;
+        // --- Price List Function (Unchanged) ---
+        function populatePriceList() {
+            priceListTableBody.innerHTML = '';
+            carServiceData.forEach(service => {
+                const marketPrice = Math.round(service.Price * 1.3); // 30% higher for market rate
+                const row = `
+                    <tr class="text-text-light hover:bg-bg-dark">
+                        <td class="py-3 px-4 border-b border-gray-700">${service.Category}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.Price}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle line-through">₹${marketPrice}</td>
+                    </tr>
+                `;
+                priceListTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        // --- Payment and Submission Logic (Modified to include saveFormData) ---
+        
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            // Validation (Unchanged)
+            const selectedCategories = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]:checked'));
+            if (selectedCategories.length === 0) { showCustomAlert("Please select at least one AC service category."); return; }
+            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
+            if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of services."); return; }
+
+            submitMessage.style.display = 'block';
+            form.querySelector('button[type="submit"]').disabled = true;
+
+            generatedTicket = generateFormattedTicket(); 
             
+            const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
+
+            // --- Form Data for Google Sheet (using original field names) ---
+            const formData = new FormData();
+            formData.append('field1', form.fullName.value); 
+            formData.append('field2', form.phone.value);    
+            formData.append('field3', form.email.value);    
+            formData.append('field4', selectedCategoryNames); 
+            formData.append('field5', form.location.value); 
+            formData.append('field6', form.address.value);  
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', 'ac-service');           
+            formData.append('serviceType', 'AC Service');   
+            formData.append('servicePrice', currentServicePrice); 
+            formData.append('ticketQuantity', selectedQuantity); 
+            formData.append('finalPrice', finalPriceInput.value);
+
+            // --- Google Script URL ---
+            fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success")) { 
+                    // Save data to local storage on successful submission
+                    saveFormData(); 
+                    
+                    popupForm.style.display = 'none';
+                    openPopup(paymentStep);
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
+                        <p class="text-text-light text-base mb-1">Service(s): <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
+                        <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${selectedQuantity}</span></p>
+                        <p class="current-price text-secondary text-3xl font-bold">Total Payable: ₹${finalPriceInput.value}</p>
+                        <p class="text-gray-400 text-sm mt-2">The amount paid covers the services selected. Extra charges for parts/labor, if needed, will be discussed by the technician.</p>
+                    `;
+                    startPaymentTimer();
+                } else {
+                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
+            })
+            .finally(() => {
+                submitMessage.style.display = 'none';
+                form.querySelector('button[type="submit"]').disabled = false;
+            });
+        }
+
+        function handleRazorpayPayment() {
+            // Unchanged payment logic
+            const selectedCategoryNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]:checked')).map(cb => cb.value).join(', ');
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": totalPrice * 100, // Razorpay amounts are in paisa
+                "amount": finalPriceInput.value * 100,
                 "currency": "INR",
-                "name": `SonipatHomeService - ${SERVICE_NAME}`,
-                "description": `Payment for Parcel Booking ID: ${generatedTicket}`,
-                "image": `https://placehold.co/100x100/1C2738/FFC72C?text=${RAZORPAY_IMAGE_TEXT}`,
+                "name": `SonipatHomeService - AC Service`,
+                "description": `Payment for ${selectedQuantity} AC Service(s) for ${selectedCategoryNames}`,
+                "image": `https://placehold.co/100x100/1C2738/00FFFF?text=AC`, 
                 "handler": function (response){
+                    console.log("Payment successful:", response.razorpay_payment_id);
                     paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
-                    "name": bookingForm.name.value,
-                    "contact": bookingForm.phone.value
+                    "name": form.fullName.value,
+                    "email": form.email.value,
+                    "contact": form.phone.value
                 },
                 "notes": {
-                    "pickup_location": bookingForm['pickup-location'].value,
-                    "delivery_location": bookingForm['delivery-location'].value,
-                    "address": bookingForm.address.value,
+                    "address": `${form.location.value}, ${form.address.value}`,
+                    "service_details": selectedCategoryNames,
                     "booking_ref": generatedTicket
                 },
                 "theme": { "color": "#00FFFF" },
@@ -889,170 +992,89 @@
 
             const rzp = new Razorpay(options);
             rzp.on('payment.failed', response => {
+                console.error("Payment Failed:", response.error);
                 showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
             });
             rzp.open();
         }
 
-        // After successful payment
         function paymentSuccess(paymentId) {
+            // Unchanged confirmation logic
             clearTimers();
-            paymentPopup.style.display = 'none';
-            openPopup(confirmationPopup);
+            paymentStep.style.display = 'none';
+            openPopup(ticketStep);
             
-            const name = bookingForm.name.value.split(' ')[0];
-            const selectedOptionName = parcelSelection.options[parcelSelection.selectedIndex].textContent;
-            const totalPrice = currentCalculatedPrice;
+            const userName = form.fullName.value.split(' ')[0];
+            const selectedCategoryNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]:checked')).map(cb => cb.value).join(', ');
 
-            welcomeMessage.textContent = `🎉 Bravo, ${name}! Booking Confirmed! 🎉`;
+            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
             
-            ticketInfo.innerHTML = `
+            ticketDisplay.innerHTML = `
                 <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p>Parcel Option: <span class="font-bold text-text-light">${selectedOptionName}</span></p>
+                <p>Service: <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
                 <p>Quantity: <span class="font-bold text-text-light">${selectedQuantity}</span></p>
-                <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${totalPrice}</p>
+                <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${finalPriceInput.value}</p>
+                <p class="text-text-subtle text-sm mt-3">Our technician will contact you shortly to schedule the service at your location: ${form.location.value}.</p>
                 <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
+            
+            ticketCountDisplay.textContent = `${selectedQuantity} AC Service(s)`;
             allowClose = true;
         }
-
-        // Populate the price list popup table
-        function populatePriceList() {
-            priceListTableBody.innerHTML = '';
-            parcelRates.forEach(rate => {
-                const row = `
-                    <tr class="text-text-light hover:bg-bg-dark">
-                        <td class="py-3 px-4 border-b border-gray-700">${rate.name}</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${rate.rate}</td>
-                    </tr>
-                `;
-                priceListTableBody.insertAdjacentHTML('beforeend', row);
-            });
-        }
         
-        // --- Form Submission Logic ---
-        function handleFormSubmit(e) {
-            e.preventDefault();
-
-            const selectedOption = parcelSelection.value;
-            if (!selectedOption) { showCustomAlert("Please select a parcel option."); return; }
-            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            if (bookingForm['pickup-location'].value.trim().length < 3) { showCustomAlert("Please enter a valid pickup location."); return; }
-            if (bookingForm['delivery-location'].value.trim().length < 3) { showCustomAlert("Please enter a valid delivery location."); return; }
-            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("Please enter complete address details (minimum 30 characters)."); return; }
-            if (currentCalculatedPrice === 0) {
-                showCustomAlert("Please select a valid option and quantity to calculate the price.");
-                return;
-            }
-
-            submitMessage.style.display = 'block';
-            bookingForm.querySelector('button[type="submit"]').disabled = true;
-            generatedTicket = generateTicketId();
-            
-            // --- Google Sheet Submission ---
-            const formData = new FormData();
-            formData.append('field1', bookingForm.name.value); 
-            formData.append('field2', bookingForm.phone.value);    
-            formData.append('field3', parcelSelection.options[parcelSelection.selectedIndex].textContent); // Parcel Option
-            formData.append('field5', bookingForm['pickup-location'].value); // Pickup
-            formData.append('field6', bookingForm.address.value);  // Full Address
-            formData.append('ticket', generatedTicket);     
-            formData.append('tab', SERVICE_TAB_ID);           
-            formData.append('serviceType', 'Parcel Delivery');   
-            formData.append('servicePrice', currentCalculatedPrice); // Final calculated price
-            formData.append('ticketQuantity', selectedQuantity); 
-            formData.append('delivery_location', bookingForm['delivery-location'].value); // New field for clarity
-
-            fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.text())
-            .then(res => {
-                if (res.includes("Success") || res.includes("success")) { 
-                    saveFormData(); 
-                    
-                    bookingPopup.style.display = 'none';
-                    paymentSummary.innerHTML = `
-                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Summary:</p>
-                        <p class="text-text-light text-base mb-1">Option: <span class="font-bold text-primary">${parcelSelection.options[parcelSelection.selectedIndex].textContent}</span></p>
-                        <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${selectedQuantity}</span></p>
-                        <p class="current-price text-secondary text-3xl font-bold">Total Payable: ₹${currentCalculatedPrice}</p>
-                    `;
-                    openPopup(paymentPopup);
-                    startPaymentTimer();
-                } else {
-                    showCustomAlert("Submission Error: Please try again.");
-                }
-            })
-            .catch(err => {
-                console.error("Submission error:", err);
-                showCustomAlert("Network Error: An unexpected error occurred. Please try again.");
-            })
-            .finally(() => {
-                submitMessage.style.display = 'none';
-                bookingForm.querySelector('button[type="submit"]').disabled = false;
-            });
-        }
-        
-        // --- Event Listeners Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            populateParcelOptions();
-            
-            // Set up initial quantity selector options (1 to 5)
-            const maxQuantity = 5; 
-            quantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
-            for (let i = 1; i <= maxQuantity; i++) {
-                const option = document.createElement('option');
-                option.value = i;
-                option.textContent = i + (i === 1 ? ' Item' : ' Items');
-                quantitySelect.appendChild(option);
-            }
-            quantitySelect.value = 1;
-            
-            loadFormData(); // Load saved data
-            updatePrices(); 
-            
-            bookingForm.addEventListener('submit', handleFormSubmit);
-            quantitySelect.addEventListener('change', updatePrices);
-            parcelSelection.addEventListener('change', updatePrices);
-        });
-
-        bookNowBtn.addEventListener('click', () => {
+        // --- Event Listeners Initialization (Unchanged) ---
+        participateBtn.addEventListener('click', () => {
+            initQuantitySelector();
             updatePrices();
-            openPopup(bookingPopup);
+            openPopup(popupForm);
         });
+        
+        ticketQuantitySelect.addEventListener('change', updatePrices); 
 
+        // Centralized Overlay Click Handling
         popupOverlay.addEventListener('click', e => {
             if (e.target === popupOverlay) {
-                if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
-                else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
-                else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
-                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
-                else if (bookingPopup.style.display === 'block') closeAllPopups();
+                if (carModelSelectionPopup.style.display === 'block') closeCarModelSelectionPopup();
+                else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (conditionsPopup.style.display === 'block') closeSpecificPopup(conditionsPopup);
+                else if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
+                else if (popupForm.style.display === 'block' || paymentStep.style.display === 'block') showCustomAlert("Please complete the booking process before closing.");
+                else closeAllPopups();
             }
         });
         
-        // Use window.location.href = 'index.html' for okayBtn for consistency
-        okayBtn.addEventListener('click', () => window.location.href = 'index.html'); 
-        downloadBtn.addEventListener('click', downloadTicketDetails);
+        // Popup Close buttons
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const parentPopup = e.target.closest('.popup');
+                if (parentPopup.id === 'ticketStep') {
+                    window.location.href = 'index.html';
+                } else {
+                    closeSpecificPopup(parentPopup);
+                }
+            });
+        });
 
+        // Specific listeners
+        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
+        razorpayBtn.addEventListener('click', handleRazorpayPayment);
+        downloadTicketsBtn.addEventListener('click', downloadTickets);
+        form.addEventListener('submit', handleFormSubmit);
+
+        // Listeners for new popups
         priceListBtn.addEventListener('click', () => {
             populatePriceList();
             openPopup(priceListPopup);
         });
+        conditionsBtn.addEventListener('click', () => openPopup(conditionsPopup));
 
-        descriptionBtn.addEventListener('click', () => {
-            openPopup(descriptionPopup);
+        // --- Page Load Initialization (Modified to include loadFormData) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            populateCarModels();
+            initQuantitySelector();
+            updatePrices();
+            loadFormData(); // Load saved data when the page loads
         });
-
-        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
-        // Fixed the event listener to use the correct variable/ID
-        closeDescriptionBtn.addEventListener('click', () => closeSpecificPopup(descriptionPopup));
-
-        razorpayBtn.addEventListener('click', handleRazorpayPayment);
-
     </script>
 </body>
 </html>
