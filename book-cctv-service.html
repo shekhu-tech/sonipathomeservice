@@ -3,225 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - CCTV Services</title>
-    <!-- Font Awesome for icons -->
+    <title>SonipatHomeService.com - Premium CCTV Service</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Razorpay for payment integration -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
-        /* Import Google Font 'Inter' */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
-        /* Define CSS custom properties for a dark, security-themed color scheme with red accents */
         :root {
-            --primary: #111111; /* Very dark gray */
-            --secondary: #333333; /* Dark gray */
-            --accent: #DC143C; /* Crimson Red */
-            --light: #f5f5f5;
-            --dark: #212121;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --card-bg: #ffffff;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            /* Theme: Deep Space Black, Arctic Teal, and Electric Gold (Consistent with other services) */
+            --bg-dark: #101827; /* Deep Space Black */
+            --bg-card: #1C2738; /* Dark Navy Card */
+            --primary: #52D1DC; /* Arctic Teal Accent (Service Button) */
+            --secondary: #FFD700; /* Electric Gold Accent (Price Highlight/Border) */
+            --text-light: #E0E7FF; /* Off-White Text */
+            --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
+            --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* Global styles for all elements */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
 
-        /* Body background and text color */
         body {
-            background: linear-gradient(135deg, #111111 0%, #333333 100%);
-            color: var(--light);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Main container for content */
         main {
-            padding-top: 6rem;
-            max-width: 1700px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 6rem 1rem 3rem;
+            padding: 4rem 1.5rem;
         }
 
-        /* Section for key statistics */
-        .lottery-stats {
+        /* --- Custom Components --- */
+
+        .stat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
-        /* Styling for each stat card */
         .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.625rem;
-            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
             text-align: center;
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-depth);
             transition: var(--transition);
-            border: 1px solid rgba(220, 20, 60, 0.2); /* Changed accent color */
+            border: 1px solid rgba(82, 209, 220, 0.2);
         }
 
         .stat-card:hover {
-            transform: translateY(-0.3125rem);
-            box-shadow: var(--shadow);
-            border-color: var(--accent);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(82, 209, 220, 0.3);
         }
 
         .stat-card h3 {
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
-            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         .stat-card p {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--light);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Product section styling */
         .product-section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.9375rem;
+            background: linear-gradient(135deg, var(--bg-card), #22324C);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            margin-bottom: 3rem;
             overflow: hidden;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(220, 20, 60, 0.2); /* Changed accent color */
+            border: 2px solid var(--secondary);
         }
 
         .product-header {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            padding: 1.25rem;
+            background: linear-gradient(90deg, #101827, #22324C);
+            padding: 2rem;
             text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .product-header h2 {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
         }
 
         .product-content {
             display: flex;
             flex-wrap: wrap;
-            padding: 1.5rem;
-            align-items: center;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: center; 
             justify-content: center;
-            gap: 1.5rem;
-        }
-
-        /* Product image styling */
-        .product-image {
-            flex: 1;
-            min-width: 280px;
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.625rem;
-            overflow: hidden;
-            background: url('https://placehold.co/600x400/212121/DC143C?text=CCTV+Services') no-repeat center center; /* Changed accent color */
-            background-size: cover;
-            min-height: 250px;
         }
 
         .product-details {
-            flex: 2;
-            min-width: 280px;
-            padding: 1rem;
+            flex: 1; 
+            min-width: 300px;
+            text-align: center; 
         }
 
         .price-container {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem;
-            margin: 1rem 0;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px dashed var(--text-subtle);
+            border-bottom: 1px dashed var(--text-subtle);
+            justify-content: center; 
         }
 
         .original-price {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             text-decoration: line-through;
-            color: #b0b0b0;
+            color: var(--text-subtle);
+            font-weight: 400;
         }
 
-        .lottery-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .features {
-            margin: 1rem 0;
-        }
-
-        .features h3 {
-            margin-bottom: 0.8rem;
-            color: var(--accent);
-        }
-
-        .features ul {
-            padding-left: 1.2rem;
-        }
-
-        .features li {
-            margin-bottom: 0.4rem;
-            font-size: 0.95rem;
+        .current-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .action-buttons {
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
         }
 
-        /* Button styling */
         .btn {
-            padding: 0.75rem 1.25rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
-            border: none;
-            font-size: 0.95rem;
+            border: 2px solid transparent;
+            font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             text-decoration: none;
             justify-content: center;
             flex-grow: 1;
-            max-width: 100%;
+            max-width: 300px;
+            min-width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
         .btn-primary {
-            background: linear-gradient(90deg, var(--accent), #B22222); /* Changed gradient colors */
-            color: #f5f5f5; /* Changed text color for better contrast */
+            background: var(--primary);
+            color: var(--bg-dark);
+            border-color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-primary:hover {
-            transform: translateY(-0.1875rem);
-            box-shadow: 0 0.3125rem 0.9375rem rgba(220, 20, 60, 0.4); /* Changed shadow color */
+            background: #42C2CC;
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(82, 209, 220, 0.5);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--light);
-            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-color: var(--secondary);
         }
 
         .btn-secondary:hover {
-            background: rgba(66, 66, 66, 0.2);
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.03);
         }
 
-        /* Popup overlay and styling */
+        /* --- Popup Styling (Crucial for ProMax look) --- */
         #popup-overlay {
             display: none;
             position: fixed;
@@ -229,184 +206,148 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             z-index: 999;
         }
 
         .popup {
             display: none;
-            background: #212121;
-            color: #fff;
-            padding: 1.5rem;
-            border-radius: 1.25rem;
-            box-shadow: 0 0 1.875rem rgba(220, 20, 60, 0.5); /* Changed shadow color */
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000;
             width: 95%;
-            max-width: 550px;
+            max-width: 650px;
             max-height: 95vh;
             overflow-y: auto;
-            animation: fadeIn 0.3s ease-out forwards;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            border: 1px solid var(--primary);
         }
-
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -45%); }
+            from { opacity: 0; transform: translate(-50%, -60%); }
             to { opacity: 1; transform: translate(-50%, -50%); }
         }
 
-        #serviceCategorySelectionPopup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1001;
-            background: #212121;
-            color: #fff;
-            padding: 1.5rem;
-            border-radius: 1.25rem;
-            box-shadow: 0 0 1.875rem rgba(220, 20, 60, 0.5); /* Changed shadow color */
-            width: 95%;
-            max-width: 550px;
-            max-height: 95vh;
-            overflow-y: auto;
-            display: none;
-        }
-
-        #serviceCategoryCheckboxes {
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        }
-
-        .popup input,
-        .popup button,
-        .popup select,
-        .popup textarea {
-            width: 100%;
-            padding: 0.75rem;
-            margin: 0.625rem 0;
-            border-radius: 0.625rem;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .popup input,
-        .popup textarea {
-            background: #f5f5f5;
-            color: #000;
-        }
-
-        .popup textarea {
-            min-height: 6.25rem;
-            resize: vertical;
+        .popup h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .popup label {
             display: block;
-            margin-bottom: 0.3125rem;
-            color: var(--accent);
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
             font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .popup input,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            font-size: 1rem;
+            background: #22324C;
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+        
+        .popup input:focus,
+        .popup select:focus,
+        .popup textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(82, 209, 220, 0.2);
+        }
+
+        .popup textarea {
+            min-height: 8rem;
+            resize: vertical;
         }
 
         .popup button[type="submit"],
-        .popup button#okayBtn,
+        #razorpay-payment-btn,
+        #downloadTicketsBtn,
+        .popup button.close-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
         #razorpay-payment-btn,
         #downloadTicketsBtn {
-            background: linear-gradient(90deg, var(--accent), #B22222); /* Changed gradient colors */
-            color: #f5f5f5; /* Changed text color for better contrast */
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            padding: 0.75rem;
-            margin-top: 0.9375rem;
-            border-radius: 0.625rem;
-            border: none;
-            font-size: 1rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: linear-gradient(45deg, var(--primary), #42C2CC);
+            color: var(--bg-dark);
         }
 
         .popup button[type="submit"]:hover,
-        .popup button#okayBtn:hover,
         #razorpay-payment-btn:hover,
         #downloadTicketsBtn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(220, 20, 60, 0.5); /* Changed shadow color */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(82, 209, 220, 0.6);
+        }
+        
+        .quantity-selector-container {
+            background: #22324C;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+        }
+
+        .total-price-quantity {
+            font-size: 1.8rem !important;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary) !important;
+        }
+
+        #selectedServiceCategoriesDisplay {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            border: 1px solid var(--primary);
+            cursor: pointer;
         }
 
         #ticketDisplay {
-            font-weight: bold;
-            color: #F8F8FF; /* Ghost White */
-            font-size: 1.1rem;
+            background: #22324C;
+            border: 1px solid var(--primary);
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
             word-break: break-word;
-            text-align: center;
-            max-height: 12.5rem;
-            overflow-y: auto;
-            padding: 0.625rem;
-            background: rgba(0,0,0,0.2);
-            border-radius: 0.625rem;
-            margin: 0.625rem 0;
         }
-
-        #countryError {
-            color: red;
-            font-size: 0.8rem;
-            display: none;
-            margin-top: -0.3125rem;
-            margin-bottom: 0.625rem;
-        }
-
-        #submitMessage {
-            color: #F8F8FF;
-            font-size: 1rem;
-            text-align: center;
-            margin-top: 0.625rem;
-            display: none;
-        }
-
-        #timerDisplay {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-align: center;
-            margin-top: 0.9375rem;
-        }
-
-        .quantity-selector {
-            margin: 0.9375rem 0;
-        }
-
-        .quantity-selector label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-
-        .quantity-info {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 0.3125rem;
-            font-size: 0.85rem;
-            color: #ccc;
-        }
-
-        .total-price {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-align: right;
-            margin: 0.625rem 0;
-        }
-
+        
+        /* Custom Alert Styling */
         .custom-alert {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #B22222; /* Changed color */
-            color: #f5f5f5;
+            background: var(--primary);
+            color: var(--bg-dark);
             padding: 1.25rem 1.875rem;
             border-radius: 0.625rem;
             z-index: 1002;
@@ -415,6 +356,8 @@
             text-align: center;
             max-width: 90%;
             animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         @keyframes fadeInOut {
@@ -424,285 +367,256 @@
             100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
         }
 
-        /* Price table styling */
-        #priceListContainer table {
-            width: 100%;
-            border-collapse: collapse;
+        /* Price List Specific */
+        #priceListTableBody tr:nth-child(even) {
+            background-color: #22324C;
         }
-        #priceListContainer th, #priceListContainer td {
-            padding: 0.75rem;
-            text-align: left;
+        #priceListTableBody td {
+            font-family: 'Roboto', sans-serif;
         }
-        #priceListContainer thead {
-            background-color: rgba(220, 20, 60, 0.1); /* Changed accent color */
+        #priceListTableBody .font-semibold {
+            color: var(--secondary);
+            font-weight: 700;
         }
 
-        /* Responsive design for tablets */
+        /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
+
+        /* Tablet/Desktop Tweaks (1024px and below) */
         @media (max-width: 1024px) {
-            main { padding: 5rem 1rem 2rem; }
-            .product-header h2 { font-size: 1.5rem; }
-            .product-content { flex-direction: column; padding: 1rem; }
-            .product-image { min-height: 200px; width: 100%; }
-            .product-details { min-width: unset; width: 100%; text-align: center; }
+            .product-content { padding: 2rem; flex-direction: column; }
+            .product-details { text-align: center; }
             .price-container, .action-buttons { justify-content: center; }
-            .btn { width: 100%; max-width: 300px; }
-            .lottery-stats { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-            .stat-card { padding: 0.8rem; }
-            .stat-card h3 { font-size: 0.85rem; }
-            .stat-card p { font-size: 1.3rem; }
-            .popup { padding: 1rem; }
-            .popup input, .popup button, .popup select, .popup textarea { font-size: 0.9rem; padding: 0.6rem; }
+            .btn { max-width: 400px; } 
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            main { padding: 3rem 1rem; }
         }
 
-        /* Responsive design for smaller tablets and large phones */
-        @media (max-width: 768px) {
-            main { padding-top: 4rem; }
-            .product-header h2 { font-size: 1.3rem; }
-            .original-price { font-size: 1.3rem; }
-            .lottery-price { font-size: 1.8rem; }
-            .features li { font-size: 0.9rem; }
-            .btn { font-size: 0.85rem; padding: 0.6rem 1rem; }
-            .lottery-stats { grid-template-columns: 1fr 1fr; }
-        }
-
-        /* Responsive design for mobile price table */
-        @media (max-width: 640px) {
-            #priceListContainer thead {
-                display: none;
-            }
-            #priceListContainer tr {
-                display: block;
-                margin-bottom: 1rem;
-                border: 1px solid rgba(220, 20, 60, 0.2); /* Changed accent color */
-                border-radius: 0.5rem;
-            }
-            #priceListContainer td {
-                display: block;
-                text-align: right;
-                position: relative;
-                padding-left: 50%;
-                border-bottom: 1px solid rgba(220, 20, 60, 0.1); /* Changed accent color */
-            }
-            #priceListContainer td:last-child {
-                border-bottom: none;
-            }
-            #priceListContainer td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 0.75rem;
-                width: 45%;
-                padding-right: 0.75rem;
-                font-weight: bold;
-                text-align: left;
-                color: var(--accent);
-            }
-        }
-
-        /* Responsive design for mobile phones */
-        @media (max-width: 480px) {
-            main { padding: 3rem 0.5rem 1rem; }
-            .product-header h2 { font-size: 1.2rem; }
-            .product-content { padding: 0.8rem; }
-            .product-image { min-height: 180px; }
-            .original-price { font-size: 1.2rem; }
-            .lottery-price { font-size: 1.6rem; }
-            .features ul { padding-left: 1rem; }
-            .features li { font-size: 0.85rem; }
+        /* Mobile Tweaks (600px and below) */
+        @media (max-width: 600px) {
+            main { padding: 2rem 1rem; }
+            .product-header h2 { font-size: 2rem; }
+            .product-details h3 { font-size: 2rem; }
+            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
+            .current-price { font-size: 2.5rem; }
+            .popup { padding: 1.5rem; }
+            .popup h2 { font-size: 1.5rem; }
             .action-buttons { flex-direction: column; }
-            .btn { width: 100%; max-width: unset; }
-            .lottery-stats { grid-template-columns: 1fr; }
-            .stat-card { padding: 0.7rem; }
-            .stat-card h3 { font-size: 0.8rem; }
-            .stat-card p { font-size: 1.1rem; }
-            .popup { padding: 1rem; width: 98%; }
-            .popup h2 { font-size: 1.3rem; }
-            .popup input, .popup button, .popup select, .popup textarea { font-size: 0.85rem; padding: 0.5rem; }
-            #ticketDisplay { font-size: 0.95rem; }
-            .custom-alert { font-size: 0.9rem; padding: 1rem 1.5rem; }
+            .btn { min-width: 100%; max-width: 100%; }
+            
+            /* Category selection popup for very small screens */
+            #serviceCategorySelectionPopup {
+                width: 98%;
+                padding: 1rem;
+            }
+            #serviceCategoryCheckboxes {
+                grid-template-columns: 1fr; 
+            }
+            .popup input, .popup select, .popup textarea {
+                padding: 0.7rem 1rem;
+            }
+        }
+        
+        /* Smallest Mobile Tweaks (400px and below) */
+        @media (max-width: 400px) {
+            .current-price { font-size: 2rem; }
+            .original-price { font-size: 1rem; }
+            .stat-card p { font-size: 1.8rem; }
+            .popup { padding: 1rem; }
         }
     </style>
 </head>
 <body>
-    <main class="container mx-auto px-4 py-8">
-        <!-- Main content section for CCTV services -->
-        <section class="product-section rounded-2xl shadow-lg mb-8">
-            <div class="product-header rounded-t-2xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">CCTV Services</h2>
+   
+    <main class="container">
+        
+        <section class="product-section">
+            <div class="product-header">
+                <h2 class="text-white">Professional CCTV Service</h2>
+                <p class="text-sm text-gray-400 mt-2">Ensure the safety and security of your property - Quick, Reliable, and Transparent.</p>
             </div>
 
-            <div class="product-content flex flex-col md:flex-row items-center justify-center p-6 md:p-8 gap-6">
-                <!-- Product details and call to action -->
-                <div class="product-details w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
-                    <h3 class="text-2xl md:text-3xl font-semibold text-white mb-3">Professional CCTV Camera Installation & Servicing</h3>
-                    <p class="text-gray-300 mb-4 text-base md:text-lg">Ensure the safety and security of your home or business with our professional CCTV installation and maintenance services. We provide a range of camera sets to suit your needs, from standard AHD to high-resolution IP cameras. Our certified technicians will ensure a seamless setup and reliable performance.</p>
-
-                    <div class="price-container flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 my-6">
-                        <div class="original-price text-gray-400 text-xl md:text-2xl line-through">Varies by camera set</div>
-                        <div class="lottery-price text-accent text-3xl md:text-4xl font-bold" id="displayPrice">Select CCTV Set</div>
+            <div class="product-content">
+                
+                <div class="product-details">
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">CCTV Camera Installation & Servicing Packages</h3>
+                    <p class="text-text-subtle mb-4 text-base">
+                        Choose from our professional AHD or IP camera sets. Our certified technicians guarantee seamless installation and one year of free service and warranty on all hardware.
+                    </p>
+                    
+                    <div class="price-container">
+                        <div class="original-price">Varies by camera set</div>
+                        <div class="current-price" id="displayPrice">Select Service</div>
                     </div>
-
-                    <div class="features text-left my-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <button class="btn btn-primary" id="seePriceListBtn">
-                            <i class="fas fa-tags"></i> See Price List
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="participate-btn">
+                            <i class="fas fa-video"></i> Book CCTV Service 
                         </button>
-                        <button class="btn btn-secondary" id="conditionsBtn">
-                            <i class="fas fa-info-circle"></i> Warranty & Services
+                        <button id="price-list-btn" class="btn btn-secondary">
+                            <i class="fas fa-tags"></i> Transparent Price List
                         </button>
-                    </div>
-
-                    <div class="action-buttons flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
-                        <button class="btn btn-primary shadow-lg hover:shadow-xl" id="participate-btn">
-                            <i class="fas fa-video"></i> Book CCTV Service
+                         <button id="conditions-btn" class="btn btn-secondary">
+                            <i class="fas fa-file-contract"></i> Warranty & Services
                         </button>
-                        <button class="btn btn-secondary shadow-lg hover:shadow-xl" onclick="window.open('index.html')">
-                            <i class="fas fa-external-link-alt"></i> Go Back To Home
+                        <button class="btn btn-secondary" onclick="window.open('index.html')">
+                            <i class="fas fa-home"></i> Back To Home
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Stats section to showcase service highlights -->
-        <div class="lottery-stats grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Total Installations</h3>
-                <p class="text-white text-3xl font-bold">15,000+</p>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>Total Installations</h3>
+                <p>15,000+</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Satisfied Clients</h3>
-                <p class="text-white text-3xl font-bold">9,500+</p>
+            <div class="stat-card">
+                <h3>Satisfied Clients</h3>
+                <p>9,500+</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Customer Rating</h3>
-                <p class="text-white text-3xl font-bold">4.8/5 Stars</p>
+            <div class="stat-card">
+                <h3>Customer Satisfaction Score</h3>
+                <p>4.8/5 Stars</p>
             </div>
-            <div class="stat-card rounded-xl shadow-lg">
-                <h3 class="text-accent text-lg font-medium mb-1">Next Available Slot</h3>
-                <p class="text-white text-3xl font-bold">Today!</p>
+            <div class="stat-card">
+                <h3>Quickest Slot Available</h3>
+                <p>Today!</p>
             </div>
         </div>
     </main>
 
-    <!-- Overlay for popups -->
     <div id="popup-overlay"></div>
-
-    <!-- Main booking form popup -->
+    
     <div class="popup" id="popupForm">
-        <h2 class="text-2xl font-bold text-center mb-4">CCTV Service Booking</h2>
+        <h2 class="text-2xl font-bold text-center">CCTV Service Booking Form</h2>
         <form id="lotteryForm">
-            <div class="quantity-selector my-4">
-                <label class="text-accent text-sm mb-2">Select CCTV Service Package(s):</label>
-                <div id="selectedServiceCategoriesDisplay" class="bg-gray-700 text-light p-3 rounded-lg cursor-pointer mb-3" onclick="openServiceCategorySelectionPopup()">Click to select packages</div>
-                <div id="serviceCategorySelectionPopup" class="popup hidden">
-                    <h3 class="text-xl font-bold text-center mb-4">Select CCTV Package(s)</h3>
-                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-light max-h-60 overflow-y-auto">
-                    </div>
-                    <button type="button" class="btn btn-primary mt-4 py-2 rounded-xl font-bold text-lg" onclick="applySelectedServiceCategories()">Apply Selection</button>
-                    <button type="button" class="btn btn-secondary mt-2 py-2 rounded-xl font-bold text-lg" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
+            <div class="quantity-selector-container my-4">
+                <label>Select CCTV Service Package(s):</label>
+                <div id="selectedServiceCategoriesDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openServiceCategorySelectionPopup()">Click to select package(s)</div>
+                
+                <div id="serviceCategorySelectionPopup" class="popup" style="display: none;">
+                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Select CCTV Package(s)</h3>
+                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-80 overflow-y-auto p-2">
+                        </div>
+                    <button type="button" class="btn btn-primary mt-4 py-3" onclick="applySelectedServiceCategories()">Apply Selection</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-3 close-btn" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
                 </div>
-            </div>
-            <label for="fullName" class="text-accent text-sm mb-1">Your Full Name (min 10 characters)</label>
-            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
 
-            <label for="phone" class="text-accent text-sm mb-1">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
-
-            <label for="email" class="text-accent text-sm mb-1">Email Address</label>
-            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
-
-            <label for="location" class="text-accent text-sm mb-1">Your Location (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" class="rounded-lg bg-gray-100 text-gray-900 p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-red-500" />
-
-            <label for="address" class="text-accent text-sm mb-1">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full mb-2 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
-            <span id="countryError" class="text-red-400 text-xs mt-1 hidden">Please enter your complete address with at least 30 characters.</span>
-
-            <div class="quantity-selector my-4">
-                <label for="ticketQuantity" class="text-accent text-sm mb-2">Number of Packages (Max 5):</label>
-                <select id="ticketQuantity" name="ticketQuantity" required class="rounded-lg bg-gray-100 text-gray-900 p-3 w-full focus:outline-none focus:ring-2 focus:ring-red-500">
+                <label for="ticketQuantity" class="mt-4">Number of Packages (Max 5):</label>
+                <select id="ticketQuantity" name="ticketQuantity" required class="bg-bg-dark border-primary">
                     <option value="" disabled selected>Select quantity</option>
                 </select>
-                <div class="quantity-info flex justify-between mt-2 text-gray-400 text-sm">
-                    <span>Quantity based price</span>
-                    <span class="total-price-quantity font-bold text-accent text-lg">Total: ₹0</span>
+
+                <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
+                    <span>Quantity based total price</span>
+                    <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">Total: ₹0</span>
                 </div>
             </div>
+
+            <label for="fullName">Your Full Name (min 10 characters)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
+            
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
+            
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
+            
+            <label for="location">Your Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
+            
+            <label for="address">Complete Address (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
 
             <input type="hidden" name="ticket" id="ticketCode" />
             <input type="hidden" name="finalPrice" id="finalPrice" />
-            <button type="submit" class="w-full btn-primary mt-4 py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Submit Details</button>
-            <span id="submitMessage" class="text-green-400 text-center mt-3 hidden">Submitting... Please wait</span>
+            
+            <button type="submit">Submit Details & Proceed to Payment</button>
+            <p id="submitMessage" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
         </form>
     </div>
 
-    <!-- Payment step popup -->
     <div class="popup" id="paymentStep">
-        <h2 class="text-2xl font-bold text-center mb-4">Complete Your Payment for CCTV Service</h2>
-        <p class="text-gray-300 text-center mb-6">Please complete the payment to finalize your CCTV service booking. Click the button below.</p>
-        <div id="paymentSummary" class="bg-gray-800 p-4 rounded-lg mb-6 text-center"></div>
-        <div id="timerDisplay" class="text-accent text-xl font-bold text-center mb-6">Time remaining: 05:00</div>
-        <button id="razorpay-payment-btn" class="w-full btn-primary py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">Pay with Razorpay</button>
-        <p class="mt-4 text-sm text-gray-400 text-center">
-            After payment, please wait for automatic verification. Do not close this window.
+        <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
+        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your CCTV Service booking.</p>
+        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
+        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
+        <p class="mt-4 text-xs text-text-subtle text-center">
+            Note: Do not close this window during payment processing.
         </p>
     </div>
 
-    <!-- Ticket confirmation popup -->
     <div class="popup" id="ticketStep">
-        <h2 id="welcomeMessage" class="text-2xl font-bold text-center mb-4 text-green-400"></h2>
-        <p class="text-gray-300 text-center mb-4">You have successfully booked <span id="ticketCountDisplay" class="font-bold text-accent"></span>:</p>
-        <div id="ticketDisplay" class="bg-gray-800 p-4 rounded-lg mb-6 text-center text-lg"></div>
-        <button id="downloadTicketsBtn" class="w-full btn-primary py-3 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below for <span id="ticketCountDisplay" class="font-bold text-secondary"></span>:</p>
+        <div id="ticketDisplay" class="space-y-2"></div>
+        <button id="downloadTicketsBtn" class="mt-4">
             <i class="fas fa-download mr-2"></i> Download Service Details
         </button>
-        <p class="mt-4 text-sm text-gray-400 text-center">📸 Please take a screenshot for proof and reference.</p>
-        <button id="okayBtn" class="w-full btn-secondary py-3 rounded-xl font-bold text-white text-lg mt-4 transition-all duration-300 hover:scale-105 hover:bg-opacity-20">Okay, Got It!</button>
+        <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
     </div>
-
-    <!-- Price list popup -->
+    
     <div class="popup" id="priceListPopup">
-        <h2 class="text-2xl font-bold text-center mb-4">CCTV Price List</h2>
-        <div id="priceListContainer" class="max-h-[70vh] overflow-y-auto">
+        <h2 class="text-2xl font-bold text-center">CCTV Service Transparent Price List</h2>
+        <div class="overflow-x-auto mt-4">
+            <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
+                <thead>
+                    <tr class="text-left text-secondary">
+                        <th class="py-3 px-4 border-b border-text-subtle">Package Name</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Our Price</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Market Price</th>
+                    </tr>
+                </thead>
+                <tbody id="priceListTableBody">
+                    <!-- Rows will be injected by JavaScript -->
+                </tbody>
+            </table>
         </div>
-        <button class="btn btn-primary mt-4" onclick="closeInfoPopup('priceListPopup')">Close</button>
+        <button id="closePriceListBtn" class="btn btn-secondary close-btn mt-4">Close Price List</button>
     </div>
 
-    <!-- Conditions popup -->
     <div class="popup" id="conditionsPopup">
-        <h2 class="text-2xl font-bold text-center mb-4">Service & Warranty Conditions</h2>
-        <div class="max-h-[70vh] overflow-y-auto text-left p-2">
-            <h3 class="text-xl md:text-2xl font-semibold text-accent mb-3">Service Features:</h3>
-            <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Professional installation by trained technicians</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>High-quality AHD and IP camera packages available</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Transparent pricing with no hidden costs</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>On-site setup and configuration</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Customer support for all technical queries</li>
-            </ul>
-            <h4 class="text-xl md:text-2xl font-semibold text-accent mt-6 mb-3">Warranty & Services:</h4>
-            <ul class="list-disc list-inside text-gray-300 text-base md:text-lg space-y-2">
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>One Year Fully Warranty on all items</li>
-                <li><i class="fas fa-check-circle text-green-400 mr-2"></i>One Year Service Free</li>
+        <h2 class="text-2xl font-bold text-center">Detailed Service Conditions & Guarantee</h2>
+        <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
+             <ul class="list-disc list-inside space-y-3">
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Professional Technicians</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>All installation and servicing carried out by certified and experienced technicians.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-video-camera mr-2"></i> Installation Packages</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Packages include AHD and IP Camera sets (4 or 8 cameras).</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Standard installation charges are included in the price.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>On-site setup and connection to monitor/network storage (DVR/NVR).</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Prices shown are for the complete hardware set and standard installation.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Any additional components (e.g., extra cabling beyond standard allowance, specialized brackets) will be quoted transparently on-site.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Initial visiting charge ₹299 (adjustable based on distance in Sonipat) for diagnosis/repair-only bookings.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Warranty & Service Guarantee</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>One Year **Full Warranty** on all CCTV equipment (Cameras, DVR/NVR, HDD, etc.) purchased through us.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>One Year **Free Service** included for maintenance and troubleshooting.</li>
             </ul>
         </div>
-        <button class="btn btn-primary mt-4" onclick="closeInfoPopup('conditionsPopup')">Close</button>
+        <button id="closeConditionsBtn" class="btn btn-secondary close-btn mt-4">I Understand</button>
     </div>
-
+   
     <script>
-        // Data for CCTV services based on the provided image
         const serviceData = [
-            {"Name": "AHD 4 Camera Set", "Price": 16000},
-            {"Name": "AHD 8 Camera Set", "Price": 24000},
-            {"Name": "IP Camera 4 Camera Set", "Price": 24000},
-            {"Name": "IP Camera 8 Camera Set", "Price": 34000},
+            {"Category": "AHD 4 Camera Set", "Price": 16000},
+            {"Category": "AHD 8 Camera Set", "Price": 24000},
+            {"Category": "IP Camera 4 Camera Set", "Price": 24000},
+            {"Category": "IP Camera 8 Camera Set", "Price": 34000},
+            // Added a repair/diagnosis option for comprehensive service structure
+            {"Category": "CCTV Diagnosis & Repair Visit", "Price": 299} 
         ];
 
+        // --- Generic constants ---
         const SERVICE_NAME = "CCTV Service";
-        const SERVICE_TAB_ID = "shs-service";
-        const SERVICE_FORM_DATA_KEY = "cctvPackage";
+        const SERVICE_TAB_ID = "cctv-service"; // Unique tab ID
+        const LOCAL_STORAGE_KEY = 'cctvServiceFormData'; // Unique key for Local Storage
         const RAZORPAY_IMAGE_TEXT = "CCTV";
-
-        // DOM elements
+        
+        // --- DOM Element Selection ---
         const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
         const allPopups = document.querySelectorAll('.popup');
@@ -724,36 +638,67 @@
         const displayPriceElement = document.getElementById('displayPrice');
         const finalPriceInput = document.getElementById('finalPrice');
         const form = document.getElementById('lotteryForm');
-        const ticketInput = document.getElementById('ticketCode');
-        const ticketDisplay = document.getElementById('ticketDisplay');
         const okayBtn = document.getElementById('okayBtn');
-
-        const seePriceListBtn = document.getElementById('seePriceListBtn');
-        const conditionsBtn = document.getElementById('conditionsBtn');
+        
+        // New elements for popups
+        const priceListBtn = document.getElementById('price-list-btn');
+        const conditionsBtn = document.getElementById('conditions-btn');
         const priceListPopup = document.getElementById('priceListPopup');
         const conditionsPopup = document.getElementById('conditionsPopup');
-        const priceListContainer = document.getElementById('priceListContainer');
+        const priceListTableBody = document.getElementById('priceListTableBody');
 
-        let generatedTicket = '';
+        // --- State Variables ---
+        let generatedTicket = ''; 
         let paymentTimeout = null;
         let countdownInterval = null;
-        const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes
+        const PAYMENT_TIME_LIMIT = 5 * 60;
         let currentServicePrice = 0;
         let selectedQuantity = 1;
         let allowClose = false;
 
-        /**
-         * Populates the service selection checkboxes based on the serviceData array.
-         */
+        // --- Local Storage Functions for Autofill ---
+
+        function saveFormData() {
+            const formData = {
+                fullName: form.fullName.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                location: form.location.value,
+                address: form.address.value
+            };
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+            } catch (e) {
+                console.warn("Local storage saving failed:", e);
+            }
+        }
+
+        function loadFormData() {
+            try {
+                const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    form.fullName.value = data.fullName || '';
+                    form.phone.value = data.phone || '';
+                    form.email.value = data.email || '';
+                    form.location.value = data.location || '';
+                    form.address.value = data.address || '';
+                }
+            } catch (e) {
+                console.warn("Local storage loading failed:", e);
+            }
+        }
+        
+        // --- Core Functions ---
+
         function populateServiceCategories() {
             serviceCategoryCheckboxesContainer.innerHTML = '';
             serviceData.forEach(service => {
                 const checkboxHtml = `
-                    <label class="inline-flex items-center text-light w-full">
-                        <input type="checkbox" name="serviceCategory" value="${service.Name}"
-                               data-price="${service.Price}"
-                               class="form-checkbox h-5 w-5 text-red-500 rounded focus:ring-red-500">
-                        <span class="ml-2">${service.Name}</span>
+                    <label class="inline-flex items-center text-text-light w-full p-2 bg-bg-dark rounded-md border border-primary hover:bg-bg-card transition duration-200 cursor-pointer">
+                        <input type="checkbox" name="serviceCategory" value="${service.Category}" data-price="${service.Price}" 
+                               class="form-checkbox h-5 w-5 text-secondary rounded focus:ring-secondary checked:bg-secondary">
+                        <span class="ml-2 text-sm">${service.Category} (<span class="text-secondary">₹${service.Price}</span>)</span>
                     </label>
                 `;
                 serviceCategoryCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
@@ -763,12 +708,9 @@
             });
         }
 
-        /**
-         * Initializes the quantity selector dropdown with options from 1 to 5.
-         */
         function initQuantitySelector() {
-            const maxServices = 5;
-            ticketQuantitySelect.innerHTML = '<option value="" disabled>Select quantity</option>';
+            const maxServices = 5; 
+            ticketQuantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
             for (let i = 1; i <= maxServices; i++) {
                 const option = document.createElement('option');
                 option.value = i;
@@ -778,40 +720,29 @@
             ticketQuantitySelect.value = 1;
         }
 
-        /**
-         * Updates the displayed prices based on selected packages and quantity.
-         */
         function updatePrices() {
-            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
+            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => ({
+                category: cb.value,
+                price: parseFloat(cb.dataset.price)
+            }));
+            
             selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
-
-            let totalCalculatedPrice = 0;
-
-            if (selectedCategories.length > 0) {
-                selectedCategories.forEach(checkbox => {
-                    totalCalculatedPrice += parseFloat(checkbox.dataset.price);
-                });
-            }
-
-            currentServicePrice = totalCalculatedPrice;
+            
+            currentServicePrice = selectedCategories.reduce((total, service) => total + service.price, 0);
             const totalFinalPrice = currentServicePrice * selectedQuantity;
 
             if (selectedCategories.length > 0) {
-                selectedServiceCategoriesDisplay.textContent = selectedCategories.map(cb => cb.value).join(', ');
-                displayPriceElement.textContent = `Package Price: ₹${currentServicePrice}`;
+                selectedServiceCategoriesDisplay.textContent = selectedCategories.map(s => s.category).join(', ');
+                displayPriceElement.textContent = `₹${currentServicePrice}`;
             } else {
-                selectedServiceCategoriesDisplay.textContent = `Click to select ${SERVICE_NAME} package`;
-                displayPriceElement.textContent = `Select CCTV Set`;
+                selectedServiceCategoriesDisplay.textContent = `Click to select package(s)`;
+                displayPriceElement.textContent = `Select Service`;
             }
-
+            
             totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
             finalPriceInput.value = totalFinalPrice;
         }
 
-        /**
-         * Generates a unique formatted ticket ID.
-         * @returns {string} The generated ticket ID.
-         */
         function generateFormattedTicket() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
                 const r = Math.random() * 16 | 0;
@@ -820,115 +751,98 @@
             });
         }
 
-        /**
-         * Downloads the booking details as a text file.
-         */
         function downloadTickets() {
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
-
-            const ticketContent = `${SERVICE_NAME} Booking Details\n\n` +
+            const ticketContent = `PREMIUM ${SERVICE_NAME} BOOKING DETAILS\n\n` +
                                  `Customer Name: ${form.field1.value}\n` +
                                  `Contact: ${form.field2.value}\n` +
                                  `Location: ${form.field5.value}\n` +
                                  `Package(s): ${selectedCategoryNames}\n` +
-                                 `Booking Reference Number: ${generatedTicket}\n\n` +
+                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
                                  `Total Packages: ${selectedQuantity}\n` +
-                                 `Package Cost: ₹${finalPriceInput.value}\n\n` +
-                                 `Note: Final charges for installation and any additional hardware will be communicated by the technician after site visit.`;
-
+                                 `Service Charge Paid: ₹${finalPriceInput.value}\n\n` +
+                                 `--- IMPORTANT NOTE ---\n` +
+                                 `Final charges for installation and any additional hardware will be communicated by the technician after site visit.`;
+            
             const blob = new Blob([ticketContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${SERVICE_TAB_ID}_booking.txt`;
+            a.download = `${SERVICE_TAB_ID}_booking_${generatedTicket.substring(0, 8)}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
-
-        /**
-         * Shows a custom alert message to the user.
-         * @param {string} message The message to display.
-         */
+        
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert';
+            alertBox.className = 'custom-alert'; 
             alertBox.textContent = message;
             document.body.appendChild(alertBox);
-            setTimeout(() => alertBox.remove(), 4000);
+            setTimeout(() => alertBox.remove(), 4000); 
         }
 
-        /**
-         * Closes all popups and clears timers.
-         */
+        // --- Popup Control Functions ---
         function closeAllPopups() {
             if (!allowClose) {
-                showCustomAlert("Please complete the process before closing.");
+                showCustomAlert("Please complete the booking process before closing.");
                 return;
             }
             clearTimers();
             popupOverlay.style.display = 'none';
             allPopups.forEach(p => p.style.display = 'none');
             document.body.style.overflow = 'auto';
-            allowClose = false;
+            allowClose = false; 
         }
 
-        /**
-         * Opens a specified popup element.
-         * @param {HTMLElement} popupElement The popup element to show.
-         */
         function openPopup(popupElement) {
             document.body.style.overflow = 'hidden';
             popupOverlay.style.display = 'block';
+            allPopups.forEach(p => p.style.display = 'none');
             popupElement.style.display = 'block';
             allowClose = false;
         }
+        
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
 
-        /**
-         * Opens the service category selection popup.
-         */
         function openServiceCategorySelectionPopup() {
             populateServiceCategories();
-            const currentlySelected = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim());
-            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(cb => {
-                cb.checked = currentlySelected.includes(cb.value);
+            const currentlySelectedCategories = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select package(s)');
+            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(checkbox => {
+                checkbox.checked = currentlySelectedCategories.includes(checkbox.value);
             });
             serviceCategorySelectionPopup.style.display = 'block';
             popupOverlay.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
-        /**
-         * Closes the service category selection popup.
-         */
         function closeServiceCategorySelectionPopup() {
             serviceCategorySelectionPopup.style.display = 'none';
-            if (popupForm.style.display !== 'block') {
+            if (popupForm.style.display !== 'block' && priceListPopup.style.display !== 'block' && conditionsPopup.style.display !== 'block') {
                 popupOverlay.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
         }
 
-        /**
-         * Applies the selected service categories and updates prices.
-         */
         function applySelectedServiceCategories() {
             updatePrices();
             closeServiceCategorySelectionPopup();
         }
-
-        /**
-         * Clears all active timers and intervals.
-         */
+        
+        // --- Timer Functions ---
         function clearTimers() {
             if (paymentTimeout) clearTimeout(paymentTimeout);
             if (countdownInterval) clearInterval(countdownInterval);
         }
 
-        /**
-         * Starts the countdown timer for the payment step.
-         */
         function startPaymentTimer() {
             let timeLeft = PAYMENT_TIME_LIMIT;
             const updateDisplay = () => {
@@ -944,71 +858,94 @@
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
                     showCustomAlert("Payment time expired. Please try again.");
-                    allowClose = true;
+                    allowClose = true; 
                     closeAllPopups();
                 }
             }, 1000);
         }
 
-        /**
-         * Handles the form submission process.
-         * @param {Event} e The submit event.
-         */
+        // --- Price List Function ---
+        function populatePriceList() {
+            priceListTableBody.innerHTML = '';
+            serviceData.forEach(service => {
+                // Assuming a generic market price calculation (e.g., 20% higher than our price)
+                const marketPrice = Math.round(service.Price * 1.20); 
+                const row = `
+                    <tr class="text-text-light hover:bg-bg-dark">
+                        <td class="py-3 px-4 border-b border-gray-700">${service.Category}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.Price}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle line-through">₹${marketPrice}</td>
+                    </tr>
+                `;
+                priceListTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        // --- Payment and Submission Logic ---
+        
         function handleFormSubmit(e) {
             e.preventDefault();
 
-            // Form validation checks
+            // Validation 
+            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
+            if (selectedCategories.length === 0) { showCustomAlert("Please select at least one package."); return; }
             if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
             if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
             if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
             if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
-            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
-            if (selectedCategories.length === 0) { showCustomAlert(`Please select at least one CCTV package.`); return; }
             if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of packages."); return; }
 
             submitMessage.style.display = 'block';
             form.querySelector('button[type="submit"]').disabled = true;
 
-            generatedTicket = generateFormattedTicket();
+            generatedTicket = generateFormattedTicket(); 
+            
+            const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
 
-            // Prepare form data for submission
+            // --- Form Data for Google Sheet (using generic field names) ---
             const formData = new FormData();
-            formData.append('field1', form.fullName.value);
-            formData.append('field2', form.phone.value);
-            formData.append('field3', form.email.value);
-            formData.append('field5', form.location.value);
-            formData.append('field6', form.address.value);
-            formData.append('ticket', generatedTicket);
-            formData.append('tab', SERVICE_TAB_ID);
-            formData.append(SERVICE_FORM_DATA_KEY, selectedCategories.map(cb => cb.value).join(', '));
-            formData.append('servicePrice', currentServicePrice);
-            formData.append('ticketQuantity', selectedQuantity);
+            formData.append('field1', form.fullName.value); 
+            formData.append('field2', form.phone.value);    
+            formData.append('field3', form.email.value);    
+            formData.append('field4', selectedCategoryNames); // Service Categories
+            formData.append('field5', form.location.value); 
+            formData.append('field6', form.address.value);  
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', SERVICE_NAME);   
+            formData.append('servicePrice', currentServicePrice); 
+            formData.append('ticketQuantity', selectedQuantity); 
+            formData.append('finalPrice', finalPriceInput.value);
 
-            // API call to Google Sheets
+            // --- Google Script URL ---
             fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
                 method: "POST",
                 body: formData
             })
             .then(res => res.text())
             .then(res => {
-                if (res === "Success") {
+                if (res.includes("Success") || res.includes("success")) { 
+                    // Save data to local storage on successful submission
+                    saveFormData(); 
+                    
                     popupForm.style.display = 'none';
                     openPopup(paymentStep);
-                    const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
                     paymentSummary.innerHTML = `
-                        <p class="text-gray-300 text-lg mb-2">You are booking <span class="font-bold text-accent">${selectedQuantity}</span> package(s) for ${selectedCategoryNames}.</p>
-                        <p class="total-price text-accent text-2xl font-bold">Package Cost: ₹${finalPriceInput.value}</p>
-                        <p class="text-gray-400 text-sm mt-2">Final charges for installation and any additional hardware will be communicated by the technician after site visit.</p>
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
+                        <p class="text-text-light text-base mb-1">Package(s): <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
+                        <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${selectedQuantity}</span></p>
+                        <p class="current-price text-secondary text-3xl font-bold">Total Payable: ₹${finalPriceInput.value}</p>
+                        <p class="text-gray-400 text-sm mt-2">The amount paid covers the package cost. Any additional charges will be quoted on-site.</p>
                     `;
                     startPaymentTimer();
                 } else {
-                    showCustomAlert("There was an error submitting your form. Please try again.");
+                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
                 }
             })
             .catch(err => {
                 console.error("Submission error:", err);
-                showCustomAlert("An unexpected error occurred. Please check your connection and try again.");
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
             })
             .finally(() => {
                 submitMessage.style.display = 'none';
@@ -1016,21 +953,18 @@
             });
         }
 
-        /**
-         * Handles the Razorpay payment process.
-         */
         function handleRazorpayPayment() {
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": finalPriceInput.value * 100,
+                "amount": finalPriceInput.value * 100, // Amount in paise
                 "currency": "INR",
                 "name": `SonipatHomeService - ${SERVICE_NAME}`,
                 "description": `Payment for ${selectedQuantity} ${SERVICE_NAME} package(s) for ${selectedCategoryNames}`,
-                "image": `https://placehold.co/100x100/212121/DC143C?text=${RAZORPAY_IMAGE_TEXT}`, /* Changed accent color */
+                "image": `https://placehold.co/100x100/1C2738/52D1DC?text=${RAZORPAY_IMAGE_TEXT}`,
                 "handler": function (response){
                     console.log("Payment successful:", response.razorpay_payment_id);
-                    paymentSuccess();
+                    paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
                     "name": form.fullName.value,
@@ -1040,13 +974,10 @@
                 "notes": {
                     "address": `${form.location.value}, ${form.address.value}`,
                     "service_details": selectedCategoryNames,
+                    "booking_ref": generatedTicket
                 },
-                "theme": {
-                    "color": "#212121"
-                },
-                "modal": {
-                    "ondismiss": () => console.log('Razorpay checkout modal closed.')
-                }
+                "theme": { "color": "#52D1DC" },
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
             };
 
             const rzp = new Razorpay(options);
@@ -1057,120 +988,79 @@
             rzp.open();
         }
 
-        /**
-         * Handles actions after a successful payment.
-         */
-        function paymentSuccess() {
+        function paymentSuccess(paymentId) {
             clearTimers();
             paymentStep.style.display = 'none';
             openPopup(ticketStep);
-
-            const userName = form.fullName.value;
+            
+            const userName = form.fullName.value.split(' ')[0];
             const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
 
-            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Your CCTV Service Booking is Confirmed! 🎉`;
-
+            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
+            
             ticketDisplay.innerHTML = `
-                <p>Registration ID: <span class="text-white">${generatedTicket}</span></p>
-                <p>Service: <span class="text-white">${selectedCategoryNames}</span></p>
-                <p>Quantity: <span class="text-white">${selectedQuantity}</span></p>
-                <p class="text-gray-400 text-sm mt-2">Package Cost: ₹${finalPriceInput.value}</p>
-                <p class="text-gray-400 text-sm">Final charges for installation and any additional hardware will be communicated by the technician after site visit.</p>
+                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p>Package(s): <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
+                <p>Quantity: <span class="font-bold text-text-light">${selectedQuantity}</span></p>
+                <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${finalPriceInput.value}</p>
+                <p class="text-text-subtle text-sm mt-3">Our technician will contact you shortly to schedule the installation/service at your location: ${form.location.value}.</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
-
-            ticketCountDisplay.textContent = `${selectedQuantity} package(s)`;
+            
+            ticketCountDisplay.textContent = `${selectedQuantity} package(s) for ${SERVICE_NAME}`;
             allowClose = true;
         }
-
-        /**
-         * Opens an info popup (e.g., price list, conditions).
-         * @param {string} popupId The ID of the popup to open.
-         */
-        function openInfoPopup(popupId) {
-            document.body.style.overflow = 'hidden';
-            popupOverlay.style.display = 'block';
-            document.getElementById(popupId).style.display = 'block';
-        }
-
-        /**
-         * Closes an info popup.
-         * @param {string} popupId The ID of the popup to close.
-         */
-        function closeInfoPopup(popupId) {
-            document.getElementById(popupId).style.display = 'none';
-
-            const isAnotherPopupVisible = Array.from(allPopups).some(p => p.style.display === 'block');
-            if (!isAnotherPopupVisible) {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        /**
-         * Generates and displays the price list table.
-         */
-        function generatePriceTable() {
-            let tableHTML = `
-                <table class="w-full text-left text-gray-300">
-                    <thead>
-                        <tr class="bg-gray-800 border-b border-gray-600">
-                            <th class="p-3">Package Name</th>
-                            <th class="p-3">Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-            serviceData.forEach(service => {
-                tableHTML += `
-                    <tr class="border-b border-gray-700">
-                        <td class="p-3" data-label="Package Name">${service.Name}</td>
-                        <td class="p-3" data-label="Price">₹${service.Price}</td>
-                    </tr>
-                `;
-            });
-            tableHTML += `</tbody></table>`;
-            priceListContainer.innerHTML = tableHTML;
-        }
-
-        // Event Listeners
+        
+        // --- Event Listeners Initialization ---
         participateBtn.addEventListener('click', () => {
             initQuantitySelector();
             updatePrices();
+            loadFormData(); // Load data on popup open
             openPopup(popupForm);
         });
+        
+        ticketQuantitySelect.addEventListener('change', updatePrices); 
 
-        seePriceListBtn.addEventListener('click', () => {
-            generatePriceTable();
-            openInfoPopup('priceListPopup');
-        });
-
-        conditionsBtn.addEventListener('click', () => {
-            openInfoPopup('conditionsPopup');
-        });
-
-        ticketQuantitySelect.addEventListener('change', updatePrices);
-
+        // Centralized Overlay Click Handling
         popupOverlay.addEventListener('click', e => {
-            if (e.target !== popupOverlay) return;
-
-            if (priceListPopup.style.display === 'block') closeInfoPopup('priceListPopup');
-            if (conditionsPopup.style.display === 'block') closeInfoPopup('conditionsPopup');
-            if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
-
-            if (ticketStep.style.display === 'block' && allowClose) {
-                closeAllPopups();
-            } else if ((popupForm.style.display === 'block' || paymentStep.style.display === 'block') && !allowClose) {
-                showCustomAlert("Please complete the form or payment process before closing.");
+            if (e.target === popupOverlay) {
+                if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
+                else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (conditionsPopup.style.display === 'block') closeSpecificPopup(conditionsPopup);
+                else if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
+                else if (popupForm.style.display === 'block' || paymentStep.style.display === 'block') showCustomAlert("Please complete the booking process before closing.");
+                else closeAllPopups();
             }
         });
+        
+        // Popup Close buttons
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const parentPopup = e.target.closest('.popup');
+                if (parentPopup.id === 'ticketStep') {
+                    window.location.href = 'index.html';
+                } else {
+                    closeSpecificPopup(parentPopup);
+                }
+            });
+        });
 
+        // Specific listeners
         okayBtn.addEventListener('click', () => window.location.href = 'index.html');
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
         downloadTicketsBtn.addEventListener('click', downloadTickets);
         form.addEventListener('submit', handleFormSubmit);
 
-        // Initial setup on page load
+        // Listeners for new popups
+        priceListBtn.addEventListener('click', () => {
+            populatePriceList();
+            openPopup(priceListPopup);
+        });
+        conditionsBtn.addEventListener('click', () => openPopup(conditionsPopup));
+
+        // --- Page Load Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
+            // NOTE: loadFormData() is now called on participateBtn click
             populateServiceCategories();
             initQuantitySelector();
             updatePrices();
