@@ -587,7 +587,7 @@
                     <tr class="text-left text-secondary">
                         <th class="py-3 px-4 border-b border-text-subtle">Vehicle Type</th>
                         <th class="py-3 px-4 border-b border-text-subtle text-right">Base Fare (&lt; 80KM)</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Per KM Rate</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Rate Above 80 KMs</th>
                         <th class="py-3 px-4 border-b border-text-subtle text-right">Night Charge/Night</th>
                     </tr>
                 </thead>
@@ -630,15 +630,15 @@
     </div>
    
     <script>
-        // Data for vehicle booking services
+        // Data for vehicle booking services (Rates updated as per latest chart: Base fare < 80KM, PerKM > 80KM)
         const serviceData = [
-            {"Name": "ECCO 5 Seater", "Price": 1699, "PerKM": "10 Rs.", "NightCharge": 500},
-            {"Name": "Desire 5 Seater", "Price": 1799, "PerKM": "10 Rs.", "NightCharge": 500},
-            {"Name": "Ertiga 7 Seater", "Price": 2299, "PerKM": "10 Rs.", "NightCharge": 500},
-            {"Name": "Tempo Traveller (9-12 Seater)", "Price": 6250, "PerKM": "25 Rs.", "NightCharge": 500},
-            {"Name": "Tempo Traveller (15-18 Seater)", "Price": 6750, "PerKM": "27 Rs.", "NightCharge": 500},
-            {"Name": "Tempo Traveller (18-21 Seater)", "Price": 6750, "PerKM": "27 Rs.", "NightCharge": 500},
-            {"Name": "Tempo Traveller (25 Seater)", "Price": 8750, "PerKM": "35 Rs.", "NightCharge": 500},
+            {"Name": "ECCO 5 Seater", "Price": 1699, "PerKM": "10 Rs./KM", "NightCharge": 500}, // Per KM rate remains 10
+            {"Name": "Desire 5 Seater", "Price": 1799, "PerKM": "11 Rs./KM", "NightCharge": 500}, // Per KM rate updated to 11 Rs./KM
+            {"Name": "Ertiga 7 Seater", "Price": 2299, "PerKM": "14 Rs./KM", "NightCharge": 500}, // Per KM rate updated to 14 Rs./KM
+            {"Name": "Tempo Traveller (9-12 Seater)", "Price": 6250, "PerKM": "25 Rs./KM", "NightCharge": 500},
+            {"Name": "Tempo Traveller (15-18 Seater)", "Price": 6750, "PerKM": "27 Rs./KM", "NightCharge": 500},
+            {"Name": "Tempo Traveller (18-21 Seater)", "Price": 6750, "PerKM": "27 Rs./KM", "NightCharge": 500},
+            {"Name": "Tempo Traveller (25 Seater)", "Price": 8750, "PerKM": "35 Rs./KM", "NightCharge": 500},
         ];
 
         // --- Constants and DOM Element Selection ---
@@ -761,7 +761,7 @@
             if (selectedCategories.length > 0) {
                 selectedCategories.forEach(checkbox => {
                     totalBasePrice += parseFloat(checkbox.dataset.price);
-                    totalNightChargesPerVehicle += parseFloat(checkbox.dataset.nightCharge);
+                    totalNightChargesPerVehicle += parseFloat(checkbox.dataset.night-charge);
                 });
             }
             
