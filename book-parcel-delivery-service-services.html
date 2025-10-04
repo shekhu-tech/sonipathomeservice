@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - Premium AC Service</title>
+    <title>SonipatHomeService.com - Premium Parcel Delivery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -431,32 +431,32 @@
         
         <section class="product-section">
             <div class="product-header">
-                <h2 class="text-white">Professional AC Service & Repair</h2>
-                <p class="text-sm text-gray-400 mt-2">Book the best service in Sonipat - Quick, Reliable, and Transparent.</p>
+                <h2 class="text-white">Premium Parcel Delivery (Bike Rider)</h2>
+                <p class="text-sm text-gray-400 mt-2">Book the quickest and most reliable bike rider for your parcel delivery needs.</p>
             </div>
 
             <div class="product-content">
                 
                 <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">Certified & Guaranteed AC Service</h3>
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">Bike Rider Delivery Service</h3>
                     <p class="text-text-subtle mb-4 text-base">
-                        Get expert service from our certified technicians. Select your service category for instant, transparent pricing. We ensure peak performance for your AC unit.
+                        Select the distance and weight category for instant, transparent pricing. We ensure fast and secure delivery for your parcels.
                     </p>
                     
                     <div class="price-container">
-                        <div class="original-price">Market Price Varies</div>
-                        <div class="current-price" id="displayPrice">Select Service</div>
+                        <div class="original-price">Final Price is Fixed by Category</div>
+                        <div class="current-price" id="displayPrice">Select Delivery Type</div>
                     </div>
                     
                     <div class="action-buttons">
                         <button class="btn btn-primary" id="participate-btn">
-                            <i class="fas fa-tools"></i> Book AC Service Now
+                            <i class="fas fa-motorcycle"></i> Book Parcel Delivery
                         </button>
                         <button id="price-list-btn" class="btn btn-secondary">
                             <i class="fas fa-tags"></i> Transparent Price List
                         </button>
                          <button id="conditions-btn" class="btn btn-secondary">
-                            <i class="fas fa-file-contract"></i> Service Conditions
+                            <i class="fas fa-file-contract"></i> Delivery Conditions
                         </button>
                         <button class="btn btn-secondary" onclick="window.open('index.html')">
                             <i class="fas fa-home"></i> Back To Home
@@ -468,20 +468,20 @@
 
         <div class="stat-grid">
             <div class="stat-card">
-                <h3>Total Customers Trusting Us</h3>
-                <p>28,500+</p>
+                <h3>Total Deliveries Completed</h3>
+                <p>12,000+</p>
             </div>
             <div class="stat-card">
-                <h3>Monthly ACs Serviced</h3>
-                <p>1000+</p>
+                <h3>Bike Riders Active</h3>
+                <p>15+</p>
             </div>
             <div class="stat-card">
-                <h3>Customer Satisfaction Score</h3>
-                <p>4.9/5 Stars</p>
+                <h3>Delivery Time Rating</h3>
+                <p>4.8/5 Stars</p>
             </div>
             <div class="stat-card">
-                <h3>Quickest Slot Available</h3>
-                <p>Today!</p>
+                <h3>Max Range Covered</h3>
+                <p>20 Kms</p>
             </div>
         </div>
     </main>
@@ -489,45 +489,46 @@
     <div id="popup-overlay"></div>
     
     <div class="popup" id="popupForm">
-        <h2 class="text-2xl font-bold text-center">AC Service Booking Form</h2>
+        <h2 class="text-2xl font-bold text-center">Parcel Delivery Booking Form</h2>
         <form id="lotteryForm">
             <div class="quantity-selector-container my-4">
-                <label>Select AC Service Category:</label>
-                <div id="selectedCarModelsDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openCarModelSelectionPopup()">Click to select service(s)</div>
+                <label>Select Delivery Category (Distance & Weight):</label>
+                <div id="selectedCarModelsDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openCarModelSelectionPopup()">Click to select category(s)</div>
                 
                 <div id="carModelSelectionPopup" class="popup" style="display: none;">
-                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Select AC Service Category</h3>
-                    <div id="carModelCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-80 overflow-y-auto p-2">
+                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Select Delivery Category</h3>
+                    <div id="carModelCheckboxes" class="grid grid-cols-2 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto p-2">
+                        <!-- Checkboxes populated by JS -->
                         </div>
                     <button type="button" class="btn btn-primary mt-4 py-3" onclick="applySelectedCarModels()">Apply Selection</button>
                     <button type="button" class="btn btn-secondary mt-2 py-3 close-btn" onclick="closeCarModelSelectionPopup()">Cancel</button>
                 </div>
 
-                <label for="ticketQuantity" class="mt-4">Number of Services (Max 5):</label>
+                <label for="ticketQuantity" class="mt-4">Number of Parcels (Max 5):</label>
                 <select id="ticketQuantity" name="ticketQuantity" required class="bg-bg-dark border-primary">
                     <option value="" disabled selected>Select quantity</option>
                 </select>
 
                 <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
-                    <span>Quantity based total service price</span>
+                    <span>Quantity based total delivery fee</span>
                     <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">Total: ₹0</span>
                 </div>
             </div>
 
-            <label for="fullName">Your Full Name (min 10 characters)</label>
+            <label for="fullName">Your Full Name (Sender) (min 10 characters)</label>
             <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
             
-            <label for="phone">Phone Number (10 digits)</label>
+            <label for="phone">Sender Phone Number (10 digits)</label>
             <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
             
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
+            <label for="email">Recipient Name & Contact</label>
+            <input type="text" id="email" name="field3" required placeholder="Recipient Name & 10 digit contact" />
             
-            <label for="location">Your Location (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
+            <label for="location">Pickup Location (e.g. Sonipat Sector 14)</label>
+            <input type="text" id="location" name="field5" required placeholder="Pickup City/Area" autocomplete="address-level2" list="locations" />
             
-            <label for="address">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
+            <label for="address">Pickup & Drop Address Details (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="Full Pickup Address, then Drop Address (e.g. Pickup: H. No. 123, Sec 12 | Drop: Shop 5, Atlas Rd)" autocomplete="street-address" minlength="30" rows="4"></textarea>
 
             <input type="hidden" name="ticket" id="ticketCode" />
             <input type="hidden" name="finalPrice" id="finalPrice" />
@@ -539,7 +540,7 @@
 
     <div class="popup" id="paymentStep">
         <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
-        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your AC Service booking.</p>
+        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your Parcel Delivery booking.</p>
         <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
         <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
         <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
@@ -550,27 +551,28 @@
 
     <div class="popup" id="ticketStep">
         <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below for <span id="ticketCountDisplay" class="font-bold text-secondary"></span>:</p>
+        <p class="text-text-subtle text-center mb-4">Your delivery is confirmed. Details below for <span id="ticketCountDisplay" class="font-bold text-secondary"></span>:</p>
         <div id="ticketDisplay" class="space-y-2"></div>
         <button id="downloadTicketsBtn" class="mt-4">
-            <i class="fas fa-download mr-2"></i> Download Service Details
+            <i class="fas fa-download mr-2"></i> Download Delivery Details
         </button>
         <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
         <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
     </div>
     
     <div class="popup" id="priceListPopup">
-        <h2 class="text-2xl font-bold text-center">AC Service Transparent Price List</h2>
+        <h2 class="text-2xl font-bold text-center">Parcel Delivery Price List (Bike Rider)</h2>
         <div class="overflow-x-auto mt-4">
             <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
                 <thead>
                     <tr class="text-left text-secondary">
-                        <th class="py-3 px-4 border-b border-text-subtle">Service</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Our Price</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Market Price</th>
+                        <th class="py-3 px-4 border-b border-text-subtle">Distance (Kms)</th>
+                        <th class="py-3 px-4 border-b border-text-subtle">Weight (Kg)</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Price (₹)</th>
                     </tr>
                 </thead>
                 <tbody id="priceListTableBody">
+                    <!-- Rows populated by JS -->
                     </tbody>
             </table>
         </div>
@@ -578,60 +580,46 @@
     </div>
 
     <div class="popup" id="conditionsPopup">
-        <h2 class="text-2xl font-bold text-center">Detailed Service Conditions & Guarantee</h2>
+        <h2 class="text-2xl font-bold text-center">Detailed Parcel Delivery Conditions</h2>
         <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
              <ul class="list-disc list-inside space-y-3">
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Professional Technicians</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>All work carried out by certified and experienced technicians</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-magnifying-glass mr-2"></i> Diagnosis & Inspection</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>On-site diagnosis and detailed problem assessment</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Gas leak detection and minor repair included</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Electrical connections and wiring inspection</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Cleaning and inspection of drain tray and pipe</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Performance and cooling efficiency testing</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-cogs mr-2"></i> Installation & Uninstallation</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Proper electrical connections and safety checks</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Correct positioning and mounting for maximum efficiency</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Vacuuming of pipes for efficient cooling</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Standard mounting kit included (brackets, copper pipes, wiring, drain pipe, etc.)</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Proper gas recovery to prevent leakage</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Disconnection and sealing of copper pipes</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Basic cleanup of installation/uninstallation area</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-screwdriver-wrench mr-2"></i> Repair & Maintenance</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Thorough cleaning of indoor/outdoor unit filters and coils</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Diagnosis and minor repairs of PCB and inverter boards</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Testing of repaired PCB/inverter boards for functionality</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Refrigerant level check and top-up if required (extra charges apply)</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Water leakage diagnosis, drain pipe cleaning, and proper drainage setup</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Initial visiting charge ₹299 (adjustable based on distance in Sonipat)</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Transparent pricing for parts and additional labor charges will be provided before work begins</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Customer Support & Warranty</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>1-year service warranty on installation work</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>1-month warranty on repairs, gas refills, and leakage fixes</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-truck-fast mr-2"></i> Scope of Service</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>All deliveries are conducted by reliable bike riders.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Maximum delivery range is 20 Kms.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Parcels must be securely packed by the sender.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Prices are fixed based on the selected distance and weight category.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-weight-hanging mr-2"></i> Weight & Size Limits</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Maximum weight per parcel is 10 Kg.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>If the parcel exceeds the selected weight category, additional charges may apply, or the service may be declined by the rider.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-check mr-2"></i> Booking & Payment</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>The payment covers the full delivery fee for the selected category.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Ensure accurate pickup and drop addresses are provided.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Rider will contact both sender and recipient before pickup and drop-off.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-ban mr-2"></i> Prohibited Items</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>We do not transport illegal goods, hazardous materials, cash, jewelry, or highly fragile items.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>The sender is responsible for the contents of the parcel.</li>
             </ul>
         </div>
         <button id="closeConditionsBtn" class="btn btn-secondary close-btn mt-4">I Understand</button>
     </div>
    
     <script>
-        // Updated AC Service Rates based on the provided image
-        const carServiceData = [
-            { "Category": "Emergency Diagnose", "Price": 299 }, // Renamed from "Emergency AC Services" to match image
-            { "Category": "Window AC Installation Service", "Price": 699 }, 
-            { "Category": "Split AC Installation Service", "Price": 1299 }, 
-            { "Category": "Window AC Gas Refill Service (Up to 1.5 Ton)", "Price": 2999 }, // Price updated from 1099 to 2999
-            { "Category": "Split AC Gas Refill Service (Up to 1.5 Ton)", "Price": 3199 }, // Price updated from 1299 to 3199
-            { "Category": "Split AC Service / Cleaning", "Price": 699 }, // Price updated from 499 to 699
-            { "Category": "Window AC Service / Cleaning", "Price": 499 }, // Price updated from 699 to 499
-            { "Category": "Split AC Uninstallation Service", "Price": 799 },
-            { "Category": "Window AC Uninstallation Service", "Price": 499 },
-            { "Category": "Normal PCB Repair Service", "Price": 1499 },
-            { "Category": "Inverter AC PCB Repair Service", "Price": 2999 }, // Renamed from "Inverter Repair Service" to match image
-            { "Category": "AC Copper Pipes Service (Per Foot)", "Price": 149 }, // Kept as is, added detail
-            { "Category": "AC Water Leakage Check/Fix", "Price": 499 } // Renamed from "AC Water Leakage Service" to match image
+        // Updated Parcel Delivery Rates based on the provided image
+        const parcelDeliveryData = [
+            { "Category": "0-10 Kms | Up to 5 Kg", "Price": 149 },
+            { "Category": "0-10 Kms | Up to 6-10 Kg", "Price": 199 },
+            { "Category": "11-15 Kms | Up to 5 Kg", "Price": 210 },
+            { "Category": "11-15 Kms | Up to 6-10 Kg", "Price": 299 },
+            { "Category": "15-20 Kms | Up to 5 Kg", "Price": 280 },
+            { "Category": "15-20 Kms | Up to 6-10 Kg", "Price": 380 }
         ];
 
+        // --- Constants ---
+        const SERVICE_NAME = "Parcel Delivery";
+        const SERVICE_TAB_ID = "parcel-delivery"; // Unique tab ID
+        const LOCAL_STORAGE_KEY = 'parcelDeliveryFormData'; 
+        const RAZORPAY_IMAGE_TEXT = "PD"; // Parcel Delivery
+        
         // --- DOM Element Selection ---
         const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
@@ -642,7 +630,7 @@
         const timerDisplay = document.getElementById('timerDisplay');
         const razorpayBtn = document.getElementById('razorpay-payment-btn');
         const submitMessage = document.getElementById('submitMessage');
-        const carModelCheckboxesContainer = document.getElementById('carModelCheckboxes');
+        const carModelCheckboxesContainer = document.getElementById('carModelCheckboxes'); // Renamed from AC service logic
         const selectedCarModelsDisplay = document.getElementById('selectedCarModelsDisplay');
         const carModelSelectionPopup = document.getElementById('carModelSelectionPopup');
         const ticketQuantitySelect = document.getElementById('ticketQuantity');
@@ -670,10 +658,9 @@
         let paymentTimeout = null;
         let countdownInterval = null;
         const PAYMENT_TIME_LIMIT = 5 * 60;
-        let currentServicePrice = 0;
+        let currentServicePrice = 0; // Price for one unit of the selected category/categories
         let selectedQuantity = 1;
         let allowClose = false;
-        const LOCAL_STORAGE_KEY = 'acServiceFormData'; // Key for Local Storage
 
         // --- Local Storage Functions ---
 
@@ -681,9 +668,9 @@
             const formData = {
                 fullName: form.fullName.value,
                 phone: form.phone.value,
-                email: form.email.value,
-                location: form.location.value,
-                address: form.address.value
+                // field3 is Recipient Name & Contact
+                location: form.location.value, // Pickup Location
+                address: form.address.value // Pickup & Drop Address Details
             };
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
         }
@@ -694,59 +681,73 @@
                 const data = JSON.parse(savedData);
                 form.fullName.value = data.fullName || '';
                 form.phone.value = data.phone || '';
-                form.email.value = data.email || '';
+                // form.email.value is Recipient Contact, not saved automatically for privacy/complexity
                 form.location.value = data.location || '';
                 form.address.value = data.address || '';
             }
         }
         
-        // --- Core Functions (Unchanged) ---
+        // --- Core Functions ---
 
         function populateCarModels() {
             carModelCheckboxesContainer.innerHTML = '';
-            carServiceData.forEach(service => {
+            parcelDeliveryData.forEach(service => {
                 const checkboxHtml = `
                     <label class="inline-flex items-center text-text-light w-full p-2 bg-bg-dark rounded-md border border-primary hover:bg-bg-card transition duration-200 cursor-pointer">
-                        <input type="checkbox" name="acServiceCategory" value="${service.Category}" data-price="${service.Price}" 
+                        <input type="checkbox" name="deliveryCategory" value="${service.Category}" data-price="${service.Price}" 
                                class="form-checkbox h-5 w-5 text-secondary rounded focus:ring-secondary checked:bg-secondary">
-                        <span class="ml-2 text-sm">${service.Category} (<span class="text-secondary">₹${service.Price}</span>)</span>
+                        <span class="ml-2 text-sm">${service.Category} (<span class="font-bold text-secondary">₹${service.Price}</span>)</span>
                     </label>
                 `;
                 carModelCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
             });
-            carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]').forEach(checkbox => {
+            carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]').forEach(checkbox => {
                 checkbox.addEventListener('change', updatePrices);
             });
         }
 
         function initQuantitySelector() {
             const maxServices = 5; 
-            ticketQuantitySelect.innerHTML = '<option value="" disabled>Select quantity</option>';
+            ticketQuantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
             for (let i = 1; i <= maxServices; i++) {
                 const option = document.createElement('option');
                 option.value = i;
-                option.textContent = i + (i === 1 ? ' service' : ' services');
+                option.textContent = i + (i === 1 ? ' parcel' : ' parcels');
                 ticketQuantitySelect.appendChild(option);
             }
             ticketQuantitySelect.value = 1;
         }
 
         function updatePrices() {
-            const selectedAcServiceCategories = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]:checked')).map(checkbox => ({
+            const selectedDeliveryCategories = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(checkbox => ({
                 category: checkbox.value,
                 price: parseFloat(checkbox.dataset.price)
             }));
             selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
 
-            currentServicePrice = selectedAcServiceCategories.reduce((total, service) => total + service.price, 0);
+            // Only allow one category selection for a parcel delivery service for simple pricing
+            if (selectedDeliveryCategories.length > 1) {
+                // Keep only the first selected item and uncheck the rest
+                const firstSelected = selectedDeliveryCategories[0];
+                selectedDeliveryCategories.forEach((item, index) => {
+                    if (index > 0) {
+                        const checkbox = carModelCheckboxesContainer.querySelector(`input[value="${item.category}"]`);
+                        if (checkbox) checkbox.checked = false;
+                    }
+                });
+                selectedDeliveryCategories.splice(1);
+                showCustomAlert("Only one delivery category can be selected per transaction.");
+            }
+            
+            currentServicePrice = selectedDeliveryCategories.reduce((total, service) => total + service.price, 0);
             const totalFinalPrice = currentServicePrice * selectedQuantity;
 
-            if (selectedAcServiceCategories.length > 0) {
-                selectedCarModelsDisplay.textContent = selectedAcServiceCategories.map(s => s.category).join(', ');
+            if (selectedDeliveryCategories.length > 0) {
+                selectedCarModelsDisplay.textContent = selectedDeliveryCategories.map(s => s.category).join(', ');
                 displayPriceElement.textContent = `₹${currentServicePrice}`;
             } else {
-                selectedCarModelsDisplay.textContent = 'Click to select AC service category';
-                displayPriceElement.textContent = 'Select Service';
+                selectedCarModelsDisplay.textContent = 'Click to select category(s)';
+                displayPriceElement.textContent = 'Select Delivery Type';
             }
             
             totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
@@ -762,23 +763,25 @@
         }
 
         function downloadTickets() {
-            const selectedAcServiceCategoryNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]:checked')).map(checkbox => checkbox.value).join(', ');
-            const ticketContent = `PREMIUM AC SERVICE BOOKING DETAILS\n\n` +
-                                 `Customer Name: ${form.field1.value}\n` +
-                                 `Contact: ${form.field2.value}\n` +
-                                 `Location: ${form.field5.value}\n` +
-                                 `AC Service Category(s): ${selectedAcServiceCategoryNames}\n` +
+            const selectedDeliveryCategoryNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(checkbox => checkbox.value).join(', ');
+            const recipientDetails = form.field3.value;
+            
+            const ticketContent = `PREMIUM PARCEL DELIVERY BOOKING DETAILS\n\n` +
+                                 `Sender Name: ${form.field1.value}\n` +
+                                 `Sender Contact: ${form.field2.value}\n` +
+                                 `Recipient: ${recipientDetails}\n` +
+                                 `Delivery Category: ${selectedDeliveryCategoryNames}\n` +
+                                 `Pickup Location: ${form.field5.value}\n` +
+                                 `Addresses: ${form.field6.value}\n` +
                                  `Booking Reference Number: ${generatedTicket}\n\n` + 
-                                 `Total Services: ${selectedQuantity}\n` +
-                                 `Service Charge Paid: ₹${finalPriceInput.value}\n\n` +
-                                 `--- IMPORTANT NOTE ---\n` +
-                                 `Final charges for parts and additional labor (beyond the selected service) will be transparently communicated by the technician after a full on-site diagnosis.`;
+                                 `Total Parcels: ${selectedQuantity}\n` +
+                                 `Amount Paid (Fixed Fee): ₹${finalPriceInput.value}\n`;
             
             const blob = new Blob([ticketContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `ac_service_booking_${generatedTicket.substring(0, 8)}.txt`;
+            a.download = `parcel_delivery_booking_${generatedTicket.substring(0, 8)}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -793,7 +796,7 @@
             setTimeout(() => alertBox.remove(), 4000); 
         }
 
-        // --- Popup Control Functions (Unchanged) ---
+        // --- Popup Control Functions ---
         function closeAllPopups() {
             if (!allowClose) {
                 showCustomAlert("Please complete the booking process before closing.");
@@ -825,8 +828,8 @@
 
         function openCarModelSelectionPopup() {
             populateCarModels();
-            const currentlySelectedCategories = selectedCarModelsDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select service(s)');
-            carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]').forEach(checkbox => {
+            const currentlySelectedCategories = selectedCarModelsDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select category(s)');
+            carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]').forEach(checkbox => {
                 checkbox.checked = currentlySelectedCategories.includes(checkbox.value);
             });
             carModelSelectionPopup.style.display = 'block';
@@ -847,7 +850,7 @@
             closeCarModelSelectionPopup();
         }
         
-        // --- Timer Functions (Unchanged) ---
+        // --- Timer Functions ---
         function clearTimers() {
             if (paymentTimeout) clearTimeout(paymentTimeout);
             if (countdownInterval) clearInterval(countdownInterval);
@@ -874,55 +877,58 @@
             }, 1000);
         }
 
-        // --- Price List Function (Unchanged) ---
+        // --- Price List Function ---
         function populatePriceList() {
             priceListTableBody.innerHTML = '';
-            carServiceData.forEach(service => {
-                const marketPrice = Math.round(service.Price * 1.3); // 30% higher for market rate
+            // Manually structure the output to match the table headers (Distance, Weight, Price)
+            parcelDeliveryData.forEach(service => {
+                const [distance, weight] = service.Category.split(' | ');
                 const row = `
                     <tr class="text-text-light hover:bg-bg-dark">
-                        <td class="py-3 px-4 border-b border-gray-700">${service.Category}</td>
+                        <td class="py-3 px-4 border-b border-gray-700">${distance}</td>
+                        <td class="py-3 px-4 border-b border-gray-700">${weight}</td>
                         <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.Price}</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle line-through">₹${marketPrice}</td>
                     </tr>
                 `;
                 priceListTableBody.insertAdjacentHTML('beforeend', row);
             });
         }
 
-        // --- Payment and Submission Logic (Modified to include saveFormData) ---
+        // --- Payment and Submission Logic ---
         
         function handleFormSubmit(e) {
             e.preventDefault();
 
-            // Validation (Unchanged)
-            const selectedCategories = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]:checked'));
-            if (selectedCategories.length === 0) { showCustomAlert("Please select at least one AC service category."); return; }
-            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
-            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
-            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
-            if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of services."); return; }
+            // Validation 
+            const selectedCategories = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked'));
+            if (selectedCategories.length === 0) { showCustomAlert("Please select a delivery category."); return; }
+            if (selectedCategories.length > 1) { showCustomAlert("Only one delivery category can be selected per transaction."); return; }
+            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter the sender's full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit sender phone number."); return; }
+            if (form.email.value.trim().length < 5) { showCustomAlert("Please enter the Recipient Name and Contact details."); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid pickup location name."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter complete Pickup and Drop Address details (minimum 30 characters)."); return; }
+            if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of parcels."); return; }
 
             submitMessage.style.display = 'block';
             form.querySelector('button[type="submit"]').disabled = true;
 
             generatedTicket = generateFormattedTicket(); 
             
-            const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
+            const selectedCategoryName = selectedCategories[0].value;
+            const recipientDetails = form.field3.value;
 
-            // --- Form Data for Google Sheet (using original field names) ---
+            // --- Form Data for Google Sheet ---
             const formData = new FormData();
-            formData.append('field1', form.fullName.value); 
-            formData.append('field2', form.phone.value);    
-            formData.append('field3', form.email.value);    
-            formData.append('field4', selectedCategoryNames); 
-            formData.append('field5', form.location.value); 
-            formData.append('field6', form.address.value);  
+            formData.append('field1', form.fullName.value); // Sender Name
+            formData.append('field2', form.phone.value);    // Sender Phone
+            formData.append('field3', recipientDetails);    // Recipient Details
+            formData.append('field4', selectedCategoryName); // Delivery Category
+            formData.append('field5', form.location.value); // Pickup Location
+            formData.append('field6', form.address.value);  // Full Addresses
             formData.append('ticket', generatedTicket);     
-            formData.append('tab', 'ac-service');           
-            formData.append('serviceType', 'AC Service');   
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', SERVICE_NAME);   
             formData.append('servicePrice', currentServicePrice); 
             formData.append('ticketQuantity', selectedQuantity); 
             formData.append('finalPrice', finalPriceInput.value);
@@ -935,17 +941,16 @@
             .then(res => res.text())
             .then(res => {
                 if (res.includes("Success") || res.includes("success")) { 
-                    // Save data to local storage on successful submission
                     saveFormData(); 
                     
                     popupForm.style.display = 'none';
                     openPopup(paymentStep);
                     paymentSummary.innerHTML = `
                         <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
-                        <p class="text-text-light text-base mb-1">Service(s): <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
-                        <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${selectedQuantity}</span></p>
+                        <p class="text-text-light text-base mb-1">Category: <span class="font-bold text-primary">${selectedCategoryName}</span></p>
+                        <p class="text-text-light text-base mb-3">Parcels: <span class="font-bold text-primary">${selectedQuantity}</span></p>
                         <p class="current-price text-secondary text-3xl font-bold">Total Payable: ₹${finalPriceInput.value}</p>
-                        <p class="text-gray-400 text-sm mt-2">The amount paid covers the services selected. Extra charges for parts/labor, if needed, will be discussed by the technician.</p>
+                        <p class="text-gray-400 text-sm mt-2">The amount paid is the final, fixed delivery fee.</p>
                     `;
                     startPaymentTimer();
                 } else {
@@ -963,27 +968,26 @@
         }
 
         function handleRazorpayPayment() {
-            // Unchanged payment logic
-            const selectedCategoryNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]:checked')).map(cb => cb.value).join(', ');
+            const selectedCategoryName = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(cb => cb.value).join(', ');
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
                 "amount": finalPriceInput.value * 100,
                 "currency": "INR",
-                "name": `SonipatHomeService - AC Service`,
-                "description": `Payment for ${selectedQuantity} AC Service(s) for ${selectedCategoryNames}`,
-                "image": `https://placehold.co/100x100/1C2738/00FFFF?text=AC`, 
+                "name": `SonipatHomeService - ${SERVICE_NAME}`,
+                "description": `Payment for ${selectedQuantity} Parcel(s) (${selectedCategoryName})`,
+                "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`, 
                 "handler": function (response){
                     console.log("Payment successful:", response.razorpay_payment_id);
                     paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
                     "name": form.fullName.value,
-                    "email": form.email.value,
+                    "email": "", 
                     "contact": form.phone.value
                 },
                 "notes": {
-                    "address": `${form.location.value}, ${form.address.value}`,
-                    "service_details": selectedCategoryNames,
+                    "address_details": form.address.value,
+                    "delivery_category": selectedCategoryName,
                     "booking_ref": generatedTicket
                 },
                 "theme": { "color": "#00FFFF" },
@@ -999,30 +1003,29 @@
         }
 
         function paymentSuccess(paymentId) {
-            // Unchanged confirmation logic
             clearTimers();
             paymentStep.style.display = 'none';
             openPopup(ticketStep);
             
             const userName = form.fullName.value.split(' ')[0];
-            const selectedCategoryNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="acServiceCategory"]:checked')).map(cb => cb.value).join(', ');
+            const selectedCategoryName = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(cb => cb.value).join(', ');
 
-            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
+            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Delivery Confirmed! 🎉`;
             
             ticketDisplay.innerHTML = `
                 <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p>Service: <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
-                <p>Quantity: <span class="font-bold text-text-light">${selectedQuantity}</span></p>
+                <p>Delivery Category: <span class="font-bold text-text-light">${selectedCategoryName}</span></p>
+                <p>Parcels: <span class="font-bold text-text-light">${selectedQuantity}</span></p>
                 <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${finalPriceInput.value}</p>
-                <p class="text-text-subtle text-sm mt-3">Our technician will contact you shortly to schedule the service at your location: ${form.location.value}.</p>
+                <p class="text-text-subtle text-sm mt-3">Our rider will contact the sender shortly for pickup at: ${form.location.value}.</p>
                 <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
             
-            ticketCountDisplay.textContent = `${selectedQuantity} AC Service(s)`;
+            ticketCountDisplay.textContent = `${selectedQuantity} Parcel(s)`;
             allowClose = true;
         }
         
-        // --- Event Listeners Initialization (Unchanged) ---
+        // --- Event Listeners Initialization ---
         participateBtn.addEventListener('click', () => {
             initQuantitySelector();
             updatePrices();
@@ -1068,12 +1071,12 @@
         });
         conditionsBtn.addEventListener('click', () => openPopup(conditionsPopup));
 
-        // --- Page Load Initialization (Modified to include loadFormData) ---
+        // --- Page Load Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
             populateCarModels();
             initQuantitySelector();
             updatePrices();
-            loadFormData(); // Load saved data when the page loads
+            loadFormData(); 
         });
     </script>
 </body>
