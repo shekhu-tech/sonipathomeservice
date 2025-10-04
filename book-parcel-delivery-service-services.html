@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - Premium Parcel Delivery</title>
+    <title>SonipatHomeService.com - Bike Parcel Delivery Service</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -324,7 +324,7 @@
             color: var(--secondary) !important;
         }
 
-        #selectedCarModelsDisplay {
+        #selectedServiceDisplay {
             background: var(--bg-dark);
             color: var(--text-light);
             border: 1px solid var(--primary);
@@ -404,11 +404,11 @@
             .btn { min-width: 100%; max-width: 100%; }
             
             /* Category selection popup for very small screens */
-            #carModelSelectionPopup {
+            #serviceSelectionPopup {
                 width: 98%;
                 padding: 1rem;
             }
-            #carModelCheckboxes {
+            #serviceCheckboxes {
                 grid-template-columns: 1fr; /* Stack service categories for clarity */
             }
             .popup input, .popup select, .popup textarea {
@@ -431,26 +431,26 @@
         
         <section class="product-section">
             <div class="product-header">
-                <h2 class="text-white">Premium Parcel Delivery (Bike Rider)</h2>
-                <p class="text-sm text-gray-400 mt-2">Book the quickest and most reliable bike rider for your parcel delivery needs.</p>
+                <h2 class="text-white">Premium Bike Parcel Delivery Service</h2>
+                <p class="text-sm text-gray-400 mt-2">Book fast and reliable local delivery in Sonipat - Distance & Weight based rates.</p>
             </div>
 
             <div class="product-content">
                 
                 <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">Bike Rider Delivery Service</h3>
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">Bike Rider Express Delivery</h3>
                     <p class="text-text-subtle mb-4 text-base">
-                        Select the distance and weight category for instant, transparent pricing. We ensure fast and secure delivery for your parcels.
+                        Select the distance and weight category for instant, transparent pricing. Our dedicated riders ensure quick and secure delivery of your parcel.
                     </p>
                     
                     <div class="price-container">
-                        <div class="original-price">Final Price is Fixed by Category</div>
-                        <div class="current-price" id="displayPrice">Select Delivery Type</div>
+                        <div class="original-price">Standard Rates Vary</div>
+                        <div class="current-price" id="displayPrice">Select Service</div>
                     </div>
                     
                     <div class="action-buttons">
                         <button class="btn btn-primary" id="participate-btn">
-                            <i class="fas fa-motorcycle"></i> Book Parcel Delivery
+                            <i class="fas fa-motorcycle"></i> Book Now
                         </button>
                         <button id="price-list-btn" class="btn btn-secondary">
                             <i class="fas fa-tags"></i> Transparent Price List
@@ -469,19 +469,19 @@
         <div class="stat-grid">
             <div class="stat-card">
                 <h3>Total Deliveries Completed</h3>
-                <p>12,000+</p>
+                <p>35,000+</p>
             </div>
             <div class="stat-card">
-                <h3>Bike Riders Active</h3>
-                <p>15+</p>
+                <h3>Monthly Rider Trips</h3>
+                <p>1500+</p>
             </div>
             <div class="stat-card">
-                <h3>Delivery Time Rating</h3>
+                <h3>Customer Delivery Score</h3>
                 <p>4.8/5 Stars</p>
             </div>
             <div class="stat-card">
-                <h3>Max Range Covered</h3>
-                <p>20 Kms</p>
+                <h3>Fastest Pickup Available</h3>
+                <p>Within 15 Mins!</p>
             </div>
         </div>
     </main>
@@ -492,16 +492,15 @@
         <h2 class="text-2xl font-bold text-center">Parcel Delivery Booking Form</h2>
         <form id="lotteryForm">
             <div class="quantity-selector-container my-4">
-                <label>Select Delivery Category (Distance & Weight):</label>
-                <div id="selectedCarModelsDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openCarModelSelectionPopup()">Click to select category(s)</div>
+                <label>Select Delivery Category (Distance | Weight):</label>
+                <div id="selectedServiceDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openServiceSelectionPopup()">Click to select distance and weight</div>
                 
-                <div id="carModelSelectionPopup" class="popup" style="display: none;">
+                <div id="serviceSelectionPopup" class="popup" style="display: none;">
                     <h3 class="text-xl font-bold text-center mb-4 text-primary">Select Delivery Category</h3>
-                    <div id="carModelCheckboxes" class="grid grid-cols-2 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto p-2">
-                        <!-- Checkboxes populated by JS -->
+                    <div id="serviceCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-80 overflow-y-auto p-2">
                         </div>
-                    <button type="button" class="btn btn-primary mt-4 py-3" onclick="applySelectedCarModels()">Apply Selection</button>
-                    <button type="button" class="btn btn-secondary mt-2 py-3 close-btn" onclick="closeCarModelSelectionPopup()">Cancel</button>
+                    <button type="button" class="btn btn-primary mt-4 py-3" onclick="applySelectedServices()">Apply Selection</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-3 close-btn" onclick="closeServiceSelectionPopup()">Cancel</button>
                 </div>
 
                 <label for="ticketQuantity" class="mt-4">Number of Parcels (Max 5):</label>
@@ -510,25 +509,28 @@
                 </select>
 
                 <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
-                    <span>Quantity based total delivery fee</span>
+                    <span>Quantity based total delivery price</span>
                     <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">Total: ₹0</span>
                 </div>
             </div>
 
-            <label for="fullName">Your Full Name (Sender) (min 10 characters)</label>
-            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
+            <label for="fullName">Your Full Name (Sender's Name)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="3" />
             
-            <label for="phone">Sender Phone Number (10 digits)</label>
+            <label for="phone">Phone Number (Sender's 10 digits)</label>
             <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
             
-            <label for="email">Recipient Name & Contact</label>
-            <input type="text" id="email" name="field3" required placeholder="Recipient Name & 10 digit contact" />
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
             
-            <label for="location">Pickup Location (e.g. Sonipat Sector 14)</label>
-            <input type="text" id="location" name="field5" required placeholder="Pickup City/Area" autocomplete="address-level2" list="locations" />
+            <label for="location">Pickup Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
             
-            <label for="address">Pickup & Drop Address Details (min 30 characters)</label>
-            <textarea id="address" name="field6" required placeholder="Full Pickup Address, then Drop Address (e.g. Pickup: H. No. 123, Sec 12 | Drop: Shop 5, Atlas Rd)" autocomplete="street-address" minlength="30" rows="4"></textarea>
+            <label for="address">Complete Pickup Address (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
+            
+            <label for="deliveryDetails">Receiver Name & Drop-off Address</label>
+            <textarea id="deliveryDetails" name="field7" required placeholder="Receiver Name, Receiver Phone, Drop-off Address" minlength="30" rows="4"></textarea>
 
             <input type="hidden" name="ticket" id="ticketCode" />
             <input type="hidden" name="finalPrice" id="finalPrice" />
@@ -551,28 +553,27 @@
 
     <div class="popup" id="ticketStep">
         <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">Your delivery is confirmed. Details below for <span id="ticketCountDisplay" class="font-bold text-secondary"></span>:</p>
+        <p class="text-text-subtle text-center mb-4">Your delivery booking is confirmed. Details below for <span id="ticketCountDisplay" class="font-bold text-secondary"></span>:</p>
         <div id="ticketDisplay" class="space-y-2"></div>
         <button id="downloadTicketsBtn" class="mt-4">
-            <i class="fas fa-download mr-2"></i> Download Delivery Details
+            <i class="fas fa-download mr-2"></i> Download Booking Details
         </button>
         <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
         <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
     </div>
     
     <div class="popup" id="priceListPopup">
-        <h2 class="text-2xl font-bold text-center">Parcel Delivery Price List (Bike Rider)</h2>
+        <h2 class="text-2xl font-bold text-center">Parcel Delivery Transparent Price List</h2>
         <div class="overflow-x-auto mt-4">
             <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
                 <thead>
                     <tr class="text-left text-secondary">
-                        <th class="py-3 px-4 border-b border-text-subtle">Distance (Kms)</th>
-                        <th class="py-3 px-4 border-b border-text-subtle">Weight (Kg)</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Price (₹)</th>
+                        <th class="py-3 px-4 border-b border-text-subtle">Distance | Weight Category</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Our Price</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Market Price</th>
                     </tr>
                 </thead>
                 <tbody id="priceListTableBody">
-                    <!-- Rows populated by JS -->
                     </tbody>
             </table>
         </div>
@@ -580,46 +581,41 @@
     </div>
 
     <div class="popup" id="conditionsPopup">
-        <h2 class="text-2xl font-bold text-center">Detailed Parcel Delivery Conditions</h2>
+        <h2 class="text-2xl font-bold text-center">Detailed Delivery Conditions & Guarantee</h2>
         <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
              <ul class="list-disc list-inside space-y-3">
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-truck-fast mr-2"></i> Scope of Service</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>All deliveries are conducted by reliable bike riders.</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Maximum delivery range is 20 Kms.</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Parcels must be securely packed by the sender.</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Prices are fixed based on the selected distance and weight category.</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-weight-hanging mr-2"></i> Weight & Size Limits</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Maximum weight per parcel is 10 Kg.</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>If the parcel exceeds the selected weight category, additional charges may apply, or the service may be declined by the rider.</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-check mr-2"></i> Booking & Payment</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>The payment covers the full delivery fee for the selected category.</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Ensure accurate pickup and drop addresses are provided.</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Rider will contact both sender and recipient before pickup and drop-off.</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-ban mr-2"></i> Prohibited Items</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>We do not transport illegal goods, hazardous materials, cash, jewelry, or highly fragile items.</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>The sender is responsible for the contents of the parcel.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Rider & Safety</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>All deliveries carried out by verified and experienced Bike Riders.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Parcels are handled with care and secured during transit.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-box-open mr-2"></i> Parcel Specifications</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Maximum weight limit is 10 Kg per parcel for the selected categories.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Maximum size is limited to what can be safely carried on a bike (e.g., standard backpack or small carton).</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>No prohibited items (e.g., explosives, perishable food requiring specialized handling, money, or valuables) will be accepted.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-map-location-dot mr-2"></i> Booking & Distance</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Rates are calculated based on the shortest estimated road distance between pickup and drop-off.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>The rates cover a single, direct drop-off only. Multi-stop deliveries require separate bookings.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>The price paid confirms the booking for the selected distance and weight category.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Any required waiting time exceeding 10 minutes at pickup/drop-off may incur a minimal additional fee, communicated beforehand.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-clock-rotate-left mr-2"></i> Cancellation & Refund</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Cancellations made before the rider is assigned are eligible for a full refund.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>A partial service fee may be deducted if the rider is already en route to the pickup location.</li>
             </ul>
         </div>
         <button id="closeConditionsBtn" class="btn btn-secondary close-btn mt-4">I Understand</button>
     </div>
    
     <script>
-        // Updated Parcel Delivery Rates based on the provided image
+        // Parcel Delivery Rates based on the provided image (Bike Rider)
         const parcelDeliveryData = [
-            { "Category": "0-10 Kms | Up to 5 Kg", "Price": 149 },
-            { "Category": "0-10 Kms | Up to 6-10 Kg", "Price": 199 },
-            { "Category": "11-15 Kms | Up to 5 Kg", "Price": 210 },
-            { "Category": "11-15 Kms | Up to 6-10 Kg", "Price": 299 },
-            { "Category": "15-20 Kms | Up to 5 Kg", "Price": 280 },
-            { "Category": "15-20 Kms | Up to 6-10 Kg", "Price": 380 }
+            { "Category": "0-10 Kms | Upto 5 Kg", "Price": 149 },
+            { "Category": "0-10 Kms | Upto 6-10 Kg", "Price": 199 },
+            { "Category": "11-15 Kms | Upto 5 Kg", "Price": 210 },
+            { "Category": "11-15 Kms | Upto 6-10 Kg", "Price": 299 },
+            { "Category": "15-20 Kms | Upto 5 Kg", "Price": 280 },
+            { "Category": "15-20 Kms | Upto 6-10 Kg", "Price": 380 }
         ];
 
-        // --- Constants ---
-        const SERVICE_NAME = "Parcel Delivery";
-        const SERVICE_TAB_ID = "parcel-delivery"; // Unique tab ID
-        const LOCAL_STORAGE_KEY = 'parcelDeliveryFormData'; 
-        const RAZORPAY_IMAGE_TEXT = "PD"; // Parcel Delivery
-        
         // --- DOM Element Selection ---
         const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
@@ -630,9 +626,9 @@
         const timerDisplay = document.getElementById('timerDisplay');
         const razorpayBtn = document.getElementById('razorpay-payment-btn');
         const submitMessage = document.getElementById('submitMessage');
-        const carModelCheckboxesContainer = document.getElementById('carModelCheckboxes'); // Renamed from AC service logic
-        const selectedCarModelsDisplay = document.getElementById('selectedCarModelsDisplay');
-        const carModelSelectionPopup = document.getElementById('carModelSelectionPopup');
+        const serviceCheckboxesContainer = document.getElementById('serviceCheckboxes');
+        const selectedServiceDisplay = document.getElementById('selectedServiceDisplay');
+        const serviceSelectionPopup = document.getElementById('serviceSelectionPopup');
         const ticketQuantitySelect = document.getElementById('ticketQuantity');
         const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
         const paymentSummary = document.getElementById('paymentSummary');
@@ -643,8 +639,9 @@
         const finalPriceInput = document.getElementById('finalPrice');
         const form = document.getElementById('lotteryForm');
         const okayBtn = document.getElementById('okayBtn');
+        const deliveryDetailsTextarea = document.getElementById('deliveryDetails'); // New field
 
-        // New elements for Price List and Conditions
+        // Elements for Price List and Conditions
         const priceListBtn = document.getElementById('price-list-btn');
         const conditionsBtn = document.getElementById('conditions-btn');
         const priceListPopup = document.getElementById('priceListPopup');
@@ -658,9 +655,10 @@
         let paymentTimeout = null;
         let countdownInterval = null;
         const PAYMENT_TIME_LIMIT = 5 * 60;
-        let currentServicePrice = 0; // Price for one unit of the selected category/categories
+        let currentServicePrice = 0;
         let selectedQuantity = 1;
         let allowClose = false;
+        const LOCAL_STORAGE_KEY = 'parcelDeliveryFormData'; // Key for Local Storage
 
         // --- Local Storage Functions ---
 
@@ -668,9 +666,10 @@
             const formData = {
                 fullName: form.fullName.value,
                 phone: form.phone.value,
-                // field3 is Recipient Name & Contact
-                location: form.location.value, // Pickup Location
-                address: form.address.value // Pickup & Drop Address Details
+                email: form.email.value,
+                location: form.location.value,
+                address: form.address.value,
+                deliveryDetails: deliveryDetailsTextarea.value
             };
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
         }
@@ -681,73 +680,70 @@
                 const data = JSON.parse(savedData);
                 form.fullName.value = data.fullName || '';
                 form.phone.value = data.phone || '';
-                // form.email.value is Recipient Contact, not saved automatically for privacy/complexity
+                form.email.value = data.email || '';
                 form.location.value = data.location || '';
                 form.address.value = data.address || '';
+                deliveryDetailsTextarea.value = data.deliveryDetails || '';
             }
         }
         
         // --- Core Functions ---
 
-        function populateCarModels() {
-            carModelCheckboxesContainer.innerHTML = '';
+        function populateServiceModels() {
+            serviceCheckboxesContainer.innerHTML = '';
             parcelDeliveryData.forEach(service => {
                 const checkboxHtml = `
                     <label class="inline-flex items-center text-text-light w-full p-2 bg-bg-dark rounded-md border border-primary hover:bg-bg-card transition duration-200 cursor-pointer">
                         <input type="checkbox" name="deliveryCategory" value="${service.Category}" data-price="${service.Price}" 
                                class="form-checkbox h-5 w-5 text-secondary rounded focus:ring-secondary checked:bg-secondary">
-                        <span class="ml-2 text-sm">${service.Category} (<span class="font-bold text-secondary">₹${service.Price}</span>)</span>
+                        <span class="ml-2 text-sm">${service.Category} (<span class="text-secondary">₹${service.Price}</span>)</span>
                     </label>
                 `;
-                carModelCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
+                serviceCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
             });
-            carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]').forEach(checkbox => {
+            serviceCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]').forEach(checkbox => {
                 checkbox.addEventListener('change', updatePrices);
             });
         }
 
         function initQuantitySelector() {
             const maxServices = 5; 
-            ticketQuantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
+            ticketQuantitySelect.innerHTML = '<option value="" disabled>Select quantity</option>';
             for (let i = 1; i <= maxServices; i++) {
                 const option = document.createElement('option');
                 option.value = i;
-                option.textContent = i + (i === 1 ? ' parcel' : ' parcels');
+                option.textContent = i + (i === 1 ? ' Parcel' : ' Parcels');
                 ticketQuantitySelect.appendChild(option);
             }
             ticketQuantitySelect.value = 1;
         }
 
         function updatePrices() {
-            const selectedDeliveryCategories = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(checkbox => ({
+            const selectedDeliveryCategories = Array.from(serviceCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(checkbox => ({
                 category: checkbox.value,
                 price: parseFloat(checkbox.dataset.price)
             }));
             selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
 
-            // Only allow one category selection for a parcel delivery service for simple pricing
+            // IMPORTANT: For delivery, we assume only ONE category (distance/weight) is selected per booking, 
+            // as one parcel cannot cover multiple distance ranges.
             if (selectedDeliveryCategories.length > 1) {
-                // Keep only the first selected item and uncheck the rest
-                const firstSelected = selectedDeliveryCategories[0];
-                selectedDeliveryCategories.forEach((item, index) => {
-                    if (index > 0) {
-                        const checkbox = carModelCheckboxesContainer.querySelector(`input[value="${item.category}"]`);
-                        if (checkbox) checkbox.checked = false;
-                    }
-                });
-                selectedDeliveryCategories.splice(1);
-                showCustomAlert("Only one delivery category can be selected per transaction.");
+                showCustomAlert("Please select only ONE distance/weight category per booking.");
+                // Uncheck the last selected one to enforce single selection
+                const lastChecked = serviceCheckboxesContainer.querySelector('input[name="deliveryCategory"]:checked:last-child');
+                if (lastChecked) lastChecked.checked = false;
+                selectedDeliveryCategories.pop();
             }
-            
+
             currentServicePrice = selectedDeliveryCategories.reduce((total, service) => total + service.price, 0);
             const totalFinalPrice = currentServicePrice * selectedQuantity;
 
             if (selectedDeliveryCategories.length > 0) {
-                selectedCarModelsDisplay.textContent = selectedDeliveryCategories.map(s => s.category).join(', ');
+                selectedServiceDisplay.textContent = selectedDeliveryCategories.map(s => s.category).join(', ');
                 displayPriceElement.textContent = `₹${currentServicePrice}`;
             } else {
-                selectedCarModelsDisplay.textContent = 'Click to select category(s)';
-                displayPriceElement.textContent = 'Select Delivery Type';
+                selectedServiceDisplay.textContent = 'Click to select distance and weight';
+                displayPriceElement.textContent = 'Select Service';
             }
             
             totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
@@ -763,19 +759,19 @@
         }
 
         function downloadTickets() {
-            const selectedDeliveryCategoryNames = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(checkbox => checkbox.value).join(', ');
-            const recipientDetails = form.field3.value;
+            const selectedDeliveryCategoryNames = Array.from(serviceCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(checkbox => checkbox.value).join(', ');
             
             const ticketContent = `PREMIUM PARCEL DELIVERY BOOKING DETAILS\n\n` +
                                  `Sender Name: ${form.field1.value}\n` +
                                  `Sender Contact: ${form.field2.value}\n` +
-                                 `Recipient: ${recipientDetails}\n` +
-                                 `Delivery Category: ${selectedDeliveryCategoryNames}\n` +
                                  `Pickup Location: ${form.field5.value}\n` +
-                                 `Addresses: ${form.field6.value}\n` +
+                                 `Delivery Category: ${selectedDeliveryCategoryNames}\n` +
                                  `Booking Reference Number: ${generatedTicket}\n\n` + 
-                                 `Total Parcels: ${selectedQuantity}\n` +
-                                 `Amount Paid (Fixed Fee): ₹${finalPriceInput.value}\n`;
+                                 `Number of Parcels: ${selectedQuantity}\n` +
+                                 `Delivery Charge Paid: ₹${finalPriceInput.value}\n\n` +
+                                 `Receiver Details:\n${deliveryDetailsTextarea.value}\n\n` +
+                                 `--- IMPORTANT NOTE ---\n` +
+                                 `Our Bike Rider will contact the Sender and Receiver shortly to arrange pickup and drop-off.`;
             
             const blob = new Blob([ticketContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
@@ -826,28 +822,28 @@
             }
         }
 
-        function openCarModelSelectionPopup() {
-            populateCarModels();
-            const currentlySelectedCategories = selectedCarModelsDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select category(s)');
-            carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]').forEach(checkbox => {
+        function openServiceSelectionPopup() {
+            populateServiceModels();
+            const currentlySelectedCategories = selectedServiceDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select distance and weight');
+            serviceCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]').forEach(checkbox => {
                 checkbox.checked = currentlySelectedCategories.includes(checkbox.value);
             });
-            carModelSelectionPopup.style.display = 'block';
+            serviceSelectionPopup.style.display = 'block';
             popupOverlay.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
-        function closeCarModelSelectionPopup() {
-            carModelSelectionPopup.style.display = 'none';
+        function closeServiceSelectionPopup() {
+            serviceSelectionPopup.style.display = 'none';
             if (popupForm.style.display !== 'block' && priceListPopup.style.display !== 'block' && conditionsPopup.style.display !== 'block') {
                 popupOverlay.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
         }
 
-        function applySelectedCarModels() {
+        function applySelectedServices() {
             updatePrices();
-            closeCarModelSelectionPopup();
+            closeServiceSelectionPopup();
         }
         
         // --- Timer Functions ---
@@ -880,14 +876,13 @@
         // --- Price List Function ---
         function populatePriceList() {
             priceListTableBody.innerHTML = '';
-            // Manually structure the output to match the table headers (Distance, Weight, Price)
             parcelDeliveryData.forEach(service => {
-                const [distance, weight] = service.Category.split(' | ');
+                const marketPrice = Math.round(service.Price * 1.3); // 30% higher for market rate
                 const row = `
                     <tr class="text-text-light hover:bg-bg-dark">
-                        <td class="py-3 px-4 border-b border-gray-700">${distance}</td>
-                        <td class="py-3 px-4 border-b border-gray-700">${weight}</td>
+                        <td class="py-3 px-4 border-b border-gray-700">${service.Category}</td>
                         <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.Price}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle line-through">₹${marketPrice}</td>
                     </tr>
                 `;
                 priceListTableBody.insertAdjacentHTML('beforeend', row);
@@ -900,14 +895,15 @@
             e.preventDefault();
 
             // Validation 
-            const selectedCategories = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked'));
-            if (selectedCategories.length === 0) { showCustomAlert("Please select a delivery category."); return; }
-            if (selectedCategories.length > 1) { showCustomAlert("Only one delivery category can be selected per transaction."); return; }
-            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter the sender's full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit sender phone number."); return; }
-            if (form.email.value.trim().length < 5) { showCustomAlert("Please enter the Recipient Name and Contact details."); return; }
+            const selectedCategories = Array.from(serviceCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked'));
+            if (selectedCategories.length === 0) { showCustomAlert("Please select the delivery distance/weight category."); return; }
+            if (selectedCategories.length > 1) { showCustomAlert("Please select only ONE distance/weight category per parcel booking."); return; }
+            if (form.fullName.value.trim().length < 3) { showCustomAlert("Please enter the sender's full name."); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
             if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid pickup location name."); return; }
-            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter complete Pickup and Drop Address details (minimum 30 characters)."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete pickup address with at least 30 characters."); return; }
+            if (deliveryDetailsTextarea.value.trim().length < 30) { showCustomAlert("Please enter complete receiver and drop-off address details (minimum 30 characters)."); return; }
             if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of parcels."); return; }
 
             submitMessage.style.display = 'block';
@@ -915,20 +911,20 @@
 
             generatedTicket = generateFormattedTicket(); 
             
-            const selectedCategoryName = selectedCategories[0].value;
-            const recipientDetails = form.field3.value;
+            const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
 
-            // --- Form Data for Google Sheet ---
+            // --- Form Data for Google Sheet (updated fields) ---
             const formData = new FormData();
             formData.append('field1', form.fullName.value); // Sender Name
             formData.append('field2', form.phone.value);    // Sender Phone
-            formData.append('field3', recipientDetails);    // Recipient Details
-            formData.append('field4', selectedCategoryName); // Delivery Category
+            formData.append('field3', form.email.value);    // Email
+            formData.append('field4', selectedCategoryNames); // Delivery Category
             formData.append('field5', form.location.value); // Pickup Location
-            formData.append('field6', form.address.value);  // Full Addresses
+            formData.append('field6', form.address.value);  // Pickup Address
+            formData.append('field7', deliveryDetailsTextarea.value); // Receiver Details
             formData.append('ticket', generatedTicket);     
-            formData.append('tab', SERVICE_TAB_ID);           
-            formData.append('serviceType', SERVICE_NAME);   
+            formData.append('tab', 'parcel-delivery');           
+            formData.append('serviceType', 'Parcel Delivery');   
             formData.append('servicePrice', currentServicePrice); 
             formData.append('ticketQuantity', selectedQuantity); 
             formData.append('finalPrice', finalPriceInput.value);
@@ -941,16 +937,17 @@
             .then(res => res.text())
             .then(res => {
                 if (res.includes("Success") || res.includes("success")) { 
+                    // Save data to local storage on successful submission
                     saveFormData(); 
                     
                     popupForm.style.display = 'none';
                     openPopup(paymentStep);
                     paymentSummary.innerHTML = `
                         <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
-                        <p class="text-text-light text-base mb-1">Category: <span class="font-bold text-primary">${selectedCategoryName}</span></p>
+                        <p class="text-text-light text-base mb-1">Category: <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
                         <p class="text-text-light text-base mb-3">Parcels: <span class="font-bold text-primary">${selectedQuantity}</span></p>
                         <p class="current-price text-secondary text-3xl font-bold">Total Payable: ₹${finalPriceInput.value}</p>
-                        <p class="text-gray-400 text-sm mt-2">The amount paid is the final, fixed delivery fee.</p>
+                        <p class="text-gray-400 text-sm mt-2">The amount paid covers the delivery charges for the selected distance/weight.</p>
                     `;
                     startPaymentTimer();
                 } else {
@@ -968,26 +965,26 @@
         }
 
         function handleRazorpayPayment() {
-            const selectedCategoryName = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(cb => cb.value).join(', ');
+            const selectedCategoryNames = Array.from(serviceCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(cb => cb.value).join(', ');
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
                 "amount": finalPriceInput.value * 100,
                 "currency": "INR",
-                "name": `SonipatHomeService - ${SERVICE_NAME}`,
-                "description": `Payment for ${selectedQuantity} Parcel(s) (${selectedCategoryName})`,
-                "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`, 
+                "name": `SonipatHomeService - Parcel Delivery`,
+                "description": `Payment for ${selectedQuantity} Parcel(s) of category ${selectedCategoryNames}`,
+                "image": `https://placehold.co/100x100/1C2738/00FFFF?text=DEL`, 
                 "handler": function (response){
                     console.log("Payment successful:", response.razorpay_payment_id);
                     paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
                     "name": form.fullName.value,
-                    "email": "", 
+                    "email": form.email.value,
                     "contact": form.phone.value
                 },
                 "notes": {
-                    "address_details": form.address.value,
-                    "delivery_category": selectedCategoryName,
+                    "pickup_address": `${form.location.value}, ${form.address.value}`,
+                    "receiver_details": deliveryDetailsTextarea.value,
                     "booking_ref": generatedTicket
                 },
                 "theme": { "color": "#00FFFF" },
@@ -1008,16 +1005,16 @@
             openPopup(ticketStep);
             
             const userName = form.fullName.value.split(' ')[0];
-            const selectedCategoryName = Array.from(carModelCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(cb => cb.value).join(', ');
+            const selectedCategoryNames = Array.from(serviceCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(cb => cb.value).join(', ');
 
             welcomeMessage.textContent = `🎉 Bravo, ${userName}! Delivery Confirmed! 🎉`;
             
             ticketDisplay.innerHTML = `
                 <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p>Delivery Category: <span class="font-bold text-text-light">${selectedCategoryName}</span></p>
+                <p>Category: <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
                 <p>Parcels: <span class="font-bold text-text-light">${selectedQuantity}</span></p>
                 <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${finalPriceInput.value}</p>
-                <p class="text-text-subtle text-sm mt-3">Our rider will contact the sender shortly for pickup at: ${form.location.value}.</p>
+                <p class="text-text-subtle text-sm mt-3">Our Bike Rider will contact you shortly from your Pickup Location: ${form.location.value}.</p>
                 <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
             
@@ -1037,7 +1034,7 @@
         // Centralized Overlay Click Handling
         popupOverlay.addEventListener('click', e => {
             if (e.target === popupOverlay) {
-                if (carModelSelectionPopup.style.display === 'block') closeCarModelSelectionPopup();
+                if (serviceSelectionPopup.style.display === 'block') closeServiceSelectionPopup();
                 else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
                 else if (conditionsPopup.style.display === 'block') closeSpecificPopup(conditionsPopup);
                 else if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
@@ -1073,10 +1070,10 @@
 
         // --- Page Load Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
-            populateCarModels();
+            populateServiceModels();
             initQuantitySelector();
             updatePrices();
-            loadFormData(); 
+            loadFormData(); // Load saved data when the page loads
         });
     </script>
 </body>
