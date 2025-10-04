@@ -14,12 +14,16 @@
             /* Theme: Deep Space Black, Vivid Red, and Electric Teal (DTH/Entertainment Focus) */
             --bg-dark: #101827; /* Deep Space Black */
             --bg-card: #1C2738; /* Dark Navy Card */
-            --primary: #FF3B30; /* Vivid Red Accent (Service Button) */
+            --primary: #FF3B30; /* Vivid Red Accent (Service Button) - DTH Theme Main */
             --secondary: #00FFFF; /* Electric Teal Accent (Price Highlight/Border) */
             --text-light: #E0E7FF; /* Off-White Text */
             --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
             --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            
+            /* AC Button Colors used for Popup Actions (for consistent look across popups) */
+            --ac-primary: #00FFFF; /* Electric Teal */
+            --ac-secondary: #FFC72C; /* Sunset Gold */
         }
 
         * {
@@ -43,7 +47,7 @@
             padding: 4rem 1.5rem;
         }
 
-        /* --- Custom Components --- */
+        /* --- Custom Components (Main Page Buttons - Kept DTH Theme) --- */
 
         .stat-grid {
             display: grid;
@@ -286,6 +290,54 @@
             min-height: 8rem;
             resize: vertical;
         }
+
+        /* START: AC Button Styles Applied Here */
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn,
+        #okayBtn,
+        .popup button.close-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn { /* Primary Action Buttons (Teal Gradient) */
+            background: linear-gradient(45deg, var(--ac-primary), #00D5D5);
+            color: var(--bg-dark);
+        }
+
+        .popup button[type="submit"]:hover,
+        #razorpay-payment-btn:hover,
+        #downloadBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
+        }
+
+        #okayBtn,
+        #close-price-list-btn,
+        #close-description-btn { /* Secondary/Close Buttons (Gold Accent) */
+            background: transparent;
+            color: var(--ac-secondary);
+            border: 2px solid var(--ac-secondary);
+        }
+        
+        #okayBtn:hover,
+        #close-price-list-btn:hover,
+        #close-description-btn:hover {
+            background: rgba(255, 199, 44, 0.1);
+            transform: scale(1.01);
+        }
+        /* END: AC Button Styles Applied Here */
         
         .quantity-selector-container {
             background: #22324C;
@@ -491,7 +543,7 @@
                     <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹0</span>
                 </div>
             </div>
-
+            <!-- AC Button Style Applied -->
             <button type="submit">Submit Details & Proceed to Payment</button>
             <p id="submit-message" class="text-center text-sm text-primary mt-2 hidden">Submitting...</p>
         </form>
@@ -503,6 +555,7 @@
         <p class="text-text-subtle text-center mb-6">Your total payment includes the DTH equipment, selected pack, and installation charges.</p>
         <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
         <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <!-- AC Button Style Applied -->
         <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
         <p class="mt-4 text-xs text-text-subtle text-center">
             Note: Do not close this window during payment processing.
@@ -516,8 +569,10 @@
         <div id="ticket-info" class="space-y-2">
             <!-- Details will be injected here -->
         </div>
+        <!-- AC Button Style Applied -->
         <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Download Details</button>
         <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
+        <!-- AC Button Style Applied -->
         <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
     </div>
 
@@ -538,7 +593,8 @@
                 </tbody>
             </table>
         </div>
-        <button id="close-price-list-btn" class="btn btn-secondary close-btn mt-4">Close Price List</button>
+        <!-- AC Button Style Applied -->
+        <button id="close-price-list-btn" class="close-btn mt-4">Close Price List</button>
     </div>
 
     <!-- Description Popup -->
@@ -559,7 +615,8 @@
                 <li>Professional installation is included in every package price (except "Installation Only" option).</li>
             </ul>
         </div>
-        <button id="close-description-btn" class="btn btn-secondary close-btn mt-4">Close</button>
+        <!-- AC Button Style Applied -->
+        <button id="close-description-btn" class="close-btn mt-4">Close</button>
     </div>
     
     <script>
@@ -924,7 +981,7 @@
                 startPaymentTimer();
             }, 1000);
             
-            // --- End Submission mimic ---
+            // --- End Submission mimic ---\n
         });
 
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
