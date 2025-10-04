@@ -11,10 +11,10 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
         :root {
-            /* Theme: Deep Space Black, Earth Brown, and Gold */
+            /* Theme: Deep Space Black, Arctic Teal, and Electric Gold (Matching RO Water Supply) */
             --bg-dark: #101827; /* Deep Space Black */
-            --bg-card: #27211E; /* Dark Brown/Black Card */
-            --primary: #A0522D; /* Sienna/Earth Brown (Service Button) */
+            --bg-card: #1C2738; /* Dark Navy Card */
+            --primary: #52D1DC; /* Arctic Teal Accent (Service Button) */
             --secondary: #FFD700; /* Electric Gold Accent (Price Highlight/Border) */
             --text-light: #E0E7FF; /* Off-White Text */
             --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
@@ -59,13 +59,13 @@
             text-align: center;
             box-shadow: var(--shadow-depth);
             transition: var(--transition);
-            border: 1px solid rgba(160, 82, 45, 0.2);
+            border: 1px solid rgba(82, 209, 220, 0.2); /* Updated color */
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
             border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(160, 82, 45, 0.3);
+            box-shadow: 0 15px 40px rgba(82, 209, 220, 0.3); /* Updated color */
         }
 
         .stat-card h3 {
@@ -84,7 +84,7 @@
         }
 
         .product-section {
-            background: linear-gradient(135deg, var(--bg-card), #352A26);
+            background: linear-gradient(135deg, var(--bg-card), #22324C); /* Updated gradient */
             border-radius: 1.5rem;
             box-shadow: var(--shadow-depth);
             margin-bottom: 3rem;
@@ -93,7 +93,7 @@
         }
 
         .product-header {
-            background: linear-gradient(90deg, #101827, #27211E);
+            background: linear-gradient(90deg, #101827, #22324C); /* Updated gradient */
             padding: 2rem;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -188,9 +188,9 @@
         }
 
         .btn-primary:hover {
-            background: #B96B44;
+            background: #42C2CC; /* Updated hover color */
             transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(160, 82, 45, 0.5);
+            box-shadow: 0 8px 20px rgba(82, 209, 220, 0.5); /* Updated shadow color */
         }
 
         .btn-secondary {
@@ -279,7 +279,7 @@
         .popup textarea:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.2);
+            box-shadow: 0 0 0 3px rgba(82, 209, 220, 0.2); /* Updated color */
         }
 
         .popup textarea {
@@ -812,7 +812,7 @@
                     "material_details": selectedPack,
                     "quantity": quantitySelect.value
                 },
-                "theme": { "color": "#A0522D" },
+                "theme": { "color": "#52D1DC" }, /* Updated color */
                 "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
             };
 
