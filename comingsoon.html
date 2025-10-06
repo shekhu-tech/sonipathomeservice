@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonipat Home Service (Coming Soon)</title>
+    <!-- Loading Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Using the Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Main Container Card -->
+    <div class="max-w-4xl w-full bg-gray-800 rounded-2xl shadow-2xl p-8 md:p-12 text-center border border-gray-700/50">
+
+        <!-- Logo/Brand Section (Website Name) -->
+        <div class="mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-400 tracking-wider">
+                Sonipat Home <span class="text-white">Service</span>
+            </h1>
+        </div>
+
+        <!-- Heading and Main Message (Reduced size for tiny screens) -->
+        <h2 class="text-5xl sm:text-6xl md:text-8xl font-black text-white mb-6 animate-pulse">
+            COMING SOON!
+        </h2>
+        
+        <p class="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed">
+            We are working hard to bring you the best home services in Sonipat. Just a little more wait... it will be better than you expect!
+        </p>
+        
+        <!-- Countdown Timer Section (Ultra Pro Max Responsive Scaling) -->
+        <!-- Reduced width, padding, and spacing for small mobile screens -->
+        <div class="flex justify-center space-x-2 sm:space-x-4 md:space-x-8 mb-12">
+            <!-- Mock timer displays -->
+            <div class="bg-blue-600/20 p-2 sm:p-3 md:p-4 rounded-xl w-16 sm:w-20 md:w-32">
+                <p class="text-2xl sm:text-3xl md:text-5xl font-bold text-blue-400" id="days-display">07</p>
+                <p class="text-xs sm:text-sm text-gray-300 mt-1">Days</p>
+            </div>
+            <div class="bg-blue-600/20 p-2 sm:p-3 md:p-4 rounded-xl w-16 sm:w-20 md:w-32">
+                <p class="text-2xl sm:text-3xl md:text-5xl font-bold text-blue-400" id="hours-display">14</p>
+                <p class="text-xs sm:text-sm text-gray-300 mt-1">Hours</p>
+            </div>
+            <div class="bg-blue-600/20 p-2 sm:p-3 md:p-4 rounded-xl w-16 sm:w-20 md:w-32">
+                <p class="text-2xl sm:text-3xl md:text-5xl font-bold text-blue-400" id="minutes-display">35</p>
+                <p class="text-xs sm:text-sm text-gray-300 mt-1">Minutes</p>
+            </div>
+            <div class="bg-blue-600/20 p-2 sm:p-3 md:p-4 rounded-xl w-16 sm:w-20 md:w-32">
+                <p class="text-2xl sm:text-3xl md:text-5xl font-bold text-blue-400" id="seconds-display">58</p>
+                <p class="text-xs sm:text-sm text-gray-300 mt-1">Seconds</p>
+            </div>
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="mt-12 text-gray-400">
+            <p class="text-lg font-semibold mb-2">For any urgent queries, please contact us:</p>
+            
+        </div>
+
+    </div>
+
+    <script>
+        // Mock Countdown Logic (This is a visual effect, not an actual countdown to a date)
+        function updateMockCountdown() {
+            const now = new Date();
+            // Display changing seconds and minutes for effect
+            const s = (60 - now.getSeconds()).toString().padStart(2, '0');
+            const m = (59 - now.getMinutes()).toString().padStart(2, '0');
+            
+            // Days and Hours remain static (mock data)
+            document.getElementById('days-display').textContent = '07'; 
+            document.getElementById('hours-display').textContent = '14';
+
+            document.getElementById('seconds-display').textContent = s;
+            document.getElementById('minutes-display').textContent = m;
+        }
+
+        // Update the countdown every second
+        setInterval(updateMockCountdown, 1000);
+        updateMockCountdown(); // Initial call
+    </script>
+</body>
+</html>
