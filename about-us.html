@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Sonipat Home Service</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font for modern app feel: Poppins & Inter -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            background-color: #f7f9fc; /* Light background for app feel on all devices */
+            min-height: 100vh;
+        }
+        /* Custom scrollbar for better app aesthetic on web view */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 5px; }
+        ::-webkit-scrollbar-track { background: #e5e7eb; }
+
+        /* PC Specific Color/Shadow Tweak (Optional: if we want a different body background on PC) */
+        @media (min-width: 768px) {
+            body {
+                background-color: #f0f4f8; /* Slightly darker background on PC to emphasize the floating app window */
+            }
+        }
+    </style>
+    <!-- Lucide Icons (Used via SVG for a modern look) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3b82f6', // Bright Blue
+                        'secondary': '#10b981', // Emerald Green
+                        'accent': '#f59e0b', // Amber
+                    }
+                }
+            }
+        }
+
+        // 1. Utility icons (for features and headings) - STAYS as SVG for faster rendering
+        function getUtilityIcon(name, classes = "w-6 h-6") {
+            const icons = {
+                'Home': '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+                'ShieldCheck': '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>',
+                'Target': '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><path d="M7.9 7.9l4.2 4.2"/><path d="M7.9 16.1l4.2-4.2"/><path d="M16.1 16.1l-4.2-4.2"/><path d="M16.1 7.9l-4.2 4.2"/>',
+                'Zap': '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+                'Trophy': '<path d="M18 10a6 6 0 0 0-6-6H9a6 6 0 0 0-6 6v11l5-3 5 3 5-3 5 3V10z"/>',
+                'Users': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+            };
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" ${classes.includes('w-') ? 'width="' + classes.match(/w-(\d+)/)?.[1] + '"' : ''} ${classes.includes('h-') ? 'height="' + classes.match(/h-(\d+)/)?.[1] + '"' : ''} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${classes}">${icons[name] || ''}</svg>`;
+            return svg;
+        }
+
+        // The previous getSocialIcon function has been removed, and images are used directly in the HTML.
+    </script>
+</head>
+<body class="selection:bg-primary selection:text-white">
+
+    <!-- App Header Simulation (Fixed for App-like Feel) -->
+    <header class="sticky top-0 z-10 bg-white shadow-lg">
+        <!-- Increased width limit for PC view (md:max-w-[1200px]) -->
+        <div class="max-w-xl md:max-w-[1200px] mx-auto p-4 flex items-center justify-between">
+            <h1 class="text-2xl font-extrabold text-primary tracking-tight">
+                Sonipat Home Service
+            </h1>
+            <div class="text-gray-600 font-semibold text-sm">
+                About Us
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area: Different Styles for Phone vs. PC -->
+    <!-- PC Style (md: onwards): Added background, rounded corners, and shadow to main container. Max width is 1200px. -->
+    <main class="p-4 pt-8 max-w-xl md:max-w-[1200px] mx-auto 
+                 md:mt-10 md:mb-10 md:p-10 md:bg-white md:rounded-3xl md:shadow-2xl md:border-2 md:border-blue-100">
+
+        <!-- Welcome Banner/Hero Section -->
+        <div class="bg-gradient-to-r from-primary to-blue-400 text-white p-6 rounded-2xl shadow-xl transform transition duration-300 hover:scale-[1.01] mb-8">
+            <h2 class="text-3xl font-bold mb-2">Your Home, Our Responsibility!</h2>
+            <p class="text-sm opacity-90">
+                We are not just *for* Sonipat, we are *from* Sonipat. We bring the fastest and most reliable
+                solutions for every need your home has.
+            </p>
+            <div class="mt-4 flex space-x-2 text-sm font-medium">
+                <span class="bg-white text-primary px-3 py-1 rounded-full shadow-md">#Local</span>
+                <span class="bg-white text-primary px-3 py-1 rounded-full shadow-md">#Trust</span>
+            </div>
+        </div>
+
+        <!-- Section: Our Mission (App Card Style) -->
+        <div class="bg-white p-6 rounded-2xl shadow-xl mb-8 border-t-4 border-secondary transition duration-300 hover:shadow-2xl">
+            <h3 class="flex items-center text-xl font-bold text-gray-800 mb-4">
+                <!-- Changed to getUtilityIcon -->
+                <span class="mr-3 text-secondary" x-html="getUtilityIcon('Target', 'w-6 h-6')">🎯</span>
+                Our Mission
+            </h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+                At Sonipat Home Service, our mission is clear: to make your home maintenance and repair work
+                <strong class="text-secondary">simple, transparent, and high-quality</strong>. We believe you should
+                never feel stressed trying to find a plumber or electrician. Our goal is to provide you not just with a service,
+                but with **peace and convenience**.
+            </p>
+        </div>
+
+        <!-- Section: Why Choose Us (Feature Grid - Responsive) -->
+        <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Our Key Features</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+            <!-- Feature 1: Local Experts -->
+            <div class="bg-white p-5 rounded-xl shadow-lg border-l-4 border-primary hover:bg-blue-50 transition duration-300">
+                <div class="flex items-center mb-3">
+                    <!-- Changed to getUtilityIcon -->
+                    <span class="text-primary mr-3" x-html="getUtilityIcon('Home', 'w-6 h-6')">🏠</span>
+                    <h4 class="font-semibold text-lg text-gray-800">1. Verified Local Experts</h4>
+                </div>
+                <p class="text-sm text-gray-500">
+                    We only partner with technicians who are familiar with every lane of Sonipat. You get the fastest and most local service.
+                </p>
+            </div>
+
+            <!-- Feature 2: Quality Guarantee -->
+            <div class="bg-white p-5 rounded-xl shadow-lg border-l-4 border-secondary hover:bg-green-50 transition duration-300">
+                <div class="flex items-center mb-3">
+                    <!-- Changed to getUtilityIcon -->
+                    <span class="text-secondary mr-3" x-html="getUtilityIcon('ShieldCheck', 'w-6 h-6')">🛡️</span>
+                    <h4 class="font-semibold text-lg text-gray-800">2. Quality Guarantee</h4>
+                </div>
+                <p class="text-sm text-gray-500">
+                    We stand by the quality of our work. If you are not satisfied, we guarantee to make it right without extra charges.
+                </p>
+            </div>
+
+            <!-- Feature 3: Transparent Pricing -->
+            <div class="bg-white p-5 rounded-xl shadow-lg border-l-4 border-accent hover:bg-yellow-50 transition duration-300">
+                <div class="flex items-center mb-3">
+                    <!-- Changed to getUtilityIcon -->
+                    <span class="text-accent mr-3" x-html="getUtilityIcon('Zap', 'w-6 h-6')">⚡</span>
+                    <h4 class="font-semibold text-lg text-gray-800">3. Transparent Pricing</h4>
+                </div>
+                <p class="text-sm text-gray-500">
+                    Full cost details before booking. No hidden fees. Pay only what was agreed upon.
+                </p>
+            </div>
+
+            <!-- Feature 4: Certified Professionals -->
+            <div class="bg-white p-5 rounded-xl shadow-lg border-l-4 border-blue-600 hover:bg-blue-50 transition duration-300">
+                <div class="flex items-center mb-3">
+                    <!-- Changed to getUtilityIcon -->
+                    <span class="text-blue-600 mr-3" x-html="getUtilityIcon('Trophy', 'w-6 h-6')">🏆</span>
+                    <h4 class="font-semibold text-lg text-gray-800">4. Certified & Trained</h4>
+                </div>
+                <p class="text-sm text-gray-500">
+                    All our technicians undergo background checks and are trained in the latest equipment and techniques.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- --- Team Section --- -->
+        <h3 class="text-2xl font-bold text-gray-800 mt-12 mb-6 border-b pb-2 flex items-center">
+             <!-- Changed to getUtilityIcon -->
+             <span class="mr-3 text-primary" x-html="getUtilityIcon('Users', 'w-7 h-7')"></span>
+             Meet Our Dedicated Team
+        </h3>
+        <p class="text-gray-600 mb-6 text-sm">
+            We are a group of committed professionals working tirelessly to redefine home services in Sonipat.
+        </p>
+
+        <!-- Team Card Grid: grid-cols-1 on phone, sm:grid-cols-2 on tablet/pc -->
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+
+            <!-- Team Member 1 - Ultra Pro Max Style -->
+            <div class="bg-white p-6 rounded-2xl shadow-2xl text-center transition duration-500 transform hover:scale-[1.03] hover:shadow-blue-500/50 border-t-4 border-primary">
+                <!-- Placeholder Image -->
+                <img src="https://placehold.co/120x120/3b82f6/ffffff?text=Rohan" alt="Rohan Sharma" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-primary/30 object-cover shadow-lg">
+
+                <h4 class="font-extrabold text-xl text-gray-800">Rohan Sharma</h4>
+                <p class="text-sm text-primary font-bold mb-3">Founder & CEO</p>
+
+                <!-- Description -->
+                <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+                    Rohan leads our strategic vision, ensuring every decision aligns with our core values of local trust and high-quality service delivery across Sonipat.
+                </p>
+                
+                <!-- Social Icons - Background Transparent and No Hover/Shadow -->
+                <div class="flex justify-center space-x-4 border-t pt-4 mt-2">
+                    <!-- Facebook (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Rohan's Facebook">
+                        <img src="https://placehold.co/48x48/1877F2/ffffff?text=F" alt="Facebook Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/1877F2/ffffff?text=F'" />
+                    </a>
+                    <!-- Instagram (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Rohan's Instagram">
+                        <img src="https://placehold.co/48x48/E4405F/ffffff?text=IG" alt="Instagram Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/E4405F/ffffff?text=I'" />
+                    </a>
+                    <!-- Twitter/X (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Rohan's Twitter/X">
+                        <img src="https://placehold.co/48x48/000000/ffffff?text=X" alt="Twitter X Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/000000/ffffff?text=X'" />
+                    </a>
+                </div>
+            </div>
+
+            <!-- Team Member 2 - Ultra Pro Max Style -->
+            <div class="bg-white p-6 rounded-2xl shadow-2xl text-center transition duration-500 transform hover:scale-[1.03] hover:shadow-green-500/50 border-t-4 border-secondary">
+                <!-- Placeholder Image -->
+                <img src="https://placehold.co/120x120/10b981/ffffff?text=Pooja" alt="Pooja Verma" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-secondary/30 object-cover shadow-lg">
+                
+                <h4 class="font-extrabold text-xl text-gray-800">Pooja Verma</h4>
+                <p class="text-sm text-secondary font-bold mb-3">Head of Operations</p>
+                
+                <!-- Description -->
+                <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+                    Pooja is the engine of our service. She ensures that all scheduling, technician deployment, and customer feedback mechanisms run smoothly every day.
+                </p>
+
+                <!-- Social Icons - Background Transparent and No Hover/Shadow -->
+                <div class="flex justify-center space-x-4 border-t pt-4 mt-2">
+                    <!-- Facebook (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Pooja's Facebook">
+                        <img src="https://placehold.co/48x48/1877F2/ffffff?text=F" alt="Facebook Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/1877F2/ffffff?text=F'" />
+                    </a>
+                    <!-- Instagram (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Pooja's Instagram">
+                        <img src="https://placehold.co/48x48/E4405F/ffffff?text=IG" alt="Instagram Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/E4405F/ffffff?text=I'" />
+                    </a>
+                    <!-- Twitter/X (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Pooja's Twitter/X">
+                        <img src="https://placehold.co/48x48/000000/ffffff?text=X" alt="Twitter X Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/000000/ffffff?text=X'" />
+                    </a>
+                </div>
+            </div>
+
+            <!-- Team Member 3 - Ultra Pro Max Style -->
+            <div class="bg-white p-6 rounded-2xl shadow-2xl text-center transition duration-500 transform hover:scale-[1.03] hover:shadow-yellow-500/50 border-t-4 border-accent">
+                <!-- Placeholder Image -->
+                <img src="https://placehold.co/120x120/f59e0b/ffffff?text=Amit" alt="Amit Singh" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-accent/30 object-cover shadow-lg">
+
+                <h4 class="font-extrabold text-xl text-gray-800">Amit Singh</h4>
+                <p class="text-sm text-accent font-bold mb-3">Tech Lead</p>
+
+                <!-- Description -->
+                <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+                    Amit is responsible for training our technicians on new standards, ensuring quality control, and testing new tools before deployment in the field.
+                </p>
+                
+                <!-- Social Icons - Background Transparent and No Hover/Shadow -->
+                <div class="flex justify-center space-x-4 border-t pt-4 mt-2">
+                    <!-- Facebook (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Amit's Facebook">
+                        <!-- Corrected placeholder URL usage (removed "hold.co" and used "placehold.co") for consistency -->
+                        <img src="https://placehold.co/48x48/1877F2/ffffff?text=F" alt="Facebook Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/1877F2/ffffff?text=F'" />
+                    </a>
+                    <!-- Instagram (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Amit's Instagram">
+                        <img src="https://placehold.co/48x48/E4405F/ffffff?text=IG" alt="Instagram Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/E4405F/ffffff?text=I'" />
+                    </a>
+                    <!-- Twitter/X (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Amit's Twitter/X">
+                        <img src="https://placehold.co/48x48/000000/ffffff?text=X" alt="Twitter X Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/000000/ffffff?text=X'" />
+                    </a>
+                </div>
+            </div>
+
+            <!-- Team Member 4 - Ultra Pro Max Style -->
+            <div class="bg-white p-6 rounded-2xl shadow-2xl text-center transition duration-500 transform hover:scale-[1.03] hover:shadow-indigo-500/50 border-t-4 border-blue-600">
+                <!-- Placeholder Image -->
+                <img src="https://placehold.co/120x120/1d4ed8/ffffff?text=Neha" alt="Neha Kumari" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-blue-600/30 object-cover shadow-lg">
+                
+                <h4 class="font-extrabold text-xl text-gray-800">Neha Kumari</h4>
+                <p class="text-sm text-blue-600 font-bold mb-3">Customer Support</p>
+
+                <!-- Description -->
+                <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+                    Neha is the friendly voice behind our service. She ensures that every customer query is addressed quickly and compassionately.
+                </p>
+
+                <!-- Social Icons - Background Transparent and No Hover/Shadow -->
+                <div class="flex justify-center space-x-4 border-t pt-4 mt-2">
+                    <!-- Facebook (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Neha's Facebook">
+                        <img src="https://placehold.co/48x48/1877F2/ffffff?text=F" alt="Facebook Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/1877F2/ffffff?text=F'" />
+                    </a>
+                    <!-- Instagram (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Neha's Instagram">
+                        <img src="https://placehold.co/48x48/E4405F/ffffff?text=IG" alt="Instagram Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/E4405F/ffffff?text=I'" />
+                    </a>
+                    <!-- Twitter/X (Original color, transparent background) -->
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-transparent transition duration-300 transform" aria-label="Neha's Twitter/X">
+                        <img src="https://placehold.co/48x48/000000/ffffff?text=X" alt="Twitter X Logo" class="w-8 h-8 object-contain" onerror="this.src='https://placehold.co/48x48/000000/ffffff?text=X'" />
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <!-- End Team Section -->
+
+
+        <!-- Call to Action Footer (App-style floating button/section) -->
+        <div class="mt-12 mb-20 p-6 bg-white rounded-2xl shadow-2xl text-center border-t-8 border-primary/50">
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">Join Our Family!</h3>
+            <p class="text-gray-500 mb-5">
+                The next time your faucet leaks or your AC stops working, remember us.
+                We are just a click away.
+            </p>
+            <!-- Mobile-friendly CTA Button -->
+            <a href="index.html" class="inline-block w-full sm:w-auto px-8 py-3 bg-primary text-white font-bold rounded-xl shadow-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105">
+                Book Now!
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Simple Footer for App Context -->
+    <footer class="fixed bottom-0 left-0 w-full bg-white border-t p-3 text-center text-xs text-gray-500 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+        <!-- Increased width limit for PC view (md:max-w-[1200px]) -->
+        <div class="max-w-xl md:max-w-[1200px] mx-auto">
+            © 2025 Sonipat Home Service | Trust and Quality
+        </div>
+    </footer>
+
+    <!-- Initialize Alpine.js for the Icon utility (optional but good practice for modern feel) -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v3.x.x/dist/cdn.min.js" defer></script>
+</body>
+</html>
