@@ -405,7 +405,7 @@
         <section class="product-section">
             <div class="product-header">
                 <h2 class="text-white">हाई-स्पीड फाइबर इंटरनेट प्लान्स (300 Mbps)</h2>
-                <p class="text-sm text-gray-400 mt-2">इंस्टॉलेशन और राउटर शामिल। OTT पैक के साथ और बिना, दोनों तरह के प्लान उपलब्ध हैं।</p>
+                <p class="text-sm text-gray-400 mt-2">इंस्टॉलेशन और राउटर शामिल। IPTV पैक के साथ और बिना, दोनों तरह के प्लान उपलब्ध हैं।</p>
             </div>
 
             <div class="product-content">
@@ -472,7 +472,7 @@
                 </select>
                 
                 <div id="planSummaryDisplay" class="text-text-subtle text-sm mt-3 p-3 bg-bg-dark rounded-md">
-                    <p>अवधि: N/A | OTT: N/A</p>
+                    <p>अवधि: N/A | IPTV: N/A</p>
                     <p class="text-secondary font-semibold mt-1">कीमत: ₹0 (मासिक अनुमान: ₹0)</p>
                 </div>
             </div>
@@ -533,7 +533,7 @@
                 <thead>
                     <tr class="text-left text-secondary">
                         <th class="py-3 px-4 border-b border-text-subtle">प्लान / अवधि</th>
-                        <th class="py-3 px-4 border-b border-text-subtle">OTT</th>
+                        <th class="py-3 px-4 border-b border-text-subtle">IPTV</th>
                         <th class="py-3 px-4 border-b border-text-subtle text-right">कीमत</th>
                         <th class="py-3 px-4 border-b border-text-subtle text-right">मासिक लागत (अनुमानित)</th>
                     </tr>
@@ -552,8 +552,8 @@
         <h2 class="text-2xl font-bold text-center">महत्वपूर्ण विचारणीय बिंदु (Notes & T&C)</h2>
         <div class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
             <ul class="list-disc list-inside space-y-3">
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-tv mr-2"></i> OTT पैक का मूल्य</li>
-                <li>OTT पैक वाले प्लान्स (Amazon Prime, Netflix, Disney+ Hotstar आदि) महंगे हैं। अपनी जरूरत और अलग सदस्यता लागत की तुलना करने के बाद ही OTT प्लान चुनें।</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-tv mr-2"></i> IPTV पैक का मूल्य</li>
+                <li>IPTV पैक वाले प्लान्स (इंटरनेट पर टीवी चैनल) महंगे हैं। अपनी जरूरत की तुलना करने के बाद ही IPTV प्लान चुनें।</li>
 
                 <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-piggy-bank mr-2"></i> लंबी अवधि की बचत</li>
                 <li>12 महीने के प्लान हमेशा 6 महीने के प्लान की तुलना में **प्रति माह कम लागत** प्रदान करते हैं। लंबी अवधि के लिए ये अधिक किफायती हैं।</li>
@@ -661,7 +661,9 @@
             packSelection.innerHTML = '<option value="" disabled selected>300 Mbps प्लान चुनें</option>';
             planData.forEach((plan, index) => {
                 const monthlyCost = getMonthlyCost(plan.price, plan.duration);
-                const optionText = `${plan.duration} | OTT: ${plan.ott} | ₹${plan.price} (${monthlyCost}/माह)`;
+                // Change OTT to IPTV in option text
+                const ottText = plan.ott === 'हाँ' ? 'IPTV: हाँ' : 'IPTV: नहीं';
+                const optionText = `${plan.duration} | ${ottText} | ₹${plan.price} (${monthlyCost}/माह)`;
                 const option = document.createElement('option');
                 option.value = index; // Use index as value to easily retrieve data
                 option.textContent = optionText;
@@ -677,7 +679,8 @@
                 currentCalculatedPrice = 0;
                 displayPrice.textContent = "Select Plan";
                 calculatedPriceDisplay.textContent = "Total: ₹0";
-                planSummaryDisplay.innerHTML = '<p>अवधि: N/A | OTT: N/A</p><p class="text-secondary font-semibold mt-1">कीमत: ₹0 (मासिक अनुमान: ₹0)</p>';
+                // Change OTT to IPTV in summary display
+                planSummaryDisplay.innerHTML = '<p>अवधि: N/A | IPTV: N/A</p><p class="text-secondary font-semibold mt-1">कीमत: ₹0 (मासिक अनुमान: ₹0)</p>';
                 return;
             }
 
@@ -689,8 +692,9 @@
             calculatedPriceDisplay.textContent = `Total: ₹${currentCalculatedPrice}`;
             displayPrice.textContent = `₹${currentCalculatedPrice}`;
 
+            // Change OTT to IPTV in summary display
             planSummaryDisplay.innerHTML = `
-                <p>अवधि: ${selectedPlan.duration} | OTT: ${selectedPlan.ott}</p>
+                <p>अवधि: ${selectedPlan.duration} | IPTV: ${selectedPlan.ott}</p>
                 <p class="text-secondary font-semibold mt-1">कीमत: ₹${selectedPlan.price} (मासिक अनुमान: ₹${monthlyCost})</p>
             `;
         }
@@ -699,10 +703,11 @@
             priceListTableBody.innerHTML = '';
             planData.forEach(plan => {
                 const monthlyCost = getMonthlyCost(plan.price, plan.duration);
+                // Change OTT to IPTV in table
                 const row = `
                     <tr class="text-text-light hover:bg-bg-dark">
                         <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">${plan.duration}</td>
-                        <td class="py-3 px-4 border-b border-gray-700">${plan.ott}</td>
+                        <td class="py-3 px-4 border-b border-gray-700">${plan.ott === 'हाँ' ? 'हाँ' : 'नहीं'}</td>
                         <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-primary">₹${plan.price}</td>
                         <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle">₹${monthlyCost}</td>
                     </tr>
@@ -764,7 +769,8 @@
             const phone = bookingForm.phone.value;
             const location = bookingForm.location.value;
             const address = bookingForm.address.value;
-            const planDetails = selectedPlan ? `${selectedPlan.duration} | OTT: ${selectedPlan.ott} | ${selectedPlan.speed}` : "N/A";
+            // Change OTT to IPTV
+            const planDetails = selectedPlan ? `${selectedPlan.duration} | IPTV: ${selectedPlan.ott} | ${selectedPlan.speed}` : "N/A";
             const totalPrice = currentCalculatedPrice;
 
             const content = `${SERVICE_NAME} Booking Details\n\n` +
@@ -818,7 +824,8 @@
                  showCustomAlert("कृपया एक वैध प्लान चुनें।");
                  return;
             }
-            const planDescription = `${selectedPlan.duration} OTT: ${selectedPlan.ott}`;
+            // Change OTT to IPTV
+            const planDescription = `${selectedPlan.duration} IPTV: ${selectedPlan.ott}`;
 
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
@@ -858,7 +865,8 @@
             saveFormData();
             
             const name = bookingForm.name.value.split(' ')[0];
-            const planDetails = selectedPlan ? `${selectedPlan.duration} | OTT: ${selectedPlan.ott}` : "N/A";
+            // Change OTT to IPTV
+            const planDetails = selectedPlan ? `${selectedPlan.duration} | IPTV: ${selectedPlan.ott}` : "N/A";
             const totalPrice = currentCalculatedPrice;
 
             welcomeMessage.textContent = `🎉 Plan Confirmed, ${name}! 🎉`;
@@ -924,7 +932,8 @@
                 bookingPopup.style.display = 'none';
 
                 const totalDue = currentCalculatedPrice;
-                const planText = `${selectedPlan.duration} | OTT: ${selectedPlan.ott}`;
+                // Change OTT to IPTV
+                const planText = `${selectedPlan.duration} | IPTV: ${selectedPlan.ott}`;
 
                 paymentSummary.innerHTML = `
                     <p class="text-text-subtle text-lg mb-2 font-bold">Plan: <span class="text-primary">${planText}</span></p>
