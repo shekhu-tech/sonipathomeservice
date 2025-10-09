@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <!-- Viewport tag for ultra responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonipat Home Service - करियर के अवसर</title>
+    <!-- Title is now Hindi/English for Technicians -->
+    <title>Sonipat Home Service - करियर के अवसर / Technician Career</title>
     <!-- Load Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Font Awesome for icons -->
@@ -15,10 +16,11 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#2e7d32', // Dark Green
-                        'primary-light': '#4caf50', // Medium Green
-                        'accent': '#ff9800', // Orange
-                        'primary-dark': '#1b5e20', // Very Dark Dark Green
+                        // Matching the Business Partner Page colors (Blue/Orange)
+                        'primary': '#0284c7', // Sky Blue - More corporate feel
+                        'primary-light': '#38bdf8', // Light Sky Blue
+                        'accent': '#f97316', // Orange - For CTA/Highlight
+                        'primary-dark': '#075985', // Dark Blue
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -28,8 +30,8 @@
         }
     </script>
     <style>
-        /* Custom styles for better look and feel */
-        .job-heading::after {
+        /* Custom styles for better look and feel (Updated prefixes from .job- to .career- for clarity) */
+        .career-heading::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -41,7 +43,7 @@
             border-radius: 9999px;
         }
         
-        .job-card-header {
+        .career-card-header {
             background: linear-gradient(135deg, theme('colors.primary-light'), theme('colors.primary-dark'));
         }
 
@@ -50,7 +52,7 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
         }
 
-        /* ======= Form Popup Styles - COPIED FROM technician.html ======= */
+        /* ======= Form Popup Styles - Matching Blue/Orange Theme ======= */
         .form-popup-overlay {
             position: fixed;
             top: 0;
@@ -102,7 +104,7 @@
 
         .form-popup-title {
             font-size: 1.8rem;
-            color: #005f99;
+            color: theme('colors.primary-dark'); /* Changed color to dark primary */
             margin-bottom: 1.5rem;
             text-align: center;
         }
@@ -139,29 +141,8 @@
             resize: vertical;
         }
 
-        .services-checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 0.5rem;
-        }
-
-        .service-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #f0f8ff;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            border: 1px solid #cce0ff;
-        }
-
-        .service-checkbox input {
-            margin: 0;
-        }
-
         .submit-btn {
-            background: #007bff;
+            background: theme('colors.accent'); /* Used accent color */
             color: white;
             border: none;
             padding: 1rem;
@@ -174,7 +155,7 @@
         }
 
         .submit-btn:hover {
-            background: #0056b3;
+            background: #d9630c; /* Darker accent */
         }
 
         /* Error Message Styles */
@@ -235,14 +216,14 @@
 
         .success-title {
             font-size: 1.8rem;
-            color: #005f99;
+            color: theme('colors.primary-dark'); /* Changed color to dark primary */
             margin-bottom: 1rem;
         }
 
         .employee-id {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #28a745;
+            color: theme('colors.primary'); /* Used primary color */
             margin: 1rem 0;
             padding: 0.5rem;
             background: #f0fff0;
@@ -257,7 +238,7 @@
         }
 
         .success-btn {
-            background: #007bff;
+            background: theme('colors.primary'); /* Used primary color */
             color: white;
             border: none;
             padding: 0.8rem 2rem;
@@ -269,7 +250,7 @@
         }
 
         .success-btn:hover {
-            background: #0056b3;
+            background: theme('colors.primary-dark');
         }
 
         /* Loading Spinner */
@@ -279,7 +260,7 @@
             height: 40px;
             margin: 0 auto;
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
+            border-top: 4px solid theme('colors.primary-light');
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -300,15 +281,12 @@
             .form-popup-title {
                 font-size: 1.5rem;
             }
-            .service-checkbox {
-                padding: 0.3rem 0.8rem;
-                font-size: 0.9rem;
-            }
+            /* Removed service-checkbox styles as the element was removed */
         }
     </style>
 </head>
-<body class="font-sans min-h-screen p-4 sm:p-6 md:p-10 bg-gradient-to-br from-primary-light to-primary text-gray-800">
-
+<body class="font-sans min-h-screen p-4 sm:p-6 md:p-10 bg-gradient-to-br from-primary-light/50 to-primary/80 text-gray-800">
+    
     <div class="container max-w-7xl mx-auto">
         
         <!-- Header Section -->
@@ -317,7 +295,7 @@
                 Sonipat Home Service
             </div>
             <p class="text-lg sm:text-xl opacity-90 font-light">
-                हमारे साथ जुड़ें और अपना करियर शुरू करें
+                हमारे साथ जुड़ें और अपना करियर शुरू करें / Join us and start your career
             </p>
         </header>
         
@@ -325,25 +303,22 @@
         <div class="bg-white rounded-2xl p-6 sm:p-10 shadow-3xl">
             
             <!-- Title Section -->
-            <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-primary-light text-center relative pb-3 job-heading">
-                करियर के अवसर (Career Opportunities)
+            <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-primary-dark text-center relative pb-3 career-heading">
+                करियर के अवसर (Technician Career Opportunities)
             </h1>
             
             <p class="text-center mb-8 sm:mb-12 text-gray-600 max-w-4xl mx-auto text-base sm:text-lg">
                 हम अपनी बढ़ती टीम में अनुभवी और कुशल तकनीशियनों की तलाश कर रहे हैं। सोनीपत होम सर्विस में, हम व्यावसायिकता, विशेषज्ञता और ग्राहकों की संतुष्टि को महत्व देते हैं।
             </p>
             
-            <!-- Single Universal Job Card - Ultra Responsive -->
+            <!-- Single Universal Job Card - Updated Style -->
             <div class="job-grid flex justify-center">
-                <!-- Universal Card: Multi-Service Technician -->
-                <!-- Removed max-w-lg to make the card fully fluid (auto) within its container -->
                 <div class="universal-card w-full bg-gray-50 border border-primary-light/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-1">
                     
-                    <div class="job-card-header text-white p-6 sm:p-8 flex items-center gap-4">
+                    <div class="career-card-header text-white p-6 sm:p-8 flex items-center gap-4">
                         <div class="job-icon text-3xl p-3 bg-white/30 text-white rounded-full mr-2 shadow-md flex-shrink-0">
                             <i class="fas fa-tools"></i>
                         </div>
-                        <!-- Changed text-white to text-accent (Orange) for high visibility on the green background -->
                         <h2 class="text-2xl sm:text-3xl font-bold card-title-shadow text-accent">
                             बहु-सेवा होम अप्लायंस तकनीशियन
                         </h2>
@@ -353,7 +328,6 @@
                         
                         <!-- Fixed Job Details -->
                         <div class="job-details mb-6 border-b pb-4">
-                            <!-- Changed text-primary to text-primary-dark for strong contrast -->
                             <h3 class="font-semibold text-xl text-primary-dark mb-3">
                                 पद का विवरण (Position Details):
                             </h3>
@@ -379,7 +353,6 @@
                         
                         <!-- Combined Requirements for All Services -->
                         <div class="requirements">
-                            <!-- Changed text-primary to text-primary-dark for strong contrast -->
                             <h3 class="font-semibold text-xl text-primary-dark mb-3">
                                 आवश्यक कौशल और जिम्मेदारियाँ:
                             </h3>
@@ -408,7 +381,7 @@
                         </div>
                         
                         <!-- Register button: Calls form popup -->
-                        <button onclick="showFormPopup('Registrations')" class="apply-btn block w-full text-center bg-accent hover:bg-orange-600 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg mt-6">
+                        <button onclick="showFormPopup('Registrations')" class="apply-btn block w-full text-center bg-accent hover:bg-orange-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg mt-6">
                             Register Right Know
                         </button>
                     </div>
@@ -463,9 +436,9 @@
                     यदि आपके पास ये कौशल और अनुभव है, तो तुरंत हमसे संपर्क करें और हमारी बढ़ती टीम का हिस्सा बनें।
                 </p>
                 <!-- CTA Button: Uses tel: protocol (works seamlessly in browsers and apps) -->
-                <button class="cta-btn inline-block bg-accent hover:bg-orange-600 text-white font-extrabold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-xl" disabled>
-    कॉल करें: 88160-14071
-</button>
+                <button class="cta-btn inline-block bg-accent hover:bg-orange-600 text-white font-extrabold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-xl" onclick="window.location.href='tel:8816014071'">
+                    कॉल करें: 88160-14071
+                </button>
 
             </div>
             
@@ -475,7 +448,6 @@
                 <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
                     <i class="fas fa-phone-alt text-3xl text-primary-light mb-2"></i>
                     <h3 class="text-lg font-semibold text-primary">कॉल करें</h3>
-                    <!-- FIX: Added <a> tag with tel: protocol to make it clickable on all devices -->
                     <p class="text-gray-600">
                         <a href="tel:8816014071" class="text-gray-600 hover:text-primary-dark transition duration-150">88160-14071</a>
                     </p>
@@ -497,17 +469,16 @@
         </div>
         
         <!-- Footer Section -->
-        <footer class="text-center mt-8 text-white p-4 text-sm opacity-90">
+        <footer class="text-center mt-8 text-primary-dark p-4 text-sm opacity-90">
             <p>&copy; 2023 Sonipat Home Service. All rights reserved.</p>
         </footer>
     </div>
 
 
-    <!-- FORM POPUP HTML - COPIED AND MODIFIED -->
+    <!-- FORM POPUP HTML - MODIFIED FOR TECHNICIAN REGISTRATION -->
     <div class="form-popup-overlay" id="formPopup">
         <div class="form-popup-container">
             <button class="form-popup-close" onclick="closeFormPopup()">&times;</button>
-            <!-- UPDATED TITLE TO HINDI -->
             <h2 class="form-popup-title">तकनीशियन पंजीकरण फॉर्म</h2>
             <form id="registrationForm" class="registration-form" onsubmit="submitForm(event)">
                 <input type="hidden" id="serviceCategory" name="serviceCategory">
@@ -560,14 +531,11 @@
                     <div class="error-message" id="addressError">Please enter a valid address (10-200 characters)</div>
                 </div>
 
-                <!-- MODIFIED: Replaced Checkbox Group with a Textarea for manual input -->
                 <div class="form-group">
                     <label for="servicesKnown">आप कौन सा काम जानते हैं? (कम से कम एक चुनें)*</label>
-                    <!-- IMPORTANT: Using name="selectedServices" to match backend expectation -->
                     <textarea id="servicesKnown" name="selectedServices" required minlength="10" maxlength="500" placeholder="उदाहरण: AC रिपेयरिंग, वॉशिंग मशीन मोटर बदलना, प्लंबिंग"></textarea>
                     <div class="error-message" id="servicesError">कृपया बताएं कि आपको कौन-कौन से काम आते हैं (कम से कम 10 अक्षर)</div>
                 </div>
-                <!-- END MODIFIED BLOCK -->
 
                 <div class="spinner" id="formSpinner"></div>
                 <button type="submit" class="submit-btn" id="submitBtn">Submit Registration</button>
@@ -575,7 +543,7 @@
         </div>
     </div>
 
-    <!-- SUCCESS POPUP HTML - COPIED FROM technician.html -->
+    <!-- SUCCESS POPUP HTML - MODIFIED FOR TECHNICIAN REGISTRATION -->
     <div class="success-popup-overlay" id="successPopup">
         <div class="success-popup-container">
             <div class="success-icon">✓</div>
@@ -590,26 +558,13 @@
 
     <!-- JAVASCRIPT BLOCK - MODIFIED -->
     <script>
-        // Service data is kept only for the endpoint, as the list for populating checkboxes is removed.
+        // Service data is kept only for the endpoint, using the old 'Registrations' key
         const serviceData = {
-            // CHANGED KEY from 'Multi-Service Technician' to 'Registrations' to avoid sheet name conflict
-            // Endpoint is the same for all services as provided in the original technician.html
             'Registrations': { 
-                sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxidjS99tKI3X3Egf7lZYbLLFWrizSETHMV5yMGoGxNOX75LRA498Hpmun4YJaeVCWsag/exec'
-            },
-            // Keeping original data structure for completeness, though only 'Registrations' is used here
-            'AC Services': { /* ... */ }, 
-            'Refrigerator Services': { /* ... */ },
-            'Washing Machine Services': { /* ... */ },
-            'Cooler Services': { /* ... */ },
-            'Geyser Services': { /* ... */ },
-            'Kitchen Services': { /* ... */ },
-            'Electrical Services': { /* ... */ },
-            'Plumbing Services': { /* ... */ },
-            'Cleaning Services': { /* ... */ },
-            'Salon Services': { /* ... */ },
-            'Handyman Services': { /* ... */ },
-            'Security Services': { /* ... */ }
+                // !!! IMPORTANT: REPLACE THIS PLACEHOLDER URL !!!
+                // This URL must be your deployed Google Apps Script URL set up to receive POST requests and append data to your Google Sheet.
+                sheetEndpoint: 'YOUR_GOOGLE_APP_SCRIPT_URL_HERE'
+            }
         };
 
         // Initialize form when DOM is loaded
@@ -644,7 +599,6 @@
                     }
                 });
             });
-            // Removed checkbox-specific validation setup as it's now a textarea
         }
 
         // Validate individual form field
@@ -660,9 +614,8 @@
                 return false;
             }
 
-            if (field.type === 'text' || field.tagName === 'TEXTAREA') { // Check for TEXTAREA
+            if (field.type === 'text' || field.tagName === 'TEXTAREA') {
                 if (field.hasAttribute('minlength') && field.value.length < field.getAttribute('minlength')) {
-                    // Custom error message for services text area
                     const errorMessage = field.id === 'servicesKnown' 
                         ? 'कृपया बताएं कि आपको कौन-कौन से काम आते हैं (कम से कम 10 अक्षर)'
                         : `Minimum ${field.getAttribute('minlength')} characters required`;
@@ -723,14 +676,12 @@
             // This now includes the required textarea 'servicesKnown'
             const inputs = form.querySelectorAll('input[required], textarea[required], select[required]'); 
 
-            // Validate all required fields (including the new textarea)
+            // Validate all required fields
             inputs.forEach(input => {
                 if (!validateField(input)) {
                     isValid = false;
                 }
             });
-
-            // Removed the old checkbox validation logic
 
             return isValid;
         }
@@ -755,10 +706,8 @@
                 input.classList.remove('input-error');
             });
 
-            // Set the service category to the new key 'Registrations'
+            // Set the service category to 'Registrations'
             serviceCategoryInput.value = 'Registrations';
-
-            // Removed the code that generated checkboxes
 
             // Show popup
             popup.classList.add('active');
@@ -820,46 +769,78 @@
             // Determine the correct endpoint based on the hardcoded 'Registrations' key
             const endpoint = serviceData['Registrations'].sheetEndpoint; 
 
-            if (!endpoint) {
-                // Use a custom message box instead of alert
-                alert('Error: Could not find a valid endpoint for submission.');
-                submitBtn.disabled = false;
-                spinner.style.display = 'none';
+            if (endpoint === 'YOUR_GOOGLE_APP_SCRIPT_URL_HERE') {
+                // Custom error for missing endpoint
+                console.error('Submission Error: Google Apps Script URL has not been replaced.');
+                
+                // Show user-friendly error popup
+                document.getElementById('successTitle').textContent = 'Submission Failed!';
+                document.getElementById('successUserName').textContent = '';
+                document.querySelector('#successPopup .success-icon').textContent = 'X';
+                document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
+                document.getElementById('employeeIdDisplay').parentElement.style.display = 'none'; 
+                document.querySelector('#successPopup .success-message').textContent = 'Error: The Google Sheets endpoint URL has not been configured. Please replace "YOUR_GOOGLE_APP_SCRIPT_URL_HERE" in the code.';
+                
+                closeFormPopup();
+                document.getElementById('successPopup').classList.add('active');
+                
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('formSpinner').style.display = 'none';
                 return;
             }
 
+            // --- Network Fetch Logic ---
             fetch(endpoint, {
                 method: 'POST',
                 body: formData
             })
                 .then(response => response.json())
                 .then(data => {
-                    // Check for success from the Google Apps Script
+                    // Revert success popup to default successful state
+                    document.getElementById('successTitle').textContent = 'Registration Successful!';
+                    document.querySelector('#successPopup .success-icon').textContent = '✓';
+                    document.querySelector('#successPopup .success-icon').style.color = '#28a745';
+                    document.getElementById('employeeIdDisplay').parentElement.style.display = 'block';
+                    document.querySelector('#successPopup .success-message').textContent = "Thank you for joining us, " + formData.get('fullName') + "! We're excited to have you on board.";
+
+
                     if (data.result === 'success') {
                         const userName = formData.get('fullName');
                         document.getElementById('successUserName').textContent = userName;
                         document.getElementById('employeeIdDisplay').textContent = employeeId;
 
-                        // Hide the form popup
+                        // Hide the form popup and show success
                         closeFormPopup();
-
-                        // Show the success popup
                         document.getElementById('successPopup').classList.add('active');
                     } else {
-                         // Use a custom message box instead of alert
-                        alert('Registration failed. Please try again later.');
+                        // Handle server-side errors from Apps Script
+                        document.getElementById('successTitle').textContent = 'Submission Failed!';
+                        document.querySelector('#successPopup .success-icon').textContent = 'X';
+                        document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
+                        document.getElementById('employeeIdDisplay').parentElement.style.display = 'none';
+                        document.querySelector('#successPopup .success-message').textContent = 'There was an issue submitting your registration. Please check the Apps Script log or try again later.';
+                        
+                        closeFormPopup();
+                        document.getElementById('successPopup').classList.add('active');
                         console.error('Submission error:', data);
                     }
                 })
                 .catch(error => {
-                     // Use a custom message box instead of alert
-                    alert('An error occurred during submission. Please check your internet connection and try again.');
+                    // Handle network/fetch errors
+                    document.getElementById('successTitle').textContent = 'Network Error!';
+                    document.querySelector('#successPopup .success-icon').textContent = 'X';
+                    document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
+                    document.getElementById('employeeIdDisplay').parentElement.style.display = 'none';
+                    document.querySelector('#successPopup .success-message').textContent = 'A network error occurred during submission. Please check your internet connection and try again.';
+                    
+                    closeFormPopup();
+                    document.getElementById('successPopup').classList.add('active');
                     console.error('Submission error:', error);
                 })
                 .finally(() => {
                     // Re-enable button and hide spinner regardless of success or failure
-                    submitBtn.disabled = false;
-                    spinner.style.display = 'none';
+                    document.getElementById('submitBtn').disabled = false;
+                    document.getElementById('formSpinner').style.display = 'none';
                 });
         }
 
@@ -868,6 +849,12 @@
             const successPopup = document.getElementById('successPopup');
             successPopup.classList.remove('active');
             document.body.style.overflow = 'auto';
+            
+            // Reset success popup contents to default success message for future use
+            document.getElementById('successTitle').textContent = 'Registration Successful!';
+            document.querySelector('#successPopup .success-icon').textContent = '✓';
+            document.querySelector('#successPopup .success-icon').style.color = '#28a745';
+            document.getElementById('employeeIdDisplay').parentElement.style.display = 'block';
         }
     </script>
 </body>
