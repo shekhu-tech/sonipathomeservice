@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonipat Home Service - Chat With Us</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for stylish look -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        /* Custom styles for a classic, stylish look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light off-white background */
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .icon-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Specific Brand Colors for Card Borders/Accents */
+        .whatsapp-accent { border-color: #25d366; }
+        .aratai-accent { border-color: #8B5CF6; } /* New Purple accent for Aratai */
+        .telegram-accent { border-color: #0088cc; } /* Telegram Blue */
+        /* Removed .phone-accent */
+
+        /* Media query for grid layout on larger screens */
+        @media (min-width: 640px) {
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            /* Optimized for 3 columns on large screens */
+            .social-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 sm:p-8 flex flex-col items-center">
+
+    <div class="max-w-4xl w-full">
+        <!-- Header Section -->
+        <header class="text-center mb-12 p-6 bg-white rounded-xl shadow-lg">
+            <h1 class="text-4xl font-extrabold text-gray-800 mb-2">
+                Sonipat Home Service
+            </h1>
+            <p class="text-xl text-gray-500">
+                Direct Contact: Chat With Us
+            </p>
+        </header>
+
+        <!-- Chat & Contact Cards Grid -->
+        <div class="social-grid grid gap-6">
+
+            <!-- Card 1: WhatsApp Chat -->
+            <a href="https://wa.me/918816014071" target="_blank" class="block">
+                <div class="card-hover transition duration-300 bg-white p-6 rounded-xl shadow-xl border-l-4 whatsapp-accent flex items-center space-x-4">
+                    <div class="icon-container bg-green-100 text-green-600">
+                        <i data-lucide="message-square" class="w-7 h-7"></i> 
+                    </div>
+                    <div>
+                        <p class="text-lg font-semibold text-gray-900">WhatsApp Chat</p>
+                        <p class="text-sm text-gray-500">Message us instantly, get 24/7 support.</p>
+                        <span class="text-green-500 text-sm font-medium mt-1 inline-block">+91 88160 14071</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 2: Aratai Messenger -->
+            <a href="https://arataimessenger.com/chat/8816014071" target="_blank" class="block">
+                <div class="card-hover transition duration-300 bg-white p-6 rounded-xl shadow-xl border-l-4 aratai-accent flex items-center space-x-4">
+                    <div class="icon-container bg-purple-100 text-purple-600">
+                        <!-- Using message-circle for general messenger app -->
+                        <i data-lucide="message-circle" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <p class="text-lg font-semibold text-gray-900">Aratai Messenger</p>
+                        <p class="text-sm text-gray-500">Chat with us directly on Aratai.</p>
+                        <span class="text-purple-500 text-sm font-medium mt-1 inline-block">+91 88160 14071</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 3: Telegram Chat -->
+            <a href="https://t.me/8816014071" target="_blank" class="block">
+                <div class="card-hover transition duration-300 bg-white p-6 rounded-xl shadow-xl border-l-4 telegram-accent flex items-center space-x-4">
+                    <div class="icon-container bg-blue-100 text-blue-600">
+                        <!-- Using send icon for Telegram's paper plane look -->
+                        <i data-lucide="send" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <p class="text-lg font-semibold text-gray-900">Telegram Chat</p>
+                        <p class="text-sm text-gray-500">Join us on Telegram and chat.</p>
+                        <span class="text-blue-500 text-sm font-medium mt-1 inline-block">+91 88160 14071</span>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- The Phone Call Card has been removed as requested. -->
+            
+        </div>
+        
+        <!-- Footer / Instructions -->
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p>
+                <i data-lucide="info" class="inline-block w-4 h-4 mr-1"></i>
+                
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
