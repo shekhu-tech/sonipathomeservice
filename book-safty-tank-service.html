@@ -1,1 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonipatHomeService.com - Septic Tank Cleaning Service</title>
+    <script src="redirect_if_needed.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+        :root {
+            /* Theme: Deep Space Black, Aqua/Teal (for Cleaning/Water), and Electric Gold */
+            --bg-dark: #101827; /* Deep Space Black */
+            --bg-card: #1C2738; /* Dark Navy Card */
+            --primary: #00BFFF; /* Deep Sky Blue/Aqua (Main Page Button) */
+            --secondary: #FFD700; /* Electric Gold Accent (Price Highlight/Border) */
+            --text-light: #E0E7FF; /* Off-White Text */
+            --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
+            --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            /* AC Button Colors used for Popup Actions (for consistent look across popups) */
+            --ac-primary: #00FFFF; /* Electric Teal */
+            --ac-secondary: #FFC72C; /* Sunset Gold */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        /* --- Custom Components --- */
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-depth);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 191, 255, 0.2);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.3);
+        }
+
+        .stat-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .stat-card p {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .product-section {
+            background: linear-gradient(135deg, var(--bg-card), #22324C);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            border: 2px solid var(--secondary);
+        }
+
+        .product-header {
+            background: linear-gradient(90deg, #101827, #22324C);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .product-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .product-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: center; 
+            justify-content: center;
+        }
+
+        .product-details {
+            flex: 1; 
+            min-width: 300px;
+            text-align: center; 
+        }
+
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px dashed var(--text-subtle);
+            border-bottom: 1px dashed var(--text-subtle);
+            justify-content: center; 
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: var(--text-subtle);
+            font-weight: 400;
+            visibility: visible; 
+            height: auto;
+        }
+
+        .current-price {
+            font-size: 3rem; 
+            font-weight: 800; 
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 3rem; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            justify-content: center;
+            flex-grow: 1;
+            max-width: 300px;
+            min-width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg-dark);
+            border-color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: #00A3CC;
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 191, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.03);
+        }
+
+        /* --- Popup Styling --- */
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 999;
+        }
+
+        .popup {
+            display: none;
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 95%;
+            max-width: 650px;
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            border: 1px solid var(--primary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .popup h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .popup input,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            font-size: 1rem;
+            background: #22324C;
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+        
+        .popup input:focus,
+        .popup select:focus,
+        .popup textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.2);
+        }
+
+        .popup textarea {
+            min-height: 8rem;
+            resize: vertical;
+        }
+
+        /* START: AC Button Styles Applied Here (Consistent Look) */
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn,
+        #okayBtn,
+        .popup button.close-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn { /* Primary Action Buttons (Teal Gradient) */
+            background: linear-gradient(45deg, var(--ac-primary), #00D5D5);
+            color: var(--bg-dark);
+        }
+
+        .popup button[type="submit"]:hover,
+        #razorpay-payment-btn:hover,
+        #downloadBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
+        }
+
+        #okayBtn,
+        #close-price-list-btn,
+        #close-description-btn { /* Secondary/Close Buttons (Gold Accent) */
+            background: transparent;
+            color: var(--ac-secondary);
+            border: 2px solid var(--ac-secondary);
+        }
+        
+        #okayBtn:hover,
+        #close-price-list-btn:hover,
+        #close-description-btn:hover {
+            background: rgba(255, 199, 44, 0.1);
+            transform: scale(1.01);
+        }
+        /* END: AC Button Styles Applied Here */
+        
+        .quantity-selector-container {
+            background: #22324C;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+        }
+
+        .total-price-quantity {
+            font-size: 1.8rem !important;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary) !important;
+        }
+        
+        .price-calculation-summary {
+            background: #22324C;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        .price-calculation-summary strong {
+            color: var(--primary);
+        }
+
+        /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
+
+        @media (max-width: 1024px) {
+            .product-content { padding: 2rem; flex-direction: column; }
+            .product-details { text-align: center; }
+            .price-container, .action-buttons { justify-content: center; }
+            .btn { max-width: 400px; } 
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            main { padding: 3rem 1rem; }
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 2rem 1rem; }
+            .product-header h2 { font-size: 2rem; }
+            .product-details h3 { font-size: 2rem; }
+            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
+            .current-price { font-size: 2.5rem; }
+            .popup { padding: 1.5rem; }
+            .popup h2 { font-size: 1.5rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { min-width: 100%; max-width: 100%; }
+            .popup input, .popup select, .popup textarea {
+                padding: 0.7rem 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .current-price { font-size: 2rem; }
+            .original-price { font-size: 1rem; }
+            .stat-card p { font-size: 1.8rem; }
+            .popup { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        
+        <section class="product-section">
+            <div class="product-header">
+                <h2 class="text-white">Professional Septic/Sewerage Tank Cleaning</h2>
+                <p class="text-sm text-gray-400 mt-2">हाई-पावर वैक्यूम मशीन से टैंक की सफाई - लंबाई और क्षमता के आधार पर पारदर्शी मूल्य निर्धारण।</p>
+            </div>
+
+            <div class="product-content">
+                
+                <div class="product-details">
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">सेप्टिक टैंक खाली करवाने का खर्च (साधारण)</h3>
+                    <p class="text-text-subtle mb-4 text-base">
+                        मूल्य निर्धारण आपके टैंक तक पाइपलाइन की लंबाई (मीटर में) और टैंक की क्षमता (लीटर में) पर निर्भर करता है।
+                    </p>
+                    
+                    <div class="price-container">
+                        <div class="original-price">5000 लीटर तक आधार शुल्क</div>
+                        <div class="current-price" id="displayPrice">Calculated Price</div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="book-now-btn">
+                            <i class="fas fa-truck-tank"></i> Book Cleaning Now
+                        </button>
+                        <button id="price-list-btn" class="btn btn-secondary">
+                            <i class="fas fa-tags"></i> Base Price List
+                        </button>
+                         <button id="description-btn" class="btn btn-secondary">
+                            <i class="fas fa-calculator"></i> Calculate Cost Examples
+                        </button>
+                        <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                            <i class="fas fa-home"></i> Back To Home
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>टैंक साफ करने का अनुभव</h3>
+                <p>2000+</p>
+            </div>
+            <div class="stat-card">
+                <h3>पाइपलाइन कवरेज</h3>
+                <p>300 Mtr तक</p>
+            </div>
+            <div class="stat-card">
+                <h3>सफाई क्षमता</h3>
+                <p>15000+ Ltr</p>
+            </div>
+            <div class="stat-card">
+                <h3>तत्काल सेवा</h3>
+                <p>उपलब्ध!</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="popup-overlay"></div>
+    
+    <!-- Booking Form Popup -->
+    <div id="booking-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">Septic Tank Cleaning Booking Form</h2>
+        <form id="booking-form">
+            <div class="quantity-selector-container my-4">
+                <label for="pipelineLength">1. पाइपलाइन की लंबाई चुनें:</label>
+                <select id="pipelineLength" name="pipelineLength" required>
+                    <option value="" disabled selected>पाइपलाइन की लंबाई (अधिकतम)</label></option>
+                </select>
+                
+                <label for="tankCapacity" class="mt-4">2. टैंक की क्षमता (लीटर में):</label>
+                <input type="number" id="tankCapacity" name="tankCapacity" placeholder="उदाहरण: 8000 लीटर" min="5000" required />
+                
+                <div id="priceCalculationSummary" class="price-calculation-summary">
+                    **आधार शुल्क:** ₹0 (0 मीटर) <br>
+                    **अतिरिक्त क्षमता:** ₹0 (0 लीटर) <br>
+                    **कुल अनुमानित लागत:** ₹0
+                </div>
+            </div>
+            
+            <label for="name">Full Name (min 10 characters)</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
+
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+            
+            <label for="location">Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
+            
+            <label for="address">Complete Address (min 30 characters)</label>
+            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
+            
+            <div class="quantity-selector my-4">
+                <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
+                    <span>Final Calculated Price</span>
+                    <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹0</span>
+                </div>
+            </div>
+
+            <button type="submit">Submit Details & Proceed to Payment</button>
+            <p id="submit-message" class="text-center text-sm text-primary mt-2 hidden">Submitting...</p>
+        </form>
+    </div>
+
+    <!-- Payment Popup -->
+    <div id="payment-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">Complete Your Payment</h2>
+        <p class="text-text-subtle text-center mb-6">कृपया सफाई सेवा बुक करने के लिए पूरा भुगतान करें।</p>
+        <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
+        <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
+        <p class="mt-4 text-xs text-text-subtle text-center">
+            Note: Do not close this window during payment processing.
+        </p>
+    </div>
+
+    <!-- Confirmation Popup -->
+    <div id="confirmation-popup" class="popup">
+        <h2 id="welcome-message" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">आपकी सफाई सेवा बुक हो गई है! हमारी टीम जल्द ही संपर्क करेगी।</p>
+        <div id="ticket-info" class="space-y-2">
+            <!-- Details will be injected here -->
+        </div>
+        <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Download Service Details</button>
+        <p class="mt-4 text-sm text-text-subtle text-center">📸 कृपया रिकॉर्ड के लिए स्क्रीनशॉट लें।</p>
+        <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
+    </div>
+
+    <!-- Price List Popup -->
+    <div id="price-list-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">सेप्टिक टैंक सफाई आधार शुल्क (5000 लीटर तक)</h2>
+        <div class="overflow-x-auto mt-4">
+            <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
+                <thead>
+                    <tr class="text-left text-secondary">
+                        <th class="py-3 px-4 border-b border-text-subtle">पाइप लाइन लंबाई</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">आधार शुल्क (5000 लीटर)</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">प्रति अतिरिक्त 5000 लीटर</th>
+                    </tr>
+                </thead>
+                <tbody id="priceListTableBody">
+                    <!-- Rows will be injected by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <button id="close-price-list-btn" class="close-btn mt-4">Close Price List</button>
+    </div>
+
+    <!-- Cost Calculation Examples Popup -->
+    <div id="description-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">मूल्य गणना के उदाहरण (Cost Calculation Examples)</h2>
+        <div class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
+            <ul class="list-disc list-inside space-y-3">
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-info-circle mr-2"></i> आधार शुल्क (Base Charge)</li>
+                <li>मूल्य निर्धारण टैंक तक पाइपलाइन की लंबाई पर निर्भर करता है। इस शुल्क में **पहले 5000 लीटर** की सफाई शामिल है।</li>
+                
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-calculator mr-2"></i> अतिरिक्त क्षमता की गणना (Over 5000 Liters)</li>
+                <li>टैंक की क्षमता 5000 लीटर से अधिक होने पर, **प्रति अतिरिक्त 5000 लीटर** (या उसके भाग) के लिए एक अतिरिक्त शुल्क लिया जाएगा।</li>
+                
+                <li class="font-bold text-primary mt-4 text-lg">उदाहरण 1: 100 मीटर पाइपलाइन, 8000 लीटर का टैंक</li>
+                <li>आधार शुल्क (100 मीटर के लिए): ₹2199</li>
+                <li>अतिरिक्त क्षमता: $8000 - 5000 = 3000$ लीटर। (जो 5000 लीटर के अंतर्गत आता है)</li>
+                <li>अतिरिक्त शुल्क: ₹1199</li>
+                <li>कुल खर्च: $₹2199 + ₹1199 = ₹3398$</li>
+
+                <li class="font-bold text-primary mt-4 text-lg">उदाहरण 2: 200 मीटर पाइपलाइन, 15,000 लीटर का टैंक</li>
+                <li>आधार शुल्क (200 मीटर के लिए): ₹3199</li>
+                <li>शेष क्षमता: $15,000 - 5000 = 10,000$ लीटर।</li>
+                <li>अतिरिक्त इकाइयाँ: $10,000 \div 5000 = 2$ इकाइयाँ</li>
+                <li>अतिरिक्त शुल्क: $2 \times ₹1199 = ₹2398$</li>
+                <li>कुल खर्च: $₹3199 + ₹2398 = ₹5597$</li>
+            </ul>
+        </div>
+        <button id="close-description-btn" class="close-btn mt-4">I Understand</button>
+    </div>
+    
+    <script>
+        // Data derived from the uploaded image
+        const pricingData = [
+            { length: 60, basePrice: 1199, additionalPrice: 1199 },
+            { length: 100, basePrice: 2199, additionalPrice: 1199 },
+            { length: 200, basePrice: 3199, additionalPrice: 1199 },
+            { length: 300, basePrice: 6199, additionalPrice: 1199 }
+        ];
+        const BASE_CAPACITY = 5000;
+        const ADDITIONAL_UNIT = 5000;
+
+        // --- Generic constants ---
+        const SERVICE_NAME = "Septic Tank Cleaning";
+        const SERVICE_TAB_ID = "septic-tank-cleaning-service";
+        const LOCAL_STORAGE_KEY = 'septicTankCleaningFormData';
+        const RAZORPAY_IMAGE_TEXT = "TANK";
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+
+        // --- DOM Element Selection ---
+        const bookNowBtn = document.getElementById('book-now-btn');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const allPopups = document.querySelectorAll('.popup');
+        const bookingPopup = document.getElementById('booking-popup');
+        const paymentPopup = document.getElementById('payment-popup');
+        const confirmationPopup = document.getElementById('confirmation-popup');
+        const bookingForm = document.getElementById('booking-form');
+        const pipelineLengthSelect = document.getElementById('pipelineLength');
+        const tankCapacityInput = document.getElementById('tankCapacity');
+        const calculatedPriceDisplay = document.getElementById('calculated-price');
+        const displayPrice = document.getElementById('displayPrice');
+        const submitMessage = document.getElementById('submit-message');
+        const paymentSummary = document.getElementById('payment-summary');
+        const timerDisplay = document.getElementById('timer-display');
+        const razorpayBtn = document.getElementById('razorpay-payment-btn');
+        const ticketInfo = document.getElementById('ticket-info');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const okayBtn = document.getElementById('okayBtn');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const priceListBtn = document.getElementById('price-list-btn');
+        const descriptionBtn = document.getElementById('description-btn');
+        const priceListPopup = document.getElementById('price-list-popup');
+        const descriptionPopup = document.getElementById('description-popup');
+        const closePriceListBtn = document.getElementById('close-price-list-btn');
+        const closeDescriptionBtn = document.getElementById('close-description-btn');
+        const priceListTableBody = document.getElementById('priceListTableBody');
+        const priceCalculationSummary = document.getElementById('priceCalculationSummary');
+
+        // --- State variables ---
+        let currentCalculatedPrice = 0;
+        let generatedTicket = '';
+        let countdownInterval = null;
+        let allowClose = false;
+
+        // --- Local Storage Functions for Autofill ---
+        function saveFormData() {
+            const formData = {
+                fullName: bookingForm.name.value,
+                phone: bookingForm.phone.value,
+                location: bookingForm.location.value,
+                address: bookingForm.address.value,
+                pipelineLength: pipelineLengthSelect.value,
+                tankCapacity: tankCapacityInput.value
+            };
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+            } catch (e) {
+                console.warn("Local storage saving failed:", e);
+            }
+        }
+
+        function loadFormData() {
+            try {
+                const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    bookingForm.name.value = data.fullName || '';
+                    bookingForm.phone.value = data.phone || '';
+                    bookingForm.location.value = data.location || '';
+                    bookingForm.address.value = data.address || '';
+                    pipelineLengthSelect.value = data.pipelineLength || '';
+                    tankCapacityInput.value = data.tankCapacity || '';
+                }
+            } catch (e) {
+                console.warn("Local storage loading failed:", e);
+            }
+        }
+
+        // --- Core Functions ---
+        function populateLengthOptions() {
+            pipelineLengthSelect.innerHTML = '<option value="" disabled selected>पाइपलाइन की लंबाई (अधिकतम)</option>';
+            pricingData.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.length;
+                option.textContent = `${item.length} मीटर तक - (₹${item.basePrice} आधार शुल्क)`;
+                option.dataset.basePrice = item.basePrice;
+                option.dataset.additionalPrice = item.additionalPrice;
+                pipelineLengthSelect.appendChild(option);
+            });
+        }
+
+        function populatePriceList() {
+            priceListTableBody.innerHTML = '';
+            pricingData.forEach(item => {
+                const row = `
+                    <tr class="text-text-light hover:bg-bg-dark">
+                        <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">${item.length} मीटर तक</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${item.basePrice}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">+ ₹${item.additionalPrice}</td>
+                    </tr>
+                `;
+                priceListTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+        
+        function updatePrices() {
+            const selectedOption = pipelineLengthSelect.options[pipelineLengthSelect.selectedIndex];
+            const basePrice = selectedOption && selectedOption.dataset.basePrice ? parseFloat(selectedOption.dataset.basePrice) : 0;
+            const additionalPricePerUnit = selectedOption && selectedOption.dataset.additionalPrice ? parseFloat(selectedOption.dataset.additionalPrice) : 0;
+            const tankCapacity = parseInt(tankCapacityInput.value) || 0;
+            
+            let totalCost = basePrice;
+            let additionalUnits = 0;
+            let additionalCost = 0;
+            let remainingCapacity = 0;
+
+            if (basePrice > 0 && tankCapacity > BASE_CAPACITY) {
+                remainingCapacity = tankCapacity - BASE_CAPACITY;
+                // Calculate additional units (ceil is used to count partial 5000L units)
+                additionalUnits = Math.ceil(remainingCapacity / ADDITIONAL_UNIT);
+                additionalCost = additionalUnits * additionalPricePerUnit;
+                totalCost += additionalCost;
+            }
+
+            currentCalculatedPrice = totalCost;
+            
+            // Update summary display
+            const basePriceDisplay = `₹${basePrice}`;
+            const additionalCostDisplay = additionalCost > 0 ? `₹${additionalCost} (${additionalUnits} x ₹${additionalPricePerUnit} for ${remainingCapacity}L)` : `₹0`;
+            const pipelineLengthText = selectedOption ? `${selectedOption.value} मीटर` : 'N/A';
+
+            priceCalculationSummary.innerHTML = `
+                <span class="text-text-subtle text-sm">Calculation for ${pipelineLengthText} pipeline & ${tankCapacity}L tank:</span><br>
+                **आधार शुल्क (5000L तक):** ${basePriceDisplay} <br>
+                **अतिरिक्त क्षमता (${tankCapacity}L):** ${additionalCostDisplay} <br>
+                <strong class="text-xl text-secondary">कुल अनुमानित लागत: ₹${totalCost}</strong>
+            `;
+
+            calculatedPriceDisplay.textContent = `Total: ₹${totalCost}`;
+            displayPrice.textContent = `₹${totalCost}`;
+        }
+
+        function generateTicketId() {
+            return 'SEPTIC-XXXXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
+        }
+
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert'; 
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => alertBox.remove(), 4000); 
+        }
+
+        function closeAllPopups() {
+            if (!allowClose) {
+                if (bookingPopup.style.display !== 'block') {
+                    showCustomAlert("कृपया बुकिंग प्रक्रिया पूरी करने के बाद ही बंद करें।");
+                    return;
+                }
+            }
+            clearTimers();
+            popupOverlay.style.display = 'none';
+            allPopups.forEach(p => p.style.display = 'none');
+            document.body.style.overflow = 'auto';
+            bookingForm.reset();
+            calculatedPriceDisplay.textContent = 'Total: ₹0';
+            displayPrice.textContent = 'Calculated Price';
+            priceCalculationSummary.innerHTML = `**आधार शुल्क:** ₹0 (0 मीटर) <br> **अतिरिक्त क्षमता:** ₹0 (0 लीटर) <br> **कुल अनुमानित लागत:** ₹0`;
+            allowClose = false;
+        }
+
+        function openPopup(popupElement) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            
+            allPopups.forEach(p => p.style.display = 'none');
+            
+            popupElement.style.display = 'block';
+            allowClose = (popupElement === bookingPopup || popupElement === confirmationPopup);
+        }
+
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function downloadTicketDetails() {
+            const name = bookingForm.name.value;
+            const phone = bookingForm.phone.value;
+            const location = bookingForm.location.value;
+            const address = bookingForm.address.value;
+            const pipeline = pipelineLengthSelect.options[pipelineLengthSelect.selectedIndex].textContent;
+            const capacity = tankCapacityInput.value;
+            const totalPrice = currentCalculatedPrice;
+
+            const content = `${SERVICE_NAME} Booking Details\n\n` +
+                            `Booking ID: ${generatedTicket}\n` +
+                            `Name: ${name}\n` +
+                            `Phone: ${phone}\n` +
+                            `Address: ${location}, ${address}\n` +
+                            `Pipeline Used: ${pipeline}\n` +
+                            `Tank Capacity: ${capacity} Liters\n` +
+                            `Calculated Price: ₹${totalPrice}\n\n` +
+                            `--- NOTE ---\n` +
+                            `The final price is calculated based on ${pipeline.split('(')[0].trim()} and ${capacity}L capacity (Base 5000L + Additional units).`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `septic-tank-cleaning-${generatedTicket}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function clearTimers() {
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        function startPaymentTimer() {
+            let timeLeft = PAYMENT_TIME_LIMIT;
+            const updateDisplay = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            updateDisplay();
+
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    showCustomAlert("Payment time expired. Please try again.");
+                    allowClose = true;
+                    closeAllPopups();
+                }
+            }, 1000);
+        }
+
+        function handleRazorpayPayment() {
+            if (currentCalculatedPrice <= 0) {
+                 showCustomAlert("कृपया सही पाइपलाइन और टैंक की क्षमता दर्ज करें।");
+                 return;
+            }
+            const selectedPipeline = pipelineLengthSelect.options[pipelineLengthSelect.selectedIndex].textContent.split(' - ')[0];
+            const capacity = tankCapacityInput.value;
+
+            const options = {
+                "key": "rzp_live_opiqkRmGpjG1hF",
+                "amount": currentCalculatedPrice * 100,
+                "currency": "INR",
+                "name": `SonipatHomeService - ${SERVICE_NAME}`,
+                "description": `Cleaning for ${selectedPipeline} pipeline and ${capacity}L tank (ID: ${generatedTicket})`,
+                "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`,
+                "handler": function (response){
+                    paymentSuccess(response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": bookingForm.name.value,
+                    "phone": bookingForm.phone.value
+                },
+                "notes": {
+                    "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
+                    "pipeline_details": selectedPipeline,
+                    "tank_capacity": capacity
+                },
+                "theme": { "color": "#00BFFF" },
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
+        }
+
+        function paymentSuccess(paymentId) {
+            clearTimers();
+            paymentPopup.style.display = 'none';
+            openPopup(confirmationPopup);
+
+            saveFormData();
+            
+            const name = bookingForm.name.value.split(' ')[0];
+            const selectedPipeline = pipelineLengthSelect.options[pipelineLengthSelect.selectedIndex].textContent.split(' - ')[0];
+            const capacity = tankCapacityInput.value;
+            const totalPrice = currentCalculatedPrice;
+
+            welcomeMessage.textContent = `🎉 Booking Confirmed, ${name}! 🎉`;
+            
+            ticketInfo.innerHTML = `
+                <p><strong>Booking ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p><strong>Pipeline:</strong> <span class="font-bold text-text-light">${selectedPipeline}</span></p>
+                <p><strong>Tank Capacity:</strong> <span class="font-bold text-text-light">${capacity} Liters</span></p>
+                <p class="text-secondary text-lg font-bold mt-3">Total Paid: ₹${totalPrice}</p>
+                <p class="text-text-subtle text-sm mt-3">Technician will contact you shortly to confirm the arrival time.</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
+            `;
+            allowClose = true;
+        }
+        
+        // --- Event Listeners Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            populateLengthOptions();
+            updatePrices();
+
+            // Event listeners for calculation
+            pipelineLengthSelect.addEventListener('change', updatePrices);
+            tankCapacityInput.addEventListener('input', updatePrices);
+        });
+
+        bookNowBtn.addEventListener('click', () => {
+            updatePrices();
+            loadFormData();
+            openPopup(bookingPopup);
+        });
+
+        popupOverlay.addEventListener('click', e => {
+            if (e.target === popupOverlay) {
+                if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
+                else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
+                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
+                else if (bookingPopup.style.display === 'block') closeAllPopups();
+            }
+        });
+        
+        okayBtn.addEventListener('click', closeAllPopups);
+        downloadBtn.addEventListener('click', downloadTicketDetails);
+
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validation
+            if (!pipelineLengthSelect.value) { showCustomAlert("कृपया पाइपलाइन की लंबाई चुनें।"); return; }
+            if (parseInt(tankCapacityInput.value) < BASE_CAPACITY) { showCustomAlert(`टैंक की क्षमता कम से कम ${BASE_CAPACITY} लीटर होनी चाहिए।`); return; }
+            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
+            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
+            if (bookingForm.location.value.trim().length < 3) { showCustomAlert("कृपया सही लोकेशन दर्ज करें।"); return; }
+            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
+            if (currentCalculatedPrice <= 0) { showCustomAlert("कृपया सही पाइपलाइन और टैंक की क्षमता दर्ज करें।"); return; }
+
+
+            submitMessage.classList.remove('hidden');
+            bookingForm.querySelector('button[type="submit"]').disabled = true;
+            generatedTicket = generateTicketId();
+
+            // --- Submission mimic ---
+            
+            setTimeout(() => {
+                submitMessage.classList.add('hidden');
+                bookingForm.querySelector('button[type="submit"]').disabled = false;
+                bookingPopup.style.display = 'none';
+
+                const totalDue = currentCalculatedPrice;
+                const pipelineText = pipelineLengthSelect.options[pipelineLengthSelect.selectedIndex].textContent.split(' - ')[0];
+
+                paymentSummary.innerHTML = `
+                    <p class="text-text-subtle text-lg mb-2 font-bold">Service Details:</p>
+                    <p class="text-text-light text-base mb-1">Pipeline: <span class="font-bold text-primary">${pipelineText}</span></p>
+                    <p class="text-text-light text-base mb-3">Capacity: <span class="font-bold text-primary">${tankCapacityInput.value} Liters</span></p>
+                    <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Total Payable: ₹${totalDue}</p>
+                `;
+                openPopup(paymentPopup);
+                startPaymentTimer();
+            }, 1000);
+            
+            // --- End Submission mimic ---
+        });
+
+        razorpayBtn.addEventListener('click', handleRazorpayPayment);
+        priceListBtn.addEventListener('click', () => {
+            populatePriceList();
+            openPopup(priceListPopup);
+        });
+        descriptionBtn.addEventListener('click', () => {
+            openPopup(descriptionPopup);
+        });
+        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
+        closeDescriptionBtn.addEventListener('click', () => closeSpecificPopup(descriptionPopup));
+    </script>
+</body>
+</html>
 
