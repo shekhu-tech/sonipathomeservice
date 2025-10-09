@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport tag for ultra responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonipat Home Service - Business Partnership</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#0284c7', // Sky Blue - More business/corporate feel
+                        'primary-light': '#38bdf8', // Light Sky Blue
+                        'accent': '#f97316', // Orange - For CTA/Highlight
+                        'primary-dark': '#075985', // Dark Blue
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for better look and feel */
+        .partner-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: theme('colors.accent');
+            border-radius: 9999px;
+        }
+        
+        .partner-card-header {
+            background: linear-gradient(135deg, theme('colors.primary-light'), theme('colors.primary-dark'));
+        }
+
+        /* Added text shadow for better heading visibility */
+        .card-title-shadow {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+        }
+
+        /* ======= Form Popup Styles (Retained responsiveness and design) ======= */
+        .form-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .form-popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .form-popup-container {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .form-popup-overlay.active .form-popup-container {
+            transform: scale(1);
+        }
+
+        .form-popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #333;
+        }
+
+        .form-popup-title {
+            font-size: 1.8rem;
+            color: theme('colors.primary-dark');
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Form Styles */
+        .registration-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: theme('colors.accent');
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #d9630c;
+        }
+
+        /* Error Message Styles */
+        .error-message {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .input-error {
+            border-color: #dc3545 !important;
+        }
+
+        /* Success Popup Styles */
+        .success-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .success-popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-popup-container {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .success-popup-overlay.active .success-popup-container {
+            transform: scale(1);
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 1rem;
+        }
+
+        .success-title {
+            font-size: 1.8rem;
+            color: theme('colors.primary-dark');
+            margin-bottom: 1rem;
+        }
+
+        .employee-id {
+            font-size: 1.2rem; /* Changed to general ID */
+            font-weight: bold;
+            color: theme('colors.primary-dark');
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background: #f0fff0;
+            border-radius: 5px;
+        }
+
+        .success-message {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .success-btn {
+            background: theme('colors.primary');
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .success-btn:hover {
+            background: theme('colors.primary-dark');
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid theme('colors.primary-light');
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-popup-container {
+                padding: 1.5rem;
+            }
+            .form-popup-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans min-h-screen p-4 sm:p-6 md:p-10 bg-gradient-to-br from-primary-light/50 to-primary/80 text-gray-800">
+
+    <div class="container max-w-7xl mx-auto">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-8 sm:mb-12 p-5 text-white bg-primary rounded-xl shadow-2xl">
+            <div class="text-4xl sm:text-5xl font-extrabold mb-2 text-white">
+                Sonipat Home Service
+            </div>
+            <p class="text-lg sm:text-xl opacity-90 font-light">
+                Join us as a partner and grow together
+            </p>
+        </header>
+        
+        <!-- Main Content Container -->
+        <div class="bg-white rounded-2xl p-6 sm:p-10 shadow-3xl">
+            
+            <!-- Title Section -->
+            <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-primary-dark text-center relative pb-3 partner-heading">
+                Business Partnership Opportunities
+            </h1>
+            
+            <p class="text-center mb-8 sm:mb-12 text-gray-600 max-w-4xl mx-auto text-base sm:text-lg">
+                Sonipat Home Service is looking for active, visionary, and locally knowledgeable business partners to expand its market presence.
+            </p>
+            
+            <!-- Single Universal Partnership Card -->
+            <div class="job-grid flex justify-center">
+                <div class="universal-card w-full bg-gray-50 border border-primary-light/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    
+                    <div class="partner-card-header text-white p-6 sm:p-8 flex items-center gap-4">
+                        <div class="partner-icon text-3xl p-3 bg-white/30 text-white rounded-full mr-2 shadow-md flex-shrink-0">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-bold card-title-shadow text-accent">
+                            Key Business Partner
+                        </h2>
+                    </div>
+                    
+                    <div class="p-6 sm:p-8">
+                        
+                        <!-- Partnership Details -->
+                        <div class="partner-details mb-6 border-b pb-4">
+                            <h3 class="font-semibold text-xl text-primary-dark mb-3">
+                                Partnership Details:
+                            </h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-gray-700 text-sm sm:text-base">
+                                <div class="flex items-center">
+                                    <span class="font-bold text-primary-dark w-36">Required Investment:</span>
+                                    <span class="flex-1">₹5 Lakh - ₹20 Lakh (project dependent)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="font-bold text-primary-dark w-36">Estimated Profit:</span>
+                                    <span class="flex-1">25% - 40% Annual ROI</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="font-bold text-primary-dark w-36">Initial Location:</span>
+                                    <span class="flex-1">Cities in Delhi-NCR, Haryana, and Punjab</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="font-bold text-primary-dark w-36">Partnership Type:</span>
+                                    <span class="flex-1">Investment-based and Operational</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Partner Requirements -->
+                        <div class="requirements">
+                            <h3 class="font-semibold text-xl text-primary-dark mb-3">
+                                Partner Requirements and Responsibilities:
+                            </h3>
+                            <ul class="space-y-2 text-sm sm:text-base pl-5 text-gray-700 list-disc">
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-primary-light"><i class="fas fa-chart-bar"></i></span>
+                                    **Business Acumen:** Experience in creating business plans and market strategies.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-primary-light"><i class="fas fa-map-marked-alt"></i></span>
+                                    **Local Knowledge:** Deep understanding of the market and customer behavior in the target area.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-primary-light"><i class="fas fa-rupee-sign"></i></span>
+                                    **Capital Investment:** Ability to make the necessary initial capital investment.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-primary-light"><i class="fas fa-users-gear"></i></span>
+                                    **Operational Leadership:** Responsibility for leading the ground team and managing operations.
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Partner Button: Calls form popup -->
+                        <button onclick="showFormPopup('Partnership Inquiry')" class="apply-btn block w-full text-center bg-accent hover:bg-orange-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg mt-6">
+                            Discuss Partnership
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Why Partner With Us Section - Responsive -->
+            <div class="mt-12 sm:mt-16 p-6 sm:p-10 bg-gray-100 rounded-xl shadow-inner">
+                <h2 class="text-2xl sm:text-3xl font-bold text-primary-dark text-center mb-6">
+                    Why Partner With Us?
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-accent">
+                        <div class="benefit-icon text-xl p-3 bg-accent/10 text-primary-dark rounded-full flex-shrink-0">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-primary-dark">Established Brand</h3>
+                            <p class="text-sm text-gray-600">Immediate market entry with a trusted home services brand.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-accent">
+                        <div class="benefit-icon text-xl p-3 bg-accent/10 text-primary-dark rounded-full flex-shrink-0">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-primary-dark">Technical Support</h3>
+                            <p class="text-sm text-gray-600">Full technical assistance in booking systems, customer care, and marketing.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-accent">
+                        <div class="benefit-icon text-xl p-3 bg-accent/10 text-primary-dark rounded-full flex-shrink-0">
+                            <i class="fas fa-arrow-up-right-dots"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-primary-dark">Long-Term Growth</h3>
+                            <p class="text-sm text-gray-600">Joint investment and long-term success in a high-growth sector.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- CTA Section - Fully Responsive -->
+            <div class="cta-section text-center mt-12 sm:mt-16 p-6 sm:p-10 bg-primary-dark rounded-xl text-white shadow-2xl">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-3">
+                    Ready to Take the Next Step?
+                </h2>
+                <p class="text-base sm:text-lg mb-6 opacity-90 max-w-2xl mx-auto">
+                    Share your business profile. Our team will contact you shortly.
+                </p>
+                <!-- CTA Button: Calls the partnership form -->
+                <button onclick="showFormPopup('Partnership Inquiry')" class="cta-btn inline-block bg-accent hover:bg-orange-600 text-white font-extrabold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-xl">
+                    Apply for Partnership
+                </button>
+            </div>
+            
+            <!-- Contact Info Section - Fully Responsive with Flex-Wrap -->
+            <div class="contact-info flex flex-wrap justify-around gap-6 mt-12 p-6 sm:p-8 bg-gray-100 rounded-xl shadow-inner">
+                
+                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
+                    <i class="fas fa-phone-alt text-3xl text-primary-light mb-2"></i>
+                    <h3 class="text-lg font-semibold text-primary">Call Us</h3>
+                    <p class="text-gray-600">
+                        <a href="tel:8816014071" class="text-gray-600 hover:text-primary-dark transition duration-150">88160-14071</a>
+                    </p>
+                </div>
+                
+                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
+                    <i class="fas fa-envelope text-3xl text-primary-light mb-2"></i>
+                    <h3 class="text-lg font-semibold text-primary">Email Us</h3>
+                    <p class="text-gray-600 truncate"><a href="mailto:care@sonipathomeservice.com" class="text-gray-600 hover:text-primary-dark transition duration-150">care@sonipathomeservice.com</a></p>
+                </div>
+                
+                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
+                    <i class="fas fa-map-marker-alt text-3xl text-primary-light mb-2"></i>
+                    <h3 class="text-lg font-semibold text-primary">Address</h3>
+                    <p class="text-gray-600">Sonipat-131001</p>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Footer Section -->
+        <footer class="text-center mt-8 text-primary-dark p-4 text-sm opacity-90">
+            <p>&copy; 2023 Sonipat Home Service. All rights reserved.</p>
+        </footer>
+    </div>
+
+
+    <!-- FORM POPUP HTML - MODIFIED FOR PARTNERSHIP INQUIRY -->
+    <div class="form-popup-overlay" id="formPopup">
+        <div class="form-popup-container">
+            <button class="form-popup-close" onclick="closeFormPopup()">&times;</button>
+            <h2 class="form-popup-title">Business Partnership Inquiry Form</h2>
+            <form id="registrationForm" class="registration-form" onsubmit="submitForm(event)">
+                <input type="hidden" id="serviceCategory" name="serviceCategory" value="Partnership Inquiry">
+
+                <div class="form-group">
+                    <label for="fullName">Your Full Name*</label>
+                    <input type="text" id="fullName" name="fullName" required minlength="3" maxlength="50" pattern="[A-Za-z ]+">
+                    <div class="error-message" id="fullNameError">Please enter a valid name (letters and spaces only, 3-50 characters)</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number*</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" required minlength="10" maxlength="15" pattern="[0-9]{10,15}">
+                    <div class="error-message" id="phoneError">Please enter a valid 10-15 digit phone number</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="investmentCapacity">Your Estimated Investment Capacity (in INR)*</label>
+                    <select id="investmentCapacity" name="investmentCapacity" required>
+                        <option value="">-- Select --</option>
+                        <option value="5-10 Lakh">₹5 Lakh - ₹10 Lakh</option>
+                        <option value="10-20 Lakh">₹10 Lakh - ₹20 Lakh</option>
+                        <option value="20-50 Lakh">₹20 Lakh - ₹50 Lakh</option>
+                        <option value="50 Lakh+">₹50 Lakh+</option>
+                    </select>
+                    <div class="error-message" id="investmentCapacityError">Please select your investment capacity</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cityOfInterest">City of Interest for Partnership*</label>
+                    <input type="text" id="cityOfInterest" name="cityOfInterest" required minlength="2" maxlength="50">
+                    <div class="error-message" id="cityOfInterestError">Please enter the city of interest (2-50 characters)</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="businessExperience">Relevant Business Experience (Briefly)*</label>
+                    <textarea id="businessExperience" name="businessExperience" required minlength="20" maxlength="1000" placeholder="Example: Ran my own business for 5 years, have a strong local market network."></textarea>
+                    <div class="error-message" id="businessExperienceError">Please describe your experience (min 20 characters)</div>
+                </div>
+
+                <div class="spinner" id="formSpinner"></div>
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SUCCESS POPUP HTML - MODIFIED FOR PARTNERSHIP INQUIRY -->
+    <div class="success-popup-overlay" id="successPopup">
+        <div class="success-popup-container">
+            <div class="success-icon">✓</div>
+            <h2 class="success-title">Inquiry Submitted Successfully!</h2>
+            <p class="success-message">Thank you for showing interest in partnership, <span id="successUserName"></span>! Our team will contact you shortly.</p>
+            <div class="employee-id">Your Inquiry ID: <span id="employeeIdDisplay"></span></div>
+            <p class="success-message">Please note down your Inquiry ID for future reference.</p>
+            <button class="success-btn" onclick="closeSuccessPopup()">Okay</button>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT BLOCK - MODIFIED FOR PARTNERSHIP LOGIC -->
+    <script>
+        // Service data remains the same structure, but key is updated for clarity
+        const serviceData = {
+            'Partnership Inquiry': { 
+                // !!! IMPORTANT: REPLACE THIS PLACEHOLDER URL !!!
+                // This URL must be your deployed Google Apps Script URL set up to receive POST requests and append data to your Google Sheet.
+                // Google Sheet में डेटा सबमिट करने के लिए इस URL को अपने Google Apps Script Deployment URL से बदलें।
+                sheetEndpoint: 'YOUR_GOOGLE_APP_SCRIPT_URL_HERE'
+            }
+        };
+
+        // Initialize form when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup form validation
+            setupFormValidation();
+        });
+
+        // Setup form validation
+        function setupFormValidation() {
+            const form = document.getElementById('registrationForm');
+            const inputs = form.querySelectorAll('input, textarea, select');
+
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('input-error')) {
+                        this.classList.remove('input-error');
+                        const errorElement = document.getElementById(`${this.id}Error`);
+                        if (errorElement) errorElement.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Validate individual form field
+        function validateField(field) {
+            const errorElement = document.getElementById(`${field.id}Error`);
+            
+            if (errorElement) errorElement.style.display = 'none';
+            field.classList.remove('input-error');
+
+            if (field.required && !field.value.trim()) {
+                showError(field, errorElement, 'This field is required.');
+                return false;
+            }
+
+            if (field.type === 'text' || field.tagName === 'TEXTAREA') {
+                if (field.hasAttribute('minlength') && field.value.length < field.getAttribute('minlength')) {
+                    const errorMessage = field.id === 'businessExperience' 
+                        ? 'Please describe your experience (min 20 characters)'
+                        : `Minimum ${field.getAttribute('minlength')} characters required`;
+                        
+                    showError(field, errorElement, errorMessage);
+                    return false;
+                }
+            }
+
+            if (field.type === 'email' && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+                showError(field, errorElement, 'Please enter a valid email address');
+                return false;
+            }
+
+            if (field.type === 'tel' && !/^[0-9]{10,15}$/.test(field.value)) {
+                showError(field, errorElement, 'Please enter a valid 10-15 digit phone number');
+                return false;
+            }
+            
+            // Validation for select/dropdown fields
+            if (field.tagName === 'SELECT' && field.required && field.value === "") {
+                showError(field, errorElement, 'Please select an option');
+                return false;
+            }
+
+            return true;
+        }
+
+        // Show error message
+        function showError(field, errorElement, message) {
+            field.classList.add('input-error');
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+        }
+
+        // Validate entire form
+        function validateForm() {
+            let isValid = true;
+            const form = document.getElementById('registrationForm');
+            const inputs = form.querySelectorAll('input[required], textarea[required], select[required]'); 
+
+            inputs.forEach(input => {
+                if (!validateField(input)) {
+                    isValid = false;
+                }
+            });
+
+            return isValid;
+        }
+
+        // Show form popup
+        function showFormPopup(category) {
+            const popup = document.getElementById('formPopup');
+            const serviceCategoryInput = document.getElementById('serviceCategory');
+
+            // Reset form
+            const form = document.getElementById('registrationForm');
+            form.reset();
+
+            // Clear previous errors and set category
+            const errorMessages = form.querySelectorAll('.error-message');
+            errorMessages.forEach(error => { error.style.display = 'none'; });
+            const inputErrors = form.querySelectorAll('.input-error');
+            inputErrors.forEach(input => { input.classList.remove('input-error'); });
+
+            serviceCategoryInput.value = category; // Sets hidden field value
+
+            // Show popup
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close form popup
+        function closeFormPopup() {
+            const popup = document.getElementById('formPopup');
+            popup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close form popup when clicking outside
+        document.getElementById('formPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFormPopup();
+            }
+        });
+
+        // Generate a random inquiry ID
+        function generateInquiryId() {
+            const prefix = 'PART';
+            const randomNum = Math.floor(10000 + Math.random() * 90000);
+            return `${prefix}${randomNum}`;
+        }
+
+        // Submit form data
+        function submitForm(event) {
+            event.preventDefault();
+
+            // Validate form
+            if (!validateForm()) {
+                const firstError = document.querySelector('.input-error, .error-message[style*="display: block"]');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+
+            // Disable submit button and show spinner
+            const submitBtn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('formSpinner');
+            submitBtn.disabled = true;
+            spinner.style.display = 'block';
+
+            const form = document.getElementById('registrationForm');
+            const formData = new FormData(form);
+
+            // Add inquiry ID to form data
+            const inquiryId = generateInquiryId();
+            formData.append('inquiryId', inquiryId);
+            
+            // Set action to a specific value for the Apps Script
+            formData.append('action', 'submitPartnershipInquiry');
+
+            const endpoint = serviceData['Partnership Inquiry'].sheetEndpoint; 
+
+            if (endpoint === 'YOUR_GOOGLE_APP_SCRIPT_URL_HERE') {
+                // Custom error for missing endpoint
+                console.error('Submission Error: Google Apps Script URL has not been replaced.');
+                // Fallback UI message (using success popup with error content)
+                document.getElementById('successTitle').textContent = 'Submission Failed!';
+                document.getElementById('successUserName').textContent = '';
+                document.querySelector('#successPopup .success-icon').textContent = 'X';
+                document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
+                document.getElementById('employeeIdDisplay').parentElement.style.display = 'none'; // Hide Inquiry ID field
+                document.getElementById('successMessage').textContent = 'Error: The Google Sheets endpoint URL has not been configured. Please replace "YOUR_GOOGLE_APP_SCRIPT_URL_HERE" with your deployed script URL.';
+                document.getElementById('successPopup').classList.add('active');
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('formSpinner').style.display = 'none';
+                return;
+            }
+            
+            // Using fetch for submission
+            fetch(endpoint, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Reset success popup style to default green before showing
+                    document.getElementById('successTitle').textContent = 'Inquiry Submitted Successfully!';
+                    document.querySelector('#successPopup .success-icon').textContent = '✓';
+                    document.querySelector('#successPopup .success-icon').style.color = '#28a745';
+                    document.getElementById('employeeIdDisplay').parentElement.style.display = 'block'; // Show Inquiry ID field
+                    document.getElementById('successMessage').textContent = 'Thank you for showing interest in partnership, ' + formData.get('fullName') + '! Our team will contact you shortly.';
+
+
+                    if (data.result === 'success') {
+                        const userName = formData.get('fullName');
+                        document.getElementById('successUserName').textContent = userName;
+                        document.getElementById('employeeIdDisplay').textContent = inquiryId;
+
+                        closeFormPopup();
+                        document.getElementById('successPopup').classList.add('active');
+                    } else {
+                        // Handle server-side errors from Apps Script
+                        document.getElementById('successTitle').textContent = 'Submission Failed!';
+                        document.querySelector('#successPopup .success-icon').textContent = 'X';
+                        document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
+                        document.getElementById('employeeIdDisplay').parentElement.style.display = 'none';
+                        document.getElementById('successMessage').textContent = 'There was an issue submitting your inquiry. Please check the Apps Script log or try again later.';
+                        
+                        closeFormPopup();
+                        document.getElementById('successPopup').classList.add('active');
+                        console.error('Submission error:', data);
+                    }
+                })
+                .catch(error => {
+                    // Handle network/fetch errors
+                    document.getElementById('successTitle').textContent = 'Network Error!';
+                    document.querySelector('#successPopup .success-icon').textContent = 'X';
+                    document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
+                    document.getElementById('employeeIdDisplay').parentElement.style.display = 'none';
+                    document.getElementById('successMessage').textContent = 'A network error occurred during submission. Please check your internet connection and try again.';
+                    
+                    closeFormPopup();
+                    document.getElementById('successPopup').classList.add('active');
+                    console.error('Submission error:', error);
+                })
+                .finally(() => {
+                    document.getElementById('submitBtn').disabled = false;
+                    document.getElementById('formSpinner').style.display = 'none';
+                });
+        }
+
+        // Close success popup
+        function closeSuccessPopup() {
+            const successPopup = document.getElementById('successPopup');
+            successPopup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Reset success popup contents to default success message for future use
+            document.getElementById('successTitle').textContent = 'Inquiry Submitted Successfully!';
+            document.querySelector('#successPopup .success-icon').textContent = '✓';
+            document.querySelector('#successPopup .success-icon').style.color = '#28a745';
+            document.getElementById('employeeIdDisplay').parentElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
