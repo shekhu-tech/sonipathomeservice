@@ -745,6 +745,9 @@
         const SERVICE_TAB_ID = "car-service";
         const SERVICE_FORM_DATA_KEY = "carModel";
         const RAZORPAY_IMAGE_TEXT = "CAR";
+        
+        // --- GOOGLE SCRIPT URL UPDATED TO MATCH AC SERVICE FILE ---
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
 
         const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
@@ -1077,8 +1080,8 @@
             formData.append('ticketQuantity', selectedQuantity); 
             formData.append('finalPrice', finalPriceInput.value);
 
-            // --- Google Script URL (from original file) ---
-            fetch("https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec", {
+            // --- Google Script URL (USING THE COMMON URL) ---
+            fetch(GOOGLE_SHEET_URL, {
                 method: "POST",
                 body: formData
             })
