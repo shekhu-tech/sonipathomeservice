@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - Auto Battery Supply & Installation</title>
+    <title>SonipatHomeService.com - Premium Barber Service</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -11,19 +11,15 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
         :root {
-            /* Theme: Deep Space Black, Energy Orange, and Electric Teal (Focusing on Auto Energy) */
+            /* Theme: Deep Space Black, Arctic Teal, and Electric Gold (Consistent with other services) */
             --bg-dark: #101827; /* Deep Space Black */
             --bg-card: #1C2738; /* Dark Navy Card */
-            --primary: #FF8C00; /* Energy Orange Accent (Main Page Button) */
-            --secondary: #00FFFF; /* Electric Teal Accent (Price Highlight/Border) */
+            --primary: #52D1DC; /* Arctic Teal Accent (Service Button) */
+            --secondary: #FFD700; /* Electric Gold Accent (Price Highlight/Border) */
             --text-light: #E0E7FF; /* Off-White Text */
             --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
             --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-            /* AC Button Colors used for Popup Actions (Consistent Look) */
-            --ac-primary: #00FFFF; /* Electric Teal */
-            --ac-secondary: #FFC72C; /* Sunset Gold */
         }
 
         * {
@@ -63,13 +59,13 @@
             text-align: center;
             box-shadow: var(--shadow-depth);
             transition: var(--transition);
-            border: 1px solid rgba(255, 140, 0, 0.2);
+            border: 1px solid rgba(82, 209, 220, 0.2);
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
             border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(255, 140, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(82, 209, 220, 0.3);
         }
 
         .stat-card h3 {
@@ -142,19 +138,13 @@
             text-decoration: line-through;
             color: var(--text-subtle);
             font-weight: 400;
-            visibility: visible; 
-            height: auto;
         }
 
         .current-price {
-            font-size: 3rem; 
-            font-weight: 800; 
+            font-size: 3rem;
+            font-weight: 800;
             color: var(--secondary);
             font-family: 'Montserrat', sans-serif;
-            min-height: 3rem; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .action-buttons {
@@ -192,9 +182,9 @@
         }
 
         .btn-primary:hover {
-            background: #FF9F2A;
+            background: #42C2CC;
             transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(82, 209, 220, 0.5);
         }
 
         .btn-secondary {
@@ -204,11 +194,11 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(0, 255, 255, 0.1);
+            background: rgba(255, 215, 0, 0.1);
             transform: scale(1.03);
         }
 
-        /* --- Popup Styling --- */
+        /* --- Popup Styling (Crucial for ProMax look) --- */
         #popup-overlay {
             display: none;
             position: fixed;
@@ -283,7 +273,7 @@
         .popup textarea:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2);
+            box-shadow: 0 0 0 3px rgba(82, 209, 220, 0.2);
         }
 
         .popup textarea {
@@ -291,11 +281,9 @@
             resize: vertical;
         }
 
-        /* START: AC Button Styles Applied Here (Consistent Look) */
         .popup button[type="submit"],
         #razorpay-payment-btn,
-        #downloadBtn,
-        #okayBtn,
+        #downloadTicketsBtn,
         .popup button.close-btn {
             width: 100%;
             padding: 1rem;
@@ -311,33 +299,17 @@
 
         .popup button[type="submit"],
         #razorpay-payment-btn,
-        #downloadBtn { /* Primary Action Buttons (Teal Gradient) */
-            background: linear-gradient(45deg, var(--ac-primary), #00D5D5);
+        #downloadTicketsBtn {
+            background: linear-gradient(45deg, var(--primary), #42C2CC);
             color: var(--bg-dark);
         }
 
         .popup button[type="submit"]:hover,
         #razorpay-payment-btn:hover,
-        #downloadBtn:hover {
+        #downloadTicketsBtn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
+            box-shadow: 0 6px 15px rgba(82, 209, 220, 0.6);
         }
-
-        #okayBtn,
-        #close-price-list-btn,
-        #close-description-btn { /* Secondary/Close Buttons (Gold Accent) */
-            background: transparent;
-            color: var(--ac-secondary);
-            border: 2px solid var(--ac-secondary);
-        }
-        
-        #okayBtn:hover,
-        #close-price-list-btn:hover,
-        #close-description-btn:hover {
-            background: rgba(255, 199, 44, 0.1);
-            transform: scale(1.01);
-        }
-        /* END: AC Button Styles Applied Here */
         
         .quantity-selector-container {
             background: #22324C;
@@ -352,14 +324,11 @@
             color: var(--secondary) !important;
         }
 
-        #selectedPackDisplay {
+        #selectedServiceCategoriesDisplay {
             background: var(--bg-dark);
             color: var(--text-light);
             border: 1px solid var(--primary);
             cursor: pointer;
-            padding: 0.9rem 1.2rem;
-            border-radius: 0.75rem;
-            text-align: center;
         }
 
         #ticketDisplay {
@@ -406,12 +375,13 @@
             font-family: 'Roboto', sans-serif;
         }
         #priceListTableBody .font-semibold {
-            color: var(--primary);
+            color: var(--secondary);
             font-weight: 700;
         }
 
         /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
 
+        /* Tablet/Desktop Tweaks (1024px and below) */
         @media (max-width: 1024px) {
             .product-content { padding: 2rem; flex-direction: column; }
             .product-details { text-align: center; }
@@ -421,6 +391,7 @@
             main { padding: 3rem 1rem; }
         }
 
+        /* Mobile Tweaks (600px and below) */
         @media (max-width: 600px) {
             main { padding: 2rem 1rem; }
             .product-header h2 { font-size: 2rem; }
@@ -431,11 +402,21 @@
             .popup h2 { font-size: 1.5rem; }
             .action-buttons { flex-direction: column; }
             .btn { min-width: 100%; max-width: 100%; }
+            
+            /* Category selection popup for very small screens */
+            #serviceCategorySelectionPopup {
+                width: 98%;
+                padding: 1rem;
+            }
+            #serviceCategoryCheckboxes {
+                grid-template-columns: 1fr; 
+            }
             .popup input, .popup select, .popup textarea {
                 padding: 0.7rem 1rem;
             }
         }
         
+        /* Smallest Mobile Tweaks (400px and below) */
         @media (max-width: 400px) {
             .current-price { font-size: 2rem; }
             .original-price { font-size: 1rem; }
@@ -445,38 +426,39 @@
     </style>
 </head>
 <body>
+   
     <main class="container">
         
         <section class="product-section">
             <div class="product-header">
-                <h2 class="text-white"> Battery Bike & Car Quick Installation</h2>
-                <p class="text-sm text-gray-400 mt-2">Bike, EV Scooty, and Car Batteries with **Exchange Offers** available now!</p>
+                <h2 class="text-white">Professional Barber Service</h2>
+                <p class="text-sm text-gray-400 mt-2">Book the best grooming service in Sonipat - Quick, Reliable, and Transparent.</p>
             </div>
 
             <div class="product-content">
                 
                 <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">Branded Power for Your Vehicle</h3>
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">Certified & Guaranteed Grooming Services</h3>
                     <p class="text-text-subtle mb-4 text-base">
-                        Get instant delivery and professional installation of top-brand batteries at your location. Choose your battery type and warranty below.
+                        Experience premium grooming from our skilled barbers in the comfort of your home. Select your service category for instant, transparent pricing.
                     </p>
                     
                     <div class="price-container">
-                        <div class="original-price">Flexible Pricing & Exchange Options</div>
-                        <div class="current-price" id="displayPrice">Select Battery</div>
+                        <div class="original-price">Market Price Varies</div>
+                        <div class="current-price" id="displayPrice">Select Service</div>
                     </div>
                     
                     <div class="action-buttons">
-                        <button class="btn btn-primary" id="book-now-btn">
-                            <i class="fas fa-motorcycle"></i> Order Battery Now
+                        <button class="btn btn-primary" id="participate-btn">
+                            <i class="fas fa-cut"></i> Book Now
                         </button>
                         <button id="price-list-btn" class="btn btn-secondary">
                             <i class="fas fa-tags"></i> Transparent Price List
                         </button>
-                         <button id="description-btn" class="btn btn-secondary">
-                            <i class="fas fa-file-contract"></i> Exchange & Warranty Details
+                         <button id="conditions-btn" class="btn btn-secondary">
+                            <i class="fas fa-file-contract"></i> Service Details
                         </button>
-                        <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                        <button class="btn btn-secondary" onclick="window.open('index.html')">
                             <i class="fas fa-home"></i> Back To Home
                         </button>
                     </div>
@@ -486,101 +468,106 @@
 
         <div class="stat-grid">
             <div class="stat-card">
-                <h3>Total Auto Batteries Sold</h3>
-                <p>7,000+</p>
+                <h3>Total Customers Trusting Us</h3>
+                <p>28,500+</p>
             </div>
             <div class="stat-card">
-                <h3>Delivery Time (Avg)</h3>
-                <p>1 Hour</p>
+                <h3>Monthly Services Booked</h3>
+                <p>1000+</p>
             </div>
             <div class="stat-card">
-                <h3>Exchange Value (Max)</h3>
-                <p>₹500+</p>
+                <h3>Customer Satisfaction Score</h3>
+                <p>4.9/5 Stars</p>
             </div>
             <div class="stat-card">
-                <h3>Brands Supported</h3>
-                <p>3+ Brands</p>
+                <h3>Quickest Slot Available</h3>
+                <p>Today!</p>
             </div>
         </div>
     </main>
 
     <div id="popup-overlay"></div>
     
-    <!-- Booking Form Popup -->
-    <div id="booking-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Auto Battery Order Form</h2>
-        <form id="booking-form">
+    <div class="popup" id="popupForm">
+        <h2 class="text-2xl font-bold text-center">Barber Service Booking Form</h2>
+        <form id="lotteryForm">
             <div class="quantity-selector-container my-4">
-                <label for="pack-selection">Select Battery Product:</label>
-                <select id="pack-selection" name="pack-selection" required>
-                    <option value="" disabled selected>Select Bike, EV, or Car Battery</option>
-                </select>
-            </div>
-            
-            <label for="name">Full Name (min 10 characters)</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
+                <label>Select Grooming Service(s):</label>
+                <div id="selectedServiceCategoriesDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openServiceCategorySelectionPopup()">Click to select service(s)</div>
+                
+                <div id="serviceCategorySelectionPopup" class="popup" style="display: none;">
+                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Select Grooming Services</h3>
+                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto p-2">
+                        </div>
+                    <button type="button" class="btn btn-primary mt-4 py-3" onclick="applySelectedServiceCategories()">Apply Selection</button>
+                    <button type="button" class="btn btn-secondary mt-2 py-3 close-btn" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
+                </div>
 
-            <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
-            
-            <label for="location">Location (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
-            
-            <label for="address">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
-            
-            <div class="quantity-selector my-4">
-                <label for="quantity">Number of Units (Max 3):</label>
-                <select id="quantity" name="quantity" required>
-                    <option value="1" selected>1 Unit</option>
-                    <option value="2">2 Units</option>
-                    <option value="3">3 Units</option>
+                <label for="ticketQuantity" class="mt-4">Number of Persons (Max 5):</label>
+                <select id="ticketQuantity" name="ticketQuantity" required class="bg-bg-dark border-primary">
+                    <option value="" disabled selected>Select quantity</option>
                 </select>
+
                 <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
-                    <span>Price based on quantity</span>
-                    <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹0</span>
+                    <span>Quantity based total service price</span>
+                    <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">Total: ₹0</span>
                 </div>
             </div>
 
+            <label for="fullName">Your Full Name (min 10 characters)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
+            
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
+            
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
+            
+            <label for="location">Your Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
+            
+            <label for="address">Complete Address (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
+
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="finalPrice" id="finalPrice" />
+            
             <button type="submit">Submit Details & Proceed to Payment</button>
-            <p id="submit-message" class="text-center text-sm text-primary mt-2 hidden">Submitting...</p>
+            <p id="submitMessage" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
         </form>
     </div>
 
-    <!-- Payment Popup -->
-    <div id="payment-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Complete Your Payment</h2>
-        <p class="text-text-subtle text-center mb-6">Please complete the payment to finalize your purchase and installation.</p>
-        <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
-        <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+    <div class="popup" id="paymentStep">
+        <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
+        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your Barber Service booking.</p>
+        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
+        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
         <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
         <p class="mt-4 text-xs text-text-subtle text-center">
             Note: Do not close this window during payment processing.
         </p>
     </div>
 
-    <!-- Confirmation Popup -->
-    <div id="confirmation-popup" class="popup">
-        <h2 id="welcome-message" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">Your purchase is confirmed. Our team will contact you for installation.</p>
-        <div id="ticket-info" class="space-y-2">
-            <!-- Details will be injected here -->
-        </div>
-        <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Download Details</button>
+    <div class="popup" id="ticketStep">
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below for <span id="ticketCountDisplay" class="font-bold text-secondary"></span>:</p>
+        <div id="ticketDisplay" class="space-y-2"></div>
+        <button id="downloadTicketsBtn" class="mt-4">
+            <i class="fas fa-download mr-2"></i> Download Service Details
+        </button>
         <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
-        <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
+        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
     </div>
-
-    <!-- Price List Popup -->
-    <div id="price-list-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Auto Battery Price List</h2>
+    
+    <div class="popup" id="priceListPopup">
+        <h2 class="text-2xl font-bold text-center">Barber Service Transparent Price List</h2>
         <div class="overflow-x-auto mt-4">
             <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
                 <thead>
                     <tr class="text-left text-secondary">
-                        <th class="py-3 px-4 border-b border-text-subtle">Product | Type | Warranty</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Price</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">M.R.P.</th>
+                        <th class="py-3 px-4 border-b border-text-subtle">Service</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Our Price</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Market Price</th>
                     </tr>
                 </thead>
                 <tbody id="priceListTableBody">
@@ -588,96 +575,114 @@
                 </tbody>
             </table>
         </div>
-        <button id="close-price-list-btn" class="close-btn mt-4">Close Price List</button>
+        <button id="closePriceListBtn" class="btn btn-secondary close-btn mt-4">Close Price List</button>
     </div>
 
-    <!-- Description Popup (Terms & Exchange) -->
-    <div id="description-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Exchange & Warranty Details</h2>
-        <div class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
-            <ul class="list-disc list-inside space-y-3">
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-exchange-alt mr-2"></i> Exchange Offer Details</li>
-                <li>Prices marked with "**Exchange Offer**" require you to hand over your old battery of the same category (Bike, Car, etc.) to the technician upon delivery.</li>
-                <li>The listed **"Exchange Offer" price is the final price** you pay, already accounting for the exchange value.</li>
-                <li>"**Without Exchange**" prices are for customers not returning an old battery.</li>
-
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-certificate mr-2"></i> Manufacturer Warranty</li>
-                <li>All batteries carry the full **Manufacturer Warranty** specified in the product name (e.g., 1 Year, 2 Years, 3 Years).</li>
-                <li>Installation is **free** with every purchase.</li>
-                <li>Battery delivery and installation are typically completed within **1-2 hours** of booking confirmation within Sonipat city limits.</li>
+    <div class="popup" id="conditionsPopup">
+        <h2 class="text-2xl font-bold text-center">Detailed Service Conditions & Guarantee</h2>
+        <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
+             <ul class="list-disc list-inside space-y-3">
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Professional Groomers</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>All grooming services carried out by skilled and certified barbers/stylists.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-cut mr-2"></i> Hair & Beard Services</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Precision haircuts, trimming, and styling.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Use of sanitized tools and high-quality products.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Hair colour service includes application only (Color pack not included, must be provided by customer).</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-spa mr-2"></i> Wellness & Massage</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Relaxing head and body massages (Oil/products not included, must be provided by customer).</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Facial services exclude face pack/kit items (must be provided by customer).</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Prices shown are for labor/service charges only, excluding products specified above.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Initial visiting charge ₹299 (adjustable based on distance in Sonipat)</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Transparent pricing for all services and optional add-ons.</li>
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Booking & Warranty</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Services provided for up to 5 persons in one booking slot.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Satisfaction guarantee on haircutting; please inspect before final payment.</li>
             </ul>
         </div>
-        <button id="close-description-btn" class="close-btn mt-4">Close</button>
+        <button id="closeConditionsBtn" class="btn btn-secondary close-btn mt-4">I Understand</button>
     </div>
-    
+   
     <script>
-        // Data copied from the 'book-battary-and-inverter-supply.html' file, excluding Home/Shop Inverters/Batteries
-        const allRates = [
-            // Bike Batteries (2 Years Warranty)
-            { "name": "Bike Battery | 2 Years W. | Exchange Offer", "rate": 699, "category": "Bike" },
-            { "name": "Bike Battery | 2 Years W. | Without Exchange", "rate": 849, "category": "Bike" },
-            // EV Scooty Batteries (1 Year Warranty)
-            { "name": "EV Scooty Battery (33 AH) | 1 Year W.", "rate": 2999, "category": "EV" },
-            // Car Batteries (1 Year Warranty TATA)
-            { "name": "Car Battery | 1 Year W. (TATA) | Exchange Offer", "rate": 1699, "category": "Car" },
-            { "name": "Car Battery | 1 Year W. (TATA) | Without Exchange", "rate": 2699, "category": "Car" },
-            // Car Batteries (3 Year Warranty Amaron)
-            { "name": "Car Battery | 3 Years W. (Amaron) | Exchange Offer", "rate": 3399, "category": "Car" },
-            { "name": "Car Battery | 3 Years W. (Amaron) | Without Exchange", "rate": 4399, "category": "Car" },
+        // Data updated based on the provided image (image_9b9d2c.png)
+        const serviceData = [
+            // Hair Cutting
+            { "Category": "Hair Cutting (Men)", "Price": 249 },
+            { "Category": "Hair Cutting (KIDS)", "Price": 249 },
+            // Saving/Beard Grooming
+            { "Category": "Saving Men / Beard Grooming", "Price": 199 },
+            // Hair Colouring
+            { "Category": "Hair Colouring (Exclude Color)", "Price": 299 },
+            // Massage
+            { "Category": "Head Massage (Exclude Oil)", "Price": 299 },
+            { "Category": "Full Body Massage (Exclude Oil)", "Price": 999 },
+            // Combo Packs
+            { "Category": "Combo Pack 1: Hair Cutting + Saving/Beard Grooming", "Price": 399 }, // 249 + 199 = 448 (Discounted to 399)
+            { "Category": "Combo Pack 2: Combo 1 + Head Massage", "Price": 729 }, // 399 + 299 = 698 (Adjusted slightly higher for image rate)
+            { "Category": "Combo Pack 3: Combo 2 + Full Body Massage", "Price": 1429 }, // 729 + 999 = 1728 (Major discount for Full combo)
+            // Facial
+            { "Category": "Facial 1 Step (Exclude Face pack & Items)", "Price": 299 },
+            { "Category": "Facial Full Step (Exclude Face pack & Items)", "Price": 1199 } // Updated from 1399
         ];
 
         // --- Generic constants ---
-        const SERVICE_NAME = "Auto Battery Supply";
-        const SERVICE_TAB_ID = "auto-battery-service";
-        const LOCAL_STORAGE_KEY = 'autoBatteryFormData';
-        const RAZORPAY_IMAGE_TEXT = "AUTO";
-        const PAYMENT_TIME_LIMIT = 5 * 60;
+        const SERVICE_NAME = "Barber Service";
+        const SERVICE_TAB_ID = "barber-service"; // Unique tab ID
+        const LOCAL_STORAGE_KEY = 'barberServiceFormData'; // Unique key for Local Storage
+        const RAZORPAY_IMAGE_TEXT = "BS";
         
         // --- GOOGLE SCRIPT URL COPIED from book-ac-services.html ---
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
-
-
+        
         // --- DOM Element Selection ---
-        const bookNowBtn = document.getElementById('book-now-btn');
+        const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
         const allPopups = document.querySelectorAll('.popup');
-        const bookingPopup = document.getElementById('booking-popup');
-        const paymentPopup = document.getElementById('payment-popup');
-        const confirmationPopup = document.getElementById('confirmation-popup');
-        const bookingForm = document.getElementById('booking-form');
-        const packSelection = document.getElementById('pack-selection');
-        const quantitySelect = document.getElementById('quantity');
-        const calculatedPriceDisplay = document.getElementById('calculated-price');
-        const displayPrice = document.getElementById('displayPrice');
-        const submitMessage = document.getElementById('submit-message');
-        const paymentSummary = document.getElementById('payment-summary');
-        const timerDisplay = document.getElementById('timer-display');
+        const popupForm = document.getElementById('popupForm');
+        const paymentStep = document.getElementById('paymentStep');
+        const ticketStep = document.getElementById('ticketStep');
+        const timerDisplay = document.getElementById('timerDisplay');
         const razorpayBtn = document.getElementById('razorpay-payment-btn');
-        const ticketInfo = document.getElementById('ticket-info');
-        const downloadBtn = document.getElementById('downloadBtn');
+        const submitMessage = document.getElementById('submitMessage');
+        const serviceCategoryCheckboxesContainer = document.getElementById('serviceCategoryCheckboxes');
+        const selectedServiceCategoriesDisplay = document.getElementById('selectedServiceCategoriesDisplay');
+        const serviceCategorySelectionPopup = document.getElementById('serviceCategorySelectionPopup');
+        const ticketQuantitySelect = document.getElementById('ticketQuantity');
+        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
+        const paymentSummary = document.getElementById('paymentSummary');
+        const ticketCountDisplay = document.getElementById('ticketCountDisplay');
+        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const displayPriceElement = document.getElementById('displayPrice');
+        const finalPriceInput = document.getElementById('finalPrice');
+        const form = document.getElementById('lotteryForm');
         const okayBtn = document.getElementById('okayBtn');
-        const welcomeMessage = document.getElementById('welcome-message');
+        
+        // New elements for popups
         const priceListBtn = document.getElementById('price-list-btn');
-        const descriptionBtn = document.getElementById('description-btn');
-        const priceListPopup = document.getElementById('price-list-popup');
-        const descriptionPopup = document.getElementById('description-popup');
-        const closePriceListBtn = document.getElementById('close-price-list-btn');
-        const closeDescriptionBtn = document.getElementById('close-description-btn');
+        const conditionsBtn = document.getElementById('conditions-btn');
+        const priceListPopup = document.getElementById('priceListPopup');
+        const conditionsPopup = document.getElementById('conditionsPopup');
         const priceListTableBody = document.getElementById('priceListTableBody');
 
-        // --- State variables ---
-        let currentCalculatedPrice = 0;
-        let generatedTicket = '';
+        // --- State Variables ---
+        let generatedTicket = ''; 
+        let paymentTimeout = null;
         let countdownInterval = null;
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+        let currentServicePrice = 0;
+        let selectedQuantity = 1;
         let allowClose = false;
 
         // --- Local Storage Functions for Autofill ---
+
         function saveFormData() {
             const formData = {
-                fullName: bookingForm.name.value,
-                phone: bookingForm.phone.value,
-                location: bookingForm.location.value,
-                address: bookingForm.address.value
+                fullName: form.fullName.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                location: form.location.value,
+                address: form.address.value
             };
             try {
                 localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
@@ -691,49 +696,103 @@
                 const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
                 if (savedData) {
                     const data = JSON.parse(savedData);
-                    bookingForm.name.value = data.fullName || '';
-                    bookingForm.phone.value = data.phone || '';
-                    bookingForm.location.value = data.location || '';
-                    bookingForm.address.value = data.address || '';
+                    form.fullName.value = data.fullName || '';
+                    form.phone.value = data.phone || '';
+                    form.email.value = data.email || '';
+                    form.location.value = data.location || '';
+                    form.address.value = data.address || '';
                 }
             } catch (e) {
                 console.warn("Local storage loading failed:", e);
             }
         }
-
+        
         // --- Core Functions ---
-        function populatePackOptions() {
-            packSelection.innerHTML = '<option value="" disabled selected>Select Bike, EV, or Car Battery</option>';
-            allRates.forEach(rate => {
-                const option = document.createElement('option');
-                option.value = rate.name;
-                option.textContent = `${rate.category}: ${rate.name} - ₹${rate.rate}`;
-                option.dataset.rate = rate.rate;
-                packSelection.appendChild(option);
+
+        function populateServiceCategories() {
+            serviceCategoryCheckboxesContainer.innerHTML = '';
+            serviceData.forEach(service => {
+                const checkboxHtml = `
+                    <label class="inline-flex items-center text-text-light w-full p-2 bg-bg-dark rounded-md border border-primary hover:bg-bg-card transition duration-200 cursor-pointer">
+                        <input type="checkbox" name="serviceCategory" value="${service.Category}" data-price="${service.Price}" 
+                               class="form-checkbox h-5 w-5 text-secondary rounded focus:ring-secondary checked:bg-secondary">
+                        <span class="ml-2 text-sm">${service.Category} (<span class="text-secondary">₹${service.Price}</span>)</span>
+                    </label>
+                `;
+                serviceCategoryCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
+            });
+            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(checkbox => {
+                checkbox.addEventListener('change', updatePrices);
             });
         }
-        
-        function updatePrices() {
-            const selectedOption = packSelection.options[packSelection.selectedIndex];
-            const basePrice = selectedOption && selectedOption.dataset.rate ? parseFloat(selectedOption.dataset.rate) : 0;
-            const selectedQuantity = parseInt(quantitySelect.value) || 1;
-            
-            currentCalculatedPrice = basePrice * selectedQuantity;
-            
-            const selectedOptionName = selectedOption && selectedOption.value ? selectedOption.value : "Select Battery";
-            calculatedPriceDisplay.textContent = `Total: ₹${currentCalculatedPrice}`;
 
-            if (basePrice > 0) {
-                 displayPrice.textContent = `₹${basePrice} / Unit`; // Show unit price on main page
-            } else {
-                 displayPrice.textContent = "Select Battery";
+        function initQuantitySelector() {
+            const maxServices = 5; 
+            ticketQuantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
+            for (let i = 1; i <= maxServices; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i + (i === 1 ? ' Person' : ' Persons');
+                ticketQuantitySelect.appendChild(option);
             }
+            ticketQuantitySelect.value = 1;
         }
 
-        function generateTicketId() {
-            return 'AUTO-BAT-XXXXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
+        function updatePrices() {
+            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => ({
+                category: cb.value,
+                price: parseFloat(cb.dataset.price)
+            }));
+            
+            selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
+            
+            currentServicePrice = selectedCategories.reduce((total, service) => total + service.price, 0);
+            const totalFinalPrice = currentServicePrice * selectedQuantity;
+
+            if (selectedCategories.length > 0) {
+                selectedServiceCategoriesDisplay.textContent = selectedCategories.map(s => s.category).join(', ');
+                displayPriceElement.textContent = `₹${currentServicePrice}`;
+            } else {
+                selectedServiceCategoriesDisplay.textContent = `Click to select service(s)`;
+                displayPriceElement.textContent = `Select Service`;
+            }
+            
+            totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
+            finalPriceInput.value = totalFinalPrice;
         }
 
+        function generateFormattedTicket() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            }).toUpperCase();
+        }
+
+        function downloadTickets() {
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
+            const ticketContent = `PREMIUM ${SERVICE_NAME} BOOKING DETAILS\n\n` +
+                                 `Customer Name: ${form.field1.value}\n` +
+                                 `Contact: ${form.field2.value}\n` +
+                                 `Location: ${form.field5.value}\n` +
+                                 `Service Category(s): ${selectedCategoryNames}\n` +
+                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
+                                 `Total Persons: ${selectedQuantity}\n` +
+                                 `Service Charge Paid: ₹${finalPriceInput.value}\n\n` +
+                                 `--- IMPORTANT NOTE ---\n` +
+                                 `This is a confirmed booking. Our groomer will contact you shortly.`;
+            
+            const blob = new Blob([ticketContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${SERVICE_TAB_ID}_booking_${generatedTicket.substring(0, 8)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
             alertBox.className = 'custom-alert'; 
@@ -742,34 +801,27 @@
             setTimeout(() => alertBox.remove(), 4000); 
         }
 
+        // --- Popup Control Functions ---
         function closeAllPopups() {
             if (!allowClose) {
-                if (bookingPopup.style.display !== 'block') {
-                    showCustomAlert("Please complete the process before closing.");
-                    return;
-                }
+                showCustomAlert("Please complete the booking process before closing.");
+                return;
             }
             clearTimers();
             popupOverlay.style.display = 'none';
             allPopups.forEach(p => p.style.display = 'none');
             document.body.style.overflow = 'auto';
-            bookingForm.reset();
-            quantitySelect.value = "1";
-            calculatedPriceDisplay.textContent = 'Total: ₹0';
-            displayPrice.textContent = 'Select Battery';
-            allowClose = false;
+            allowClose = false; 
         }
 
         function openPopup(popupElement) {
             document.body.style.overflow = 'hidden';
             popupOverlay.style.display = 'block';
-            
             allPopups.forEach(p => p.style.display = 'none');
-            
             popupElement.style.display = 'block';
-            allowClose = (popupElement === bookingPopup || popupElement === confirmationPopup);
+            allowClose = false;
         }
-
+        
         function closeSpecificPopup(popupElement) {
             popupElement.style.display = 'none';
             const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
@@ -779,37 +831,33 @@
             }
         }
 
-        function downloadTicketDetails() {
-            const name = bookingForm.name.value;
-            const phone = bookingForm.phone.value;
-            const location = bookingForm.location.value;
-            const address = bookingForm.address.value;
-            const selectedPack = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
-            const selectedQuantity = quantitySelect.value;
-            const totalPrice = currentCalculatedPrice;
-
-            const content = `${SERVICE_NAME} Booking Details\n\n` +
-                            `Order ID: ${generatedTicket}\n` +
-                            `Name: ${name}\n` +
-                            `Phone: ${phone}\n` +
-                            `Address: ${location}, ${address}\n` +
-                            `Product: ${selectedPack}\n` +
-                            `Quantity: ${selectedQuantity} Unit(s)\n` +
-                            `Total Price Paid: ₹${totalPrice}\n\n` +
-                            `Thank you! We will contact you shortly for installation.`;
-
-            const blob = new Blob([content], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `auto-battery-booking-${generatedTicket}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+        function openServiceCategorySelectionPopup() {
+            populateServiceCategories();
+            const currentlySelectedCategories = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select service(s)');
+            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(checkbox => {
+                checkbox.checked = currentlySelectedCategories.includes(checkbox.value);
+            });
+            serviceCategorySelectionPopup.style.display = 'block';
+            popupOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
 
+        function closeServiceCategorySelectionPopup() {
+            serviceCategorySelectionPopup.style.display = 'none';
+            if (popupForm.style.display !== 'block' && priceListPopup.style.display !== 'block' && conditionsPopup.style.display !== 'block') {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function applySelectedServiceCategories() {
+            updatePrices();
+            closeServiceCategorySelectionPopup();
+        }
+        
+        // --- Timer Functions ---
         function clearTimers() {
+            if (paymentTimeout) clearTimeout(paymentTimeout);
             if (countdownInterval) clearInterval(countdownInterval);
         }
 
@@ -828,157 +876,66 @@
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
                     showCustomAlert("Payment time expired. Please try again.");
-                    allowClose = true;
+                    allowClose = true; 
                     closeAllPopups();
                 }
             }, 1000);
         }
 
-        function handleRazorpayPayment() {
-            const selectedPack = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
-            const options = {
-                "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": currentCalculatedPrice * 100,
-                "currency": "INR",
-                "name": `SonipatHomeService - ${SERVICE_NAME}`,
-                "description": `Purchase for: ${selectedPack} x ${quantitySelect.value} (ID: ${generatedTicket})`,
-                "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`,
-                "handler": function (response){
-                    paymentSuccess(response.razorpay_payment_id);
-                },
-                "prefill": {
-                    "name": bookingForm.name.value,
-                    "phone": bookingForm.phone.value
-                },
-                "notes": {
-                    "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
-                    "product_details": selectedPack,
-                    "quantity": quantitySelect.value
-                },
-                "theme": { "color": "#FF8C00" },
-                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
-            };
-
-            const rzp = new Razorpay(options);
-            rzp.on('payment.failed', response => {
-                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
-            });
-            rzp.open();
-        }
-
-        function paymentSuccess(paymentId) {
-            clearTimers();
-            paymentPopup.style.display = 'none';
-            openPopup(confirmationPopup);
-
-            saveFormData();
-            
-            const name = bookingForm.name.value.split(' ')[0];
-            const selectedPack = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
-            const selectedQuantity = quantitySelect.value;
-            const totalPrice = currentCalculatedPrice;
-
-            welcomeMessage.textContent = `🎉 Purchase Confirmed, ${name}! 🎉`;
-            
-            ticketInfo.innerHTML = `
-                <p><strong>Order ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p><strong>Product:</strong> <span class="font-bold text-text-light">${selectedPack}</span></p>
-                <p><strong>Quantity:</strong> <span class="font-bold text-text-light">${selectedQuantity} Unit(s)</span></p>
-                <p class="text-secondary text-lg font-bold mt-3">Total Paid: ₹${totalPrice}</p>
-                <p class="text-text-subtle text-sm mt-3">We will contact you within 2 hours to confirm delivery & installation at your address.</p>
-                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
-            `;
-            allowClose = true;
-        }
-
+        // --- Price List Function ---
         function populatePriceList() {
             priceListTableBody.innerHTML = '';
-            allRates.forEach(pack => {
-                // Determine the "M.R.P" which is often 15-30% higher than the selling price
-                let marketPrice;
-                if (pack.rate < 1000) { 
-                    marketPrice = pack.rate + 250; 
-                } else { 
-                    marketPrice = Math.round(pack.rate * 1.15); // 15% higher
-                }
-
+            serviceData.forEach(service => {
+                const marketPrice = Math.round(service.Price * 1.25); // Using 25% for Barber pricing
                 const row = `
                     <tr class="text-text-light hover:bg-bg-dark">
-                        <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">${pack.category}: ${pack.name}</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-primary">₹${pack.rate}</td>
+                        <td class="py-3 px-4 border-b border-gray-700">${service.Category}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.Price}</td>
                         <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle line-through">₹${marketPrice}</td>
                     </tr>
                 `;
                 priceListTableBody.insertAdjacentHTML('beforeend', row);
             });
         }
+
+        // --- Payment and Submission Logic ---
         
-        // --- Event Listeners Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            populatePackOptions();
-            updatePrices();
-
-            packSelection.addEventListener('change', updatePrices);
-            quantitySelect.addEventListener('change', updatePrices);
-        });
-
-        bookNowBtn.addEventListener('click', () => {
-            updatePrices();
-            loadFormData();
-            openPopup(bookingPopup);
-        });
-
-        popupOverlay.addEventListener('click', e => {
-            if (e.target === popupOverlay) {
-                if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
-                else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
-                else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
-                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
-                else if (bookingPopup.style.display === 'block') closeAllPopups();
-            }
-        });
-        
-        okayBtn.addEventListener('click', closeAllPopups);
-        downloadBtn.addEventListener('click', downloadTicketDetails);
-
-        bookingForm.addEventListener('submit', function(e) {
+        function handleFormSubmit(e) {
             e.preventDefault();
 
-            if (!packSelection.value) { showCustomAlert("Please select a product or pack."); return; }
-            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            // Note: Email (field3) is missing from form structure, we will send N/A
-            if (bookingForm.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
-            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
-            if (currentCalculatedPrice === 0) {
-                showCustomAlert("Please select a product and quantity to calculate the price.");
-                return;
-            }
+            // Validation 
+            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
+            if (selectedCategories.length === 0) { showCustomAlert("Please select at least one service category."); return; }
+            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
+            if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of persons."); return; }
 
-            submitMessage.classList.remove('hidden');
-            bookingForm.querySelector('button[type="submit"]').disabled = true;
-            generatedTicket = generateTicketId();
+            submitMessage.style.display = 'block';
+            form.querySelector('button[type="submit"]').disabled = true;
 
-            const selectedPackText = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
-            const basePrice = parseFloat(packSelection.options[packSelection.selectedIndex].dataset.rate);
-            const totalDue = currentCalculatedPrice;
+            generatedTicket = generateFormattedTicket(); 
+            
+            const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
 
-            // --- Form Data for Google Sheet (using common field structure) ---
+            // --- Form Data for Google Sheet (using original field names) ---
             const formData = new FormData();
-            formData.append('field1', bookingForm.name.value); 
-            formData.append('field2', bookingForm.phone.value);    
-            formData.append('field3', 'N/A - Battery Service'); // Placeholder for missing Email field
-            formData.append('productDetails', selectedPackText); 
-            formData.append('field5', bookingForm.location.value); 
-            formData.append('field6', bookingForm.address.value);  
+            formData.append('field1', form.fullName.value); 
+            formData.append('field2', form.phone.value);    
+            formData.append('field3', form.email.value);    
+            formData.append('field4', selectedCategoryNames); 
+            formData.append('field5', form.location.value); 
+            formData.append('field6', form.address.value);  
             formData.append('ticket', generatedTicket);     
             formData.append('tab', SERVICE_TAB_ID);           
-            formData.append('serviceType', selectedPackText);   
-            formData.append('servicePrice', basePrice); 
-            formData.append('ticketQuantity', quantitySelect.value); 
-            formData.append('finalPrice', totalDue);
+            formData.append('serviceType', SERVICE_NAME);   
+            formData.append('servicePrice', currentServicePrice); // This is price per person, or total if quantity is 1
+            formData.append('ticketQuantity', selectedQuantity); 
+            formData.append('finalPrice', finalPriceInput.value);
 
-            // --- Google Script URL (Common URL used here) ---
+            // --- Google Script URL (UPDATED TO COMMON URL) ---
             fetch(GOOGLE_SHEET_URL, {
                 method: "POST",
                 body: formData
@@ -986,20 +943,21 @@
             .then(res => res.text())
             .then(res => {
                 if (res.includes("Success") || res.includes("success")) { 
+                    // Save data to local storage on successful submission
+                    saveFormData(); 
                     
-                    bookingPopup.style.display = 'none';
-
+                    popupForm.style.display = 'none';
+                    openPopup(paymentStep);
                     paymentSummary.innerHTML = `
-                        <p class="text-text-subtle text-lg mb-2 font-bold">Purchase Details:</p>
-                        <p class="text-text-light text-base mb-1">Product: <span class="font-bold text-primary">${selectedPackText}</span></p>
-                        <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${quantitySelect.value}</span></p>
-                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Total Payable: ₹${totalDue}</p>
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
+                        <p class="text-text-light text-base mb-1">Service(s): <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
+                        <p class="text-text-light text-base mb-3">Persons: <span class="font-bold text-primary">${selectedQuantity}</span></p>
+                        <p class="current-price text-secondary text-3xl font-bold">Total Payable: ₹${finalPriceInput.value}</p>
+                        <p class="text-gray-400 text-sm mt-2">The amount paid covers the services selected. Service charge is adjusted for the number of people booked.</p>
                     `;
-                    openPopup(paymentPopup);
                     startPaymentTimer();
-                    saveFormData();
                 } else {
-                    showCustomAlert("Order Error: There was an issue submitting your details. Please try again.");
+                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
                 }
             })
             .catch(err => {
@@ -1007,21 +965,123 @@
                 showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
             })
             .finally(() => {
-                submitMessage.classList.add('hidden');
-                bookingForm.querySelector('button[type="submit"]').disabled = false;
+                submitMessage.style.display = 'none';
+                form.querySelector('button[type="submit"]').disabled = false;
+            });
+        }
+
+        function handleRazorpayPayment() {
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
+            const options = {
+                "key": "rzp_live_RLjzp7VlXERwiG",
+                "amount": finalPriceInput.value * 100, // Amount in paise
+                "currency": "INR",
+                "name": `SonipatHomeService - ${SERVICE_NAME}`,
+                "description": `Payment for ${selectedQuantity} ${SERVICE_NAME}(s) for ${selectedCategoryNames}`,
+                "image": `https://placehold.co/100x100/1C2738/52D1DC?text=${RAZORPAY_IMAGE_TEXT}`,
+                "handler": function (response){
+                    console.log("Payment successful:", response.razorpay_payment_id);
+                    paymentSuccess(response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": form.fullName.value,
+                    "email": form.email.value,
+                    "contact": form.phone.value
+                },
+                "notes": {
+                    "address": `${form.location.value}, ${form.address.value}`,
+                    "service_details": selectedCategoryNames,
+                    "booking_ref": generatedTicket
+                },
+                "theme": { "color": "#52D1DC" },
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                console.error("Payment Failed:", response.error);
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
+        }
+
+        function paymentSuccess(paymentId) {
+            clearTimers();
+            paymentStep.style.display = 'none';
+            openPopup(ticketStep);
+            
+            const userName = form.fullName.value.split(' ')[0];
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
+
+            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
+            
+            ticketDisplay.innerHTML = `
+                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p>Service(s): <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
+                <p>Persons: <span class="font-bold text-text-light">${selectedQuantity}</span></p>
+                <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${finalPriceInput.value}</p>
+                <p class="text-text-subtle text-sm mt-3">Our groomer will contact you shortly to schedule the service at your location: ${form.location.value}.</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
+            `;
+            
+            ticketCountDisplay.textContent = `${selectedQuantity} person(s) for ${SERVICE_NAME}`;
+            allowClose = true;
+        }
+        
+        // --- Event Listeners Initialization ---
+        participateBtn.addEventListener('click', () => {
+            initQuantitySelector();
+            updatePrices();
+            loadFormData(); // Load data on popup open
+            openPopup(popupForm);
+        });
+        
+        ticketQuantitySelect.addEventListener('change', updatePrices); 
+
+        // Centralized Overlay Click Handling
+        popupOverlay.addEventListener('click', e => {
+            if (e.target === popupOverlay) {
+                if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
+                else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (conditionsPopup.style.display === 'block') closeSpecificPopup(conditionsPopup);
+                else if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
+                else if (popupForm.style.display === 'block' || paymentStep.style.display === 'block') showCustomAlert("Please complete the booking process before closing.");
+                else closeAllPopups();
+            }
+        });
+        
+        // Popup Close buttons
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const parentPopup = e.target.closest('.popup');
+                if (parentPopup.id === 'ticketStep') {
+                    window.location.href = 'index.html';
+                } else {
+                    closeSpecificPopup(parentPopup);
+                }
             });
         });
 
+        // Specific listeners
+        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
+        downloadTicketsBtn.addEventListener('click', downloadTickets);
+        form.addEventListener('submit', handleFormSubmit);
+
+        // Listeners for new popups
         priceListBtn.addEventListener('click', () => {
             populatePriceList();
             openPopup(priceListPopup);
         });
-        descriptionBtn.addEventListener('click', () => {
-            openPopup(descriptionPopup);
+        conditionsBtn.addEventListener('click', () => openPopup(conditionsPopup));
+
+        // --- Page Load Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // NOTE: loadFormData() is now called on participateBtn click
+            populateServiceCategories();
+            initQuantitySelector();
+            updatePrices();
         });
-        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
-        closeDescriptionBtn.addEventListener('click', () => closeSpecificPopup(descriptionPopup));
     </script>
 </body>
 </html>
