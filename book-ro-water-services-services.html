@@ -540,26 +540,30 @@
         <form id="booking-form">
             <div class="quantity-selector-container my-4">
                 <label for="pack-selection">Select Pack:</label>
-                <select id="pack-selection" name="pack-selection" required>
+                <select id="pack-selection" name="field4" required>
                     <option value="" disabled selected>Select a Pack</option>
                 </select>
             </div>
             
             <label for="name">Full Name (min 10 characters)</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
+            <input type="text" id="name" name="field1" placeholder="John Doe" autocomplete="name" minlength="10" required>
 
             <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+            <input type="tel" id="phone" name="field2" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+            
+            <!-- NEW EMAIL FIELD ADDED HERE -->
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="field3" placeholder="john.doe@example.com" autocomplete="email" required />
             
             <label for="location">Location (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
+            <input type="text" id="location" name="field5" placeholder="Sonipat" autocomplete="address-level2" required>
             
             <label for="address">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
+            <textarea id="address" name="field6" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
             
             <div class="quantity-selector my-4">
                 <label for="quantity">Number of Packs (Max 5):</label>
-                <select id="quantity" name="quantity" required>
+                <select id="quantity" name="ticketQuantity" required>
                     <option value="1" selected>1 Pack</option>
                     <option value="2">2 Packs</option>
                     <option value="3">3 Packs</option>
@@ -571,6 +575,11 @@
                     <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹0</span>
                 </div>
             </div>
+            
+            <!-- Hidden inputs to store calculated data for submission -->
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="finalPrice" id="finalPrice" />
+            <input type="hidden" name="servicePrice" id="servicePrice" />
 
             <!-- AC Button Style Applied -->
             <button type="submit">Submit Details & Proceed to Payment</button>
@@ -649,6 +658,9 @@
     </div>
     
     <script>
+        // Google Sheet Script URL (Shared Link from AC Service File)
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+
         // UPDATED RO Water Rates based on the provided rate sheet image (image_344689.png)
         const allRates = [
             { "name": "Home & Shop Rate (upto 30 Jug)", "rate": 149, "jugs": 30, "type": "home_shop" },
@@ -659,13 +671,13 @@
             { "name": "Marriage / Party Rate (15 Jug) (Within City)", "rate": 600, "jugs": 15, "type": "party" },
             { "name": "Marriage / Party Rate (20 Jug) (Within City)", "rate": 800, "jugs": 20, "type": "party" },
             { "name": "Marriage / Party Rate (25 Jug) (Within City)", "rate": 1000, "jugs": 25, "type": "party" },
-            { "name": "Marriage / Party Rate (40 Jug) (Within City)", "rate": 1600, "jugs": 40, "type": "party" }, // NEW RATE
-            { "name": "Marriage / Party Rate (50 Jug) (Within City)", "rate": 2000, "jugs": 50, "type": "party" }  // NEW RATE
+            { "name": "Marriage / Party Rate (40 Jug) (Within City)", "rate": 1600, "jugs": 40, "type": "party" },
+            { "name": "Marriage / Party Rate (50 Jug) (Within City)", "rate": 2000, "jugs": 50, "type": "party" }
         ];
 
         // --- Generic constants ---
         const SERVICE_NAME = "RO Water Supply";
-        const SERVICE_TAB_ID = "ro-supply-service"; // Unique tab ID
+        const SERVICE_TAB_ID = "ro-supply-service"; // Unique tab ID for Google Sheet
         const LOCAL_STORAGE_KEY = 'roSupplyFormData'; // Unique key for Local Storage
         const RAZORPAY_IMAGE_TEXT = "RO";
         const PAYMENT_TIME_LIMIT = 5 * 60;
@@ -697,19 +709,27 @@
         const closePriceListBtn = document.getElementById('close-price-list-btn');
         const closeDescriptionBtn = document.getElementById('close-description-btn');
         const priceListTableBody = document.getElementById('priceListTableBody');
+        // Hidden fields
+        const finalPriceInput = document.getElementById('finalPrice');
+        const servicePriceInput = document.getElementById('servicePrice');
+        const ticketCodeInput = document.getElementById('ticketCode');
+        // New email field reference
+        const emailInput = document.getElementById('email'); 
 
         // --- State variables ---
+        let currentBasePrice = 0;
         let currentCalculatedPrice = 0;
         let generatedTicket = '';
         let countdownInterval = null;
         let allowClose = false;
 
-        // --- Local Storage Functions for Autofill ---
+        // --- Local Storage Functions for Autofill (Updated) ---
 
         function saveFormData() {
             const formData = {
                 fullName: bookingForm.name.value,
                 phone: bookingForm.phone.value,
+                email: emailInput.value, // Added email
                 location: bookingForm.location.value,
                 address: bookingForm.address.value
             };
@@ -727,6 +747,7 @@
                     const data = JSON.parse(savedData);
                     bookingForm.name.value = data.fullName || '';
                     bookingForm.phone.value = data.phone || '';
+                    emailInput.value = data.email || ''; // Added email loading
                     bookingForm.location.value = data.location || '';
                     bookingForm.address.value = data.address || '';
                 }
@@ -735,7 +756,7 @@
             }
         }
 
-        // --- Core Functions ---
+        // --- Core Functions (Other functions remain largely the same, except handleFormSubmit) ---
         function populatePackOptions() {
             packSelection.innerHTML = '<option value="" disabled selected>Select a Pack</option>';
             allRates.forEach(rate => {
@@ -749,21 +770,21 @@
         
         function updatePrices() {
             const selectedOption = packSelection.options[packSelection.selectedIndex];
-            const basePrice = selectedOption && selectedOption.dataset.rate ? parseFloat(selectedOption.dataset.rate) : 0;
+            currentBasePrice = selectedOption && selectedOption.dataset.rate ? parseFloat(selectedOption.dataset.rate) : 0;
             const selectedQuantity = parseInt(quantitySelect.value) || 1;
             
-            currentCalculatedPrice = basePrice * selectedQuantity;
+            currentCalculatedPrice = currentBasePrice * selectedQuantity;
             
             const selectedOptionName = selectedOption && selectedOption.value ? selectedOption.value : "Select Pack";
             calculatedPriceDisplay.textContent = `Total: ₹${currentCalculatedPrice}`;
+            finalPriceInput.value = currentCalculatedPrice;
+            servicePriceInput.value = currentBasePrice;
 
-            // --- MODIFICATION: Remove specific price from front UI ---
-            if (basePrice > 0) {
+            if (currentBasePrice > 0) {
                  displayPrice.textContent = selectedOptionName;
             } else {
                  displayPrice.textContent = "Select Pack";
             }
-            // --- END MODIFICATION ---
         }
 
         function generateTicketId() {
@@ -781,7 +802,7 @@
         function closeAllPopups() {
             if (!allowClose) {
                 if (bookingPopup.style.display !== 'block') {
-                    showCustomAlert("Please complete the process before closing.");
+                    showCustomAlert("कृपया प्रक्रिया पूरी करें। (Please complete the process before closing.)");
                     return;
                 }
             }
@@ -794,13 +815,13 @@
             calculatedPriceDisplay.textContent = 'Total: ₹0';
             displayPrice.textContent = 'Select Pack';
             allowClose = false;
+            loadFormData(); // Reload data after closing, in case user closed before submission
         }
 
         function openPopup(popupElement) {
             document.body.style.overflow = 'hidden';
             popupOverlay.style.display = 'block';
             
-            // Hide all first to ensure clean state
             allPopups.forEach(p => p.style.display = 'none');
             
             popupElement.style.display = 'block';
@@ -819,6 +840,7 @@
         function downloadTicketDetails() {
             const name = bookingForm.name.value;
             const phone = bookingForm.phone.value;
+            const email = emailInput.value; // Added email
             const location = bookingForm.location.value;
             const address = bookingForm.address.value;
             const selectedPack = packSelection.options[packSelection.selectedIndex].textContent;
@@ -829,6 +851,7 @@
                             `Booking ID: ${generatedTicket}\n` +
                             `Name: ${name}\n` +
                             `Phone: ${phone}\n` +
+                            `Email: ${email}\n` + // Added email
                             `Address: ${location}, ${address}\n` +
                             `Pack: ${selectedPack}\n` +
                             `Quantity: ${selectedQuantity}\n` +
@@ -872,6 +895,7 @@
         }
 
         function handleRazorpayPayment() {
+            const selectedPackText = packSelection.options[packSelection.selectedIndex].textContent;
             const options = {
                 "key": "rzp_live_RLjzp7VlXERwiG",
                 "amount": currentCalculatedPrice * 100,
@@ -884,11 +908,12 @@
                 },
                 "prefill": {
                     "name": bookingForm.name.value,
-                    "phone": bookingForm.phone.value
+                    "email": emailInput.value, // Added email
+                    "contact": bookingForm.phone.value
                 },
                 "notes": {
                     "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
-                    "pack_details": packSelection.options[packSelection.selectedIndex].textContent,
+                    "pack_details": selectedPackText,
                     "quantity": quantitySelect.value
                 },
                 "theme": { "color": "#52D1DC" },
@@ -942,9 +967,81 @@
             });
         }
         
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            // --- Validation (Updated to include Email) ---
+            if (!packSelection.value) { showCustomAlert("कृपया एक पैक चुनें। (Please select a pack)"); return; }
+            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 वर्ण) दर्ज करें। (Please enter your full name, min 10 characters)"); return; }
+            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("कृपया एक वैध 10-अंकों वाला फ़ोन नंबर दर्ज करें। (Please enter a valid 10-digit phone number)"); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें। (Please enter a valid email address)"); return; }
+            if (bookingForm.location.value.trim().length < 3) { showCustomAlert("कृपया स्थान का नाम दर्ज करें। (Please enter a valid location name)"); return; }
+            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("कृपया एक पूर्ण पता (न्यूनतम 30 वर्ण) दर्ज करें। (Please enter a complete address, min 30 characters)"); return; }
+            if (currentCalculatedPrice === 0) {
+                showCustomAlert("कृपया पैक और मात्रा चुनें। (Please select pack and quantity to calculate price)");
+                return;
+            }
+
+            submitMessage.classList.remove('hidden');
+            bookingForm.querySelector('button[type="submit"]').disabled = true;
+            generatedTicket = generateTicketId();
+            ticketCodeInput.value = generatedTicket; // Update hidden field
+            
+            const selectedPackText = packSelection.options[packSelection.selectedIndex].textContent;
+
+            // --- Form Data for Google Sheet (Updated to include field3 for email) ---
+            const formData = new FormData();
+            formData.append('field1', bookingForm.name.value); 
+            formData.append('field2', bookingForm.phone.value);    
+            formData.append('field3', emailInput.value); // NEW: Email
+            formData.append('field4', selectedPackText); 
+            formData.append('field5', bookingForm.location.value); 
+            formData.append('field6', bookingForm.address.value);  
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', SERVICE_NAME);   
+            formData.append('servicePrice', servicePriceInput.value); 
+            formData.append('ticketQuantity', quantitySelect.value); 
+            formData.append('finalPrice', finalPriceInput.value);
+
+            // --- Google Script Submission ---
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success")) { 
+                    
+                    bookingPopup.style.display = 'none';
+
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">बुकिंग विवरण (Booking Details):</p>
+                        <p class="text-text-light text-base mb-1">पैक (Pack): <span class="font-bold text-primary">${selectedPackText}</span></p>
+                        <p class="text-text-light text-base mb-3">मात्रा (Quantity): <span class="font-bold text-primary">${quantitySelect.value}</span></p>
+                        <p class="total-price-quantity text-secondary text-3xl font-bold">कुल भुगतान (Total Payable): ₹${currentCalculatedPrice}</p>
+                    `;
+                    openPopup(paymentPopup);
+                    startPaymentTimer();
+
+                } else {
+                    showCustomAlert("बुकिंग त्रुटि: विवरण सबमिट करने में समस्या आई। (Booking Error: Failed to submit details.)");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("नेटवर्क त्रुटि: कृपया अपना कनेक्शन जांचें और पुनः प्रयास करें। (Network Error: Check connection and retry.)");
+            })
+            .finally(() => {
+                submitMessage.classList.add('hidden');
+                bookingForm.querySelector('button[type="submit"]').disabled = false;
+            });
+        }
+        
         // --- Event Listeners Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
             populatePackOptions();
+            loadFormData(); // Load data on load
             updatePrices(); // Initial price update (will show "Select Pack")
 
             packSelection.addEventListener('change', updatePrices);
@@ -962,53 +1059,15 @@
                 if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
                 else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
                 else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
-                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the process before closing.");
+                else if (paymentPopup.style.display === 'block') showCustomAlert("कृपया प्रक्रिया पूरी करें। (Please complete the process)");
                 else if (bookingPopup.style.display === 'block') closeAllPopups();
             }
         });
         
-        okayBtn.addEventListener('click', closeAllPopups);
+        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
         downloadBtn.addEventListener('click', downloadTicketDetails);
 
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            if (!packSelection.value) { showCustomAlert("Please select a pack."); return; }
-            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            if (bookingForm.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
-            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
-            if (currentCalculatedPrice === 0) {
-                showCustomAlert("Please select a pack to calculate the price.");
-                return;
-            }
-
-            submitMessage.classList.remove('hidden');
-            bookingForm.querySelector('button[type="submit"]').disabled = true;
-            generatedTicket = generateTicketId();
-
-            // --- Submission logic placeholder (mimicking successful API call) ---
-            
-            // Using setTimeout to simulate network latency and success
-            setTimeout(() => {
-                submitMessage.classList.add('hidden');
-                bookingForm.querySelector('button[type="submit"]').disabled = false;
-                bookingPopup.style.display = 'none';
-
-                const selectedPackText = packSelection.options[packSelection.selectedIndex].textContent;
-
-                paymentSummary.innerHTML = `
-                    <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
-                    <p class="text-text-light text-base mb-1">Pack: <span class="font-bold text-primary">${selectedPackText}</span></p>
-                    <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${quantitySelect.value}</span></p>
-                    <p class="total-price-quantity text-secondary text-3xl font-bold">Total Payable: ₹${currentCalculatedPrice}</p>
-                `;
-                openPopup(paymentPopup);
-                startPaymentTimer();
-            }, 1000);
-            
-            // --- End Submission mimic ---
-        });
+        bookingForm.addEventListener('submit', handleFormSubmit);
 
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
 
