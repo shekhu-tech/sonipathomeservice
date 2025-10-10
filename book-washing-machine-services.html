@@ -605,6 +605,9 @@
     </div>
    
     <script>
+        // --- Google Sheet Constants (Shared Link from AC Service File) ---
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+
         // Data updated based on the provided image (image_9b3bee.png)
         const serviceData = [
             // Emergency Diagnose
@@ -717,7 +720,7 @@
 
         function initQuantitySelector() {
             const maxServices = 5; 
-            ticketQuantitySelect.innerHTML = '<option value="" disabled>Select quantity</option>';
+            ticketQuantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
             for (let i = 1; i <= maxServices; i++) {
                 const option = document.createElement('option');
                 option.value = i;
@@ -924,8 +927,8 @@
             formData.append('ticketQuantity', selectedQuantity); 
             formData.append('finalPrice', finalPriceInput.value);
 
-            // --- Google Script URL ---
-            fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
+            // --- Google Script Submission using GOOGLE_SHEET_URL ---
+            fetch(GOOGLE_SHEET_URL, {
                 method: "POST",
                 body: formData
             })
