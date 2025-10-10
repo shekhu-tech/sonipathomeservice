@@ -732,11 +732,19 @@
                 // Uncheck the last selected one to enforce single selection
                 const lastChecked = serviceCheckboxesContainer.querySelector('input[name="deliveryCategory"]:checked:last-child');
                 if (lastChecked) lastChecked.checked = false;
-                selectedDeliveryCategories.pop();
+                // Re-read after unchecking
+                const finalSelected = Array.from(serviceCheckboxesContainer.querySelectorAll('input[name="deliveryCategory"]:checked')).map(checkbox => ({
+                    category: checkbox.value,
+                    price: parseFloat(checkbox.dataset.price)
+                }));
+                currentServicePrice = finalSelected.reduce((total, service) => total + service.price, 0);
+                selectedDeliveryCategories = finalSelected; // Update the array for display/calculation
+            } else {
+                 currentServicePrice = selectedDeliveryCategories.reduce((total, service) => total + service.price, 0);
             }
-
-            currentServicePrice = selectedDeliveryCategories.reduce((total, service) => total + service.price, 0);
+            
             const totalFinalPrice = currentServicePrice * selectedQuantity;
+
 
             if (selectedDeliveryCategories.length > 0) {
                 selectedServiceDisplay.textContent = selectedDeliveryCategories.map(s => s.category).join(', ');
@@ -929,8 +937,9 @@
             formData.append('ticketQuantity', selectedQuantity); 
             formData.append('finalPrice', finalPriceInput.value);
 
-            // --- Google Script URL ---
-            fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
+            // --- Google Script URL (UPDATED TO COMMON URL) ---
+            const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+            fetch(GOOGLE_SHEET_URL, {
                 method: "POST",
                 body: formData
             })
