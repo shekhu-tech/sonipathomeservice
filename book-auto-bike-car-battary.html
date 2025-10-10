@@ -21,7 +21,7 @@
             --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-            /* AC Button Colors used for Popup Actions (for consistent look across popups) */
+            /* AC Button Colors used for Popup Actions (Consistent Look) */
             --ac-primary: #00FFFF; /* Electric Teal */
             --ac-secondary: #FFC72C; /* Sunset Gold */
         }
@@ -632,6 +632,10 @@
         const LOCAL_STORAGE_KEY = 'autoBatteryFormData';
         const RAZORPAY_IMAGE_TEXT = "AUTO";
         const PAYMENT_TIME_LIMIT = 5 * 60;
+        
+        // --- GOOGLE SCRIPT URL COPIED from book-ac-services.html ---
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+
 
         // --- DOM Element Selection ---
         const bookNowBtn = document.getElementById('book-now-btn');
@@ -943,6 +947,7 @@
             if (!packSelection.value) { showCustomAlert("Please select a product or pack."); return; }
             if (bookingForm.name.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
             if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            // Note: Email (field3) is missing from form structure, we will send N/A
             if (bookingForm.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
             if (bookingForm.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
             if (currentCalculatedPrice === 0) {
@@ -954,27 +959,57 @@
             bookingForm.querySelector('button[type="submit"]').disabled = true;
             generatedTicket = generateTicketId();
 
-            // --- Submission mimic ---
-            
-            setTimeout(() => {
+            const selectedPackText = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
+            const basePrice = parseFloat(packSelection.options[packSelection.selectedIndex].dataset.rate);
+            const totalDue = currentCalculatedPrice;
+
+            // --- Form Data for Google Sheet (using common field structure) ---
+            const formData = new FormData();
+            formData.append('field1', bookingForm.name.value); 
+            formData.append('field2', bookingForm.phone.value);    
+            formData.append('field3', 'N/A - Battery Service'); // Placeholder for missing Email field
+            formData.append('productDetails', selectedPackText); 
+            formData.append('field5', bookingForm.location.value); 
+            formData.append('field6', bookingForm.address.value);  
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', selectedPackText);   
+            formData.append('servicePrice', basePrice); 
+            formData.append('ticketQuantity', quantitySelect.value); 
+            formData.append('finalPrice', totalDue);
+
+            // --- Google Script URL (Common URL used here) ---
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success")) { 
+                    
+                    bookingPopup.style.display = 'none';
+
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Purchase Details:</p>
+                        <p class="text-text-light text-base mb-1">Product: <span class="font-bold text-primary">${selectedPackText}</span></p>
+                        <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${quantitySelect.value}</span></p>
+                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Total Payable: ₹${totalDue}</p>
+                    `;
+                    openPopup(paymentPopup);
+                    startPaymentTimer();
+                    saveFormData();
+                } else {
+                    showCustomAlert("Order Error: There was an issue submitting your details. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
+            })
+            .finally(() => {
                 submitMessage.classList.add('hidden');
                 bookingForm.querySelector('button[type="submit"]').disabled = false;
-                bookingPopup.style.display = 'none';
-
-                const selectedPackText = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
-                const totalDue = currentCalculatedPrice;
-
-                paymentSummary.innerHTML = `
-                    <p class="text-text-subtle text-lg mb-2 font-bold">Purchase Details:</p>
-                    <p class="text-text-light text-base mb-1">Product: <span class="font-bold text-primary">${selectedPackText}</span></p>
-                    <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${quantitySelect.value}</span></p>
-                    <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Total Payable: ₹${totalDue}</p>
-                `;
-                openPopup(paymentPopup);
-                startPaymentTimer();
-            }, 1000);
-            
-            // --- End Submission mimic ---
+            });
         });
 
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
