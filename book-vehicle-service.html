@@ -529,11 +529,6 @@
             <label for="phone">Phone Number (10 digits)</label>
             <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
             
-            <!-- NEW EMAIL FIELD ADDED HERE -->
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="field7" placeholder="john.doe@example.com" autocomplete="email" required />
-            
-            <!-- Night Stay dropdown now uses field3 -->
             <label for="nightStay">Number of Night Stays (Extra ₹500/night per vehicle)</label>
             <select id="nightStay" name="field3" class="bg-bg-dark border-primary" required>
                 <option value="0">No night stay (0 Nights)</option>
@@ -550,10 +545,8 @@
             <label for="address">Pickup/Drop Address Details (min 30 characters)</label>
             <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code, and desired pick-up time" autocomplete="street-address" minlength="30" rows="4"></textarea>
 
-            <input type="hidden" name="field4" id="vehicleTypeField" /> <!-- Field 4 for selected vehicle names -->
             <input type="hidden" name="ticket" id="ticketCode" />
-            <input type="hidden" name="servicePrice" id="servicePrice" /> <!-- Unit Base Price (without night charge) -->
-            <input type="hidden" name="finalPrice" id="finalPrice" /> <!-- Total Final Price (Base + Night Charge) -->
+            <input type="hidden" name="finalPrice" id="finalPrice" />
             
             <button type="submit">Submit Details & Proceed to Payment</button>
             <p id="submitMessage" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
@@ -638,7 +631,7 @@
     <script>
         // --- Google Sheet Constants (Shared Link from AC Service File) ---
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
-        
+
         // Data for vehicle booking services (Rates updated as per latest chart: Base fare < 80KM, PerKM > 80KM)
         const serviceData = [
             {"Name": "ECCO 5 Seater", "Price": 1699, "PerKM": "10 Rs./KM", "NightCharge": 500}, 
@@ -653,7 +646,7 @@
         // --- Constants and DOM Element Selection ---
         const SERVICE_NAME = "Vehicle Booking";
         const SERVICE_TAB_ID = "vehicle-booking";
-        const SERVICE_FORM_DATA_KEY = "field4"; // Field 4 for vehicle type names
+        const SERVICE_FORM_DATA_KEY = "field4"; // Field 4 for selected vehicle names
         const RAZORPAY_IMAGE_TEXT = "VB";
 
         const participateBtn = document.getElementById('participate-btn');
@@ -675,18 +668,12 @@
         const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
         const welcomeMessage = document.getElementById('welcomeMessage');
         const displayPriceElement = document.getElementById('displayPrice');
+        const finalPriceInput = document.getElementById('finalPrice');
         const form = document.getElementById('lotteryForm');
         const ticketDisplay = document.getElementById('ticketDisplay');
         const okayBtn = document.getElementById('okayBtn');
         const nightStaySelect = document.getElementById('nightStay'); 
 
-        // New/Updated DOM references
-        const emailInput = document.getElementById('email'); 
-        const ticketCodeInput = document.getElementById('ticketCode');
-        const servicePriceInput = document.getElementById('servicePrice');
-        const finalPriceInput = document.getElementById('finalPrice');
-        const vehicleTypeFieldInput = document.getElementById('vehicleTypeField'); // Hidden field for field4
-        
         const priceListBtn = document.getElementById('price-list-btn');
         const conditionsBtn = document.getElementById('conditions-btn');
         const priceListPopup = document.getElementById('priceListPopup');
@@ -702,7 +689,7 @@
         let countdownInterval = null;
         const PAYMENT_TIME_LIMIT = 5 * 60; // 5 minutes
         let currentServicePrice = 0; // Represents total base fare for all selected vehicles (single quantity)
-        let totalNightChargePerUnit = 0;
+        let totalNightChargesPerVehicle = 0; // Total night charge for all selected vehicles (single quantity, 1 night)
         let selectedQuantity = 1;
         let allowClose = false;
         const LOCAL_STORAGE_KEY = 'vehicleBookingFormData'; 
@@ -713,8 +700,6 @@
             const formData = {
                 fullName: form.field1.value,
                 phone: form.field2.value,
-                // FIX: Access email field using its ID/name from the form (field7)
-                email: form.field7.value,
                 location: form.field5.value,
                 address: form.field6.value,
                 nightStay: nightStaySelect.value
@@ -728,8 +713,6 @@
                 const data = JSON.parse(savedData);
                 form.field1.value = data.fullName || '';
                 form.field2.value = data.phone || '';
-                // FIX: Load data into the email field (field7)
-                form.field7.value = data.email || ''; 
                 form.field5.value = data.location || '';
                 form.field6.value = data.address || '';
                 nightStaySelect.value = data.nightStay || '0';
@@ -772,44 +755,46 @@
         function updatePrices() {
             const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
             selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
-            const selectedNightStay = parseInt(nightStaySelect.value) || 0; // Get night stay value
+            const selectedNightStay = parseInt(nightStaySelect.value) || 0; 
 
-            let unitBasePriceSum = 0; // Base fare for all selected vehicles (single quantity)
-            totalNightChargePerUnit = 0; // Total night charge for all selected vehicles (single quantity, 1 night)
+            let unitBasePriceSum = 0; 
+            totalNightChargesPerVehicle = 0; 
             
             if (selectedCategories.length > 0) {
                 selectedCategories.forEach(checkbox => {
                     unitBasePriceSum += parseFloat(checkbox.dataset.price);
                     // FIX: Use camelCase for dataset property access
-                    totalNightChargePerUnit += parseFloat(checkbox.dataset.nightCharge); 
+                    totalNightChargesPerVehicle += parseFloat(checkbox.dataset.nightCharge); 
                 });
             }
             
             // Calculate final price:
             // (Total Base Price * Quantity) + (Total Night Charge * Quantity * Nights)
             const baseFareComponent = unitBasePriceSum * selectedQuantity;
-            const nightChargeComponent = totalNightChargePerUnit * selectedQuantity * selectedNightStay;
+            const nightChargeComponent = totalNightChargesPerVehicle * selectedQuantity * selectedNightStay;
             
             const totalFinalPrice = baseFareComponent + nightChargeComponent;
             
             currentServicePrice = unitBasePriceSum; // Keep this as the single-unit base price for simple display
 
-            // Set hidden inputs
-            servicePriceInput.value = unitBasePriceSum;
-            finalPriceInput.value = totalFinalPrice;
-
             if (selectedCategories.length > 0) {
-                const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
-                selectedServiceCategoriesDisplay.textContent = selectedCategoryNames;
+                selectedServiceCategoriesDisplay.textContent = selectedCategories.map(cb => cb.value).join(', ');
                 displayPriceElement.textContent = `Base Fare: ₹${unitBasePriceSum}`;
-                vehicleTypeFieldInput.value = selectedCategoryNames; // Set field4
             } else {
                 selectedServiceCategoriesDisplay.textContent = 'Click to select vehicle type(s)';
                 displayPriceElement.textContent = 'Select Vehicle Type';
-                vehicleTypeFieldInput.value = '';
             }
             
             totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
+            finalPriceInput.value = totalFinalPrice;
+            
+            // Re-check previously selected items if inner popup is open
+            if (serviceCategorySelectionPopup.style.display === 'block') {
+                const currentlySelected = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select vehicle type(s)');
+                serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(cb => {
+                    cb.checked = currentlySelected.includes(cb.value);
+                });
+            }
         }
 
         function generateFormattedTicket() {
@@ -821,13 +806,12 @@
         }
 
         function downloadTickets() {
-            const selectedCategoryNames = vehicleTypeFieldInput.value;
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
             const selectedNightStayText = nightStaySelect.options[nightStaySelect.selectedIndex].text;
             
             const ticketContent = `${SERVICE_NAME} Booking Details\n\n` +
                                  `Customer Name: ${form.field1.value}\n` +
                                  `Contact: ${form.field2.value}\n` +
-                                 `Email: ${form.field7.value}\n` + 
                                  `Night Stay: ${selectedNightStayText}\n` +
                                  `Route: ${form.field5.value}\n` +
                                  `Vehicle(s): ${selectedCategoryNames}\n` +
@@ -963,45 +947,35 @@
             // Validation 
             const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
             if (selectedCategories.length === 0) { showCustomAlert("Please select at least one Vehicle Type."); return; }
-            if (form.field1.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(form.field2.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.field7.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
-            if (form.field5.value.trim().length < 3) { showCustomAlert("Please enter a valid travel route (e.g., City A to City B)."); return; }
-            if (form.field6.value.trim().length < 30) { showCustomAlert("Please enter complete pickup/drop address details (minimum 30 characters)."); return; }
+            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid travel route (e.g., City A to City B)."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter complete pickup/drop address details (minimum 30 characters)."); return; }
             if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of vehicles."); return; }
-            if (finalPriceInput.value <= 0) { showCustomAlert("Please select vehicle and quantity to calculate the price."); return; }
-
 
             submitMessage.style.display = 'block';
             form.querySelector('button[type="submit"]').disabled = true;
 
             generatedTicket = generateFormattedTicket(); 
-            ticketCodeInput.value = generatedTicket;
             
-            const selectedCategoryNames = vehicleTypeFieldInput.value;
-            const selectedNightStay = nightStaySelect.value;
-            const totalNightCharge = totalNightChargePerUnit * selectedQuantity * parseInt(selectedNightStay);
-            
+            const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
+            const selectedNightStayText = nightStaySelect.options[nightStaySelect.selectedIndex].text;
+
             // --- Form Data for Google Sheet ---
             const formData = new FormData();
-            formData.append('field1', form.field1.value); 
-            formData.append('field2', form.field2.value);    
-            formData.append('field3', selectedNightStay); // Night Stay count
-            formData.append('field4', selectedCategoryNames); // Vehicle Type(s)
-            formData.append('field5', form.field5.value); // Route
-            formData.append('field6', form.field6.value);  // Address
-            formData.append('field7', form.field7.value); // Email (New Field)
-            
+            formData.append('field1', form.fullName.value); 
+            formData.append('field2', form.phone.value);    
+            formData.append('field3', nightStaySelect.value); // Night Stay count
+            formData.append(SERVICE_FORM_DATA_KEY, selectedCategoryNames); 
+            formData.append('field5', form.location.value); // Route
+            formData.append('field6', form.address.value);  // Address
             formData.append('ticket', generatedTicket);     
             formData.append('tab', SERVICE_TAB_ID);           
-            formData.append('serviceType', SERVICE_NAME);   
-            formData.append('servicePrice', servicePriceInput.value); // Unit Base Price Sum
+            formData.append('serviceType', 'Vehicle Booking');   
+            formData.append('servicePrice', finalPriceInput.value); // Final calculated price
             formData.append('ticketQuantity', selectedQuantity); 
-            formData.append('finalPrice', finalPriceInput.value); // Total Base + Night Charges
-            formData.append('nightChargeAmount', totalNightCharge); // Total Night Charge amount
 
-
-            // --- Google Script Submission ---
+            // --- Google Script Submission using GOOGLE_SHEET_URL ---
             fetch(GOOGLE_SHEET_URL, {
                 method: "POST",
                 body: formData
@@ -1013,9 +987,6 @@
                     
                     popupForm.style.display = 'none';
                     openPopup(paymentStep);
-                    
-                    const selectedNightStayText = nightStaySelect.options[nightStaySelect.selectedIndex].text;
-
                     paymentSummary.innerHTML = `
                         <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
                         <p class="text-text-light text-base mb-1">Vehicle(s): <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
@@ -1040,16 +1011,11 @@
         }
 
         function handleRazorpayPayment() {
-            if (finalPriceInput.value <= 0) {
-                 showCustomAlert("Please select vehicle and quantity to proceed with payment.");
-                 return;
-            }
-
-            const selectedCategoryNames = vehicleTypeFieldInput.value;
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
             const selectedNightStayText = nightStaySelect.options[nightStaySelect.selectedIndex].text;
             
             const options = {
-                "key": "rzp_live_RLjzp7VlXERwiG", // Placeholder Key
+                "key": "rzp_live_RLjzp7VlXERwiG",
                 "amount": finalPriceInput.value * 100, // Amount in paise
                 "currency": "INR",
                 "name": `SonipatHomeService - ${SERVICE_NAME}`,
@@ -1060,12 +1026,11 @@
                     paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
-                    "name": form.field1.value,
-                    "email": form.field7.value,
-                    "contact": form.field2.value
+                    "name": form.fullName.value,
+                    "contact": form.phone.value
                 },
                 "notes": {
-                    "address": `${form.field5.value}, ${form.field6.value}`,
+                    "address": `${form.location.value}, ${form.address.value}`,
                     "service_details": selectedCategoryNames,
                     "booking_ref": generatedTicket,
                     "night_stay_count": nightStaySelect.value
@@ -1087,8 +1052,8 @@
             paymentStep.style.display = 'none';
             openPopup(ticketStep);
             
-            const userName = form.field1.value.split(' ')[0];
-            const selectedCategoryNames = vehicleTypeFieldInput.value;
+            const userName = form.fullName.value.split(' ')[0];
+            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
             const selectedNightStayText = nightStaySelect.options[nightStaySelect.selectedIndex].text;
 
             welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
@@ -1096,10 +1061,10 @@
             ticketDisplay.innerHTML = `
                 <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
                 <p>Vehicle(s): <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
-                <p>Route: <span class="font-bold text-text-light">${form.field5.value}</span></p>
+                <p>Route: <span class="font-bold text-text-light">${form.location.value}</span></p>
                 <p>Night Stay: <span class="font-bold text-text-light">${selectedNightStayText}</span></p>
                 <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${finalPriceInput.value}</p>
-                <p class="text-text-subtle text-sm mt-3">The driver will contact you shortly to confirm pickup details at: ${form.field6.value.substring(0, 50)}...</p>
+                <p class="text-text-subtle text-sm mt-3">The driver will contact you shortly to confirm pickup details at: ${form.address.value.substring(0, 50)}...</p>
                 <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
             
@@ -1115,7 +1080,7 @@
         });
         
         ticketQuantitySelect.addEventListener('change', updatePrices); 
-        nightStaySelect.addEventListener('change', updatePrices); 
+        nightStaySelect.addEventListener('change', updatePrices); // Added listener for Night Stay
         
         // Centralized Overlay Click Handling
         popupOverlay.addEventListener('click', e => {
