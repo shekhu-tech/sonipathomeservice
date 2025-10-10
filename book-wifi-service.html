@@ -478,16 +478,19 @@
             </div>
             
             <label for="name">Full Name (min 10 characters)</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
+            <input type="text" id="name" name="field1" placeholder="John Doe" autocomplete="name" minlength="10" required>
 
             <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+            <input type="tel" id="phone" name="field2" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
             
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="field3" placeholder="john.doe@example.com" autocomplete="email" required />
+
             <label for="location">Location (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
+            <input type="text" id="location" name="field5" placeholder="Sonipat" autocomplete="address-level2" required>
             
             <label for="address">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
+            <textarea id="address" name="field6" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
             
             <div class="quantity-selector my-4">
                 <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
@@ -495,6 +498,9 @@
                     <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹0</span>
                 </div>
             </div>
+            
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="finalPrice" id="finalPrice" />
 
             <button type="submit">Submit Details & Proceed to Payment</button>
             <p id="submit-message" class="text-center text-sm text-primary mt-2 hidden">Submitting...</p>
@@ -569,10 +575,13 @@
     </div>
     
     <script>
+        // --- Google Sheet Constants (Shared Link from AC Service File) ---
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+        
         // Data derived from user's analysis
         const planData = [
             { "speed": "300 Mbps", "duration": "6 महीने", "ott": "नहीं", "price": 3500 },
-            { "speed": "300 Mbps", "duration": "12 महीने", "ott": "नहीं", "price": 5500 },
+            { "speed": "300 Mbps", "duration": "12 महीने", "ott": "नहीं", "price": 5550 }, // UPDATED PRICE: 5500 -> 5550
             { "speed": "300 Mbps", "duration": "6 महीने", "ott": "हाँ", "price": 4150 },
             { "speed": "300 Mbps", "duration": "12 महीने", "ott": "हाँ", "price": 7850 }
         ];
@@ -622,10 +631,11 @@
         // --- Local Storage Functions for Autofill ---
         function saveFormData() {
             const formData = {
-                fullName: bookingForm.name.value,
-                phone: bookingForm.phone.value,
-                location: bookingForm.location.value,
-                address: bookingForm.address.value,
+                fullName: bookingForm.field1.value,
+                phone: bookingForm.field2.value,
+                email: bookingForm.field3.value,
+                location: bookingForm.field5.value,
+                address: bookingForm.field6.value,
                 selectedPlan: packSelection.value
             };
             try {
@@ -640,10 +650,11 @@
                 const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
                 if (savedData) {
                     const data = JSON.parse(savedData);
-                    bookingForm.name.value = data.fullName || '';
-                    bookingForm.phone.value = data.phone || '';
-                    bookingForm.location.value = data.location || '';
-                    bookingForm.address.value = data.address || '';
+                    bookingForm.field1.value = data.fullName || '';
+                    bookingForm.field2.value = data.phone || '';
+                    bookingForm.field3.value = data.email || '';
+                    bookingForm.field5.value = data.location || '';
+                    bookingForm.field6.value = data.address || '';
                     packSelection.value = data.selectedPlan || '';
                 }
             } catch (e) {
@@ -765,10 +776,10 @@
         }
 
         function downloadTicketDetails() {
-            const name = bookingForm.name.value;
-            const phone = bookingForm.phone.value;
-            const location = bookingForm.location.value;
-            const address = bookingForm.address.value;
+            const name = bookingForm.field1.value;
+            const phone = bookingForm.field2.value;
+            const location = bookingForm.field5.value;
+            const address = bookingForm.field6.value;
             // Change OTT to IPTV
             const planDetails = selectedPlan ? `${selectedPlan.duration} | IPTV: ${selectedPlan.ott} | ${selectedPlan.speed}` : "N/A";
             const totalPrice = currentCalculatedPrice;
@@ -777,6 +788,7 @@
                             `Booking ID: ${generatedTicket}\n` +
                             `Name: ${name}\n` +
                             `Phone: ${phone}\n` +
+                            `Email: ${bookingForm.field3.value}\n` +
                             `Address: ${location}, ${address}\n` +
                             `Plan Details: ${planDetails}\n` +
                             `Total Price Paid: ₹${totalPrice}\n\n` +
@@ -838,11 +850,12 @@
                     paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
-                    "name": bookingForm.name.value,
-                    "phone": bookingForm.phone.value
+                    "name": bookingForm.field1.value,
+                    "email": bookingForm.field3.value,
+                    "contact": bookingForm.field2.value
                 },
                 "notes": {
-                    "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
+                    "address": `${bookingForm.field5.value}, ${bookingForm.field6.value}`,
                     "plan_details": planDescription,
                     "speed": selectedPlan.speed
                 },
@@ -864,7 +877,7 @@
 
             saveFormData();
             
-            const name = bookingForm.name.value.split(' ')[0];
+            const name = bookingForm.field1.value.split(' ')[0];
             // Change OTT to IPTV
             const planDetails = selectedPlan ? `${selectedPlan.duration} | IPTV: ${selectedPlan.ott}` : "N/A";
             const totalPrice = currentCalculatedPrice;
@@ -902,8 +915,9 @@
                 if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
                 else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
                 else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
-                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
-                else if (bookingPopup.style.display === 'block') closeAllPopups();
+                // FIX: Use bookingPopup instead of the undefined popupForm
+                else if (bookingPopup.style.display === 'block' || paymentPopup.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
+                else closeAllPopups();
             }
         });
         
@@ -916,35 +930,65 @@
             // Validation
             if (!selectedPlan) { showCustomAlert("कृपया एक इंटरनेट प्लान चुनें।"); return; }
             if (currentCalculatedPrice <= 0) { showCustomAlert("प्लान की कीमत शून्य है। कृपया सही प्लान चुनें।"); return; }
-            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
-            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
-            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
+            if (bookingForm.field1.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
+            if (!/^\d{10}$/.test(bookingForm.field2.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.field3.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें।"); return; }
+            if (bookingForm.field6.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
 
             submitMessage.classList.remove('hidden');
             bookingForm.querySelector('button[type="submit"]').disabled = true;
             generatedTicket = generateTicketId();
 
-            // --- Submission mimic (prepares for payment step) ---
-            
-            setTimeout(() => {
+            // --- Form Data for Google Sheet ---
+            const formData = new FormData();
+            formData.append('field1', bookingForm.field1.value); // Full Name
+            formData.append('field2', bookingForm.field2.value); // Phone
+            formData.append('field3', bookingForm.field3.value); // Email
+            formData.append('field4', selectedPlan.speed + ' | ' + selectedPlan.duration + ' | IPTV: ' + selectedPlan.ott); // Plan Details
+            formData.append('field5', bookingForm.field5.value); // Location
+            formData.append('field6', bookingForm.field6.value); // Address
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', SERVICE_NAME);   
+            formData.append('servicePrice', currentCalculatedPrice); 
+            formData.append('ticketQuantity', 1); // Always 1 plan
+            formData.append('finalPrice', currentCalculatedPrice);
+
+            // --- Google Script Submission ---
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success")) { 
+                    saveFormData(); 
+                    
+                    // FIX: Use bookingPopup instead of the undefined popupForm
+                    bookingPopup.style.display = 'none'; 
+                    openPopup(paymentPopup); // Change paymentStep to paymentPopup (correct ID)
+                    const totalDue = currentCalculatedPrice;
+                    const planText = `${selectedPlan.duration} | IPTV: ${selectedPlan.ott}`;
+
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Plan: <span class="text-primary">${planText}</span></p>
+                        <p class="text-text-light text-base mb-1">Speed: <span class="font-bold text-primary">${selectedPlan.speed}</span></p>
+                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Total Payable: ₹${totalDue}</p>
+                    `;
+                    openPopup(paymentPopup);
+                    startPaymentTimer();
+                } else {
+                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
+            })
+            .finally(() => {
                 submitMessage.classList.add('hidden');
                 bookingForm.querySelector('button[type="submit"]').disabled = false;
-                bookingPopup.style.display = 'none';
-
-                const totalDue = currentCalculatedPrice;
-                // Change OTT to IPTV
-                const planText = `${selectedPlan.duration} | IPTV: ${selectedPlan.ott}`;
-
-                paymentSummary.innerHTML = `
-                    <p class="text-text-subtle text-lg mb-2 font-bold">Plan: <span class="text-primary">${planText}</span></p>
-                    <p class="text-text-light text-base mb-1">Speed: <span class="font-bold text-primary">${selectedPlan.speed}</span></p>
-                    <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Total Payable: ₹${totalDue}</p>
-                `;
-                openPopup(paymentPopup);
-                startPaymentTimer();
-            }, 1000);
-            
-            // --- End Submission mimic ---\n
+            });
         });
 
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
