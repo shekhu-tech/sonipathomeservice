@@ -512,26 +512,30 @@
         <form id="booking-form">
             <div class="quantity-selector-container my-4">
                 <label for="pack-selection">Select Service Package:</label>
-                <select id="pack-selection" name="pack-selection" required>
+                <select id="pack-selection" name="field4" required>
                     <option value="" disabled selected>Select a Sewerage Unblock Service</option>
                 </select>
             </div>
             
             <label for="name">Full Name (min 10 characters)</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
+            <input type="text" id="name" name="field1" placeholder="John Doe" autocomplete="name" minlength="10" required>
 
             <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+            <input type="tel" id="phone" name="field2" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
             
+            <!-- NEW EMAIL FIELD ADDED HERE -->
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="field3" placeholder="john.doe@example.com" autocomplete="email" required />
+
             <label for="location">Location (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
+            <input type="text" id="location" name="field5" placeholder="Sonipat" autocomplete="address-level2" required>
             
             <label for="address">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
+            <textarea id="address" name="field6" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
             
             <div class="quantity-selector my-4">
                 <label for="quantity">Number of Service Points (Max 3):</label>
-                <select id="quantity" name="quantity" required>
+                <select id="quantity" name="ticketQuantity" required>
                     <option value="1" selected>1 Service Point</option>
                     <option value="2">2 Service Points</option>
                     <option value="3">3 Service Points</option>
@@ -541,6 +545,11 @@
                     <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹0</span>
                 </div>
             </div>
+            
+            <!-- Hidden fields for submission consistency -->
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="servicePrice" id="servicePrice" />
+            <input type="hidden" name="finalPrice" id="finalPrice" />
 
             <!-- AC Button Style Applied -->
             <button type="submit">Submit Details & Proceed to Payment</button>
@@ -620,6 +629,9 @@
     </div>
     
     <script>
+        // --- Google Sheet Constants (Shared Link from AC Service File) ---
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+        
         const allRates = [
             { "name": "Indoor Unblocking", "rate": 499, "description": "Clearing blockages within your house (toilets, sinks, internal pipes)." },
             { "name": "Street Sewerage Unblocking (Up to 2 Manholes)", "rate": 999, "description": "Clearing the main sewer line from your house up to the second municipal manhole." },
@@ -661,20 +673,31 @@
         const closePriceListBtn = document.getElementById('close-price-list-btn');
         const closeDescriptionBtn = document.getElementById('close-description-btn');
         const priceListTableBody = document.getElementById('priceListTableBody');
+        
+        // New/Updated DOM references
+        const emailInput = document.getElementById('email'); 
+        const ticketCodeInput = document.getElementById('ticketCode');
+        const servicePriceInput = document.getElementById('servicePrice');
+        const finalPriceInput = document.getElementById('finalPrice');
+
 
         // --- State variables ---
+        let currentBasePrice = 0;
         let currentCalculatedPrice = 0;
         let generatedTicket = '';
         let countdownInterval = null;
         let allowClose = false;
 
-        // --- Local Storage Functions for Autofill ---
+        // --- Local Storage Functions for Autofill (Updated to include email) ---
         function saveFormData() {
             const formData = {
                 fullName: bookingForm.name.value,
                 phone: bookingForm.phone.value,
+                email: emailInput.value,
                 location: bookingForm.location.value,
-                address: bookingForm.address.value
+                address: bookingForm.address.value,
+                packSelection: packSelection.value,
+                quantity: quantitySelect.value
             };
             try {
                 localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
@@ -690,8 +713,12 @@
                     const data = JSON.parse(savedData);
                     bookingForm.name.value = data.fullName || '';
                     bookingForm.phone.value = data.phone || '';
+                    emailInput.value = data.email || ''; 
                     bookingForm.location.value = data.location || '';
                     bookingForm.address.value = data.address || '';
+                    // Attempt to pre-select, but updatePrices will handle logic
+                    packSelection.value = data.packSelection || '';
+                    quantitySelect.value = data.quantity || '1'; 
                 }
             } catch (e) {
                 console.warn("Local storage loading failed:", e);
@@ -713,16 +740,20 @@
         
         function updatePrices() {
             const selectedOption = packSelection.options[packSelection.selectedIndex];
-            const basePrice = selectedOption && selectedOption.dataset.rate ? parseFloat(selectedOption.dataset.rate) : 0;
+            currentBasePrice = selectedOption && selectedOption.dataset.rate ? parseFloat(selectedOption.dataset.rate) : 0;
             const selectedQuantity = parseInt(quantitySelect.value) || 1;
             
-            currentCalculatedPrice = basePrice * selectedQuantity;
+            currentCalculatedPrice = currentBasePrice * selectedQuantity;
             
+            // Set hidden inputs
+            servicePriceInput.value = currentBasePrice;
+            finalPriceInput.value = currentCalculatedPrice;
+
             const selectedOptionName = selectedOption && selectedOption.value ? selectedOption.value : "Select Service";
             calculatedPriceDisplay.textContent = `Total: ₹${currentCalculatedPrice}`;
 
-            if (basePrice > 0) {
-                 displayPrice.textContent = `₹${basePrice} / Point`;
+            if (currentBasePrice > 0) {
+                 displayPrice.textContent = `₹${currentBasePrice} / Point`;
             } else {
                  displayPrice.textContent = "Select Service";
             }
@@ -778,10 +809,11 @@
         }
 
         function downloadTicketDetails() {
-            const name = bookingForm.name.value;
-            const phone = bookingForm.phone.value;
-            const location = bookingForm.location.value;
-            const address = bookingForm.address.value;
+            const name = bookingForm.field1.value;
+            const phone = bookingForm.field2.value;
+            const email = bookingForm.field3.value;
+            const location = bookingForm.field5.value;
+            const address = bookingForm.field6.value;
             const selectedOption = packSelection.options[packSelection.selectedIndex];
             const selectedPack = selectedOption.textContent.split(' - ')[0];
             const selectedQuantity = quantitySelect.value;
@@ -791,6 +823,7 @@
                             `Booking ID: ${generatedTicket}\n` +
                             `Name: ${name}\n` +
                             `Phone: ${phone}\n` +
+                            `Email: ${email}\n` +
                             `Address: ${location}, ${address}\n` +
                             `Service: ${selectedPack}\n` +
                             `Quantity: ${selectedQuantity} Point(s)\n` +
@@ -835,9 +868,14 @@
         }
 
         function handleRazorpayPayment() {
+            if (currentCalculatedPrice === 0) {
+                 showCustomAlert("Please select a service package to proceed with payment.");
+                 return;
+            }
+
             const selectedPack = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
             const options = {
-                "key": "rzp_live_opiqkRmGpjG1hF",
+                "key": "rzp_live_opiqkRmGpjG1hF", // Placeholder Key
                 "amount": currentCalculatedPrice * 100,
                 "currency": "INR",
                 "name": `SonipatHomeService - ${SERVICE_NAME}`,
@@ -847,11 +885,12 @@
                     paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
-                    "name": bookingForm.name.value,
-                    "phone": bookingForm.phone.value
+                    "name": bookingForm.field1.value,
+                    "email": bookingForm.field3.value,
+                    "contact": bookingForm.field2.value
                 },
                 "notes": {
-                    "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
+                    "address": `${bookingForm.field5.value}, ${bookingForm.field6.value}`,
                     "service_details": selectedPack,
                     "quantity": quantitySelect.value
                 },
@@ -873,7 +912,7 @@
 
             saveFormData();
             
-            const name = bookingForm.name.value.split(' ')[0];
+            const name = bookingForm.field1.value.split(' ')[0];
             const selectedPack = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
             const selectedQuantity = quantitySelect.value;
             const totalPrice = currentCalculatedPrice;
@@ -905,9 +944,82 @@
             });
         }
         
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            // Validation
+            if (!packSelection.value) { showCustomAlert("Please select a service package."); return; }
+            if (bookingForm.field1.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(bookingForm.field2.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.field3.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
+            if (bookingForm.field5.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (bookingForm.field6.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
+            if (currentCalculatedPrice === 0) {
+                showCustomAlert("Please select a service package and quantity to calculate the price.");
+                return;
+            }
+
+            submitMessage.classList.remove('hidden');
+            bookingForm.querySelector('button[type="submit"]').disabled = true;
+            generatedTicket = generateTicketId();
+            ticketCodeInput.value = generatedTicket;
+            
+            const selectedPackOption = packSelection.options[packSelection.selectedIndex];
+            const selectedPackText = selectedPackOption.textContent.split(' - ')[0];
+
+            // --- Form Data for Google Sheet ---
+            const formData = new FormData();
+            formData.append('field1', bookingForm.field1.value); 
+            formData.append('field2', bookingForm.field2.value);    
+            formData.append('field3', bookingForm.field3.value); // Email
+            formData.append('field4', selectedPackText); // Service Name
+            formData.append('field5', bookingForm.field5.value); // Location
+            formData.append('field6', bookingForm.field6.value); // Address 
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', SERVICE_NAME);
+            formData.append('servicePrice', servicePriceInput.value); // Base price per unit
+            formData.append('ticketQuantity', quantitySelect.value); // Quantity/Points
+            formData.append('finalPrice', finalPriceInput.value); // Total Calculated Price
+
+            // --- Google Script Submission ---
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success")) { 
+                    
+                    bookingPopup.style.display = 'none';
+
+                    const totalDue = currentCalculatedPrice;
+
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Service: <span class="text-primary">${selectedPackText}</span></p>
+                        <p class="text-text-light text-base mb-1">Quantity: <span class="font-bold text-primary">${quantitySelect.value} Point(s)</span></p>
+                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Total Payable: ₹${totalDue}</p>
+                    `;
+                    openPopup(paymentPopup);
+                    startPaymentTimer();
+                } else {
+                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
+            })
+            .finally(() => {
+                submitMessage.classList.add('hidden');
+                bookingForm.querySelector('button[type="submit"]').disabled = false;
+            });
+        }
+        
         // --- Event Listeners Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
             populatePackOptions();
+            loadFormData(); // Load data on load
             updatePrices();
 
             packSelection.addEventListener('change', updatePrices);
@@ -930,47 +1042,10 @@
             }
         });
         
-        okayBtn.addEventListener('click', closeAllPopups);
+        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
         downloadBtn.addEventListener('click', downloadTicketDetails);
 
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            if (!packSelection.value) { showCustomAlert("Please select a service package."); return; }
-            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            if (bookingForm.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
-            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
-            if (currentCalculatedPrice === 0) {
-                showCustomAlert("Please select a service package to calculate the price.");
-                return;
-            }
-
-            submitMessage.classList.remove('hidden');
-            bookingForm.querySelector('button[type="submit"]').disabled = true;
-            generatedTicket = generateTicketId();
-
-            // --- Submission mimic ---
-            
-            setTimeout(() => {
-                submitMessage.classList.add('hidden');
-                bookingForm.querySelector('button[type="submit"]').disabled = false;
-                bookingPopup.style.display = 'none';
-
-                const selectedPackText = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
-                const totalDue = currentCalculatedPrice;
-
-                paymentSummary.innerHTML = `
-                    <p class="text-text-subtle text-lg mb-2 font-bold">Service: <span class="text-primary">${selectedPackText}</span></p>
-                    <p class="text-text-light text-base mb-1">Quantity: <span class="font-bold text-primary">${quantitySelect.value} Point(s)</span></p>
-                    <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Total Payable: ₹${totalDue}</p>
-                `;
-                openPopup(paymentPopup);
-                startPaymentTimer();
-            }, 1000);
-            
-            // --- End Submission mimic ---
-        });
+        bookingForm.addEventListener('submit', handleFormSubmit);
 
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
         priceListBtn.addEventListener('click', () => {
