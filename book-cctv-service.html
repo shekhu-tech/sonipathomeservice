@@ -184,7 +184,7 @@
         .btn-primary:hover {
             background: #42C2CC;
             transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(82, 209, 220, 0.5);
+            box-shadow: 0 8px 20px rgba(82, 209, 220, 0.6);
         }
 
         .btn-secondary {
@@ -616,6 +616,9 @@
         const LOCAL_STORAGE_KEY = 'cctvServiceFormData'; // Unique key for Local Storage
         const RAZORPAY_IMAGE_TEXT = "CCTV";
         
+        // --- GOOGLE SCRIPT URL COPIED from book-ac-services.html ---
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+
         // --- DOM Element Selection ---
         const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
@@ -918,8 +921,8 @@
             formData.append('ticketQuantity', selectedQuantity); 
             formData.append('finalPrice', finalPriceInput.value);
 
-            // --- Google Script URL ---
-            fetch("https://script.google.com/macros/s/AKfycbzq42I1bYVh-lUSFp_BMC9I99g_HuQQKGLs39iEhaDZOowVGcIRuytnOIQaH_sG-8SwfQ/exec", {
+            // --- Google Script URL (UPDATED TO COMMON URL) ---
+            fetch(GOOGLE_SHEET_URL, {
                 method: "POST",
                 body: formData
             })
