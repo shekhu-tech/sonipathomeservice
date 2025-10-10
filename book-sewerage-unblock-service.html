@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - Solar Installation Services</title>
+    <title>SonipatHomeService.com - Sewerage Unblock Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -11,17 +11,17 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
         :root {
-            /* Theme: Deep Space Black, Sun Yellow, and Electric Teal */
+            /* Theme: Deep Space Black, Vivid Aqua (for water/drainage), and Electric Gold */
             --bg-dark: #101827; /* Deep Space Black */
             --bg-card: #1C2738; /* Dark Navy Card */
-            --primary: #FFD700; /* Sun Yellow Accent (Service Button) - Solar Theme Main */
-            --secondary: #00FFFF; /* Electric Teal Accent (Price Highlight/Border) */
+            --primary: #00BFFF; /* Deep Sky Blue/Aqua (Main Page Button) */
+            --secondary: #FFD700; /* Electric Gold Accent (Price Highlight/Border) */
             --text-light: #E0E7FF; /* Off-White Text */
             --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
             --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            
-            /* AC Button Colors used for Popup Actions */
+
+            /* AC Button Colors used for Popup Actions (for consistent look across popups) */
             --ac-primary: #00FFFF; /* Electric Teal */
             --ac-secondary: #FFC72C; /* Sunset Gold */
         }
@@ -47,7 +47,7 @@
             padding: 4rem 1.5rem;
         }
 
-        /* --- Custom Components (Main Page Buttons - Kept Solar Theme) --- */
+        /* --- Custom Components --- */
 
         .stat-grid {
             display: grid;
@@ -63,13 +63,13 @@
             text-align: center;
             box-shadow: var(--shadow-depth);
             transition: var(--transition);
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(0, 191, 255, 0.2);
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
             border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.3);
         }
 
         .stat-card h3 {
@@ -192,9 +192,9 @@
         }
 
         .btn-primary:hover {
-            background: #FFEB3B;
+            background: #00A3CC;
             transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(0, 191, 255, 0.5);
         }
 
         .btn-secondary {
@@ -204,7 +204,7 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(0, 255, 255, 0.1);
+            background: rgba(255, 215, 0, 0.1);
             transform: scale(1.03);
         }
 
@@ -283,7 +283,7 @@
         .popup textarea:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.2);
         }
 
         .popup textarea {
@@ -449,32 +449,32 @@
         
         <section class="product-section">
             <div class="product-header">
-                <h2 class="text-white">Professional Solar Installation</h2>
-                <p class="text-sm text-gray-400 mt-2">Go Green with our 25-Year Warranty Solar Plates and Complete Home/Shop Setup.</p>
+                <h2 class="text-white">Expert Sewerage & Drain Unblocking Services</h2>
+                <p class="text-sm text-gray-400 mt-2">Fast, reliable, and affordable solutions for all your blocked sewerage problems.</p>
             </div>
 
             <div class="product-content">
                 
                 <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">Complete Solar Power Solutions</h3>
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">Get Your Drains Flowing Freely Again</h3>
                     <p class="text-text-subtle mb-4 text-base">
-                        We offer fully installed solar packages including Plates, Inverter, and Batteries from top brands (Smarten, Luminous, UTL, Eastern). Choose your power requirement below.
+                        Choose between Indoor Unblocking or Street Sewerage Clearing. Our transparent pricing includes the service and basic scope of work.
                     </p>
                     
                     <div class="price-container">
-                        <div class="original-price">Custom Solutions Available</div>
-                        <div class="current-price" id="displayPrice">Select Package</div>
+                        <div class="original-price">Starting from ₹499</div>
+                        <div class="current-price" id="displayPrice">Select Service</div>
                     </div>
                     
                     <div class="action-buttons">
                         <button class="btn btn-primary" id="book-now-btn">
-                            <i class="fas fa-sun"></i> Book Installation Now
+                            <i class="fas fa-wrench"></i> Book Unblocking Service
                         </button>
                         <button id="price-list-btn" class="btn btn-secondary">
-                            <i class="fas fa-tags"></i> Transparent Price List
+                            <i class="fas fa-tags"></i> Service Packages & Pricing
                         </button>
                          <button id="description-btn" class="btn btn-secondary">
-                            <i class="fas fa-info-circle"></i> Service Description
+                            <i class="fas fa-file-contract"></i> Terms & Conditions
                         </button>
                         <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
                             <i class="fas fa-home"></i> Back To Home
@@ -486,20 +486,20 @@
 
         <div class="stat-grid">
             <div class="stat-card">
-                <h3>Total Capacity Installed</h3>
-                <p>500+ KW</p>
+                <h3>Total Blockages Cleared</h3>
+                <p>15,000+</p>
             </div>
             <div class="stat-card">
-                <h3>Warranty on Plates</h3>
-                <p>25 Years</p>
+                <h3>Indoor Unblock Time (Avg)</h3>
+                <p>30 Mins</p>
             </div>
             <div class="stat-card">
-                <h3>Customer Rating</h3>
+                <h3>Customer Satisfaction</h3>
                 <p>4.9/5 Stars</p>
             </div>
             <div class="stat-card">
-                <h3>Average Saving</h3>
-                <p>₹5000/Mo</p>
+                <h3>Warranty on Service</h3>
+                <p>7 Days</p>
             </div>
         </div>
     </main>
@@ -508,12 +508,12 @@
     
     <!-- Booking Form Popup -->
     <div id="booking-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Solar Installation Booking Form</h2>
+        <h2 class="text-2xl font-bold text-center">Sewerage Unblock Booking Form</h2>
         <form id="booking-form">
             <div class="quantity-selector-container my-4">
-                <label for="pack-selection">Select Solar Package:</label>
+                <label for="pack-selection">Select Service Package:</label>
                 <select id="pack-selection" name="field4" required>
-                    <option value="" disabled selected>Select a complete Solar Package</option>
+                    <option value="" disabled selected>Select a Sewerage Unblock Service</option>
                 </select>
             </div>
             
@@ -534,10 +534,11 @@
             <textarea id="address" name="field6" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
             
             <div class="quantity-selector my-4">
-                <label for="quantity">Number of Installations (Max 2):</label>
+                <label for="quantity">Number of Service Points (Max 3):</label>
                 <select id="quantity" name="ticketQuantity" required>
-                    <option value="1" selected>1 Installation</option>
-                    <option value="2">2 Installations</option>
+                    <option value="1" selected>1 Service Point</option>
+                    <option value="2">2 Service Points</option>
+                    <option value="3">3 Service Points</option>
                 </select>
                 <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
                     <span>Price based on quantity</span>
@@ -559,25 +560,25 @@
     <!-- Payment Popup -->
     <div id="payment-popup" class="popup">
         <h2 class="text-2xl font-bold text-center">Complete Your Payment</h2>
-        <p class="text-text-subtle text-center mb-6">A token amount payment confirms your Solar Installation booking.</p>
+        <p class="text-text-subtle text-center mb-6">Please complete the payment to book your Sewerage Unblocking service.</p>
         <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
         <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
         <!-- AC Button Style Applied -->
         <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
         <p class="mt-4 text-xs text-text-subtle text-center">
-            Note: This is an advance payment. The remaining balance will be collected upon installation completion. Do not close this window during payment processing.
+            Note: Do not close this window during payment processing.
         </p>
     </div>
 
     <!-- Confirmation Popup -->
     <div id="confirmation-popup" class="popup">
         <h2 id="welcome-message" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">Your Solar project has been initiated! Our team will contact you shortly.</p>
+        <p class="text-text-subtle text-center mb-4">Your service is booked! Our technician will be dispatched shortly.</p>
         <div id="ticket-info" class="space-y-2">
             <!-- Details will be injected here -->
         </div>
         <!-- AC Button Style Applied -->
-        <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Download Details</button>
+        <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Download Service Details</button>
         <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
         <!-- AC Button Style Applied -->
         <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
@@ -585,14 +586,14 @@
 
     <!-- Price List Popup -->
     <div id="price-list-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Solar Installation Packages</h2>
+        <h2 class="text-2xl font-bold text-center">Sewerage Unblock Packages</h2>
         <div class="overflow-x-auto mt-4">
             <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
                 <thead>
                     <tr class="text-left text-secondary">
-                        <th class="py-3 px-4 border-b border-text-subtle">Package (KW/Plates/Inverter/Battery)</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Package Price</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Estimated Market Price</th>
+                        <th class="py-3 px-4 border-b border-text-subtle">Service Type</th>
+                        <th class="py-3 px-4 border-b border-text-subtle">Description</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Price</th>
                     </tr>
                 </thead>
                 <tbody id="priceListTableBody">
@@ -604,49 +605,46 @@
         <button id="close-price-list-btn" class="close-btn mt-4">Close Price List</button>
     </div>
 
-    <!-- Description Popup -->
+    <!-- Terms and Conditions Popup -->
     <div id="description-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Solar Installation Highlights</h2>
+        <h2 class="text-2xl font-bold text-center">Service Terms & Conditions</h2>
         <div class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
-            <ul class="list-disc list-inside space-y-3">
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-certificate mr-2"></i> 25-Year Panel Warranty</li>
-                <li>All packages include high-quality solar plates from **Smarten, Luminous, UTL, or Eastern**, backed by a full 25-year performance warranty.</li>
-
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-home mr-2"></i> Complete Solutions</li>
-                <li>Pricing includes the complete package: **Solar Plates, Inverter, Batteries, Mounting Structure, Wiring, and Professional Installation**.</li>
-
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-bolt mr-2"></i> Power Specifications</li>
-                <li>Packages are available in **1 KW, 2 KW, and 5 KW** capacity to meet residential and small commercial needs.</li>
-                <li>All components are selected for optimal performance and efficiency.</li>
-
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-handshake mr-2"></i> Booking & Payment</li>
-                <li>The price displayed is the full cost for the package and installation.</li>
-                <li>A **small token amount** is collected upon booking; the substantial balance is paid only after the system is fully installed and commissioned.</li>
+             <p class="font-bold text-primary mt-4 text-lg">Please read our terms carefully to ensure a smooth service experience.</p>
+             <ul class="list-disc list-inside space-y-3">
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-house-user mr-2"></i> Single Property Focus</li>
+                <li>All listed prices are strictly for servicing the sewer line of **one single property**. Connections or blockages originating from a neighbor's property are not included.</li>
+                
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-people-arrows mr-2"></i> Additional Neighbor/Shared Lines</li>
+                <li>If the blockage involves a **shared line** or requires work on a neighbor's connection, an **extra charge will apply**. This must be discussed and approved with our company representative before work begins.</li>
+                
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-building mr-2"></i> Complex Multi-Line Systems</li>
+                <li>Properties with **multiple sewer lines** feeding into the main street line (e.g., large complexes, multiple tenant buildings) are **not covered** by standard pricing. A custom quote will be provided after inspection.</li>
+                
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-magnifying-glass mr-2"></i> Service Scope Confirmation</li>
+                <li>Our technicians will assess the situation upon arrival to **confirm the scope of work** and **finalize the price** before starting any job.</li>
             </ul>
         </div>
         <!-- AC Button Style Applied -->
-        <button id="close-description-btn" class="close-btn mt-4">Close</button>
+        <button id="close-description-btn" class="close-btn mt-4">I Understand</button>
     </div>
     
     <script>
         // --- Google Sheet Constants (Shared Link from AC Service File) ---
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
-
-        // NEW Solar Installation Rates based on the provided rate sheet image (image_3459cd.png)
+        
         const allRates = [
-            { "name": "1 KW Watt Package | 2 Plates (550W), Inverter (2.5KW), 2 Battery", "rate": 69999, "category": "Solar" },
-            { "name": "2 KW Watt Package | 4 Plates (550W), Inverter 24V (3KW), 2 Battery", "rate": 99999, "category": "Solar" },
-            { "name": "5 KW Watt Package | 9 Plates (550W), Inverter 48V (5.5KW), 4 Battery", "rate": 275000, "category": "Solar" }
+            { "name": "Indoor Unblocking", "rate": 499, "description": "Clearing blockages within your house (toilets, sinks, internal pipes)." },
+            { "name": "Street Sewerage Unblocking (Up to 2 Manholes)", "rate": 999, "description": "Clearing the main sewer line from your house up to the second municipal manhole." },
+            { "name": "Street Sewerage Unblocking (Up to 3 Manholes)", "rate": 1399, "description": "Comprehensive clearing of the main sewer line from your house up to the third municipal manhole." },
+            { "name": "Street Sewerage Unblocking (Up to 4 Manholes)", "rate": 1799, "description": "Extensive clearing of the main sewer line from your house up to the fourth municipal manhole." }
         ];
 
         // --- Generic constants ---
-        const SERVICE_NAME = "Solar Installation";
-        const SERVICE_TAB_ID = "solar-install-service";
-        const LOCAL_STORAGE_KEY = 'solarInstallFormData';
-        const RAZORPAY_IMAGE_TEXT = "SOLAR";
+        const SERVICE_NAME = "Sewerage Unblock";
+        const SERVICE_TAB_ID = "sewerage-unblock-service";
+        const LOCAL_STORAGE_KEY = 'sewerageUnblockFormData';
+        const RAZORPAY_IMAGE_TEXT = "DRAIN";
         const PAYMENT_TIME_LIMIT = 5 * 60;
-        // NOTE: Since the rates are large, we use a small, fixed advance token amount for demonstration.
-        const TOKEN_AMOUNT = 5000; 
 
         // --- DOM Element Selection ---
         const bookNowBtn = document.getElementById('book-now-btn');
@@ -675,7 +673,7 @@
         const closePriceListBtn = document.getElementById('close-price-list-btn');
         const closeDescriptionBtn = document.getElementById('close-description-btn');
         const priceListTableBody = document.getElementById('priceListTableBody');
-
+        
         // New/Updated DOM references
         const emailInput = document.getElementById('email'); 
         const ticketCodeInput = document.getElementById('ticketCode');
@@ -684,20 +682,22 @@
 
 
         // --- State variables ---
+        let currentBasePrice = 0;
         let currentCalculatedPrice = 0;
         let generatedTicket = '';
         let countdownInterval = null;
         let allowClose = false;
-        let currentInstallationPrice = 0;
 
         // --- Local Storage Functions for Autofill (Updated to include email) ---
         function saveFormData() {
             const formData = {
-                fullName: bookingForm.field1.value,
-                phone: bookingForm.field2.value,
-                email: bookingForm.field3.value, // ADDED
-                location: bookingForm.field5.value,
-                address: bookingForm.field6.value
+                fullName: bookingForm.name.value,
+                phone: bookingForm.phone.value,
+                email: emailInput.value,
+                location: bookingForm.location.value,
+                address: bookingForm.address.value,
+                packSelection: packSelection.value,
+                quantity: quantitySelect.value
             };
             try {
                 localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
@@ -711,11 +711,14 @@
                 const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
                 if (savedData) {
                     const data = JSON.parse(savedData);
-                    bookingForm.field1.value = data.fullName || '';
-                    bookingForm.field2.value = data.phone || '';
-                    bookingForm.field3.value = data.email || ''; // ADDED
-                    bookingForm.field5.value = data.location || '';
-                    bookingForm.field6.value = data.address || '';
+                    bookingForm.name.value = data.fullName || '';
+                    bookingForm.phone.value = data.phone || '';
+                    emailInput.value = data.email || ''; 
+                    bookingForm.location.value = data.location || '';
+                    bookingForm.address.value = data.address || '';
+                    // Attempt to pre-select, but updatePrices will handle logic
+                    packSelection.value = data.packSelection || '';
+                    quantitySelect.value = data.quantity || '1'; 
                 }
             } catch (e) {
                 console.warn("Local storage loading failed:", e);
@@ -724,41 +727,40 @@
 
         // --- Core Functions ---
         function populatePackOptions() {
-            packSelection.innerHTML = '<option value="" disabled selected>Select a complete Solar Package</option>';
+            packSelection.innerHTML = '<option value="" disabled selected>Select a Sewerage Unblock Service</option>';
             allRates.forEach(rate => {
                 const option = document.createElement('option');
                 option.value = rate.name;
                 option.textContent = `${rate.name} - ₹${rate.rate}`;
                 option.dataset.rate = rate.rate;
+                option.dataset.description = rate.description;
                 packSelection.appendChild(option);
             });
         }
         
         function updatePrices() {
             const selectedOption = packSelection.options[packSelection.selectedIndex];
-            const basePrice = selectedOption && selectedOption.dataset.rate ? parseFloat(selectedOption.dataset.rate) : 0;
+            currentBasePrice = selectedOption && selectedOption.dataset.rate ? parseFloat(selectedOption.dataset.rate) : 0;
             const selectedQuantity = parseInt(quantitySelect.value) || 1;
             
-            currentInstallationPrice = basePrice; // Base price is the cost of one installation package
-            currentCalculatedPrice = currentInstallationPrice * selectedQuantity; // Total price based on quantity
+            currentCalculatedPrice = currentBasePrice * selectedQuantity;
             
             // Set hidden inputs
-            servicePriceInput.value = currentInstallationPrice;
+            servicePriceInput.value = currentBasePrice;
             finalPriceInput.value = currentCalculatedPrice;
 
-            const selectedOptionName = selectedOption && selectedOption.value ? selectedOption.value : "Select Package";
-            
+            const selectedOptionName = selectedOption && selectedOption.value ? selectedOption.value : "Select Service";
             calculatedPriceDisplay.textContent = `Total: ₹${currentCalculatedPrice}`;
 
-            if (basePrice > 0) {
-                 displayPrice.textContent = `₹${currentInstallationPrice} / Setup`; // Show unit price on main page
+            if (currentBasePrice > 0) {
+                 displayPrice.textContent = `₹${currentBasePrice} / Point`;
             } else {
-                 displayPrice.textContent = "Select Package";
+                 displayPrice.textContent = "Select Service";
             }
         }
 
         function generateTicketId() {
-            return 'SOLAR-XXXXXX-XXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
+            return 'SEWAGE-XXXXXX-XXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
         }
 
         function showCustomAlert(message) {
@@ -783,7 +785,7 @@
             bookingForm.reset();
             quantitySelect.value = "1";
             calculatedPriceDisplay.textContent = 'Total: ₹0';
-            displayPrice.textContent = 'Select Package';
+            displayPrice.textContent = 'Select Service';
             allowClose = false;
         }
 
@@ -812,7 +814,8 @@
             const email = bookingForm.field3.value;
             const location = bookingForm.field5.value;
             const address = bookingForm.field6.value;
-            const selectedPack = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
+            const selectedOption = packSelection.options[packSelection.selectedIndex];
+            const selectedPack = selectedOption.textContent.split(' - ')[0];
             const selectedQuantity = quantitySelect.value;
             const totalPrice = currentCalculatedPrice;
 
@@ -822,20 +825,17 @@
                             `Phone: ${phone}\n` +
                             `Email: ${email}\n` +
                             `Address: ${location}, ${address}\n` +
-                            `Package: ${selectedPack}\n` +
-                            `Quantity: ${selectedQuantity} Installation(s)\n` +
-                            `Package Unit Price: ₹${currentInstallationPrice}\n` +
-                            `Total Package Price: ₹${totalPrice}\n\n` +
-                            `--- Payment Summary ---\n` +
-                            `Advance Token Paid: ₹${TOKEN_AMOUNT}\n` +
-                            `Remaining Balance: ₹${totalPrice - TOKEN_AMOUNT}\n\n` +
-                            `Thank you! Our engineer will contact you shortly for a site visit.`;
+                            `Service: ${selectedPack}\n` +
+                            `Quantity: ${selectedQuantity} Point(s)\n` +
+                            `Total Price Paid: ₹${totalPrice}\n\n` +
+                            `--- NOTE ---\n` +
+                            `A technician will assess the situation upon arrival to confirm the scope of work and finalize the price before starting any job, as per our Terms & Conditions.`;
 
             const blob = new Blob([content], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `solar-booking-${generatedTicket}.txt`;
+            a.download = `sewerage-unblock-${generatedTicket}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -869,24 +869,20 @@
 
         function handleRazorpayPayment() {
             if (currentCalculatedPrice === 0) {
-                 showCustomAlert("Please select a solar package to proceed with payment.");
+                 showCustomAlert("Please select a service package to proceed with payment.");
                  return;
             }
 
             const selectedPack = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
-            
-            // Only pay the token amount
-            const paymentAmount = TOKEN_AMOUNT; 
-
             const options = {
-                "key": "rzp_live_RLjzp7VlXERwiG", // Placeholder Key
-                "amount": paymentAmount * 100,
+                "key": "rzp_live_opiqkRmGpjG1hF", // Placeholder Key
+                "amount": currentCalculatedPrice * 100,
                 "currency": "INR",
-                "name": `SonipatHomeService - Solar Advance`,
-                "description": `Advance Token for: ${selectedPack} (ID: ${generatedTicket})`,
+                "name": `SonipatHomeService - ${SERVICE_NAME}`,
+                "description": `Service Booking: ${selectedPack} x ${quantitySelect.value} (ID: ${generatedTicket})`,
                 "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`,
                 "handler": function (response){
-                    paymentSuccess(response.razorpay_payment_id, paymentAmount);
+                    paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
                     "name": bookingForm.field1.value,
@@ -895,11 +891,10 @@
                 },
                 "notes": {
                     "address": `${bookingForm.field5.value}, ${bookingForm.field6.value}`,
-                    "package_details": selectedPack,
-                    "quantity": quantitySelect.value,
-                    "full_price": currentCalculatedPrice
+                    "service_details": selectedPack,
+                    "quantity": quantitySelect.value
                 },
-                "theme": { "color": "#FFD700" },
+                "theme": { "color": "#00BFFF" },
                 "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
             };
 
@@ -910,7 +905,7 @@
             rzp.open();
         }
 
-        function paymentSuccess(paymentId, amountPaid) {
+        function paymentSuccess(paymentId) {
             clearTimers();
             paymentPopup.style.display = 'none';
             openPopup(confirmationPopup);
@@ -921,17 +916,15 @@
             const selectedPack = packSelection.options[packSelection.selectedIndex].textContent.split(' - ')[0];
             const selectedQuantity = quantitySelect.value;
             const totalPrice = currentCalculatedPrice;
-            const remainingBalance = totalPrice - amountPaid;
 
             welcomeMessage.textContent = `🎉 Booking Confirmed, ${name}! 🎉`;
             
             ticketInfo.innerHTML = `
-                <p><strong>Order ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p><strong>Package:</strong> <span class="font-bold text-text-light">${selectedPack}</span></p>
-                <p><strong>Quantity:</strong> <span class="font-bold text-text-light">${selectedQuantity} Setup(s)</span></p>
-                <p class="text-secondary text-lg font-bold mt-3">Advance Paid: ₹${amountPaid}</p>
-                <p class="text-primary text-xl font-bold mt-1">Remaining Balance: ₹${remainingBalance}</p>
-                <p class="text-text-subtle text-sm mt-3">We will contact you within 24 hours to schedule the site survey and final installation.</p>
+                <p><strong>Booking ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p><strong>Service:</strong> <span class="font-bold text-text-light">${selectedPack}</span></p>
+                <p><strong>Quantity:</strong> <span class="font-bold text-text-light">${selectedQuantity} Point(s)</span></p>
+                <p class="text-secondary text-lg font-bold mt-3">Total Paid: ₹${totalPrice}</p>
+                <p class="text-text-subtle text-sm mt-3">We will contact you shortly to confirm the technician's arrival time.</p>
                 <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
             allowClose = true;
@@ -940,14 +933,11 @@
         function populatePriceList() {
             priceListTableBody.innerHTML = '';
             allRates.forEach(pack => {
-                // Determine a realistic estimated market price (e.g., 5-10% higher due to installation)
-                const marketPrice = Math.round(pack.rate * 1.08); 
-
                 const row = `
                     <tr class="text-text-light hover:bg-bg-dark">
-                        <td class="py-3 px-4 border-b border-gray-700">${pack.name}</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-primary">₹${pack.rate}</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle line-through">₹${marketPrice}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">${pack.name}</td>
+                        <td class="py-3 px-4 border-b border-gray-700">${pack.description}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${pack.rate}</td>
                     </tr>
                 `;
                 priceListTableBody.insertAdjacentHTML('beforeend', row);
@@ -958,14 +948,14 @@
             e.preventDefault();
 
             // Validation
-            if (!packSelection.value) { showCustomAlert("Please select a solar package."); return; }
+            if (!packSelection.value) { showCustomAlert("Please select a service package."); return; }
             if (bookingForm.field1.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
             if (!/^\d{10}$/.test(bookingForm.field2.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.field3.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
             if (bookingForm.field5.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
             if (bookingForm.field6.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
             if (currentCalculatedPrice === 0) {
-                showCustomAlert("Please select a package to proceed.");
+                showCustomAlert("Please select a service package and quantity to calculate the price.");
                 return;
             }
 
@@ -982,17 +972,15 @@
             formData.append('field1', bookingForm.field1.value); 
             formData.append('field2', bookingForm.field2.value);    
             formData.append('field3', bookingForm.field3.value); // Email
-            formData.append('field4', selectedPackText); // Package Name
+            formData.append('field4', selectedPackText); // Service Name
             formData.append('field5', bookingForm.field5.value); // Location
             formData.append('field6', bookingForm.field6.value); // Address 
             formData.append('ticket', generatedTicket);     
             formData.append('tab', SERVICE_TAB_ID);           
             formData.append('serviceType', SERVICE_NAME);
             formData.append('servicePrice', servicePriceInput.value); // Base price per unit
-            formData.append('ticketQuantity', quantitySelect.value); // Quantity/Installations
+            formData.append('ticketQuantity', quantitySelect.value); // Quantity/Points
             formData.append('finalPrice', finalPriceInput.value); // Total Calculated Price
-            formData.append('advancePaid', TOKEN_AMOUNT); // Advance Paid now
-            formData.append('remainingBalance', currentCalculatedPrice - TOKEN_AMOUNT); // Remaining Balance
 
             // --- Google Script Submission ---
             fetch(GOOGLE_SHEET_URL, {
@@ -1006,14 +994,11 @@
                     bookingPopup.style.display = 'none';
 
                     const totalDue = currentCalculatedPrice;
-                    const advance = TOKEN_AMOUNT;
-                    const remaining = totalDue - advance;
 
                     paymentSummary.innerHTML = `
-                        <p class="text-text-subtle text-lg mb-2 font-bold">Package: <span class="text-primary">${selectedPackText}</span> x ${quantitySelect.value}</p>
-                        <p class="text-text-light text-base mb-1">Total Package Price: <span class="font-bold text-primary">₹${totalDue}</span></p>
-                        <p class="text-text-light text-base mb-3">Remaining Balance After Advance: <span class="font-bold text-secondary">₹${remaining}</span></p>
-                        <p class="total-price-quantity text-2xl font-bold">Advance Token Payable Now: ₹${advance}</p>
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Service: <span class="text-primary">${selectedPackText}</span></p>
+                        <p class="text-text-light text-base mb-1">Quantity: <span class="font-bold text-primary">${quantitySelect.value} Point(s)</span></p>
+                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Total Payable: ₹${totalDue}</p>
                     `;
                     openPopup(paymentPopup);
                     startPaymentTimer();
