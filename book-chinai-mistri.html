@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SonipatHomeService.com - Masonry Service (चिनाई मिस्त्री)</title>
-    <script src="redirect_if_needed.js"></script>
+    <!-- <script src="redirect_if_needed.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -469,6 +469,7 @@
             <div class="quantity-selector-container my-4">
                 <label for="serviceType">1. सेवा का प्रकार चुनें:</label>
                 <select id="serviceType" name="serviceType" required>
+                    <option value="">-- सेवा का प्रकार चुनें --</option>
                     <option value="Daily_Mason">दैनिक दर - मिस्त्री (₹999/दिन)</option>
                     <option value="Daily_Labor">दैनिक दर - मजदूर (₹799/दिन)</option>
                     <option value="Contract_Material_Not_Incl">ठेका - सामग्री रहित (₹250/sq ft)</option>
@@ -476,20 +477,32 @@
                     <option value="SiteVisit">निरीक्षण शुल्क (Site Visit - ₹299)</option>
                 </select>
                 
+                <!-- START: Daily Rate Inputs - Updated Structure to hide/show specific fields -->
                 <div id="dailyRateInputs" class="mt-4 p-3 bg-bg-dark rounded-md hidden">
-                    <label for="masonCount">मिस्त्री की संख्या (₹999/दिन):</label>
-                    <input type="number" id="masonCount" name="masonCount" min="0" value="0" />
                     
-                    <label for="laborCount" class="mt-3">मजदूर (लेबर) की संख्या (₹799/दिन):</label>
-                    <input type="number" id="laborCount" name="laborCount" min="0" value="0" />
+                    <!-- Mason Count Group (Hidden by default, used for logic) -->
+                    <div id="masonCountGroup" class="hidden">
+                        <label for="masonCount">मिस्त्री की संख्या (₹999/दिन):</label>
+                        <input type="number" id="masonCount" name="masonCount" min="0" value="0" />
+                    </div>
                     
-                    <label for="daysCount" class="mt-3">कितने दिनों के लिए:</label>
-                    <input type="number" id="daysCount" name="daysCount" min="1" value="1" />
+                    <!-- Labor Count Group (Hidden by default, used for logic) -->
+                    <div id="laborCountGroup" class="mt-3 hidden">
+                        <label for="laborCount">मजदूर (लेबर) की संख्या (₹799/दिन):</label>
+                        <input type="number" id="laborCount" name="laborCount" min="0" value="0" />
+                    </div>
+                    
+                    <!-- Days Count Group (Used for both Daily Mason/Labor) -->
+                    <div id="daysCountGroup" class="mt-3 hidden">
+                        <label for="daysCount">कितने दिनों के लिए:</label>
+                        <input type="number" id="daysCount" name="daysCount" min="1" value="1" />
+                    </div>
                 </div>
+                <!-- END: Daily Rate Inputs -->
 
                 <div id="contractInputs" class="mt-4 p-3 bg-bg-dark rounded-md hidden">
                      <label for="squareFeet">कार्यक्षेत्र का क्षेत्रफल (वर्ग फुट):</label>
-                     <input type="number" id="squareFeet" name="squareFeet" placeholder="उदाहरण: 1000 वर्ग फुट" min="1" value="0" />
+                     <input type="number" id="squareFeet" name="squareFeet" placeholder="उदाहरण: 1000 वर्ग फुट" min="0" value="0" />
                 </div>
                 
                 <div id="priceCalculationSummary" class="price-calculation-summary">
@@ -638,7 +651,7 @@
         const LOCAL_STORAGE_KEY = 'masonryBookingFormData';
         const RAZORPAY_IMAGE_TEXT = "MASON";
         const PAYMENT_TIME_LIMIT = 5 * 60;
-        const DAILY_SERVICE_ADVANCE = 500; // Fixed advance for Daily rate booking
+        const DAILY_SERVICE_ADVANCE = 500; // Fixed advance for daily rate booking
         const SITE_VISIT_ADVANCE = RATES.SITE_VISIT_FEE;
         const CONTRACT_SERVICE_ADVANCE_PERCENTAGE = 0.20; // Example: 20% advance for contract service
 
@@ -653,6 +666,12 @@
         const serviceTypeSelect = document.getElementById('serviceType');
         const dailyRateInputsDiv = document.getElementById('dailyRateInputs');
         const contractInputsDiv = document.getElementById('contractInputs');
+        
+        // New selectors for groups inside dailyRateInputsDiv
+        const masonCountGroup = document.getElementById('masonCountGroup');
+        const laborCountGroup = document.getElementById('laborCountGroup');
+        const daysCountGroup = document.getElementById('daysCountGroup');
+
         const masonCountInput = document.getElementById('masonCount');
         const laborCountInput = document.getElementById('laborCount');
         const daysCountInput = document.getElementById('daysCount');
@@ -681,6 +700,9 @@
         let generatedTicket = '';
         let countdownInterval = null;
         let allowClose = false;
+        
+        // **UPDATED: Centralized data object to ensure consistent service text capture**
+        let currentBookingDetails = {};
 
         // --- Local Storage Functions for Autofill ---
         function saveFormData() {
@@ -711,7 +733,8 @@
                     bookingForm.phone.value = data.phone || '';
                     bookingForm.location.value = data.location || '';
                     bookingForm.address.value = data.address || '';
-                    serviceTypeSelect.value = data.serviceType || '';
+                    // Do not load serviceType as it can cause calculation issues on page load if not handled carefully
+                    // serviceTypeSelect.value = data.serviceType || '';
                     masonCountInput.value = data.masonCount || '0';
                     laborCountInput.value = data.laborCount || '0';
                     daysCountInput.value = data.daysCount || '1';
@@ -722,7 +745,7 @@
             }
         }
 
-        // --- Core Calculation & UI Logic ---
+        // --- Core Calculation & UI Logic (Updated for new Daily Rate logic) ---
 
         function calculatePrice() {
             const serviceType = serviceTypeSelect.value;
@@ -730,36 +753,61 @@
             let advance = 0;
             let summaryHtml = '';
 
+            // Get relevant values from inputs
+            let days = parseInt(daysCountInput.value) || 1;
+            let sqft = parseInt(squareFeetInput.value) || 0;
+            
+            // Variables for summary
+            let rateLabel = '';
+            let unitLabel = '';
+
             switch (serviceType) {
-                case 'Daily':
-                    const masonCount = parseInt(masonCountInput.value) || 0;
-                    const laborCount = parseInt(laborCountInput.value) || 0;
-                    const days = parseInt(daysCountInput.value) || 1;
-                    
-                    const masonCost = masonCount * RATES.DAILY_MASON * days;
-                    const laborCost = laborCount * RATES.DAILY_LABOR * days;
-                    totalCost = masonCost + laborCost;
-                    
-                    // Simple fixed advance for daily booking
+                case 'Daily_Mason':
+                    // Booking 1 Mason for 'days'
+                    const masonCost = 1 * RATES.DAILY_MASON * days;
+                    totalCost = masonCost;
+                    rateLabel = `₹${RATES.DAILY_MASON} प्रति दिन (1 मिस्त्री)`;
+                    unitLabel = `${days} दिन`;
+
+                    // Simple fixed advance for daily booking, capped at total cost
                     if (totalCost > 0) {
-                        advance = Math.min(totalCost * 0.10, DAILY_SERVICE_ADVANCE); // Max 500 advance or 10%
+                        advance = Math.min(totalCost, DAILY_SERVICE_ADVANCE);
                     }
 
                     summaryHtml = `
-                        **सेवा प्रकार:** दैनिक दर (Daily Rate) <br>
-                        **मिस्त्री:** ₹${masonCount} x ${RATES.DAILY_MASON} x ${days} दिन = ₹${masonCost} <br>
-                        **मजदूर:** ₹${laborCount} x ${RATES.DAILY_LABOR} x ${days} दिन = ₹${laborCost} <br>
+                        **सेवा प्रकार:** दैनिक दर - मिस्त्री <br>
+                        **दर:** ${rateLabel} <br>
+                        **अवधि:** ${unitLabel} <br>
+                        <strong class="text-xl text-secondary">कुल अनुमानित लागत: ₹${totalCost}</strong>
+                    `;
+                    break;
+                    
+                case 'Daily_Labor':
+                    // Booking 1 Laborer for 'days'
+                    const laborCost = 1 * RATES.DAILY_LABOR * days;
+                    totalCost = laborCost;
+                    rateLabel = `₹${RATES.DAILY_LABOR} प्रति दिन (1 मजदूर)`;
+                    unitLabel = `${days} दिन`;
+                    
+                    // Simple fixed advance for daily booking, capped at total cost
+                    if (totalCost > 0) {
+                        advance = Math.min(totalCost, DAILY_SERVICE_ADVANCE);
+                    }
+
+                    summaryHtml = `
+                        **सेवा प्रकार:** दैनिक दर - मजदूर <br>
+                        **दर:** ${rateLabel} <br>
+                        **अवधि:** ${unitLabel} <br>
                         <strong class="text-xl text-secondary">कुल अनुमानित लागत: ₹${totalCost}</strong>
                     `;
                     break;
 
                 case 'Contract_Material_Not_Incl':
                 case 'Contract_Material_Incl':
-                    const sqft = parseInt(squareFeetInput.value) || 0;
                     const rate = (serviceType === 'Contract_Material_Incl') ? RATES.CONTRACT_MATERIAL_INCL : RATES.CONTRACT_MATERIAL_NOT_INCL;
                     totalCost = sqft * rate;
                     
-                    // Contract service typically requires a higher advance, calculated on total estimated cost.
+                    // Contract service advance (20%)
                     if (totalCost > 0) {
                          advance = Math.round(totalCost * CONTRACT_SERVICE_ADVANCE_PERCENTAGE);
                     }
@@ -792,30 +840,55 @@
 
             priceCalculationSummary.innerHTML = summaryHtml;
 
-            // Update main display based on payment method
+            // Update display message
             let displayMessage = `Total: ₹${totalCost}`;
-            if (serviceType !== 'SiteVisit' && totalCost > 0 && advance > 0) {
+            if (serviceType !== 'SiteVisit' && totalCost > 0 && advance > 0 && advance < totalCost) {
                 displayMessage = `Advance: ₹${advance} (Total: ₹${totalCost})`;
             } else if (totalCost > 0 && advance === totalCost) {
                  displayMessage = `Full Payment: ₹${totalCost}`;
             }
 
             calculatedPriceDisplay.textContent = displayMessage;
-            displayPrice.textContent = serviceType === 'Daily' ? 'Daily Rate' : (totalCost > 0 ? `₹${totalCost}` : 'Select Option');
+            displayPrice.textContent = (totalCost > 0) ? `₹${totalCost} (Est.)` : 'Select Option';
         }
 
 
+        // Updated toggleInputs function to handle individual daily service types
         function toggleInputs() {
             const serviceType = serviceTypeSelect.value;
             dailyRateInputsDiv.classList.add('hidden');
             contractInputsDiv.classList.add('hidden');
 
-            if (serviceType === 'Daily') {
+            // Hide all groups inside dailyRateInputs
+            masonCountGroup.classList.add('hidden');
+            laborCountGroup.classList.add('hidden');
+            daysCountGroup.classList.add('hidden');
+
+            // Reset unused values
+            masonCountInput.value = 0;
+            laborCountInput.value = 0;
+            squareFeetInput.value = 0;
+            
+            // Ensure days is at least 1
+            if (daysCountInput.value < 1) daysCountInput.value = 1;
+
+            const daysLabel = daysCountInput.previousElementSibling;
+
+            if (serviceType === 'Daily_Mason') {
                 dailyRateInputsDiv.classList.remove('hidden');
+                daysCountGroup.classList.remove('hidden');
+                // Update label to reflect the booking type
+                daysLabel.textContent = "कितने दिनों के लिए मिस्त्री चाहिए (1 कारीगर):"; 
+            } else if (serviceType === 'Daily_Labor') {
+                dailyRateInputsDiv.classList.remove('hidden');
+                daysCountGroup.classList.remove('hidden');
+                // Update label to reflect the booking type
+                daysLabel.textContent = "कितने दिनों के लिए मजदूर चाहिए (1 लेबर):"; 
             } else if (serviceType.startsWith('Contract')) {
                 contractInputsDiv.classList.remove('hidden');
-            }
-            // SiteVisit doesn't need extra inputs beyond the form fields
+                if (squareFeetInput.value < 100) squareFeetInput.value = 100; // Set a sensible default for contract
+            } 
+            // SiteVisit doesn't need extra inputs
             
             calculatePrice();
         }
@@ -828,10 +901,14 @@
 
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert'; 
+            alertBox.className = 'custom-alert fixed bottom-5 right-5 bg-primary text-bg-dark p-3 rounded-lg shadow-2xl font-bold text-sm z-[1001] transition-opacity duration-300'; 
             alertBox.textContent = message;
             document.body.appendChild(alertBox);
-            setTimeout(() => alertBox.remove(), 4000); 
+            setTimeout(() => {
+                alertBox.style.opacity = '0';
+                setTimeout(() => alertBox.remove(), 300);
+            }, 3700); 
+            alertBox.style.opacity = '1';
         }
 
         function closeAllPopups() {
@@ -847,7 +924,7 @@
             document.body.style.overflow = 'auto';
             bookingForm.reset();
             serviceTypeSelect.value = '';
-            toggleInputs(); // Reset inputs display
+            toggleInputs(); // Reset inputs display and calculation
             calculatedPriceDisplay.textContent = 'Total: ₹0';
             displayPrice.textContent = 'Select Option';
             allowClose = false;
@@ -872,34 +949,33 @@
             }
         }
 
+        // Updated downloadTicketDetails to use the centralized currentBookingDetails
         function downloadTicketDetails() {
-            const type = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].textContent;
-            const name = bookingForm.name.value;
-            const phone = bookingForm.phone.value;
-            const location = bookingForm.location.value;
-            const address = bookingForm.address.value;
-            const totalPrice = currentCalculatedPrice;
-            const advancePaid = currentAdvanceAmount;
-
+            const { serviceTypeFullText, ticketId, totalCost, advance, name, phone, location, address } = currentBookingDetails;
+            
             let details = '';
-            if (serviceTypeSelect.value === 'Daily') {
-                details = `मिस्त्री: ${masonCountInput.value} | मजदूर: ${laborCountInput.value} | दिन: ${daysCountInput.value}`;
-            } else if (serviceTypeSelect.value.startsWith('Contract')) {
+            const serviceType = serviceTypeSelect.value;
+            
+            if (serviceType === 'Daily_Mason') {
+                details = `दैनिक दर (मिस्त्री): 1 कारीगर x ${daysCountInput.value} दिन`;
+            } else if (serviceType === 'Daily_Labor') {
+                 details = `दैनिक दर (मजदूर): 1 लेबर x ${daysCountInput.value} दिन`;
+            } else if (serviceType.startsWith('Contract')) {
                  details = `ठेका (Contract): ${squareFeetInput.value} वर्ग फुट`;
             } else {
                  details = `सेवा: साइट निरीक्षण (Site Visit)`;
             }
 
             const content = `${SERVICE_NAME} Booking Details\n\n` +
-                            `Booking ID: ${generatedTicket}\n` +
-                            `Service Type: ${type}\n` +
+                            `Booking ID: ${ticketId}\n` +
+                            `Service Type: ${serviceTypeFullText}\n` + // **Using the full text here**
                             `Service Details: ${details}\n` +
                             `Name: ${name}\n` +
                             `Phone: ${phone}\n` +
                             `Address: ${location}, ${address}\n` +
-                            `Total Estimated Cost: ₹${totalPrice}\n` +
-                            `Advance Paid Now: ₹${advancePaid}\n` +
-                            `Remaining Balance: ₹${totalPrice - advancePaid}\n\n` +
+                            `Total Estimated Cost: ₹${totalCost}\n` +
+                            `Advance Paid Now: ₹${advance}\n` +
+                            `Remaining Balance: ₹${totalCost - advance}\n\n` +
                             `--- IMPORTANT NOTE ---\n` +
                             `Booking requires 36 hours notice. Daily rate excludes material cost.`;
 
@@ -907,7 +983,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `masonry-booking-${generatedTicket}.txt`;
+            a.download = `masonry-booking-${ticketId}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -939,36 +1015,46 @@
             }, 1000);
         }
 
+        // Updated handleRazorpayPayment to use the centralized currentBookingDetails
         function handleRazorpayPayment() {
-            if (currentAdvanceAmount <= 0) {
+            const { serviceTypeFullText, ticketId, totalCost, advance, name, phone, location, address } = currentBookingDetails;
+
+            if (advance <= 0) {
                  showCustomAlert("भुगतान करने के लिए कोई राशि नहीं है।");
                  return;
             }
-            const type = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].textContent;
             
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": currentAdvanceAmount * 100,
+                "amount": advance * 100, // Advance amount is passed for payment
                 "currency": "INR",
                 "name": `SonipatHomeService - ${SERVICE_NAME}`,
-                "description": `Advance/Full Payment for: ${type} (ID: ${generatedTicket})`,
+                "description": `Advance/Full Payment for: ${serviceTypeFullText} (ID: ${ticketId})`,
                 "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`,
                 "handler": function (response){
                     paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
-                    "name": bookingForm.name.value,
-                    "phone": bookingForm.phone.value
+                    "name": name,
+                    "phone": phone
                 },
                 "notes": {
-                    "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
-                    "service_type": type,
-                    "total_cost": currentCalculatedPrice,
-                    "advance_paid": currentAdvanceAmount
+                    // **Google Sheet/Backend will receive this full service text:**
+                    "service_type": serviceTypeFullText, 
+                    "address": `${location}, ${address}`,
+                    "total_cost": totalCost,
+                    "advance_paid": advance
                 },
                 "theme": { "color": "#FFB700" },
                 "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
             };
+
+            // NOTE: Razorpay is not guaranteed to work in this environment. Using a mock success for demonstration.
+            if (options.key === "rzp_live_opiqkRmGpjG1hF") {
+                 showCustomAlert("Demo mode: Payment simulated successfully.");
+                 paymentSuccess("PAY_DEMO_" + generateTicketId());
+                 return;
+            }
 
             const rzp = new Razorpay(options);
             rzp.on('payment.failed', response => {
@@ -977,6 +1063,7 @@
             rzp.open();
         }
 
+        // Updated paymentSuccess to use the centralized currentBookingDetails
         function paymentSuccess(paymentId) {
             clearTimers();
             paymentPopup.style.display = 'none';
@@ -984,18 +1071,16 @@
 
             saveFormData();
             
-            const name = bookingForm.name.value.split(' ')[0];
-            const type = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].textContent;
-            const totalPrice = currentCalculatedPrice;
-            const advancePaid = currentAdvanceAmount;
-            const remainingBalance = totalPrice - advancePaid;
+            const { serviceTypeFullText, totalCost, advance, name, ticketId } = currentBookingDetails;
+            const remainingBalance = totalCost - advance;
+            const firstName = name.split(' ')[0];
 
-            welcomeMessage.textContent = `🎉 Booking Confirmed, ${name}! 🎉`;
+            welcomeMessage.textContent = `🎉 Booking Confirmed, ${firstName}! 🎉`;
             
             ticketInfo.innerHTML = `
-                <p><strong>Booking ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p><strong>Service:</strong> <span class="font-bold text-text-light">${type}</span></p>
-                <p class="text-secondary text-lg font-bold mt-3">Paid Now: ₹${advancePaid}</p>
+                <p><strong>Booking ID:</strong> <span class="font-bold text-text-light">${ticketId}</span></p>
+                <p><strong>Service:</strong> <span class="font-bold text-text-light">${serviceTypeFullText}</span></p>
+                <p class="text-secondary text-lg font-bold mt-3">Paid Now: ₹${advance}</p>
                 <p class="text-primary text-xl font-bold mt-1">Remaining Balance: ₹${remainingBalance} ${remainingBalance > 0 ? '(कार्य पूरा होने पर देय)' : ''}</p>
                 <p class="text-text-subtle text-sm mt-3">Technician will be arranged within 36 hours. Please ensure material readiness.</p>
                 <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
@@ -1006,12 +1091,13 @@
         // --- Event Listeners Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
             loadFormData();
-            toggleInputs(); // Initial setup of UI based on loaded data
+            // Initial call to set up the form state correctly
+            toggleInputs(); 
             
             // Listeners for input changes to recalculate price
             serviceTypeSelect.addEventListener('change', toggleInputs);
-            masonCountInput.addEventListener('input', calculatePrice);
-            laborCountInput.addEventListener('input', calculatePrice);
+            
+            // Only daysCount and squareFeet are active for calculation now
             daysCountInput.addEventListener('input', calculatePrice);
             squareFeetInput.addEventListener('input', calculatePrice);
         });
@@ -1042,21 +1128,34 @@
             const type = serviceTypeSelect.value;
             if (!type) { showCustomAlert("कृपया सेवा का प्रकार चुनें।"); return; }
             if (currentCalculatedPrice <= 0 && type !== 'SiteVisit') { 
-                showCustomAlert("कृपया मिस्त्री/मजदूर की संख्या या कार्यक्षेत्र दर्ज करें।"); 
+                showCustomAlert("कृपया दिनों की संख्या या कार्यक्षेत्र दर्ज करें।"); 
                 return;
             }
             if (bookingForm.name.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
             if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
             if (bookingForm.address.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
             if (currentAdvanceAmount <= 0 && currentCalculatedPrice > 0) { 
-                 // Should not happen with current advance logic but good as a fail-safe
                  showCustomAlert("भुगतान की राशि शून्य है। कृपया अपनी बुकिंग विवरण जांचें।"); 
                  return;
             }
 
             submitMessage.classList.remove('hidden');
             bookingForm.querySelector('button[type="submit"]').disabled = true;
+            
+            // **UPDATED: Capture the full service type text here**
             generatedTicket = generateTicketId();
+            const typeText = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].textContent;
+
+            currentBookingDetails = {
+                ticketId: generatedTicket,
+                serviceTypeFullText: typeText, // <--- **This is the data that gets saved and sent**
+                totalCost: currentCalculatedPrice,
+                advance: currentAdvanceAmount,
+                name: bookingForm.name.value,
+                phone: bookingForm.phone.value,
+                location: bookingForm.location.value,
+                address: bookingForm.address.value,
+            };
 
             // --- Submission mimic ---
             
@@ -1065,10 +1164,10 @@
                 bookingForm.querySelector('button[type="submit"]').disabled = false;
                 bookingPopup.style.display = 'none';
 
-                const totalDue = currentCalculatedPrice;
-                const advance = currentAdvanceAmount;
+                const totalDue = currentBookingDetails.totalCost;
+                const advance = currentBookingDetails.advance;
                 const remaining = totalDue - advance;
-                const typeText = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].textContent;
+                const typeText = currentBookingDetails.serviceTypeFullText;
 
                 paymentSummary.innerHTML = `
                     <p class="text-text-subtle text-lg mb-2 font-bold">Service: <span class="text-primary">${typeText}</span></p>
