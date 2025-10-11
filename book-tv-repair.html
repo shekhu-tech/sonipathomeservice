@@ -421,31 +421,33 @@
         <section class="product-section">
             <div class="product-header">
                 <h2 class="text-white">📺 पेशेवर LED/LCD TV मरम्मत सेवा 📺</h2>
-                <p class="text-sm text-gray-400 mt-2">बस ₹299 में घर बैठे TV की जांच करवाएं।</p>
+                <p class="text-sm text-gray-400 mt-2">TV साइज़ चुनें और निदान शुल्क देखें।</p>
             </div>
 
             <div class="product-content">
                 
                 <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">₹299 में TV का पूर्ण निदान (Diagnosis)</h3>
+                    <!-- Updated header text to be more general -->
+                    <h3 class="text-3xl font-semibold text-text-light mb-4" id="main-header-text">TV निदान सेवा (Diagnosis Fee)</h3>
                     <p class="text-text-subtle mb-4 text-base">
                         हमारा विशेषज्ञ तकनीशियन आपके घर आकर आपके TV का पूर्ण निरीक्षण करेगा।
                     </p>
                     
                     <div class="price-container">
                         <div class="original-price">निदान शुल्क पूरी तरह माफ़ हो सकता है</div>
+                        <!-- Price display will be updated by JS -->
                         <div class="current-price" id="displayPrice">₹299</div>
                     </div>
                     
                     <div class="diagnosis-fee-card">
-                        <p class="font-bold text-lg text-secondary">₹299 निदान शुल्क कब माफ़ होगा?</p>
-                        <p class="mt-2 text-sm text-primary">अगर TV में कोई खराबी मिलती है और आप मरम्मत करवाते हैं, तो **₹299 की लागत मरम्मत की लागत में समायोजित** कर दी जाएगी। (मतलब, निदान बिल्कुल मुफ्त होगा!)</p>
+                        <p class="font-bold text-lg text-secondary" id="diagnosis-card-header">निदान शुल्क कब माफ़ होगा?</p>
+                        <p class="mt-2 text-sm text-primary">अगर TV में कोई खराबी मिलती है और आप मरम्मत करवाते हैं, तो **निदान की लागत मरम्मत की लागत में समायोजित** कर दी जाएगी। (मतलब, निदान बिल्कुल मुफ्त होगा!)</p>
                     </div>
 
-                    <!-- Added all 4 AC-style buttons -->
+                    <!-- Updated button text to be general -->
                     <div class="action-buttons">
                         <button class="btn btn-primary" id="book-now-btn">
-                            <i class="fas fa-tv"></i> ₹299 में जाँच बुक करें
+                            <i class="fas fa-tv"></i> अपनी जाँच बुक करें
                         </button>
                         <button id="price-list-btn-popup" class="btn btn-secondary">
                              <!-- This button acts as the service details/pricing list popup -->
@@ -465,7 +467,7 @@
         <div class="stat-grid">
             <div class="stat-card">
                 <h3>निदान शुल्क</h3>
-                <p>₹299</p>
+                <p id="stat-fee">₹299</p>
             </div>
             <div class="stat-card">
                 <h3>मरम्मत कराने पर</h3>
@@ -486,20 +488,21 @@
     
     <!-- Booking Form Popup -->
     <div id="booking-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">TV निदान सेवा बुकिंग (₹299)</h2>
+        <h2 class="text-2xl font-bold text-center">TV निदान सेवा बुकिंग</h2>
         <form id="booking-form">
             <div class="quantity-selector-container my-4">
-                <label for="packSelection">1. आवश्यक सेवा चुनें:</label>
+                <label for="packSelection">1. TV का साइज़ चुनें:</label>
+                <!-- Updated select to use data-price for dynamic pricing -->
                 <select id="packSelection" name="packSelection" required>
-                    <option value="299" selected>निशुल्क घर पर जाँच (निदान शुल्क: ₹299)</option>
+                    <option value="40" data-price="299" selected>LED/LCD TV 40 इंच तक (निदान शुल्क: ₹299)</option>
+                    <option value="55" data-price="349">LED/LCD TV 40 इंच से ऊपर (निदान शुल्क: ₹349)</option>
                 </select>
                 
                 <label for="faultDescription" class="mt-4">2. मुख्य खराबी बताएं (संक्षेप में):</label>
                 <input type="text" id="faultDescription" name="faultDescription" placeholder="जैसे: स्क्रीन में लाइन आ रही है या TV ऑन नहीं हो रहा" required>
                 
                 <div id="priceCalculationSummary" class="price-calculation-summary">
-                    **सेवा शुल्क (निदान):** ₹299 <br>
-                    **भुगतान की जाने वाली राशि:** ₹299
+                    <!-- Content will be updated by JS -->
                 </div>
             </div>
             
@@ -533,9 +536,10 @@
     <!-- Payment Popup -->
     <div id="payment-popup" class="popup">
         <h2 class="text-2xl font-bold text-center">निदान शुल्क का भुगतान</h2>
-        <p class="text-text-subtle text-center mb-6">₹299 के निदान शुल्क का भुगतान करके अपनी सेवा की पुष्टि करें।</p>
+        <p class="text-text-subtle text-center mb-6" id="payment-popup-description">₹299 के निदान शुल्क का भुगतान करके अपनी सेवा की पुष्टि करें।</p>
         <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
         <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <!-- Button text is updated in JS to reflect price -->
         <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay ₹299 with Razorpay</button>
         <p class="mt-4 text-xs text-text-subtle text-center">
             Note: Do not close this window during payment processing.
@@ -559,17 +563,20 @@
         <h2 class="text-2xl font-bold text-center">TV जाँच और संभावित मरम्मत शुल्क</h2>
         <div class="overflow-x-auto mt-4 text-text-subtle space-y-4">
             <p class="font-bold text-secondary text-lg">निदान शुल्क (Diagnosis Fee)</p>
-            <p><span class="font-bold text-primary">₹299:</span> यह शुल्क technician द्वारा TV की जाँच (inspection) और खराबी का पता लगाने के लिए लिया जाता है।</p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+                <li><span class="font-bold text-primary">LED/LCD TV 40 इंच तक:</span> निदान शुल्क: ₹299</li>
+                <li><span class="font-bold text-primary">LED/LCD TV 40 इंच से ऊपर:</span> निदान शुल्क: ₹349</li>
+            </ul>
             
             <p class="font-bold text-secondary text-lg mt-6">मरम्मत शुल्क (Repair Costs - Estimated)</p>
             <ul class="list-disc list-inside space-y-2 ml-4">
-                <li><span class="font-bold text-primary">TV ऑन न होना / पावर समस्या:</span> मरम्मत की लागत: ₹800 से ₹2500 तक (पार्ट्स पर निर्भर)।</li>
-                <li><span class="font-bold text-primary">नो डिस्प्ले / बैकलाइट समस्या:</span> मरम्मत की लागत: ₹1200 से ₹3500 तक (LED स्ट्रिप्स/बोर्ड पर निर्भर)।</li>
+                <li><span class="font-bold text-primary">TV ऑन न होना / पावर समस्या:</span> मरम्मत की लागत: ₹800 से ₹3000 तक (पार्ट्स पर निर्भर)।</li>
+                <li><span class="font-bold text-primary">नो डिस्प्ले / बैकलाइट समस्या:</span> मरम्मत की लागत: ₹1200 से ₹4500 तक (LED स्ट्रिप्स/बोर्ड पर निर्भर)।</li>
                 <li><span class="font-bold text-primary">साउंड समस्या:</span> मरम्मत की लागत: ₹500 से ₹1500 तक।</li>
                 <li><span class="font-bold text-primary">स्क्रीन पैनल बदलना:</span> यह सबसे महंगा होता है, इसकी कीमत TV के साइज़ के अनुसार अलग से बताई जाएगी।</li>
             </ul>
              <p class="text-sm text-center mt-6 text-primary">
-                **नोट:** अगर आप मरम्मत करवाते हैं, तो आपका ₹299 निदान शुल्क कुल मरम्मत लागत में से घटा दिया जाएगा।
+                **नोट:** अगर आप मरम्मत करवाते हैं, तो आपका निदान शुल्क (₹299/₹349) कुल मरम्मत लागत में से घटा दिया जाएगा।
             </p>
         </div>
         <button id="close-price-list-btn" class="close-btn mt-4">Close Details</button>
@@ -591,15 +598,18 @@
                 <li>आपको TV लेकर कहीं जाने की जरूरत नहीं है। हम आपके सुविधानुसार समय पर आपके घर आकर काम करेंगे।</li>
 
                 <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-sync-alt mr-2"></i> निदान शुल्क माफ़</li>
-                <li>अगर आप हमसे मरम्मत करवाते हैं, तो **₹299 निदान शुल्क** आपकी मरम्मत की लागत में समायोजित हो जाएगा।</li>
+                <li>अगर आप हमसे मरम्मत करवाते हैं, तो **निदान शुल्क** आपकी मरम्मत की लागत में समायोजित हो जाएगा। (₹299 या ₹349 आपके TV साइज़ के अनुसार)</li>
             </ul>
         </div>
         <button id="close-description-btn" class="close-btn mt-4">I Understand</button>
     </div>
     
     <script>
-        // Fixed Diagnosis Fee
-        const DIAGNOSIS_FEE = 299;
+        // --- Dynamic Pricing Configuration ---
+        const PRICE_CONFIG = {
+            '40': { label: 'LED/LCD TV 40 इंच तक', price: 299 },
+            '55': { label: 'LED/LCD TV 40 इंच से ऊपर', price: 349 }
+        };
 
         // --- Generic constants ---
         const SERVICE_NAME = "LED/TV Repair & Installation";
@@ -627,16 +637,20 @@
         const downloadBtn = document.getElementById('downloadBtn');
         const okayBtn = document.getElementById('okayBtn');
         const welcomeMessage = document.getElementById('welcome-message');
-        const priceListBtn = document.getElementById('price-list-btn-popup'); /* Changed ID to match new button */
+        const priceListBtn = document.getElementById('price-list-btn-popup');
         const descriptionBtn = document.getElementById('description-btn');
-        const priceListPopup = document.getElementById('price-list-popup'); /* Added this popup */
+        const priceListPopup = document.getElementById('price-list-popup');
         const descriptionPopup = document.getElementById('description-popup');
         const closePriceListBtn = document.getElementById('close-price-list-btn');
         const closeDescriptionBtn = document.getElementById('close-description-btn');
         const priceCalculationSummary = document.getElementById('priceCalculationSummary');
+        const mainHeaderText = document.getElementById('main-header-text');
+        const paymentPopupDescription = document.getElementById('payment-popup-description');
+        const statFee = document.getElementById('stat-fee');
+
 
         // --- State variables ---
-        let currentCalculatedPrice = DIAGNOSIS_FEE;
+        let currentCalculatedPrice = PRICE_CONFIG['40'].price;
         let generatedTicket = '';
         let countdownInterval = null;
         let allowClose = false;
@@ -675,14 +689,25 @@
 
         // --- Core Functions ---
         function updatePrices() {
-            currentCalculatedPrice = DIAGNOSIS_FEE;
+            // Get the selected price based on data-price attribute of the selected option
+            const selectedOption = packSelection.options[packSelection.selectedIndex];
+            const newPrice = parseInt(selectedOption.getAttribute('data-price'), 10);
+            const sizeLabel = selectedOption.textContent;
+
+            currentCalculatedPrice = newPrice;
             
+            // Update main display and statistics
+            displayPrice.textContent = `₹${currentCalculatedPrice}`;
+            mainHeaderText.textContent = `TV निदान सेवा (Diagnosis Fee: ₹${currentCalculatedPrice})`;
+            statFee.textContent = `₹${currentCalculatedPrice}`;
+
+            // Update booking form summary
             priceCalculationSummary.innerHTML = `
-                **सेवा शुल्क (निदान):** ₹${DIAGNOSIS_FEE} <br>
-                **भुगतान की जाने वाली राशि:** ₹${DIAGNOSIS_FEE}
+                **सेवा शुल्क (${sizeLabel}):** ₹${currentCalculatedPrice} <br>
+                **भुगतान की जाने वाली राशि:** ₹${currentCalculatedPrice}
             `;
 
-            calculatedPriceDisplay.textContent = `Total: ₹${DIAGNOSIS_FEE}`;
+            calculatedPriceDisplay.textContent = `Total: ₹${currentCalculatedPrice}`;
         }
 
         function generateTicketId() {
@@ -691,7 +716,7 @@
 
         function showCustomAlert(message) {
             const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert'; 
+            alertBox.className = 'custom-alert fixed bottom-5 right-5 p-4 rounded-lg shadow-xl text-sm font-semibold bg-red-600 text-white z-[1001] transition-opacity duration-300'; 
             alertBox.textContent = message;
             document.body.appendChild(alertBox);
             setTimeout(() => alertBox.remove(), 4000); 
@@ -709,6 +734,8 @@
             allPopups.forEach(p => p.style.display = 'none');
             document.body.style.overflow = 'auto';
             bookingForm.reset();
+            // Reset to default selection and price
+            packSelection.value = '40';
             updatePrices(); 
             allowClose = false;
         }
@@ -720,7 +747,7 @@
             allPopups.forEach(p => p.style.display = 'none');
             
             popupElement.style.display = 'block';
-            allowClose = (popupElement === bookingPopup || popupElement === confirmationPopup);
+            allowClose = (popupElement === bookingPopup || popupElement === confirmationPopup || popupElement === descriptionPopup || popupElement === priceListPopup);
         }
 
         function closeSpecificPopup(popupElement) {
@@ -739,11 +766,12 @@
             const location = bookingForm.location.value;
             const address = bookingForm.address.value;
             const fault = faultDescriptionInput.value;
+            const sizeLabel = packSelection.options[packSelection.selectedIndex].textContent.split('(')[0].trim();
             const totalPrice = currentCalculatedPrice;
 
             const content = `${SERVICE_NAME} Booking Details\n\n` +
                             `Booking ID: ${generatedTicket}\n` +
-                            `Service: Home Diagnosis\n` +
+                            `Service: Home Diagnosis (${sizeLabel})\n` +
                             `Reported Fault: ${fault}\n` +
                             `Name: ${name}\n` +
                             `Phone: ${phone}\n` +
@@ -751,7 +779,7 @@
                             `Address: ${location}, ${address}\n` +
                             `Diagnosis Fee Paid: ₹${totalPrice}\n\n` +
                             `--- NOTE ---\n` +
-                            `This ₹299 fee will be ADJUSTED if you proceed with the repair. Technician will contact you shortly.`;
+                            `This ₹${totalPrice} fee will be ADJUSTED if you proceed with the repair. Technician will contact you shortly.`;
 
             const blob = new Blob([content], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
@@ -794,10 +822,10 @@
             
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": DIAGNOSIS_FEE * 100,
+                "amount": currentCalculatedPrice * 100, // Amount in paise
                 "currency": "INR",
                 "name": `SonipatHomeService - ${SERVICE_NAME} Diagnosis`,
-                "description": `Diagnosis Fee for TV Repair (Fault: ${fault.substring(0, 30)}...)`,
+                "description": `Diagnosis Fee for TV Repair (Size: ${packSelection.options[packSelection.selectedIndex].textContent.split('(')[0].trim()})`,
                 "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`,
                 "handler": function (response){
                     paymentSuccess(response.razorpay_payment_id);
@@ -810,7 +838,7 @@
                 "notes": {
                     "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
                     "reported_fault": fault,
-                    "booking_type": "Diagnosis"
+                    "booking_type": `Diagnosis - Size: ${packSelection.value} inch`
                 },
                 "theme": { "color": "#00FFFF" }, /* Updated theme color */
                 "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
@@ -832,15 +860,16 @@
             
             const name = bookingForm.name.value.split(' ')[0];
             const fault = faultDescriptionInput.value;
+            const sizeLabel = packSelection.options[packSelection.selectedIndex].textContent.split('(')[0].trim();
 
             welcomeMessage.textContent = `🎉 Booking Confirmed, ${name}! 🎉`;
             
             ticketInfo.innerHTML = `
                 <p><strong>Booking ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p><strong>Service:</strong> <span class="font-bold text-text-light">Home TV Diagnosis</span></p>
+                <p><strong>Service:</strong> <span class="font-bold text-text-light">Home TV Diagnosis (${sizeLabel})</span></p>
                 <p><strong>Reported Fault:</strong> <span class="font-bold text-text-light">${fault}</span></p>
-                <p class="text-secondary text-lg font-bold mt-3">Diagnosis Fee Paid: ₹${DIAGNOSIS_FEE}</p>
-                <p class="text-primary text-sm font-bold mt-3">यह ₹299 शुल्क मरम्मत की लागत में समायोजित हो जाएगा।</p>
+                <p class="text-secondary text-lg font-bold mt-3">Diagnosis Fee Paid: ₹${currentCalculatedPrice}</p>
+                <p class="text-primary text-sm font-bold mt-3">यह ₹${currentCalculatedPrice} शुल्क मरम्मत की लागत में समायोजित हो जाएगा।</p>
                 <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
             allowClose = true;
@@ -851,7 +880,8 @@
             updatePrices();
             loadFormData();
             
-            // No calculation events needed as price is fixed
+            // Listener for dynamic price change
+            packSelection.addEventListener('change', updatePrices);
         });
 
         bookNowBtn.addEventListener('click', () => {
@@ -863,7 +893,7 @@
         popupOverlay.addEventListener('click', e => {
             if (e.target === popupOverlay) {
                 if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
-                else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup); /* Added check */
+                else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
                 else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
                 else if (paymentPopup.style.display === 'block') showCustomAlert("कृपया भुगतान प्रक्रिया पूरी करने के बाद ही बंद करें।");
                 else if (bookingPopup.style.display === 'block') closeAllPopups();
@@ -895,10 +925,14 @@
                 bookingForm.querySelector('button[type="submit"]').disabled = false;
                 bookingPopup.style.display = 'none';
 
+                paymentPopupDescription.textContent = `₹${currentCalculatedPrice} के निदान शुल्क का भुगतान करके अपनी सेवा की पुष्टि करें।`;
+                razorpayBtn.innerHTML = `<i class="fas fa-credit-card mr-2"></i> Pay ₹${currentCalculatedPrice} with Razorpay`;
+                
                 paymentSummary.innerHTML = `
                     <p class="text-text-subtle text-lg mb-2 font-bold">सेवा: <span class="text-primary">TV Home Diagnosis</span></p>
+                    <p class="text-text-light text-base mb-1">TV साइज़: <span class="font-bold text-primary">${packSelection.options[packSelection.selectedIndex].textContent.split('(')[0].trim()}</span></p>
                     <p class="text-text-light text-base mb-1">खराबी: <span class="font-bold text-primary">${faultDescriptionInput.value}</span></p>
-                    <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">निदान शुल्क देय: ₹${DIAGNOSIS_FEE}</p>
+                    <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">निदान शुल्क देय: ₹${currentCalculatedPrice}</p>
                 `;
                 openPopup(paymentPopup);
                 startPaymentTimer();
@@ -911,12 +945,11 @@
         descriptionBtn.addEventListener('click', () => {
             openPopup(descriptionPopup);
         });
-        /* Listener for the new price list button */
         priceListBtn.addEventListener('click', () => {
             openPopup(priceListPopup);
         });
         closeDescriptionBtn.addEventListener('click', () => closeSpecificPopup(descriptionPopup));
-        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup)); /* Added listener */
+        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
     </script>
 </body>
 </html>
