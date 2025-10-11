@@ -1020,7 +1020,7 @@
             const { serviceTypeFullText, ticketId, totalCost, advance, name, phone, location, address } = currentBookingDetails;
 
             if (advance <= 0) {
-                 showCustomAlert("भुगतान करने के लिए कोई राशि नहीं है।");
+                 showCustomAlert("भुगतान करने के लिए कोई राशि नहीं है। कृपया बुकिंग विवरण जांचें।");
                  return;
             }
             
@@ -1134,21 +1134,25 @@
             if (bookingForm.name.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
             if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
             if (bookingForm.address.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
-            if (currentAdvanceAmount <= 0 && currentCalculatedPrice > 0) { 
+
+            // *** FIX IMPLEMENTED HERE: Check if advance amount is zero and stop if it's not a SiteVisit ***
+            if (currentAdvanceAmount <= 0) { 
                  showCustomAlert("भुगतान की राशि शून्य है। कृपया अपनी बुकिंग विवरण जांचें।"); 
                  return;
             }
+            // *** END FIX ***
+
 
             submitMessage.classList.remove('hidden');
             bookingForm.querySelector('button[type="submit"]').disabled = true;
             
-            // **UPDATED: Capture the full service type text here**
+            // Capture the full service type text here
             generatedTicket = generateTicketId();
             const typeText = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].textContent;
 
             currentBookingDetails = {
                 ticketId: generatedTicket,
-                serviceTypeFullText: typeText, // <--- **This is the data that gets saved and sent**
+                serviceTypeFullText: typeText, 
                 totalCost: currentCalculatedPrice,
                 advance: currentAdvanceAmount,
                 name: bookingForm.name.value,
