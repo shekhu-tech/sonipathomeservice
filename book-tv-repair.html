@@ -380,6 +380,33 @@
             color: var(--text-light);
             font-size: 1rem;
         }
+        
+        /* Custom Alert Styling */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary);
+            color: var(--bg-dark);
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
+            z-index: 1002;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -40%); }
+            10% { opacity: 1; transform: translate(-50%, -50%); }
+            90% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+        }
 
         /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
 
@@ -622,7 +649,7 @@
     </div>
     
     <script>
-        // --- Google Sheet Constants (Shared Link from AC Service File) ---
+        // --- Google Sheet Constants (Same link as AC Service File) ---
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
         
         // --- Service Pricing Data (From Image) ---
@@ -835,9 +862,10 @@
                  showCustomAlert("कृपया कोई वैध सेवा चुनें।");
                  return;
             }
-            const serviceType = packSelection.value;
             const serviceText = packSelection.options[packSelection.selectedIndex].textContent.trim();
-            const fault = faultDescriptionInput.value;
+            
+            // Note: Google Sheet submission is now done on Form Submit (Pre-Payment). 
+            // This function only handles the payment flow and confirmation on success.
             
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
@@ -847,43 +875,8 @@
                 "description": `${serviceText} (ID: ${generatedTicket})`,
                 "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`,
                 "handler": function (response){
-                    // --- Google Sheet Submission on successful payment ---
-                    const formData = new FormData();
-                    formData.append('field1', bookingForm.field1.value); // Full Name
-                    formData.append('field2', bookingForm.field2.value); // Phone
-                    formData.append('field3', bookingForm.field3.value); // Email
-                    formData.append('field4', faultDescriptionInput.value); // Reported Fault/Need
-                    formData.append('field5', bookingForm.field5.value); // Location
-                    formData.append('field6', bookingForm.field6.value); // Address
-                    
-                    // Custom Fields
-                    formData.append('serviceType', serviceType); 
-                    formData.append('serviceDisplay', serviceText); 
-                    formData.append('totalCost', currentCalculatedPrice);
-                    formData.append('finalPrice', currentCalculatedPrice); // Amount paid now
-                    
-                    formData.append('ticket', generatedTicket);
-                    formData.append('tab', SERVICE_TAB_ID);
-
-                    fetch(GOOGLE_SHEET_URL, {
-                        method: "POST",
-                        body: formData
-                    })
-                    .then(res => res.text())
-                    .then(res => {
-                        if (res.includes("Success") || res.includes("success")) {
-                            console.log("Booking data successfully logged to Google Sheet.");
-                        } else {
-                            console.error("Failed to log data to Google Sheet:", res);
-                        }
-                    })
-                    .catch(err => {
-                        console.error("Google Sheet API Error:", err);
-                    })
-                    .finally(() => {
-                        // Regardless of logging success, proceed to confirmation
-                        paymentSuccess(response.razorpay_payment_id);
-                    });
+                    // Payment successful. Proceed to confirmation.
+                    paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
                     "name": bookingForm.field1.value,
@@ -893,7 +886,7 @@
                 "notes": {
                     "address": `${bookingForm.field5.value}, ${bookingForm.field6.value}`,
                     "service_details": serviceText,
-                    "booking_type": serviceType
+                    "booking_type": packSelection.value
                 },
                 "theme": { "color": "#00FFFF" }, /* Updated theme color */
                 "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
@@ -971,25 +964,63 @@
 
             submitMessage.classList.remove('hidden');
             bookingForm.querySelector('button[type="submit"]').disabled = true;
-            generatedTicket = generateTicketId();
-
-            // --- Move submission logic to handleRazorpayPayment (after successful payment) ---
             
-            setTimeout(() => {
+            // --- GENERATE TICKET & PRE-PAYMENT SUBMISSION (Mirroring AC file functionality) ---
+            generatedTicket = generatedTicket || generateTicketId(); 
+            
+            const serviceType = packSelection.value;
+            const serviceText = packSelection.options[packSelection.selectedIndex].textContent.trim();
+            const fault = faultDescriptionInput.value;
+            
+            const formData = new FormData();
+            formData.append('field1', bookingForm.field1.value); // Full Name
+            formData.append('field2', bookingForm.field2.value); // Phone
+            formData.append('field3', bookingForm.field3.value); // Email
+            formData.append('field4', fault); // Reported Fault/Need
+            formData.append('field5', bookingForm.field5.value); // Location
+            formData.append('field6', bookingForm.field6.value); // Address
+            
+            // Custom Fields
+            formData.append('serviceType', serviceType); 
+            formData.append('serviceDisplay', serviceText); 
+            formData.append('totalCost', currentCalculatedPrice);
+            formData.append('finalPrice', currentCalculatedPrice); // Amount due now
+            
+            formData.append('ticket', generatedTicket);
+            formData.append('tab', SERVICE_TAB_ID); // tv-repair-service
+
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success") || !res.includes("Error")) {
+                    console.log("Booking data successfully logged to Google Sheet (Pre-Payment).");
+
+                    // Proceed to payment popup
+                    bookingPopup.style.display = 'none';
+                    
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">सेवा: <span class="text-primary">${serviceText}</span></p>
+                        <p class="text-text-light text-base mb-1">विवरण: <span class="font-bold text-primary">${fault}</span></p>
+                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">देय राशि: ₹${currentCalculatedPrice}</p>
+                    `;
+                    openPopup(paymentPopup);
+                    startPaymentTimer();
+                } else {
+                    console.error("Failed to log data to Google Sheet:", res);
+                    showCustomAlert("Booking Error: Data submission failed. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Google Sheet API Error:", err);
+                showCustomAlert("Network Error: Could not submit booking. Please check your connection.");
+            })
+            .finally(() => {
                 submitMessage.classList.add('hidden');
                 bookingForm.querySelector('button[type="submit"]').disabled = false;
-                bookingPopup.style.display = 'none';
-
-                const serviceText = packSelection.options[packSelection.selectedIndex].textContent.trim();
-                
-                paymentSummary.innerHTML = `
-                    <p class="text-text-subtle text-lg mb-2 font-bold">सेवा: <span class="text-primary">${serviceText}</span></p>
-                    <p class="text-text-light text-base mb-1">विवरण: <span class="font-bold text-primary">${faultDescriptionInput.value}</span></p>
-                    <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">देय राशि: ₹${currentCalculatedPrice}</p>
-                `;
-                openPopup(paymentPopup);
-                startPaymentTimer();
-            }, 1000);
+            });
         });
 
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
