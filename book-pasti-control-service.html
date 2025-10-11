@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonipatHomeService.com - Pest Control Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+        :root {
+            /* Theme: Deep Space Black, Forest Green/Lime, and Electric Gold */
+            --bg-dark: #101827; /* Deep Space Black */
+            --bg-card: #1C2738; /* Dark Navy Card */
+            --primary: #8BC34A; /* Pest Control Green (Main Page Button) */
+            --secondary: #FFD700; /* Electric Gold Accent (Price Highlight/Border) */
+            --text-light: #E0E7FF; /* Off-White Text */
+            --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
+            --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            /* AC Button Colors used for Popup Actions (for consistent look across popups) */
+            --ac-primary: #00FFFF; /* Electric Teal */
+            --ac-secondary: #FFC72C; /* Sunset Gold */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        /* --- Custom Components --- */
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-depth);
+            transition: var(--transition);
+            border: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(139, 195, 74, 0.3);
+        }
+
+        .stat-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .stat-card p {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .product-section {
+            background: linear-gradient(135deg, var(--bg-card), #22324C);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            border: 2px solid var(--secondary);
+        }
+
+        .product-header {
+            background: linear-gradient(90deg, #101827, #22324C);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .product-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .product-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: center; 
+            justify-content: center;
+        }
+
+        .product-details {
+            flex: 1; 
+            min-width: 300px;
+            text-align: center; 
+        }
+
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px dashed var(--text-subtle);
+            border-bottom: 1px dashed var(--text-subtle);
+            justify-content: center; 
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: var(--text-subtle);
+            font-weight: 400;
+            visibility: visible; 
+            height: auto;
+        }
+
+        .current-price {
+            font-size: 3rem; 
+            font-weight: 800; 
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 3rem; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            justify-content: center;
+            flex-grow: 1;
+            max-width: 300px;
+            min-width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg-dark);
+            border-color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: #A8CD7B;
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(139, 195, 74, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.03);
+        }
+
+        /* --- Popup Styling --- */
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 999;
+        }
+
+        .popup {
+            display: none;
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 95%;
+            max-width: 650px;
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            border: 1px solid var(--primary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .popup h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .popup input,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            font-size: 1rem;
+            background: #22324C;
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+        
+        .popup input:focus,
+        .popup select:focus,
+        .popup textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.2);
+        }
+
+        .popup textarea {
+            min-height: 8rem;
+            resize: vertical;
+        }
+
+        /* START: AC Button Styles Applied Here (Consistent Look) */
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn,
+        #okayBtn,
+        .popup button.close-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn { /* Primary Action Buttons (Teal Gradient) */
+            background: linear-gradient(45deg, var(--ac-primary), #00D5D5);
+            color: var(--bg-dark);
+        }
+
+        .popup button[type="submit"]:hover,
+        #razorpay-payment-btn:hover,
+        #downloadBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
+        }
+
+        #okayBtn,
+        #close-price-list-btn,
+        #close-description-btn { /* Secondary/Close Buttons (Gold Accent) */
+            background: transparent;
+            color: var(--ac-secondary);
+            border: 2px solid var(--ac-secondary);
+        }
+        
+        #okayBtn:hover,
+        #close-price-list-btn:hover,
+        #close-description-btn:hover {
+            background: rgba(255, 199, 44, 0.1);
+            transform: scale(1.01);
+        }
+        /* END: AC Button Styles Applied Here */
+        
+        .quantity-selector-container {
+            background: #22324C;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+        }
+
+        .total-price-quantity {
+            font-size: 1.8rem !important;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary) !important;
+        }
+        
+        .price-calculation-summary {
+            background: #22324C;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        .price-calculation-summary strong {
+            color: var(--primary);
+        }
+
+        /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
+
+        @media (max-width: 1024px) {
+            .product-content { padding: 2rem; flex-direction: column; }
+            .product-details { text-align: center; }
+            .price-container, .action-buttons { justify-content: center; }
+            .btn { max-width: 400px; } 
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            main { padding: 3rem 1rem; }
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 2rem 1rem; }
+            .product-header h2 { font-size: 2rem; }
+            .product-details h3 { font-size: 2rem; }
+            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
+            .current-price { font-size: 2.5rem; }
+            .popup { padding: 1.5rem; }
+            .popup h2 { font-size: 1.5rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { min-width: 100%; max-width: 100%; }
+            .popup input, .popup select, .popup textarea {
+                padding: 0.7rem 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .current-price { font-size: 2rem; }
+            .original-price { font-size: 1rem; }
+            .stat-card p { font-size: 1.8rem; }
+            .popup { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        
+        <section class="product-section">
+            <div class="product-header">
+                <h2 class="text-white">प्रोफेशनल पेस्ट कंट्रोल सर्विस</h2>
+                <p class="text-sm text-gray-400 mt-2">1 साल की वारंटी के साथ गंध रहित (Odourless) और नॉन-रिपेलेंट केमिकल का उपयोग।</p>
+            </div>
+
+            <div class="product-content">
+                
+                <div class="product-details">
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">क्षेत्रफल (Gaj) के आधार पर निश्चित दर</h3>
+                    <p class="text-text-subtle mb-4 text-base">
+                        अपने घर या दुकान के क्षेत्रफल (Gaj) के अनुसार पैकेज चुनें। 1 साल की वारंटी और अतिरिक्त वारंटी का विकल्प उपलब्ध है।
+                    </p>
+                    
+                    <div class="price-container">
+                        <div class="original-price">1 साल की वारंटी शामिल है</div>
+                        <div class="current-price" id="displayPrice">Select Area</div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="book-now-btn">
+                            <i class="fas fa-bug"></i> Book Pest Control Now
+                        </button>
+                        <button id="price-list-btn" class="btn btn-secondary">
+                            <i class="fas fa-tags"></i> Price & Gaj List
+                        </button>
+                         <button id="description-btn" class="btn btn-secondary">
+                            <i class="fas fa-certificate"></i> Warranty & Product Info
+                        </button>
+                        <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                            <i class="fas fa-home"></i> Back To Home
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>न्यूनतम वारंटी</h3>
+                <p>1 साल</p>
+            </div>
+            <div class="stat-card">
+                <h3>केमिकल</h3>
+                <p>Odourless</p>
+            </div>
+            <div class="stat-card">
+                <h3>कवरेज रेंज</h3>
+                <p>300 Gaj तक</p>
+            </div>
+            <div class="stat-card">
+                <h3>अतिरिक्त वारंटी</h3>
+                <p>₹1000 में</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="popup-overlay"></div>
+    
+    <!-- Booking Form Popup -->
+    <div id="booking-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">पेस्ट कंट्रोल बुकिंग फॉर्म</h2>
+        <form id="booking-form">
+            <div class="quantity-selector-container my-4">
+                <label for="packSelection">1. क्षेत्रफल (Gaj) के अनुसार पैकेज चुनें:</label>
+                <select id="packSelection" name="packSelection" required>
+                    <option value="" disabled selected>क्षेत्रफल चुनें (Gaj)</option>
+                </select>
+                
+                <label for="extraWarranty" class="mt-4">2. अतिरिक्त 1 साल की वारंटी (₹1000):</label>
+                <select id="extraWarranty" name="extraWarranty" required>
+                    <option value="0">नहीं, 1 साल की मानक वारंटी काफी है।</option>
+                    <option value="1000">हाँ, ₹1000 में अतिरिक्त 1 साल की वारंटी चाहिए।</option>
+                </select>
+                
+                <div id="priceCalculationSummary" class="price-calculation-summary">
+                    **चयनित पैकेज:** चुनें <br>
+                    **कुल यूनिट चार्ज:** ₹0
+                </div>
+            </div>
+            
+            <label for="name">Full Name (min 10 characters)</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
+
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+            
+            <label for="email">Email ID</label>
+            <input type="email" id="email" name="email" placeholder="email@example.com" autocomplete="email" required>
+
+            <label for="location">Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
+            
+            <label for="address">Complete Site Address (min 30 characters)</label>
+            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
+            
+            <div class="quantity-selector my-4">
+                <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
+                    <span>Final Calculated Price (Full Payment)</span>
+                    <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹0</span>
+                </div>
+            </div>
+
+            <button type="submit">Submit Details & Proceed to Payment</button>
+            <p id="submit-message" class="text-center text-sm text-primary mt-2 hidden">Submitting...</p>
+        </form>
+    </div>
+
+    <!-- Payment Popup -->
+    <div id="payment-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">Complete Your Payment</h2>
+        <p class="text-text-subtle text-center mb-6">कृपया सर्विस की पुष्टि के लिए पूरा भुगतान करें।</p>
+        <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
+        <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
+        <p class="mt-4 text-xs text-text-subtle text-center">
+            Note: Do not close this window during payment processing.
+        </p>
+    </div>
+
+    <!-- Confirmation Popup -->
+    <div id="confirmation-popup" class="popup">
+        <h2 id="welcome-message" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">आपकी Pest Control बुकिंग हो गई है! हमारी टीम जल्द ही संपर्क करेगी।</p>
+        <div id="ticket-info" class="space-y-2">
+            <!-- Details will be injected here -->
+        </div>
+        <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Download Booking Details</button>
+        <p class="mt-4 text-sm text-text-subtle text-center">📸 कृपया रिकॉर्ड के लिए स्क्रीनशॉट लें।</p>
+        <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
+    </div>
+
+    <!-- Price List/Package Details Popup (Used for Package Specs) -->
+    <div id="price-list-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">पेस्ट कंट्रोल पैकेज और कीमत</h2>
+        <div class="overflow-x-auto mt-4">
+            <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
+                <thead>
+                    <tr class="text-left text-secondary">
+                        <th class="py-3 px-4 border-b border-text-subtle">क्षेत्रफल (Gaj)</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">सर्विस रेट (1 साल वारंटी)</th>
+                    </tr>
+                </thead>
+                <tbody id="packageDetailTableBody">
+                    <!-- Data will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+        <button id="close-price-list-btn" class="close-btn mt-4">Close Details</button>
+    </div>
+
+    <!-- Terms & Conditions Popup -->
+    <div id="description-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">वारंटी और उत्पाद विवरण</h2>
+        <div class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
+            <ul class="list-disc list-inside space-y-3">
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-shield-alt mr-2"></i> वारंटी विकल्प (Warranty Options)</li>
+                <li>सभी पैकेज में **1 साल की मानक वारंटी** शामिल है।</li>
+                <li>आप केवल ₹1000 का भुगतान करके **अतिरिक्त 1 साल** की वारंटी प्राप्त कर सकते हैं।</li>
+
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-flask mr-2"></i> उपयोग किया गया उत्पाद (Product Used)</li>
+                <li>पेस्ट कंट्रोल के लिए **गंध रहित (Odourless)** केमिकल का उपयोग किया जाता है।</li>
+                <li>उत्पाद **नॉन-रिपेलेंट (Non-repellent)** है, जिसका अर्थ है कि यह कीटों को दूर भगाने के बजाय उन्हें प्रभावी ढंग से समाप्त करता है।</li>
+                
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-house-damage mr-2"></i> कवरेज</li>
+                <li>मूल्य निर्धारण केवल चयनित गज (Gaj) क्षेत्रफल के लिए है।</li>
+            </ul>
+        </div>
+        <button id="close-description-btn" class="close-btn mt-4">मैंने समझ लिया</button>
+    </div>
+    
+    <script>
+        // Data derived from the uploaded image
+        const pricingData = [
+            { gaj: 100, rate: 7500 },
+            { gaj: 150, rate: 10000 },
+            { gaj: 200, rate: 14000 },
+            { gaj: 250, rate: 17000 },
+            { gaj: 300, rate: 19000 }
+        ];
+        
+        const EXTRA_WARRANTY_COST = 1000;
+        const ADVANCE_AMOUNT = 1000; // Fixed advance amount
+
+        // --- Generic constants ---
+        const SERVICE_NAME = "Pest Control";
+        const LOCAL_STORAGE_KEY = 'pestControlBookingFormData';
+        const RAZORPAY_IMAGE_TEXT = "PEST";
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+
+        // --- DOM Element Selection ---
+        const bookNowBtn = document.getElementById('book-now-btn');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const allPopups = document.querySelectorAll('.popup');
+        const bookingPopup = document.getElementById('booking-popup');
+        const paymentPopup = document.getElementById('payment-popup');
+        const confirmationPopup = document.getElementById('confirmation-popup');
+        const bookingForm = document.getElementById('booking-form');
+        const packSelection = document.getElementById('packSelection');
+        const extraWarrantySelect = document.getElementById('extraWarranty');
+        const calculatedPriceDisplay = document.getElementById('calculated-price');
+        const displayPrice = document.getElementById('displayPrice');
+        const submitMessage = document.getElementById('submit-message');
+        const paymentSummary = document.getElementById('payment-summary');
+        const timerDisplay = document.getElementById('timer-display');
+        const razorpayBtn = document.getElementById('razorpay-payment-btn');
+        const ticketInfo = document.getElementById('ticket-info');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const okayBtn = document.getElementById('okayBtn');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const priceListBtn = document.getElementById('price-list-btn');
+        const descriptionBtn = document.getElementById('description-btn');
+        const priceListPopup = document.getElementById('price-list-popup');
+        const descriptionPopup = document.getElementById('description-popup');
+        const closePriceListBtn = document.getElementById('close-price-list-btn');
+        const closeDescriptionBtn = document.getElementById('close-description-btn');
+        const packageDetailTableBody = document.getElementById('packageDetailTableBody');
+        const priceCalculationSummary = document.getElementById('priceCalculationSummary');
+
+        // --- State variables ---
+        let currentCalculatedPrice = 0;
+        let generatedTicket = '';
+        let countdownInterval = null;
+        let allowClose = false;
+
+        // --- Local Storage Functions for Autofill ---
+        function saveFormData() {
+            const formData = {
+                fullName: bookingForm.name.value,
+                phone: bookingForm.phone.value,
+                email: bookingForm.email.value,
+                location: bookingForm.location.value,
+                address: bookingForm.address.value,
+                packSelection: packSelection.value,
+                extraWarranty: extraWarrantySelect.value
+            };
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+            } catch (e) {
+                console.warn("Local storage saving failed:", e);
+            }
+        }
+
+        function loadFormData() {
+            try {
+                const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    bookingForm.name.value = data.fullName || '';
+                    bookingForm.phone.value = data.phone || '';
+                    bookingForm.email.value = data.email || '';
+                    bookingForm.location.value = data.location || '';
+                    bookingForm.address.value = data.address || '';
+                    if (data.packSelection) packSelection.value = data.packSelection;
+                    if (data.extraWarranty) extraWarrantySelect.value = data.extraWarranty;
+                }
+            } catch (e) {
+                console.warn("Local storage loading failed:", e);
+            }
+        }
+
+        // --- Core Functions ---
+        function populatePackOptions() {
+            packSelection.innerHTML = '<option value="" disabled selected>क्षेत्रफल चुनें (Gaj)</option>';
+            pricingData.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.rate;
+                option.textContent = `${item.gaj} Gaj Area (₹${item.rate.toLocaleString('en-IN')})`;
+                option.dataset.gaj = item.gaj;
+                packSelection.appendChild(option);
+            });
+        }
+
+        function populatePriceList() {
+            packageDetailTableBody.innerHTML = '';
+            pricingData.forEach(item => {
+                const row = `
+                    <tr class="text-text-light hover:bg-bg-dark">
+                        <td class="py-2 px-4 border-b border-gray-700 font-semibold text-primary">${item.gaj} Gaj</td>
+                        <td class="py-2 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${item.rate.toLocaleString('en-IN')}</td>
+                    </tr>
+                `;
+                packageDetailTableBody.insertAdjacentHTML('beforeend', row);
+            });
+            // Add warranty note at the end
+            packageDetailTableBody.insertAdjacentHTML('beforeend', `
+                <tr><td colspan="2" class="py-3 px-4 text-center text-sm text-text-subtle">
+                    सभी कीमतों में 1 साल की मानक वारंटी शामिल है। अतिरिक्त 1 साल की वारंटी ₹1,000 में उपलब्ध है।
+                </td></tr>
+            `);
+        }
+        
+        function updatePrices() {
+            const selectedOption = packSelection.options[packSelection.selectedIndex];
+            const basePrice = selectedOption && selectedOption.value ? parseFloat(selectedOption.value) : 0;
+            const extraWarrantyFee = parseFloat(extraWarrantySelect.value) || 0;
+            
+            currentCalculatedPrice = basePrice + extraWarrantyFee;
+            
+            let selectedPackName = "चुनें";
+            let gajArea = "N/A";
+
+            if (selectedOption && selectedOption.dataset.gaj) {
+                 gajArea = selectedOption.dataset.gaj;
+                 selectedPackName = `${gajArea} Gaj Area`;
+            }
+            
+            const warrantyText = extraWarrantyFee > 0 ? ` + ₹${EXTRA_WARRANTY_COST} (2 Years)` : ` (1 Year)`;
+
+            const summaryHtml = `
+                **चयनित क्षेत्रफल:** ${gajArea} Gaj <br>
+                **आधार शुल्क (1 Yr):** ₹${basePrice.toLocaleString('en-IN')} <br>
+                **अतिरिक्त वारंटी शुल्क:** ₹${extraWarrantyFee} <br>
+                <strong class="text-xl text-secondary">कुल Payable: ₹${currentCalculatedPrice.toLocaleString('en-IN')}</strong>
+            `;
+            
+            const advance = ADVANCE_AMOUNT;
+            let displayMessage;
+
+            if (currentCalculatedPrice > 0) {
+                // Since this is a full payment service, we ask for a small advance to confirm booking, rest on site.
+                const remaining = currentCalculatedPrice - advance;
+                displayMessage = `Advance: ₹${advance.toLocaleString('en-IN')} (Total: ₹${currentCalculatedPrice.toLocaleString('en-IN')})`;
+                displayPrice.textContent = `${gajArea} Gaj${warrantyText}`;
+            } else {
+                displayMessage = 'Total: ₹0';
+                displayPrice.textContent = 'Select Area';
+            }
+
+            calculatedPriceDisplay.textContent = displayMessage;
+            priceCalculationSummary.innerHTML = summaryHtml;
+        }
+
+        function generateTicketId() {
+            return 'PEST-XXXXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
+        }
+
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert'; 
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => alertBox.remove(), 4000); 
+        }
+
+        function closeAllPopups() {
+            if (!allowClose) {
+                if (bookingPopup.style.display !== 'block') {
+                    showCustomAlert("कृपया बुकिंग प्रक्रिया पूरी करने के बाद ही बंद करें।");
+                    return;
+                }
+            }
+            clearTimers();
+            popupOverlay.style.display = 'none';
+            allPopups.forEach(p => p.style.display = 'none');
+            document.body.style.overflow = 'auto';
+            bookingForm.reset();
+            updatePrices(); // Reset calculated prices and display texts
+            allowClose = false;
+        }
+
+        function openPopup(popupElement) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            
+            allPopups.forEach(p => p.style.display = 'none');
+            
+            popupElement.style.display = 'block';
+            allowClose = (popupElement === bookingPopup || popupElement === confirmationPopup);
+        }
+
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function downloadTicketDetails() {
+            const name = bookingForm.name.value;
+            const phone = bookingForm.phone.value;
+            const email = bookingForm.email.value;
+            const location = bookingForm.location.value;
+            const address = bookingForm.address.value;
+            const selectedPack = packSelection.options[packSelection.selectedIndex].textContent;
+            const warranty = extraWarrantySelect.options[extraWarrantySelect.selectedIndex].textContent;
+            const totalPrice = currentCalculatedPrice;
+            const advancePaid = ADVANCE_AMOUNT;
+
+            const content = `${SERVICE_NAME} Booking Details\n\n` +
+                            `Booking ID: ${generatedTicket}\n` +
+                            `Service Package: ${selectedPack}\n` +
+                            `Warranty: ${warranty}\n` +
+                            `Name: ${name}\n` +
+                            `Phone: ${phone}\n` +
+                            `Email: ${email}\n` +
+                            `Address: ${location}, ${address}\n` +
+                            `Total Price: ₹${totalPrice.toLocaleString('en-IN')}\n` +
+                            `Advance Paid: ₹${advancePaid.toLocaleString('en-IN')}\n\n` +
+                            `--- NOTE ---\n` +
+                            `Remaining balance (₹${totalPrice - advancePaid}) to be paid after service completion.`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `pest-control-booking-${generatedTicket}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function clearTimers() {
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        function startPaymentTimer() {
+            let timeLeft = PAYMENT_TIME_LIMIT;
+            const updateDisplay = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            updateDisplay();
+
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    showCustomAlert("Payment time expired. Please try again.");
+                    allowClose = true;
+                    closeAllPopups();
+                }
+            }, 1000);
+        }
+
+        function handleRazorpayPayment() {
+            if (currentCalculatedPrice <= 0) {
+                 showCustomAlert("कृपया पैकेज चुनें।");
+                 return;
+            }
+            if (ADVANCE_AMOUNT <= 0) {
+                 showCustomAlert("भुगतान करने के लिए कोई राशि नहीं है।");
+                 return;
+            }
+            
+            const selectedPack = packSelection.options[packSelection.selectedIndex].textContent;
+
+            const options = {
+                "key": "rzp_live_opiqkRmGpjG1hF",
+                "amount": ADVANCE_AMOUNT * 100, // Pay only fixed advance
+                "currency": "INR",
+                "name": `SonipatHomeService - ${SERVICE_NAME} Advance`,
+                "description": `Advance Token for: ${selectedPack} (ID: ${generatedTicket})`,
+                "image": `https://placehold.co/100x100/1C2738/8BC34A?text=${RAZORPAY_IMAGE_TEXT}`,
+                "handler": function (response){
+                    paymentSuccess(response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": bookingForm.name.value,
+                    "phone": bookingForm.phone.value,
+                    "email": bookingForm.email.value
+                },
+                "notes": {
+                    "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
+                    "package_details": selectedPack,
+                    "total_cost": currentCalculatedPrice
+                },
+                "theme": { "color": "#8BC34A" },
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
+        }
+
+        function paymentSuccess(paymentId) {
+            clearTimers();
+            paymentPopup.style.display = 'none';
+            openPopup(confirmationPopup);
+
+            saveFormData();
+            
+            const name = bookingForm.name.value.split(' ')[0];
+            const selectedPack = packSelection.options[packSelection.selectedIndex].textContent;
+            const totalPrice = currentCalculatedPrice;
+            const remainingBalance = totalPrice - ADVANCE_AMOUNT;
+
+            welcomeMessage.textContent = `🎉 Booking Confirmed, ${name}! 🎉`;
+            
+            ticketInfo.innerHTML = `
+                <p><strong>Booking ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p><strong>Service Package:</strong> <span class="font-bold text-text-light">${selectedPack}</span></p>
+                <p class="text-secondary text-lg font-bold mt-3">Advance Paid: ₹${ADVANCE_AMOUNT.toLocaleString('en-IN')}</p>
+                <p class="text-primary text-xl font-bold mt-1">Remaining Balance: ₹${remainingBalance.toLocaleString('en-IN')} (On Site)</p>
+                <p class="text-text-subtle text-sm mt-3">हमारी टीम जल्द ही सर्विस शेड्यूल करने के लिए संपर्क करेगी।</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
+            `;
+            allowClose = true;
+        }
+        
+        // --- Event Listeners Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            populatePackOptions();
+            loadFormData();
+            updatePrices(); 
+            
+            // Event listeners for calculation
+            packSelection.addEventListener('change', updatePrices);
+            extraWarrantySelect.addEventListener('change', updatePrices);
+        });
+
+        bookNowBtn.addEventListener('click', () => {
+            updatePrices();
+            loadFormData();
+            openPopup(bookingPopup);
+        });
+
+        popupOverlay.addEventListener('click', e => {
+            if (e.target === popupOverlay) {
+                if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
+                else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
+                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
+                else if (bookingPopup.style.display === 'block') closeAllPopups();
+            }
+        });
+        
+        okayBtn.addEventListener('click', closeAllPopups);
+        downloadBtn.addEventListener('click', downloadTicketDetails);
+
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validation
+            if (!packSelection.value) { showCustomAlert("कृपया क्षेत्रफल (Gaj) के अनुसार पैकेज चुनें।"); return; }
+            if (currentCalculatedPrice <= 0) { showCustomAlert("कृपया पैकेज चुनें।"); return; }
+            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
+            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.email.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें।"); return; }
+            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
+
+
+            submitMessage.classList.remove('hidden');
+            bookingForm.querySelector('button[type="submit"]').disabled = true;
+            generatedTicket = generateTicketId();
+
+            // --- Submission mimic ---
+            
+            setTimeout(() => {
+                submitMessage.classList.add('hidden');
+                bookingForm.querySelector('button[type="submit"]').disabled = false;
+                bookingPopup.style.display = 'none';
+
+                const totalDue = currentCalculatedPrice;
+                const advance = ADVANCE_AMOUNT;
+                const remaining = totalDue - advance;
+                const packageText = packSelection.options[packSelection.selectedIndex].textContent;
+
+                paymentSummary.innerHTML = `
+                    <p class="text-text-subtle text-lg mb-2 font-bold">Package: <span class="text-primary">${packageText}</span></p>
+                    <p class="text-text-light text-base mb-1">Total Cost: <span class="font-bold text-primary">₹${totalDue.toLocaleString('en-IN')}</span></p>
+                    <p class="text-text-light text-base mb-3">Remaining Balance: <span class="font-bold text-secondary">₹${remaining.toLocaleString('en-IN')}</span> (On Site)</p>
+                    <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Advance Payable Now: ₹${advance.toLocaleString('en-IN')}</p>
+                `;
+                openPopup(paymentPopup);
+                startPaymentTimer();
+            }, 1000);
+            
+            // --- End Submission mimic ---
+        });
+
+        razorpayBtn.addEventListener('click', handleRazorpayPayment);
+        priceListBtn.addEventListener('click', () => {
+            populatePriceList();
+            openPopup(priceListPopup); // Price & Gaj List Popup
+        });
+        descriptionBtn.addEventListener('click', () => {
+            openPopup(descriptionPopup); // Warranty & Product Info Popup
+        });
+        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
+        closeDescriptionBtn.addEventListener('click', () => closeSpecificPopup(descriptionPopup));
+    </script>
+</body>
+</html>
