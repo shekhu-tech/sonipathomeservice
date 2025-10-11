@@ -364,6 +364,33 @@
         .price-calculation-summary strong {
             color: var(--primary);
         }
+        
+        /* Custom Alert Styling */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--ac-primary); /* Use AC Primary for consistency */
+            color: var(--bg-dark);
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
+            z-index: 1002;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -40%); }
+            10% { opacity: 1; transform: translate(-50%, -50%); }
+            90% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+        }
 
         /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
 
@@ -467,12 +494,14 @@
         <form id="booking-form">
             <div class="quantity-selector-container my-4">
                 <label for="packSelection">1. क्षेत्रफल (Gaj) के अनुसार पैकेज चुनें:</label>
-                <select id="packSelection" name="packSelection" required>
+                <!-- field7: Package Rate -->
+                <select id="packSelection" name="field7" required> 
                     <option value="" disabled selected>क्षेत्रफल चुनें (Gaj)</option>
                 </select>
                 
                 <label for="extraWarranty" class="mt-4">2. अतिरिक्त 1 साल की वारंटी (₹1000):</label>
-                <select id="extraWarranty" name="extraWarranty" required>
+                <!-- field8: Extra Warranty Fee -->
+                <select id="extraWarranty" name="field8" required>
                     <option value="0">नहीं, 1 साल की मानक वारंटी काफी है।</option>
                     <option value="1000">हाँ, ₹1000 में अतिरिक्त 1 साल की वारंटी चाहिए।</option>
                 </select>
@@ -484,41 +513,47 @@
             </div>
             
             <label for="name">Full Name (min 10 characters)</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
+            <input type="text" id="name" name="field1" placeholder="John Doe" autocomplete="name" minlength="10" required>
 
             <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+            <input type="tel" id="phone" name="field2" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
             
             <label for="email">Email ID</label>
-            <input type="email" id="email" name="email" placeholder="email@example.com" autocomplete="email" required>
+            <input type="email" id="email" name="field3" placeholder="email@example.com" autocomplete="email" required>
 
             <label for="location">Location (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
+            <input type="text" id="location" name="field5" placeholder="Sonipat" autocomplete="address-level2" required>
             
             <label for="address">Complete Site Address (min 30 characters)</label>
-            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
+            <textarea id="address" name="field6" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
             
             <div class="quantity-selector my-4">
                 <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
-                    <span>Final Calculated Price (Full Payment)</span>
-                    <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹0</span>
+                    <span>Advance Payable Now (₹1,000 Fixed)</span>
+                    <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹1,000</span>
                 </div>
             </div>
 
-            <button type="submit">Submit Details & Proceed to Payment</button>
+            <!-- Hidden fields for sheet submission -->
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="serviceType" id="serviceTypeInput" />
+            <input type="hidden" name="totalCost" id="totalCostInput" />
+            <input type="hidden" name="advancePaid" id="advancePaidInput" value="1000" />
+
+            <button type="submit">Submit Details & Proceed to Pay Advance</button>
             <p id="submit-message" class="text-center text-sm text-primary mt-2 hidden">Submitting...</p>
         </form>
     </div>
 
     <!-- Payment Popup -->
     <div id="payment-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Complete Your Payment</h2>
-        <p class="text-text-subtle text-center mb-6">कृपया सर्विस की पुष्टि के लिए पूरा भुगतान करें।</p>
+        <h2 class="text-2xl font-bold text-center">Complete Your Advance Payment</h2>
+        <p class="text-text-subtle text-center mb-6">कृपया सर्विस की पुष्टि के लिए **₹1,000** का एडवांस भुगतान करें।</p>
         <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
         <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
-        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay ₹1,000 Advance with Razorpay</button>
         <p class="mt-4 text-xs text-text-subtle text-center">
-            Note: Do not close this window during payment processing.
+            Note: Remaining balance will be paid upon service completion. Do not close this window during payment processing.
         </p>
     </div>
 
@@ -586,8 +621,12 @@
         const EXTRA_WARRANTY_COST = 1000;
         const ADVANCE_AMOUNT = 1000; // Fixed advance amount
 
+        // --- Google Sheet Constants (Same link as AC Service File) ---
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+
         // --- Generic constants ---
         const SERVICE_NAME = "Pest Control";
+        const SERVICE_TAB_ID = "pest-control-service"; // Unique tab ID for Google Sheet
         const LOCAL_STORAGE_KEY = 'pestControlBookingFormData';
         const RAZORPAY_IMAGE_TEXT = "PEST";
         const PAYMENT_TIME_LIMIT = 5 * 60;
@@ -621,6 +660,12 @@
         const packageDetailTableBody = document.getElementById('packageDetailTableBody');
         const priceCalculationSummary = document.getElementById('priceCalculationSummary');
 
+        // Hidden input fields for sheet (used to store values before submission)
+        const ticketCodeInput = document.getElementById('ticketCode');
+        const serviceTypeInput = document.getElementById('serviceTypeInput');
+        const totalCostInput = document.getElementById('totalCostInput');
+        const advancePaidInput = document.getElementById('advancePaidInput');
+
         // --- State variables ---
         let currentCalculatedPrice = 0;
         let generatedTicket = '';
@@ -630,11 +675,12 @@
         // --- Local Storage Functions for Autofill ---
         function saveFormData() {
             const formData = {
-                fullName: bookingForm.name.value,
-                phone: bookingForm.phone.value,
-                email: bookingForm.email.value,
-                location: bookingForm.location.value,
-                address: bookingForm.address.value,
+                // Using field IDs directly as they map to names in form fields (field1 to field6)
+                fullName: bookingForm.field1.value,
+                phone: bookingForm.field2.value,
+                email: bookingForm.field3.value,
+                location: bookingForm.field5.value,
+                address: bookingForm.field6.value,
                 packSelection: packSelection.value,
                 extraWarranty: extraWarrantySelect.value
             };
@@ -650,11 +696,11 @@
                 const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
                 if (savedData) {
                     const data = JSON.parse(savedData);
-                    bookingForm.name.value = data.fullName || '';
-                    bookingForm.phone.value = data.phone || '';
-                    bookingForm.email.value = data.email || '';
-                    bookingForm.location.value = data.location || '';
-                    bookingForm.address.value = data.address || '';
+                    bookingForm.field1.value = data.fullName || '';
+                    bookingForm.field2.value = data.phone || '';
+                    bookingForm.field3.value = data.email || '';
+                    bookingForm.field5.value = data.location || '';
+                    bookingForm.field6.value = data.address || '';
                     if (data.packSelection) packSelection.value = data.packSelection;
                     if (data.extraWarranty) extraWarrantySelect.value = data.extraWarranty;
                 }
@@ -689,7 +735,7 @@
             // Add warranty note at the end
             packageDetailTableBody.insertAdjacentHTML('beforeend', `
                 <tr><td colspan="2" class="py-3 px-4 text-center text-sm text-text-subtle">
-                    सभी कीमतों में 1 साल की मानक वारंटी शामिल है। अतिरिक्त 1 साल की वारंटी ₹1,000 में उपलब्ध है।
+                    सभी कीमतों में 1 साल की मानक वारंटी शामिल है। अतिरिक्त 1 साल की वारंटी ₹${EXTRA_WARRANTY_COST.toLocaleString('en-IN')} में उपलब्ध है।
                 </td></tr>
             `);
         }
@@ -709,29 +755,38 @@
                  selectedPackName = `${gajArea} Gaj Area`;
             }
             
-            const warrantyText = extraWarrantyFee > 0 ? ` + ₹${EXTRA_WARRANTY_COST} (2 Years)` : ` (1 Year)`;
+            const warrantyText = extraWarrantyFee > 0 ? ` + ₹${EXTRA_WARRANTY_COST.toLocaleString('en-IN')} (2 Years)` : ` (1 Year)`;
 
             const summaryHtml = `
                 **चयनित क्षेत्रफल:** ${gajArea} Gaj <br>
                 **आधार शुल्क (1 Yr):** ₹${basePrice.toLocaleString('en-IN')} <br>
-                **अतिरिक्त वारंटी शुल्क:** ₹${extraWarrantyFee} <br>
+                **अतिरिक्त वारंटी शुल्क:** ₹${extraWarrantyFee.toLocaleString('en-IN')} <br>
                 <strong class="text-xl text-secondary">कुल Payable: ₹${currentCalculatedPrice.toLocaleString('en-IN')}</strong>
             `;
             
+            // Hidden fields update
+            serviceTypeInput.value = selectedPackName + (extraWarrantyFee > 0 ? " (2 Yr Wty)" : " (1 Yr Wty)");
+            totalCostInput.value = currentCalculatedPrice;
+
             const advance = ADVANCE_AMOUNT;
             let displayMessage;
 
             if (currentCalculatedPrice > 0) {
-                // Since this is a full payment service, we ask for a small advance to confirm booking, rest on site.
                 const remaining = currentCalculatedPrice - advance;
-                displayMessage = `Advance: ₹${advance.toLocaleString('en-IN')} (Total: ₹${currentCalculatedPrice.toLocaleString('en-IN')})`;
+                // Update button text to show correct advance amount
+                document.getElementById('razorpay-payment-btn').textContent = `Pay ₹${ADVANCE_AMOUNT.toLocaleString('en-IN')} Advance with Razorpay`;
+                document.getElementById('payment-popup').querySelector('p.text-text-subtle.text-center.mb-6').innerHTML = `कृपया सर्विस की पुष्टि के लिए **₹${ADVANCE_AMOUNT.toLocaleString('en-IN')}** का एडवांस भुगतान करें।`;
+
                 displayPrice.textContent = `${gajArea} Gaj${warrantyText}`;
             } else {
-                displayMessage = 'Total: ₹0';
                 displayPrice.textContent = 'Select Area';
+                // Reset to default advance text
+                document.getElementById('razorpay-payment-btn').textContent = `Pay ₹1,000 Advance with Razorpay`;
+                document.getElementById('payment-popup').querySelector('p.text-text-subtle.text-center.mb-6').innerHTML = `कृपया सर्विस की पुष्टि के लिए **₹1,000** का एडवांस भुगतान करें।`;
             }
 
-            calculatedPriceDisplay.textContent = displayMessage;
+            // Always show the fixed advance amount in the form summary
+            calculatedPriceDisplay.textContent = `Total: ₹${advance.toLocaleString('en-IN')}`;
             priceCalculationSummary.innerHTML = summaryHtml;
         }
 
@@ -759,6 +814,9 @@
             allPopups.forEach(p => p.style.display = 'none');
             document.body.style.overflow = 'auto';
             bookingForm.reset();
+            // Reset state and UI to initial values
+            packSelection.value = ""; 
+            extraWarrantySelect.value = 0;
             updatePrices(); // Reset calculated prices and display texts
             allowClose = false;
         }
@@ -783,20 +841,18 @@
         }
 
         function downloadTicketDetails() {
-            const name = bookingForm.name.value;
-            const phone = bookingForm.phone.value;
-            const email = bookingForm.email.value;
-            const location = bookingForm.location.value;
-            const address = bookingForm.address.value;
-            const selectedPack = packSelection.options[packSelection.selectedIndex].textContent;
-            const warranty = extraWarrantySelect.options[extraWarrantySelect.selectedIndex].textContent;
-            const totalPrice = currentCalculatedPrice;
+            const name = bookingForm.field1.value;
+            const phone = bookingForm.field2.value;
+            const email = bookingForm.field3.value;
+            const location = bookingForm.field5.value;
+            const address = bookingForm.field6.value;
+            const selectedPack = serviceTypeInput.value;
+            const totalPrice = parseFloat(totalCostInput.value);
             const advancePaid = ADVANCE_AMOUNT;
 
             const content = `${SERVICE_NAME} Booking Details\n\n` +
                             `Booking ID: ${generatedTicket}\n` +
                             `Service Package: ${selectedPack}\n` +
-                            `Warranty: ${warranty}\n` +
                             `Name: ${name}\n` +
                             `Phone: ${phone}\n` +
                             `Email: ${email}\n` +
@@ -804,7 +860,7 @@
                             `Total Price: ₹${totalPrice.toLocaleString('en-IN')}\n` +
                             `Advance Paid: ₹${advancePaid.toLocaleString('en-IN')}\n\n` +
                             `--- NOTE ---\n` +
-                            `Remaining balance (₹${totalPrice - advancePaid}) to be paid after service completion.`;
+                            `Remaining balance (₹${(totalPrice - advancePaid).toLocaleString('en-IN')}) to be paid after service completion.`;
 
             const blob = new Blob([content], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
@@ -852,7 +908,7 @@
                  return;
             }
             
-            const selectedPack = packSelection.options[packSelection.selectedIndex].textContent;
+            const selectedPack = serviceTypeInput.value;
 
             const options = {
                 "key": "rzp_live_opiqkRmGpjG1hF",
@@ -865,12 +921,12 @@
                     paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
-                    "name": bookingForm.name.value,
-                    "phone": bookingForm.phone.value,
-                    "email": bookingForm.email.value
+                    "name": bookingForm.field1.value,
+                    "phone": bookingForm.field2.value,
+                    "email": bookingForm.field3.value
                 },
                 "notes": {
-                    "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
+                    "address": `${bookingForm.field5.value}, ${bookingForm.field6.value}`,
                     "package_details": selectedPack,
                     "total_cost": currentCalculatedPrice
                 },
@@ -892,9 +948,9 @@
 
             saveFormData();
             
-            const name = bookingForm.name.value.split(' ')[0];
-            const selectedPack = packSelection.options[packSelection.selectedIndex].textContent;
-            const totalPrice = currentCalculatedPrice;
+            const name = bookingForm.field1.value.split(' ')[0];
+            const selectedPack = serviceTypeInput.value;
+            const totalPrice = parseFloat(totalCostInput.value);
             const remainingBalance = totalPrice - ADVANCE_AMOUNT;
 
             welcomeMessage.textContent = `🎉 Booking Confirmed, ${name}! 🎉`;
@@ -943,42 +999,84 @@
         bookingForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Validation
+            // Validation (using field IDs to get values)
             if (!packSelection.value) { showCustomAlert("कृपया क्षेत्रफल (Gaj) के अनुसार पैकेज चुनें।"); return; }
             if (currentCalculatedPrice <= 0) { showCustomAlert("कृपया पैकेज चुनें।"); return; }
-            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
-            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.email.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें।"); return; }
-            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
+            if (bookingForm.field1.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
+            if (!/^\d{10}$/.test(bookingForm.field2.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.field3.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें।"); return; }
+            if (bookingForm.field6.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
 
 
             submitMessage.classList.remove('hidden');
             bookingForm.querySelector('button[type="submit"]').disabled = true;
-            generatedTicket = generateTicketId();
-
-            // --- Submission mimic ---
             
-            setTimeout(() => {
+            // --- GENERATE TICKET & PRE-PAYMENT SUBMISSION ---
+            generatedTicket = generatedTicket || generateTicketId(); 
+            
+            const selectedPackName = serviceTypeInput.value;
+            const totalCost = parseFloat(totalCostInput.value);
+            const advance = ADVANCE_AMOUNT;
+            
+            // Form data mapping to Google Sheet columns
+            const formData = new FormData();
+            formData.append('field1', bookingForm.field1.value); // Full Name
+            formData.append('field2', bookingForm.field2.value); // Phone
+            formData.append('field3', bookingForm.field3.value); // Email
+            formData.append('field4', selectedPackName);         // Service Type (Gaj Area + Warranty)
+            formData.append('field5', bookingForm.field5.value); // Location
+            formData.append('field6', bookingForm.field6.value); // Address
+            
+            // Custom Fields
+            formData.append('serviceType', selectedPackName); 
+            formData.append('totalCost', totalCost);         
+            formData.append('advancePaid', advance);         
+            formData.append('remainingDue', totalCost - advance); 
+            formData.append('ticket', generatedTicket);
+            formData.append('tab', SERVICE_TAB_ID); // pest-control-service
+            formData.append('gajArea', packSelection.options[packSelection.selectedIndex].dataset.gaj || 'N/A');
+            formData.append('baseRate', packSelection.value);
+            formData.append('extraWarrantyFee', extraWarrantySelect.value);
+
+
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success") || !res.includes("Error")) {
+                    console.log("Booking data successfully logged to Google Sheet (Pre-Payment).");
+
+                    // Proceed to payment popup
+                    bookingPopup.style.display = 'none';
+
+                    const remaining = totalCost - advance;
+                    const packageText = packSelection.options[packSelection.selectedIndex].textContent;
+                    const warrantyText = extraWarrantySelect.options[extraWarrantySelect.selectedIndex].textContent;
+
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Package: <span class="text-primary">${packageText}</span></p>
+                        <p class="text-text-light text-base mb-1">Warranty: <span class="font-bold text-primary">${warrantyText}</span></p>
+                        <p class="text-text-light text-base mb-3">Total Cost: <span class="font-bold text-primary">₹${totalCost.toLocaleString('en-IN')}</span></p>
+                        <p class="text-text-light text-base mb-3">Remaining Balance: <span class="font-bold text-secondary">₹${remaining.toLocaleString('en-IN')}</span> (On Site)</p>
+                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Advance Payable Now: ₹${advance.toLocaleString('en-IN')}</p>
+                    `;
+                    openPopup(paymentPopup);
+                    startPaymentTimer();
+                } else {
+                    console.error("Failed to log data to Google Sheet:", res);
+                    showCustomAlert("Booking Error: Data submission failed. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Google Sheet API Error:", err);
+                showCustomAlert("Network Error: Could not submit booking. Please check your connection.");
+            })
+            .finally(() => {
                 submitMessage.classList.add('hidden');
                 bookingForm.querySelector('button[type="submit"]').disabled = false;
-                bookingPopup.style.display = 'none';
-
-                const totalDue = currentCalculatedPrice;
-                const advance = ADVANCE_AMOUNT;
-                const remaining = totalDue - advance;
-                const packageText = packSelection.options[packSelection.selectedIndex].textContent;
-
-                paymentSummary.innerHTML = `
-                    <p class="text-text-subtle text-lg mb-2 font-bold">Package: <span class="text-primary">${packageText}</span></p>
-                    <p class="text-text-light text-base mb-1">Total Cost: <span class="font-bold text-primary">₹${totalDue.toLocaleString('en-IN')}</span></p>
-                    <p class="text-text-light text-base mb-3">Remaining Balance: <span class="font-bold text-secondary">₹${remaining.toLocaleString('en-IN')}</span> (On Site)</p>
-                    <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Advance Payable Now: ₹${advance.toLocaleString('en-IN')}</p>
-                `;
-                openPopup(paymentPopup);
-                startPaymentTimer();
-            }, 1000);
-            
-            // --- End Submission mimic ---
+            });
         });
 
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
