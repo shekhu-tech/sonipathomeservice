@@ -610,8 +610,8 @@
             <ul class="list-disc list-inside space-y-3">
                 <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-warehouse mr-2"></i> Bricks & Sand Quality</li>
                 <li><i class="fas fa-circle-check text-secondary mr-2"></i>**Red Bricks:** Price is for 1000 pieces, delivered to your site.</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>**1st Quality Bricks:** Priced per foot, applicable for minimum orders of 100 feet.</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>**Dust/Mota Ret:** High-quality Kamunaganari Dust/Sand, priced per foot.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>**1st Quality Bricks (DUST):** Priced per foot, applicable for minimum orders of 100 feet.</li>
+                <li><i class="fas fa-circle-check text-secondary mr-2"></i>**Mota Ret (Sand):** High-quality Yamunanagar Sand, priced per foot.</li>
                 <li><i class="fas fa-circle-check text-secondary mr-2"></i>**Ret (Sand):** Local rate, priced per foot.</li>
 
                 <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-route mr-2"></i> Delivery & Logistics</li>
@@ -625,17 +625,16 @@
     </div>
     
     <script>
-        // NEW Building Material Rates based on the provided rate sheet image (image_368561.png)
+        // NEW Building Material Rates based on the provided rate sheet image.
         const allRates = [
-            // Bricks
+            // Row 1: Red Bricks (1000) - Door Step Delivery -> 8499
             { "name": "Red Bricks (1000 Pcs) | Door Step Delivery", "rate": 8499, "unit": "Per 1000", "category": "Bricks" },
-            { "name": "1st Quality Bricks | Min 100 Ft Order", "rate": 55, "unit": "Per Foot", "category": "Bricks" },
-            // Dust & Sand
-            { "name": "DUST - Mota Ret (Kamunaganari) | Door Step Delivery", "rate": 38, "unit": "Per Foot", "category": "Dust" },
-            { "name": "Ret (Sand) - Rate Local | Door Step Delivery", "rate": 33, "unit": "Per Foot", "category": "Ret (Sand)" },
-            // Note: The 94 Channels (Free SD Channel Only) rate looks like a DTH mistake, 
-            // but we include it as a material option just in case it is a reference unit.
-            { "name": "Ret (Sand) - Special Unit Rate", "rate": 1200, "unit": "Lump Sum", "category": "Ret (Sand) Misc" } 
+            // Row 2: DUST - 1st Quality (Minimum 100 Ft) Door Step Delivery -> 55 Rs. Ft
+            { "name": "DUST - 1st Quality | Min 100 Ft Door Step Delivery", "rate": 55, "unit": "Per Ft", "category": "Dust" },
+            // Row 3: Ret - Mota Ret (Yamunanagar) Door Step Delivery -> 38 Rs. Ft
+            { "name": "Ret (Sand) - Mota Ret (Yamunanagar) | Door Step Delivery", "rate": 38, "unit": "Per Ft", "category": "Ret (Sand)" },
+            // Row 4: Ret - Rate Local Door Step Delivery -> 33 Rs. Ft
+            { "name": "Ret (Sand) - Local Rate | Door Step Delivery", "rate": 33, "unit": "Per Ft", "category": "Ret (Sand)" }
         ];
 
         // --- Generic constants ---
