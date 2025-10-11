@@ -3,159 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonipat Home Service - Social Connect</title>
+    <title>Sonipat Home Service - Ultra Pro Max Connect</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Lucide Icons for stylish look -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
-        /* Custom styles for a classic, stylish look */
+        /* Custom styles for the Ultra Pro Max Dark Theme */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light off-white background */
+            background-color: #0d121c; /* Darker background for premium feel */
+            transition: background-color 0.5s;
         }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        
+        /* Premium Hover Effect (Shadow and Lift) */
+        .card-pro-max {
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .icon-container {
+        .card-pro-max:hover {
+            transform: translateY(-8px);
+            /* A more pronounced shadow for a floating effect */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Accent Bar at the top of the card */
+        .card-accent-bar {
+            height: 8px; /* Height of the colored bar */
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        /* Specific Brand Colors for Accent Bars */
+        .facebook-accent-bar { background-color: #1877f2; }
+        .instagram-accent-bar { background-image: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .twitter-accent-bar { background-color: #1da1f2; }
+        .whatsapp-accent-bar { background-color: #25d366; }
+        .phone-accent-bar { background-color: #a78bfa; } /* Purple/Violet for Call */
+        .youtube-accent-bar { background-color: #ff0000; }
+        /* New Accent Bars for Email and Telegram */
+        .email-accent-bar { background-color: #f59e0b; } /* Amber for Email */
+        .telegram-accent-bar { background-color: #0088cc; } /* Telegram Blue */
+
+        /* Icon container styling */
+        .icon-container-pro-max {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            background-color: rgba(255, 255, 255, 0.08); /* Subtle light background */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Specific Brand Colors for Card Borders/Accents */
-        .facebook-accent { border-color: #1877f2; }
-        .instagram-accent { border-color: #e4405f; }
-        .twitter-accent { border-color: #1da1f2; }
-        .whatsapp-accent { border-color: #25d366; }
-        .phone-accent { border-color: #4a5568; }
-
-        /* Media query for grid layout on larger screens */
+        /* Media query for grid layout on different screen sizes (Highly Responsive) */
+        .social-grid {
+            grid-template-columns: repeat(1, 1fr); /* Mobile: 1 Column */
+        }
         @media (min-width: 640px) {
             .social-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr); /* Tablet: 2 Columns */
             }
         }
         @media (min-width: 1024px) {
             .social-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(3, 1fr); /* Desktop: 3 Columns */
             }
         }
     </style>
 </head>
-<body class="min-h-screen p-4 sm:p-8 flex flex-col items-center">
+<body class="min-h-screen p-6 sm:p-10 flex flex-col items-center">
 
-    <div class="max-w-4xl w-full">
-        <!-- Header Section -->
-        <header class="text-center mb-12 p-6 bg-white rounded-xl shadow-lg">
-            <h1 class="text-4xl font-extrabold text-gray-800 mb-2">
-                Sonipat Home Service
+    <div class="max-w-6xl w-full">
+        <!-- Header Section (Modern, High-Contrast) -->
+        <header class="text-center mb-16 p-8 bg-gray-800 rounded-2xl shadow-2xl border-b-4 border-indigo-500">
+            <h1 class="text-5xl font-extrabold text-white mb-3 tracking-wider">
+                <i data-lucide="zap" class="inline-block w-8 h-8 mr-2 text-yellow-400"></i>
+                सोनीपत होम सर्विस कनेक्ट
             </h1>
-            <p class="text-xl text-gray-500">
-                कनेक्ट करें: हमारे सोशल मीडिया प्लेटफॉर्म्स
+            <p class="text-xl font-medium text-indigo-300">
+                अल्ट्रा प्रो मैक्स तरीके से जुड़ें: सभी सोशल प्लेटफॉर्म्स और संपर्क सूत्र
             </p>
         </header>
 
-        <!-- Social Media Cards Grid -->
-        <div class="social-grid grid gap-6">
+        <!-- Social Media Cards Grid (Fully Responsive - 8 Cards) -->
+        <div class="social-grid grid gap-8">
 
-            <!-- Card 1: Facebook -->
-            <a href="https://www.facebook.com/share/1FXzPzmFjq/" target="_blank" class="block">
-                <div class="card-hover transition duration-300 bg-white p-6 rounded-xl shadow-xl border-l-4 facebook-accent flex items-center space-x-4">
-                    <div class="icon-container bg-blue-100 text-blue-600">
-                        <i data-lucide="facebook" class="w-7 h-7"></i>
-                    </div>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-900">Facebook Page</p>
-                        <p class="text-sm text-gray-500">ताज़ा अपडेट्स, ऑफर्स और न्यूज़ देखें।</p>
-                        <span class="text-blue-500 text-sm font-medium mt-1 inline-block">@SonipatHomesService</span>
+            <!-- Card 1: Facebook (Updated Link) -->
+            <a href="https://www.facebook.com/sonipathomeservice" target="_blank" class="block">
+                <div class="card-pro-max bg-gray-800 rounded-xl shadow-lg hover:shadow-indigo-500/50">
+                    <div class="card-accent-bar facebook-accent-bar"></div>
+                    <div class="p-6 flex items-start space-x-5">
+                        <div class="icon-container-pro-max text-blue-400">
+                            <i data-lucide="facebook" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-white mb-1">Facebook Page</p>
+                            <p class="text-sm text-gray-400">हमारे ताज़ा अपडेट, बेहतरीन ऑफर्स और न्यूज़ देखें।</p>
+                            <span class="text-blue-400 text-sm font-medium mt-3 inline-block">@sonipathomeservice</span>
+                        </div>
                     </div>
                 </div>
             </a>
 
-            <!-- Card 2: Instagram -->
-            <a href="https://www.instagram.com/Sonipathomeservice/" target="_blank" class="block">
-                <div class="card-hover transition duration-300 bg-white p-6 rounded-xl shadow-xl border-l-4 instagram-accent flex items-center space-x-4">
-                    <div class="icon-container bg-pink-100 text-pink-600">
-                        <i data-lucide="instagram" class="w-7 h-7"></i>
-                    </div>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-900">Instagram Profile</p>
-                        <p class="text-sm text-gray-500">हमारे काम की तस्वीरें और वीडियो देखें।</p>
-                        <span class="text-pink-500 text-sm font-medium mt-1 inline-block">SonipatHomesService</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Card 3: X / Twitter -->
-            <a href="https://twitter.com/your-handle" target="_blank" class="block">
-                <div class="card-hover transition duration-300 bg-white p-6 rounded-xl shadow-xl border-l-4 twitter-accent flex items-center space-x-4">
-                    <div class="icon-container bg-sky-100 text-sky-600">
-                        <i data-lucide="twitter" class="w-7 h-7"></i>
-                    </div>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-900">X (Twitter)</p>
-                        <p class="text-sm text-gray-500">त्वरित संदेश और घोषणाएं।</p>
-                        <span class="text-sky-500 text-sm font-medium mt-1 inline-block">@SH_Service</span>
+            <!-- Card 2: Instagram (Updated Link) -->
+            <a href="https://www.instagram.com/sonipathomeservice" target="_blank" class="block">
+                <div class="card-pro-max bg-gray-800 rounded-xl shadow-lg hover:shadow-pink-500/50">
+                    <div class="card-accent-bar instagram-accent-bar"></div>
+                    <div class="p-6 flex items-start space-x-5">
+                        <div class="icon-container-pro-max text-pink-400">
+                            <i data-lucide="instagram" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-white mb-1">Instagram Profile</p>
+                            <p class="text-sm text-gray-400">काम की तस्वीरें, रील और वीडियो स्टोरीज़ देखें।</p>
+                            <span class="text-pink-400 text-sm font-medium mt-3 inline-block">@sonipathomeservice</span>
+                        </div>
                     </div>
                 </div>
             </a>
 
-            <!-- Card 4: WhatsApp Chat (Using Phone/Mobile icon as a general contact icon) -->
-            <a href="https://wa.me/8816014071" target="_blank" class="block">
-                <div class="card-hover transition duration-300 bg-white p-6 rounded-xl shadow-xl border-l-4 whatsapp-accent flex items-center space-x-4">
-                    <div class="icon-container bg-green-100 text-green-600">
-                        <i data-lucide="message-square" class="w-7 h-7"></i>
+            <!-- Card 3: X / Twitter (Updated Link) -->
+            <a href="https://x.com/sonipathome" target="_blank" class="block">
+                <div class="card-pro-max bg-gray-800 rounded-xl shadow-lg hover:shadow-sky-500/50">
+                    <div class="card-accent-bar twitter-accent-bar"></div>
+                    <div class="p-6 flex items-start space-x-5">
+                        <div class="icon-container-pro-max text-sky-400">
+                            <i data-lucide="twitter" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-white mb-1">X (Twitter)</p>
+                            <p class="text-sm text-gray-400">त्वरित घोषणाएं और फीडबैक के लिए ट्वीट करें।</p>
+                            <span class="text-sky-400 text-sm font-medium mt-3 inline-block">@sonipathome</span>
+                        </div>
                     </div>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-900">Arattai/WhatsApp/Chat</p>
-                        <p class="text-sm text-gray-500">तुरंत मैसेज करें, 24/7 सहायता पाएं।</p>
-                        <span class="text-green-500 text-sm font-medium mt-1 inline-block">+91 8816014071</span>
+                </div>
+            </a>
+
+            <!-- Card 4: WhatsApp Chat (Updated Link) -->
+            <a href="https://wa.me/+918816014071" target="_blank" class="block">
+                <div class="card-pro-max bg-gray-800 rounded-xl shadow-lg hover:shadow-green-500/50">
+                    <div class="card-accent-bar whatsapp-accent-bar"></div>
+                    <div class="p-6 flex items-start space-x-5">
+                        <div class="icon-container-pro-max text-green-400">
+                            <i data-lucide="message-circle" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-white mb-1">WhatsApp Chat</p>
+                            <p class="text-sm text-gray-400">तुरंत मैसेज करें, अपनी बुकिंग और सवाल पूछें।</p>
+                            <span class="text-green-400 text-sm font-medium mt-3 inline-block">+91 8816014071</span>
+                        </div>
                     </div>
                 </div>
             </a>
             
-            <!-- Card 5: Phone Call -->
-            <a href="tel:+911234567890" class="block">
-                <div class="card-hover transition duration-300 bg-white p-6 rounded-xl shadow-xl border-l-4 phone-accent flex items-center space-x-4">
-                    <div class="icon-container bg-gray-100 text-gray-600">
-                        <i data-lucide="phone" class="w-7 h-7"></i>
-                    </div>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-900">Call Us Directly</p>
-                        <p class="text-sm text-gray-500">हमें तुरंत कॉल करें (सोनीपत)।</p>
-                        <span class="text-gray-500 text-sm font-medium mt-1 inline-block">+91 8816014071</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Card 6: YouTube/Video Content (For future use) -->
-            <a href="https://youtube.com/@sonipathomeservice?si=HybWsk3u98un2-IH" target="_blank" class="block">
-                <div class="card-hover transition duration-300 bg-white p-6 rounded-xl shadow-xl border-l-4 border-red-500 flex items-center space-x-4">
-                    <div class="icon-container bg-red-100 text-red-600">
-                        <i data-lucide="youtube" class="w-7 h-7"></i>
-                    </div>
-                    <div>
-                        <p class="text-lg font-semibold text-gray-900">Video Channel</p>
-                        <p class="text-sm text-gray-500">टिप्स, ट्रिक्स और सर्विस ट्यूटोरियल्स।</p>
-                        <span class="text-red-500 text-sm font-medium mt-1 inline-block">YouTube Channel</span>
+            <!-- Card 5: Phone Call (Updated Link) -->
+            <a href="tel:+918816014071" class="block">
+                <div class="card-pro-max bg-gray-800 rounded-xl shadow-lg hover:shadow-purple-500/50">
+                    <div class="card-accent-bar phone-accent-bar"></div>
+                    <div class="p-6 flex items-start space-x-5">
+                        <div class="icon-container-pro-max text-purple-400">
+                            <i data-lucide="phone" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-white mb-1">Call Us Directly</p>
+                            <p class="text-sm text-gray-400">तुरंत बात करें (सोनीपत)। सबसे तेज़ तरीका!</p>
+                            <span class="text-purple-400 text-sm font-medium mt-3 inline-block">+91 8816014071</span>
+                        </div>
                     </div>
                 </div>
             </a>
 
+            <!-- Card 6: YouTube/Video Content (Updated Link) -->
+            <a href="https://www.youtube.com/@SonipatHomeService" target="_blank" class="block">
+                <div class="card-pro-max bg-gray-800 rounded-xl shadow-lg hover:shadow-red-500/50">
+                    <div class="card-accent-bar youtube-accent-bar"></div>
+                    <div class="p-6 flex items-start space-x-5">
+                        <div class="icon-container-pro-max text-red-400">
+                            <i data-lucide="youtube" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-white mb-1">Video Channel</p>
+                            <p class="text-sm text-gray-400">हमारे काम के ट्यूटोरियल्स और DIY टिप्स देखें।</p>
+                            <span class="text-red-400 text-sm font-medium mt-3 inline-block">@SonipatHomeService</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 7: Email (New Card) -->
+            <a href="mailto:care@sonipathomeservice.com" target="_blank" class="block">
+                <div class="card-pro-max bg-gray-800 rounded-xl shadow-lg hover:shadow-amber-500/50">
+                    <div class="card-accent-bar email-accent-bar"></div>
+                    <div class="p-6 flex items-start space-x-5">
+                        <div class="icon-container-pro-max text-amber-400">
+                            <i data-lucide="mail" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-white mb-1">Email Support</p>
+                            <p class="text-sm text-gray-400">सेवा संबंधी पूछताछ के लिए हमें मेल करें।</p>
+                            <span class="text-amber-400 text-sm font-medium mt-3 inline-block">care@sonipathomeservice.com</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 8: Telegram (New Card) -->
+            <a href="https://t.me/8816014071" target="_blank" class="block">
+                <div class="card-pro-max bg-gray-800 rounded-xl shadow-lg hover:shadow-cyan-500/50">
+                    <div class="card-accent-bar telegram-accent-bar"></div>
+                    <div class="p-6 flex items-start space-x-5">
+                        <div class="icon-container-pro-max text-cyan-400">
+                            <i data-lucide="send" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-white mb-1">Telegram Chat</p>
+                            <p class="text-sm text-gray-400">टेलीग्राम पर हमसे तुरंत संपर्क करें।</p>
+                            <span class="text-cyan-400 text-sm font-medium mt-3 inline-block">+91 8816014071</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div> <!-- End of social-grid -->
+
+        <!-- Physical Contact / Address Section (New Section) -->
+        <div class="mt-16 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6 border-b border-indigo-500 pb-2 inline-block">
+                <i data-lucide="map-pin" class="inline-block w-6 h-6 mr-2 text-indigo-400"></i>
+                हमारा स्थान (Address)
+            </h2>
+            <div class="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-lg mx-auto">
+                <p class="text-2xl text-indigo-300 font-semibold mb-2">Sonipat Home Service</p>
+                <p class="text-lg text-gray-300">128/1, Sainipura, Sonipat</p>
+                <!-- Add a map link -->
+                <a href="https://maps.google.com/?q=128/1,+Sainipura,+Sonipat" target="_blank" 
+                   class="inline-flex items-center mt-4 px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-500 transition duration-300">
+                    <i data-lucide="locate" class="w-5 h-5 mr-2"></i>
+                    नक्शे पर देखें (View on Map)
+                </a>
+            </div>
         </div>
-        
-        <!-- Footer / Instructions -->
-        <footer class="mt-12 text-center text-gray-500 text-sm">
-            <p>
-                <i data-lucide="info" class="inline-block w-4 h-4 mr-1"></i>
-               
+
+        <!-- Footer / Instructions (Modern look) -->
+        <footer class="mt-16 text-center text-gray-500 text-sm">
+            <p class="flex items-center justify-center text-gray-400">
+                <i data-lucide="shield-check" class="w-5 h-5 mr-2 text-green-400"></i>
+                सभी लिंक्स सुरक्षित और अपडेटेड हैं। Sonipat Home Service द्वारा संचालित।
             </p>
         </footer>
     </div>
