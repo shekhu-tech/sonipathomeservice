@@ -37,12 +37,12 @@ function injectHeader() {
             <br>
             <li><a class="sidebar-button" href="index.html"><span><i class="fas fa-home"></i> Home </span></a></li>
             <li><a class="sidebar-button" href="about-us.html"><span><i class="fas fa-info-circle"></i> About Us</span></a></li>
-            <li><a class="sidebar-button" href="comingsoon.html"><span><i class="fas fa-comments"></i> Chat</span></a></li>
-            <li><a class="sidebar-button" href="comingsoon.html"><span><i class="fas fa-shopping-cart"></i> Shop</span></a></li>
+            <li><a class="sidebar-button" href="chat.html"><span><i class="fas fa-comments"></i> Chat</span></a></li>
+            <li><a class="sidebar-button" href="shop.html"><span><i class="fas fa-shopping-cart"></i> Shop</span></a></li>
             <li><a class="sidebar-button" href="contact.html"><span><i class="fas fa-envelope"></i> Contact</span></a></li>
-            <li><a class="sidebar-button" href="comingsoon.html"><span><i class="fas fa-users"></i> Social</span></a></li>
-            <li><a class="sidebar-button" href="comingsoon.html"><span><i class="fas fa-handshake"></i> Partner</span></a></li>
-            <li><a class="sidebar-button" href="technician.html"><span><i class="fas fa-tools"></i> Machenic</span></a></li>
+            <li><a class="sidebar-button" href="social.html"><span><i class="fas fa-users"></i> Social</span></a></li>
+            <li><a class="sidebar-button" href="partner.html"><span><i class="fas fa-handshake"></i> Become A Partner</span></a></li>
+            <li><a class="sidebar-button" href="technician.html"><span><i class="fas fa-tools"></i>make Career</span></a></li>
             <li><a class="sidebar-button" href="policy.html"><span><i class="fas fa-shield-alt"></i> Privacy Policy</span></a></li>
             <li><a class="sidebar-button" href="terms.html"><span><i class="fas fa-file-contract"></i> Terms & Conditions</span></a></li>
             <li><a class="sidebar-button" href="refund.html"><span><i class="fas fa-undo-alt"></i> Refund Policy</span></a></li>
@@ -942,6 +942,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
