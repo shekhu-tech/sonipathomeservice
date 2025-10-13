@@ -516,6 +516,11 @@
 
             <label for="phone">Phone Number (10 digits)</label>
             <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+
+            <!-- NEW FIELD ADDED for Server Logging Compatibility -->
+            <label for="email">Email Address (Required for booking)</label>
+            <input type="email" id="email" name="email" placeholder="masonry@service.com" autocomplete="email" required>
+            <!-- END NEW FIELD -->
             
             <label for="location">Location (e.g. Sonipat, Delhi)</label>
             <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
@@ -655,6 +660,9 @@
         const SITE_VISIT_ADVANCE = RATES.SITE_VISIT_FEE;
         const CONTRACT_SERVICE_ADVANCE_PERCENTAGE = 0.20; // Example: 20% advance for contract service
 
+        // **NEW:** Google Sheet URL from AC Service for server-side logging
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+
         // --- DOM Element Selection ---
         const bookNowBtn = document.getElementById('book-now-btn');
         const popupOverlay = document.getElementById('popup-overlay');
@@ -709,6 +717,7 @@
             const formData = {
                 fullName: bookingForm.name.value,
                 phone: bookingForm.phone.value,
+                email: bookingForm.email.value, // Added email field
                 location: bookingForm.location.value,
                 address: bookingForm.address.value,
                 serviceType: serviceTypeSelect.value,
@@ -731,6 +740,7 @@
                     const data = JSON.parse(savedData);
                     bookingForm.name.value = data.fullName || '';
                     bookingForm.phone.value = data.phone || '';
+                    bookingForm.email.value = data.email || ''; // Added email field
                     bookingForm.location.value = data.location || '';
                     bookingForm.address.value = data.address || '';
                     // Do not load serviceType as it can cause calculation issues on page load if not handled carefully
@@ -745,7 +755,7 @@
             }
         }
 
-        // --- Core Calculation & UI Logic (Updated for new Daily Rate logic) ---
+        // --- Core Calculation & UI Logic (Unchanged) ---
 
         function calculatePrice() {
             const serviceType = serviceTypeSelect.value;
@@ -853,7 +863,7 @@
         }
 
 
-        // Updated toggleInputs function to handle individual daily service types
+        // Updated toggleInputs function (Unchanged)
         function toggleInputs() {
             const serviceType = serviceTypeSelect.value;
             dailyRateInputsDiv.classList.add('hidden');
@@ -893,7 +903,7 @@
             calculatePrice();
         }
 
-        // --- Generic Utility Functions (Copied and adapted from previous files) ---
+        // --- Generic Utility Functions (Unchanged) ---
         
         function generateTicketId() {
             return 'MASON-XXXXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
@@ -949,7 +959,7 @@
             }
         }
 
-        // Updated downloadTicketDetails to use the centralized currentBookingDetails
+        // Updated downloadTicketDetails (Unchanged)
         function downloadTicketDetails() {
             const { serviceTypeFullText, ticketId, totalCost, advance, name, phone, location, address } = currentBookingDetails;
             
@@ -1015,9 +1025,9 @@
             }, 1000);
         }
 
-        // Updated handleRazorpayPayment to use the centralized currentBookingDetails
+        // **UPDATED handleRazorpayPayment: Removed Demo Success Logic**
         function handleRazorpayPayment() {
-            const { serviceTypeFullText, ticketId, totalCost, advance, name, phone, location, address } = currentBookingDetails;
+            const { serviceTypeFullText, ticketId, totalCost, advance, name, phone, email, location, address } = currentBookingDetails;
 
             if (advance <= 0) {
                  showCustomAlert("भुगतान करने के लिए कोई राशि नहीं है। कृपया बुकिंग विवरण जांचें।");
@@ -1032,14 +1042,16 @@
                 "description": `Advance/Full Payment for: ${serviceTypeFullText} (ID: ${ticketId})`,
                 "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`,
                 "handler": function (response){
+                    // This is the REAL success handler. Only call paymentSuccess here.
                     paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
                     "name": name,
-                    "phone": phone
+                    "phone": phone,
+                    "email": email 
                 },
                 "notes": {
-                    // **Google Sheet/Backend will receive this full service text:**
+                    // Google Sheet/Backend will receive this full service text:
                     "service_type": serviceTypeFullText, 
                     "address": `${location}, ${address}`,
                     "total_cost": totalCost,
@@ -1049,11 +1061,10 @@
                 "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
             };
 
-            // NOTE: Razorpay is not guaranteed to work in this environment. Using a mock success for demonstration.
-            if (options.key === "rzp_live_opiqkRmGpjG1hF") {
-                 showCustomAlert("Demo mode: Payment simulated successfully.");
-                 paymentSuccess("PAY_DEMO_" + generateTicketId());
-                 return;
+            // NOTE: Razorpay is not guaranteed to work in this environment. 
+            // If the key is the live/demo one, we show a warning, but DO NOT simulate success.
+            if (options.key === "rzp_live_RLjzp7VlXERwiG") {
+                 console.warn("Razorpay: Using a test key in a non-Razorpay environment. Payment flow will rely on Razorpay interaction, which may not complete in this sandbox.");
             }
 
             const rzp = new Razorpay(options);
@@ -1063,7 +1074,7 @@
             rzp.open();
         }
 
-        // Updated paymentSuccess to use the centralized currentBookingDetails
+        // Updated paymentSuccess (Unchanged)
         function paymentSuccess(paymentId) {
             clearTimers();
             paymentPopup.style.display = 'none';
@@ -1121,10 +1132,11 @@
         okayBtn.addEventListener('click', closeAllPopups);
         downloadBtn.addEventListener('click', downloadTicketDetails);
 
-        bookingForm.addEventListener('submit', function(e) {
+        // *** UPDATED SUBMIT LOGIC (Unchanged - still goes to payment step) ***
+        bookingForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            // Validation
+            // 1. Validation 
             const type = serviceTypeSelect.value;
             if (!type) { showCustomAlert("कृपया सेवा का प्रकार चुनें।"); return; }
             if (currentCalculatedPrice <= 0 && type !== 'SiteVisit') { 
@@ -1133,20 +1145,17 @@
             }
             if (bookingForm.name.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
             if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.email.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें।"); return; }
             if (bookingForm.address.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
-
-            // *** FIX IMPLEMENTED HERE: Check if advance amount is zero and stop if it's not a SiteVisit ***
             if (currentAdvanceAmount <= 0) { 
                  showCustomAlert("भुगतान की राशि शून्य है। कृपया अपनी बुकिंग विवरण जांचें।"); 
                  return;
             }
-            // *** END FIX ***
-
 
             submitMessage.classList.remove('hidden');
             bookingForm.querySelector('button[type="submit"]').disabled = true;
-            
-            // Capture the full service type text here
+
+            // 2. Prepare Booking Details
             generatedTicket = generateTicketId();
             const typeText = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].textContent;
 
@@ -1157,34 +1166,66 @@
                 advance: currentAdvanceAmount,
                 name: bookingForm.name.value,
                 phone: bookingForm.phone.value,
+                email: bookingForm.email.value, 
                 location: bookingForm.location.value,
                 address: bookingForm.address.value,
             };
-
-            // --- Submission mimic ---
             
-            setTimeout(() => {
+            // 3. Prepare Google Sheet FormData
+            const formData = new FormData();
+            formData.append('field1', currentBookingDetails.name);
+            formData.append('field2', currentBookingDetails.phone);
+            formData.append('field3', currentBookingDetails.email);
+            formData.append('field4', currentBookingDetails.serviceTypeFullText);
+            formData.append('field5', currentBookingDetails.location);
+            formData.append('field6', currentBookingDetails.address);
+            formData.append('ticket', currentBookingDetails.ticketId);
+            formData.append('tab', 'masonry-service'); // Unique tab name
+            formData.append('serviceType', SERVICE_NAME);
+            formData.append('totalCost', currentBookingDetails.totalCost); 
+            formData.append('advance', currentBookingDetails.advance); 
+            formData.append('finalPrice', currentBookingDetails.advance);
+
+            // 4. Send Data to Google Sheet (Async Fetch)
+            try {
+                const response = await fetch(GOOGLE_SHEET_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.text();
+                
+                if (result.includes("Success") || result.includes("success")) {
+                    // Data successfully logged, proceed to payment step
+
+                    const totalDue = currentBookingDetails.totalCost;
+                    const advance = currentBookingDetails.advance;
+                    const remaining = totalDue - advance;
+                    
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Service: <span class="text-primary">${currentBookingDetails.serviceTypeFullText}</span></p>
+                        <p class="text-text-light text-base mb-1">Total Estimated Cost: <span class="font-bold text-primary">₹${totalDue}</span></p>
+                        <p class="text-text-light text-base mb-3">Remaining Balance: <span class="font-bold text-secondary">₹${remaining}</span></p>
+                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Payable Now: ₹${advance}</p>
+                    `;
+                    
+                    bookingPopup.style.display = 'none';
+                    openPopup(paymentPopup);
+                    startPaymentTimer();
+
+                } else {
+                    showCustomAlert("बुकिंग सबमिशन त्रुटि: आपके विवरण भेजने में कोई समस्या आई। कृपया पुनः प्रयास करें।");
+                }
+
+            } catch (err) {
+                console.error("Submission error:", err);
+                showCustomAlert("नेटवर्क त्रुटि: डेटा सर्वर को भेजा नहीं जा सका। कृपया अपना इंटरनेट कनेक्शन जांचें।");
+            } finally {
                 submitMessage.classList.add('hidden');
                 bookingForm.querySelector('button[type="submit"]').disabled = false;
-                bookingPopup.style.display = 'none';
-
-                const totalDue = currentBookingDetails.totalCost;
-                const advance = currentBookingDetails.advance;
-                const remaining = totalDue - advance;
-                const typeText = currentBookingDetails.serviceTypeFullText;
-
-                paymentSummary.innerHTML = `
-                    <p class="text-text-subtle text-lg mb-2 font-bold">Service: <span class="text-primary">${typeText}</span></p>
-                    <p class="text-text-light text-base mb-1">Total Estimated Cost: <span class="font-bold text-primary">₹${totalDue}</span></p>
-                    <p class="text-text-light text-base mb-3">Remaining Balance: <span class="font-bold text-secondary">₹${remaining}</span></p>
-                    <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Payable Now: ₹${advance}</p>
-                `;
-                openPopup(paymentPopup);
-                startPaymentTimer();
-            }, 1000);
-            
-            // --- End Submission mimic ---
+            }
         });
+        // *** END UPDATED SUBMIT LOGIC ***
 
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
         priceListBtn.addEventListener('click', () => {
