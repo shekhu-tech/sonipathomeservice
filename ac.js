@@ -427,10 +427,10 @@ main {
 // --- II. UI Injection Function ---
 
 function injectACServiceUI() {
-    // We expect a container with ID 'app-container' in the HTML body to inject the content.
-    const container = document.getElementById('app-container'); 
+    // We expect a container with ID 'ac-container' in the HTML body to inject the content.
+    const container = document.getElementById('ac-container'); 
     if (!container) {
-        console.error('Injection Error: Main container with ID "app-container" not found.');
+        console.error('Injection Error: Main container with ID "ac-container" not found.');
         return;
     }
 
