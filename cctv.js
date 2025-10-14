@@ -1,4 +1,5 @@
 
+
 const INLINE_CSS_STYLES = `
 /* * Service Booking System - Premium Dark Theme Styles (AC Theme Base) */
 /* --- Theme Variables --- */
@@ -1002,6 +1003,30 @@ class CCTVServiceApp {
             this.priceListTableBody.insertAdjacentHTML('beforeend', row);
         });
     }
+
+    // New method to populate the Conditions popup content
+    populateConditionsDetails() {
+        const content = this.conditionsPopup.querySelector('#conditionsContent');
+        if (content) {
+            content.innerHTML = `
+                <ul class="list-disc list-inside space-y-3">
+                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Professional Technicians</li>
+                    <li>Sabhi installation aur servicing certified aur experienced technicians dwara ki jaayegi.</li>
+                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-video-camera mr-2"></i> Installation Packages</li>
+                    <li>Packages mein AHD aur IP Camera sets shamil hain (4 ya 8 cameras).</li>
+                    <li>Standard installation charges price mein shamil hain.</li>
+                    <li>On-site setup aur monitor/network storage (DVR/NVR) se connection.</li>
+                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
+                    <li>Dikhaye gaye prices <strong>complete hardware set aur standard installation</strong> ke liye hain.</li>
+                    <li>Koi bhi <strong>additional components</strong> (jaise extra cabling, special brackets) ka price on-site transparently quote kiya jaayega.</li>
+                    <li>Diagnosis/repair-only bookings ke liye initial visiting charge <strong>₹299</strong> hai (Sonipat mein distance ke hisaab se adjust ho sakta hai).</li>
+                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Warranty & Service Guarantee</li>
+                    <li>Hamare dwara khareede gaye sabhi CCTV equipment (Cameras, DVR/NVR, HDD, etc.) par <strong>ek saal ki Full Warranty</strong> hai.</li>
+                    <li>Ismein <strong>ek saal ki Muft Service</strong> (maintenance aur troubleshooting) bhi shamil hai.</li>
+                </ul>
+            `;
+        }
+    }
     
     // --- Event Listeners Initialization ---
     bindEvents() {
@@ -1093,7 +1118,8 @@ class CCTVServiceApp {
             this.openPopup(this.priceListPopup);
         });
         this.conditionsBtn.addEventListener('click', () => {
-            this.populatePackageDetails();
+            // Populate data before opening
+            this.populateConditionsDetails(); 
             this.openPopup(this.conditionsPopup);
         });
         this.closePriceListBtn.addEventListener('click', () => this.closeSpecificPopup(this.priceListPopup));
