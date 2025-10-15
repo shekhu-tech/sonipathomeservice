@@ -502,6 +502,91 @@
 </head>
 
 <body>
+
+  <style>
+        /* Import a modern font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            height: 200vh; /* Just for scrolling context */
+            background-color: #f8f9fa;
+        }
+
+        /* --- Modern Button Styles --- */
+        .floating-download-button {
+            /* Fixed position on the left edge */
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: 1000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .download-button-inner {
+            /* Dimensions to fit vertical text */
+            height: 220px;
+            width: 40px;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            /* Modern Gradient Background (Indigo/Violet) */
+            background: linear-gradient(180deg, #6366F1 0%, #8B5CF6 100%);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+
+            /* Smooth, rounded corner only on the right side */
+            border-radius: 0 12px 12px 0;
+
+            /* Ultra Pro Max Shadow */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+            /* Vertical Text Orientation */
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            
+            /* Transitions for interaction */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Optional: Add a subtle inner shadow/glow */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .download-button-inner:hover {
+            /* Hover effect: lift and darken slightly */
+            background: linear-gradient(180deg, #4F46E5 0%, #7C3AED 100%);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2), 0 6px 10px -3px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05) translateX(5px); /* Push out slightly */
+        }
+        
+        /* Ensure the link itself moves and doesn't just contain the inner div */
+        .floating-download-button:hover .download-button-inner {
+            transform: scale(1); /* Reset inner transform if link handles the move */
+        }
+
+        /* Responsive adjustment for small screens */
+        @media (max-width: 640px) {
+            .download-button-inner {
+                height: 180px;
+                width: 35px;
+                font-size: 12px;
+                border-radius: 0 8px 8px 0;
+            }
+        }
+    </style>
+
+    <!-- The button link -->
+    <a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice&pcampaignid=web_share" class="floating-download-button" role="button" aria-label="Download the Android App">
+        <div class="download-button-inner">
+            Download Android App
+        </div>
+    </a>
   <!-- Header container ko fixed-header bana diya gaya hai -->
   <div id="header-container" class="fixed-header"></div>
   
@@ -992,6 +1077,7 @@ document.querySelector('.slider-btn').addEventListener('click', function(e) {
 
 </body>
 </html>
+
 
 
 
