@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonipatHomeService.com - Halwai (Catering) Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+        :root {
+            /* Premium Dark Teal & Gold Theme (AC Colors) */
+            --bg-dark: #101827; /* Deep Space Black */
+            --bg-card: #1C2738; /* Dark Navy Card */
+            --primary: #00FFFF; /* Electric Teal Accent */
+            --secondary: #FFC72C; /* Sunset Gold Accent */
+            --text-light: #E0E7FF; /* Off-White Text */
+            --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
+            --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            /* AC Button Colors used for Popup Actions (for consistent look across popups) */
+            --ac-primary: #00FFFF; /* Electric Teal */
+            --ac-secondary: #FFC72C; /* Sunset Gold */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        /* --- Custom Components --- */
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-depth);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .stat-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .stat-card p {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .product-section {
+            background: linear-gradient(135deg, var(--bg-card), #22324C);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            border: 2px solid var(--secondary);
+        }
+
+        .product-header {
+            background: linear-gradient(90deg, #101827, #22324C);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .product-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .product-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: center; 
+            justify-content: center;
+        }
+
+        .product-details {
+            flex: 1; 
+            min-width: 300px;
+            text-align: center; 
+        }
+
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px dashed var(--text-subtle);
+            border-bottom: 1px dashed var(--text-subtle);
+            justify-content: center; 
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: var(--text-subtle);
+            font-weight: 400;
+            visibility: visible; 
+            height: auto;
+        }
+
+        .current-price {
+            font-size: 3rem; 
+            font-weight: 800; 
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 3rem; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            justify-content: center;
+            flex-grow: 1;
+            max-width: 300px;
+            min-width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg-dark);
+            border-color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: #00D5D5;
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 199, 44, 0.1);
+            transform: scale(1.03);
+        }
+
+        /* --- Popup Styling --- */
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 999;
+        }
+
+        .popup {
+            display: none;
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 95%;
+            max-width: 650px;
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            border: 1px solid var(--primary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .popup h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .popup input,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            font-size: 1rem;
+            background: #22324C;
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+        
+        .popup input:focus,
+        .popup select:focus,
+        .popup textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.2);
+        }
+
+        .popup textarea {
+            min-height: 8rem;
+            resize: vertical;
+        }
+
+        /* START: AC Button Styles Applied Here (Consistent Look) */
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn,
+        #okayBtn,
+        .popup button.close-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn { /* Primary Action Buttons (Teal Gradient) */
+            background: linear-gradient(45deg, var(--ac-primary), #00D5D5);
+            color: var(--bg-dark);
+        }
+
+        .popup button[type="submit"]:hover,
+        #razorpay-payment-btn:hover,
+        #downloadBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
+        }
+
+        #okayBtn,
+        #close-price-list-btn,
+        #close-description-btn,
+        #closeSelectionBtn,
+        #applySelectionBtn { /* Secondary/Close Buttons (Gold Accent) */
+            background: transparent;
+            color: var(--ac-secondary);
+            border: 2px solid var(--ac-secondary);
+        }
+        
+        #okayBtn:hover,
+        #close-price-list-btn:hover,
+        #close-description-btn:hover,
+        #closeSelectionBtn:hover,
+        #applySelectionBtn:hover {
+            background: rgba(255, 199, 44, 0.1);
+            transform: scale(1.01);
+        }
+        /* END: AC Button Styles Applied Here */
+        
+        .quantity-selector-container {
+            background: #22324C;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+        }
+
+        .total-price-quantity {
+            font-size: 1.8rem !important;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary) !important;
+        }
+        
+        .price-calculation-summary {
+            background: #22324C;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        .price-calculation-summary strong {
+            color: var(--primary);
+        }
+        
+        /* Custom Alert Styling */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--ac-primary); 
+            color: var(--bg-dark);
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
+            z-index: 1002;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -40%); }
+            10% { opacity: 1; transform: translate(-50%, -50%); }
+            90% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+        }
+
+        /* --- Service Selection Styling --- */
+        #serviceSelectionDisplay {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            border: 1px solid var(--primary);
+            cursor: pointer;
+        }
+        #serviceCheckboxes {
+            /* Adjusted for better categorization presentation */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .service-checkbox-label {
+             transition: background-color 0.2s;
+        }
+        .service-checkbox-label input:checked + span {
+            color: var(--primary); 
+        }
+
+        .category-group {
+            border: 1px solid var(--secondary);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .category-group h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--text-subtle);
+            padding-bottom: 0.5rem;
+        }
+
+
+        /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
+
+        @media (max-width: 1024px) {
+            .product-content { padding: 2rem; flex-direction: column; }
+            .product-details { text-align: center; }
+            .price-container, .action-buttons { justify-content: center; }
+            .btn { max-width: 400px; } 
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            main { padding: 3rem 1rem; }
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 2rem 1rem; }
+            .product-header h2 { font-size: 2rem; }
+            .product-details h3 { font-size: 2rem; }
+            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
+            .current-price { font-size: 2.5rem; }
+            .popup { padding: 1.5rem; }
+            .popup h2 { font-size: 1.5rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { min-width: 100%; max-width: 100%; }
+            .popup input, .popup select, .popup textarea {
+                padding: 0.7rem 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .current-price { font-size: 2rem; }
+            .original-price { font-size: 1rem; }
+            .stat-card p { font-size: 1.8rem; }
+            .popup { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        
+        <section class="product-section">
+            <div class="product-header">
+                <h2 class="text-white">🍽️ Halwai / Catering Service Booking 🎂</h2>
+                <p class="text-sm text-gray-400 mt-2">50 लोगों के पैक रेट पर सभी तरह के व्यंजन और मिठाईयां उपलब्ध।</p>
+            </div>
+
+            <div class="product-content">
+                
+                <div class="product-details">
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">50 लोगों के लिए फिक्स्ड रेट मेनू</h3>
+                    <p class="text-text-subtle mb-4 text-base">
+                        अपने इवेंट के लिए मेनू आइटम और 50 लोगों के पैक की संख्या चुनें।
+                        सभी दरें प्रति **50 लोगों के पैक** के लिए हैं।
+                    </p>
+                    
+                    <div class="price-container">
+                        <div class="original-price">सर्विस और लेबर चार्ज शामिल नहीं</div>
+                        <div class="current-price" id="displayPrice">Select Menu</div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="book-now-btn">
+                            <i class="fas fa-utensils"></i> बुकिंग और मेनू चुनें
+                        </button>
+                        <button id="price-list-btn" class="btn btn-secondary">
+                            <i class="fas fa-list-check"></i> फुल मेनू और रेट लिस्ट
+                        </button>
+                         <button id="description-btn" class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i> महत्वपूर्ण जानकारी
+                        </button>
+                        <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                            <i class="fas fa-home"></i> होम पेज पर वापस
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>पैक साइज़</h3>
+                <p>50 लोग</p>
+            </div>
+            <div class="stat-card">
+                <h3>न्यूनतम मूल्य</h3>
+                <p>₹499</p>
+            </div>
+            <div class="stat-card">
+                <h3>किस्में</h3>
+                <p>35+</p>
+            </div>
+            <div class="stat-card">
+                <h3>सर्विस</h3>
+                <p>उपलब्ध</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="popup-overlay"></div>
+    
+    <!-- Booking Form Popup (Step 1) -->
+    <div id="booking-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">हलवाई सर्विस बुकिंग (प्रति 50 लोग)</h2>
+        <form id="booking-form">
+            <div class="quantity-selector-container my-4">
+                <label>1. मेनू आइटम चुनें:</label>
+                <div id="serviceSelectionDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openServiceSelectionPopup()">मेनू आइटम चुनने के लिए क्लिक करें</div>
+                
+                <label for="quantitySelect" class="mt-4">2. 50 लोगों के पैक की संख्या (कुल लोग):</label>
+                <!-- field8: Quantity (Represents number of 50-people packs) -->
+                <select id="quantitySelect" name="field8" required>
+                    <option value="1">1 पैक (50 लोग)</option>
+                    <option value="2">2 पैक (100 लोग)</option>
+                    <option value="3">3 पैक (150 लोग)</option>
+                    <option value="4">4 पैक (200 लोग)</option>
+                    <option value="5">5+ पैक (Contact for Custom Quote)</option>
+                </select>
+                
+                <div id="priceCalculationSummary" class="price-calculation-summary">
+                    **चयनित मेनू मूल्य (1 पैक):** ₹0 <br>
+                    **कुल पैक:** 1 <br>
+                    <strong class="text-xl text-secondary">कुल Payable (सामान मूल्य): ₹0</strong>
+                </div>
+            </div>
+            
+            <label for="name">पूरा नाम (min 10 characters)</label>
+            <input type="text" id="name" name="field1" placeholder="John Doe" autocomplete="name" minlength="10" required>
+
+            <label for="phone">फ़ोन नंबर (10 digits)</label>
+            <input type="tel" id="phone" name="field2" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+            
+            <label for="email">ईमेल ID</label>
+            <input type="email" id="email" name="field3" placeholder="email@example.com" autocomplete="email" required>
+
+            <label for="location">लोकेशन (जैसे Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" placeholder="Sonipat" autocomplete="address-level2" required>
+            
+            <label for="address">पूरा पता (min 30 characters)</label>
+            <textarea id="address" name="field6" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
+            
+            <div class="quantity-selector my-4">
+                <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
+                    <span>आज देय राशि (Advance)</span>
+                    <span id="calculated-price" class="total-price-quantity text-lg">Advance: ₹1,000</span>
+                </div>
+            </div>
+
+            <!-- Hidden fields for sheet submission -->
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="serviceDetails" id="serviceDetailsInput" /> <!-- field4 -->
+            <input type="hidden" name="basePrice" id="basePriceInput" />
+            <input type="hidden" name="totalCost" id="totalCostInput" />
+            <input type="hidden" name="advanceAmount" id="advanceAmountInput" value="1000" />
+
+            <button type="submit">Submit Details & Proceed to Pay Advance</button>
+            <p id="submit-message" class="text-center text-sm text-primary mt-2 hidden">Submitting...</p>
+        </form>
+    </div>
+
+    <!-- Service Selection Popup -->
+    <div id="selection-popup" class="popup" style="display: none;">
+        <h3 class="text-xl font-bold text-center mb-4 text-primary">मेनू आइटम चुनें (50 लोगों के लिए)</h3>
+        <p class="text-xs text-text-subtle text-center mb-4">आप वेजिटेबल, स्वीट्स, चापटी, और स्टॉल से आइटम चुन सकते हैं।</p>
+        <div id="serviceCheckboxes" class="max-h-[60vh] overflow-y-auto pr-3">
+            <!-- Checkboxes will be dynamically inserted here -->
+        </div>
+        <button type="button" class="btn btn-primary mt-4 py-3" id="applySelectionBtn">Selection Apply करें</button>
+        <button type="button" class="btn btn-secondary mt-2 py-3" id="closeSelectionBtn">Cancel</button>
+    </div>
+
+    <!-- Payment Popup (Step 2) -->
+    <div id="payment-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">एडवांस भुगतान</h2>
+        <p class="text-text-subtle text-center mb-6">कृपया बुकिंग की पुष्टि के लिए ₹1,000 का एडवांस भुगतान करें।</p>
+        <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
+        <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay Advance with Razorpay</button>
+        <p class="mt-4 text-xs text-text-subtle text-center">
+            नोट: एडवांस राशि कुल बिल में समायोजित हो जाएगी।
+        </p>
+    </div>
+
+    <!-- Confirmation Popup (Step 3) -->
+    <div id="confirmation-popup" class="popup">
+        <h2 id="welcome-message" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">आपकी Halwai सर्विस (Catering) बुकिंग हो गई है! हमारी टीम जल्द ही संपर्क करेगी।</p>
+        <div id="ticket-info" class="space-y-2">
+            <!-- Details will be injected here -->
+        </div>
+        <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Booking Details Download करें</button>
+        <p class="mt-4 text-sm text-text-subtle text-center">📸 कृपया रिकॉर्ड के लिए स्क्रीनशॉट लें।</p>
+        <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
+    </div>
+
+    <!-- Price List Popup -->
+    <div id="price-list-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">हलवाई फुल मेनू और रेट लिस्ट (प्रति 50 लोग)</h2>
+        <div class="overflow-y-auto max-h-[70vh] pr-3">
+            <table class="min-w-full bg-bg-dark rounded-lg border border-primary mt-4">
+                <thead>
+                    <tr class="text-left text-secondary">
+                        <th class="py-3 px-4 border-b border-text-subtle">किस्म (Category)</th>
+                        <th class="py-3 px-4 border-b border-text-subtle">आइटम का नाम</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">रेट (₹)</th>
+                    </tr>
+                </thead>
+                <tbody id="priceListTableBody">
+                    <!-- Data will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+        <button id="close-price-list-btn" class="btn btn-secondary close-btn mt-4">Close Details</button>
+    </div>
+
+    <!-- Terms & Conditions Popup -->
+    <div id="description-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">महत्वपूर्ण जानकारी (Halwai Service)</h2>
+        <div class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
+            <ul class="list-disc list-inside space-y-3">
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> यह केवल **सामान (Material)** का मूल्य है।</li>
+                <li>दिए गए सभी रेट **प्रति 50 लोगों के पैक** के लिए केवल **सामान** का मूल्य दर्शाते हैं।</li>
+                
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-drumstick-bite mr-2"></i> लेबर (बनाने) का शुल्क</li>
+                <li>खाना बनाने, सर्व करने, और ट्रांसपोर्ट का **लेबर चार्ज अलग से** आपकी आवश्यकतानुसार तय किया जाएगा। यह ₹1,000 एडवांस पेमेंट में शामिल नहीं है।</li>
+                
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-hand-holding-usd mr-2"></i> एडवांस पेमेंट</li>
+                <li>बुकिंग की पुष्टि के लिए **₹1,000 का एडवांस** लेना अनिवार्य है, जो कुल बिल में समायोजित हो जाएगा।</li>
+            </ul>
+        </div>
+        <button id="close-description-btn" class="close-btn mt-4">मैंने समझ लिया</button>
+    </div>
+    
+    <script>
+        // --- Service Data (Based on user provided image) ---
+        const halwaiServiceData = [
+            // Vegetable Category
+            { "Category": "Chaat (नि:शुल्क)", "Price": 0, "Group": "Vegetable" },
+            { "Category": "Matar Paneer", "Price": 999, "Group": "Vegetable" },
+            { "Category": "Chhole", "Price": 999, "Group": "Vegetable" },
+            { "Category": "Daal", "Price": 999, "Group": "Vegetable" },
+            { "Category": "Kadhi", "Price": 999, "Group": "Vegetable" },
+            { "Category": "Mix Sabzi", "Price": 999, "Group": "Vegetable" },
+            { "Category": "Palak Paneer", "Price": 999, "Group": "Vegetable" },
+            { "Category": "Peda Sabzi", "Price": 999, "Group": "Vegetable" },
+            { "Category": "Rayata", "Price": 499, "Group": "Vegetable" },
+
+            // Chapati Category
+            { "Category": "Salad (नि:शुल्क)", "Price": 0, "Group": "Chapati" },
+            { "Category": "Shahi Paneer", "Price": 999, "Group": "Chapati" },
+            { "Category": "Chaap Sabzi", "Price": 999, "Group": "Chapati" },
+            { "Category": "Pakoda", "Price": 1799, "Group": "Chapati" },
+            { "Category": "Aloo Sabzi", "Price": 999, "Group": "Chapati" },
+            { "Category": "Chawal", "Price": 499, "Group": "Chapati" },
+            { "Category": "Puri / Roti (रोटी)", "Price": 1499, "Group": "Chapati" },
+            { "Category": "Kachchi / Tawa Roti", "Price": 1599, "Group": "Chapati" },
+            { "Category": "Tandoori Roti", "Price": 1799, "Group": "Chapati" },
+
+            // Sweets Category
+            { "Category": "Gajar Halwa / Laddu (25 KG Chini)", "Price": 1999, "Group": "Sweets" },
+            { "Category": "Suji Halwa", "Price": 999, "Group": "Sweets" },
+            { "Category": "Jalebi", "Price": 999, "Group": "Sweets" },
+            { "Category": "Rasgulla", "Price": 1799, "Group": "Sweets" },
+            { "Category": "Gulab Jamun", "Price": 1799, "Group": "Sweets" },
+            { "Category": "Moong Halwa", "Price": 999, "Group": "Sweets" },
+            { "Category": "Rasmalai", "Price": 1999, "Group": "Sweets" },
+            { "Category": "Rabdi Jalebi", "Price": 1599, "Group": "Sweets" },
+
+            // Stall Category
+            { "Category": "Gol Gappe", "Price": 1799, "Group": "Stall" },
+            { "Category": "Tikki", "Price": 1799, "Group": "Stall" },
+            { "Category": "Chilla", "Price": 1799, "Group": "Stall" },
+            { "Category": "Chaumin", "Price": 1799, "Group": "Stall" },
+            { "Category": "Paav Bhaji", "Price": 1799, "Group": "Stall" },
+            { "Category": "Dahi Bhalle", "Price": 1799, "Group": "Stall" },
+            { "Category": "Fruit Chaat", "Price": 1799, "Group": "Stall" },
+            { "Category": "Coffee", "Price": 999, "Group": "Stall" },
+            { "Category": "Ice Cream (4 Can)", "Price": 2499, "Group": "Stall" }
+        ];
+
+        // --- Google Sheet Constants (Same link as AC Service File) ---
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+        
+        // --- Generic constants ---
+        const SERVICE_NAME = "Halwai Service (Catering)";
+        const SERVICE_TAB_ID = "halwai-service"; 
+        const LOCAL_STORAGE_KEY = 'halwaiBookingFormData';
+        const RAZORPAY_IMAGE_TEXT = "HALWAI";
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+        const ADVANCE_AMOUNT = 1000; // Fixed Advance amount
+
+        // --- DOM Element Selection ---
+        const bookNowBtn = document.getElementById('book-now-btn');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const allPopups = document.querySelectorAll('.popup');
+        const bookingPopup = document.getElementById('booking-popup');
+        const paymentPopup = document.getElementById('payment-popup');
+        const confirmationPopup = document.getElementById('confirmation-popup');
+        const bookingForm = document.getElementById('booking-form');
+        const quantitySelect = document.getElementById('quantitySelect');
+        const calculatedPriceDisplay = document.getElementById('calculated-price');
+        const displayPrice = document.getElementById('displayPrice');
+        const submitMessage = document.getElementById('submit-message');
+        const paymentSummary = document.getElementById('payment-summary');
+        const timerDisplay = document.getElementById('timer-display');
+        const razorpayBtn = document.getElementById('razorpay-payment-btn');
+        const ticketInfo = document.getElementById('ticket-info');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const okayBtn = document.getElementById('okayBtn');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const priceListBtn = document.getElementById('price-list-btn');
+        const descriptionBtn = document.getElementById('description-btn');
+        const priceListPopup = document.getElementById('price-list-popup');
+        const descriptionPopup = document.getElementById('description-popup');
+        const closePriceListBtn = document.getElementById('close-price-list-btn');
+        const closeDescriptionBtn = document.getElementById('close-description-btn');
+        const priceCalculationSummary = document.getElementById('priceCalculationSummary');
+        
+        // Service Selection Specific elements
+        const serviceSelectionDisplay = document.getElementById('serviceSelectionDisplay');
+        const selectionPopup = document.getElementById('selection-popup');
+        const serviceCheckboxesContainer = document.getElementById('serviceCheckboxes');
+        const applySelectionBtn = document.getElementById('applySelectionBtn');
+        const closeSelectionBtn = document.getElementById('closeSelectionBtn');
+        const priceListTableBody = document.getElementById('priceListTableBody');
+
+        // Hidden input fields
+        const serviceDetailsInput = document.getElementById('serviceDetailsInput');
+        const basePriceInput = document.getElementById('basePriceInput');
+        const totalCostInput = document.getElementById('totalCostInput');
+
+
+        // --- State variables ---
+        let currentMenuPricePerPack = 0; // Price of selected menu items (1 pack of 50)
+        let selectedQuantity = 1;
+        let generatedTicket = '';
+        let allowClose = false;
+
+        // --- Local Storage Functions for Autofill ---
+        function saveFormData() {
+            const formData = {
+                fullName: bookingForm.field1.value,
+                phone: bookingForm.field2.value,
+                email: bookingForm.field3.value,
+                location: bookingForm.field5.value,
+                address: bookingForm.field6.value,
+                quantity: quantitySelect.value
+            };
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+            } catch (e) {
+                console.warn("Local storage saving failed:", e);
+            }
+        }
+
+        function loadFormData() {
+            try {
+                const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    bookingForm.field1.value = data.fullName || '';
+                    bookingForm.field2.value = data.phone || '';
+                    bookingForm.field3.value = data.email || '';
+                    bookingForm.field5.value = data.location || '';
+                    bookingForm.field6.value = data.address || '';
+                    if (data.quantity) quantitySelect.value = data.quantity;
+                }
+            } catch (e) {
+                console.warn("Local storage loading failed:", e);
+            }
+        }
+
+        // --- Core Functions ---
+        
+        function populateServiceCheckboxes() {
+            serviceCheckboxesContainer.innerHTML = '';
+            
+            const groupedData = halwaiServiceData.reduce((acc, item) => {
+                (acc[item.Group] = acc[item.Group] || []).push(item);
+                return acc;
+            }, {});
+
+            for (const group in groupedData) {
+                let groupHtml = `<div class="category-group"><h4>${group}</h4><div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">`;
+                groupedData[group].forEach(service => {
+                    groupHtml += `
+                        <label class="service-checkbox-label inline-flex items-center text-text-light p-2 bg-bg-dark rounded-md border border-primary hover:bg-bg-card transition duration-200 cursor-pointer">
+                            <input type="checkbox" name="halwaiMenuItem" value="${service.Category}" data-price="${service.Price}" 
+                                   class="form-checkbox h-5 w-5 text-secondary rounded focus:ring-secondary checked:bg-secondary">
+                            <span class="ml-2 text-sm">${service.Category} (<span class="text-secondary">₹${service.Price}</span>)</span>
+                        </label>
+                    `;
+                });
+                groupHtml += `</div></div>`;
+                serviceCheckboxesContainer.insertAdjacentHTML('beforeend', groupHtml);
+            }
+            
+            serviceCheckboxesContainer.querySelectorAll('input[name="halwaiMenuItem"]').forEach(checkbox => {
+                checkbox.addEventListener('change', updatePrices);
+            });
+        }
+        
+        function populatePriceList() {
+            priceListTableBody.innerHTML = '';
+            
+            halwaiServiceData.forEach(service => {
+                const row = `
+                    <tr class="text-text-light hover:bg-bg-dark">
+                        <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">${service.Group}</td>
+                        <td class="py-3 px-4 border-b border-gray-700">${service.Category}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.Price.toLocaleString('en-IN')}</td>
+                    </tr>
+                `;
+                priceListTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        function updatePrices() {
+            const selectedItems = Array.from(serviceCheckboxesContainer.querySelectorAll('input[name="halwaiMenuItem"]:checked'));
+            
+            // 1. Calculate base price (per 50-person pack)
+            currentMenuPricePerPack = selectedItems.reduce((total, item) => total + parseFloat(item.dataset.price), 0);
+            selectedQuantity = parseInt(quantitySelect.value) || 1;
+
+            // 2. Calculate total material cost
+            const totalFinalPrice = currentMenuPricePerPack * selectedQuantity;
+            
+            const itemNames = selectedItems.map(s => s.value).join(', ');
+            
+            // Update UI elements
+            if (selectedItems.length > 0) {
+                serviceSelectionDisplay.textContent = `${selectedItems.length} Item(s) Selected: ${itemNames.substring(0, 50)}...`;
+                displayPrice.textContent = `₹${currentMenuPricePerPack.toLocaleString('en-IN')} / Pack`;
+            } else {
+                serviceSelectionDisplay.textContent = 'मेनू आइटम चुनने के लिए क्लिक करें';
+                displayPrice.textContent = 'Select Menu';
+            }
+            
+            calculatedPriceDisplay.textContent = `Advance: ₹${ADVANCE_AMOUNT.toLocaleString('en-IN')} (Total: ₹${totalFinalPrice.toLocaleString('en-IN')})`;
+            
+            priceCalculationSummary.innerHTML = `
+                **1 पैक का मेनू मूल्य:** ₹${currentMenuPricePerPack.toLocaleString('en-IN')} <br>
+                **कुल पैक:** ${selectedQuantity} <br>
+                <strong class="text-xl text-secondary">कुल Payable (सामान मूल्य): ₹${totalFinalPrice.toLocaleString('en-IN')}</strong>
+            `;
+
+            // Update hidden form fields for submission
+            serviceDetailsInput.value = itemNames;
+            basePriceInput.value = currentMenuPricePerPack;
+            totalCostInput.value = totalFinalPrice;
+        }
+
+        function generateTicketId() {
+            return 'HALWAI-XXXXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
+        }
+
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert'; 
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => alertBox.remove(), 4000); 
+        }
+
+        function closeAllPopups() {
+            if (!allowClose) {
+                if (bookingPopup.style.display !== 'block') {
+                    showCustomAlert("कृपया बुकिंग प्रक्रिया पूरी करने के बाद ही बंद करें।");
+                    return;
+                }
+            }
+            clearTimers();
+            popupOverlay.style.display = 'none';
+            allPopups.forEach(p => p.style.display = 'none');
+            document.body.style.overflow = 'auto';
+            bookingForm.reset();
+            quantitySelect.value = 1;
+            serviceSelectionDisplay.textContent = 'मेनू आइटम चुनने के लिए क्लिक करें';
+            updatePrices(); 
+            allowClose = false;
+        }
+
+        function openPopup(popupElement) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            
+            [bookingPopup, paymentPopup, confirmationPopup, priceListPopup, descriptionPopup].forEach(p => p.style.display = 'none');
+            
+            popupElement.style.display = 'block';
+            allowClose = (popupElement === bookingPopup || popupElement === confirmationPopup);
+        }
+
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        function openServiceSelectionPopup() {
+            populateServiceCheckboxes();
+            selectionPopup.style.display = 'block';
+            popupOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function applySelectedServices() {
+            updatePrices();
+            closeSpecificPopup(selectionPopup);
+        }
+
+        function downloadTicketDetails() {
+            const name = bookingForm.field1.value;
+            const phone = bookingForm.field2.value;
+            const location = bookingForm.field5.value;
+            const selectedMenu = serviceDetailsInput.value;
+            const totalCost = totalCostInput.value;
+            const remainingBalance = totalCost - ADVANCE_AMOUNT;
+
+            const content = `${SERVICE_NAME} Booking Details\n\n` +
+                            `Booking ID: ${generatedTicket}\n` +
+                            `Selected Menu Items: ${selectedMenu}\n` +
+                            `Packs (50 people): ${selectedQuantity}\n` +
+                            `Total Material Cost: ₹${totalCost}\n` +
+                            `Advance Paid: ₹${ADVANCE_AMOUNT}\n` +
+                            `Remaining Balance: ₹${remainingBalance}\n` +
+                            `Name: ${name}\n` +
+                            `Phone: ${phone}\n` +
+                            `Location: ${location}\n\n` +
+                            `--- NOTE ---\n` +
+                            `The paid amount is only the advance for materials. Labor and service charges will be quoted separately.`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `halwai-service-booking-${generatedTicket}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function clearTimers() {
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        function startPaymentTimer() {
+            let timeLeft = PAYMENT_TIME_LIMIT;
+            const updateDisplay = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            updateDisplay();
+
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    showCustomAlert("Payment time expired. Please try again.");
+                    allowClose = true;
+                    closeAllPopups();
+                }
+            }, 1000);
+        }
+
+        function handleRazorpayPayment() {
+            if (currentMenuPricePerPack <= 0) {
+                 showCustomAlert("कृपया मेनू आइटम चुनें।");
+                 return;
+            }
+            
+            const selectedMenu = serviceDetailsInput.value;
+
+            const options = {
+                "key": "rzp_live_opiqkRmGpjG1hF",
+                "amount": ADVANCE_AMOUNT * 100, // Fixed Advance
+                "currency": "INR",
+                "name": `SonipatHomeService - ${SERVICE_NAME} Advance`,
+                "description": `Advance Payment for Menu Items (ID: ${generatedTicket})`,
+                "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`,
+                "handler": function (response){
+                    paymentSuccess(response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": bookingForm.field1.value,
+                    "phone": bookingForm.field2.value,
+                    "email": bookingForm.field3.value
+                },
+                "notes": {
+                    "address": `${bookingForm.field5.value}, ${bookingForm.field6.value}`,
+                    "menu_details": selectedMenu,
+                    "total_material_cost": totalCostInput.value,
+                    "booking_ref": generatedTicket
+                },
+                "theme": { "color": "#00FFFF" }, // AC Teal
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
+        }
+
+        function paymentSuccess(paymentId) {
+            clearTimers();
+            paymentPopup.style.display = 'none';
+            openPopup(confirmationPopup);
+
+            saveFormData();
+            
+            const name = bookingForm.field1.value.split(' ')[0];
+            const selectedMenu = serviceDetailsInput.value;
+            const totalCost = parseFloat(totalCostInput.value);
+            const remainingBalance = totalCost - ADVANCE_AMOUNT;
+
+            welcomeMessage.textContent = `🎉 Booking Confirmed, ${name}! 🎉`;
+            
+            ticketInfo.innerHTML = `
+                <p><strong>Booking ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p><strong>Selected Menu:</strong> <span class="font-bold text-text-light">${selectedMenu.substring(0, 50)}...</span></p>
+                <p><strong>Total Material Cost:</strong> <span class="font-bold text-text-light">₹${totalCost.toLocaleString('en-IN')}</span></p>
+                <p class="text-secondary text-lg font-bold mt-3">Advance Paid: ₹${ADVANCE_AMOUNT.toLocaleString('en-IN')}</p>
+                <p class="text-primary text-sm font-bold mt-1">बाकी राशि: ₹${remainingBalance.toLocaleString('en-IN')} (लेबर और सर्विस चार्ज अलग से)</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
+            `;
+            allowClose = true;
+        }
+        
+        // --- Event Listeners Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFormData();
+            populateServiceCheckboxes();
+            populatePriceList();
+            updatePrices(); 
+            
+            quantitySelect.addEventListener('change', updatePrices);
+        });
+
+        bookNowBtn.addEventListener('click', () => {
+            updatePrices();
+            loadFormData();
+            openPopup(bookingPopup);
+        });
+        
+        // Multi-select listeners
+        serviceSelectionDisplay.addEventListener('click', openServiceSelectionPopup);
+        applySelectionBtn.addEventListener('click', applySelectedServices);
+        closeSelectionBtn.addEventListener('click', () => closeSpecificPopup(selectionPopup));
+        
+        // Popup Overlay and Button Listeners
+        popupOverlay.addEventListener('click', e => {
+            if (e.target === popupOverlay) {
+                if (selectionPopup.style.display === 'block') closeSpecificPopup(selectionPopup);
+                else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
+                else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
+                else if (paymentPopup.style.display === 'block') showCustomAlert("कृपया भुगतान प्रक्रिया पूरी करने के बाद ही बंद करें।");
+                else if (bookingPopup.style.display === 'block') closeAllPopups();
+            }
+        });
+        
+        okayBtn.addEventListener('click', closeAllPopups);
+        downloadBtn.addEventListener('click', downloadTicketDetails);
+
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validation 
+            if (serviceDetailsInput.value.trim() === '') { showCustomAlert("कृपया मेनू आइटम चुनें।"); return; }
+            if (parseFloat(totalCostInput.value) <= 0) { showCustomAlert("चयनित मेनू का मूल्य ₹0 है। कृपया मेनू जांचें।"); return; }
+            if (bookingForm.field1.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
+            if (!/^\d{10}$/.test(bookingForm.field2.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.field3.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें।"); return; }
+            if (bookingForm.field6.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
+
+
+            submitMessage.classList.remove('hidden');
+            bookingForm.querySelector('button[type="submit"]').disabled = true;
+            
+            // --- GENERATE TICKET & PRE-PAYMENT SUBMISSION ---
+            generatedTicket = generatedTicket || generateTicketId(); 
+            
+            const totalCost = parseFloat(totalCostInput.value);
+            
+            // Form data mapping to Google Sheet columns
+            const formData = new FormData();
+            formData.append('field1', bookingForm.field1.value); // Full Name
+            formData.append('field2', bookingForm.field2.value); // Phone
+            formData.append('field3', bookingForm.field3.value); // Email
+            formData.append('field4', serviceDetailsInput.value); // Menu Details
+            formData.append('field5', bookingForm.field5.value); // Location
+            formData.append('field6', bookingForm.field6.value); // Address
+            
+            // Custom Fields
+            formData.append('serviceType', 'Halwai Service'); 
+            formData.append('basePrice', basePriceInput.value);
+            formData.append('ticketQuantity', selectedQuantity); 
+            formData.append('totalCost', totalCost);         
+            formData.append('advancePaid', ADVANCE_AMOUNT);
+            formData.append('ticket', generatedTicket);
+            formData.append('tab', SERVICE_TAB_ID); // halwai-service
+
+
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success") || !res.includes("Error")) {
+                    console.log("Booking data successfully logged to Google Sheet (Pre-Payment).");
+
+                    // Proceed to payment popup
+                    bookingPopup.style.display = 'none';
+                    const remaining = totalCost - ADVANCE_AMOUNT;
+
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Total Material Cost: <span class="text-primary">₹${totalCost.toLocaleString('en-IN')}</span></p>
+                        <p class="text-text-light text-base mb-1">Remaining Material Cost: <span class="font-bold text-secondary">₹${remaining.toLocaleString('en-IN')}</span></p>
+                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Advance Payable Now: ₹${ADVANCE_AMOUNT.toLocaleString('en-IN')}</p>
+                        <p class="text-gray-400 text-sm mt-2">लेबर/सर्विस चार्ज अलग से कोट किया जाएगा।</p>
+                    `;
+                    openPopup(paymentPopup);
+                    startPaymentTimer();
+                } else {
+                    console.error("Failed to log data to Google Sheet:", res);
+                    showCustomAlert("Booking Error: Data submission failed. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Google Sheet API Error:", err);
+                showCustomAlert("Network Error: Could not submit booking. Please check your connection.");
+            })
+            .finally(() => {
+                submitMessage.classList.add('hidden');
+                bookingForm.querySelector('button[type="submit"]').disabled = false;
+            });
+        });
+
+        razorpayBtn.addEventListener('click', handleRazorpayPayment);
+        priceListBtn.addEventListener('click', () => {
+            populatePriceList();
+            openPopup(priceListPopup); 
+        });
+        descriptionBtn.addEventListener('click', () => {
+            openPopup(descriptionPopup); 
+        });
+        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
+        closeDescriptionBtn.addEventListener('click', () => closeSpecificPopup(descriptionPopup));
+    </script>
+</body>
+</html>
