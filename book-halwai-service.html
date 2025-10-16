@@ -205,7 +205,7 @@
 
         .btn-secondary:hover {
             background: rgba(255, 199, 44, 0.1);
-            transform: scale(1.03);
+            transform: scale(1.01);
         }
 
         /* --- Popup Styling --- */
@@ -591,7 +591,7 @@
     <!-- Service Selection Popup -->
     <div id="selection-popup" class="popup" style="display: none;">
         <h3 class="text-xl font-bold text-center mb-4 text-primary">मेनू आइटम चुनें (50 लोगों के लिए)</h3>
-        <p class="text-xs text-text-subtle text-center mb-4">आप वेजिटेबल, स्वीट्स, चापटी, और स्टॉल से आइटम चुन सकते हैं।</p>
+        <p class="text-xs text-text-subtle text-center mb-4">कृपया कम से कम 5 आइटम चुनें। कस्टम ऑर्डर के लिए **88160-14071** पर कॉल करें।</p>
         <div id="serviceCheckboxes" class="max-h-[60vh] overflow-y-auto pr-3">
             <!-- Checkboxes will be dynamically inserted here -->
         </div>
@@ -764,6 +764,7 @@
         let currentMenuPricePerPack = 0; // Price of selected menu items (1 pack of 50)
         let selectedQuantity = 1;
         let generatedTicket = '';
+        let countdownInterval = null; // FIX: Added declaration for countdown timer
         let allowClose = false;
 
         // --- Local Storage Functions for Autofill ---
@@ -1102,10 +1103,20 @@
         bookingForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
+            const selectedItems = Array.from(serviceCheckboxesContainer.querySelectorAll('input[name="halwaiMenuItem"]:checked'));
+            
+            // --- NEW VALIDATION: Minimum 5 items ---
+            if (selectedItems.length < 5) {
+                showCustomAlert("⚠️ कृपया कम से कम 5 मेनू आइटम चुनें। कस्टम ऑर्डर के लिए **88160-14071** पर कॉल करें।");
+                bookingForm.querySelector('button[type="submit"]').disabled = false;
+                return;
+            }
+            // --- END NEW VALIDATION ---
+
             // Validation 
             if (serviceDetailsInput.value.trim() === '') { showCustomAlert("कृपया मेनू आइटम चुनें।"); return; }
             if (parseFloat(totalCostInput.value) <= 0) { showCustomAlert("चयनित मेनू का मूल्य ₹0 है। कृपया मेनू जांचें।"); return; }
-            if (bookingForm.field1.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
+            if (bookingForm.field1.value.trim().length < 10) { showCustomAlert(" कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
             if (!/^\d{10}$/.test(bookingForm.field2.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.field3.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें।"); return; }
             if (bookingForm.field6.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
