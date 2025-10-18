@@ -450,34 +450,36 @@ function injectCCTVServiceUI() {
             <section class="product-section">
                 <div class="product-header">
                     <h2 class="text-white">Professional CCTV Service</h2>
-                    <p class="text-sm text-gray-400 mt-2">Apni property ki safety aur security pakki karein - Installation aur Repair services.</p>
+                    <p class="text-sm text-gray-400 mt-2">Ensure the Security of Your Property- Installation aur Repair services.</p>
                 </div>
 
                 <div class="product-content">
                     
                     <div class="product-details">
                         <h3 class="text-3xl font-semibold text-text-light mb-4">CCTV Camera Installation & Servicing Packages</h3>
-                        <p class="text-text-subtle mb-4 text-base">
-                            Hamare professional AHD ya IP camera sets se chunein. Certified technicians guaranteed seamless installation aur ek saal ki free service/warranty dete hain.
-                        </p>
-                        
+                        <p class="text-text-subtle mb-4 text-base"> AHD/IP Camera </p>
+                        <p class="text-text-subtle mb-4 text-base"> Set 4/8 </p>
+                        <p class="text-text-subtle mb-4 text-base"> Harddisk </p>
+                        <p class="text-text-subtle mb-4 text-base"> Wire & Installation </p>
+                        <p class="text-text-subtle mb-4 text-base"> 1 Year Warranty </p>
+                        <p class="text-text-subtle mb-4 text-base"> 2 Service Free </p>
                         <div class="price-container">
-                            <div class="original-price">Camera Set ke hisaab se price</div>
-                            <div class="current-price" id="displayPriceCCTV">Service Chunein</div>
+                            <div class="original-price">Avoid Local Product</div>
+                            <div class="current-price" id="displayPriceCCTV">Choose Services</div>
                         </div>
                         
                         <div class="action-buttons">
                             <button class="btn btn-primary" id="book-now-btn">
-                                <i class="fas fa-video"></i> Abhi Service Book Karein 
+                                <i class="fas fa-video"></i> Book Now 
                             </button>
                             <button id="price-list-btn-cctv" class="btn btn-secondary">
-                                <i class="fas fa-tags"></i> Transparent Rate List
+                                <i class="fas fa-tags"></i> Transparent Rates 
                             </button>
                              <button id="conditions-btn-cctv" class="btn btn-secondary">
                                 <i class="fas fa-file-contract"></i> Warranty & Services
                             </button>
                             <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
-                                <i class="fas fa-home"></i> Home Page Par Jaayen
+                                <i class="fas fa-home"></i> Go to Home
                             </button>
                         </div>
                     </div>
@@ -511,21 +513,21 @@ function injectCCTVServiceUI() {
             <h2 class="text-2xl font-bold text-center">CCTV Service Booking Form</h2>
             <form id="booking-form-cctv">
                 <div class="quantity-selector-container my-4">
-                    <label>CCTV Service Package(s) Chunein:</label>
+                    <label>Choose CCTV Package:</label>
                     <div id="selectedServiceCategoriesDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="window.cctvServiceApp.openServiceCategorySelectionPopup()">Package(s) chunein</div>
                     
-                    <label for="quantity">Packages Ki Sankhya (Max 5):</label>
+                    <label for="quantity">Choose Package (Max 5):</label>
                     <select id="quantity" name="quantity" required class="bg-bg-dark border-primary">
                         <!-- Options will be populated by JS -->
                     </select>
 
                     <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
-                        <span>Quantity ke hisaab se total price</span>
+                        <span>total price As per Package</span>
                         <span id="calculated-price-cctv" class="total-price-quantity text-lg">Total: ₹0</span>
                     </div>
                 </div>
                 
-                <label for="name">Poora Naam (kam se kam 10 characters)</label>
+                <label for="name">Full Name (Minimum 10 characters)</label>
                 <input type="text" id="name" name="name" required placeholder="John Doe" autocomplete="name" minlength="10" />
                 
                 <label for="phone">Phone Number (10 digits)</label>
@@ -534,22 +536,22 @@ function injectCCTVServiceUI() {
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" required placeholder="john.doe@example.com" autocomplete="email" />
                 
-                <label for="location">Aapki Location (jaise Sonipat, Delhi)</label>
+                <label for="location">Landmark (Eg.Bus Stand, Baba Dham Mandir)</label>
                 <input type="text" id="location" name="location" required placeholder="Sonipat" autocomplete="address-level2" />
                 
-                <label for="address">Poora Address (kam se kam 30 characters)</label>
-                <textarea id="address" name="address" required placeholder="Makaan Number, Gali, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
+                <label for="address">Full Address (Minimum 30 characters)</label>
+                <textarea id="address" name="address" required placeholder="House No, Gali, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
 
                 <input type="hidden" name="finalPrice" id="finalPriceCCTV" />
                 
-                <button type="submit">Details Submit Karein & Payment Karein</button>
+                <button type="submit">Submit & Make Payment </button>
                 <p id="submit-message-cctv" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submit Ho Raha Hai... Kripya intezaar karein</p>
             </form>
         </div>
         
         <!-- Inner Popup for Service Selection -->
         <div id="serviceCategorySelectionPopup" class="popup" style="display: none;">
-            <h3 class="text-xl font-bold text-center mb-4 text-primary">CCTV Packages Chunein</h3>
+            <h3 class="text-xl font-bold text-center mb-4 text-primary">Choose CCTV Package</h3>
             <div id="serviceCategoryCheckboxes" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto p-2">
                 <!-- Checkboxes will be populated here by JS -->
             </div>
@@ -610,21 +612,25 @@ function injectCCTVServiceUI() {
             <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
                 <ul class="list-disc list-inside space-y-3">
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Professional Technicians</li>
-                    <li>Sabhi installation aur servicing certified aur experienced technicians dwara ki jaayegi.</li>
+                    <li>Certified Product.</li>
+                    <li>Expert Engineer.</li>
+                    
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-video-camera mr-2"></i> Installation Packages</li>
-                    <li>Packages mein AHD aur IP Camera sets shamil hain (4 ya 8 cameras).</li>
-                    <li>Standard installation charges price mein shamil hain.</li>
-                    <li>On-site setup aur monitor/network storage (DVR/NVR) se connection.</li>
+                    <li>4 Camera / 8 Camera pack</li>
+                    <li>Installation</li>
+                    <li>Wiring & Setup with DVR/NVR</li>                    
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
-                    <li>Dikhaye gaye prices **complete hardware set aur standard installation** ke liye hain.</li>
-                    <li>Koi bhi **additional components** (jaise extra cabling, special brackets) ka price on-site transparently quote kiya jaayega.</li>
-                    <li>Diagnosis/repair-only bookings ke liye initial visiting charge **₹299** hai (Sonipat mein distance ke hisaab se adjust ho sakta hai).</li>
+                    <li> Complete installation Set with all Additional Component</li>
+                    <li> After over Warranty ,Dignosis & Repair Charge Rs.299 appliable P</li>
+
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Warranty & Service Guarantee</li>
-                    <li>Hamare dwara khareede gaye sabhi CCTV equipment (Cameras, DVR/NVR, HDD, etc.) par **ek saal ki Full Warranty** hai.</li>
-                    <li>Ismein **ek saal ki Muft Service** (maintenance aur troubleshooting) bhi shamil hai.</li>
-                </ul>
+                    <li> One Year Full Warranty on DVR/NVR </li>
+                    <li> One Year Full Warranty on Camera </li>
+                    <li> One Year Full Warranty on Harddisk </li>
+                    <li> 2 Service Free </li>
+                                    </ul>
             </div>
-            <button id="close-conditions-btn" class="close-btn-secondary mt-4">Maine Samajh Liya</button>
+            <button id="close-conditions-btn" class="close-btn-secondary mt-4"> I Understood</button>
         </div>
     `;
 
