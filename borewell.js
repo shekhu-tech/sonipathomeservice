@@ -440,22 +440,22 @@ function injectBorewellServiceUI() {
                         </p>
                         
                         <div class="price-container">
-                            <div class="original-price">सभी मटेरियल और लेबर चार्ज शामिल</div>
-                            <div class="current-price" id="displayPriceBorewell">Option Chunein</div>
+                            <div class="original-price"> Include All Material & Labour Charge</div>
+                            <div class="current-price" id="displayPriceBorewell">Choose Option</div>
                         </div>
                         
                         <div class="action-buttons">
                             <button class="btn btn-primary" id="book-now-btn">
-                                <i class="fas fa-water"></i> Abhi Book Karein
+                                <i class="fas fa-water"></i> Book Now
                             </button>
                             <button id="price-list-btn-borewell" class="btn btn-secondary">
                                 <i class="fas fa-list-check"></i> Package Details
                             </button>
                              <button id="description-btn-borewell" class="btn btn-secondary">
-                                <i class="fas fa-file-alt"></i> T&C (Niyam aur Shartein)
+                                <i class="fas fa-file-alt"></i> Terms & Conditions
                             </button>
                             <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
-                                <i class="fas fa-home"></i> Home Page Par Jaayen
+                                <i class="fas fa-home"></i> Go To Home
                             </button>
                         </div>
                     </div>
@@ -489,13 +489,13 @@ function injectBorewellServiceUI() {
             <h2 class="text-2xl font-bold text-center">बोरवेल इंस्टॉलेशन बुकिंग</h2>
             <form id="booking-form-borewell">
                 <div class="quantity-selector-container my-4">
-                    <label for="packSelection">1. पैकेज चुनें:</label>
+                    <label for="packSelection">1. Choose Package:</label>
                     <select id="packSelection" name="packSelection" required class="bg-bg-dark border-primary">
                         <option value="" disabled selected>बोरवेल पैकेज (गहराई) चुनें</option>
                         <!-- Options populated by JS -->
                     </select>
                     
-                    <label for="quantity" class="mt-4">2. यूनिट की संख्या:</label>
+                    <label for="quantity" class="mt-4">2. Choose Unit:</label>
                     <select id="quantity" name="quantity" required class="bg-bg-dark border-primary">
                         <option value="1" selected>1 यूनिट</option>
                         <option value="2">2 यूनिट्स</option>
@@ -506,55 +506,55 @@ function injectBorewellServiceUI() {
                     </div>
                 </div>
                 
-                <label for="name">Poora Naam (kam se kam 10 characters)</label>
+                <label for="name">Full Name (Minimium 10 characters)</label>
                 <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
 
                 <label for="phone">Phone Number (10 digits)</label>
-                <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+                <input type="tel" id="phone" name="phone" placeholder="9999999999" autocomplete="tel" pattern="[0-9]{10}" required>
                 
                 <label for="email">Email ID</label>
                 <input type="email" id="email" name="email" placeholder="email@example.com" autocomplete="email" required>
 
-                <label for="location">Location (jaise Sonipat, Delhi)</label>
+                <label for="location">Location (Eg. Sonipat, Bahalgarh, murhtal)</label>
                 <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
                 
-                <label for="address">Poora Site Address (kam se kam 30 characters)</label>
+                <label for="address">Poora Site Address (Minimum 30 characters)</label>
                 <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
                 
                 <div class="quantity-selector my-4">
                     <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
-                        <span>Advance Payable Abhi (₹5,000 Fixed)</span>
+                        <span>Advance Payable Amount (₹5,000 Fixed)</span>
                         <span id="calculated-price-borewell" class="total-price-quantity text-lg">Total: ₹5,000</span>
                     </div>
                 </div>
                 
-                <button type="submit">Details Submit Karein & Advance Pay Karein</button>
+                <button type="submit">Submit Details & Pay for Booking</button>
                 <p id="submit-message-borewell" class="text-center text-sm text-primary mt-2 hidden">Submit Ho Raha Hai... Kripya intezaar karein</p>
             </form>
         </div>
 
         <!-- 2. Payment Popup -->
         <div id="payment-popup" class="popup">
-            <h2 class="text-2xl font-bold text-center">Advance Payment Poora Karein</h2>
-            <p class="text-text-subtle text-center mb-6">कृपया इंस्टॉलेशन की पुष्टि के लिए **₹5,000** का एडवांस भुगतान करें।</p>
+            <h2 class="text-2xl font-bold text-center">Full Advance Payment </h2>
+            <p class="text-text-subtle text-center mb-6">Please Pay Advance Amount Rs **₹5,000** To Confirm Booking।</p>
             <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
             <div id="timer-display-borewell" class="text-xl font-bold text-primary text-center mb-4">Samay baaki: 05:00</div>
             <button id="razorpay-payment-btn-borewell"><i class="fas fa-credit-card mr-2"></i> Pay ₹5,000 Advance with Razorpay</button>
             <p class="mt-4 text-xs text-text-subtle text-center">
-                Note: Baaki ki rashi installation poora hone par di jaayegi. Payment ke dauraan is window ko band na karein.
+                Note: Rest Payment will be collect after installation.. Please do not close window until payment confirmed
             </p>
         </div>
 
         <!-- 3. Confirmation Popup -->
         <div id="confirmation-popup" class="popup">
             <h2 id="welcome-message-borewell" class="text-2xl font-bold text-center text-primary"></h2>
-            <p class="text-text-subtle text-center mb-4">Aapka Borewell installation book ho gaya hai! Hamari team jald hi aapse contact karegi.</p>
+            <p class="text-text-subtle text-center mb-4">Your Borewell Booking Complate. Out Team will contact you shortly.</p>
             <div id="ticket-info" class="space-y-2 bg-bg-dark p-4 rounded-lg border border-primary">
                 <!-- Details will be injected here -->
             </div>
-            <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Booking Details Download Karein</button>
-            <p class="mt-4 text-sm text-text-subtle text-center">📸 Kripya record ke liye screenshot le lein.</p>
-            <button id="okayBtnBorewell" class="mt-4">Theek Hai, Samajh Gaya!</button>
+            <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Download Booking Details</button>
+            <p class="mt-4 text-sm text-text-subtle text-center">📸 Please Take Screen shot of Payment Confirmation.</p>
+            <button id="okayBtnBorewell" class="mt-4">Ok ! Understand</button>
         </div>
 
         <!-- 4. Package Details Popup -->
@@ -579,21 +579,21 @@ function injectBorewellServiceUI() {
 
         <!-- 5. Terms & Conditions Popup -->
         <div id="description-popup" class="popup">
-            <h2 class="text-2xl font-bold text-center">नियम और शर्तें (Terms & Conditions)</h2>
+            <h2 class="text-2xl font-bold text-center">Terms & Conditions</h2>
             <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
                 <ul class="list-disc list-inside space-y-3">
-                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-money-check-alt mr-2"></i> फिक्स्ड कीमत (Fixed Price)</li>
-                    <li>Upar di gayi keematein **इंस्टालेशन aur sabhi samaan (Material)** sahit hain — koi atirikt shulk nahi liya jaayega.</li>
+                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-money-check-alt mr-2"></i>Fixed Price</li>
+                    <li>All Pack Cost include installation , Labour Charge , Motor & Starter </li>
 
-                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-wrench mr-2"></i> Motor Warranty aur Labor</li>
-                    <li>Motor par **1 saal ki warranty** di jaayegi.</li>
-                    <li>**Yadi motor kharab ho aur use nikalne ya lagane ki aavashyakta pade, toh sirf uska labor charge atirikt dena hoga.** (Motor ki warranty kewal motor ko cover karti hai, servicing ko nahi).</li>
+                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-wrench mr-2"></i> Motor Warranty aur Labour</li>
+                    <li>One Year Warranty on Motor.</li>
+                    <li>** If Motor out of order then Only Motor will be Covered , Labour charge will be payable .</li>
 
-                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-check-circle mr-2"></i> Gunvatta Ashvaasan (Quality Assurance)</li>
-                    <li>Sabhi pipe **ISI certified** honge aur sabhi item behtareen gunvatta ke honge.</li>
+                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-check-circle mr-2"></i> Quality Assurance</li>
+                    <li>All Pipes will  **ISI certified** .</li>
                 </ul>
             </div>
-            <button id="close-description-btn" class="close-btn-secondary mt-4">Maine Samajh Liya</button>
+            <button id="close-description-btn" class="close-btn-secondary mt-4">I Understood</button>
         </div>
     `;
 
