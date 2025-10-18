@@ -450,7 +450,7 @@ function injectBarberServiceUI() {
             <section class="product-section">
                 <div class="product-header">
                     <h2 class="text-white">Professional Barber Service</h2>
-                    <p class="text-sm text-gray-400 mt-2">Apne ghar par hi best grooming service book karein - Quick, Reliable, aur Transparent.</p>
+                    <p class="text-sm text-gray-400 mt-2"> Tired of waiting in long salon queues or adjusting your busy schedule for a haircut? Sonipat Home Service brings the complete barbering experience to your living room. We offer professional, hygienic, and convenient grooming services for men and boys right at your home in Sonipat.</p>
                 </div>
 
                 <div class="product-content">
@@ -458,7 +458,13 @@ function injectBarberServiceUI() {
                     <div class="product-details">
                         <h3 class="text-3xl font-semibold text-text-light mb-4">Certified & Guaranteed Grooming Services</h3>
                         <p class="text-text-subtle mb-4 text-base">
-                            Apne ghar par hi hamare skilled barbers se premium grooming ka anubhav karein. Instant, transparent pricing ke liye apni service chunein.
+                            Certified Professionals: Skilled and experienced barbers.
+                            100% Hygiene: Sanitized tools, single-use kits, and masked professionals.
+                            Easy Booking: Book online in less than a minute.
+                            Save Time & Effort: No travel, no parking, no waiting.
+                            Comfort & Privacy: Relax in your own space
+
+
                         </p>
                         
                         <div class="price-container">
