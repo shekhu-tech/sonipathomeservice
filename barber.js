@@ -458,32 +458,32 @@ function injectBarberServiceUI() {
                     <div class="product-details">
                         <h3 class="text-3xl font-semibold text-text-light mb-4">Certified & Guaranteed Grooming Services</h3>
                         <p class="text-text-subtle mb-4 text-base">
-                            Certified Professionals: Skilled and experienced barbers.
-                            100% Hygiene: Sanitized tools, single-use kits, and masked professionals.
-                            Easy Booking: Book online in less than a minute.
-                            Save Time & Effort: No travel, no parking, no waiting.
-                            Comfort & Privacy: Relax in your own space
+                            Certified Professionals: Skilled and experienced barbers. </p>
+                           <p class="text-text-subtle mb-4 text-base"> 100% Hygiene: Sanitized tools, single-use kits, and masked professionals. </p>
+                           <p class="text-text-subtle mb-4 text-base"> Easy Booking: Book online in less than a minute. </p>
+                            <p class="text-text-subtle mb-4 text-base">Save Time & Effort: No travel, no parking, no waiting. </p>
+                            <p class="text-text-subtle mb-4 text-base">Comfort & Privacy: Relax in your own space.
 
 
                         </p>
                         
                         <div class="price-container">
-                            <div class="original-price">Market Price Badalta Hai</div>
-                            <div class="current-price" id="displayPriceBarber">Service Chunein</div>
+                            <div class="original-price">Market Price Change</div>
+                            <div class="current-price" id="displayPriceBarber">Choose Service</div>
                         </div>
                         
                         <div class="action-buttons">
                             <button class="btn btn-primary" id="book-now-btn">
-                                <i class="fas fa-cut"></i> Abhi Service Book Karein
+                                <i class="fas fa-cut"></i> Book Service
                             </button>
                             <button id="price-list-btn-barber" class="btn btn-secondary">
-                                <i class="fas fa-tags"></i> Transparent Rate List
+                                <i class="fas fa-tags"></i> Service Rate List
                             </button>
                              <button id="conditions-btn-barber" class="btn btn-secondary">
                                 <i class="fas fa-file-contract"></i> Service Details
                             </button>
                             <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
-                                <i class="fas fa-home"></i> Home Page Par Jaayen
+                                <i class="fas fa-home"></i> Go to Home
                             </button>
                         </div>
                     </div>
