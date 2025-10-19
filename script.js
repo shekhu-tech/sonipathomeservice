@@ -8,7 +8,7 @@ function injectHeader() {
         <div class="top-bar-content">  
             </a>
             <a href="technician.html" class="partner-button-top">Mechanic</a>
-            <a href="partner.html" class="partner-button-top"><span>Call Us 8816014071</span></a>
+            <a href="partner.html" class="partner-button-top"><span>Call Us:+91 88160-14071</span></a>
         </div>
     </div>
 
@@ -941,6 +941,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
