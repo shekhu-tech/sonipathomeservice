@@ -428,16 +428,17 @@ function injectBorewellServiceUI() {
             <section class="product-section">
                 <div class="product-header">
                     <h2 class="text-white">बोरवेल इंस्टॉलेशन (Borewell Installation)</h2>
-                    <p class="text-sm text-gray-400 mt-2">गहन पानी की आवश्यकता के लिए विश्वसनीय बोरवेल इंस्टॉलेशन सेवाएं।</p>
+                    <p class="text-sm text-gray-400 mt-2"> Professional Borewell Installation for Deep Water Requirements।</p>
                 </div>
 
                 <div class="product-content">
                     
                     <div class="product-details">
-                        <h3 class="text-3xl font-semibold text-text-light mb-4">फिक्स्ड रेट पैकेज (Fixed Rate Packages)</h3>
+                        <h3 class="text-3xl font-semibold text-text-light mb-4"> Transparent, Fixed-Price Borewell Packages</h3>
                         <p class="text-text-subtle mb-4 text-base">
-                            अपने क्षेत्र की पानी की गहराई के अनुसार **230 फीट** या **290 फीट** का फिक्स्ड रेट पैकेज चुनें। कीमत में सब कुछ शामिल है।
-                        </p>
+                            <ul>No Hidden Costs. No Surprises. Just Honest Pricing for Every Depth</ul>
+                            <ul> Explore Our Fixed-Rate Borewell Installation Packages</ul>
+                                                    </p>
                         
                         <div class="price-container">
                             <div class="original-price"> No Extra Charge</div>
