@@ -427,7 +427,7 @@ function injectBorewellServiceUI() {
             
             <section class="product-section">
                 <div class="product-header">
-                    <h2 class="text-white">बोरवेल इंस्टॉलेशन (Borewell Installation)</h2>
+                    <h2 class="text-white">Borewell Installation</h2>
                     <p class="text-sm text-gray-400 mt-2"> Professional Borewell Installation for Deep Water Requirements।</p>
                 </div>
 
