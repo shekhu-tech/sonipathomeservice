@@ -442,7 +442,7 @@ function injectBorewellServiceUI() {
                         
                         <div class="price-container">
                             <div class="original-price"> No Extra Charge</div>
-                            <div class="current-price" id="displayPriceBorewell"> Choose Option </div>
+                            <div class="current-price" id="displayPriceBorewell">Choose Option</div>
                         </div>
                         
                         <div class="action-buttons">
