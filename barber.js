@@ -616,23 +616,21 @@ function injectBarberServiceUI() {
             <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
                 <ul class="list-disc list-inside space-y-3">
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Professional Groomers</li>
-                    <li>Sabhi grooming services skilled aur certified barbers/stylists dwara ki jaayengi.</li>
+                    <li>Convenience at Your Doorstep: No travel, no waiting, no hassle. Your preferred time and location.</li>
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-cut mr-2"></i> Hair & Beard Services</li>
                     <li>Precision haircuts, trimming, aur styling.</li>
-                    <li>Sanitized tools aur high-quality products ka upyog.</li>
-                    <li>Hair colour service mein sirf application shamil hai (Color pack customer ko dena hoga).</li>
+                    <li>Sanitized tools aur high-quality products</li>
+                    <li>Hair colour service Customer has to provide color pack .</li>
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-spa mr-2"></i> Wellness & Massage</li>
-                    <li>Relaxing head aur full body massage (Oil/products customer ko dena hoga).</li>
-                    <li>Facial services mein face pack/kit items shamil nahi hain (customer ko dena hoga).</li>
+                    <li>Relaxing head & full body massage (Oil/products customer Has to Provide).</li>
+                    <li>Facial services Facial Pack Kit Customer has to Provide.</li>
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
-                    <li>Dikhaye gaye prices **sirf labor/service charges** ke liye hain, upar specify kiye gaye products shamil nahi hain.</li>
-                    <li>Initial visiting charge **₹299** hai (Sonipat mein distance ke hisaab se adjust ho sakta hai).</li>
-                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Booking & Warranty</li>
-                    <li>Ek booking slot mein **5 persons** tak service di jaa sakti hai.</li>
-                    <li>Haircutting par satisfaction guarantee hai; final payment se pehle check kar lein.</li>
+                    <li>Shown Rates are only for Door Step Service ( Excluding all item like oil , Facial kit, Massage Kit etc )</li>
+                                        <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Booking & Warranty</li>
+                    <li>Guaranteed Best Quality of Service.</li>
                 </ul>
             </div>
-            <button id="closeConditionsBtn" class="close-btn-secondary mt-4">Maine Samajh Liya</button>
+            <button id="closeConditionsBtn" class="close-btn-secondary mt-4">I Understood</button>
         </div>
     `;
 
