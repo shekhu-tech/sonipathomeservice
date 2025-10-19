@@ -621,8 +621,7 @@ function injectCCTVServiceUI() {
                     <li>Wiring & Setup with DVR/NVR</li>                    
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
                     <li> Complete installation Set with all Additional Component</li>
-                    <li> After over Warranty ,Dignosis & Repair Charge Rs.299 appliable P</li>
-
+                    <li> After over Warranty ,Dignosis & Repair Charge Rs.299 appliable </li>
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Warranty & Service Guarantee</li>
                     <li> One Year Full Warranty on DVR/NVR </li>
                     <li> One Year Full Warranty on Camera </li>
@@ -1017,18 +1016,10 @@ class CCTVServiceApp {
             content.innerHTML = `
                 <ul class="list-disc list-inside space-y-3">
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Professional Technicians</li>
-                    <li>Sabhi installation aur servicing certified aur experienced technicians dwara ki jaayegi.</li>
-                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-video-camera mr-2"></i> Installation Packages</li>
-                    <li>Packages mein AHD aur IP Camera sets shamil hain (4 ya 8 cameras).</li>
-                    <li>Standard installation charges price mein shamil hain.</li>
-                    <li>On-site setup aur monitor/network storage (DVR/NVR) se connection.</li>
-                    <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
-                    <li>Dikhaye gaye prices <strong>complete hardware set aur standard installation</strong> ke liye hain.</li>
-                    <li>Koi bhi <strong>additional components</strong> (jaise extra cabling, special brackets) ka price on-site transparently quote kiya jaayega.</li>
-                    <li>Diagnosis/repair-only bookings ke liye initial visiting charge <strong>₹299</strong> hai (Sonipat mein distance ke hisaab se adjust ho sakta hai).</li>
+                    <li>Installation by Expert Technician Coupler to Coupler, No Open Joint.</li>
                     <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Warranty & Service Guarantee</li>
-                    <li>Hamare dwara khareede gaye sabhi CCTV equipment (Cameras, DVR/NVR, HDD, etc.) par <strong>ek saal ki Full Warranty</strong> hai.</li>
-                    <li>Ismein <strong>ek saal ki Muft Service</strong> (maintenance aur troubleshooting) bhi shamil hai.</li>
+                    <li>1 Year Full Warranty of all items .</li>
+                    <li>2 Service Free (maintenance & troubleshooting Issue</li>
                 </ul>
             `;
         }
