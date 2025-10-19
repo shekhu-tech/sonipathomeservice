@@ -5,11 +5,10 @@ function injectHeader() {
 
   headerContainer.innerHTML = `
     <div class="top-bar">
-        <div class="top-bar-content">
-                <span>8816014071</span>
+        <div class="top-bar-content">  
             </a>
             <a href="technician.html" class="partner-button-top">Mechanic</a>
-            <a href="partner.html" class="partner-button-top">Partner</a>
+            <a href="partner.html" class="partner-button-top"><span>Call Us 8816014071</span></a>
         </div>
     </div>
 
@@ -942,6 +941,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectContainer1(); // This line was corrected/added
   initializeSite();
 });
+
 
 
 
