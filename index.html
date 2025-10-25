@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sonipat Home Service - AC, Fridge, Washing Machine, Plumbing, Electrical, Borewell & 28+ Home Services in Sonipat. 24x7 Emergency Service. Call 88160-14071">
+    <meta name="keywords" content="sonipat home service, ac repair sonipat, plumber sonipat, electrician sonipat, borewell installation, appliance repair">
+    <meta name="author" content="Sonipat Home Service">
+    <meta property="og:title" content="Sonipat Home Service - 24x7 Home Repair Services">
+    <meta property="og:description" content="Trusted home service provider in Sonipat. AC, Fridge, Washing Machine, Plumbing & More. Call 88160-14071">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.sonipathomeservice.com">
+    <title>Sonipat Home Service – सोनीपत की No.1 होम सर्विस | 24x7 Available</title>
+    
+    <style>
+        :root {
+            --color-primary: #2196F3;
+            --color-primary-dark: #1976D2;
+            --color-success: #4CAF50;
+            --color-warning: #FF9800;
+            --color-danger: #F44336;
+            --color-text: #333;
+            --color-text-light: #666;
+            --color-bg: #f5f5f5;
+            --color-white: #ffffff;
+            --color-border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background: var(--color-bg);
+        }
+
+        .contact-bar {
+            background: var(--color-danger);
+            color: var(--color-white);
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .contact-bar a {
+            color: var(--color-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s;
+        }
+
+        .contact-bar a:hover {
+            opacity: 0.9;
+        }
+
+        .emergency-banner {
+            background: linear-gradient(135deg, #FF5722 0%, #F44336 100%);
+            color: var(--color-white);
+            text-align: center;
+            padding: 15px 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .emergency-banner h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .emergency-banner p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .emergency-banner .emergency-number {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1976D2 0%, #2196F3 100%);
+            color: var(--color-white);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            opacity: 0.95;
+        }
+
+        .hero .tagline {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 15px;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary {
+            background: var(--color-white);
+            color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--color-white);
+        }
+
+        .btn-whatsapp:hover {
+            background: #1fb855;
+            transform: translateY(-2px);
+        }
+
+        .btn-call {
+            background: var(--color-danger);
+            color: var(--color-white);
+        }
+
+        .btn-call:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        .stats {
+            background: var(--color-white);
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: -30px auto 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-item .label {
+            font-size: 14px;
+            color: var(--color-text-light);
+        }
+
+        .quick-booking {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 40px;
+            background: var(--color-white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .quick-booking h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--color-primary);
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--color-success);
+            color: var(--color-white);
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #43a047;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(76,175,80,0.3);
+        }
+
+        .why-choose {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .why-choose h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: var(--color-primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--color-white);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .feature-card .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--color-text);
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--color-text-light);
+            line-height: 1.5;
+        }
+
+        .services {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: var(--color-primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--color-white);
+            padding: 25px 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .service-card .service-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .service-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .testimonials {
+            background: var(--color-white);
+            padding: 60px 20px;
+            margin: 60px 0;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: var(--color-primary);
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: var(--color-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .testimonial-card .stars {
+            color: #FFC107;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-card p {
+            font-size: 15px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--color-text);
+            font-size: 14px;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: var(--color-white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 999;
+            text-decoration: none;
+            animation: bounce 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            background: #1fb855;
+            transform: scale(1.1);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .footer {
+            background: #263238;
+            color: var(--color-white);
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--color-white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        @media (max-width: 768px) {
+            .contact-bar {
+                font-size: 12px;
+                gap: 10px;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .emergency-banner h2 {
+                font-size: 18px;
+            }
+            .emergency-banner .emergency-number {
+                font-size: 22px;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                margin: 20px;
+            }
+            .quick-booking {
+                margin: 40px 20px;
+                padding: 30px 20px;
+            }
+            .services-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 15px;
+            }
+            .why-choose h2,
+            .services h2,
+            .testimonials h2 {
+                font-size: 26px;
+            }
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-bar">
+        <a href="tel:+918816014071">📞 88160-14071</a>
+        <a href="https://wa.me/918816014071">💬 WhatsApp</a>
+        <a href="mailto:care@sonipathomeservice.com">📧 care@sonipathomeservice.com</a>
+        <span>📍 Sonipat, Haryana</span>
+    </div>
+
+    <div class="emergency-banner">
+        <h2>🚨 24x7 EMERGENCY SERVICE AVAILABLE 🚨</h2>
+        <p>AC Not Cooling? Pipe Leaking? Fridge Not Working? Electrical Problem?</p>
+        <div class="emergency-number">88160-14071</div>
+    </div>
+
+    <section class="hero">
+        <h1>सोनीपत की No.1 होम सर्विस कंपनी</h1>
+        <p>🏠 AC, Fridge, Washing Machine, Plumbing, Electrical & 28+ Services</p>
+        <p>⚡ 30 Minutes में Technician आपके घर पर</p>
+        <div class="tagline">✅ Verified Technicians | ✅ Affordable Rates | ✅ 90 Days Warranty</div>
+        
+        <div class="cta-buttons">
+            <a href="tel:+918816014071" class="btn btn-call">📞 Call Now</a>
+            <a href="https://wa.me/918816014071?text=Hi,%20I%20need%20home%20service" class="btn btn-whatsapp">💬 WhatsApp Us</a>
+            <a href="#booking" class="btn btn-primary">📝 Book Service</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item">
+            <div class="number">12+</div>
+            <div class="label">Verified Technicians</div>
+        </div>
+        <div class="stat-item">
+            <div class="number">10,000+</div>
+            <div class="label">Happy Customers</div>
+        </div>
+        <div class="stat-item">
+            <div class="number">30 Min</div>
+            <div class="label">Response Time</div>
+        </div>
+        <div class="stat-item">
+            <div class="number">24x7</div>
+            <div class="label">Service Available</div>
+        </div>
+    </section>
+
+    <section class="quick-booking" id="booking">
+        <h2>🎯 Book Your Service Now</h2>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Mobile Number *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="88160-14071" pattern="[0-9]{10}">
+            </div>
+            
+            <div class="form-group">
+                <label for="service">Select Service *</label>
+                <select id="service" name="service" required>
+                    <option value="">Choose a service</option>
+                    <option value="AC Installation & Repair">AC Installation & Repair</option>
+                    <option value="Refrigerator Repair">Refrigerator Repair</option>
+                    <option value="Washing Machine Repair">Washing Machine Repair</option>
+                    <option value="Geyser Installation">Geyser Installation</option>
+                    <option value="Septic Tank Cleaning">Septic Tank Cleaning</option>
+                    <option value="Chimney Cleaning">Chimney Cleaning</option>
+                    <option value="Electrician Services">Electrician Services</option>
+                    <option value="Borewell Installation">Borewell Installation</option>
+                    <option value="Sewerage Unblock">Sewerage Unblock</option>
+                    <option value="Barber Services">Barber Services</option>
+                    <option value="Masonry Services">Masonry Services</option>
+                    <option value="CCTV Solutions">CCTV Solutions</option>
+                    <option value="R.O Install & Repair">R.O Install & Repair</option>
+                    <option value="Vehicle Booking">Vehicle Booking</option>
+                    <option value="Car Repair Services">Car Repair Services</option>
+                    <option value="Fast Parcel Delivery">Fast Parcel Delivery</option>
+                    <option value="LED TV Repair">LED TV Repair & Installation</option>
+                    <option value="Solar Panel Installation">Solar Panel Installation</option>
+                    <option value="Cater Booking">Cater Booking</option>
+                    <option value="Halwai Booking">Halwai Booking</option>
+                    <option value="Wi-Fi Connection">Wi-Fi Connection</option>
+                    <option value="DTH Installation">DTH Installation</option>
+                    <option value="Pest Control Service">Pest Control Service</option>
+                    <option value="RO Water Supply">RO Water Supply</option>
+                    <option value="Waiter Booking">Waiter Booking</option>
+                    <option value="Auto Battery">Auto Battery (Bike/Car)</option>
+                    <option value="Inverter Battery">Inverter Battery (Home/Shop)</option>
+                    <option value="Building Material Supply">Building Material Supply</option>
+                    <option value="Sofa Cleaning">Sofa Cleaning Service</option>
+                    <option value="Water Tank Cleaning">Water Tank Cleaning</option>
+                    <option value="Loan Services">Loan Services</option>
+                    <option value="Other">Other Service</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Your Address *</label>
+                <textarea id="address" name="address" required placeholder="Enter complete address in Sonipat"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Preferred Date & Time</label>
+                <input type="datetime-local" id="date" name="date">
+            </div>
+            
+            <button type="submit" class="submit-btn">📞 Confirm Booking via WhatsApp</button>
+        </form>
+    </section>
+
+    <section class="why-choose">
+        <h2>✨ Why Choose Sonipat Home Service?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">⚡</div>
+                <h3>Same Day Service</h3>
+                <p>Quick response within 30 minutes. Emergency service available 24x7.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">👨‍🔧</div>
+                <h3>Verified Technicians</h3>
+                <p>All technicians are trained, background-verified and experienced.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">💰</div>
+                <h3>Affordable Rates</h3>
+                <p>Transparent pricing with no hidden charges. Best rates in Sonipat.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🛡️</div>
+                <h3>90 Days Warranty</h3>
+                <p>Quality service guaranteed with 90 days warranty on all repairs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏆</div>
+                <h3>10,000+ Happy Customers</h3>
+                <p>Trusted by thousands of households across Sonipat.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📱</div>
+                <h3>Easy Booking</h3>
+                <p>Book via phone, WhatsApp or website. Simple and hassle-free.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>🛠️ Our Complete Services</h2>
+        <div class="services-grid">
+            <div class="service-card" data-service="AC Installation & Repair">
+                <div class="service-icon">❄️</div>
+                <h3>AC Repair</h3>
+            </div>
+            <div class="service-card" data-service="Refrigerator Repair">
+                <div class="service-icon">🧊</div>
+                <h3>Fridge Repair</h3>
+            </div>
+            <div class="service-card" data-service="Washing Machine Repair">
+                <div class="service-icon">👕</div>
+                <h3>Washing Machine</h3>
+            </div>
+            <div class="service-card" data-service="Geyser Installation">
+                <div class="service-icon">🚿</div>
+                <h3>Geyser Service</h3>
+            </div>
+            <div class="service-card" data-service="Plumbing">
+                <div class="service-icon">🔧</div>
+                <h3>Plumbing</h3>
+            </div>
+            <div class="service-card" data-service="Electrician Services">
+                <div class="service-icon">⚡</div>
+                <h3>Electrician</h3>
+            </div>
+            <div class="service-card" data-service="Borewell Installation">
+                <div class="service-icon">🕳️</div>
+                <h3>Borewell</h3>
+            </div>
+            <div class="service-card" data-service="LED TV Repair">
+                <div class="service-icon">📺</div>
+                <h3>LED TV Repair</h3>
+            </div>
+            <div class="service-card" data-service="R.O Install & Repair">
+                <div class="service-icon">💧</div>
+                <h3>RO Service</h3>
+            </div>
+            <div class="service-card" data-service="CCTV Solutions">
+                <div class="service-icon">📹</div>
+                <h3>CCTV</h3>
+            </div>
+            <div class="service-card" data-service="Chimney Cleaning">
+                <div class="service-icon">🌪️</div>
+                <h3>Chimney Clean</h3>
+            </div>
+            <div class="service-card" data-service="Septic Tank Cleaning">
+                <div class="service-icon">🚽</div>
+                <h3>Septic Tank</h3>
+            </div>
+            <div class="service-card" data-service="Masonry Services">
+                <div class="service-icon">🏗️</div>
+                <h3>Masonry</h3>
+            </div>
+            <div class="service-card" data-service="Barber Services">
+                <div class="service-icon">✂️</div>
+                <h3>Barber</h3>
+            </div>
+            <div class="service-card" data-service="Car Repair Services">
+                <div class="service-icon">🚗</div>
+                <h3>Car Repair</h3>
+            </div>
+            <div class="service-card" data-service="Solar Panel Installation">
+                <div class="service-icon">☀️</div>
+                <h3>Solar Panel</h3>
+            </div>
+            <div class="service-card" data-service="Wi-Fi Connection">
+                <div class="service-icon">📡</div>
+                <h3>Wi-Fi</h3>
+            </div>
+            <div class="service-card" data-service="DTH Installation">
+                <div class="service-icon">📡</div>
+                <h3>DTH</h3>
+            </div>
+            <div class="service-card" data-service="Cater Booking">
+                <div class="service-icon">🍽️</div>
+                <h3>Catering</h3>
+            </div>
+            <div class="service-card" data-service="Halwai Booking">
+                <div class="service-icon">🍬</div>
+                <h3>Halwai</h3>
+            </div>
+            <div class="service-card" data-service="Pest Control Service">
+                <div class="service-icon">🐜</div>
+                <h3>Pest Control</h3>
+            </div>
+            <div class="service-card" data-service="Auto Battery">
+                <div class="service-icon">🔋</div>
+                <h3>Battery</h3>
+            </div>
+            <div class="service-card" data-service="Fast Parcel Delivery">
+                <div class="service-icon">📦</div>
+                <h3>Parcel Delivery</h3>
+            </div>
+            <div class="service-card" data-service="Building Material Supply">
+                <div class="service-icon">🧱</div>
+                <h3>Building Material</h3>
+            </div>
+            <div class="service-card" data-service="RO Water Supply">
+                <div class="service-icon">💧</div>
+                <h3>Water Supply</h3>
+            </div>
+            <div class="service-card" data-service="Sofa Cleaning">
+                <div class="service-icon">🛋️</div>
+                <h3>Sofa Cleaning</h3>
+            </div>
+            <div class="service-card" data-service="Water Tank Cleaning">
+                <div class="service-icon">🚰</div>
+                <h3>Tank Cleaning</h3>
+            </div>
+            <div class="service-card" data-service="Loan Services">
+                <div class="service-icon">💳</div>
+                <h3>Loan Services</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>⭐ What Our Customers Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Excellent AC repair service! Technician arrived within 30 minutes and fixed the issue quickly. Very professional and reasonable rates."</p>
+                <div class="author">- Rajesh Kumar, Sector 14 Sonipat</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Best plumber in Sonipat! They installed our borewell perfectly. Great work quality and honest pricing. Highly recommended!"</p>
+                <div class="author">- Priya Sharma, Model Town</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Very satisfied with washing machine repair. The technician was skilled and explained everything clearly. Will definitely use again."</p>
+                <div class="author">- Amit Singh, Old Mandi Road</div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/918816014071?text=Hi,%20I%20need%20home%20service%20in%20Sonipat" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">💬</a>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>Sonipat Home Service</h3>
+                <p>Sonipat's most trusted home service provider. Expert technicians for all your home repair needs.</p>
+                <p style="margin-top: 15px;">📍 Serving All Areas of Sonipat, Haryana</p>
+                <p>🕐 Available 24x7 for Emergency Services</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#booking">Book Service</a></li>
+                    <li><a href="#services">Our Services</a></li>
+                    <li><a href="tel:+918816014071">Emergency Service</a></li>
+                    <li><a href="mailto:care@sonipathomeservice.com">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Popular Services</h3>
+                <ul>
+                    <li><a href="#services">AC Installation & Repair</a></li>
+                    <li><a href="#services">Refrigerator Repair</a></li>
+                    <li><a href="#services">Plumbing Services</a></li>
+                    <li><a href="#services">Electrician Services</a></li>
+                    <li><a href="#services">Borewell Installation</a></li>
+                    <li><a href="#services">CCTV Installation</a></li>
+                    <li><a href="#services">LED TV Repair</a></li>
+                    <li><a href="#services">RO Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>📞 Call: <a href="tel:+918816014071">88160-14071</a></li>
+                    <li>💬 WhatsApp: <a href="https://wa.me/918816014071">88160-14071</a></li>
+                    <li>📧 Email: <a href="mailto:care@sonipathomeservice.com">care@sonipathomeservice.com</a></li>
+                    <li>🌐 Website: <a href="https://www.sonipathomeservice.com">sonipathomeservice.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sonipat Home Service. All Rights Reserved.</p>
+            <p>Serving Sonipat with Quality, Trust & Reliability | Your Home, Our Priority</p>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Sonipat Home Service",
+      "telephone": "+91-88160-14071",
+      "email": "care@sonipathomeservice.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sonipat",
+        "addressRegion": "Haryana",
+        "addressCountry": "IN"
+      },
+      "openingHours": "Mo-Su 00:00-24:00",
+      "priceRange": "₹₹",
+      "url": "https://www.sonipathomeservice.com"
+    }
+    </script>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const address = document.getElementById('address').value;
+            const date = document.getElementById('date').value;
+            const message = `*🎯 New Service Booking*%0A%0A👤 Name: ${encodeURIComponent(name)}%0A📞 Phone: ${phone}%0A🛠️ Service: ${encodeURIComponent(service)}%0A📍 Address: ${encodeURIComponent(address)}%0A📅 Date: ${date ? encodeURIComponent(new Date(date).toLocaleString('en-IN')) : 'ASAP'}%0A%0A_From www.sonipathomeservice.com_`;
+            window.open(`https://wa.me/918816014071?text=${message}`, '_blank');
+            alert('✅ Thank you! Redirecting to WhatsApp.\n\nOur team will respond within 30 minutes.');
+            this.reset();
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({behavior: 'smooth', block: 'start'});
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const serviceName = this.getAttribute('data-service') || this.querySelector('h3').textContent;
+                const serviceSelect = document.getElementById('service');
+                for (let option of serviceSelect.options) {
+                    if (option.value === serviceName || option.text.includes(serviceName)) {
+                        serviceSelect.value = option.value;
+                        break;
+                    }
+                }
+                document.getElementById('booking').scrollIntoView({behavior: 'smooth', block: 'start'});
+                setTimeout(() => { document.getElementById('name').focus(); }, 800);
+            });
+        });
+    </script>
+</body>
+</html>
