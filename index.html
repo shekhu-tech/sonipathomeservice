@@ -1109,49 +1109,114 @@ document.querySelector('.slider-btn').addEventListener('click', function(e) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Telegram Live Chat</title>
+<title>Telegram Chat Popup</title>
 <style>
-.telegram-chat-button {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: #0088cc;
-    color: white;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    z-index: 9999;
+.open-button {
+  background-color: #0088cc;
+  color: white;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 24px;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 10;
 }
-.telegram-chat-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+.open-button:hover {
+  transform: scale(1.1);
 }
-.telegram-chat-button img {
-    width: 38px;
-    height: 38px;
+
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  border: 2px solid #ccc;
+  background-color: white;
+  width: 300px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  z-index: 20;
+}
+
+.chat-header {
+  background-color: #0088cc;
+  color: white;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.chat-popup button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.chat-popup .start-btn {
+  background-color: #0088cc;
+  color: white;
+}
+.chat-popup .close-btn {
+  background-color: #f44336;
+  color: white;
+}
+.chat-popup .start-btn:hover {
+  background-color: #009de0;
+}
+.chat-popup .close-btn:hover {
+  background-color: #ff5c5c;
 }
 </style>
 </head>
 <body>
 
-<!-- Telegram Floating Chat Button -->
-<a href="https://t.me/sonipathomeservice" class="telegram-chat-button" target="_blank" title="Chat with us on Telegram">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Telegram_2019_Logo.svg" alt="Telegram Chat">
-</a>
+<!-- Telegram button -->
+<button class="open-button" onclick="openForm()">💬</button>
+
+<!-- Popup Chat Box -->
+<div class="chat-popup" id="chatForm">
+  <div class="chat-header">Chat Now</div>
+  <p style="text-align:center; margin:10px 0;">
+    Chat Now with Sonipat Home Service on Telegram for Instant Support!
+  </p>
+  <button class="start-btn" onclick="openTelegram()">Chat Now</button>
+  <button class="close-btn" onclick="closeForm()">Close</button>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("chatForm").style.display = "block";
+}
+function closeForm() {
+  document.getElementById("chatForm").style.display = "none";
+}
+function openTelegram() {
+  window.open("https://t.me/sonipathomeservice", "_blank");
+}
+</script>
 
 </body>
 </html>
 
 </body>
 </html>
+
 
 
 
