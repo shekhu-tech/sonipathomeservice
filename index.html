@@ -1183,39 +1183,73 @@ document.querySelector('.slider-btn').addEventListener('click', function(e) {
   background-color: #ff5c5c;
 }
 </style>
+</head><!DOCTYPE html>
+<html>
+<head>
+<title>Live Chat - Sonipat Home Service</title>
+<style>
+.live-chat-form {
+  position: fixed;
+  bottom: 80px;
+  right: 25px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,.21);
+  padding: 18px;
+  width: 300px;
+  z-index: 99;
+  border:2px solid #0088cc;
+}
+.live-chat-form h3 {
+  margin-top:0;
+  color: #0088cc;
+}
+#msg {
+  width:100%;
+  padding:8px;
+  margin:8px 0;
+}
+button {
+  background: #0088cc; color: #fff;
+  padding:10px; border:none; border-radius:5px;
+  cursor:pointer;
+}
+button:hover { background: #009de0; }
+</style>
 </head>
 <body>
-
-<!-- Telegram button -->
-<button class="open-button" onclick="openForm()">💬</button>
-
-<!-- Popup Chat Box -->
-<div class="chat-popup" id="chatForm">
-  <div class="chat-header">Chat Now</div>
-  <p style="text-align:center; margin:10px 0;">
-    Chat Now with Sonipat Home Service on Telegram for Instant Support!
-  </p>
-  <button class="start-btn" onclick="openTelegram()">Chat Now</button>
-  <button class="close-btn" onclick="closeForm()">Close</button>
+<div class="live-chat-form">
+  <h3>Chat Now</h3>
+  <form id="telegramForm">
+    <label>Type your message:</label>
+    <input type="text" id="msg" value="How May I Help You ?" />
+    <button type="submit">Send</button>
+  </form>
+  <div id="response" style="margin-top:8px; font-size:14px; color:green;"></div>
 </div>
-
 <script>
-function openForm() {
-  document.getElementById("chatForm").style.display = "block";
-}
-function closeForm() {
-  document.getElementById("chatForm").style.display = "none";
-}
-function openTelegram() {
-  window.open("https://t.me/sonipathomeservice", "_blank");
-}
+// REPLACE with your Bot Token & Chat ID
+const telegramBotToken = "8325230130:AAGXykPaPd4cOfn4YTS_DFh_hCmdUL6DT1w";
+const telegramChatId = "8260156724";
+
+document.getElementById('telegramForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const message = document.getElementById('msg').value;
+  fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=${encodeURIComponent(message)}`)
+    .then(res=>res.ok ? "Sent!" : "Error")
+    .then(txt=>{
+      document.getElementById('response').innerText = txt === "Sent!" ? "Message delivered!" : "Error sending message. Try Again!";
+      document.getElementById('msg').value = "How May I Help You ?";
+    });
+});
 </script>
+</body>
+</html>
+
 
 </body>
 </html>
 
-</body>
-</html>
 
 
 
