@@ -216,15 +216,17 @@
             justify-content: space-between;
             height: 100%;
             cursor: pointer;
-            /* Default background set to transparent/dark for image contrast */
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay for readability */
+            /* Default styles for the card */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay for readability */
+            background-image: url('drng1.png'); /* Default background image */
             background-size: cover;
             background-position: center;
             color: white; /* Ensure text is readable over the image */
             position: relative; /* Needed for z-index of children */
             border-radius: 0.75rem; /* Smaller radius for compact look */
-            /* Added margin-bottom to separate content from image */
-            padding-bottom: 0.5rem; 
+            /* Adjusted padding for compactness */
+            padding: 0.75rem; 
+            border: 2px solid transparent; /* Default border */
         }
         
         .service-card-wrapper {
@@ -237,19 +239,20 @@
             opacity: 0;
             width: 0;
             height: 0;
-            /* FIX: Make checkbox a decent size to be clickable */
             top: 0;
             right: 0;
             width: 2.5rem;
             height: 2.5rem;
-            z-index: 10; /* Ensure it is above the card for touch targets */
+            z-index: 10; 
         }
 
         /* Style the card based on checked state (Blue card on Selection) */
         .service-card-wrapper input[type="checkbox"]:checked + .service-card {
-            border-color: var(--primary);
+            /* This is the key fix: We override background-image to ensure the solid blue color dominates */
+            background-image: none !important; 
+            background-color: rgba(59, 130, 246, 0.7) !important; /* Primary blue overlay */
+            border-color: var(--primary) !important;
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); 
-            background-color: rgba(59, 130, 246, 0.7) !important; /* Important to override inline style */
         }
 
         /* FIX: Make check icon WHITE on selection for high visibility */
@@ -269,16 +272,19 @@
             /* Increased text shadow for much better contrast against any image */
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 1.0); 
             font-weight: 700; /* Made text bold */
+            /* Adjusted font size for compactness */
+            font-size: 0.95rem;
         }
         .service-card h4 {
-            font-size: 1rem; /* Slightly increased size for visibility */
+            /* Adjusted font size for compactness */
+            font-size: 0.95rem; 
         }
 
 
         .btn-see-more {
             margin-top: auto; 
-            font-size: 0.85rem;
-            padding: 0.5rem 1rem;
+            font-size: 0.8rem; /* Smaller font for compactness */
+            padding: 0.4rem 0.8rem; /* Smaller padding for compactness */
             max-width: 100%;
             /* Fixed button color to always be a clear blue (primary) */
             background-color: var(--primary) !important;
@@ -288,20 +294,20 @@
         
         /* --- COMPACT CARD & ICON STYLING --- */
         .service-icon-container {
-            /* Reduced size from 40px to 32px */
-            width: 32px;
-            height: 32px;
+            /* Reduced size from 32px to 28px */
+            width: 28px;
+            height: 28px;
             /* White background for icon visibility over dark/image background */
             background: white; 
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Reduced margin-right from 12px to 8px */
-            margin-right: 8px;
+            /* Reduced margin-right from 8px to 6px */
+            margin-right: 6px;
             color: var(--primary); /* Primary blue icon color */
             flex-shrink: 0;
-            font-size: 0.9rem; /* Reduced icon size */
+            font-size: 0.8rem; /* Reduced icon size */
         }
         /* --- END COMPACT CARD & ICON STYLING --- */
         
@@ -473,7 +479,19 @@
         }
 
         /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
+        /* Updated Grid Layout for Service Cards */
+        #serviceCardsContainer {
+            /* Default: 2 columns for mobile/small screens (new requirement) */
+            grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        }
 
+        @media (min-width: 768px) {
+             /* Medium (md) screen and up: 3 columns (PC/Tablet requirement) */
+            #serviceCardsContainer {
+                grid-template-columns: repeat(3, minmax(0, 1fr)); 
+            }
+        }
+        
         @media (max-width: 1024px) {
             .product-content { padding: 2rem; flex-direction: column; }
             .product-details { text-align: center; }
@@ -481,7 +499,6 @@
             .btn { max-width: 400px; } 
             .stat-grid { grid-template-columns: 1fr 1fr; }
             main { padding: 3rem 1rem; }
-            #serviceCardsContainer { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 600px) {
@@ -494,8 +511,6 @@
             .popup h2 { font-size: 1.5rem; }
             .action-buttons { flex-direction: column; }
             .btn { min-width: 100%; max-width: 100%; }
-            
-            #serviceCardsContainer { grid-template-columns: 1fr; } 
             
             .popup input, .popup select, .popup textarea {
                 padding: 0.7rem 1rem;
@@ -840,6 +855,8 @@
             
             if (isChecked) {
                 // Change style to selected state (Blue card on Selection)
+                // FIX: Remove background image property to allow solid blue overlay
+                card.style.backgroundImage = 'none'; 
                 card.style.backgroundColor = 'rgba(59, 130, 246, 0.7)'; // Primary blue overlay
                 card.classList.add('border-primary', 'shadow-lg', 'shadow-primary/30');
                 card.classList.remove('border-text-subtle/50', 'hover:border-primary/80');
@@ -848,6 +865,8 @@
                 checkIcon.classList.add('text-white'); 
             } else {
                 // Change style back to default image state
+                // RESTORE: Restore background image and dark overlay
+                card.style.backgroundImage = 'url(\'drng1.png\')'; 
                 card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Dark overlay
                 card.classList.remove('border-primary', 'shadow-lg', 'shadow-primary/30');
                 card.classList.add('border-text-subtle/50', 'hover:border-primary/80');
