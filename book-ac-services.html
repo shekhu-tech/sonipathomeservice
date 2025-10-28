@@ -534,9 +534,20 @@
             text-align: left;
             margin-bottom: 1rem;
             transition: border-color 0.3s ease;
+            /* Added min-height for consistent look when selection is empty */
+            min-height: 48px;
         }
         #serviceSelectionDisplayWrapper:hover {
             border-color: var(--primary);
+        }
+
+        /* Custom style for displaying selected services as plain text within the wrapper */
+        #selectedServicesSummary {
+            display: block; /* Ensures it takes up full width of wrapper */
+            color: var(--text-light); /* Dark text for visibility */
+            font-size: 1rem;
+            line-height: 1.25;
+            white-space: pre-wrap; /* Allows text to wrap naturally */
         }
     </style>
 </head>
@@ -563,7 +574,7 @@
                         <!-- Display selected service names here -->
                         <div id="selectedServicesDisplay" class="font-bold text-center text-secondary mb-2">Select Service(s) to view cost</div>
                         <div class="original-price" id="originalPriceDisplay">Actual Cost: Select Service</div>
-                        <div class="current-price" id="displayPrice">Book Now </div>
+                        <div class="current-price" id="displayPrice">₹99 Booking Charge</div>
                     </div>
                     
                     <div class="action-buttons">
@@ -603,6 +614,7 @@
             
             <label>Select AC Service Category:</label>
             <!-- NEW: Wrapper for video-style selection display -->
+            <!-- The selected service names will appear as text inside this div -->
             <div id="serviceSelectionDisplayWrapper" onclick="openServiceSelectionPopup()">
                 <span id="selectedServicesSummary">Click to select AC service category</span>
             </div>
@@ -633,8 +645,8 @@
             <input type="hidden" name="ticket" id="ticketCode" />
             <input type="hidden" name="finalPrice" id="finalPrice" value="99" />
             
-            <button type="submit">Next </button>
-            <p id="submitMessage" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
+            <button type="submit">Submit Details & Pay ₹99 Booking Charge</button>
+            <p id="submitMessage" class="text-center mt-3 text-primary reorganize text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
         </form>
     </div>
     
@@ -657,7 +669,7 @@
         <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary text-text-light"></div>
         <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
         <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay ₹99 Booking Charge with Razorpay</button>
-        <p class="mt-4 text-xs text-text-subtle text-center">
+        <p class="mt-4 reorganize text-xs text-text-subtle text-center">
             Note: Do not close this window during payment processing.
         </p>
     </div>
@@ -669,7 +681,7 @@
         <button id="downloadTicketsBtn" class="mt-4">
             <i class="fas fa-download mr-2"></i> Download Service Details
         </button>
-        <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
+        <p class="mt-4 reorganize text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
         <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
     </div>
     
@@ -703,12 +715,10 @@
         const timerDisplay = document.getElementById('timerDisplay');
         const razorpayBtn = document.getElementById('razorpay-payment-btn');
         const submitMessage = document.getElementById('submitMessage');
-        // REPLACING old service card container with new popup container
         const serviceSelectionPopup = document.getElementById('serviceSelectionPopup');
         const serviceCardsContainer = document.getElementById('serviceCardsContainer'); 
-        const selectedServicesSummary = document.getElementById('selectedServicesSummary'); // New element to show summary in main form
-        const selectedServicesHiddenField = document.getElementById('selectedServicesHiddenField'); // Hidden field for form data
-        
+        const selectedServicesSummary = document.getElementById('selectedServicesSummary'); 
+        const selectedServicesHiddenField = document.getElementById('selectedServicesHiddenField'); 
         const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
         const paymentSummary = document.getElementById('paymentSummary');
         const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
@@ -717,7 +727,6 @@
         const finalPriceInput = document.getElementById('finalPrice');
         const form = document.getElementById('lotteryForm');
         const okayBtn = document.getElementById('okayBtn');
-        
         const selectedServicesDisplay = document.getElementById('selectedServicesDisplay');
 
         // --- State Variables ---
@@ -732,7 +741,7 @@
         // Array to hold the categories selected inside the popup (persistent state)
         let selectedCategoriesState = []; 
 
-        // --- Local Storage Functions ---
+        // --- Local Storage Functions (kept client-side) ---
         function saveFormData() {
             const formData = {
                 fullName: form.fullName.value,
@@ -761,7 +770,7 @@
             }
         }
         
-        // --- Selection Popup Control ---
+        // --- Selection Popup Control (Client-side UI logic) ---
 
         function openServiceSelectionPopup() {
             generateServiceCards();
@@ -778,7 +787,18 @@
         }
 
         function closeServiceSelectionPopup() {
-            closeSpecificPopup(serviceSelectionPopup);
+            // Only hide the service selection popup.
+            serviceSelectionPopup.style.display = 'none';
+            
+            // Explicitly ensure the overlay and form are visible if the form was open initially
+            if (popupForm.style.display === 'block') {
+                popupOverlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                // If main form wasn't open, then fully close the overlay (safety fallback)
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         }
         
         function applyServiceSelection() {
@@ -792,7 +812,11 @@
             updatePrices();
             
             // FIX: Only close the SERVICE SELECTION POPUP, keep the main form open
-            closeSpecificPopup(serviceSelectionPopup); 
+            closeServiceSelectionPopup(); 
+            
+            // Manually ensure the main form remains visible after closing selection popup (redundant check for clarity)
+            popupForm.style.display = 'block';
+            popupOverlay.style.display = 'block';
         }
 
         // --- Core Functions ---
@@ -931,9 +955,9 @@
             const remainingAmount = totalServiceCost - amountPaid;
             
             const ticketContent = `PREMIUM AC SERVICE BOOKING DETAILS\n\n` +
-                                 `Customer Name: ${form.field1.value}\n` +
-                                 `Contact: ${form.field2.value}\n` +
-                                 `Location: ${form.field5.value}\n` +
+                                 `Customer Name: ${form.fullName.value}\n` +
+                                 `Contact: ${form.phone.value}\n` +
+                                 `Location: ${form.location.value}\n` +
                                  `AC Service Category(s): ${selectedAcServiceCategoryNames}\n` +
                                  `Booking Reference Number: ${generatedTicket}\n\n` + 
                                  `Total Service Cost (Estimated): ₹${totalServiceCost}\n` +
@@ -1057,7 +1081,7 @@
             formData.append('ticketQuantity', serviceCount); 
             formData.append('finalPrice', finalPaymentAmount); 
 
-            // --- Google Script URL (Replace with your actual endpoint) ---
+            // --- Google Script URL ---
             fetch("https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec", {
                 method: "POST",
                 body: formData
@@ -1148,7 +1172,7 @@
             const selectedCategoryNames = selectedServicesHiddenField.value;
             
             const totalServiceCost = currentServicePrice; 
-            const amountPaid = BOOKING_CHARGE; 
+            const amountPaid = finalPriceInput.value; 
             const remainingAmount = totalServiceCost - amountPaid; 
 
             welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
@@ -1187,10 +1211,9 @@
         popupOverlay.addEventListener('click', e => {
             if (e.target === popupOverlay) {
                 if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
-                // FIX: Check if serviceSelectionPopup is open and close only that one if overlay is clicked
-                else if (serviceSelectionPopup.style.display === 'block') closeSpecificPopup(serviceSelectionPopup);
-                else if (popupForm.style.display === 'block' || paymentStep.style.display === 'block') closeSpecificPopup(e.target.closest('.popup') || popupForm);
-                else closeAllPopups();
+                else if (serviceSelectionPopup.style.display === 'block') closeServiceSelectionPopup();
+                // Removed the fallback closing of popupForm here to prevent unexpected closures.
+                // It should only close when moving to paymentStep or clicking OK on ticketStep.
             }
         });
         
@@ -1200,14 +1223,14 @@
                 if (parentPopup.id === 'ticketStep') {
                     window.location.href = 'index.html';
                 } else {
+                    // This handles closing of serviceSelectionPopup and others if they have a close-btn, 
+                    // but not the main popupForm which doesn't have a close-btn in the current setup.
                     closeSpecificPopup(parentPopup);
                 }
             });
         });
 
-        // Event listener for the new display wrapper to open the selection popup
         document.getElementById('serviceSelectionDisplayWrapper').addEventListener('click', openServiceSelectionPopup);
-
         okayBtn.addEventListener('click', () => window.location.href = 'index.html');
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
         downloadTicketsBtn.addEventListener('click', downloadTickets);
@@ -1215,7 +1238,6 @@
 
         // --- Page Load Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
-            // NOTE: generateServiceCards is called only when openServiceSelectionPopup is triggered now.
             updatePrices(); 
             loadFormData(); 
         });
