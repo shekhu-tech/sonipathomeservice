@@ -4,19 +4,1408 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SonipatHomeService.com - Premium Automobile Service</title>
-    <!-- Zaroori libraries yahi load hongi. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <!-- Note: Sari styling aur logic ab external JS file se aayegi. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+        :root {
+            /* Classic White & Light Blue Theme */
+            --bg-dark: #F4F7FB; /* Very Light Blue/Gray Background */
+            --bg-card: #FFFFFF; /* White Card/Popup Background */
+            --primary: #3B82F6; /* Primary Accent (Classic Blue) */
+            --secondary: #1F83E7; /* Secondary Accent (Darker Blue for titles/prices) */
+            --text-light: #1F2937; /* Dark Gray/Black Text */
+            --text-subtle: #6B7280; /* Subtle Gray Text */
+            --shadow-depth: 0 5px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        /* --- Custom Components --- */
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-depth);
+            transition: var(--transition);
+            border: 1px solid rgba(59, 130, 246, 0.1); 
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .stat-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .stat-card p {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .product-section {
+            /* Using lighter colors for gradient */
+            background: linear-gradient(135deg, var(--bg-card), #E7EFF9);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+        }
+
+        .product-header {
+            /* Using lighter colors for gradient */
+            background: linear-gradient(90deg, #E7EFF9, var(--bg-card));
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .product-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary); /* Darker blue for contrast */
+        }
+
+        .product-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: center; 
+            justify-content: center;
+        }
+
+        .product-details {
+            flex: 1; 
+            min-width: 300px;
+            text-align: center; 
+        }
+
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px dashed var(--text-subtle);
+            border-bottom: 1px dashed var(--text-subtle);
+            justify-content: center; 
+        }
+        
+        /* Display for selected services */
+        #selectedServicesDisplay {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-top: 0.5rem;
+            min-height: 24px; /* Ensure space even when empty */
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: var(--text-subtle);
+            font-weight: 400;
+        }
+
+        .current-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            justify-content: center;
+            flex-grow: 1;
+            max-width: 400px; 
+            min-width: 200px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg-card); /* White text on blue button */
+            border-color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: #2563EB; /* Darker blue shade for hover */
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: scale(1.03);
+        }
+        
+        /* --- Service Card Styling (Updated for Image Background) --- */
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            cursor: pointer;
+            /* Default styles for the card */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay for readability */
+            background-image: url('drng1.png'); /* Default background image */
+            background-size: cover;
+            background-position: center;
+            color: white; /* Ensure text is readable over the image */
+            position: relative; /* Needed for z-index of children */
+            border-radius: 0.75rem; /* Smaller radius for compact look */
+            /* Adjusted padding for compactness */
+            padding: 0.75rem; 
+            border: 2px solid transparent; /* Default border */
+        }
+        
+        .service-card-wrapper {
+            position: relative;
+        }
+
+        /* Hide the actual checkbox */
+        .service-card-wrapper input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            top: 0;
+            right: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            z-index: 10; 
+        }
+
+        /* Style the card based on checked state (Blue card on Selection) */
+        .service-card-wrapper input[type="checkbox"]:checked + .service-card {
+            /* This is the key fix: We override background-image to ensure the solid blue color dominates */
+            background-image: none !important; 
+            background-color: rgba(59, 130, 246, 0.7) !important; /* Primary blue overlay */
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); 
+        }
+
+        /* FIX: Make check icon WHITE on selection for high visibility */
+        .service-card-wrapper input[type="checkbox"]:checked + .service-card .card-check-icon {
+            color: white; 
+            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.9)); 
+        }
+        
+        /* Check icon contrast adjustment for dark card background */
+        .service-card .card-check-icon {
+            color: #f7f7f7; /* Light gray checkmark for visibility */
+            transition: color 0.3s;
+        }
+        
+        /* Text visibility improvements */
+        .service-card h4, .service-card p {
+            /* Increased text shadow for much better contrast against any image */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 1.0); 
+            font-weight: 700; /* Made text bold */
+            /* Adjusted font size for compactness */
+            font-size: 0.95rem;
+        }
+        .service-card h4 {
+            /* Adjusted font size for compactness */
+            font-size: 0.95rem; 
+        }
+
+
+        .btn-see-more {
+            margin-top: auto; 
+            font-size: 0.8rem; /* Smaller font for compactness */
+            padding: 0.4rem 0.8rem; /* Smaller padding for compactness */
+            max-width: 100%;
+            /* Fixed button color to always be a clear blue (primary) */
+            background-color: var(--primary) !important;
+            color: white !important;
+            border-radius: 0.5rem; /* Slightly smaller border radius for the button */
+        }
+        
+        /* --- COMPACT CARD & ICON STYLING --- */
+        .service-icon-container {
+            /* Reduced size from 32px to 28px */
+            width: 28px;
+            height: 28px;
+            /* White background for icon visibility over dark/image background */
+            background: white; 
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Reduced margin-right from 8px to 6px */
+            margin-right: 6px;
+            color: var(--primary); /* Primary blue icon color */
+            flex-shrink: 0;
+            font-size: 0.8rem; /* Reduced icon size */
+        }
+        /* --- END COMPACT CARD & ICON STYLING --- */
+        
+        /* --- Popup Styling --- */
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 999;
+        }
+
+        .popup {
+            display: none;
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 95%;
+            max-width: 750px; 
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            border: 1px solid var(--primary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .popup h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .popup input,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            font-size: 1rem;
+            background: #F9FAFB; /* Very light input background */
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+        
+        .popup input:focus,
+        .popup select:focus,
+        .popup textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); 
+        }
+
+        .popup textarea {
+            min-height: 8rem;
+            resize: vertical;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadTicketsBtn,
+        .popup button.close-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadTicketsBtn {
+            background: linear-gradient(45deg, var(--primary), #2563EB); 
+            color: var(--bg-card);
+        }
+
+        .popup button[type="submit"]:hover,
+        #razorpay-payment-btn:hover,
+        #downloadTicketsBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.6); 
+        }
+        
+        .quantity-selector-container {
+            background: #EFF6FF; /* Very light blue background */
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--primary);
+        }
+
+        .total-price-quantity {
+            font-size: 1.8rem !important;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary) !important;
+        }
+
+        #ticketDisplay {
+            background: #F9FAFB;
+            border: 1px solid var(--primary);
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            word-break: break-word;
+        }
+        
+        /* Custom Alert Styling */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary); /* Blue alert background */
+            color: var(--bg-card); /* White alert text */
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
+            z-index: 1002;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -40%); }
+            10% { opacity: 1; transform: translate(-50%, -50%); }
+            90% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+        }
+
+        /* Price List Specific */
+        #priceListTableBody tr:nth-child(even) {
+            background-color: #F9FAFB;
+        }
+        #priceListTableBody td {
+            font-family: 'Roboto', sans-serif;
+        }
+        #priceListTableBody .font-semibold {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
+        /* Updated Grid Layout for Service Cards */
+        #serviceCardsContainer {
+            /* Default: 2 columns for mobile/small screens (new requirement) */
+            grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        }
+
+        @media (min-width: 768px) {
+             /* Medium (md) screen and up: 3 columns (PC/Tablet requirement) */
+            #serviceCardsContainer {
+                grid-template-columns: repeat(3, minmax(0, 1fr)); 
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .product-content { padding: 2rem; flex-direction: column; }
+            .product-details { text-align: center; }
+            .price-container, .action-buttons { justify-content: center; }
+            .btn { max-width: 400px; } 
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            main { padding: 3rem 1rem; }
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 2rem 1rem; }
+            .product-header h2 { font-size: 2rem; }
+            .product-details h3 { font-size: 2rem; }
+            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
+            .current-price { font-size: 2.5rem; }
+            .popup { padding: 1.5rem; }
+            .popup h2 { font-size: 1.5rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { min-width: 100%; max-width: 100%; }
+            
+            .popup input, .popup select, .popup textarea {
+                padding: 0.7rem 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .current-price { font-size: 2rem; }
+            .original-price { font-size: 1rem; }
+            .stat-card p { font-size: 1.8rem; }
+            .popup { padding: 1rem; }
+        }
+
+        /* Styling for the new selection display element (matching video) */
+        #serviceSelectionDisplayWrapper {
+            background-color: #F9FAFB; /* Light background matching input fields */
+            border: 1px solid var(--text-subtle);
+            border-radius: 0.75rem;
+            padding: 0.9rem 1.2rem;
+            cursor: pointer;
+            text-align: left;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+            /* Added min-height for consistent look when selection is empty */
+            min-height: 48px;
+        }
+        #serviceSelectionDisplayWrapper:hover {
+            border-color: var(--primary);
+        }
+
+        /* Custom style for displaying selected services as plain text within the wrapper */
+        #selectedServicesSummary {
+            display: block; /* Ensures it takes up full width of wrapper */
+            color: var(--text-light); /* Dark text for visibility */
+            font-size: 1rem;
+            line-height: 1.25;
+            white-space: pre-wrap; /* Allows text to wrap naturally */
+        }
+        
+        /* Service Type Radio Buttons - Adapted for light theme */
+        .service-type-radio {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .service-type-radio label {
+            flex-grow: 1;
+            margin-top: 0;
+            padding: 0.75rem 1rem;
+            background: #FFFFFF; /* White background */
+            border: 1px solid var(--text-subtle);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-light);
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-type-radio input[type="radio"] {
+            width: auto;
+            margin-right: 0.5rem;
+            accent-color: var(--primary); /* Blue color */
+        }
+
+        .service-type-radio input[type="radio"]:checked + span {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Styling for the new selection display element (matching video) */
+        #modelSelectionDisplayWrapper {
+            background-color: #F9FAFB;
+            border: 1px solid var(--text-subtle);
+            border-radius: 0.75rem;
+            padding: 0.9rem 1.2rem;
+            cursor: pointer;
+            text-align: left;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+            min-height: 48px;
+        }
+        #modelSelectionDisplayWrapper:hover {
+            border-color: var(--primary);
+        }
+
+        /* Custom style for displaying selected models as plain text within the wrapper */
+        #selectedModelsSummary {
+            display: block;
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.25;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
-    <!-- Yeh container ID Automobile Service ka poora UI load karega. -->
-    <div id="automobile-repairing-services-container">
-        <!-- UI will be injected here by automobile-service-logic.js -->
+   
+    <main class="container">
+        
+        <section class="product-section">
+            <div class="product-header">
+                <h2 class="text-secondary">Professional Automobile Repairing & Service</h2>
+                <p class="text-text-subtle mt-2">Book the best car service in Sonipat - Trusted, Expert, and Transparent.</p>
+            </div>
+
+            <div class="product-content">
+                
+                <div class="product-details">
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">Certified & Guaranteed Vehicle Servicing</h3>
+                    <p class="text-text-subtle mb-4 text-base">
+                        Select your car model and desired service type below. Our expert technicians use genuine parts and provide a full diagnosis for safe and optimal performance.
+                    </p>
+                    
+                    <div class="price-container">
+                        <div id="selectedServicesDisplay" class="font-bold text-center text-secondary mb-2">Select Model(s) to view cost</div>
+                        <div class="original-price" id="originalPriceDisplay">Actual Cost: Select Model</div>
+                        <div class="current-price" id="displayPrice">₹99 Booking Charge</div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="participate-btn">
+                            <i class="fas fa-car-wrench"></i> Book Service Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>Total Customers Trusting Us</h3>
+                <p>28,500+</p>
+            </div>
+            <div class="stat-card">
+                <h3>Vehicles Serviced Monthly</h3>
+                <p>1000+</p>
+            </div>
+            <div class="stat-card">
+                <h3>Customer Satisfaction Score</h3>
+                <p>4.9/5 Stars</p>
+            </div>
+            <div class="stat-card">
+                <h3>Quickest Slot Available</h3>
+                <p>Today!</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="popup-overlay"></div>
+    
+    <!-- Service Booking Form (popupForm) -->
+    <div class="popup" id="popupForm">
+        <h2 class="text-2xl font-bold text-center">Automobile Service Booking Form</h2>
+        <form id="lotteryForm">
+            
+            <label>Select Car Model(s):</label>
+            <!-- Wrapper for model selection display -->
+            <div id="modelSelectionDisplayWrapper" onclick="openModelSelectionPopup()">
+                <span id="selectedModelsSummary">Click to select car model(s)</span>
+            </div>
+            
+            <label class="mt-4">Select Service Type:</label>
+            <div class="service-type-radio">
+                <label>
+                    <input type="radio" name="serviceTypeOption" value="Half Rate" class="form-radio h-5 w-5" checked />
+                    <span>Half Service (Basic Tune-up)</span>
+                </label>
+                <label>
+                    <input type="radio" name="serviceTypeOption" value="Full Cost" class="form-radio h-5 w-5" />
+                    <span>Full Service (Comprehensive Check)</span>
+                </label>
+            </div>
+            
+            <label for="ticketQuantity" class="mt-4">Number of Vehicles/Services (Max 5):</label>
+            <select id="ticketQuantity" name="ticketQuantity" required class="bg-bg-dark border-primary">
+                <option value="1" selected>1 vehicle</option>
+                <option value="2">2 vehicles</option>
+                <option value="3">3 vehicles</option>
+                <option value="4">4 vehicles</option>
+                <option value="5">5 vehicles</option>
+            </select>
+            
+            <div class="flex justify-between items-center mt-3 p-3 rounded-lg quantity-selector-container border-primary">
+                <span class="text-text-light font-semibold">Total Payable Now (Booking Charge)</span>
+                <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">₹99</span>
+            </div>
+
+            <label for="fullName">Your Full Name (min 10 characters)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
+            
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
+            
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
+            
+            <label for="location">Your Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
+            
+            <label for="address">Complete Address (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
+
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="finalPrice" id="finalPrice" value="99" />
+            <input type="hidden" name="selectedModels" id="selectedModelsHiddenField">
+
+            <button type="submit">Submit Details & Pay ₹99 Booking Charge</button>
+            <p id="submitMessage" class="text-center mt-3 text-primary reorganize text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
+        </form>
+    </div>
+    
+    <!-- NEW POPUP: Selection Popup matching the AC file structure -->
+    <div class="popup" id="modelSelectionPopup" style="max-width: 900px;">
+        <h2 class="text-2xl font-bold text-center">Select Car Model(s)</h2>
+        <div id="serviceCardsContainer" class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4 mb-6">
+            <!-- Service Cards will be injected here by JS -->
+        </div>
+        <button type="button" class="btn btn-primary" onclick="applyModelSelection()">Apply Selection</button>
+        <button type="button" class="btn btn-secondary mt-2" onclick="closeModelSelectionPopup()">Cancel</button>
+    </div>
+    <!-- END NEW POPUP -->
+
+
+    <div class="popup" id="paymentStep">
+        <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
+        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your Automobile Service booking.</p>
+        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary text-text-light"></div>
+        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay ₹99 Booking Charge with Razorpay</button>
+        <p class="mt-4 reorganize text-xs text-text-subtle text-center">
+            Note: Do not close this window during payment processing.
+        </p>
     </div>
 
-    <!-- Naya logic file jismein poora Automobile App hai. -->
-    <script src="automobile.js"></script>
+    <div class="popup" id="ticketStep">
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below:</p>
+        <div id="ticketDisplay" class="space-y-2"></div>
+        <button id="downloadTicketsBtn" class="mt-4">
+            <i class="fas fa-download mr-2"></i> Download Service Details
+        </button>
+        <p class="mt-4 reorganize text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
+    </div>
+    
+    <!-- Price List Popup removed as per single button request -->
+    <!-- Conditions Popup removed as per single button request -->
+   
+    <script>
+        // Data for Automobile services 
+        const serviceData = [
+            { "Name": "Alto (Alto 800, Alto K10)", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "WagonR", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "Celerio", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "Swift", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "Dzire", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "Baleno", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "Ignis", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "A-Star (discontinued)", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car-side" },
+            { "Name": "Ritz (discontinued)", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car-side" },
+            { "Name": "Ciaz", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car-side" },
+            { "Name": "Eeco", "Brand": "Maruti", "Half Rate": 3499, "Full Cost": 5499, "Icon": "fas fa-van-shuttle" },
+            { "Name": "Ertiga", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-van-shuttle" },
+            { "Name": "XL6", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999, "Icon": "fas fa-van-shuttle" },
+            { "Name": "Brezza (Vitara Brezza earlier)", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999, "Icon": "fas fa-suv" },
+            { "Name": "Grand Vitara", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999, "Icon": "fas fa-suv" },
+            { "Name": "S-Cross (discontinued)", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999, "Icon": "fas fa-suv" },
+            { "Name": "Jimny", "Brand": "Maruti", "Half Rate": 2999, "Full Cost": 4999, "Icon": "fas fa-truck-monster" },
+            { "Name": "Fronx", "Brand": "Maruti", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car-side" },
+            { "Name": "Venue", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "Creta", "Brand": "Hyundai", "Half Rate": 2999, "Full Cost": 4999, "Icon": "fas fa-suv" },
+            { "Name": "Grand i10 Nios", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "i20", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "Verna", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car-side" },
+            { "Name": "Alcazar", "Brand": "Hyundai", "Half Rate": 3399, "Full Cost": 5499, "Icon": "fas fa-van-shuttle" },
+            { "Name": "Tucson", "Brand": "Hyundai", "Half Rate": 3399, "Full Cost": 5499, "Icon": "fas fa-suv" },
+            { "Name": "Kona Electric", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-charging-station" },
+            { "Name": "Aura", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car-side" },
+            { "Name": "Santro (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "Eon (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "i10 (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "i20 Active (discontinued)", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" },
+            { "Name": "Xcent", "Brand": "Hyundai", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car-side" },
+            { "Name": "Bolero", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499, "Icon": "fas fa-truck-pickup" },
+            { "Name": "Scorpio N", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499, "Icon": "fas fa-truck-pickup" },
+            { "Name": "TUV300", "Brand": "Mahindra", "Half Rate": 2999, "Full Cost": 4999, "Icon": "fas fa-truck-pickup" },
+            { "Name": "XUV500", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499, "Icon": "fas fa-suv" },
+            { "Name": "XUV700", "Brand": "Mahindra", "Half Rate": 3399, "Full Cost": 5499, "Icon": "fas fa-suv" },
+            { "Name": "Etios", "Brand": "Toyota", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car-side" },
+            { "Name": "Glenza", "Brand": "Toyota", "Half Rate": 2499, "Full Cost": 4499, "Icon": "fas fa-car" }
+        ];
+
+        // --- Constants and DOM Element Selection ---
+        const SERVICE_NAME = "Automobile Service";
+        const SERVICE_TAB_ID = "car-service";
+        const SERVICE_FORM_DATA_KEY = "carModel";
+        const RAZORPAY_IMAGE_TEXT = "CAR";
+        
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+
+        const participateBtn = document.getElementById('participate-btn');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const allPopups = document.querySelectorAll('.popup');
+        const popupForm = document.getElementById('popupForm');
+        const paymentStep = document.getElementById('paymentStep');
+        const ticketStep = document.getElementById('ticketStep');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const razorpayBtn = document.getElementById('razorpay-payment-btn');
+        const submitMessage = document.getElementById('submitMessage');
+        const serviceCardsContainer = document.getElementById('serviceCardsContainer'); 
+        const modelSelectionPopup = document.getElementById('modelSelectionPopup');
+        const selectedModelsSummary = document.getElementById('selectedModelsSummary'); 
+        const selectedModelsHiddenField = document.getElementById('selectedModelsHiddenField'); 
+        const serviceTypeOptions = document.querySelectorAll('input[name="serviceTypeOption"]');
+        const ticketQuantitySelect = document.getElementById('ticketQuantity');
+        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
+        const paymentSummary = document.getElementById('paymentSummary');
+        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const displayPriceElement = document.getElementById('displayPrice');
+        const finalPriceInput = document.getElementById('finalPrice');
+        const form = document.getElementById('lotteryForm');
+        const selectedServicesDisplay = document.getElementById('selectedServicesDisplay');
+        
+        // Removed declarations for elements that no longer exist in the HTML structure
+        // const priceListBtn = document.getElementById('price-list-btn');
+        // const conditionsBtn = document.getElementById('conditions-btn');
+        // const priceListPopup = document.getElementById('priceListPopup');
+        // const conditionsPopup = document.getElementById('conditionsPopup');
+        // const priceListTableBody = document.getElementById('priceListTableBody');
+
+        // --- State Variables ---
+        let generatedTicket = ''; 
+        let paymentTimeout = null;
+        let countdownInterval = null;
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+        let currentServicePrice = 0; // Actual total service cost
+        const BOOKING_CHARGE = 99; // Fixed booking charge
+        let selectedQuantity = 1;
+        let allowClose = false;
+        const LOCAL_STORAGE_KEY = 'automobileServiceFormData'; 
+        let selectedModelsState = []; // Array to hold the models selected inside the popup 
+
+        // --- Local Storage Functions (kept client-side) ---
+        function saveFormData() {
+            const formData = {
+                fullName: form.fullName.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                location: form.location.value,
+                address: form.address.value,
+                selectedModels: selectedModelsHiddenField.value,
+                serviceType: document.querySelector('input[name="serviceTypeOption"]:checked')?.value || 'Half Rate',
+                quantity: ticketQuantitySelect.value
+            };
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+        }
+
+        function loadFormData() {
+            const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                form.fullName.value = data.fullName || '';
+                form.phone.value = data.phone || '';
+                form.email.value = data.email || '';
+                form.location.value = data.location || '';
+                form.address.value = data.address || '';
+                ticketQuantitySelect.value = data.quantity || '1';
+
+                if (data.serviceType) {
+                    const radio = document.querySelector(`input[name="serviceTypeOption"][value="${data.serviceType}"]`);
+                    if (radio) radio.checked = true;
+                }
+                
+                if (data.selectedModels) {
+                    selectedModelsState = data.selectedModels.split(', ').filter(s => s);
+                }
+                updatePrices();
+            }
+        }
+        
+        // --- Selection Popup Control (Client-side UI logic) ---
+        function openModelSelectionPopup() {
+            generateServiceCards();
+            // Match checkboxes in the popup to the current persistent state
+            serviceCardsContainer.querySelectorAll('input[name="carModelCheckbox"]').forEach(checkbox => {
+                const modelName = checkbox.value;
+                checkbox.checked = selectedModelsState.includes(modelName);
+                
+                // Manually trigger visual update for initial state
+                const cardWrapper = checkbox.closest('.service-card-wrapper');
+                updateCardVisuals(cardWrapper, checkbox.checked);
+            });
+            openPopup(modelSelectionPopup);
+        }
+
+        function closeModelSelectionPopup() {
+            modelSelectionPopup.style.display = 'none';
+            
+            // Explicitly ensure the overlay and form are visible if the form was open initially
+            if (popupForm.style.display === 'block') {
+                popupOverlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                // If main form wasn't open, then fully close the overlay (safety fallback)
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        function applyModelSelection() {
+            // Read state from checkboxes inside the popup
+            const selectedCheckboxes = Array.from(serviceCardsContainer.querySelectorAll('input[name="carModelCheckbox"]:checked'));
+            
+            // Update persistent state
+            selectedModelsState = selectedCheckboxes.map(cb => cb.value);
+
+            // Update prices and main form display
+            updatePrices();
+            
+            // Only close the SELECTION POPUP, keep the main form open
+            closeModelSelectionPopup(); 
+            
+            // Manually ensure the main form remains visible after closing selection popup (redundant check for clarity)
+            popupForm.style.display = 'block';
+            popupOverlay.style.display = 'block';
+        }
+
+        // --- Core Functions ---
+
+        function generateServiceCards() {
+            serviceCardsContainer.innerHTML = '';
+            
+            const selectedServiceType = document.querySelector('input[name="serviceTypeOption"]:checked')?.value || "Half Rate";
+            
+            serviceData.forEach((service, index) => {
+                const priceKey = selectedServiceType === "Half Rate" ? 'Half Rate' : 'Full Cost';
+                const price = service[priceKey];
+                const detailPageUrl = `service_details_default.html?model=${encodeURIComponent(service.Name)}&type=${selectedServiceType}`;
+                const isChecked = selectedModelsState.includes(service.Name);
+                
+                const cardHtml = `
+                    <div class="service-card-wrapper" data-model="${service.Name}" data-price="${price}">
+                        <label class="block h-full cursor-pointer"> 
+                            <div id="card-${index}" class="service-card p-3 rounded-xl border-2 transition duration-300 transform hover:scale-[1.02] 
+                                border-text-subtle/50 hover:border-primary/80" 
+                                style="background-image: url('drng1.png'); background-color: ${isChecked ? 'rgba(59, 130, 246, 0.7)' : 'rgba(0, 0, 0, 0.5)'};">
+                                
+                                <input type="checkbox" id="model-checkbox-${index}" name="carModelCheckbox" 
+                                       value="${service.Name}" data-price="${price}" class="hidden" ${isChecked ? 'checked' : ''}>
+                                
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex items-center">
+                                        <div class="service-icon-container">
+                                            <i class="${service.Icon} text-lg"></i> 
+                                        </div>
+                                        <h4 class="text-base font-semibold text-white">${service.Name}</h4>
+                                    </div>
+                                    <i class="fas fa-check-circle text-xl card-check-icon ${isChecked ? 'text-white' : 'text-gray-200'}"></i>
+                                </div>
+                                
+                                <p class="text-xs text-yellow-300 font-bold mb-2">Cost (${selectedServiceType.split(' ')[0]}): ₹${price}</p>
+                                
+                                <a href="${detailPageUrl}" target="_blank"
+                                   onclick="event.stopPropagation(); showCustomAlert('यह बटन आपको ${service.Name} ${selectedServiceType} की विस्तृत जानकारी वाले पेज पर ले जाएगा।');"
+                                   class="btn-see-more py-1 px-3 rounded-full text-xs font-bold inline-flex items-center justify-center w-full mt-2 transition duration-200 hover:bg-[#2563EB]">
+                                    <i class="fas fa-search-plus mr-1"></i> See More
+                                </a>
+                            </div>
+                        </label>
+                    </div>
+                `;
+                serviceCardsContainer.insertAdjacentHTML('beforeend', cardHtml);
+            });
+            
+             serviceCardsContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const cardWrapper = e.target.closest('.service-card-wrapper');
+                    updateCardVisuals(cardWrapper, e.target.checked);
+                });
+            });
+        }
+
+        function updateCardVisuals(wrapper, isChecked) {
+            const card = wrapper.querySelector('.service-card');
+            const checkIcon = wrapper.querySelector('.card-check-icon');
+            
+            if (isChecked) {
+                card.style.backgroundImage = 'none'; 
+                card.style.backgroundColor = 'rgba(59, 130, 246, 0.7)'; 
+                card.classList.add('border-primary', 'shadow-lg', 'shadow-primary/30');
+                card.classList.remove('border-text-subtle/50', 'hover:border-primary/80');
+                checkIcon.classList.remove('text-gray-200');
+                checkIcon.classList.add('text-white'); 
+            } else {
+                card.style.backgroundImage = 'url(\'drng1.png\')'; 
+                card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                card.classList.remove('border-primary', 'shadow-lg', 'shadow-primary/30');
+                card.classList.add('border-text-subtle/50', 'hover:border-primary/80');
+                checkIcon.classList.remove('text-white'); 
+                checkIcon.classList.add('text-gray-200');
+            }
+        }
+
+
+        function initQuantitySelector() {
+            const maxServices = 5; 
+            ticketQuantitySelect.innerHTML = '';
+            for (let i = 1; i <= maxServices; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i + (i === 1 ? ' vehicle' : ' vehicles');
+                ticketQuantitySelect.appendChild(option);
+            }
+            ticketQuantitySelect.value = selectedQuantity;
+        }
+
+        function updatePrices() {
+            const selectedServiceType = document.querySelector('input[name="serviceTypeOption"]:checked')?.value || "Half Rate";
+            selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
+            
+            let totalCalculatedPrice = 0;
+
+            const selectedModelObjects = serviceData.filter(service => 
+                selectedModelsState.includes(service.Name)
+            );
+            
+            if (selectedModelObjects.length > 0) {
+                selectedModelObjects.forEach(model => {
+                    totalCalculatedPrice += parseFloat(model[selectedServiceType]);
+                });
+            }
+            
+            currentServicePrice = totalCalculatedPrice * selectedQuantity; // Total cost based on quantity
+            const finalPaymentAmount = (currentServicePrice > 0) ? BOOKING_CHARGE : 0;
+
+            const selectedNames = selectedModelsState;
+            const namesString = selectedNames.join(', ');
+
+            if (selectedNames.length > 0) {
+                // Update hidden field for submission
+                selectedModelsHiddenField.value = namesString;
+
+                // Update display in the main booking form
+                selectedModelsSummary.textContent = namesString; 
+                selectedServicesDisplay.textContent = `${selectedModelObjects.length} Car(s) - ${selectedServiceType.split(' ')[0]} selected`; // Display below the price
+                
+                document.getElementById('originalPriceDisplay').textContent = `Actual Service Cost: ₹${currentServicePrice}`;
+                displayPriceElement.textContent = `₹${BOOKING_CHARGE} Booking Charge`;
+                document.querySelector('.total-price-quantity').textContent = `₹${BOOKING_CHARGE}`;
+                finalPriceInput.value = BOOKING_CHARGE;
+            } else {
+                selectedModelsHiddenField.value = '';
+                selectedModelsSummary.textContent = 'Click to select car model(s)';
+                selectedServicesDisplay.textContent = 'Select Model(s) to view cost'; 
+                document.getElementById('originalPriceDisplay').textContent = 'Actual Cost: Select Model';
+                displayPriceElement.textContent = `₹99 Booking Charge`;
+                document.querySelector('.total-price-quantity').textContent = `₹0`;
+                finalPriceInput.value = 0; 
+            }
+            
+            // Re-populate cards if popup is open (to update prices on service type change)
+            if (modelSelectionPopup.style.display === 'block') {
+                generateServiceCards();
+            }
+        }
+
+        function generateFormattedTicket() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16).toUpperCase();
+            });
+        }
+
+        function downloadTickets() {
+            const selectedModelNames = selectedModelsHiddenField.value;
+            const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
+            const totalServiceCost = currentServicePrice;
+            const amountPaid = BOOKING_CHARGE;
+            const remainingAmount = totalServiceCost - amountPaid;
+            
+            const ticketContent = `${SERVICE_NAME} Booking Details\n\n` +
+                                 `Customer Name: ${form.field1.value}\n` +
+                                 `Contact: ${form.field2.value}\n` +
+                                 `Location: ${form.field5.value}\n` +
+                                 `Car Model(s): ${selectedModelNames}\n` +
+                                 `Service Type: ${serviceTypeName}\n` +
+                                 `Quantity: ${selectedQuantity}\n` +
+                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
+                                 `Total Service Cost (Estimated): ₹${totalServiceCost}\n` +
+                                 `Booking Charge Paid: ₹${amountPaid}\n` +
+                                 `Remaining Balance: ₹${remainingAmount > 0 ? remainingAmount : 0}\n\n` +
+                                 `--- IMPORTANT NOTE ---\n` +
+                                 `The remaining amount must be paid to the technician after service delivery.\n` +
+                                 `Final charges for parts and additional labor (beyond the selected service) will be transparently communicated by the technician after a full on-site diagnosis.`;
+            
+            const blob = new Blob([ticketContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${SERVICE_TAB_ID}_booking_${generatedTicket.substring(0, 8)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert'; 
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => alertBox.remove(), 4000); 
+        }
+
+        // --- Popup Control Functions ---
+        function clearTimers() {
+            if (paymentTimeout) clearTimeout(paymentTimeout);
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        function closeAllPopups() {
+            if (!allowClose) {
+                showCustomAlert("Please complete the booking process before closing.");
+                return;
+            }
+            clearTimers();
+            popupOverlay.style.display = 'none';
+            allPopups.forEach(p => p.style.display = 'none');
+            document.body.style.overflow = 'auto';
+            allowClose = false; 
+        }
+
+        function openPopup(popupElement) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            allPopups.forEach(p => p.style.display = 'none');
+            popupElement.style.display = 'block';
+            allowClose = false;
+        }
+        
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function startPaymentTimer() {
+            let timeLeft = PAYMENT_TIME_LIMIT;
+            const updateDisplay = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            updateDisplay();
+
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    showCustomAlert("Payment time expired. Please try again.");
+                    allowClose = true; 
+                    closeAllPopups();
+                }
+            }, 1000);
+        }
+
+        // --- Price List Function ---
+        // Function removed as per single button request.
+
+        // --- Payment and Submission Logic ---
+        
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            // Validation 
+            const selectedModelNames = selectedModelsHiddenField.value;
+            if (!selectedModelNames) { showCustomAlert("Please select at least one Car Model."); return; }
+            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
+            if (currentServicePrice <= 0) { showCustomAlert("Please select a service before proceeding."); return; }
+            
+            submitMessage.style.display = 'block';
+            form.querySelector('button[type="submit"]').disabled = true;
+
+            generatedTicket = generateFormattedTicket(); 
+            
+            const finalPaymentAmount = BOOKING_CHARGE; // Fixed at 99
+            const totalServiceCost = currentServicePrice; 
+            const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
+            const serviceCount = selectedModelsState.length * selectedQuantity;
+
+            // --- Form Data for Google Sheet ---
+            const formData = new FormData();
+            formData.append('field1', form.fullName.value); 
+            formData.append('field2', form.phone.value);    
+            formData.append('field3', form.email.value);    
+            formData.append(SERVICE_FORM_DATA_KEY, selectedModelNames); 
+            formData.append('field5', form.location.value); 
+            formData.append('field6', form.address.value);  
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', serviceTypeName);   
+            formData.append('servicePrice', totalServiceCost); 
+            formData.append('ticketQuantity', serviceCount); 
+            formData.append('finalPrice', finalPaymentAmount);
+
+            // --- Google Script URL ---
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success")) { 
+                    saveFormData(); 
+                    
+                    popupForm.style.display = 'none';
+                    openPopup(paymentStep);
+                    
+                    const remainingAmount = totalServiceCost - finalPaymentAmount;
+
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
+                        <p class="text-text-light text-base mb-1">Car Model(s): <span class="font-bold text-primary">${selectedModelNames}</span></p>
+                        <p class="text-text-light text-base mb-3">Actual Service Cost: <span class="font-bold text-secondary">₹${totalServiceCost}</span></p>
+                        <p class="current-price text-secondary text-3xl font-bold">Total Payable Now: ₹${finalPaymentAmount}</p>
+                        <p class="text-text-subtle text-sm mt-2">यह ₹99 बुकिंग शुल्क है। बची हुई राशि 
+                        <span class="font-bold text-primary">₹${remainingAmount > 0 ? remainingAmount : 0}</span> 
+                        सेवा पूरी होने के बाद तकनीशियन को देनी होगी।</p>
+                    `;
+                    startPaymentTimer();
+                } else {
+                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
+            })
+            .finally(() => {
+                submitMessage.style.display = 'none';
+                form.querySelector('button[type="submit"]').disabled = false;
+            });
+        }
+
+        function handleRazorpayPayment() {
+            const finalPaymentAmount = finalPriceInput.value; 
+             if (finalPaymentAmount == 0) {
+                showCustomAlert("Please select a service before proceeding with payment.");
+                return;
+            }
+
+            const selectedModelNames = selectedModelsHiddenField.value;
+            const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
+
+            const options = {
+                "key": "rzp_live_RLjzp7VlXERwiG",
+                "amount": finalPaymentAmount * 100, 
+                "currency": "INR",
+                "name": `SonipatHomeService - ${SERVICE_NAME}`,
+                "description": `Booking Charge for ${selectedQuantity} ${serviceTypeName}(s) for ${selectedModelNames}`,
+                "image": `https://placehold.co/100x100/F4F7FB/3B82F6?text=${RAZORPAY_IMAGE_TEXT}`, 
+                "handler": function (response){
+                    console.log("Payment successful:", response.razorpay_payment_id);
+                    paymentSuccess(response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": form.fullName.value,
+                    "email": form.email.value,
+                    "contact": form.phone.value
+                },
+                "notes": {
+                    "address": `${form.location.value}, ${form.address.value}`,
+                    "service_details": selectedModelNames,
+                    "booking_ref": generatedTicket,
+                    "actual_cost": currentServicePrice,
+                },
+                "theme": { "color": "#3B82F6" }, 
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                console.error("Payment Failed:", response.error);
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
+        }
+
+        function paymentSuccess(paymentId) {
+            clearTimers();
+            paymentStep.style.display = 'none';
+            openPopup(ticketStep);
+            
+            const userName = form.fullName.value.split(' ')[0];
+            const selectedModelNames = selectedModelsHiddenField.value;
+            const serviceTypeName = document.querySelector('input[name="serviceTypeOption"]:checked')?.value === "Half Rate" ? "Half Service" : "Full Service";
+            
+            const totalServiceCost = currentServicePrice; 
+            const amountPaid = finalPriceInput.value; 
+            const remainingAmount = totalServiceCost - amountPaid; 
+
+            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
+            
+            const remainingText = remainingAmount > 0 
+                ? `बुकिंग चार्ज ₹${amountPaid} उसमें से घटाकर, बाकी ₹${remainingAmount} आपको सेवा पूरी होने के बाद तकनीशियन को देनी है।`
+                : `बुकिंग चार्ज ₹${amountPaid} पूरी सर्विस कॉस्ट को कवर करता है।`;
+
+            ticketDisplay.innerHTML = `
+                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p>Service(s) Booked: <span class="font-bold text-text-light">${serviceTypeName} for ${selectedModelNames} (${selectedQuantity} units)</span></p>
+                <p>Total Estimated Service Cost: <span class="font-bold text-secondary">₹${totalServiceCost}</span></p>
+                <p class="text-primary text-lg font-bold mt-3">Paid Now (Booking Charge): ₹${amountPaid}</p>
+                
+                <div class="mt-4 p-3 rounded-lg bg-bg-dark border border-secondary">
+                    <p class="text-text-light font-semibold">अंतिम भुगतान निर्देश (Final Payment Instruction):</p>
+                    <p class="text-sm text-text-subtle mt-1">
+                        आपकी सर्विस की कुल लागत (Total Service Cost) ₹${totalServiceCost} थी। 
+                        ${remainingText}
+                    </p>
+                </div>
+
+                <p class="text-text-subtle text-sm mt-3">Our technician will contact you shortly to schedule the service at your location: ${form.location.value}.</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
+            `;
+            
+            allowClose = true;
+        }
+        
+        // --- Event Listeners Initialization ---
+        participateBtn.addEventListener('click', () => {
+            updatePrices();
+            openPopup(popupForm);
+        });
+        
+        // Event listeners for service type and quantity change
+        ticketQuantitySelect.addEventListener('change', updatePrices); 
+        serviceTypeOptions.forEach(radio => radio.addEventListener('change', updatePrices));
+
+        popupOverlay.addEventListener('click', e => {
+            if (e.target === popupOverlay) {
+                if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
+                else if (modelSelectionPopup.style.display === 'block') closeModelSelectionPopup();
+                // Removed event listeners for removed popups
+            }
+        });
+        
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const parentPopup = e.target.closest('.popup');
+                if (parentPopup.id === 'ticketStep') {
+                    window.location.href = 'index.html';
+                } else if (parentPopup.id === 'modelSelectionPopup') {
+                    closeModelSelectionPopup();
+                } else {
+                    closeSpecificPopup(parentPopup);
+                }
+            });
+        });
+
+        document.getElementById('modelSelectionDisplayWrapper').addEventListener('click', openModelSelectionPopup);
+        
+        // Removed event listeners for priceListBtn and conditionsBtn
+
+        document.getElementById('okayBtn').addEventListener('click', () => window.location.href = 'index.html');
+        document.getElementById('razorpay-payment-btn').addEventListener('click', handleRazorpayPayment);
+        document.getElementById('downloadTicketsBtn').addEventListener('click', downloadTickets);
+        form.addEventListener('submit', handleFormSubmit);
+
+
+        // --- Page Load Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initQuantitySelector();
+            loadFormData(); // Load saved data first
+            updatePrices(); 
+        });
+    </script>
 </body>
 </html>
