@@ -418,7 +418,7 @@
                     </p>
                     
                     <div class="price-container">
-                        <div class="original-price">5000 लीटर तक आधार शुल्क</div>
+                        <div class="original-price">6000 लीटर तक आधार शुल्क</div>
                         <div class="current-price" id="displayPrice">Calculated Price</div>
                     </div>
                     
@@ -532,14 +532,14 @@
 
     <!-- Price List Popup -->
     <div id="price-list-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">सेप्टिक टैंक सफाई आधार शुल्क (5000 लीटर तक)</h2>
+        <h2 class="text-2xl font-bold text-center">सेप्टिक टैंक सफाई आधार शुल्क (6000 लीटर तक)</h2>
         <div class="overflow-x-auto mt-4">
             <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
                 <thead>
                     <tr class="text-left text-secondary">
                         <th class="py-3 px-4 border-b border-text-subtle">पाइप लाइन लंबाई</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">आधार शुल्क (5000 लीटर)</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">प्रति अतिरिक्त 5000 लीटर</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">आधार शुल्क (6000 लीटर)</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">प्रति अतिरिक्त 6000 लीटर</th>
                     </tr>
                 </thead>
                 <tbody id="priceListTableBody">
@@ -556,10 +556,10 @@
         <div class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
             <ul class="list-disc list-inside space-y-3">
                 <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-info-circle mr-2"></i> आधार शुल्क (Base Charge)</li>
-                <li>मूल्य निर्धारण टैंक तक पाइपलाइन की लंबाई पर निर्भर करता है। इस शुल्क में **पहले 5000 लीटर** की सफाई शामिल है।</li>
+                <li>मूल्य निर्धारण टैंक तक पाइपलाइन की लंबाई पर निर्भर करता है। इस शुल्क में **पहले 6000 लीटर** की सफाई शामिल है।</li>
                 
                 <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-calculator mr-2"></i> अतिरिक्त क्षमता की गणना (Over 5000 Liters)</li>
-                <li>टैंक की क्षमता 5000 लीटर से अधिक होने पर, **प्रति अतिरिक्त 5000 लीटर** (या उसके भाग) के लिए एक अतिरिक्त शुल्क लिया जाएगा।</li>
+                <li>टैंक की क्षमता 5000 लीटर से अधिक होने पर, **प्रति अतिरिक्त 6000 लीटर** (या उसके भाग) के लिए एक अतिरिक्त शुल्क लिया जाएगा।</li>
                 
                 <li class="font-bold text-primary mt-4 text-lg">उदाहरण 1: 100 मीटर पाइपलाइन, 8000 लीटर का टैंक</li>
                 <li>आधार शुल्क (100 मीटर के लिए): ₹2199</li>
@@ -581,20 +581,20 @@
     <script>
         // Data derived from the uploaded image
         const pricingData = [
-            { length: 60, basePrice: 1199, additionalPrice: 1199 },
+            { length: 80, basePrice: 1199, additionalPrice: 1199 },
             { length: 100, basePrice: 2199, additionalPrice: 1199 },
             { length: 200, basePrice: 3199, additionalPrice: 1199 },
             { length: 300, basePrice: 6199, additionalPrice: 1199 }
         ];
-        const BASE_CAPACITY = 5000;
-        const ADDITIONAL_UNIT = 5000;
+        const BASE_CAPACITY = 6000;
+        const ADDITIONAL_UNIT = 6000;
 
         // --- Generic constants ---
         const SERVICE_NAME = "Septic Tank Cleaning";
         const SERVICE_TAB_ID = "septic-tank-cleaning-service";
         const LOCAL_STORAGE_KEY = 'septicTankCleaningFormData';
         const RAZORPAY_IMAGE_TEXT = "TANK";
-        const PAYMENT_TIME_LIMIT = 5 * 60;
+        const PAYMENT_TIME_LIMIT = 5 * 80;
 
         // --- DOM Element Selection ---
         const bookNowBtn = document.getElementById('book-now-btn');
