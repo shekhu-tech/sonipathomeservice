@@ -4,19 +4,1209 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SonipatHomeService.com - Building Material Supply</title>
-    <!-- Zaroori libraries yahi load hongi. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <!-- Note: Sari styling aur logic ab external JS file se aayegi. -->
+    <style>
+        /* --- CSS copied from book-ac-services.html for exact look --- */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+        :root {
+            /* Classic White & Light Blue Theme (Matching AC Service) */
+            --bg-dark: #F4F7FB; /* Very Light Blue/Gray Background */
+            --bg-card: #FFFFFF; /* White Card/Popup Background */
+            --primary: #3B82F6; /* Primary Accent (Classic Blue) */
+            --secondary: #1F83E7; /* Secondary Accent (Darker Blue for titles/prices) */
+            --text-light: #1F2937; /* Dark Gray/Black Text */
+            --text-subtle: #6B7280; /* Subtle Gray Text */
+            --shadow-depth: 0 5px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        /* --- Custom Components --- */
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-depth);
+            transition: var(--transition);
+            border: 1px solid rgba(59, 130, 246, 0.1); 
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .stat-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .stat-card p {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .product-section {
+            background: linear-gradient(135deg, var(--bg-card), #E7EFF9);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+        }
+
+        .product-header {
+            background: linear-gradient(90deg, #E7EFF9, var(--bg-card));
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .product-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        .product-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: center; 
+            justify-content: center;
+        }
+
+        .product-details {
+            flex: 1; 
+            min-width: 300px;
+            text-align: center; 
+        }
+
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px dashed var(--text-subtle);
+            border-bottom: 1px dashed var(--text-subtle);
+            justify-content: center; 
+        }
+        
+        /* Display for selected services */
+        #selectedServicesDisplay {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-top: 0.5rem;
+            min-height: 24px; 
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: var(--text-subtle);
+            font-weight: 400;
+        }
+
+        .current-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            justify-content: center;
+            flex-grow: 1;
+            max-width: 400px; 
+            min-width: 200px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg-card); /* White text on blue button */
+            border-color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: #2563EB; /* Darker blue shade for hover */
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: scale(1.03);
+        }
+        
+        /* --- Service Card Styling (Updated for Image Background) --- */
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            cursor: pointer;
+            /* Default styles for the card */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay for readability */
+            background-image: url('placeholder.png'); /* Default background image */
+            background-size: cover;
+            background-position: center;
+            color: white; /* Ensure text is readable over the image */
+            position: relative; /* Needed for z-index of children */
+            border-radius: 0.75rem; /* Smaller radius for compact look */
+            /* Adjusted padding for compactness */
+            padding: 0.75rem; 
+            border: 2px solid transparent; /* Default border */
+        }
+        
+        .service-card-wrapper {
+            position: relative;
+        }
+
+        /* Hide the actual checkbox */
+        .service-card-wrapper input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            top: 0;
+            right: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            z-index: 10; 
+        }
+
+        /* Style the card based on checked state (Blue card on Selection) */
+        .service-card-wrapper input[type="checkbox"]:checked + .service-card {
+            background-image: none !important; 
+            background-color: rgba(59, 130, 246, 0.7) !important; /* Primary blue overlay */
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); 
+        }
+
+        /* FIX: Make check icon WHITE on selection for high visibility */
+        .service-card-wrapper input[type="checkbox"]:checked + .service-card .card-check-icon {
+            color: white; 
+            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.9)); 
+        }
+        
+        /* Check icon contrast adjustment for dark card background */
+        .service-card .card-check-icon {
+            color: #f7f7f7; /* Light gray checkmark for visibility */
+            transition: color 0.3s;
+        }
+        
+        /* Text visibility improvements */
+        .service-card h4, .service-card p {
+            /* Increased text shadow for much better contrast against any image */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 1.0); 
+            font-weight: 700; /* Made text bold */
+            /* Adjusted font size for compactness */
+            font-size: 0.95rem;
+        }
+        .service-card h4 {
+            /* Adjusted font size for compactness */
+            font-size: 0.95rem; 
+        }
+
+
+        .btn-see-more {
+            margin-top: auto; 
+            font-size: 0.8rem; /* Smaller font for compactness */
+            padding: 0.4rem 0.8rem; /* Smaller padding for compactness */
+            max-width: 100%;
+            /* Fixed button color to always be a clear blue (primary) */
+            background-color: var(--primary) !important;
+            color: white !important;
+            border-radius: 0.5rem; /* Slightly smaller border radius for the button */
+        }
+        
+        /* --- COMPACT CARD & ICON STYLING --- */
+        .service-icon-container {
+            /* Reduced size from 32px to 28px */
+            width: 28px;
+            height: 28px;
+            /* White background for icon visibility over dark/image background */
+            background: white; 
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Reduced margin-right from 8px to 6px */
+            margin-right: 6px;
+            color: var(--primary); /* Primary blue icon color */
+            flex-shrink: 0;
+            font-size: 0.8rem; /* Reduced icon size */
+        }
+        /* --- END COMPACT CARD & ICON STYLING --- */
+        
+        /* --- Popup Styling --- */
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 999;
+        }
+
+        .popup {
+            display: none;
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 95%;
+            max-width: 750px; 
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            border: 1px solid var(--primary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .popup h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .popup input,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            font-size: 1rem;
+            background: #F9FAFB; /* Very light input background */
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+        
+        .popup input:focus,
+        .popup select:focus,
+        .popup textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); 
+        }
+
+        .popup textarea {
+            min-height: 8rem;
+            resize: vertical;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadTicketsBtn,
+        .popup button.close-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadTicketsBtn {
+            background: linear-gradient(45deg, var(--primary), #2563EB); 
+            color: var(--bg-card);
+        }
+
+        .popup button[type="submit"]:hover,
+        #razorpay-payment-btn:hover,
+        #downloadTicketsBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.6); 
+        }
+        
+        .quantity-selector-container {
+            background: #EFF6FF; /* Very light blue background */
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--primary);
+        }
+
+        .total-price-quantity {
+            font-size: 1.8rem !important;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary) !important;
+        }
+
+        #ticketDisplay {
+            background: #F9FAFB;
+            border: 1px solid var(--primary);
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            word-break: break-word;
+        }
+        
+        /* Custom Alert Styling */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary); /* Blue alert background */
+            color: var(--bg-card); /* White alert text */
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
+            z-index: 1002;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -40%); }
+            10% { opacity: 1; transform: translate(-50%, -50%); }
+            90% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+        }
+
+        /* --- RESPONSIVENESS TWEAKS --- */
+        #serviceCardsContainer {
+            grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        }
+
+        @media (min-width: 768px) {
+            #serviceCardsContainer {
+                grid-template-columns: repeat(3, minmax(0, 1fr)); 
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .product-content { padding: 2rem; flex-direction: column; }
+            .product-details { text-align: center; }
+            .price-container, .action-buttons { justify-content: center; }
+            .btn { max-width: 400px; } 
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            main { padding: 3rem 1rem; }
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 2rem 1rem; }
+            .product-header h2 { font-size: 2rem; }
+            .product-details h3 { font-size: 2rem; }
+            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
+            .current-price { font-size: 2.5rem; }
+            .popup { padding: 1.5rem; }
+            .popup h2 { font-size: 1.5rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { min-width: 100%; max-width: 100%; }
+            
+            .popup input, .popup select, .popup textarea {
+                padding: 0.7rem 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .current-price { font-size: 2rem; }
+            .original-price { font-size: 1rem; }
+            .stat-card p { font-size: 1.8rem; }
+            .popup { padding: 1rem; }
+        }
+
+        /* Styling for the new selection display element (matching AC service file) */
+        #serviceSelectionDisplayWrapper {
+            background-color: #F9FAFB;
+            border: 1px solid var(--text-subtle);
+            border-radius: 0.75rem;
+            padding: 0.9rem 1.2rem;
+            cursor: pointer;
+            text-align: left;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+            min-height: 48px;
+        }
+        #serviceSelectionDisplayWrapper:hover {
+            border-color: var(--primary);
+        }
+
+        #selectedServicesSummary {
+            display: block;
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.25;
+            white-space: pre-wrap;
+        }
+        /* --- END OF AC CSS COPY --- */
+    </style>
 </head>
 <body>
-    <!-- Yeh container ID Building Material Supply ka poora UI load karega. File name ke hisaab se ID: book-building-material-supply-container -->
-    <div id="book-building-material-supply-container">
-        <!-- UI will be injected here by building-material-logic.js -->
+    <main class="container">
+        
+        <section class="product-section">
+            <div class="product-header">
+                <h2 class="text-secondary">Building Material Supply Service</h2> 
+                <p class="text-text-subtle mt-2">Order Quality Bricks, Sand, and Dust for doorstep delivery.</p>
+            </div>
+
+            <div class="product-content">
+                
+                <div class="product-details">
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">Quality Material Delivery</h3>
+                    <p class="text-text-subtle mb-4 text-base">
+                        Select your required material type below. Rates are fixed, and you pay a **₹99 Booking Charge** to confirm delivery.
+                    </p>
+                    
+                    <div class="price-container">
+                        <!-- Display selected package name here -->
+                        <div id="selectedServicesDisplay" class="font-bold text-center text-secondary mb-2">Select material(s) to view cost</div>
+                        <div class="original-price" id="originalPriceDisplay">Total Order Cost: Select Option</div>
+                        <!-- Display fixed booking charge -->
+                        <div class="current-price" id="displayPrice">₹99 Booking Charge</div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="participate-btn">
+                            <i class="fas fa-truck-loading"></i> Book Material Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>Total Orders Delivered</h3>
+                <p>7,500+</p>
+            </div>
+            <div class="stat-card">
+                <h3>Materials Available</h3>
+                <p>4+ Types</p>
+            </div>
+            <div class="stat-card">
+                <h3>Quality Rating</h3>
+                <p>4.8/5 Stars</p>
+            </div>
+            <div class="stat-card">
+                <h3>Fastest Delivery</h3>
+                <p>Same Day!</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="popup-overlay"></div>
+    
+    <!-- MAIN BOOKING FORM (Renamed to popupForm for consistency) -->
+    <div class="popup" id="popupForm">
+        <h2 class="text-2xl font-bold text-center">Building Material Order Booking</h2>
+        <form id="lotteryForm">
+            
+            <label>Select Material Type:</label>
+            <!-- Wrapper for selection display (Matching AC service file) -->
+            <div id="serviceSelectionDisplayWrapper" onclick="openServiceSelectionPopup()">
+                <span id="selectedServicesSummary">Click to select material type</span>
+            </div>
+            
+            <!-- Hidden fields -->
+            <input type="hidden" name="selectedServices" id="selectedServicesHiddenField">
+
+            <div class="flex justify-between items-center mt-3 p-3 rounded-lg quantity-selector-container border-primary">
+                <span class="text-text-light font-semibold">Total Payable Now (Booking Charge)</span>
+                <!-- Fixed booking charge -->
+                <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">₹99</span>
+            </div>
+
+            <label for="fullName">Your Full Name (min 10 characters)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
+            
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
+            
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
+            
+            <label for="location">Delivery Landmark (e.g. Near Main Market)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
+            
+            <label for="address">Full Delivery Address (min 30 characters)</label>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
+
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <input type="hidden" name="finalPrice" id="finalPrice" value="99" />
+            <input type="hidden" name="totalCost" id="totalCostInput" value="0" />
+            
+            <button type="submit">Next</button>
+            <p id="submitMessage" class="text-center mt-3 text-primary reorganize text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
+        </form>
+    </div>
+    
+    <!-- SELECTION POPUP (Matching AC Service File) -->
+    <div class="popup" id="serviceSelectionPopup" style="max-width: 900px;">
+        <h2 class="text-2xl font-bold text-center">Select Building Material Type</h2>
+        <div id="serviceCardsContainer" class="grid grid-cols-2 md:grid-cols-2 gap-3 mt-4 mb-6">
+            <!-- Service Cards will be injected here by JS -->
+        </div>
+        <button type="button" class="btn btn-primary" onclick="applyServiceSelection()">Apply Selection</button>
+        <button type="button" class="btn btn-secondary mt-2" onclick="closeServiceSelectionPopup()">Cancel</button>
+    </div>
+    <!-- END SELECTION POPUP -->
+
+    <!-- PAYMENT STEP -->
+    <div class="popup" id="paymentStep">
+        <h2 class="text-2xl font-bold text-center">Finalize Booking Charge</h2>
+        <p class="text-text-subtle text-center mb-6">Please pay the **₹99 booking charge** to confirm your order.</p>
+        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary text-text-light"></div>
+        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <!-- Updated button text and price to 99 -->
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i>Pay ₹99 Booking Charge Now</button>
+        <p class="mt-4 reorganize text-xs text-text-subtle text-center">
+            Note: The remaining product cost must be paid upon delivery. Do not close this window during payment processing.
+        </p>
     </div>
 
-    <!-- Naya logic file jismein poora App hai. --> 
-    <script src="buildingmetereal.js"></script>
+    <!-- TICKET STEP -->
+    <div class="popup" id="ticketStep">
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">Your order is confirmed. Details below:</p>
+        <div id="ticketDisplay" class="space-y-2"></div>
+        <button id="downloadTicketsBtn" class="mt-4">
+            <i class="fas fa-download mr-2"></i> Download Order Details
+        </button>
+        <p class="mt-4 reorganize text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
+    </div>
+    
+   
+    <script>
+        // Data adapted for Building Material (Base cost assumed for 100 units/ft for calculation ease)
+        const serviceData = [
+            { "Category": "Red Bricks (1000 Pcs)", "Price": 8499, "Icon": "fas fa-warehouse", "Details": "Price per 1000 bricks delivered (Single Item)." },
+            { "Category": "1st Quality Dust (Per Ft)", "Price": 5500, "Icon": "fas fa-mound", "Details": "Base cost estimate for initial calculation (e.g., 100 ft @ 55/ft)." },
+            { "Category": "Yamunanagar Sand (Per Ft)", "Price": 3800, "Icon": "fas fa-sand-castle", "Details": "Base cost estimate for initial calculation (e.g., 100 ft @ 38/ft)." },
+            { "Category": "Local Sand (Per Ft)", "Price": 3300, "Icon": "fas fa-truck-moving", "Details": "Base cost estimate for initial calculation (e.g., 100 ft @ 33/ft)." }
+        ];
+
+        // --- Configuration Constants ---
+        const SERVICE_TAB_ID = 'building-material';
+        const LOCAL_STORAGE_KEY = 'buildingMaterialFormData'; 
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+        
+        // --- DOM Element Selection ---
+        const participateBtn = document.getElementById('participate-btn');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const allPopups = document.querySelectorAll('.popup');
+        const popupForm = document.getElementById('popupForm');
+        const paymentStep = document.getElementById('paymentStep');
+        const ticketStep = document.getElementById('ticketStep');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const razorpayBtn = document.getElementById('razorpay-payment-btn');
+        const submitMessage = document.getElementById('submitMessage');
+        const serviceSelectionPopup = document.getElementById('serviceSelectionPopup');
+        const serviceCardsContainer = document.getElementById('serviceCardsContainer'); 
+        const selectedServicesSummary = document.getElementById('selectedServicesSummary'); 
+        const selectedServicesHiddenField = document.getElementById('selectedServicesHiddenField'); 
+        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
+        const paymentSummary = document.getElementById('paymentSummary');
+        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const displayPriceElement = document.getElementById('displayPrice');
+        const finalPriceInput = document.getElementById('finalPrice');
+        const totalCostInput = document.getElementById('totalCostInput');
+        const form = document.getElementById('lotteryForm');
+        const okayBtn = document.getElementById('okayBtn');
+        const selectedServicesDisplay = document.getElementById('selectedServicesDisplay');
+
+        // --- State Variables ---
+        let generatedTicket = ''; 
+        let paymentTimeout = null;
+        let countdownInterval = null;
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+        let currentTotalCost = 0; // Actual total service cost (sum of selected base prices)
+        const BOOKING_CHARGE = 99; 
+        let allowClose = false;
+        let selectedCategoriesState = []; // Array to hold multiple selected items
+
+        // --- Local Storage Functions ---
+        function saveFormData() {
+            const formData = {
+                fullName: form.fullName.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                location: form.location.value,
+                address: form.address.value,
+                selectedServices: selectedServicesHiddenField.value
+            };
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+        }
+
+        function loadFormData() {
+            const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                form.fullName.value = data.fullName || '';
+                form.phone.value = data.phone || '';
+                form.email.value = data.email || '';
+                form.location.value = data.location || '';
+                form.address.value = data.address || '';
+                if (data.selectedServices) {
+                    // Load multiple selections
+                    selectedCategoriesState = data.selectedServices.split(', ').filter(s => s);
+                }
+            }
+        }
+        
+        // --- Selection Popup Control (Client-side UI logic) ---
+
+        function openServiceSelectionPopup() {
+            generateServiceCards();
+            // Re-check all previously selected items
+            serviceCardsContainer.querySelectorAll('input[name="buildingMaterial"]').forEach(checkbox => {
+                const category = checkbox.value;
+                checkbox.checked = selectedCategoriesState.includes(category);
+                
+                const cardWrapper = checkbox.closest('.service-card-wrapper');
+                updateCardVisuals(cardWrapper, checkbox.checked);
+            });
+            openPopup(serviceSelectionPopup);
+        }
+
+        function closeServiceSelectionPopup() {
+            serviceSelectionPopup.style.display = 'none';
+            if (popupForm.style.display === 'block') {
+                popupOverlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        function applyServiceSelection() {
+            const selectedCheckboxes = Array.from(serviceCardsContainer.querySelectorAll('input[name="buildingMaterial"]:checked'));
+            
+            if (selectedCheckboxes.length === 0) {
+                selectedCategoriesState = [];
+            } else {
+                 // Allow Multiple Selections
+                selectedCategoriesState = selectedCheckboxes.map(cb => cb.value);
+            }
+
+            updatePrices();
+            
+            closeServiceSelectionPopup(); 
+            
+            popupForm.style.display = 'block';
+            popupOverlay.style.display = 'block';
+        }
+
+        // --- Core Functions ---
+
+        function generateServiceCards() {
+            serviceCardsContainer.innerHTML = '';
+            
+            serviceData.forEach((service, index) => {
+                // Generate a unique placeholder image URL for each service category
+                // Use a neutral gray/brown color for building materials
+                const baseColor = service.Category.includes('Bricks') ? 'A34300' : (service.Category.includes('Sand') ? 'E6C374' : '5E5E5E');
+                const imageUrl = `https://placehold.co/400x200/${baseColor}/FFFFFF?font=Montserrat&text=${encodeURIComponent(service.Category.replace(/\s/g, '+'))}`;
+                
+                const isChecked = selectedCategoriesState.includes(service.Category);
+                
+                const cardHtml = `
+                    <div class="service-card-wrapper" data-category="${service.Category}" data-price="${service.Price}" data-image-url="${imageUrl}"> 
+                        <label class="block h-full cursor-pointer"> 
+                            <div id="card-${index}" class="service-card p-3 rounded-xl border-2 transition duration-300 transform hover:scale-[1.02] 
+                                border-text-subtle/50 hover:border-primary/80" 
+                                style="background-image: url('${imageUrl}'); background-color: ${isChecked ? 'rgba(59, 130, 246, 0.7)' : 'rgba(0, 0, 0, 0.5)'};">
+                                
+                                <input type="checkbox" id="service-checkbox-${index}" name="buildingMaterial" 
+                                       value="${service.Category}" data-price="${service.Price}" class="hidden" ${isChecked ? 'checked' : ''}>
+                                
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex items-center">
+                                        <div class="service-icon-container">
+                                            <i class="${service.Icon} text-lg"></i> 
+                                        </div>
+                                        <h4 class="text-base font-semibold text-white">${service.Category}</h4>
+                                    </div>
+                                    <i class="fas fa-check-circle text-xl card-check-icon ${isChecked ? 'text-white' : 'text-gray-200'}"></i>
+                                </div>
+                                
+                                <p class="text-xs text-yellow-300 font-bold mb-2">Base Cost: ₹${service.Price.toLocaleString('en-IN')}</p>
+                                <p class="text-xs text-white font-medium">${service.Details}</p>
+                                
+                                <a href="#"
+                                   onclick="event.preventDefault(); showCustomAlert('The full price will depend on your exact quantity and location.');"
+                                   class="btn-see-more py-1 px-3 rounded-full text-xs font-bold inline-flex items-center justify-center w-full mt-2 transition duration-200 hover:bg-[#2563EB]">
+                                    <i class="fas fa-search-plus mr-1"></i> View Price Details
+                                </a>
+                            </div>
+                        </label>
+                    </div>
+                `;
+                serviceCardsContainer.insertAdjacentHTML('beforeend', cardHtml);
+            });
+            
+             serviceCardsContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    // Update visuals without enforcing single selection
+                    const cardWrapper = e.target.closest('.service-card-wrapper');
+                    updateCardVisuals(cardWrapper, e.target.checked);
+                    // No automatic price update here; waits for 'Apply Selection'
+                });
+            });
+        }
+
+        function updateCardVisuals(wrapper, isChecked) {
+            const card = wrapper.querySelector('.service-card');
+            const checkIcon = wrapper.querySelector('.card-check-icon');
+            const imageUrl = wrapper.dataset.imageUrl; 
+            
+            if (isChecked) {
+                card.style.backgroundImage = 'url(\'drng1.png\')'; 
+                card.style.backgroundColor = 'rgba(59, 130, 246, 0.7)'; 
+                card.classList.add('border-primary', 'shadow-lg', 'shadow-primary/30');
+                card.classList.remove('border-text-subtle/50', 'hover:border-primary/80');
+                checkIcon.classList.remove('text-gray-200');
+                checkIcon.classList.add('text-white'); 
+            } else {
+                card.style.backgroundImage = `url('${imageUrl}')`; 
+                card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
+                card.classList.remove('border-primary', 'shadow-lg', 'shadow-primary/30');
+                card.classList.add('border-text-subtle/50', 'hover:border-primary/80');
+                checkIcon.classList.remove('text-white'); 
+                checkIcon.classList.add('text-gray-200');
+            }
+        }
+
+        function updatePrices() {
+            // Filter selected items from serviceData and sum their base prices
+            const selectedProducts = serviceData.filter(service => 
+                selectedCategoriesState.includes(service.Category)
+            );
+            
+            // Sum the base prices of all selected products
+            currentTotalCost = selectedProducts.reduce((sum, product) => sum + product.Price, 0);
+
+            const originalPriceDisplay = document.getElementById('originalPriceDisplay');
+            
+            const selectedNames = selectedCategoriesState;
+            if (selectedNames.length > 0) {
+                const namesString = selectedNames.join(', ');
+                
+                selectedServicesHiddenField.value = namesString;
+                totalCostInput.value = currentTotalCost;
+
+                selectedServicesSummary.textContent = namesString; 
+                selectedServicesDisplay.textContent = `Selected: ${selectedNames.length} Material(s)`; 
+                
+                originalPriceDisplay.textContent = `Estimated Base Cost: ₹${currentTotalCost.toLocaleString('en-IN')}`;
+                displayPriceElement.textContent = `₹${BOOKING_CHARGE.toLocaleString('en-IN')} Booking Charge`;
+                // Update the visible charge display in the main form
+                totalPriceQuantityDisplay.textContent = `₹${BOOKING_CHARGE.toLocaleString('en-IN')}`;
+                finalPriceInput.value = BOOKING_CHARGE;
+            } else {
+                selectedServicesHiddenField.value = '';
+                totalCostInput.value = 0;
+
+                selectedServicesSummary.textContent = 'Click to select material type';
+                selectedServicesDisplay.textContent = 'Select material(s) to view cost'; 
+                originalPriceDisplay.textContent = 'Estimated Order Cost: Select Option';
+                displayPriceElement.textContent = `₹99 Booking Charge`;
+                totalPriceQuantityDisplay.textContent = `₹99`;
+                finalPriceInput.value = BOOKING_CHARGE;
+            }
+        }
+
+        function generateFormattedTicket() {
+            return 'MAT-DEL-' + 'xxxxxxxx'.replace(/x/g, c => {
+                const r = Math.random() * 16 | 0;
+                return r.toString(16);
+            }).toUpperCase();
+        }
+
+        function downloadTickets() {
+            const selectedMaterialName = selectedServicesHiddenField.value;
+            const totalProductCost = currentTotalCost;
+            const amountPaid = BOOKING_CHARGE;
+            const remainingAmount = totalProductCost - amountPaid;
+            
+            const ticketContent = `BUILDING MATERIAL ORDER DETAILS\n\n` +
+                                 `Customer Name: ${form.fullName.value}\n` +
+                                 `Contact: ${form.phone.value}\n` +
+                                 `Location: ${form.location.value}\n` +
+                                 `Material Booked: ${selectedMaterialName}\n` +
+                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
+                                 `Estimated Total Order Base Cost: ₹${totalProductCost.toLocaleString('en-IN')}\n` +
+                                 `Booking Charge Paid: ₹${amountPaid.toLocaleString('en-IN')}\n` +
+                                 `Remaining Balance: ₹${remainingAmount.toLocaleString('en-IN')}\n\n` +
+                                 `--- IMPORTANT NOTE ---\n` +
+                                 `The final price (including exact quantity confirmation) and remaining balance (₹${remainingAmount.toLocaleString('en-IN')}) will be paid upon delivery.`;
+            
+            const blob = new Blob([ticketContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `material_order_${generatedTicket}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert'; 
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => alertBox.remove(), 4000); 
+        }
+
+        // --- Popup Control Functions ---
+        function closeAllPopups() {
+            if (!allowClose) {
+                showCustomAlert("Please complete the booking process before closing.");
+                return;
+            }
+            clearTimers();
+            popupOverlay.style.display = 'none';
+            allPopups.forEach(p => p.style.display = 'none');
+            document.body.style.overflow = 'auto';
+            allowClose = false; 
+        }
+
+        function openPopup(popupElement) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            allPopups.forEach(p => p.style.display = 'none');
+            popupElement.style.display = 'block';
+            allowClose = false;
+        }
+        
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        function clearTimers() {
+            if (paymentTimeout) clearTimeout(paymentTimeout);
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        function startPaymentTimer() {
+            let timeLeft = PAYMENT_TIME_LIMIT;
+            const updateDisplay = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            updateDisplay();
+
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    showCustomAlert("Payment time has expired. Please try again.");
+                    allowClose = true; 
+                    closeAllPopups();
+                }
+            }, 1000);
+        }
+
+        // --- Payment and Submission Logic ---
+        
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            // Validation 
+            const selectedMaterialName = selectedServicesHiddenField.value;
+            if (selectedCategoriesState.length === 0 || currentTotalCost <= 0) { showCustomAlert("Please select at least one material type."); return; }
+            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address (minimum 30 characters)."); return; }
+            
+            submitMessage.style.display = 'block';
+            form.querySelector('button[type="submit"]').disabled = true;
+
+            generatedTicket = generateFormattedTicket(); 
+            
+            const totalProductCost = currentTotalCost; 
+            const advancePaid = BOOKING_CHARGE;
+            const remainingAmount = totalProductCost - advancePaid;
+
+            // --- Form Data for Google Sheet ---
+            const formData = new FormData();
+            formData.append('field1', form.fullName.value); 
+            formData.append('field2', form.phone.value);    
+            formData.append('field3', form.email.value);    
+            formData.append('field4', selectedMaterialName); // Comma separated list of selected materials
+            formData.append('field5', form.location.value); 
+            formData.append('field6', form.address.value);  
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', 'Building Material Supply');   
+            formData.append('totalCost', totalProductCost); // Sum of base costs
+            formData.append('advancePaid', advancePaid);
+            formData.append('remainingDue', remainingAmount);
+            formData.append('finalPrice', advancePaid); // Final price for payment gateway
+            formData.append('ticketQuantity', selectedCategoriesState.length); // Number of different materials booked
+
+            // --- Google Script URL ---
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success")) { 
+                    saveFormData(); 
+                    
+                    popupForm.style.display = 'none';
+                    openPopup(paymentStep);
+                    
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Order Details:</p>
+                        <p class="text-text-light text-base mb-1">Materials: <span class="font-bold text-primary">${selectedMaterialName}</span></p>
+                        <p class="text-text-light text-base mb-3">Estimated Total Base Cost: <span class="font-bold text-secondary">₹${totalProductCost.toLocaleString('en-IN')}</span></p>
+                        <p class="text-text-subtle text-sm mt-2">The remaining balance 
+                        <span class="font-bold text-primary">₹${remainingAmount.toLocaleString('en-IN')}</span> 
+                        must be paid upon delivery (after quantity and rate confirmation).</p>
+                        <p class="current-price text-secondary text-3xl font-bold mt-3">Booking Charge Payable Now: ₹${advancePaid.toLocaleString('en-IN')}</p>
+                    `;
+                    startPaymentTimer();
+                } else {
+                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
+            })
+            .finally(() => {
+                submitMessage.style.display = 'none';
+                form.querySelector('button[type="submit"]').disabled = false;
+            });
+        }
+
+        function handleRazorpayPayment() {
+            const finalPaymentAmount = BOOKING_CHARGE; 
+             if (finalPaymentAmount == 0) {
+                showCustomAlert("Please select a material before proceeding.");
+                return;
+            }
+
+            const selectedMaterialName = selectedServicesHiddenField.value;
+
+            const options = {
+                "key": "rzp_live_RLjzp7VlXERwiG",
+                "amount": finalPaymentAmount * 100, 
+                "currency": "INR",
+                "name": `SonipatHomeService - Material Booking Charge`,
+                "description": `Booking Charge for Materials: ${selectedMaterialName}`,
+                "image": `https://placehold.co/100x100/F4F7FB/3B82F6?text=MAT`, 
+                "handler": function (response){
+                    console.log("Payment successful:", response.razorpay_payment_id);
+                    paymentSuccess(response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": form.fullName.value,
+                    "email": form.email.value,
+                    "contact": form.phone.value
+                },
+                "notes": {
+                    "address": `${form.location.value}, ${form.address.value}`,
+                    "material_details": selectedMaterialName,
+                    "booking_ref": generatedTicket,
+                    "total_cost": currentTotalCost,
+                },
+                "theme": { "color": "#3B82F6" }, 
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                console.error("Payment Failed:", response.error);
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
+        }
+
+        function paymentSuccess(paymentId) {
+            clearTimers();
+            paymentStep.style.display = 'none';
+            openPopup(ticketStep);
+            
+            const userName = form.fullName.value.split(' ')[0];
+            const selectedMaterialName = selectedServicesHiddenField.value;
+            
+            const totalProductCost = currentTotalCost; 
+            const amountPaid = BOOKING_CHARGE; 
+            const remainingAmount = totalProductCost - amountPaid; 
+
+            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Order Confirmed! 🎉`;
+            
+            ticketDisplay.innerHTML = `
+                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p>Material Ordered: <span class="font-bold text-text-light">${selectedMaterialName}</span></p>
+                <p>Estimated Total Cost: <span class="font-bold text-secondary">₹${totalProductCost.toLocaleString('en-IN')}</span></p>
+                <p class="text-primary text-lg font-bold mt-3">Booking Charge Paid: ₹${amountPaid.toLocaleString('en-IN')}</p>
+                
+                <div class="mt-4 p-3 rounded-lg bg-bg-dark border border-secondary">
+                    <p class="text-text-light font-semibold">Remaining Balance Due:</p>
+                    <p class="text-xl text-primary font-bold mt-1">₹${remainingAmount.toLocaleString('en-IN')}</p>
+                    <p class="text-sm text-text-subtle mt-1">This amount will be finalized and must be paid upon delivery.</p>
+                </div>
+
+                <p class="text-text-subtle text-sm mt-3">Our team will contact you shortly to schedule the delivery at your location: ${form.location.value}.</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
+            `;
+            
+            allowClose = true;
+        }
+        
+        // --- Event Listeners Initialization ---
+        participateBtn.addEventListener('click', () => {
+            updatePrices();
+            loadFormData(); 
+            openPopup(popupForm);
+        });
+        
+        // Centralized Overlay Click Handling (Copied from AC file logic)
+        popupOverlay.addEventListener('click', e => {
+            if (e.target === popupOverlay) {
+                if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
+                else if (serviceSelectionPopup.style.display === 'block') closeServiceSelectionPopup();
+            }
+        });
+        
+        // Close Buttons
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const parentPopup = e.target.closest('.popup');
+                if (parentPopup.id === 'ticketStep' || parentPopup.id === 'okayBtn') {
+                    window.location.href = 'index.html';
+                } else {
+                    closeSpecificPopup(parentPopup);
+                }
+            });
+        });
+
+        document.getElementById('serviceSelectionDisplayWrapper').addEventListener('click', openServiceSelectionPopup);
+        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
+        razorpayBtn.addEventListener('click', handleRazorpayPayment);
+        downloadTicketsBtn.addEventListener('click', downloadTickets);
+        form.addEventListener('submit', handleFormSubmit);
+
+        // --- Page Load Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePrices(); 
+        });
+    </script>
 </body>
 </html>
