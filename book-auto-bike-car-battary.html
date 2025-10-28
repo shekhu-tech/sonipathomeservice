@@ -544,18 +544,18 @@
                 <div class="product-details">
                     <h3 class="text-3xl font-semibold text-text-light mb-4">Branded Power for Your Vehicle</h3>
                     <p class="text-text-subtle mb-4 text-base">
-                        अपने वाहन के लिए बैटरी चुनें। ₹99 का बुकिंग चार्ज देने के बाद हम 1-2 घंटे में आपकी लोकेशन पर डिलीवरी और इंस्टॉलेशन करेंगे।
+                        Select the battery for your vehicle. After paying the ₹99 booking charge, we will deliver and install it at your location within 1-2 hours.
                     </p>
                     
                     <div class="price-container">
-                        <div id="selectedServicesDisplay" class="font-bold text-center text-secondary mb-2">सर्विस/बैटरी चुनने के लिए नीचे क्लिक करें</div>
-                        <div class="original-price" id="originalPriceDisplay">वास्तविक लागत: कोई बैटरी नहीं चुनी गई</div>
-                        <div class="current-price" id="displayPrice">₹99 बुकिंग चार्ज</div>
+                        <div id="selectedServicesDisplay" class="font-bold text-center text-secondary mb-2">Click below to select Battery/Service</div>
+                        <div class="original-price" id="originalPriceDisplay">Actual Cost: No Battery Selected</div>
+                        <div class="current-price" id="displayPrice">₹99 Booking Charge</div>
                     </div>
                     
                     <div class="action-buttons">
                         <button class="btn btn-primary" id="book-now-btn">
-                            <i class="fas fa-motorcycle"></i> बैटरी ऑर्डर करें
+                            <i class="fas fa-motorcycle"></i> Order Battery
                         </button>
                     </div>
                 </div>
@@ -564,20 +564,20 @@
 
         <div class="stat-grid">
             <div class="stat-card">
-                <h3>कुल बैटरी बिक्रियां</h3>
+                <h3>Total Batteries Sold</h3>
                 <p>7,000+</p>
             </div>
             <div class="stat-card">
-                <h3>डिलीवरी समय (औसत)</h3>
-                <p>1 घंटा</p>
+                <h3>Average Delivery Time</h3>
+                <p>1 Hour</p>
             </div>
             <div class="stat-card">
-                <h3>एक्सचेंज वैल्यू (अधिकतम)</h3>
+                <h3>Maximum Exchange Value</h3>
                 <p>₹500+</p>
             </div>
             <div class="stat-card">
-                <h3>वारंटी (अधिकतम)</h3>
-                <p>3 साल</p>
+                <h3>Maximum Warranty</h3>
+                <p>3 Years</p>
             </div>
         </div>
     </main>
@@ -586,35 +586,35 @@
     
     <!-- Step 1: Booking Form Popup (Replaces old booking-popup) -->
     <div class="popup" id="popupForm">
-        <h2 class="text-2xl font-bold text-center">ऑटो बैटरी ऑर्डर फ़ॉर्म</h2>
+        <h2 class="text-2xl font-bold text-center">Auto Battery Order Form</h2>
         <form id="booking-form">
             
-            <label>बैटरी और वारंटी चुनें:</label>
+            <label>Select Battery and Warranty:</label>
             <!-- Wrapper for service selection display, clicking opens the selection popup -->
             <div id="serviceSelectionDisplayWrapper" onclick="openServiceSelectionPopup()">
-                <span id="selectedServicesSummary">बैटरी/सर्विस चुनने के लिए क्लिक करें</span>
+                <span id="selectedServicesSummary">Click to select Battery/Service</span>
             </div>
             
             <input type="hidden" name="selectedServices" id="selectedServicesHiddenField">
 
             <div class="flex justify-between items-center mt-3 p-3 rounded-lg quantity-selector-container border-primary">
-                <span class="text-text-light font-semibold">कुल देय राशि अभी (बुकिंग चार्ज)</span>
+                <span class="text-text-light font-semibold">Total Amount Payable Now (Booking Charge)</span>
                 <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">₹99</span>
             </div>
 
-            <label for="fullName">पूरा नाम (न्यूनतम 10 अक्षर)</label>
+            <label for="fullName">Full Name (min 10 characters)</label>
             <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
             
-            <label for="phone">फ़ोन नंबर (10 अंक)</label>
+            <label for="phone">Phone Number (10 digits)</label>
             <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
             
-            <label for="email">ईमेल पता</label>
+            <label for="email">Email Address</label>
             <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" value="user@example.com"/>
             
-            <label for="location">लोकेशन/शहर (जैसे सोनीपत, दिल्ली)</label>
+            <label for="location">Location/City (e.g., Sonipat, Delhi)</label>
             <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" />
             
-            <label for="address">पूरा पता (न्यूनतम 30 अक्षर)</label>
+            <label for="address">Complete Address (min 30 characters)</label>
             <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
 
             <input type="hidden" name="ticket" id="ticketCode" />
@@ -622,32 +622,32 @@
             <input type="hidden" name="finalPrice" id="finalPrice" value="99" />
             <input type="hidden" name="servicePrice" id="servicePrice" value="0" /> 
             
-            <button type="submit">डिटेल्स सबमिट करें और पेमेंट करें</button>
-            <p id="submitMessage" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">सबमिट हो रहा है... कृपया प्रतीक्षा करें</p>
+            <button type="submit">Submit Details & Proceed to Payment</button>
+            <p id="submitMessage" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
         </form>
     </div>
 
     <!-- Step 2: Service Selection Popup (New) -->
     <div class="popup" id="serviceSelectionPopup" style="max-width: 900px;">
-        <h2 class="text-2xl font-bold text-center">बैटरी/सर्विस चुनें (आप एक से अधिक चुन सकते हैं)</h2>
+        <h2 class="text-2xl font-bold text-center">Select Battery/Service (You can select more than one)</h2>
         <div id="serviceCardsContainer" class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4 mb-6">
             <!-- Service Cards will be injected here by JS -->
         </div>
-        <button type="button" class="btn btn-primary" onclick="applyServiceSelection()">सिलेक्शन लागू करें</button>
-        <button type="button" class="btn btn-secondary mt-2" onclick="closeServiceSelectionPopup()">कैंसिल करें</button>
+        <button type="button" class="btn btn-primary" onclick="applyServiceSelection()">Apply Selection</button>
+        <button type="button" class="btn btn-secondary mt-2" onclick="closeServiceSelectionPopup()">Cancel</button>
     </div>
     <!-- End Step 2 -->
 
 
     <!-- Step 3: Payment Popup (Replaces old payment-popup) -->
     <div class="popup" id="paymentStep">
-        <h2 class="text-2xl font-bold text-center">पेमेंट पूरा करें</h2>
-        <p class="text-text-subtle text-center mb-6">अपनी बैटरी डिलीवरी और इंस्टॉलेशन बुकिंग की पुष्टि के लिए पेमेंट पूरा करें।</p>
+        <h2 class="text-2xl font-bold text-center">Complete Payment</h2>
+        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your battery delivery and installation booking.</p>
         <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary text-text-light"></div>
-        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">बचा हुआ समय: 05:00</div>
-        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> ₹99 अभी भुगतान करें</button>
+        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay ₹99 Now</button>
         <p class="mt-4 text-xs text-text-subtle text-center">
-            ध्यान दें: पेमेंट प्रोसेस के दौरान यह विंडो बंद न करें।
+            Note: Do not close this window during payment processing.
         </p>
     </div>
     <!-- End Step 3 -->
@@ -655,13 +655,13 @@
     <!-- Step 4: Confirmation Popup (Replaces old confirmation-popup) -->
     <div class="popup" id="ticketStep">
         <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">आपकी बुकिंग की पुष्टि हो गई है। डिटेल्स नीचे दिए गए हैं:</p>
+        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details are provided below:</p>
         <div id="ticketDisplay" class="space-y-2"></div>
         <button id="downloadTicketsBtn" class="mt-4">
-            <i class="fas fa-download mr-2"></i> ऑर्डर डिटेल्स डाउनलोड करें
+            <i class="fas fa-download mr-2"></i> Download Order Details
         </button>
-        <p class="mt-4 text-sm text-text-subtle text-center">📸 कृपया प्रूफ और रेफरेंस के लिए एक स्क्रीनशॉट लें।</p>
-        <button id="okayBtn" class="w-full mt-4">ओके, समझ गया!</button>
+        <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="w-full mt-4">Okay, Got It!</button>
     </div>
     <!-- End Step 4 -->
     
@@ -847,9 +847,9 @@
                                 <p class="text-xs text-yellow-300 font-bold mb-2">Price: ₹${service.Price}</p>
                                 
                                 <a href="${detailPageUrl}" target="_blank"
-                                   onclick="event.stopPropagation(); showCustomAlert('यह बटन आपको ${service.Category} की विस्तृत जानकारी वाले पेज पर ले जाएगा।');"
+                                   onclick="event.stopPropagation(); showCustomAlert('This button will take you to the detailed information page for ${service.Category}.');"
                                    class="btn-see-more py-1 px-3 rounded-full text-xs font-bold inline-flex items-center justify-center w-full mt-2 transition duration-200 hover:bg-[#2563EB]">
-                                    <i class="fas fa-search-plus mr-1"></i> ज़्यादा देखें
+                                    <i class="fas fa-search-plus mr-1"></i> See More
                                 </a>
                             </div>
                         </label>
@@ -883,7 +883,7 @@
                 const category = wrapper.dataset.category.split(' ')[0];
                 const placeholderUrl = `https://placehold.co/400x300/1F2937/FFFFFF?text=${category}+Battery`;
 
-                card.style.backgroundImage = `url('${placeholderUrl}')`;
+                 card.style.backgroundImage = 'url(\'drng1.png\')'; 
                 card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
                 card.classList.remove('border-primary', 'shadow-lg', 'shadow-primary/30');
                 card.classList.add('border-text-subtle/50', 'hover:border-primary/80');
@@ -919,19 +919,19 @@
                 selectedServicesSummary.textContent = namesString; 
                 selectedServicesDisplay.textContent = namesString;
                 
-                originalPriceDisplay.textContent = `वास्तविक बैटरी लागत (Actual Cost): ₹${currentServicePrice}`;
-                displayPriceElement.textContent = `₹${BOOKING_CHARGE} बुकिंग चार्ज`;
+                originalPriceDisplay.textContent = `Actual Battery Cost: ₹${currentServicePrice}`;
+                displayPriceElement.textContent = `₹${BOOKING_CHARGE} Booking Charge`;
                 totalPriceQuantityDisplay.textContent = `₹${BOOKING_CHARGE}`;
-                razorpayBtn.textContent = `₹${BOOKING_CHARGE} अभी भुगतान करें`;
+                razorpayBtn.textContent = `Pay ₹${BOOKING_CHARGE} Now`;
             } else {
                 selectedServicesHiddenField.value = '';
-                selectedServicesSummary.textContent = 'बैटरी/सर्विस चुनने के लिए क्लिक करें';
-                selectedServicesDisplay.textContent = 'सर्विस/बैटरी चुनने के लिए नीचे क्लिक करें'; 
-                originalPriceDisplay.textContent = 'वास्तविक लागत: कोई बैटरी नहीं चुनी गई';
-                displayPriceElement.textContent = `₹99 बुकिंग चार्ज`;
+                selectedServicesSummary.textContent = 'Click to select Battery/Service';
+                selectedServicesDisplay.textContent = 'Click below to select Battery/Service'; 
+                originalPriceDisplay.textContent = 'Actual Cost: No Battery Selected';
+                displayPriceElement.textContent = `₹99 Booking Charge`;
                 totalPriceQuantityDisplay.textContent = `₹0`;
                 finalPriceInput.value = 0; 
-                razorpayBtn.textContent = `₹99 अभी भुगतान करें`;
+                razorpayBtn.textContent = `Pay ₹99 Now`;
             }
         }
 
@@ -950,7 +950,7 @@
         // --- Popup Control Functions ---
         function closeAllPopups() {
             if (!allowClose) {
-                showCustomAlert("कृपया बंद करने से पहले बुकिंग प्रक्रिया पूरी करें।");
+                showCustomAlert("Please complete the booking process before closing.");
                 return;
             }
             clearTimers();
@@ -981,7 +981,7 @@
             const updateDisplay = () => {
                 const minutes = Math.floor(timeLeft / 60);
                 const seconds = timeLeft % 60;
-                timerDisplay.textContent = `बचा हुआ समय: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             };
             updateDisplay();
 
@@ -990,7 +990,7 @@
                 updateDisplay();
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
-                    showCustomAlert("पेमेंट का समय समाप्त हो गया। कृपया पुनः प्रयास करें।");
+                    showCustomAlert("Payment time expired. Please try again.");
                     allowClose = true; 
                     closeAllPopups();
                 }
@@ -1029,7 +1029,7 @@
         function handleRazorpayPayment() {
             const finalPaymentAmount = parseFloat(finalPriceInput.value); 
             if (finalPaymentAmount === 0) {
-                showCustomAlert("कृपया बैटरी चुनें और बुकिंग चार्ज ₹99 का भुगतान करें।");
+                showCustomAlert("Please select a battery and pay the ₹99 booking charge.");
                 return;
             }
 
@@ -1063,7 +1063,7 @@
             const rzp = new Razorpay(options);
             rzp.on('payment.failed', response => {
                 console.error("Payment Failed:", response.error);
-                showCustomAlert(`पेमेंट विफल: ${response.error.description} (कोड: ${response.error.code})`);
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
             });
             rzp.open();
         }
@@ -1082,28 +1082,28 @@
             const amountPaid = parseFloat(finalPriceInput.value);
             const remainingAmount = totalBatteryCost - amountPaid; 
 
-            welcomeMessage.textContent = `🎉 मुबारक हो, ${userName}! ऑर्डर की पुष्टि हो गई है! 🎉`;
+            welcomeMessage.textContent = `🎉 Congratulations, ${userName}! Order Confirmed! 🎉`;
             
             const remainingText = remainingAmount > 0 
-                ? `बुकिंग चार्ज ₹${amountPaid} उसमें से घटाकर, बाकी ₹${remainingAmount} आपको डिलीवरी के समय तकनीशियन को देनी है।`
-                : `बुकिंग चार्ज ₹${amountPaid} पूरी बैटरी लागत को कवर करता है।`;
+                ? `The remaining ₹${remainingAmount} (after deducting the ₹${amountPaid} booking charge) must be paid to the technician upon delivery.`
+                : `The ₹${amountPaid} booking charge covers the full battery cost.`;
 
             ticketDisplay.innerHTML = `
-                <p>ऑर्डर ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p>चुनी गई बैटरी/सर्विस: <span class="font-bold text-text-light">${selectedBatteryNames}</span></p>
-                <p>कुल बैटरी लागत (Estimated): <span class="font-bold text-secondary">₹${totalBatteryCost}</span></p>
-                <p class="text-primary text-lg font-bold mt-3">अभी भुगतान किया गया (बुकिंग चार्ज): ₹${amountPaid}</p>
+                <p>Order ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p>Selected Battery/Service: <span class="font-bold text-text-light">${selectedBatteryNames}</span></p>
+                <p>Total Estimated Battery Cost: <span class="font-bold text-secondary">₹${totalBatteryCost}</span></p>
+                <p class="text-primary text-lg font-bold mt-3">Paid Now (Booking Charge): ₹${amountPaid}</p>
                 
                 <div class="mt-4 p-3 rounded-lg bg-bg-dark border border-secondary">
-                    <p class="text-text-light font-semibold">अंतिम भुगतान निर्देश (Final Payment Instruction):</p>
+                    <p class="text-text-light font-semibold">Final Payment Instruction:</p>
                     <p class="text-sm text-text-subtle mt-1">
-                        आपकी बैटरी की कुल लागत ₹${totalBatteryCost} थी। 
+                        The total cost of your battery was ₹${totalBatteryCost}. 
                         ${remainingText}
                     </p>
                 </div>
 
-                <p class="text-text-subtle text-sm mt-3">हमारी टीम जल्द ही डिलीवरी और इंस्टॉलेशन के लिए आपसे संपर्क करेगी।</p>
-                <p class="text-text-subtle text-xs mt-1">पेमेंट ID: ${paymentId}</p>
+                <p class="text-text-subtle text-sm mt-3">Our team will contact you shortly to confirm delivery and installation.</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
             
             allowClose = true;
@@ -1125,7 +1125,7 @@
             if (e.target === popupOverlay) {
                 if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
                 else if (serviceSelectionPopup.style.display === 'block') closeServiceSelectionPopup();
-                else if (paymentStep.style.display === 'block') showCustomAlert("कृपया पेमेंट प्रक्रिया पूरी करें।");
+                else if (paymentStep.style.display === 'block') showCustomAlert("Please complete the payment process.");
                 else if (popupForm.style.display === 'block' && allowClose) closeAllPopups();
             }
         });
@@ -1140,13 +1140,13 @@
 
             // Validation 
             const selectedCategoryNames = selectedServicesHiddenField.value;
-            if (!selectedCategoryNames) { showCustomAlert("कृपया कम से कम एक बैटरी/सर्विस चुनें।"); return; }
-            if (bookingForm.field1.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
-            if (!/^\d{10}$/.test(bookingForm.field2.value.trim())) { showCustomAlert("कृपया एक वैध 10-अंकीय फ़ोन नंबर दर्ज करें।"); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.field3.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें।"); return; }
-            if (bookingForm.field5.value.trim().length < 3) { showCustomAlert("कृपया एक वैध स्थान का नाम दर्ज करें।"); return; }
-            if (bookingForm.field6.value.trim().length < 30) { showCustomAlert("कृपया कम से कम 30 अक्षरों के साथ एक पूरा पता दर्ज करें।"); return; }
-            if (currentServicePrice <= 0) { showCustomAlert("कृपया आगे बढ़ने से पहले एक बैटरी चुनें।"); return; }
+            if (!selectedCategoryNames) { showCustomAlert("Please select at least one battery/service."); return; }
+            if (bookingForm.field1.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(bookingForm.field2.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.field3.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
+            if (bookingForm.field5.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (bookingForm.field6.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
+            if (currentServicePrice <= 0) { showCustomAlert("Please select a battery before proceeding."); return; }
             
             submitMessage.style.display = 'block';
             bookingForm.querySelector('button[type="submit"]').disabled = true;
@@ -1189,22 +1189,22 @@
                     const remainingAmount = totalServiceCost - finalPaymentAmount;
 
                     paymentSummary.innerHTML = `
-                        <p class="text-text-subtle text-lg mb-2 font-bold">बुकिंग डिटेल्स:</p>
-                        <p class="text-text-light text-base mb-1">बैटरी/सर्विस: <span class="font-bold text-primary">${selectedBatteryNames}</span></p>
-                        <p class="text-text-light text-base mb-3">वास्तविक बैटरी लागत: <span class="font-bold text-secondary">₹${totalServiceCost}</span></p>
-                        <p class="current-price text-secondary text-3xl font-bold">कुल देय राशि अभी: ₹${finalPaymentAmount}</p>
-                        <p class="text-text-subtle text-sm mt-2">यह ₹99 बुकिंग शुल्क है। बाकी राशि 
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
+                        <p class="text-text-light text-base mb-1">Battery/Service: <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
+                        <p class="text-text-light text-base mb-3">Actual Battery Cost: <span class="font-bold text-secondary">₹${totalServiceCost}</span></p>
+                        <p class="current-price text-secondary text-3xl font-bold">Total Payable Now: ₹${finalPaymentAmount}</p>
+                        <p class="text-text-subtle text-sm mt-2">This is the ₹99 booking fee. The remaining amount 
                         <span class="font-bold text-primary">₹${remainingAmount > 0 ? remainingAmount : 0}</span> 
-                        डिलीवरी के समय तकनीशियन को देनी होगी।</p>
+                        must be paid to the technician upon delivery.</p>
                     `;
                     startPaymentTimer();
                 } else {
-                    showCustomAlert("ऑर्डर त्रुटि: आपकी डिटेल्स सबमिट करने में कोई समस्या आई। कृपया पुनः प्रयास करें।");
+                    showCustomAlert("Order Error: There was an issue submitting your details. Please try again.");
                 }
             })
             .catch(err => {
                 console.error("Submission error:", err);
-                showCustomAlert("नेटवर्क त्रुटि: कोई अप्रत्याशित त्रुटि हुई। कृपया अपना कनेक्शन जांचें और पुनः प्रयास करें।");
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
             })
             .finally(() => {
                 submitMessage.style.display = 'none';
