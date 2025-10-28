@@ -4,19 +4,1239 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SonipatHomeService.com - Auto Battery Supply & Installation</title>
-    <!-- Zaroori libraries yahi load hongi. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <!-- Note: Sari styling aur logic ab external JS file se aayegi. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+        :root {
+            /* Classic White & Light Blue Theme (COPIED FROM AUTOMOBILE REPAIR) */
+            --bg-dark: #F4F7FB; /* Very Light Blue/Gray Background */
+            --bg-card: #FFFFFF; /* White Card/Popup Background */
+            --primary: #3B82F6; /* Primary Accent (Classic Blue) */
+            --secondary: #1F83E7; /* Secondary Accent (Darker Blue for titles/prices) */
+            --text-light: #1F2937; /* Dark Gray/Black Text */
+            --text-subtle: #6B7280; /* Subtle Gray Text */
+            --shadow-depth: 0 5px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        /* --- Custom Components --- */
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-depth);
+            transition: var(--transition);
+            border: 1px solid rgba(59, 130, 246, 0.1); 
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .stat-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .stat-card p {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .product-section {
+            background: linear-gradient(135deg, var(--bg-card), #E7EFF9);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+        }
+
+        .product-header {
+            background: linear-gradient(90deg, #E7EFF9, var(--bg-card));
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .product-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        .product-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: center; 
+            justify-content: center;
+        }
+
+        .product-details {
+            flex: 1; 
+            min-width: 300px;
+            text-align: center; 
+        }
+
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px dashed var(--text-subtle);
+            border-bottom: 1px dashed var(--text-subtle);
+            justify-content: center; 
+        }
+        
+        /* Display for selected batteries */
+        #selectedBatteriesDisplay {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-top: 0.5rem;
+            min-height: 24px;
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: var(--text-subtle);
+            font-weight: 400;
+        }
+
+        .current-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            justify-content: center;
+            flex-grow: 1;
+            max-width: 400px; 
+            min-width: 200px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg-card); 
+            border-color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: #2563EB; 
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* --- Service Card Styling (COPIED FROM AUTOMOBILE REPAIR) --- */
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5); 
+            background-image: url('drng1.png'); 
+            background-size: cover;
+            background-position: center;
+            color: white; 
+            position: relative; 
+            border-radius: 0.75rem; 
+            padding: 0.75rem; 
+            border: 2px solid transparent; 
+        }
+        
+        .service-card-wrapper {
+            position: relative;
+        }
+
+        .service-card-wrapper input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            top: 0;
+            right: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            z-index: 10; 
+        }
+
+        .service-card-wrapper input[type="checkbox"]:checked + .service-card {
+            background-image: none !important; 
+            background-color: rgba(59, 130, 246, 0.7) !important; 
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); 
+        }
+
+        .service-card-wrapper input[type="checkbox"]:checked + .service-card .card-check-icon {
+            color: white; 
+            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.9)); 
+        }
+        
+        .service-card .card-check-icon {
+            color: #f7f7f7; 
+            transition: color 0.3s;
+        }
+        
+        .service-card h4, .service-card p {
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 1.0); 
+            font-weight: 700; 
+            font-size: 0.95rem;
+        }
+
+        .btn-see-more {
+            margin-top: auto; 
+            font-size: 0.8rem; 
+            padding: 0.4rem 0.8rem; 
+            max-width: 100%;
+            background-color: var(--primary) !important;
+            color: white !important;
+            border-radius: 0.5rem; 
+        }
+        
+        .service-icon-container {
+            width: 28px;
+            height: 28px;
+            background: white; 
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 6px;
+            color: var(--primary); 
+            flex-shrink: 0;
+            font-size: 0.8rem; 
+        }
+        /* --- END Service Card Styling --- */
+        
+        /* --- Popup Styling (COPIED FROM AUTOMOBILE REPAIR) --- */
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 999;
+        }
+
+        .popup {
+            display: none;
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-depth);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 95%;
+            max-width: 750px; 
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            border: 1px solid var(--primary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .popup h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .popup input,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--text-subtle);
+            font-size: 1rem;
+            background: #F9FAFB;
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+        
+        .popup input:focus,
+        .popup select:focus,
+        .popup textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); 
+        }
+
+        .popup textarea {
+            min-height: 8rem;
+            resize: vertical;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn,
+        .popup button.close-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .popup button[type="submit"],
+        #razorpay-payment-btn,
+        #downloadBtn {
+            background: linear-gradient(45deg, var(--primary), #2563EB); 
+            color: var(--bg-card);
+        }
+
+        .popup button[type="submit"]:hover,
+        #razorpay-payment-btn:hover,
+        #downloadBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.6); 
+        }
+        
+        #okayBtn,
+        #close-price-list-btn,
+        #close-description-btn { 
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+        
+        #okayBtn:hover,
+        #close-price-list-btn:hover,
+        #close-description-btn:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: scale(1.01);
+        }
+        
+        .quantity-selector-container {
+            background: #EFF6FF;
+            padding: 1.2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--primary);
+        }
+
+        .total-price-quantity {
+            font-size: 1.8rem !important;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary) !important;
+        }
+        
+        #ticketDisplay {
+            background: #F9FAFB;
+            border: 1px solid var(--primary);
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            word-break: break-word;
+        }
+
+        /* Custom Alert Styling */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary);
+            color: var(--bg-card);
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
+            z-index: 1002;
+            box-shadow: 0 0.3125rem 0.9373rem rgba(0,0,0,0.4);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Model Selection Display Wrapper */
+        #batterySelectionDisplayWrapper {
+            background-color: #F9FAFB;
+            border: 1px solid var(--text-subtle);
+            border-radius: 0.75rem;
+            padding: 0.9rem 1.2rem;
+            cursor: pointer;
+            text-align: left;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+            min-height: 48px;
+        }
+        #batterySelectionDisplayWrapper:hover {
+            border-color: var(--primary);
+        }
+        #selectedBatteriesSummary {
+            display: block;
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.25;
+            white-space: pre-wrap;
+        }
+
+        /* Updated Grid Layout for Service Cards */
+        #batteryCardsContainer {
+            grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        }
+        @media (min-width: 768px) {
+            #batteryCardsContainer {
+                grid-template-columns: repeat(3, minmax(0, 1fr)); 
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Yeh container ID Auto Battery Service ka poora UI load karega. -->
-    <div id="book-auto-bike-car-battary-container">
-        <!-- UI will be injected here by auto-battery-logic.js -->
+    <main class="container">
+        
+        <section class="product-section">
+            <div class="product-header">
+                <h2 class="text-secondary"> Battery Bike & Car Quick Installation</h2>
+                <p class="text-text-subtle mt-2">Bike, EV Scooty, and Car Batteries with **Exchange Offers** available now!</p>
+            </div>
+
+            <div class="product-content">
+                
+                <div class="product-details">
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">Branded Power for Your Vehicle</h3>
+                    <p class="text-text-subtle mb-4 text-base">
+                        Get instant delivery and professional installation of top-brand batteries at your location. Choose your battery type and warranty below.
+                    </p>
+                    
+                    <div class="price-container">
+                        <div id="selectedBatteriesDisplay" class="font-bold text-center text-secondary mb-2">Select Battery(s) to view cost</div>
+                        <div class="original-price" id="originalPriceDisplay">Actual Cost: Select Battery</div>
+                        <div class="current-price" id="displayPrice">₹99 Booking Charge</div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="book-now-btn">
+                            <i class="fas fa-motorcycle"></i> Order Battery Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>Total Auto Batteries Sold</h3>
+                <p>7,000+</p>
+            </div>
+            <div class="stat-card">
+                <h3>Delivery Time (Avg)</h3>
+                <p>1 Hour</p>
+            </div>
+            <div class="stat-card">
+                <h3>Exchange Value (Max)</h3>
+                <p>₹500+</p>
+            </div>
+            <div class="stat-card">
+                <h3>Brands Supported</h3>
+                <p>3+ Brands</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="popup-overlay"></div>
+    
+    <!-- Booking Form Popup -->
+    <div id="booking-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">Auto Battery Order Form</h2>
+        <form id="booking-form">
+            
+            <label>Select Battery Product(s):</label>
+            <!-- Wrapper for model selection display -->
+            <div id="batterySelectionDisplayWrapper" onclick="openBatterySelectionPopup()">
+                <span id="selectedBatteriesSummary">Click to select battery model(s)</span>
+            </div>
+            
+            <label for="quantity" class="mt-4">Number of Units (Max 5):</label>
+            <select id="quantity" name="quantity" required class="bg-bg-dark border-primary">
+                <option value="1" selected>1 Unit</option>
+                <option value="2">2 Units</option>
+                <option value="3">3 Units</option>
+                <option value="4">4 Units</option>
+                <option value="5">5 Units</option>
+            </select>
+            
+            <div class="flex justify-between items-center mt-3 p-3 rounded-lg quantity-selector-container border-primary">
+                <span class="text-text-light font-semibold">Total Payable Now (Booking Charge)</span>
+                <span id="calculated-price" class="total-price-quantity text-lg" style="color: var(--secondary) !important;">₹99</span>
+            </div>
+            
+            <label for="name">Full Name (min 10 characters)</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
+
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+            
+            <label for="email">Email Address (Optional - Placeholder for Google Sheet)</label>
+            <input type="email" id="email" name="email" placeholder="john.doe@example.com (Optional)" autocomplete="email">
+            
+            <label for="location">Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
+            
+            <label for="address">Complete Address (min 30 characters)</label>
+            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
+            
+            <!-- Hidden Fields for Submission -->
+            <input type="hidden" name="ticket" id="ticket-code" />
+            <input type="hidden" name="finalPrice" id="final-price" value="99" />
+            <input type="hidden" name="selectedBatteries" id="selectedBatteriesHiddenField">
+            <input type="hidden" name="actualCost" id="actualCostHiddenField">
+
+
+            <button type="submit">Submit Details & Pay ₹99 Booking Charge</button>
+            <p id="submit-message" class="text-center text-sm text-primary mt-2 hidden">Submitting...</p>
+        </form>
     </div>
 
-    <!-- Naya logic file jismein poora Battery App hai. -->
-    <script src="autobikecarbattray.js"></script>
+    <!-- NEW POPUP: Battery Selection Popup -->
+    <div class="popup" id="batterySelectionPopup" style="max-width: 900px;">
+        <h2 class="text-2xl font-bold text-center">Select Battery Model(s)</h2>
+        <div id="batteryCardsContainer" class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4 mb-6">
+            <!-- Battery Cards will be injected here by JS -->
+        </div>
+        <button type="button" class="btn btn-primary" onclick="applyBatterySelection()">Apply Selection</button>
+        <button type="button" class="btn btn-secondary mt-2" onclick="closeBatterySelectionPopup()">Cancel</button>
+    </div>
+    <!-- END NEW POPUP -->
+
+
+    <!-- Payment Popup -->
+    <div id="payment-popup" class="popup">
+        <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
+        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your Auto Battery booking.</p>
+        <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary text-text-light"></div>
+        <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay ₹99 Booking Charge with Razorpay</button>
+        <p class="mt-4 text-xs text-text-subtle text-center">
+            Note: Do not close this window during payment processing.
+        </p>
+    </div>
+
+    <!-- Confirmation Popup -->
+    <div id="confirmation-popup" class="popup">
+        <h2 id="welcome-message" class="text-2xl font-bold text-center text-primary"></h2>
+        <p class="text-text-subtle text-center mb-4">Your purchase is confirmed. Our team will contact you for installation.</p>
+        <div id="ticket-info" class="space-y-2">
+            <!-- Details will be injected here -->
+        </div>
+        <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Download Details</button>
+        <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
+        <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
+    </div>
+
+    <!-- Price List Popup (REMOVED FROM JS) -->
+    <div id="price-list-popup" class="popup" style="display:none;">
+        <h2 class="text-2xl font-bold text-center">Auto Battery Price List</h2>
+        <div class="overflow-x-auto mt-4">
+            <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
+                <thead>
+                    <tr class="text-left text-secondary">
+                        <th class="py-3 px-4 border-b border-text-subtle">Product | Type | Warranty</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">Price</th>
+                        <th class="py-3 px-4 border-b border-text-subtle text-right">M.R.P.</th>
+                    </tr>
+                </thead>
+                <tbody id="priceListTableBody">
+                    <!-- Rows will be injected by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <button id="close-price-list-btn" class="close-btn mt-4">Close Price List</button>
+    </div>
+
+    <!-- Description Popup (REMOVED FROM JS) -->
+    <div id="description-popup" class="popup" style="display:none;">
+        <h2 class="text-2xl font-bold text-center">Exchange & Warranty Details</h2>
+        <div class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
+            <ul class="list-disc list-inside space-y-3">
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-exchange-alt mr-2"></i> Exchange Offer Details</li>
+                <li>Prices marked with "**Exchange Offer**" require you to hand over your old battery of the same category (Bike, Car, etc.) to the technician upon delivery.</li>
+                <li>The listed **"Exchange Offer" price is the final price** you pay, already accounting for the exchange value.</li>
+                <li>"**Without Exchange**" prices are for customers not returning an old battery.</li>
+
+                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-certificate mr-2"></i> Manufacturer Warranty</li>
+                <li>All batteries carry the full **Manufacturer Warranty** specified in the product name (e.g., 1 Year, 2 Years, 3 Years).</li>
+                <li>Installation is **free** with every purchase.</li>
+                <li>Battery delivery and installation are typically completed within **1-2 hours** of booking confirmation within Sonipat city limits.</li>
+            </ul>
+        </div>
+        <button id="close-description-btn" class="close-btn mt-4">Close</button>
+    </div>
+    
+    <script>
+        // Data updated for card display (Name and Icon added)
+        const allRates = [
+            // Bike Batteries (2 Years Warranty)
+            { "name": "Bike Battery (2Y W)", "rate": 699, "category": "Bike (Exchange)", "Icon": "fas fa-motorcycle" },
+            { "name": "Bike Battery (2Y W)", "rate": 849, "category": "Bike (No Exchange)", "Icon": "fas fa-motorcycle" },
+            // EV Scooty Batteries (1 Year Warranty)
+            { "name": "EV Scooty Battery (1Y W)", "rate": 2999, "category": "EV Scooty", "Icon": "fas fa-battery-three-quarters" },
+            // Car Batteries (1 Year Warranty TATA)
+            { "name": "Car Battery (1Y W - TATA)", "rate": 1699, "category": "Car (Exchange)", "Icon": "fas fa-car" },
+            { "name": "Car Battery (1Y W - TATA)", "rate": 2699, "category": "Car (No Exchange)", "Icon": "fas fa-car" },
+            // Car Batteries (3 Year Warranty Amaron)
+            { "name": "Car Battery (3Y W - Amaron)", "rate": 3399, "category": "Car (Exchange)", "Icon": "fas fa-car" },
+            { "name": "Car Battery (3Y W - Amaron)", "rate": 4399, "category": "Car (No Exchange)", "Icon": "fas fa-car" },
+        ];
+
+        // --- Generic constants ---
+        const SERVICE_NAME = "Auto Battery Supply";
+        const SERVICE_TAB_ID = "auto-battery-service";
+        const LOCAL_STORAGE_KEY = 'autoBatteryFormData';
+        const RAZORPAY_IMAGE_TEXT = "AUTO";
+        const PAYMENT_TIME_LIMIT = 5 * 60;
+        const BOOKING_CHARGE = 99; // Fixed booking charge
+        
+        // --- GOOGLE SCRIPT URL ---
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
+
+
+        // --- DOM Element Selection (UPDATED FOR NEW STRUCTURE) ---
+        const bookNowBtn = document.getElementById('book-now-btn');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const allPopups = document.querySelectorAll('.popup');
+        const bookingPopup = document.getElementById('booking-popup');
+        const paymentPopup = document.getElementById('payment-popup');
+        const confirmationPopup = document.getElementById('confirmation-popup');
+        const bookingForm = document.getElementById('booking-form');
+        
+        const quantitySelect = document.getElementById('quantity');
+        const calculatedPriceDisplay = document.getElementById('calculated-price');
+        const displayPrice = document.getElementById('displayPrice');
+        const submitMessage = document.getElementById('submit-message');
+        const paymentSummary = document.getElementById('payment-summary');
+        const timerDisplay = document.getElementById('timer-display');
+        const razorpayBtn = document.getElementById('razorpay-payment-btn');
+        const ticketInfo = document.getElementById('ticket-info');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const okayBtn = document.getElementById('okayBtn');
+        const welcomeMessage = document.getElementById('welcome-message');
+        
+        // New elements for card selection
+        const batterySelectionPopup = document.getElementById('batterySelectionPopup');
+        const batteryCardsContainer = document.getElementById('batteryCardsContainer');
+        const selectedBatteriesSummary = document.getElementById('selectedBatteriesSummary');
+        const selectedBatteriesDisplay = document.getElementById('selectedBatteriesDisplay');
+        const selectedBatteriesHiddenField = document.getElementById('selectedBatteriesHiddenField');
+        const actualCostHiddenField = document.getElementById('actualCostHiddenField');
+        const originalPriceDisplay = document.getElementById('originalPriceDisplay');
+        const finalPriceInput = document.getElementById('final-price');
+
+        // Removed Price List and Description button references from main page
+
+        // Price List and Description Popups are kept in HTML but removed from JS control flow
+        const priceListPopup = document.getElementById('price-list-popup'); 
+        const descriptionPopup = document.getElementById('description-popup');
+        const closePriceListBtn = document.getElementById('close-price-list-btn');
+        const closeDescriptionBtn = document.getElementById('close-description-btn');
+        const priceListTableBody = document.getElementById('priceListTableBody');
+
+
+        // --- State variables ---
+        let currentTotalServiceCost = 0; // Actual total service cost
+        let generatedTicket = '';
+        let countdownInterval = null;
+        let allowClose = false;
+        let selectedQuantity = 1;
+        let selectedBatteriesState = []; // Array to hold the selected battery objects/names
+
+        // --- Local Storage Functions for Autofill ---
+        function saveFormData() {
+            const formData = {
+                fullName: bookingForm.name.value,
+                phone: bookingForm.phone.value,
+                location: bookingForm.location.value,
+                address: bookingForm.address.value,
+                quantity: quantitySelect.value,
+                selectedBatteries: selectedBatteriesHiddenField.value
+            };
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+            } catch (e) {
+                console.warn("Local storage saving failed:", e);
+            }
+        }
+
+        function loadFormData() {
+            try {
+                const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    bookingForm.name.value = data.fullName || '';
+                    bookingForm.phone.value = data.phone || '';
+                    bookingForm.location.value = data.location || '';
+                    bookingForm.address.value = data.address || '';
+                    quantitySelect.value = data.quantity || '1';
+                    if (data.selectedBatteries) {
+                         selectedBatteriesState = data.selectedBatteries.split(', ').filter(s => s);
+                    }
+                }
+            } catch (e) {
+                console.warn("Local storage loading failed:", e);
+            }
+        }
+        
+        // --- Selection Card Logic (COPIED AND ADAPTED) ---
+        function openBatterySelectionPopup() {
+            generateBatteryCards();
+            
+            batteryCardsContainer.querySelectorAll('input[name="batteryCheckbox"]').forEach(checkbox => {
+                const batteryName = checkbox.value;
+                checkbox.checked = selectedBatteriesState.includes(batteryName);
+                
+                const cardWrapper = checkbox.closest('.service-card-wrapper');
+                updateCardVisuals(cardWrapper, checkbox.checked);
+            });
+            openPopup(batterySelectionPopup);
+        }
+
+        function closeBatterySelectionPopup() {
+            batterySelectionPopup.style.display = 'none';
+            if (bookingPopup.style.display === 'block') {
+                popupOverlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                closeAllPopups();
+            }
+        }
+
+        function applyBatterySelection() {
+            const selectedCheckboxes = Array.from(batteryCardsContainer.querySelectorAll('input[name="batteryCheckbox"]:checked'));
+            selectedBatteriesState = selectedCheckboxes.map(cb => cb.value);
+            updatePrices();
+            closeBatterySelectionPopup(); 
+            bookingPopup.style.display = 'block'; // Ensure main form stays open
+            popupOverlay.style.display = 'block';
+        }
+
+        function generateBatteryCards() {
+            batteryCardsContainer.innerHTML = '';
+            
+            allRates.forEach((battery, index) => {
+                const { name, rate, category, Icon } = battery;
+                const detailPageUrl = `battery_details_default.html?name=${encodeURIComponent(name)}&cat=${category}`;
+                const isChecked = selectedBatteriesState.includes(name);
+                
+                const cardHtml = `
+                    <div class="service-card-wrapper" data-name="${name}" data-rate="${rate}">
+                        <label class="block h-full cursor-pointer"> 
+                            <div id="card-${index}" class="service-card p-3 rounded-xl border-2 transition duration-300 transform hover:scale-[1.02] 
+                                border-text-subtle/50 hover:border-primary/80" 
+                                style="background-image: url('drng1.png'); background-color: ${isChecked ? 'rgba(59, 130, 246, 0.7)' : 'rgba(0, 0, 0, 0.5)'};">
+                                
+                                <input type="checkbox" id="battery-checkbox-${index}" name="batteryCheckbox" 
+                                       value="${name}" data-rate="${rate}" class="hidden" ${isChecked ? 'checked' : ''}>
+                                
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex items-center">
+                                        <div class="service-icon-container">
+                                            <i class="${Icon} text-lg"></i> 
+                                        </div>
+                                        <h4 class="text-base font-semibold text-white">${category}</h4>
+                                    </div>
+                                    <i class="fas fa-check-circle text-xl card-check-icon ${isChecked ? 'text-white' : 'text-gray-200'}"></i>
+                                </div>
+                                
+                                <p class="text-xs text-yellow-300 font-bold mb-2">${name}</p>
+                                <p class="text-lg font-bold text-white mb-2">₹${rate}</p>
+
+                                <a href="${detailPageUrl}" target="_blank"
+                                   onclick="event.stopPropagation(); showCustomAlert('यह बटन आपको ${name} की विस्तृत जानकारी वाले पेज पर ले जाएगा।');"
+                                   class="btn-see-more py-1 px-3 rounded-full text-xs font-bold inline-flex items-center justify-center w-full mt-2 transition duration-200 hover:bg-[#2563EB]">
+                                    <i class="fas fa-search-plus mr-1"></i> See More
+                                </a>
+                            </div>
+                        </label>
+                    </div>
+                `;
+                batteryCardsContainer.insertAdjacentHTML('beforeend', cardHtml);
+            });
+            
+             batteryCardsContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const cardWrapper = e.target.closest('.service-card-wrapper');
+                    updateCardVisuals(cardWrapper, e.target.checked);
+                });
+            });
+        }
+
+        function updateCardVisuals(wrapper, isChecked) {
+            const card = wrapper.querySelector('.service-card');
+            const checkIcon = wrapper.querySelector('.card-check-icon');
+            
+            if (isChecked) {
+                card.style.backgroundImage = 'none'; 
+                card.style.backgroundColor = 'rgba(59, 130, 246, 0.7)'; 
+                card.classList.add('border-primary', 'shadow-lg', 'shadow-primary/30');
+                card.classList.remove('border-text-subtle/50', 'hover:border-primary/80');
+                checkIcon.classList.remove('text-gray-200');
+                checkIcon.classList.add('text-white'); 
+            } else {
+                card.style.backgroundImage = 'url(\'drng1.png\')'; 
+                card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                card.classList.remove('border-primary', 'shadow-lg', 'shadow-primary/30');
+                card.classList.add('border-text-subtle/50', 'hover:border-primary/80');
+                checkIcon.classList.remove('text-white'); 
+                checkIcon.classList.add('text-gray-200');
+            }
+        }
+        // --- END Selection Card Logic ---
+
+
+        // --- Core Functions ---
+        
+        function updatePrices() {
+            selectedQuantity = parseInt(quantitySelect.value) || 1;
+            
+            let totalBasePrice = 0;
+
+            const selectedBatteryObjects = allRates.filter(battery => 
+                selectedBatteriesState.includes(battery.name)
+            );
+            
+            if (selectedBatteryObjects.length > 0) {
+                // Calculate total cost for unique battery types selected, multiplied by quantity
+                selectedBatteryObjects.forEach(battery => {
+                    totalBasePrice += parseFloat(battery.rate);
+                });
+            }
+            
+            currentTotalServiceCost = totalBasePrice * selectedQuantity; // Total cost based on quantity
+            const finalPaymentAmount = (currentTotalServiceCost > 0) ? BOOKING_CHARGE : 0;
+
+            const selectedNames = selectedBatteriesState;
+            const namesString = selectedNames.join(', ');
+
+            if (selectedNames.length > 0) {
+                // Update hidden fields for submission
+                selectedBatteriesHiddenField.value = namesString;
+                actualCostHiddenField.value = currentTotalServiceCost;
+
+                // Update display in the main page and booking form
+                selectedBatteriesSummary.textContent = namesString; 
+                selectedBatteriesDisplay.textContent = `${selectedBatteryObjects.length} Product(s) selected`;
+                
+                document.getElementById('originalPriceDisplay').textContent = `Actual Battery Cost: ₹${currentTotalServiceCost}`;
+                displayPrice.textContent = `₹${BOOKING_CHARGE} Booking Charge`;
+                calculatedPriceDisplay.textContent = `₹${BOOKING_CHARGE}`;
+                finalPriceInput.value = BOOKING_CHARGE;
+            } else {
+                selectedBatteriesHiddenField.value = '';
+                actualCostHiddenField.value = 0;
+                selectedBatteriesSummary.textContent = 'Click to select battery model(s)';
+                selectedBatteriesDisplay.textContent = 'Select Battery(s) to view cost'; 
+                document.getElementById('originalPriceDisplay').textContent = 'Actual Cost: Select Battery';
+                displayPrice.textContent = `₹99 Booking Charge`;
+                calculatedPriceDisplay.textContent = `₹0`;
+                finalPriceInput.value = 0; 
+            }
+        }
+
+        function generateTicketId() {
+            return 'BAT-ORD-XXXXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
+        }
+
+        function closeAllPopups() {
+            if (!allowClose) {
+                if (bookingPopup.style.display === 'block' || paymentPopup.style.display === 'block') {
+                    showCustomAlert("Please complete the process before closing.");
+                    return;
+                }
+            }
+            clearTimers();
+            popupOverlay.style.display = 'none';
+            allPopups.forEach(p => p.style.display = 'none');
+            document.body.style.overflow = 'auto';
+            // Reset form elements 
+            document.getElementById('quantity').value = "1";
+            selectedBatteriesState = [];
+            updatePrices();
+            allowClose = false;
+        }
+        
+        function openPopup(popupElement) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            
+            allPopups.forEach(p => p.style.display = 'none');
+            
+            popupElement.style.display = 'block';
+            allowClose = (popupElement === bookingPopup || popupElement === confirmationPopup);
+        }
+
+        function closeSpecificPopup(popupElement) {
+            popupElement.style.display = 'none';
+            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
+            if (!isAnotherPopupOpen) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function downloadTicketDetails() {
+            const name = bookingForm.name.value;
+            const location = bookingForm.location.value;
+            const address = bookingForm.address.value;
+            const selectedPacks = selectedBatteriesHiddenField.value;
+            const totalCost = currentTotalServiceCost;
+            const amountPaid = BOOKING_CHARGE;
+            const remainingAmount = totalCost - amountPaid;
+
+            const content = `${SERVICE_NAME} ORDER DETAILS\n\n` +
+                            `Order ID: ${generatedTicket}\n` +
+                            `Name: ${name}\n` +
+                            `Product(s): ${selectedPacks}\n` +
+                            `Quantity: ${quantitySelect.value} Unit(s)\n` +
+                            `Delivery Address: ${location}, ${address}\n\n` +
+                            `Total Estimated Cost: ₹${totalCost}\n` +
+                            `Booking Charge Paid: ₹${amountPaid}\n` +
+                            `Remaining Balance Due: ₹${remainingAmount > 0 ? remainingAmount : 0}\n\n` +
+                            `Thank you! Technician will contact you shortly.`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `battery-order-${generatedTicket}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // --- Payment and Submission Logic ---
+        
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (selectedBatteriesState.length === 0) { showCustomAlert("Please select at least one battery product."); return; }
+            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
+            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
+            if (bookingForm.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
+            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
+            if (currentTotalServiceCost === 0) { showCustomAlert("Please select a product and quantity to calculate the price."); return; }
+            
+            updatePrices(); // Final update check
+
+            submitMessage.classList.remove('hidden');
+            bookingForm.querySelector('button[type="submit"]').disabled = true;
+            generatedTicket = generateTicketId();
+
+            const finalPaymentAmount = BOOKING_CHARGE;
+            const totalServiceCost = currentTotalServiceCost;
+            const remainingAmount = totalServiceCost - finalPaymentAmount;
+            const selectedPacks = selectedBatteriesHiddenField.value;
+
+            // --- Form Data for Google Sheet ---
+            const formData = new FormData();
+            formData.append('field1', bookingForm.name.value); 
+            formData.append('field2', bookingForm.phone.value);    
+            formData.append('field3', bookingForm.email.value || 'N/A'); 
+            formData.append('productDetails', selectedPacks); 
+            formData.append('field5', bookingForm.location.value); 
+            formData.append('field6', bookingForm.address.value);  
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID);           
+            formData.append('serviceType', 'Battery Purchase/Install');   
+            formData.append('servicePrice', totalServiceCost); 
+            formData.append('ticketQuantity', quantitySelect.value); 
+            formData.append('finalPrice', finalPaymentAmount);
+
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success")) { 
+                    
+                    bookingPopup.style.display = 'none';
+
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Purchase Details:</p>
+                        <p class="text-text-light text-base mb-1">Product(s): <span class="font-bold text-primary">${selectedPacks}</span></p>
+                        <p class="text-text-light text-base mb-3">Actual Order Cost: <span class="font-bold text-secondary">₹${totalServiceCost}</span></p>
+                        <p class="current-price text-secondary text-3xl font-bold">Total Payable Now: ₹${finalPaymentAmount}</p>
+                        <p class="text-text-subtle text-sm mt-2">यह ₹99 बुकिंग शुल्क है। बची हुई राशि 
+                        <span class="font-bold text-primary">₹${remainingAmount > 0 ? remainingAmount : 0}</span> 
+                        डिलीवरी/इंस्टॉलेशन के समय देनी होगी।</p>
+                    `;
+                    openPopup(paymentPopup);
+                    startPaymentTimer();
+                    saveFormData();
+                } else {
+                    showCustomAlert("Order Error: There was an issue submitting your details. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
+            })
+            .finally(() => {
+                submitMessage.classList.add('hidden');
+                bookingForm.querySelector('button[type="submit"]').disabled = false;
+            });
+        });
+
+        razorpayBtn.addEventListener('click', handleRazorpayPayment);
+        
+        function handleRazorpayPayment() {
+            const finalPaymentAmount = BOOKING_CHARGE; 
+            const selectedPacks = selectedBatteriesHiddenField.value;
+
+            const options = {
+                "key": "rzp_live_opiqkRmGpjG1hF",
+                "amount": finalPaymentAmount * 100, 
+                "currency": "INR",
+                "name": `SonipatHomeService - ${SERVICE_NAME}`,
+                "description": `Booking Charge for Battery Order: ${selectedPacks}`,
+                "image": `https://placehold.co/100x100/F4F7FB/3B82F6?text=${RAZORPAY_IMAGE_TEXT}`, 
+                "handler": function (response){
+                    paymentSuccess(response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": bookingForm.name.value,
+                    "email": bookingForm.email.value || '',
+                    "contact": bookingForm.phone.value
+                },
+                "notes": {
+                    "address": `${bookingForm.location.value}, ${bookingForm.address.value}`,
+                    "product_details": selectedPacks,
+                    "actual_cost": currentTotalServiceCost,
+                },
+                "theme": { "color": "#3B82F6" }, 
+                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', response => {
+                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
+            });
+            rzp.open();
+        }
+
+        function paymentSuccess(paymentId) {
+            clearTimers();
+            paymentPopup.style.display = 'none';
+            openPopup(confirmationPopup);
+            
+            const userName = bookingForm.name.value.split(' ')[0];
+            const selectedPacks = selectedBatteriesHiddenField.value;
+            const totalCost = currentTotalServiceCost;
+            const amountPaid = BOOKING_CHARGE;
+            const remainingAmount = totalCost - amountPaid; 
+
+            welcomeMessage.textContent = `🎉 Purchase Confirmed, ${userName}! 🎉`;
+            
+            const remainingText = remainingAmount > 0 
+                ? `बुकिंग चार्ज ₹${amountPaid} उसमें से घटाकर, बाकी ₹${remainingAmount} आपको डिलीवरी/इंस्टॉलेशन के समय देनी है।`
+                : `बुकिंग चार्ज ₹${amountPaid} पूरी ऑर्डर कॉस्ट को कवर करता है।`;
+
+            ticketInfo.innerHTML = `
+                <p><strong>Order ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p><strong>Product(s):</strong> <span class="font-bold text-text-light">${selectedPacks} (${quantitySelect.value} units)</span></p>
+                <p><strong>Total Estimated Cost:</strong> <span class="font-bold text-secondary">₹${totalCost}</span></p>
+                <p class="text-primary text-lg font-bold mt-3">Paid Now (Booking Charge): ₹${amountPaid}</p>
+                
+                <div class="mt-4 p-3 rounded-lg bg-bg-dark border border-secondary">
+                    <p class="text-text-light font-semibold">अंतिम भुगतान निर्देश (Final Payment Instruction):</p>
+                    <p class="text-sm text-text-subtle mt-1">
+                        आपकी बैटरी की कुल लागत (Total Cost) ₹${totalCost} थी। 
+                        ${remainingText}
+                    </p>
+                </div>
+
+                <p class="text-text-subtle text-sm mt-3">We will contact you within 2 hours to confirm delivery & installation at your address.</p>
+                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
+            `;
+            allowClose = true;
+        }
+
+        function populatePriceList() {
+            // Function logic maintained for populating table when required
+            const priceListTableBody = document.getElementById('priceListTableBody');
+            if (!priceListTableBody) return; 
+
+            priceListTableBody.innerHTML = '';
+            allRates.forEach(pack => {
+                let marketPrice = Math.round(pack.rate * 1.15); // 15% higher
+
+                const row = `
+                    <tr class="text-text-light hover:bg-bg-dark">
+                        <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">${pack.category}: ${pack.name}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-primary">₹${pack.rate}</td>
+                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle line-through">₹${marketPrice}</td>
+                    </tr>
+                `;
+                priceListTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+        
+        // --- Event Listeners Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            quantitySelect.addEventListener('change', updatePrices);
+            
+            loadFormData();
+            updatePrices(); // Initial call to setup display
+        });
+
+        bookNowBtn.addEventListener('click', () => {
+            updatePrices();
+            openBatterySelectionPopup(); // Open card selection first
+        });
+
+        // Timer function kept generic and simple
+        function startPaymentTimer() {
+            let timeLeft = PAYMENT_TIME_LIMIT;
+            const updateDisplay = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+            updateDisplay();
+
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    showCustomAlert("Payment time expired. Please try again.");
+                    allowClose = true; 
+                    closeAllPopups();
+                }
+            }, 1000);
+        }
+
+        function clearTimers() {
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        popupOverlay.addEventListener('click', e => {
+            if (e.target === popupOverlay) {
+                if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
+                else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
+                else if (batterySelectionPopup.style.display === 'block') closeBatterySelectionPopup();
+                else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
+                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
+                else if (bookingPopup.style.display === 'block') closeAllPopups();
+            }
+        });
+        
+        okayBtn.addEventListener('click', closeAllPopups);
+        downloadBtn.addEventListener('click', downloadTicketDetails);
+        
+        // Listeners for info popups - Using DOM references that were previously causing errors but are now fixed by removing the null check
+        
+        // These elements are now correctly handled as they are part of the HTML structure
+        priceListPopup.querySelector('#close-price-list-btn').addEventListener('click', () => closeSpecificPopup(priceListPopup));
+        descriptionPopup.querySelector('#close-description-btn').addEventListener('click', () => closeSpecificPopup(descriptionPopup));
+        
+        // Listeners attached to the floating buttons, which are now REMOVED from HTML
+        // Since the buttons are removed from HTML, we will not attach listeners here
+        // If the user adds them back, the listeners need to be uncommented.
+        // For now, the user only has the "Order Battery Now" button.
+        
+    </script>
 </body>
 </html>
