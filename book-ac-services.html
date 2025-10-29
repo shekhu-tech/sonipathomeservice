@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="hi">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonipat AC Service - Air Conditioner Repair &amp; Service</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            transform-style: preserve-3d;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.1),
+                0 4px 16px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            margin: 8px;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(147,51,234,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-12px) rotateX(3deg) rotateY(3deg) scale(1.01);
+            box-shadow: 
+                0 25px 50px rgba(59,130,246,0.2),
+                0 15px 30px rgba(0,0,0,0.1),
+                0 8px 16px rgba(59,130,246,0.08),
+                inset 0 2px 0 rgba(255,255,255,0.9);
+            border-color: #3b82f6;
+        }
+        
+        .service-card-content {
+            position: relative;
+            z-index: 2;
+            transform: translateZ(20px);
+        }
+        
+        .icon-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .icon-hover:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        .popup-overlay {
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .popup-content {
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .cart-badge {
+            animation: bounce 0.5s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .service-icon {
+            width: 48px;
+            height: 48px;
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="min-h-full bg-gray-50"><!-- Header -->
+  <header class="gradient-bg text-white shadow-lg sticky top-0 z-40">
+   <div class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
+     <div class="flex items-center space-x-3">
+      <div class="service-icon icon-hover">
+       <svg viewbox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
+       </svg>
+      </div>
+      <div>
+       <h1 id="company-name" class="text-xl font-bold">Sonipat AC Service</h1>
+       <p class="text-sm opacity-90">Professional AC Repair &amp; Service</p>
+      </div>
+     </div>
+     <div class="flex items-center space-x-4">
+      <div class="text-right hidden md:block">
+       <p id="customer-care" class="text-sm font-semibold">📞 8816014071</p>
+       <p id="email-address" class="text-xs opacity-90">care@sonipathomeservice.com</p>
+      </div><button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-lg transition-all duration-300"> <span class="flex items-center space-x-2">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7M9 3V4H15V3H9M7 6V19H17V6H7Z" />
+        </svg><span>Cart</span> <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-1 text-xs hidden">0</span> </span> </button>
+     </div>
+    </div>
+   </div>
+  </header><!-- Hero Section -->
+  <section class="gradient-bg text-white py-16">
+   <div class="container mx-auto px-4 text-center">
+    <div class="service-icon mx-auto mb-6 icon-hover">
+     <svg viewbox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
+     </svg>
+    </div>
+    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Professional AC Repair &amp; Service</h2>
+    <p class="text-xl mb-8 opacity-90">Expert technicians • Quick service • Affordable rates</p>
+    <div class="flex justify-center space-x-6 text-sm">
+     <div class="flex items-center space-x-2"><span class="text-2xl">⚡</span> <span>Same Day Service</span>
+     </div>
+     <div class="flex items-center space-x-2"><span class="text-2xl">🛡️</span> <span>1 Year Warranty</span>
+     </div>
+     <div class="flex items-center space-x-2"><span class="text-2xl">👨‍🔧</span> <span>Expert Technicians</span>
+     </div>
+    </div>
+   </div>
+  </section><!-- Services Section -->
+  <section class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">Our AC Services &amp; Pricing</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2" id="services-grid"><!-- Services will be populated by JavaScript -->
+    </div>
+   </div>
+  </section><!-- Terms & Conditions -->
+  <section class="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+   <div class="container mx-auto px-4">
+    <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Terms &amp; Conditions</h3>
+    <div class="max-w-5xl mx-auto">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Service Terms Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-blue-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">🔧</span>
+        </div>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Service Terms</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>All services include 1-year warranty on parts and labor</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Diagnosis charges are non-refundable but adjusted in repair cost</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Service charges may vary based on location and complexity</span></li>
+       </ul>
+      </div><!-- Payment Terms Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-green-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">💳</span>
+        </div>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Payment Terms</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Payment required before service completion</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>We accept cash, UPI, and online payments</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>No hidden charges - transparent pricing</span></li>
+       </ul>
+      </div><!-- Contact & Support Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-purple-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">📞</span>
+        </div>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Contact &amp; Support</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>24/7 customer support available</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Free consultation over phone</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Emergency services available with additional charges</span></li>
+       </ul>
+      </div>
+     </div><!-- Additional Info Banner -->
+     <div class="mt-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-6 text-white text-center">
+      <div class="flex items-center justify-center space-x-4"><span class="text-2xl">🛡️</span>
+       <div>
+        <h5 class="font-bold text-lg">100% Satisfaction Guaranteed</h5>
+        <p class="text-sm opacity-90">Professional service with complete peace of mind</p>
+       </div><span class="text-2xl">⭐</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <h4 class="text-xl font-bold mb-4">Contact Information</h4>
+      <div class="space-y-2 text-sm">
+       <p>📞 <span id="footer-phone">8816014071</span></p>
+       <p>✉️ <span id="footer-email">care@sonipathomeservice.com</span></p>
+       <p>📍 <span id="office-address">128/1, Sainipura, Sonipat</span></p>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-xl font-bold mb-4">Our AC Services</h4>
+      <ul class="space-y-2 text-sm">
+       <li>• AC Repair &amp; Diagnosis</li>
+       <li>• AC Service &amp; Cleaning</li>
+       <li>• AC Installation &amp; Uninstallation</li>
+       <li>• Gas Refill &amp; PCB Repair</li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-xl font-bold mb-4">Why Choose Us?</h4>
+      <ul class="space-y-2 text-sm">
+       <li>• Expert Technicians</li>
+       <li>• Same Day Service</li>
+       <li>• 1 Year Warranty</li>
+       <li>• Affordable Pricing</li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+     <p>© 2024 Sonipat AC Service. All rights reserved.</p>
+    </div>
+   </div>
+  </footer><!-- Cart Popup -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full popup-content">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4">
+       <h3 class="text-xl font-bold">Your Cart</h3><button id="close-cart" class="text-gray-500 hover:text-gray-700">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
+      </div>
+      <div id="cart-items" class="space-y-3 mb-4"><!-- Cart items will be populated here -->
+      </div>
+      <div class="border-t pt-4">
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="cart-total">0</span></span>
+        </div>
+        <div class="flex justify-between items-center text-blue-600"><span class="font-semibold">Booking Charge:</span> <span class="font-bold">₹<span id="cart-booking-charge">99</span></span>
+        </div>
+        <div class="flex justify-between items-center text-green-600"><span class="font-semibold">Onsite Balance:</span> <span class="font-bold">₹<span id="onsite-balance">0</span></span>
+        </div>
+        <div class="border-t pt-2 flex justify-between items-center"><span class="font-bold text-lg">Pay Now:</span> <span class="font-bold text-lg text-blue-600">₹<span id="cart-pay-now">99</span></span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-lg font-semibold disabled:opacity-50" disabled> <span id="cart-button-text">Book Service - Pay ₹99</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div><!-- Checkout Form Popup -->
+  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-start justify-center min-h-full p-2 py-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full popup-content" style="max-height: 90vh; overflow-y: auto;">
+     <div class="sticky top-0 bg-white p-3 border-b flex justify-between items-center">
+      <h3 class="text-lg font-bold">Customer Details</h3><button id="close-checkout" class="text-gray-500 hover:text-gray-700">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+       </svg></button>
+     </div>
+     <div class="p-3">
+      <form id="checkout-form" class="space-y-2">
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email-id" required class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Full Address *</label> <textarea id="full-address" required rows="2" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+       </div>
+       <div class="grid grid-cols-2 gap-2">
+        <div><label class="block text-xs font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+        </div>
+        <div><label class="block text-xs font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required pattern="[0-9]{6}" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+        </div>
+       </div>
+       <div class="border-t pt-2 mt-3">
+        <div class="space-y-1 mb-2">
+         <div class="flex justify-between items-center text-xs"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="checkout-total">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-xs text-blue-600"><span class="font-semibold">Booking Charge:</span> <span class="font-bold">₹<span id="checkout-booking-charge">99</span></span>
+         </div>
+         <div class="flex justify-between items-center text-xs text-green-600"><span class="font-semibold">Onsite Balance:</span> <span class="font-bold">₹<span id="checkout-onsite-balance">0</span></span>
+         </div>
+         <div class="border-t pt-1 flex justify-between items-center"><span class="font-bold text-sm">Pay Now:</span> <span class="font-bold text-blue-600 text-sm">₹<span id="checkout-pay-now">99</span></span>
+         </div>
+         <div class="bg-yellow-50 border border-yellow-200 rounded p-1.5 mt-1">
+          <p class="text-xs text-yellow-800"><strong>Note:</strong> Pay ₹<span id="note-booking-charge">99</span> booking charge now. <span id="onsite-note">Remaining amount will be collected after onsite service completion.</span></p>
+         </div>
+        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-2 rounded font-semibold text-sm"> <span id="checkout-button-text">Pay ₹99 Booking Charge</span> </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            company_name: "Sonipat AC Service",
+            customer_care: "8816014071",
+            email_address: "care@sonipathomeservice.com",
+            office_address: "128/1, Sainipura, Sonipat"
+        };
+
+        // AC Services data
+        const services = [
+            {
+                id: 0,
+                name: "Demo Service (Testing Only)",
+                price: 1,
+                originalPrice: null,
+                icon: "🧪",
+                description: "Demo service for testing payment - ₹1 only"
+            },
+            {
+                id: 1,
+                name: "Diagnosis Charge",
+                price: 299,
+                originalPrice: null,
+                icon: "🔍",
+                description: "Complete diagnosis of your AC issues"
+            },
+            {
+                id: 2,
+                name: "Window AC Service / Cleaning",
+                price: 499,
+                originalPrice: null,
+                icon: "🪟",
+                description: "Complete cleaning and servicing of window AC"
+            },
+            {
+                id: 3,
+                name: "Split AC Service / Cleaning",
+                price: 699,
+                originalPrice: null,
+                icon: "❄️",
+                description: "Complete cleaning and servicing of split AC"
+            },
+            {
+                id: 4,
+                name: "Window AC Installation (Upto 2 Ton)",
+                price: 699,
+                originalPrice: null,
+                icon: "🔧",
+                description: "Professional window AC installation service"
+            },
+            {
+                id: 5,
+                name: "Window AC Uninstallation (Upto 2 Ton)",
+                price: 499,
+                originalPrice: null,
+                icon: "🔨",
+                description: "Safe window AC uninstallation service"
+            },
+            {
+                id: 6,
+                name: "Split AC Installation (Upto 2 Ton)",
+                price: 1299,
+                originalPrice: null,
+                icon: "⚙️",
+                description: "Professional split AC installation service"
+            },
+            {
+                id: 7,
+                name: "Split AC Uninstallation (Upto 2 Ton)",
+                price: 799,
+                originalPrice: null,
+                icon: "🔩",
+                description: "Safe split AC uninstallation service"
+            },
+            {
+                id: 8,
+                name: "Window AC Gas Refill (Upto 1.5 Ton)",
+                price: 2999,
+                originalPrice: null,
+                icon: "💨",
+                description: "Gas refill for window AC up to 1.5 ton"
+            },
+            {
+                id: 9,
+                name: "Split AC Gas Refill (Upto 1.5 Ton)",
+                price: 3199,
+                originalPrice: null,
+                icon: "💨",
+                description: "Gas refill for split AC up to 1.5 ton"
+            },
+            {
+                id: 10,
+                name: "Normal PCB Repair",
+                price: 1499,
+                originalPrice: null,
+                icon: "🔌",
+                description: "Repair of normal AC PCB circuit board"
+            },
+            {
+                id: 11,
+                name: "Inverter AC PCB Repair",
+                price: 2999,
+                originalPrice: null,
+                icon: "⚡",
+                description: "Repair of inverter AC PCB circuit board"
+            },
+            {
+                id: 12,
+                name: "Window AC Leakage Checking/Fixing",
+                price: 499,
+                originalPrice: null,
+                icon: "💧",
+                description: "Detection and fixing of AC water leakage"
+            }
+        ];
+
+        // Cart functionality
+        let cart = [];
+
+        function renderServices() {
+            const servicesGrid = document.getElementById('services-grid');
+            servicesGrid.innerHTML = services.map(service => `
+                <div class="service-card p-6">
+                    <div class="service-card-content">
+                        <div class="text-center mb-4">
+                            <div class="text-4xl mb-3 icon-hover">${service.icon}</div>
+                            <h4 class="font-bold text-base mb-2 text-gray-800 leading-tight">${service.name}</h4>
+                            <p class="text-gray-600 text-xs mb-3">${service.description}</p>
+                        </div>
+                        <div class="text-center mb-4">
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-xl font-bold text-green-600">₹${service.price}</span>
+                                ${service.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${service.originalPrice}</span>` : ''}
+                            </div>
+                            ${service.originalPrice ? `<div class="text-xs text-green-600 font-semibold">Save ₹${service.originalPrice - service.price}</div>` : ''}
+                        </div>
+                        <button onclick="addToCart(${service.id})" class="w-full btn-primary text-white py-2.5 rounded-lg font-semibold text-sm transform transition-transform hover:scale-105">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(serviceId) {
+            const service = services.find(s => s.id === serviceId);
+            const existingItem = cart.find(item => item.id === serviceId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...service, quantity: 1 });
+            }
+            
+            updateCartUI();
+            showCartPopup();
+        }
+
+        function removeFromCart(serviceId) {
+            cart = cart.filter(item => item.id !== serviceId);
+            updateCartUI();
+            if (cart.length === 0) {
+                hideCartPopup();
+            }
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutTotal = document.getElementById('checkout-total');
+            const onsiteBalance = document.getElementById('onsite-balance');
+            const checkoutOnsiteBalance = document.getElementById('checkout-onsite-balance');
+            const proceedBtn = document.getElementById('proceed-checkout');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = totalAmount < 99 ? totalAmount : 99;
+            const onsiteAmount = Math.max(0, totalAmount - bookingCharge);
+            
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+                cartCount.classList.add('cart-badge');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+            
+            cartItems.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="flex-1">
+                        <h5 class="font-semibold text-sm">${item.name}</h5>
+                        <p class="text-gray-600 text-xs">₹${item.price} x ${item.quantity}</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold">₹${item.price * item.quantity}</span>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            cartTotal.textContent = totalAmount;
+            checkoutTotal.textContent = totalAmount;
+            
+            // Update booking charge displays
+            const cartBookingCharge = document.getElementById('cart-booking-charge');
+            const checkoutBookingCharge = document.getElementById('checkout-booking-charge');
+            const cartPayNow = document.getElementById('cart-pay-now');
+            const checkoutPayNow = document.getElementById('checkout-pay-now');
+            const noteBookingCharge = document.getElementById('note-booking-charge');
+            const cartButtonText = document.getElementById('cart-button-text');
+            const checkoutButtonText = document.getElementById('checkout-button-text');
+            const onsiteNote = document.getElementById('onsite-note');
+            
+            if (cartBookingCharge) cartBookingCharge.textContent = bookingCharge;
+            if (checkoutBookingCharge) checkoutBookingCharge.textContent = bookingCharge;
+            if (cartPayNow) cartPayNow.textContent = bookingCharge;
+            if (checkoutPayNow) checkoutPayNow.textContent = bookingCharge;
+            if (noteBookingCharge) noteBookingCharge.textContent = bookingCharge;
+            if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${bookingCharge}`;
+            if (checkoutButtonText) checkoutButtonText.textContent = `Pay ₹${bookingCharge} Booking Charge`;
+            
+            // Update onsite note based on balance
+            if (onsiteNote) {
+                if (onsiteAmount === 0) {
+                    onsiteNote.textContent = "Full payment completed online.";
+                } else {
+                    onsiteNote.textContent = "Remaining amount will be collected after onsite service completion.";
+                }
+            }
+            
+            if (onsiteBalance) onsiteBalance.textContent = onsiteAmount;
+            if (checkoutOnsiteBalance) checkoutOnsiteBalance.textContent = onsiteAmount;
+            proceedBtn.disabled = cart.length === 0;
+        }
+
+        function showCartPopup() {
+            document.getElementById('cart-popup').classList.remove('hidden');
+        }
+
+        function hideCartPopup() {
+            document.getElementById('cart-popup').classList.add('hidden');
+        }
+
+        function showCheckoutPopup() {
+            hideCartPopup();
+            document.getElementById('checkout-popup').classList.remove('hidden');
+        }
+
+        function hideCheckoutPopup() {
+            document.getElementById('checkout-popup').classList.add('hidden');
+        }
+
+        // Razorpay payment integration
+        function initiatePayment(customerData) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = totalAmount < 99 ? totalAmount : 99;
+            
+            const options = {
+                key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
+                amount: bookingCharge * 100, // Amount in paise
+                currency: 'INR',
+                name: 'Sonipat AC Service',
+                description: 'Booking Charge - AC Repair & Service',
+                image: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiMzYjgyZjYiPjxwYXRoIGQ9Ik0xMiwyQTEwLDEwIDAgMCwxIDIyLDEyQTEwLDEwIDAgMCwxIDEyLDIyQTEwLDEwIDAgMCwxIDIsMTJBMTAsMTAgMCAwLDEgMTIsMk0xMiw0QTgsOCAwIDAsMCA0LDEyQTgsOCAwIDAsMCAxMiwyMEE4LDggMCAwLDAgMjAsMTJBOCw4IDAgMCwwIDEyLDRNMTIsNkE2LDYgMCAwLDEgMTgsMTJBNiw2IDAgMCwxIDEyLDE4QTYsNiAwIDAsMSA2LDEyQTYsNiAwIDAsMSAxMiw2TTEyLDhBNCw0IDAgMCwwIDgsMTJBNCw0IDAgMCwwIDEyLDE2QTQsNCAwIDAsMCAxNiwxMkE0LDQgMCAwLDAgMTIsOFoiLz48L3N2Zz4=',
+                prefill: {
+                    name: customerData.name,
+                    email: customerData.email,
+                    contact: customerData.mobile
+                },
+                theme: {
+                    color: '#3b82f6'
+                },
+                handler: function(response) {
+                    // Payment successful
+                    submitToGoogleSheets(customerData, response.razorpay_payment_id);
+                },
+                modal: {
+                    ondismiss: function() {
+                        // Payment cancelled
+                        console.log('Payment cancelled');
+                    }
+                }
+            };
+            
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+
+        // Google Sheets integration
+        async function submitToGoogleSheets(customerData, paymentId) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = totalAmount < 99 ? totalAmount : 99;
+            const onsiteBalance = Math.max(0, totalAmount - bookingCharge);
+            
+            // Create URL parameters to match your App Script exactly
+            const params = new URLSearchParams({
+                timestamp: new Date().toLocaleString('hi-IN'),
+                customerName: customerData.name,
+                mobile: customerData.mobile,
+                email: customerData.email,
+                address: customerData.address,
+                landmark: customerData.landmark || '',
+                pincode: customerData.pincode,
+                orderItems: cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', '),
+                totalAmount: totalAmount,
+                paymentId: paymentId,
+                status: onsiteBalance > 0 ? 'Booking Confirmed - Onsite Balance Pending' : 'Payment Complete'
+            });
+
+            try {
+                // Show loading state
+                showLoadingMessage();
+                
+                const response = await fetch(`https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec?${params.toString()}`, {
+                    method: 'POST',
+                    mode: 'no-cors'
+                });
+
+                // Hide loading and show success
+                hideLoadingMessage();
+                hideCheckoutPopup();
+                showSuccessMessage();
+                cart = [];
+                updateCartUI();
+                
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                hideLoadingMessage();
+                showErrorMessage();
+            }
+        }
+
+        function showLoadingMessage() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = 'loading-message';
+            loadingDiv.className = 'fixed top-4 right-4 bg-blue-500 text-white p-4 rounded-lg shadow-lg z-50';
+            loadingDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    <div>
+                        <p class="font-semibold">Processing...</p>
+                        <p class="text-sm">Saving your booking details</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(loadingDiv);
+        }
+
+        function hideLoadingMessage() {
+            const loadingDiv = document.getElementById('loading-message');
+            if (loadingDiv) {
+                loadingDiv.remove();
+            }
+        }
+
+        function showSuccessMessage() {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50';
+            successDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl">✅</span>
+                    <div>
+                        <p class="font-semibold">Payment Successful!</p>
+                        <p class="text-sm">Your booking has been confirmed.</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 5000);
+        }
+
+        function showErrorMessage() {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50';
+            errorDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl">❌</span>
+                    <div>
+                        <p class="font-semibold">Error!</p>
+                        <p class="text-sm">Please try again or contact support.</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            renderServices();
+            updateCartUI();
+
+            // Cart button
+            document.getElementById('cart-btn').addEventListener('click', showCartPopup);
+            
+            // Close buttons
+            document.getElementById('close-cart').addEventListener('click', hideCartPopup);
+            document.getElementById('close-checkout').addEventListener('click', hideCheckoutPopup);
+            
+            // Proceed to checkout
+            document.getElementById('proceed-checkout').addEventListener('click', showCheckoutPopup);
+            
+            // Checkout form
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const customerData = {
+                    name: document.getElementById('customer-name').value,
+                    mobile: document.getElementById('mobile-number').value,
+                    email: document.getElementById('email-id').value,
+                    address: document.getElementById('full-address').value,
+                    landmark: document.getElementById('landmark').value,
+                    pincode: document.getElementById('pincode').value
+                };
+                
+                initiatePayment(customerData);
+            });
+
+            // Close popups when clicking outside
+            document.getElementById('cart-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCartPopup();
+            });
+            
+            document.getElementById('checkout-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCheckoutPopup();
+            });
+        });
+
+        // Element SDK integration
+        async function onConfigChange(config) {
+            document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+            document.getElementById('customer-care').textContent = `📞 ${config.customer_care || defaultConfig.customer_care}`;
+            document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
+            document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
+            document.getElementById('footer-phone').textContent = config.customer_care || defaultConfig.customer_care;
+            document.getElementById('footer-email').textContent = config.email_address || defaultConfig.email_address;
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["company_name", config.company_name || defaultConfig.company_name],
+                ["customer_care", config.customer_care || defaultConfig.customer_care],
+                ["email_address", config.email_address || defaultConfig.email_address],
+                ["office_address", config.office_address || defaultConfig.office_address]
+            ]);
+        }
+
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99665537135159d8',t:'MTc2MTc3OTI4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
