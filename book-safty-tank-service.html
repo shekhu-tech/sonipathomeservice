@@ -336,16 +336,6 @@
         // Septic Tank Cleaning Services data
         const services = [
             {
-                id: 1,
-                name: "Demo Category - Payment Test",
-                price: 1,
-                originalPrice: null,
-                icon: "🧪",
-                description: "Test payment gateway functionality (Demo only)",
-                details: "Demo service for testing",
-                isDemo: true
-            },
-            {
                 id: 2,
                 name: "Septic Tank Cleaning - 70M Pipe",
                 price: 999,
@@ -398,9 +388,8 @@
         function renderServices() {
             const servicesGrid = document.getElementById('services-grid');
             servicesGrid.innerHTML = services.map(service => `
-                <div class="service-card p-6 ${service.isDemo ? 'border-2 border-dashed border-orange-400 bg-orange-50' : ''}">
+                <div class="service-card p-6">
                     <div class="service-card-content">
-                        ${service.isDemo ? '<div class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-full mb-3 text-center">DEMO</div>' : ''}
                         <div class="text-center mb-4">
                             <div class="text-4xl mb-3 icon-hover">${service.icon}</div>
                             <h4 class="font-bold text-base mb-2 text-gray-800 leading-tight">${service.name}</h4>
@@ -409,13 +398,13 @@
                         </div>
                         <div class="text-center mb-4">
                             <div class="flex items-center justify-center space-x-2">
-                                <span class="text-xl font-bold ${service.isDemo ? 'text-orange-600' : 'text-blue-600'}">₹${service.price}</span>
+                                <span class="text-xl font-bold text-blue-600">₹${service.price}</span>
                                 ${service.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${service.originalPrice}</span>` : ''}
                             </div>
                             ${service.originalPrice ? `<div class="text-xs text-blue-600 font-semibold">Save ₹${service.originalPrice - service.price}</div>` : ''}
                         </div>
-                        <button onclick="addToCart(${service.id})" class="w-full ${service.isDemo ? 'bg-orange-500 hover:bg-orange-600' : 'btn-primary'} text-white py-2.5 rounded-lg font-semibold text-sm transform transition-transform hover:scale-105">
-                            ${service.isDemo ? 'Test Payment' : 'Add to Cart'}
+                        <button onclick="addToCart(${service.id})" class="w-full btn-primary text-white py-2.5 rounded-lg font-semibold text-sm transform transition-transform hover:scale-105">
+                            Add to Cart
                         </button>
                     </div>
                 </div>
@@ -453,8 +442,6 @@
             
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? Math.max(1, totalAmount) : totalAmount;
             
             if (totalItems > 0) {
                 cartCount.textContent = totalItems;
@@ -491,18 +478,14 @@
             const checkoutButtonText = document.getElementById('checkout-button-text');
             const paymentNote = document.getElementById('payment-note');
             
-            if (cartPayNow) cartPayNow.textContent = payAmount;
-            if (checkoutPayNow) checkoutPayNow.textContent = payAmount;
-            if (cartButtonText) cartButtonText.textContent = hasDemo ? `Test Payment - Pay ₹${payAmount}` : `Book Service - Pay ₹${payAmount}`;
-            if (checkoutButtonText) checkoutButtonText.textContent = hasDemo ? `Pay ₹${payAmount} (Demo Test)` : `Pay ₹${payAmount}`;
+            if (cartPayNow) cartPayNow.textContent = totalAmount;
+            if (checkoutPayNow) checkoutPayNow.textContent = totalAmount;
+            if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${totalAmount}`;
+            if (checkoutButtonText) checkoutButtonText.textContent = `Pay ₹${totalAmount}`;
             
             // Update payment note
             if (paymentNote) {
-                if (hasDemo) {
-                    paymentNote.textContent = "This is a demo payment to test the gateway functionality.";
-                } else {
-                    paymentNote.textContent = "Complete payment for septic tank cleaning service.";
-                }
+                paymentNote.textContent = "Complete payment for septic tank cleaning service.";
             }
             
             proceedBtn.disabled = cart.length === 0;
@@ -528,15 +511,13 @@
         // Razorpay payment integration
         function initiatePayment(customerData) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? Math.max(1, totalAmount) : totalAmount;
             
             const options = {
                 key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
-                amount: payAmount * 100, // Amount in paise
+                amount: totalAmount * 100, // Amount in paise
                 currency: 'INR',
                 name: 'Septic Tank Cleaning Service in Sonipat',
-                description: hasDemo ? 'Demo Payment Test - Septic Tank Service' : 'Septic Tank Cleaning Service',
+                description: 'Septic Tank Cleaning Service',
                 image: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiMzYjgyZjYiPjxwYXRoIGQ9Ik0xMiwyQTEwLDEwIDAgMCwwIDIsMTJBMTAsMTAgMCAwLDAgMTIsMjJBMTAsMTAgMCAwLDAgMjIsMTJBMTAsMTAgMCAwLDAgMTIsMk0xMiw0QTgsOCAwIDAsMSAyMCwxMkE4LDggMCAwLDEgMTIsMjBBOCw4IDAgMCwxIDQsMTJBOCw4IDAgMCwxIDEyLDRNMTIsNkE2LDYgMCAwLDAgNiwxMkE2LDYgMCAwLDAgMTIsMThBNiw2IDAgMCwwIDE4LDEyQTYsNiAwIDAsMCAxMiw2TTEyLDhBNCw0IDAgMCwxIDE2LDEyQTQsNCAwIDAsMSAxMiwxNkE0LDQgMCAwLDEgOCwxMkE0LDQgMCAwLDEgMTIsOFoiLz48L3N2Zz4=',
                 prefill: {
                     name: customerData.name,
@@ -565,7 +546,6 @@
         // Google Sheets integration
         async function submitToGoogleSheets(customerData, paymentId) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const hasDemo = cart.some(item => item.isDemo);
             
             // Create URL parameters to match your App Script exactly
             const params = new URLSearchParams({
@@ -579,7 +559,7 @@
                 orderItems: cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', '),
                 totalAmount: totalAmount,
                 paymentId: paymentId,
-                status: hasDemo ? 'Demo Payment Test Completed' : 'Service Booking Confirmed'
+                status: 'Service Booking Confirmed'
             });
 
             try {
@@ -745,5 +725,5 @@
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9966929ec1521c49',t:'MTc2MTc4MTgwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99669cd791861c49',t:'MTc2MTc4MjIyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
