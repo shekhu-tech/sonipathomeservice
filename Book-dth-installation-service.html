@@ -6,8 +6,8 @@
   <title>DTH Installation Service - Sonipat Home Service</title>
   <script src="/_sdk/element_sdk.js"></script>
   <script src="/_sdk/data_sdk.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
         body {
             box-sizing: border-box;
@@ -56,22 +56,6 @@
             align-items: center;
             z-index: 1000;
             padding: 20px;
-        }
-        .payment-modal {
-            z-index: 2000 !important;
-        }
-        .razorpay-container {
-            z-index: 2100 !important;
-        }
-        /* Global Razorpay z-index fixes */
-        .razorpay-backdrop {
-            z-index: 2050 !important;
-        }
-        .razorpay-checkout-frame {
-            z-index: 2100 !important;
-        }
-        .razorpay-container iframe {
-            z-index: 2100 !important;
         }
         .modal-content {
             background: white;
@@ -312,7 +296,7 @@
         <div><label for="pincode" class="block text-sm font-medium text-gray-700 mb-2">Pincode *</label> <input type="text" id="pincode" name="pincode" required pattern="[0-9]{6}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
         </div>
        </div>
-       <div class="flex space-x-4 pt-4"><button type="button" onclick="closeCheckoutModal()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Cancel </button> <button type="submit" id="payment-btn" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Pay Booking Charge ₹99 (Razorpay) </button>
+       <div class="flex space-x-4 pt-4"><button type="button" onclick="closeCheckoutModal()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Cancel </button> <button type="submit" id="payment-btn" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Pay ₹99 via Razorpay </button>
        </div>
       </form>
      </div>
@@ -354,6 +338,7 @@
 
         let cart = [];
         let currentRecordCount = 0;
+        let isRazorpayLoaded = false;
 
         // Channel Lists Data
         const channelLists = {
@@ -536,7 +521,6 @@
         const dataHandler = {
             onDataChanged(data) {
                 currentRecordCount = data.length;
-                // Update UI if needed for order history
             }
         };
 
@@ -589,6 +573,37 @@
                 if (!initResult.isOk) {
                     showToast("Failed to initialize data storage", "error");
                 }
+            }
+
+            // Check if Razorpay is loaded
+            checkRazorpayStatus();
+        }
+
+        function checkRazorpayStatus() {
+            if (typeof Razorpay !== 'undefined') {
+                isRazorpayLoaded = true;
+                console.log('✅ Razorpay loaded successfully');
+                console.log('Razorpay object:', Razorpay);
+                
+                // Test Razorpay functionality
+                try {
+                    const testOptions = {
+                        key: 'rzp_live_RLjzp7VlXERwiG',
+                        amount: 100,
+                        currency: 'INR'
+                    };
+                    const testRzp = new Razorpay(testOptions);
+                    console.log('✅ Razorpay instance created successfully');
+                    showToast("Payment gateway ready!", "success");
+                } catch (error) {
+                    console.error('❌ Razorpay test failed:', error);
+                    showToast("Payment gateway error detected", "error");
+                }
+            } else {
+                console.log('⏳ Waiting for Razorpay to load...');
+                console.log('Current window.Razorpay:', window.Razorpay);
+                console.log('Current typeof Razorpay:', typeof Razorpay);
+                setTimeout(checkRazorpayStatus, 1000);
             }
         }
 
@@ -692,117 +707,152 @@
                     body: JSON.stringify(sheetData)
                 });
 
-                console.log('Data sent to Google Sheet successfully');
+                console.log('✅ Data sent to Google Sheet successfully');
                 return true;
             } catch (error) {
-                console.error('Error sending to Google Sheet:', error);
+                console.error('❌ Error sending to Google Sheet:', error);
                 return false;
             }
         }
 
-        // Form Submission
-        document.getElementById('customer-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            if (cart.length === 0) {
-                showToast("No items in cart", "error");
-                return;
-            }
-
-            if (currentRecordCount >= 999) {
-                showToast("Order limit reached. Please contact customer care.", "error");
-                return;
-            }
-            
-            const formData = new FormData(e.target);
-            const customerData = {
-                id: Date.now().toString(),
-                plan_name: cart.map(item => item.plan).join(', '),
-                provider: cart.map(item => item.provider).join(', '),
-                price: cart.reduce((sum, item) => sum + item.price, 0),
-                customer_name: formData.get('customer-name'),
-                mobile: formData.get('mobile'),
-                email: formData.get('email'),
-                address: formData.get('address'),
-                landmark: formData.get('landmark') || '',
-                pincode: formData.get('pincode'),
-                order_date: new Date().toISOString()
-            };
-            
-            // Show loading state
-            const submitBtn = document.getElementById('payment-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Processing...';
-            submitBtn.disabled = true;
-            
-            try {
-                // Save order data to Canva Sheet
-                if (window.dataSdk) {
-                    const result = await window.dataSdk.create(customerData);
-                    if (!result.isOk) {
-                        throw new Error('Failed to save order data');
+        // Simple Form Submission - Direct Payment
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('customer-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (cart.length === 0) {
+                        showToast("No items in cart", "error");
+                        return;
                     }
-                }
-                
-                // Send initial data to Google Sheet with pending status
-                await sendToGoogleSheet(customerData, '', 'Booking Initiated');
-                
-                // Simulate Razorpay payment (Demo)
-                setTimeout(() => {
-                    showPaymentModal(customerData);
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                }, 1000);
-                
-            } catch (error) {
-                showToast("Failed to process order. Please try again.", "error");
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+                    
+                    // Get form values
+                    const customerName = document.getElementById('customer-name').value.trim();
+                    const mobile = document.getElementById('mobile').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const address = document.getElementById('address').value.trim();
+                    const landmark = document.getElementById('landmark').value.trim();
+                    const pincode = document.getElementById('pincode').value.trim();
+                    
+                    // Validate required fields
+                    if (!customerName || !mobile || !email || !address || !pincode) {
+                        showToast("Please fill all required fields", "error");
+                        return;
+                    }
+                    
+                    // Validate mobile number
+                    if (!/^[0-9]{10}$/.test(mobile)) {
+                        showToast("Please enter a valid 10-digit mobile number", "error");
+                        return;
+                    }
+                    
+                    // Validate pincode
+                    if (!/^[0-9]{6}$/.test(pincode)) {
+                        showToast("Please enter a valid 6-digit pincode", "error");
+                        return;
+                    }
+                    
+                    // Start payment immediately
+                    startDirectPayment({
+                        customer_name: customerName,
+                        mobile: mobile,
+                        email: email,
+                        address: address,
+                        landmark: landmark,
+                        pincode: pincode,
+                        plan_name: cart.map(item => item.plan).join(', '),
+                        provider: cart.map(item => item.provider).join(', '),
+                        price: cart.reduce((sum, item) => sum + item.price, 0)
+                    });
+                });
             }
         });
 
-        function showPaymentModal(orderData) {
-            // Directly process Razorpay payment
-            processRazorpayPayment(orderData);
+        // Direct Razorpay Payment - Simplified
+        function startDirectPayment(orderData) {
+            // Show loading
+            const submitBtn = document.getElementById('payment-btn');
+            submitBtn.textContent = 'Opening Payment...';
+            submitBtn.disabled = true;
+            
+            // Wait a moment for Razorpay to be ready
+            setTimeout(() => {
+                if (typeof Razorpay === 'undefined') {
+                    showToast("Payment system loading... Please try again in 2 seconds", "error");
+                    submitBtn.textContent = 'Pay ₹99 via Razorpay';
+                    submitBtn.disabled = false;
+                    return;
+                }
+
+                const options = {
+                    key: 'rzp_live_RLjzp7VlXERwiG',
+                    amount: 9900, // ₹99 in paise
+                    currency: 'INR',
+                    name: 'Sonipat Home Service',
+                    description: 'DTH Installation Booking - ₹99',
+                    image: 'https://cdn-icons-png.flaticon.com/512/2972/2972531.png',
+                    handler: function (response) {
+                        handlePaymentSuccess(response, orderData);
+                    },
+                    prefill: {
+                        name: orderData.customer_name,
+                        email: orderData.email,
+                        contact: orderData.mobile
+                    },
+                    theme: {
+                        color: '#2563eb'
+                    },
+                    modal: {
+                        ondismiss: function() {
+                            submitBtn.textContent = 'Pay ₹99 via Razorpay';
+                            submitBtn.disabled = false;
+                            showToast("Payment cancelled", "error");
+                        }
+                    }
+                };
+
+                try {
+                    const rzp1 = new Razorpay(options);
+                    rzp1.open();
+                } catch (error) {
+                    console.error('Razorpay Error:', error);
+                    showToast("Payment gateway error. Please refresh and try again.", "error");
+                    submitBtn.textContent = 'Pay ₹99 via Razorpay';
+                    submitBtn.disabled = false;
+                }
+            }, 500);
         }
 
-        function showDemoPaymentModal(orderData) {
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
-            modal.innerHTML = `
-                <div class="bg-white rounded-xl p-6 max-w-md w-full">
-                    <div class="text-center">
-                        <div class="text-6xl mb-4">💳</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Payment Gateway (Demo Mode)</h3>
-                        <p class="text-gray-600 mb-4">Razorpay integration is ready. This demo mode is shown because the Razorpay script couldn't load.</p>
-                        <div class="bg-gray-100 p-4 rounded-lg mb-4">
-                            <p class="font-semibold">Booking Charge: ₹99</p>
-                            <p class="text-sm text-gray-600">Total Order: ₹${orderData.price}</p>
-                            <p class="text-sm text-gray-600">Customer: ${orderData.customer_name}</p>
-                            <p class="text-xs text-gray-500 mt-2">Remaining ₹${orderData.price - 99} to pay on installation</p>
-                        </div>
-                        <div class="space-y-3">
-                            <button onclick="simulatePayment(true)" 
-                                    class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg">
-                                Simulate Successful Payment
-                            </button>
-                            <button onclick="simulatePayment(false)" 
-                                    class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg">
-                                Simulate Failed Payment
-                            </button>
-                            <button onclick="closeModal()" 
-                                    class="w-full bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg">
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            window.currentModal = modal;
+        // Handle successful payment
+        async function handlePaymentSuccess(response, orderData) {
+            console.log('Payment Success:', response);
+            
+            // Save to data storage
+            const fullOrderData = {
+                id: Date.now().toString(),
+                ...orderData,
+                payment_id: response.razorpay_payment_id,
+                order_date: new Date().toISOString()
+            };
+
+            // Save to Canva Sheet
+            if (window.dataSdk && currentRecordCount < 999) {
+                try {
+                    await window.dataSdk.create(fullOrderData);
+                } catch (error) {
+                    console.error('Data save error:', error);
+                }
+            }
+            
+            // Save to Google Sheet
+            await sendToGoogleSheet(fullOrderData, response.razorpay_payment_id, 'Payment Completed');
+            
+            // Show success
+            showPaymentSuccess(response.razorpay_payment_id, orderData);
         }
 
-        function showSuccessModal(paymentResponse, orderData) {
+        function showPaymentSuccess(paymentId, orderData) {
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
             modal.innerHTML = `
@@ -811,111 +861,17 @@
                         <div class="text-6xl mb-4">✅</div>
                         <h3 class="text-xl font-bold text-green-600 mb-4">Payment Successful!</h3>
                         <div class="bg-green-50 p-4 rounded-lg mb-4 text-left">
-                            <p class="font-semibold mb-2">Booking Confirmed:</p>
-                            <p class="text-sm"><strong>Payment ID:</strong> ${paymentResponse.razorpay_payment_id}</p>
-                            <p class="text-sm"><strong>Booking Charge Paid:</strong> ₹99</p>
-                            <p class="text-sm"><strong>Total Order Value:</strong> ₹${orderData.price}</p>
-                            <p class="text-sm"><strong>Remaining Amount:</strong> ₹${orderData.price - 99}</p>
-                            <p class="text-sm"><strong>Customer:</strong> ${orderData.customer_name}</p>
-                            <p class="text-sm"><strong>Mobile:</strong> ${orderData.mobile}</p>
-                        </div>
-                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
-                            <p class="text-blue-800 text-sm font-medium">📋 Payment Instructions:</p>
-                            <p class="text-blue-700 text-sm">• Booking confirmed with ₹99 payment</p>
-                            <p class="text-blue-700 text-sm">• Remaining ₹${orderData.price - 99} to be paid during installation</p>
-                            <p class="text-blue-700 text-sm">• Our team will contact you within 24 hours</p>
-                        </div>
-                        <button onclick="closeModal()" 
-                                class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            window.currentModal = modal;
-        }
-
-        // Payment Processing Functions
-        async function processRazorpayPayment(orderData) {
-            // Try Razorpay integration
-            const options = {
-                key: 'rzp_test_9999999999', // Use test key for demo
-                amount: 99 * 100, // Booking charge in paise
-                currency: 'INR',
-                name: 'Sonipat Home Service',
-                description: `DTH Booking - ${orderData.plan_name}`,
-                order_id: 'order_' + Date.now(),
-                handler: async function (response) {
-                    await sendToGoogleSheet(orderData, response.razorpay_payment_id, 'Payment Completed - Razorpay');
-                    showPaymentSuccess(response.razorpay_payment_id, 'Razorpay', orderData);
-                },
-                prefill: {
-                    name: orderData.customer_name,
-                    email: orderData.email,
-                    contact: orderData.mobile
-                },
-                theme: { 
-                    color: '#4F46E5',
-                    backdrop_color: 'rgba(0,0,0,0.8)'
-                },
-                modal: {
-                    backdrop_close: false,
-                    escape: true,
-                    handleback: true,
-                    confirm_close: false,
-                    ondismiss: function() {
-                        showToast("Payment cancelled", "error");
-                    },
-                    animation: true
-                }
-            };
-
-            if (typeof Razorpay !== 'undefined') {
-                // Close customer form modal first
-                closeCheckoutModal();
-                
-                // Add z-index fix for Razorpay
-                setTimeout(() => {
-                    const rzpContainer = document.querySelector('.razorpay-container');
-                    if (rzpContainer) {
-                        rzpContainer.style.zIndex = '2100';
-                    }
-                    const rzpBackdrop = document.querySelector('.razorpay-backdrop');
-                    if (rzpBackdrop) {
-                        rzpBackdrop.style.zIndex = '2050';
-                    }
-                }, 100);
-                
-                const rzp = new Razorpay(options);
-                rzp.open();
-            } else {
-                // Show demo payment modal if Razorpay is not available
-                showDemoPaymentModal(orderData);
-            }
-        }
-
-
-
-        function showPaymentSuccess(paymentId, method, orderData) {
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
-            modal.innerHTML = `
-                <div class="bg-white rounded-xl p-6 max-w-md w-full">
-                    <div class="text-center">
-                        <div class="text-6xl mb-4">✅</div>
-                        <h3 class="text-xl font-bold text-green-600 mb-4">Booking Confirmed!</h3>
-                        <div class="bg-green-50 p-4 rounded-lg mb-4 text-left">
-                            <p class="font-semibold mb-2 text-green-800">Payment Details:</p>
-                            <p class="text-sm"><strong>Payment Method:</strong> ${method}</p>
+                            <p class="font-semibold mb-2 text-green-800">Booking Confirmed:</p>
                             <p class="text-sm"><strong>Payment ID:</strong> ${paymentId}</p>
                             <p class="text-sm"><strong>Amount Paid:</strong> ₹99</p>
+                            <p class="text-sm"><strong>Customer:</strong> ${orderData.customer_name}</p>
+                            <p class="text-sm"><strong>Mobile:</strong> ${orderData.mobile}</p>
                             <p class="text-sm"><strong>Total Order:</strong> ₹${orderData.price}</p>
                             <p class="text-sm"><strong>Remaining:</strong> ₹${orderData.price - 99}</p>
                         </div>
                         <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
                             <p class="text-blue-800 text-sm font-medium">📋 Next Steps:</p>
-                            <p class="text-blue-700 text-sm">• Our team will call you within 2 hours</p>
+                            <p class="text-blue-700 text-sm">• Our team will call you within 24 hours</p>
                             <p class="text-blue-700 text-sm">• Installation will be scheduled</p>
                             <p class="text-blue-700 text-sm">• Pay remaining ₹${orderData.price - 99} during installation</p>
                             <p class="text-blue-700 text-sm">• Customer Care: 8816014071</p>
@@ -934,45 +890,10 @@
             cart = [];
             updateCartDisplay();
             closeCheckoutModal();
-            showToast("Booking confirmed successfully!", "success");
+            showToast("Payment successful! Booking confirmed.", "success");
         }
-
-
 
         function closeSuccessModal() {
-            closeModal();
-        }
-
-        async function simulatePayment(success) {
-            closeModal();
-            if (success) {
-                // Get current order data from form
-                const formData = new FormData(document.getElementById('customer-form'));
-                const orderData = {
-                    customer_name: formData.get('customer-name'),
-                    mobile: formData.get('mobile'),
-                    email: formData.get('email'),
-                    address: formData.get('address'),
-                    landmark: formData.get('landmark') || '',
-                    pincode: formData.get('pincode'),
-                    plan_name: cart.map(item => item.plan).join(', '),
-                    price: cart.reduce((sum, item) => sum + item.price, 0)
-                };
-                
-                // Update Google Sheet with demo payment
-                const demoPaymentId = 'demo_' + Date.now();
-                await sendToGoogleSheet(orderData, demoPaymentId, 'Payment Completed (Demo)');
-                
-                showToast("Payment successful! Order confirmed.", "success");
-                cart = [];
-                updateCartDisplay();
-                closeCheckoutModal();
-            } else {
-                showToast("Payment failed. Please try again.", "error");
-            }
-        }
-
-        function closeModal() {
             if (window.currentModal) {
                 document.body.removeChild(window.currentModal);
                 window.currentModal = null;
@@ -1048,7 +969,9 @@
         }
 
         // Initialize app when page loads
-        document.addEventListener('DOMContentLoaded', initializeApp);
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99617bb6e71159d8',t:'MTc2MTcyODQzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9961bdbd46421c49',t:'MTc2MTczMTEzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
