@@ -85,7 +85,7 @@
       <div class="hidden md:block text-right">
        <p class="text-sm text-gray-600">📞 <span id="header-phone">88160 14071</span></p>
        <p class="text-sm text-gray-600">✉️ <span id="header-email">care@sonipathamservice.com</span></p>
-      </div><button id="share-btn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"> 📤 शेयर करें </button> <button id="cart-btn" class="relative bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors"> 🛒 कार्ट (<span id="cart-count">0</span>) </button>
+      </div><button id="share-btn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"> 📤 शेयर करें </button> <button id="cart-btn" class="relative bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors"> 🛒 Cart (<span id="cart-count">0</span>) </button>
      </div>
     </div>
    </div>
@@ -116,7 +116,7 @@
     <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
      <div class="p-6">
       <div class="flex justify-between items-center mb-6">
-       <h2 class="text-2xl font-bold">आपका कार्ट</h2><button id="close-cart" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+       <h2 class="text-2xl font-bold">आपका Cart</h2><button id="close-cart" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
       </div>
       <div id="cart-items" class="space-y-4 mb-6"><!-- Cart items will be populated here -->
       </div>
@@ -648,7 +648,7 @@
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
             if (cart.length === 0) {
-                cartItems.innerHTML = '<p class="text-gray-500 text-center py-8">आपका कार्ट खाली है</p>';
+                cartItems.innerHTML = '<p class="text-gray-500 text-center py-8">आपका Cart खाली है</p>';
             } else {
                 cartItems.innerHTML = cart.map(item => `
                     <div class="cart-item flex justify-between items-center bg-gray-50 p-4 rounded-lg">
@@ -717,7 +717,7 @@
         // Checkout modal
         document.getElementById('checkout-btn').addEventListener('click', function() {
             if (cart.length === 0) {
-                showMessage('कृपया पहले कुछ आइटम कार्ट में डालें!', 'error');
+                showMessage('कृपया पहले कुछ आइटम Cart में डालें!', 'error');
                 return;
             }
             document.getElementById('cart-modal').classList.add('hidden');
