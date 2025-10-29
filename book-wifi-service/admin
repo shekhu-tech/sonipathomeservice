@@ -1,12 +1,18 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ISP Admin Panel - Secure Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-        body { box-sizing: border-box; }
+        body { 
+            box-sizing: border-box; 
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow-x: hidden;
+        }
         .admin-card:hover { transform: translateY(-2px); transition: transform 0.3s ease; }
         .loading-spinner { animation: spin 1s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -14,13 +20,21 @@
         .tab-inactive { background: #f3f4f6; color: #6b7280; }
         .pulse { animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .credential-card {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .credential-card:hover {
+            background-color: #dbeafe !important;
+            transform: scale(1.02);
+        }
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full bg-gradient-to-br from-slate-50 to-blue-50 font-sans"><!-- Login Modal (Shown by default) -->
-  <div id="login-modal" class="fixed inset-0 bg-gradient-to-br from-blue-900 to-indigo-900 z-50 flex items-center justify-center">
+  <div id="login-modal" class="fixed inset-0 bg-gradient-to-br from-blue-900 to-indigo-900 z-50 flex items-center justify-center" style="display: flex !important;">
    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden"><!-- Login Header -->
     <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-center">
      <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -50,17 +64,20 @@
        <svg class="w-4 h-4 mr-2" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
        </svg> Demo Credentials:</h4>
       <div class="space-y-2 text-sm">
-       <div class="bg-white p-2 rounded border">
-        <p class="text-blue-800"><strong>Username:</strong> admin</p>
-        <p class="text-blue-800"><strong>Password:</strong> admin123</p>
+       <div class="credential-card bg-white p-3 rounded-lg border-2 border-blue-200 hover:border-blue-400" data-username="admin" data-password="admin123">
+        <p class="text-blue-800 font-semibold">👤 <strong>Username:</strong> admin</p>
+        <p class="text-blue-800 font-semibold">🔑 <strong>Password:</strong> admin123</p>
+        <p class="text-xs text-blue-600 mt-1">Click to auto-fill</p>
        </div>
-       <div class="bg-white p-2 rounded border">
-        <p class="text-blue-800"><strong>Username:</strong> sonipat_admin</p>
-        <p class="text-blue-800"><strong>Password:</strong> sonipat2024</p>
+       <div class="credential-card bg-white p-3 rounded-lg border-2 border-green-200 hover:border-green-400" data-username="sonipat_admin" data-password="sonipat2024">
+        <p class="text-green-800 font-semibold">👤 <strong>Username:</strong> sonipat_admin</p>
+        <p class="text-green-800 font-semibold">🔑 <strong>Password:</strong> sonipat2024</p>
+        <p class="text-xs text-green-600 mt-1">Click to auto-fill</p>
        </div>
-       <div class="bg-white p-2 rounded border">
-        <p class="text-blue-800"><strong>Username:</strong> isp_admin</p>
-        <p class="text-blue-800"><strong>Password:</strong> secure123</p>
+       <div class="credential-card bg-white p-3 rounded-lg border-2 border-purple-200 hover:border-purple-400" data-username="isp_admin" data-password="secure123">
+        <p class="text-purple-800 font-semibold">👤 <strong>Username:</strong> isp_admin</p>
+        <p class="text-purple-800 font-semibold">🔑 <strong>Password:</strong> secure123</p>
+        <p class="text-xs text-purple-600 mt-1">Click to auto-fill</p>
        </div>
       </div>
       <p class="text-xs text-blue-600 mt-3 text-center">👆 Click any credential set to use for login</p>
@@ -492,28 +509,37 @@
         });
 
         // Demo credentials click functionality
-        document.querySelectorAll('.bg-white.p-2.rounded.border').forEach(credentialDiv => {
-            credentialDiv.style.cursor = 'pointer';
+        document.querySelectorAll('.credential-card').forEach(credentialDiv => {
             credentialDiv.addEventListener('click', function() {
-                const usernameText = this.querySelector('p:first-child').textContent;
-                const passwordText = this.querySelector('p:last-child').textContent;
-                
-                const username = usernameText.split(': ')[1];
-                const password = passwordText.split(': ')[1];
+                const username = this.getAttribute('data-username');
+                const password = this.getAttribute('data-password');
                 
                 document.getElementById('username').value = username;
                 document.getElementById('password').value = password;
                 
                 // Add visual feedback
-                this.style.backgroundColor = '#dbeafe';
+                this.style.transform = 'scale(0.98)';
                 setTimeout(() => {
-                    this.style.backgroundColor = 'white';
-                }, 200);
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 100);
+                }, 100);
+                
+                showNotification(`Credentials filled: ${username}`, 'success');
             });
         });
 
         // Initialize login check when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('Admin panel loaded successfully');
+            console.log('Available credentials:', Object.keys(ADMIN_CREDENTIALS));
+            checkLoginStatus();
+        });
+
+        // Add immediate initialization
+        window.addEventListener('load', function() {
+            console.log('Window loaded, initializing admin panel');
             checkLoginStatus();
         });
 
@@ -524,5 +550,5 @@
             }
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99605215569459d8',t:'MTc2MTcxNjI0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99605933f28e1c49',t:'MTc2MTcxNjUzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
