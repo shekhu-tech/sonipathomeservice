@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="hi" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internet Service Provider</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        .plan-card:hover {
+            transform: translateY(-4px);
+            transition: transform 0.3s ease;
+        }
+        .cart-badge {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-gradient-to-br from-blue-50 to-indigo-100 font-sans"><!-- Header -->
+  <header class="bg-white shadow-lg sticky top-0 z-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+     <div class="flex items-center space-x-4">
+      <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+       <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 20 20"><path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+       </svg>
+      </div>
+      <div>
+       <h1 id="company-name" class="text-2xl font-bold text-gray-900">NetSpeed Pro</h1>
+       <p id="company-tagline" class="text-sm text-gray-600">High-Speed Internet Solutions</p>
+      </div>
+     </div>
+     <div class="flex items-center space-x-6">
+      <div class="hidden lg:flex items-center space-x-4 text-sm text-gray-600"><span id="contact-phone">📞 88160 14071</span> <span id="contact-email">✉️ care@sonipathomeservice.com</span> <span id="contact-address">📍 128/1, Sainipura, Sonipat</span>
+      </div><button id="cart-btn" class="relative bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"> 🛒 Cart (<span id="cart-count">0</span>) <span id="cart-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center cart-badge hidden">!</span> </button>
+     </div>
+    </div>
+   </div>
+  </header><!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><!-- Hero Section -->
+   <section class="text-center mb-12">
+    <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your Perfect Internet Plan</h2>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Experience lightning-fast internet with our reliable and affordable plans. Perfect for homes, offices, and businesses.</p>
+   </section><!-- Locality Selection -->
+   <section id="locality-selection" class="mb-12">
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
+     <div class="text-center mb-8">
+      <h3 class="text-2xl font-bold text-gray-900 mb-4">📍 Select Your Locality</h3>
+      <p class="text-gray-600">Choose your area to see available internet plans and pricing</p>
+     </div>
+     <div class="grid grid-cols-2 md:grid-cols-3 gap-4"><button class="locality-btn bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all transform hover:scale-105 shadow-lg" data-locality="kundli">
+       <div class="text-2xl mb-2">
+        🏘️
+       </div>
+       <div class="font-semibold text-lg">
+        Kundli
+       </div>
+       <div class="text-sm opacity-90">
+        Premium Area
+       </div></button> <button class="locality-btn bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-xl hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 shadow-lg" data-locality="rai">
+       <div class="text-2xl mb-2">
+        🌾
+       </div>
+       <div class="font-semibold text-lg">
+        Rai
+       </div>
+       <div class="text-sm opacity-90">
+        Rural Connect
+       </div></button> <button class="locality-btn bg-gradient-to-r from-purple-500 to-purple-600 text-white p-6 rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg" data-locality="bahalgarh">
+       <div class="text-2xl mb-2">
+        🏭
+       </div>
+       <div class="font-semibold text-lg">
+        Bahalgarh
+       </div>
+       <div class="text-sm opacity-90">
+        Industrial Zone
+       </div></button> <button class="locality-btn bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6 rounded-xl hover:from-orange-600 hover:to-orange-700 transition-all transform hover:scale-105 shadow-lg" data-locality="murthal">
+       <div class="text-2xl mb-2">
+        🍽️
+       </div>
+       <div class="font-semibold text-lg">
+        Murthal
+       </div>
+       <div class="text-sm opacity-90">
+        Highway Hub
+       </div></button> <button class="locality-btn bg-gradient-to-r from-red-500 to-red-600 text-white p-6 rounded-xl hover:from-red-600 hover:to-red-700 transition-all transform hover:scale-105 shadow-lg" data-locality="sonipat">
+       <div class="text-2xl mb-2">
+        🏛️
+       </div>
+       <div class="font-semibold text-lg">
+        Sonipat
+       </div>
+       <div class="text-sm opacity-90">
+        City Center
+       </div></button> <button class="locality-btn bg-gradient-to-r from-teal-500 to-teal-600 text-white p-6 rounded-xl hover:from-teal-600 hover:to-teal-700 transition-all transform hover:scale-105 shadow-lg" data-locality="gannaur">
+       <div class="text-2xl mb-2">
+        🌱
+       </div>
+       <div class="font-semibold text-lg">
+        Gannaur
+       </div>
+       <div class="text-sm opacity-90">
+        Growing Area
+       </div></button>
+     </div>
+    </div>
+   </section><!-- Selected Locality Display -->
+   <section id="selected-locality-display" class="mb-8 hidden">
+    <div class="text-center">
+     <div class="inline-flex items-center bg-blue-100 text-blue-800 px-6 py-3 rounded-full"><span class="text-lg">📍 Selected Area: </span> <span id="current-locality" class="font-bold text-xl ml-2"></span> <button id="change-locality" class="ml-4 bg-blue-600 text-white px-4 py-1 rounded-full text-sm hover:bg-blue-700 transition-colors">Change</button>
+     </div>
+    </div>
+   </section><!-- Company Filter -->
+   <section id="company-filter-section" class="mb-8 hidden">
+    <div class="flex flex-wrap justify-center gap-4"><button class="company-filter-btn bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors" data-company="all">All Companies</button> <button class="company-filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition-colors" data-company="local">Sonipat Home Service</button> <button class="company-filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition-colors" data-company="airtel">Airtel</button> <button class="company-filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition-colors" data-company="jio">Jio</button> <button class="company-filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition-colors" data-company="excitel">Excitel</button> <button class="company-filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition-colors" data-company="bsnl">BSNL</button>
+    </div>
+   </section><!-- Plans Section -->
+   <section id="plans-section" class="mb-12 hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="plans-container"><!-- Local Company Plans -->
+     <div class="plan-card bg-white rounded-xl shadow-lg p-6 border-2 border-green-500 hover:border-green-600 transition-all relative" data-company="local" data-localities="kundli,rai,bahalgarh,murthal,sonipat,gannaur">
+      <div class="absolute -top-3 left-1/2 transform -translate-x-1/2"><span class="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-semibold">⭐ Top Rated</span>
+      </div>
+      <div class="flex items-center justify-between mb-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Sonipat Home Service</span>
+       <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center"><span class="text-white text-xs font-bold">SH</span>
+       </div>
+      </div>
+      <div class="text-center mb-6">
+       <h3 class="text-xl font-bold text-gray-900 mb-2">Basic Fiber</h3>
+       <div class="mb-3"><select class="duration-select bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium" data-base-price-kundli="599" data-base-price-rai="449" data-base-price-bahalgarh="549" data-base-price-murthal="499" data-base-price-sonipat="499" data-base-price-gannaur="479"> <option value="3" data-discount="0">3 Months - ₹499/month</option> <option value="6" data-discount="5">6 Months - ₹474/month (5% off)</option> <option value="12" data-discount="10">12 Months - ₹449/month (10% off)</option> </select>
+       </div>
+       <div class="text-3xl font-bold text-green-600 mb-2 plan-price">
+        ₹499
+       </div>
+       <p class="text-gray-600">per month</p>
+      </div>
+      <ul class="space-y-2 mb-4">
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> 50 Mbps Speed</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Unlimited Data</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Local Support</li>
+      </ul>
+      <div class="mb-4"><label class="flex items-center text-sm"> <input type="checkbox" class="ott-checkbox mr-2" data-price="199"> <span>+ OTT Pack (Netflix, Prime) - ₹199/month</span> </label> <label class="flex items-center text-sm mt-2"> <input type="checkbox" class="iptv-checkbox mr-2" data-price="149"> <span>+ IPTV Pack (150+ Channels) - ₹149/month</span> </label>
+      </div>
+      <div class="text-center mb-4"><span class="total-price text-lg font-bold text-gray-900">Total: ₹499/month</span>
+      </div><button class="add-to-cart-btn w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold" data-company="Local Company" data-plan="Basic Fiber" data-base-price="499"> Add to Cart </button>
+     </div><!-- Airtel Plans -->
+     <div class="plan-card bg-white rounded-xl shadow-lg p-6 border-2 border-red-200 hover:border-red-500 transition-all" data-company="airtel" data-localities="kundli,sonipat,murthal">
+      <div class="flex items-center justify-between mb-4"><span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">Airtel</span>
+       <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center"><span class="text-white text-xs font-bold">A</span>
+       </div>
+      </div>
+      <div class="text-center mb-6">
+       <h3 class="text-xl font-bold text-gray-900 mb-2">Xstream Fiber</h3>
+       <div class="mb-3"><select class="duration-select bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium" data-base-price-kundli="899" data-base-price-sonipat="799" data-base-price-murthal="849"> <option value="3" data-discount="0">3 Months - ₹799/month</option> <option value="6" data-discount="5">6 Months - ₹759/month (5% off)</option> <option value="12" data-discount="10">12 Months - ₹719/month (10% off)</option> </select>
+       </div>
+       <div class="text-3xl font-bold text-red-600 mb-2 plan-price">
+        ₹799
+       </div>
+       <p class="text-gray-600">per month</p>
+      </div>
+      <ul class="space-y-2 mb-4">
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> 100 Mbps Speed</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Unlimited Data</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Free Router</li>
+      </ul>
+      <div class="mb-4"><label class="flex items-center text-sm"> <input type="checkbox" class="ott-checkbox mr-2" data-price="299"> <span>+ Airtel Xstream (Disney+, Prime) - ₹299/month</span> </label> <label class="flex items-center text-sm mt-2"> <input type="checkbox" class="iptv-checkbox mr-2" data-price="199"> <span>+ DTH Pack (200+ Channels) - ₹199/month</span> </label>
+      </div>
+      <div class="text-center mb-4"><span class="total-price text-lg font-bold text-gray-900">Total: ₹799/month</span>
+      </div><button class="add-to-cart-btn w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors font-semibold" data-company="Airtel" data-plan="Xstream Fiber" data-base-price="799"> Add to Cart </button>
+     </div><!-- Jio Plans -->
+     <div class="plan-card bg-white rounded-xl shadow-lg p-6 border-2 border-blue-500 hover:border-blue-600 transition-all relative" data-company="jio" data-localities="kundli,sonipat,bahalgarh,murthal">
+      <div class="absolute -top-3 left-1/2 transform -translate-x-1/2"><span class="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+      </div>
+      <div class="flex items-center justify-between mb-4"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Jio</span>
+       <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center"><span class="text-white text-xs font-bold">J</span>
+       </div>
+      </div>
+      <div class="text-center mb-6">
+       <h3 class="text-xl font-bold text-gray-900 mb-2">JioFiber</h3>
+       <div class="mb-3"><select class="duration-select bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium" data-base-price-kundli="799" data-base-price-sonipat="699" data-base-price-bahalgarh="749" data-base-price-murthal="729"> <option value="3" data-discount="0">3 Months - ₹699/month</option> <option value="6" data-discount="5">6 Months - ₹664/month (5% off)</option> <option value="12" data-discount="10">12 Months - ₹629/month (10% off)</option> </select>
+       </div>
+       <div class="text-3xl font-bold text-blue-600 mb-2 plan-price">
+        ₹699
+       </div>
+       <p class="text-gray-600">per month</p>
+      </div>
+      <ul class="space-y-2 mb-4">
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> 100 Mbps Speed</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Unlimited Data</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Free JioTV</li>
+      </ul>
+      <div class="mb-4"><label class="flex items-center text-sm"> <input type="checkbox" class="ott-checkbox mr-2" data-price="249"> <span>+ JioCinema Premium - ₹249/month</span> </label> <label class="flex items-center text-sm mt-2"> <input type="checkbox" class="iptv-checkbox mr-2" data-price="0"> <span>+ JioTV (Free with plan)</span> </label>
+      </div>
+      <div class="text-center mb-4"><span class="total-price text-lg font-bold text-gray-900">Total: ₹699/month</span>
+      </div><button class="add-to-cart-btn w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold" data-company="Jio" data-plan="JioFiber" data-base-price="699"> Add to Cart </button>
+     </div><!-- Excitel Plans -->
+     <div class="plan-card bg-white rounded-xl shadow-lg p-6 border-2 border-purple-200 hover:border-purple-500 transition-all" data-company="excitel" data-localities="kundli,sonipat">
+      <div class="flex items-center justify-between mb-4"><span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">Excitel</span>
+       <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center"><span class="text-white text-xs font-bold">E</span>
+       </div>
+      </div>
+      <div class="text-center mb-6">
+       <h3 class="text-xl font-bold text-gray-900 mb-2">Fiber Basic</h3>
+       <div class="mb-3"><select class="duration-select bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium" data-base-price-kundli="449" data-base-price-sonipat="399"> <option value="3" data-discount="0">3 Months - ₹399/month</option> <option value="6" data-discount="5">6 Months - ₹379/month (5% off)</option> <option value="12" data-discount="10">12 Months - ₹359/month (10% off)</option> </select>
+       </div>
+       <div class="text-3xl font-bold text-purple-600 mb-2 plan-price">
+        ₹399
+       </div>
+       <p class="text-gray-600">per month</p>
+      </div>
+      <ul class="space-y-2 mb-4">
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> 50 Mbps Speed</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Unlimited Data</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> No Installation Fee</li>
+      </ul>
+      <div class="mb-4"><label class="flex items-center text-sm"> <input type="checkbox" class="ott-checkbox mr-2" data-price="199"> <span>+ OTT Bundle (Netflix, Prime) - ₹199/month</span> </label> <label class="flex items-center text-sm mt-2"> <input type="checkbox" class="iptv-checkbox mr-2" data-price="129"> <span>+ IPTV Pack (100+ Channels) - ₹129/month</span> </label>
+      </div>
+      <div class="text-center mb-4"><span class="total-price text-lg font-bold text-gray-900">Total: ₹399/month</span>
+      </div><button class="add-to-cart-btn w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition-colors font-semibold" data-company="Excitel" data-plan="Fiber Basic" data-base-price="399"> Add to Cart </button>
+     </div><!-- BSNL Plans -->
+     <div class="plan-card bg-white rounded-xl shadow-lg p-6 border-2 border-orange-200 hover:border-orange-500 transition-all" data-company="bsnl" data-localities="rai,gannaur,bahalgarh">
+      <div class="flex items-center justify-between mb-4"><span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">BSNL</span>
+       <div class="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center"><span class="text-white text-xs font-bold">B</span>
+       </div>
+      </div>
+      <div class="text-center mb-6">
+       <h3 class="text-xl font-bold text-gray-900 mb-2">Bharat Fiber</h3>
+       <div class="mb-3"><select class="duration-select bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium" data-base-price-rai="399" data-base-price-gannaur="429" data-base-price-bahalgarh="449"> <option value="3" data-discount="0">3 Months - ₹449/month</option> <option value="6" data-discount="5">6 Months - ₹427/month (5% off)</option> <option value="12" data-discount="10">12 Months - ₹404/month (10% off)</option> </select>
+       </div>
+       <div class="text-3xl font-bold text-orange-600 mb-2 plan-price">
+        ₹449
+       </div>
+       <p class="text-gray-600">per month</p>
+      </div>
+      <ul class="space-y-2 mb-4">
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> 30 Mbps Speed</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Unlimited Data</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Government Backed</li>
+      </ul>
+      <div class="mb-4"><label class="flex items-center text-sm"> <input type="checkbox" class="ott-checkbox mr-2" data-price="149"> <span>+ OTT Pack (SonyLiv, Zee5) - ₹149/month</span> </label> <label class="flex items-center text-sm mt-2"> <input type="checkbox" class="iptv-checkbox mr-2" data-price="99"> <span>+ DD+ Channels Pack - ₹99/month</span> </label>
+      </div>
+      <div class="text-center mb-4"><span class="total-price text-lg font-bold text-gray-900">Total: ₹449/month</span>
+      </div><button class="add-to-cart-btn w-full bg-orange-600 text-white py-3 rounded-lg hover:bg-orange-700 transition-colors font-semibold" data-company="BSNL" data-plan="Bharat Fiber" data-base-price="449"> Add to Cart </button>
+     </div><!-- Additional Plans for each company -->
+     <div class="plan-card bg-white rounded-xl shadow-lg p-6 border-2 border-gray-200 hover:border-blue-500 transition-all" data-company="local" data-localities="kundli,sonipat,murthal">
+      <div class="flex items-center justify-between mb-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Sonipat Home Service</span>
+       <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center"><span class="text-white text-xs font-bold">SH</span>
+       </div>
+      </div>
+      <div class="text-center mb-6">
+       <h3 class="text-xl font-bold text-gray-900 mb-2">Premium Fiber</h3>
+       <div class="mb-3"><select class="duration-select bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium" data-base-price-kundli="899" data-base-price-sonipat="799" data-base-price-murthal="849"> <option value="3" data-discount="0">3 Months - ₹799/month</option> <option value="6" data-discount="5">6 Months - ₹759/month (5% off)</option> <option value="12" data-discount="10">12 Months - ₹719/month (10% off)</option> </select>
+       </div>
+       <div class="text-3xl font-bold text-green-600 mb-2 plan-price">
+        ₹799
+       </div>
+       <p class="text-gray-600">per month</p>
+      </div>
+      <ul class="space-y-2 mb-4">
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> 100 Mbps Speed</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Unlimited Data</li>
+       <li class="flex items-center text-gray-700 text-sm"><span class="text-green-500 mr-2">✓</span> Free Router + Installation</li>
+      </ul>
+      <div class="mb-4"><label class="flex items-center text-sm"> <input type="checkbox" class="ott-checkbox mr-2" data-price="299"> <span>+ Premium OTT (All Apps) - ₹299/month</span> </label> <label class="flex items-center text-sm mt-2"> <input type="checkbox" class="iptv-checkbox mr-2" data-price="199"> <span>+ Premium IPTV (300+ Channels) - ₹199/month</span> </label>
+      </div>
+      <div class="text-center mb-4"><span class="total-price text-lg font-bold text-gray-900">Total: ₹799/month</span>
+      </div><button class="add-to-cart-btn w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold" data-company="Local Company" data-plan="Premium Fiber" data-base-price="799"> Add to Cart </button>
+     </div>
+    </div>
+   </section><!-- Customer Details Form -->
+   <section id="customer-form-section" class="hidden mb-12">
+    <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8">
+     <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Customer Details</h3>
+     <form id="customer-form" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+       <div><label for="customer-name" class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label> <input type="text" id="customer-name" name="customer_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+       </div>
+       <div><label for="mobile" class="block text-sm font-medium text-gray-700 mb-2">Mobile Number *</label> <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10}" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+       </div>
+      </div>
+      <div><label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label> <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <div><label for="address" class="block text-sm font-medium text-gray-700 mb-2">Complete Address *</label> <textarea id="address" name="address" required rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+       <div><label for="landmark" class="block text-sm font-medium text-gray-700 mb-2">Landmark</label> <input type="text" id="landmark" name="landmark" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+       </div>
+       <div><label for="pincode" class="block text-sm font-medium text-gray-700 mb-2">Pincode *</label> <input type="text" id="pincode" name="pincode" required pattern="[0-9]{6}" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+       </div>
+      </div>
+      <div class="bg-gray-50 p-4 rounded-lg">
+       <h4 class="font-semibold text-gray-900 mb-2">Selected Plan:</h4>
+       <div class="flex justify-between items-center"><span id="selected-plan-name" class="text-lg font-medium text-blue-600"></span> <span id="selected-plan-price" class="text-xl font-bold text-gray-900"></span>
+       </div>
+      </div>
+      <div class="flex space-x-4"><button type="button" id="back-to-plans" class="flex-1 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 transition-colors font-semibold"> Back to Plans </button> <button type="submit" id="proceed-payment" class="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold"> Proceed to Payment </button>
+      </div>
+     </form>
+    </div>
+   </section><!-- Payment Demo Section -->
+   <section id="payment-section" class="hidden mb-12">
+    <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8">
+     <div class="text-center mb-6">
+      <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+       <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" />
+       </svg>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-900 mb-2">Payment Gateway - Demo</h3>
+      <p class="text-gray-600">This is a sample payment interface. In a real application, this would integrate with Razorpay.</p>
+     </div>
+     <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+      <div class="flex items-center">
+       <svg class="w-5 h-5 text-yellow-600 mr-2" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+       </svg><span class="text-yellow-800 font-medium">Demo Mode: No actual payment will be processed</span>
+      </div>
+     </div>
+     <div class="space-y-4 mb-6">
+      <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg"><span class="font-medium">Plan:</span> <span id="payment-plan-name" class="text-blue-600 font-semibold"></span>
+      </div>
+      <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg"><span class="font-medium">Customer:</span> <span id="payment-customer-name" class="font-semibold"></span>
+      </div>
+      <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg"><span class="font-medium">Amount:</span> <span id="payment-amount" class="text-2xl font-bold text-green-600"></span>
+      </div>
+     </div>
+     <div class="flex space-x-4"><button type="button" id="back-to-form" class="flex-1 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 transition-colors font-semibold"> Back to Details </button> <button type="button" id="complete-payment" class="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"> Complete Payment (Demo) </button>
+     </div>
+    </div>
+   </section><!-- Success Section -->
+   <section id="success-section" class="hidden mb-12">
+    <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
+     <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+      <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+      </svg>
+     </div>
+     <h3 class="text-2xl font-bold text-green-600 mb-4">Order Successful!</h3>
+     <p class="text-gray-600 mb-6">Thank you for choosing our service. Your order has been placed successfully.</p>
+     <div class="bg-gray-50 p-4 rounded-lg mb-6">
+      <p class="text-sm text-gray-600 mb-2">Order ID:</p>
+      <p id="order-id" class="font-mono text-lg font-semibold"></p>
+     </div><button type="button" id="new-order" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"> Place New Order </button>
+    </div>
+   </section>
+  </main><!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+     <div>
+      <h4 class="text-lg font-semibold mb-4">Sonipat Home Service.com</h4>
+      <p class="text-gray-400">Providing reliable high-speed internet and home services for residents of Sonipat and surrounding areas.</p>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+      <ul class="space-y-2 text-gray-400">
+       <li><a href="#" class="hover:text-white transition-colors">Home</a></li>
+       <li><a href="#" class="hover:text-white transition-colors">Plans</a></li>
+       <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
+       <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">Support</h4>
+      <ul class="space-y-2 text-gray-400">
+       <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+       <li><a href="#" class="hover:text-white transition-colors">Installation</a></li>
+       <li><a href="#" class="hover:text-white transition-colors">Technical Support</a></li>
+       <li><a href="#" class="hover:text-white transition-colors">Billing</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+      <div class="space-y-2 text-gray-400">
+       <p>📞 88160 14071</p>
+       <p>✉️ care@sonipathomeservice.com</p>
+       <p>📍 128/1, Sainipura, Sonipat</p>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+     <p>© 2024 Sonipat Home Service.com. All rights reserved.</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+        // Configuration and state
+        const defaultConfig = {
+            company_name: "Sonipat Home Service.com",
+            company_tagline: "Premium Internet & Home Services",
+            contact_phone: "88160 14071",
+            contact_email: "care@sonipathomeservice.com"
+        };
+
+        let currentPlan = null;
+        let currentPrice = 0;
+        let cartCount = 0;
+        let currentOrderData = null;
+        let selectedLocality = null;
+
+        // Locality names mapping
+        const localityNames = {
+            'kundli': 'Kundli',
+            'rai': 'Rai',
+            'bahalgarh': 'Bahalgarh',
+            'murthal': 'Murthal',
+            'sonipat': 'Sonipat',
+            'gannaur': 'Gannaur'
+        };
+
+        // Data SDK handler
+        const dataHandler = {
+            onDataChanged(data) {
+                // Update UI if needed - for this demo, we just store orders
+                console.log('Orders stored:', data.length);
+            }
+        };
+
+        // Element SDK functions
+        async function onConfigChange(config) {
+            document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+            document.getElementById('company-tagline').textContent = config.company_tagline || defaultConfig.company_tagline;
+            document.getElementById('contact-phone').textContent = `📞 ${config.contact_phone || defaultConfig.contact_phone}`;
+            document.getElementById('contact-email').textContent = `✉️ ${config.contact_email || defaultConfig.contact_email}`;
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.primary_color || "#2563eb",
+                        set: (value) => {
+                            config.primary_color = value;
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ primary_color: value });
+                            }
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["company_name", config.company_name || defaultConfig.company_name],
+                ["company_tagline", config.company_tagline || defaultConfig.company_tagline],
+                ["contact_phone", config.contact_phone || defaultConfig.contact_phone],
+                ["contact_email", config.contact_email || defaultConfig.contact_email]
+            ]);
+        }
+
+        // Initialize SDKs
+        async function initializeApp() {
+            try {
+                // Initialize Data SDK
+                const dataResult = await window.dataSdk.init(dataHandler);
+                if (!dataResult.isOk) {
+                    console.error('Failed to initialize Data SDK');
+                }
+
+                // Initialize Element SDK
+                if (window.elementSdk) {
+                    await window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange,
+                        mapToCapabilities,
+                        mapToEditPanelValues
+                    });
+                }
+            } catch (error) {
+                console.error('Initialization error:', error);
+            }
+        }
+
+        // Locality selection functionality
+        function setupLocalitySelection() {
+            const localityButtons = document.querySelectorAll('.locality-btn');
+            const localitySection = document.getElementById('locality-selection');
+            const selectedLocalityDisplay = document.getElementById('selected-locality-display');
+            const companyFilterSection = document.getElementById('company-filter-section');
+            const plansSection = document.getElementById('plans-section');
+            const currentLocalitySpan = document.getElementById('current-locality');
+            const changeLocalityBtn = document.getElementById('change-locality');
+
+            localityButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    selectedLocality = this.getAttribute('data-locality');
+                    currentLocalitySpan.textContent = localityNames[selectedLocality];
+                    
+                    // Hide locality selection, show plans
+                    localitySection.classList.add('hidden');
+                    selectedLocalityDisplay.classList.remove('hidden');
+                    companyFilterSection.classList.remove('hidden');
+                    plansSection.classList.remove('hidden');
+                    
+                    // Filter plans by locality and update prices
+                    filterPlansByLocality();
+                    updatePricesForLocality();
+                });
+            });
+
+            changeLocalityBtn.addEventListener('click', function() {
+                selectedLocality = null;
+                localitySection.classList.remove('hidden');
+                selectedLocalityDisplay.classList.add('hidden');
+                companyFilterSection.classList.add('hidden');
+                plansSection.classList.add('hidden');
+                
+                // Reset company filter
+                const filterButtons = document.querySelectorAll('.company-filter-btn');
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                });
+                filterButtons[0].classList.remove('bg-gray-200', 'text-gray-700');
+                filterButtons[0].classList.add('bg-blue-600', 'text-white');
+            });
+        }
+
+        function filterPlansByLocality() {
+            const planCards = document.querySelectorAll('.plan-card');
+            
+            planCards.forEach(card => {
+                const cardLocalities = card.getAttribute('data-localities');
+                if (cardLocalities && cardLocalities.includes(selectedLocality)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function updatePricesForLocality() {
+            const planCards = document.querySelectorAll('.plan-card');
+            
+            planCards.forEach(card => {
+                const durationSelect = card.querySelector('.duration-select');
+                const planPriceElement = card.querySelector('.plan-price');
+                
+                if (durationSelect && selectedLocality) {
+                    const localityPrice = durationSelect.getAttribute(`data-base-price-${selectedLocality}`);
+                    if (localityPrice) {
+                        // Update the base price for this locality
+                        const newPrice = parseInt(localityPrice);
+                        planPriceElement.textContent = `₹${newPrice}`;
+                        
+                        // Update duration options
+                        const options = durationSelect.querySelectorAll('option');
+                        options.forEach(option => {
+                            const discount = parseInt(option.getAttribute('data-discount'));
+                            const discountedPrice = Math.round(newPrice * (1 - discount / 100));
+                            const duration = option.value;
+                            let durationText = '';
+                            if (duration === '3') durationText = '3 Months';
+                            else if (duration === '6') durationText = '6 Months';
+                            else if (duration === '12') durationText = '12 Months';
+                            
+                            if (discount > 0) {
+                                option.textContent = `${durationText} - ₹${discountedPrice}/month (${discount}% off)`;
+                            } else {
+                                option.textContent = `${durationText} - ₹${discountedPrice}/month`;
+                            }
+                        });
+                        
+                        // Trigger price recalculation
+                        const event = new Event('change');
+                        durationSelect.dispatchEvent(event);
+                    }
+                }
+            });
+        }
+
+        // Company filtering functionality
+        function setupCompanyFiltering() {
+            const filterButtons = document.querySelectorAll('.company-filter-btn');
+            const planCards = document.querySelectorAll('.plan-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const selectedCompany = this.getAttribute('data-company');
+                    
+                    // Update active filter button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-blue-600', 'text-white');
+                        btn.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    this.classList.remove('bg-gray-200', 'text-gray-700');
+                    this.classList.add('bg-blue-600', 'text-white');
+                    
+                    // Filter plan cards by company AND locality
+                    planCards.forEach(card => {
+                        const cardLocalities = card.getAttribute('data-localities');
+                        const cardCompany = card.getAttribute('data-company');
+                        const isLocalityMatch = cardLocalities && cardLocalities.includes(selectedLocality);
+                        const isCompanyMatch = selectedCompany === 'all' || cardCompany === selectedCompany;
+                        
+                        if (isLocalityMatch && isCompanyMatch) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        // Duration and price calculation
+        function setupPriceCalculation() {
+            const planCards = document.querySelectorAll('.plan-card');
+            
+            planCards.forEach(card => {
+                const durationSelect = card.querySelector('.duration-select');
+                const ottCheckbox = card.querySelector('.ott-checkbox');
+                const iptvCheckbox = card.querySelector('.iptv-checkbox');
+                const totalPriceElement = card.querySelector('.total-price');
+                const planPriceElement = card.querySelector('.plan-price');
+                const addToCartBtn = card.querySelector('.add-to-cart-btn');
+                
+                function updatePrice() {
+                    // Get current base price (locality-specific or default)
+                    let basePrice;
+                    if (selectedLocality) {
+                        const localityPrice = durationSelect.getAttribute(`data-base-price-${selectedLocality}`);
+                        basePrice = localityPrice ? parseInt(localityPrice) : 499;
+                    } else {
+                        basePrice = 499; // Default fallback
+                    }
+                    
+                    // Get current duration discount
+                    const selectedOption = durationSelect.options[durationSelect.selectedIndex];
+                    const discount = parseInt(selectedOption.getAttribute('data-discount'));
+                    const duration = selectedOption.value;
+                    
+                    // Calculate discounted base price
+                    const discountedPrice = Math.round(basePrice * (1 - discount / 100));
+                    
+                    // Update plan price display
+                    planPriceElement.textContent = `₹${discountedPrice}`;
+                    
+                    let totalPrice = discountedPrice;
+                    let selectedAddons = [];
+                    let durationText = '';
+                    
+                    if (duration === '3') durationText = '3 Months';
+                    else if (duration === '6') durationText = '6 Months';
+                    else if (duration === '12') durationText = '12 Months';
+                    
+                    if (ottCheckbox && ottCheckbox.checked && !ottCheckbox.disabled) {
+                        totalPrice += parseInt(ottCheckbox.getAttribute('data-price'));
+                        selectedAddons.push('OTT Pack');
+                    }
+                    
+                    if (iptvCheckbox && iptvCheckbox.checked && !iptvCheckbox.disabled) {
+                        totalPrice += parseInt(iptvCheckbox.getAttribute('data-price'));
+                        selectedAddons.push('IPTV Pack');
+                    }
+                    
+                    totalPriceElement.textContent = `Total: ₹${totalPrice}/month`;
+                    
+                    // Update button data
+                    addToCartBtn.setAttribute('data-final-price', totalPrice);
+                    addToCartBtn.setAttribute('data-duration', durationText);
+                    addToCartBtn.setAttribute('data-addons', selectedAddons.join(', '));
+                }
+                
+                if (durationSelect) durationSelect.addEventListener('change', updatePrice);
+                if (ottCheckbox) ottCheckbox.addEventListener('change', updatePrice);
+                if (iptvCheckbox) iptvCheckbox.addEventListener('change', updatePrice);
+                
+                // Initialize price
+                updatePrice();
+            });
+        }
+
+        // Plan selection and cart functionality
+        function setupPlanSelection() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const company = this.getAttribute('data-company');
+                    const planName = this.getAttribute('data-plan');
+                    const finalPrice = parseInt(this.getAttribute('data-final-price')) || parseInt(this.getAttribute('data-base-price'));
+                    const addons = this.getAttribute('data-addons') || '';
+                    
+                    const fullPlanName = `${company} - ${planName}${addons ? ' + ' + addons : ''}`;
+                    
+                    currentPlan = fullPlanName;
+                    currentPrice = finalPrice;
+                    cartCount = 1;
+                    
+                    // Update cart display
+                    document.getElementById('cart-count').textContent = cartCount;
+                    document.getElementById('cart-badge').classList.remove('hidden');
+                    
+                    // Show customer form
+                    showCustomerForm();
+                    
+                    // Update selected plan display
+                    document.getElementById('selected-plan-name').textContent = fullPlanName;
+                    document.getElementById('selected-plan-price').textContent = `₹${finalPrice}/month`;
+                });
+            });
+        }
+
+        function showCustomerForm() {
+            document.getElementById('plans-section').classList.add('hidden');
+            document.getElementById('customer-form-section').classList.remove('hidden');
+            document.getElementById('payment-section').classList.add('hidden');
+            document.getElementById('success-section').classList.add('hidden');
+        }
+
+        function showPlansSection() {
+            document.getElementById('plans-section').classList.remove('hidden');
+            document.getElementById('customer-form-section').classList.add('hidden');
+            document.getElementById('payment-section').classList.add('hidden');
+            document.getElementById('success-section').classList.add('hidden');
+        }
+
+        function showPaymentSection() {
+            document.getElementById('plans-section').classList.add('hidden');
+            document.getElementById('customer-form-section').classList.add('hidden');
+            document.getElementById('payment-section').classList.remove('hidden');
+            document.getElementById('success-section').classList.add('hidden');
+        }
+
+        function showSuccessSection() {
+            document.getElementById('plans-section').classList.add('hidden');
+            document.getElementById('customer-form-section').classList.add('hidden');
+            document.getElementById('payment-section').classList.add('hidden');
+            document.getElementById('success-section').classList.remove('hidden');
+        }
+
+        // Form handling
+        function setupFormHandling() {
+            const customerForm = document.getElementById('customer-form');
+            const backToPlansBtn = document.getElementById('back-to-plans');
+            const backToFormBtn = document.getElementById('back-to-form');
+            const completePaymentBtn = document.getElementById('complete-payment');
+            const newOrderBtn = document.getElementById('new-order');
+            const cartBtn = document.getElementById('cart-btn');
+
+            customerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(customerForm);
+                currentOrderData = {
+                    customer_name: formData.get('customer_name'),
+                    mobile: formData.get('mobile'),
+                    email: formData.get('email'),
+                    address: formData.get('address'),
+                    landmark: formData.get('landmark') || '',
+                    pincode: formData.get('pincode'),
+                    selected_plan: currentPlan,
+                    plan_price: currentPrice,
+                    order_date: new Date().toISOString(),
+                    order_id: 'ORD' + Date.now()
+                };
+                
+                // Update payment section
+                document.getElementById('payment-plan-name').textContent = currentPlan;
+                document.getElementById('payment-customer-name').textContent = currentOrderData.customer_name;
+                document.getElementById('payment-amount').textContent = `₹${currentPrice}`;
+                
+                showPaymentSection();
+            });
+
+            backToPlansBtn.addEventListener('click', showPlansSection);
+            backToFormBtn.addEventListener('click', showCustomerForm);
+            
+            completePaymentBtn.addEventListener('click', async function() {
+                this.disabled = true;
+                this.textContent = 'Processing...';
+                
+                try {
+                    // Save order data
+                    const result = await window.dataSdk.create(currentOrderData);
+                    
+                    if (result.isOk) {
+                        document.getElementById('order-id').textContent = currentOrderData.order_id;
+                        showSuccessSection();
+                    } else {
+                        // Show error message
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'bg-red-50 border border-red-200 rounded-lg p-4 mb-4';
+                        errorDiv.innerHTML = '<p class="text-red-800">Order could not be saved. Please try again.</p>';
+                        document.getElementById('payment-section').querySelector('.max-w-2xl').prepend(errorDiv);
+                    }
+                } catch (error) {
+                    console.error('Payment error:', error);
+                }
+                
+                this.disabled = false;
+                this.textContent = 'Complete Payment (Demo)';
+            });
+
+            newOrderBtn.addEventListener('click', function() {
+                // Reset state
+                currentPlan = null;
+                currentPrice = 0;
+                cartCount = 0;
+                currentOrderData = null;
+                
+                document.getElementById('cart-count').textContent = '0';
+                document.getElementById('cart-badge').classList.add('hidden');
+                customerForm.reset();
+                
+                showPlansSection();
+            });
+
+            cartBtn.addEventListener('click', function() {
+                if (cartCount > 0) {
+                    showCustomerForm();
+                }
+            });
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupLocalitySelection();
+            setupCompanyFiltering();
+            setupPriceCalculation();
+            setupPlanSelection();
+            setupFormHandling();
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99600347f16059d8',t:'MTc2MTcxMzAxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
