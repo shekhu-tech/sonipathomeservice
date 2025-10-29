@@ -3,28 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title is updated for Masonry Service -->
     <title>SonipatHomeService.com - Masonry Service (चिनाई मिस्त्री)</title>
-    <!-- <script src="redirect_if_needed.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
+        /* --- AC Service Light Theme Styles Adopted --- */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
         :root {
-            /* Theme: Deep Space Black, Construction Yellow/Orange, and Electric Teal */
-            --bg-dark: #101827; /* Deep Space Black */
-            --bg-card: #1C2738; /* Dark Navy Card */
-            --primary: #FFB700; /* Construction Yellow/Orange (Main Page Button) */
-            --secondary: #00FFFF; /* Electric Teal Accent (Price Highlight/Border) */
-            --text-light: #E0E7FF; /* Off-White Text */
-            --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
-            --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
+            /* Classic White & Light Blue Theme */
+            --bg-dark: #F4F7FB; /* Very Light Blue/Gray Background */
+            --bg-card: #FFFFFF; /* White Card/Popup Background */
+            --primary: #3B82F6; /* Primary Accent (Classic Blue) */
+            --secondary: #1F83E7; /* Secondary Accent (Darker Blue for titles/prices) */
+            --text-light: #1F2937; /* Dark Gray/Black Text */
+            --text-subtle: #6B7280; /* Subtle Gray Text */
+            --shadow-depth: 0 5px 20px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-            /* AC Button Colors used for Popup Actions (for consistent look across popups) */
-            --ac-primary: #00FFFF; /* Electric Teal */
-            --ac-secondary: #FFC72C; /* Sunset Gold */
         }
 
         * {
@@ -64,13 +61,13 @@
             text-align: center;
             box-shadow: var(--shadow-depth);
             transition: var(--transition);
-            border: 1px solid rgba(255, 183, 0, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.1); 
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
             border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(255, 183, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
         }
 
         .stat-card h3 {
@@ -89,26 +86,26 @@
         }
 
         .product-section {
-            background: linear-gradient(135deg, var(--bg-card), #22324C);
+            background: linear-gradient(135deg, var(--bg-card), #E7EFF9);
             border-radius: 1.5rem;
             box-shadow: var(--shadow-depth);
             margin-bottom: 3rem;
             overflow: hidden;
-            border: 2px solid var(--secondary);
+            border: 2px solid var(--primary);
         }
 
         .product-header {
-            background: linear-gradient(90deg, #101827, #22324C);
+            background: linear-gradient(90deg, #E7EFF9, var(--bg-card));
             padding: 2rem;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .product-header h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: 2.5rem;
             font-weight: 800;
-            color: var(--primary);
+            color: var(--secondary);
         }
 
         .product-content {
@@ -137,25 +134,27 @@
             border-bottom: 1px dashed var(--text-subtle);
             justify-content: center; 
         }
+        
+        #selectedServicesDisplay {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-top: 0.5rem;
+            min-height: 24px;
+        }
 
         .original-price {
             font-size: 1.2rem;
             text-decoration: line-through;
             color: var(--text-subtle);
             font-weight: 400;
-            visibility: visible; 
-            height: auto;
         }
 
         .current-price {
-            font-size: 3rem; 
-            font-weight: 800; 
-            color: var(--secondary);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
             font-family: 'Montserrat', sans-serif;
-            min-height: 3rem; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .action-buttons {
@@ -180,22 +179,22 @@
             text-decoration: none;
             justify-content: center;
             flex-grow: 1;
-            max-width: 300px;
-            min-width: 150px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            max-width: 400px; 
+            min-width: 200px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .btn-primary {
             background: var(--primary);
-            color: var(--bg-dark);
+            color: var(--bg-card);
             border-color: var(--primary);
             font-family: 'Montserrat', sans-serif;
         }
 
         .btn-primary:hover {
-            background: #FFC730;
+            background: #2563EB;
             transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(255, 183, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
         }
 
         .btn-secondary {
@@ -205,10 +204,99 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(0, 255, 255, 0.1);
+            background: rgba(59, 130, 246, 0.1);
             transform: scale(1.03);
         }
+        
+        /* --- Service Card Styling --- */
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Using a generic construction-themed placeholder image */
+            background-image: url('https://placehold.co/400x300/6B4E00/FFFFFF?text=MASONRY'); 
+            background-size: cover;
+            background-position: center;
+            color: white;
+            position: relative;
+            padding: 0.75rem; 
+            border-radius: 0.75rem;
+            border: 2px solid transparent; 
+        }
+        
+        .service-card-wrapper {
+            position: relative;
+        }
 
+        .service-card-wrapper input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            top: 0;
+            right: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            z-index: 10; 
+        }
+
+        /* Style the card based on checked state (Blue card on Selection) */
+        .service-card-wrapper input[type="checkbox"]:checked + .service-card {
+            background-image: none !important; 
+            background-color: rgba(59, 130, 246, 0.9) !important; 
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); 
+        }
+
+        /* FIX: Make check icon WHITE on selection for high visibility */
+        .service-card-wrapper input[type="checkbox"]:checked + .service-card .card-check-icon {
+            color: white; 
+            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.9)); 
+        }
+        
+        .service-card .card-check-icon {
+            color: #f7f7f7;
+            transition: color 0.3s;
+        }
+        
+        .service-card h4, .service-card p {
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 1.0); 
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .service-card h4 {
+            font-size: 0.95rem; 
+        }
+
+
+        .btn-see-more {
+            margin-top: auto; 
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            max-width: 100%;
+            background-color: var(--primary) !important;
+            color: white !important;
+            border-radius: 0.5rem;
+        }
+        
+        /* --- COMPACT CARD & ICON STYLING --- */
+        .service-icon-container {
+            width: 28px;
+            height: 28px;
+            background: white; 
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 6px;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+        
         /* --- Popup Styling --- */
         #popup-overlay {
             display: none;
@@ -217,9 +305,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 999;
         }
 
@@ -236,7 +324,7 @@
             transform: translate(-50%, -50%);
             z-index: 1000;
             width: 95%;
-            max-width: 650px;
+            max-width: 750px; 
             max-height: 95vh;
             overflow-y: auto;
             animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
@@ -274,7 +362,7 @@
             border-radius: 0.75rem;
             border: 1px solid var(--text-subtle);
             font-size: 1rem;
-            background: #22324C;
+            background: #F9FAFB;
             color: var(--text-light);
             transition: border-color 0.3s ease;
         }
@@ -284,7 +372,7 @@
         .popup textarea:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 183, 0, 0.2);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); 
         }
 
         .popup textarea {
@@ -292,11 +380,9 @@
             resize: vertical;
         }
 
-        /* START: AC Button Styles Applied Here (Consistent Look) */
         .popup button[type="submit"],
         #razorpay-payment-btn,
-        #downloadBtn,
-        #okayBtn,
+        #downloadTicketsBtn,
         .popup button.close-btn {
             width: 100%;
             padding: 1rem;
@@ -312,39 +398,23 @@
 
         .popup button[type="submit"],
         #razorpay-payment-btn,
-        #downloadBtn { /* Primary Action Buttons (Teal Gradient) */
-            background: linear-gradient(45deg, var(--ac-primary), #00D5D5);
-            color: var(--bg-dark);
+        #downloadTicketsBtn {
+            background: linear-gradient(45deg, var(--primary), #2563EB); 
+            color: var(--bg-card);
         }
 
         .popup button[type="submit"]:hover,
         #razorpay-payment-btn:hover,
-        #downloadBtn:hover {
+        #downloadTicketsBtn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.6); 
         }
-
-        #okayBtn,
-        #close-price-list-btn,
-        #close-description-btn { /* Secondary/Close Buttons (Gold Accent) */
-            background: transparent;
-            color: var(--ac-secondary);
-            border: 2px solid var(--ac-secondary);
-        }
-        
-        #okayBtn:hover,
-        #close-price-list-btn:hover,
-        #close-description-btn:hover {
-            background: rgba(255, 199, 44, 0.1);
-            transform: scale(1.01);
-        }
-        /* END: AC Button Styles Applied Here */
         
         .quantity-selector-container {
-            background: #22324C;
+            background: #EFF6FF;
             padding: 1.2rem;
             border-radius: 0.75rem;
-            border: 1px solid var(--text-subtle);
+            border: 1px solid var(--primary);
         }
 
         .total-price-quantity {
@@ -352,22 +422,59 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--secondary) !important;
         }
-        
-        .price-calculation-summary {
-            background: #22324C;
-            padding: 1.2rem;
+
+        #ticketDisplay {
+            background: #F9FAFB;
+            border: 1px solid var(--primary);
+            color: var(--text-light);
+            padding: 1.5rem;
             border-radius: 0.75rem;
-            border: 1px solid var(--text-subtle);
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            text-align: left;
+            word-break: break-word;
         }
-        .price-calculation-summary strong {
-            color: var(--primary);
+        
+        /* Custom Alert Styling */
+        .custom-alert {
+            position: fixed;
+            bottom: 5%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            background: var(--primary);
+            color: var(--bg-card);
+            padding: 1.25rem 1.875rem;
+            border-radius: 0.625rem;
+            z-index: 1002;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeInOut 4s forwards;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.3s, transform 0.3s;
         }
 
+        /* Animation for fade in/out */
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, 100%); }
+            10% { opacity: 1; transform: translate(-50%, 0); }
+            90% { opacity: 1; transform: translate(-50%, 0); }
+            100% { opacity: 0; transform: translate(-50%, 100%); }
+        }
+
+        /* Price List Specific - Removed as full popup replaced */
+        
         /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
+        #serviceCardsContainer {
+            grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        }
 
+        @media (min-width: 768px) {
+            #serviceCardsContainer {
+                grid-template-columns: repeat(3, minmax(0, 1fr)); 
+            }
+        }
+        
         @media (max-width: 1024px) {
             .product-content { padding: 2rem; flex-direction: column; }
             .product-details { text-align: center; }
@@ -387,6 +494,7 @@
             .popup h2 { font-size: 1.5rem; }
             .action-buttons { flex-direction: column; }
             .btn { min-width: 100%; max-width: 100%; }
+            
             .popup input, .popup select, .popup textarea {
                 padding: 0.7rem 1rem;
             }
@@ -398,41 +506,64 @@
             .stat-card p { font-size: 1.8rem; }
             .popup { padding: 1rem; }
         }
+
+        #serviceSelectionDisplayWrapper {
+            background-color: #F9FAFB;
+            border: 1px solid var(--text-subtle);
+            border-radius: 0.75rem;
+            padding: 0.9rem 1.2rem;
+            cursor: pointer;
+            text-align: left;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+            min-height: 48px;
+        }
+        #serviceSelectionDisplayWrapper:hover {
+            border-color: var(--primary);
+        }
+
+        #selectedServicesSummary {
+            display: block;
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.25;
+            white-space: pre-wrap;
+        }
     </style>
 </head>
 <body>
+   
     <main class="container">
         
         <section class="product-section">
             <div class="product-header">
-                <h2 class="text-white">चिनाई मिस्त्री सेवा (Masonry Service)</h2>
-                <p class="text-sm text-gray-400 mt-2">फैक्ट्री, गोडाउन, कोठी, मकान और दुकान के निर्माण के लिए कुशल कारीगर बुक करें।</p>
+                <!-- Text updated for Masonry Service -->
+                <h2 class="text-secondary">Professional Masonry Service (चिनाई मिस्त्री)</h2> 
+                <p class="text-text-subtle mt-2">फैक्ट्री, गोडाउन, कोठी, मकान और दुकान के निर्माण के लिए कुशल कारीगर बुक करें।</p>
             </div>
 
             <div class="product-content">
                 
                 <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">दैनिक या ठेका सेवा (Daily or Contract Basis)</h3>
+                    <h3 class="text-3xl font-semibold text-text-light mb-4">Certified & Guaranteed Construction Service</h3>
                     <p class="text-text-subtle mb-4 text-base">
-                        अपनी आवश्यकतानुसार **दैनिक दर** पर मिस्त्री/मजदूर बुक करें या **ठेका सेवा (Contract Service)** के लिए कोटेशन लें।
+                        अपनी आवश्यकतानुसार दैनिक दर पर मिस्त्री/मजदूर बुक करें या ठेका सेवा (Contract Service) के लिए कोटेशन लें।
                     </p>
                     
                     <div class="price-container">
-                        <div class="original-price">दैनिक / ठेका मूल्य अलग-अलग</div>
-                        <div class="current-price" id="displayPrice">Select Option</div>
+                        <!-- Display selected service names here -->
+                        <div id="selectedServicesDisplay" class="font-bold text-center text-secondary mb-2">सेवाएँ चुनने के लिए क्लिक करें</div>
+                        <!-- Original Price will show total estimated cost -->
+                        <div class="original-price" id="originalPriceDisplay">Total Estimated Cost: Select Service</div>
+                        <!-- Current Price will show fixed booking charge -->
+                        <div class="current-price" id="displayPrice">₹99 Booking Charge</div>
                     </div>
                     
                     <div class="action-buttons">
-                        <button class="btn btn-primary" id="book-now-btn">
+                        <button class="btn btn-primary" id="participate-btn">
                             <i class="fas fa-hammer"></i> Book Mason Now
                         </button>
-                        <button id="price-list-btn" class="btn btn-secondary">
-                            <i class="fas fa-tags"></i> Daily/Contract Rates
-                        </button>
-                         <button id="description-btn" class="btn btn-secondary">
-                            <i class="fas fa-file-alt"></i> Terms & Conditions (T&C)
-                        </button>
-                        <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                         <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
                             <i class="fas fa-home"></i> Back To Home
                         </button>
                     </div>
@@ -440,6 +571,7 @@
             </div>
         </section>
 
+        <!-- Stats updated for Masonry Service -->
         <div class="stat-grid">
             <div class="stat-card">
                 <h3>मिस्त्री दैनिक शुल्क</h3>
@@ -450,8 +582,8 @@
                 <p>₹799</p>
             </div>
             <div class="stat-card">
-                <h3>ठेका शुल्क (सामग्री रहित)</h3>
-                <p>₹250/sq ft</p>
+                <h3>Minimum Booking Advance</h3>
+                <p>₹99</p>
             </div>
             <div class="stat-card">
                 <h3>बुकिंग अवधि</h3>
@@ -462,269 +594,149 @@
 
     <div id="popup-overlay"></div>
     
-    <!-- Booking Form Popup -->
-    <div id="booking-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">चिनाई मिस्त्री सेवा बुकिंग</h2>
-        <form id="booking-form">
-            <div class="quantity-selector-container my-4">
-                <label for="serviceType">1. सेवा का प्रकार चुनें:</label>
-                <select id="serviceType" name="serviceType" required>
-                    <option value="">-- सेवा का प्रकार चुनें --</option>
-                    <option value="Daily_Mason">दैनिक दर - मिस्त्री (₹999/दिन)</option>
-                    <option value="Daily_Labor">दैनिक दर - मजदूर (₹799/दिन)</option>
-                    <option value="Contract_Material_Not_Incl">ठेका - सामग्री रहित (₹250/sq ft)</option>
-                    <option value="Contract_Material_Incl">ठेका - सामग्री सहित (₹1299/sq ft)</option>
-                    <option value="SiteVisit">निरीक्षण शुल्क (Site Visit - ₹299)</option>
-                </select>
-                
-                <!-- START: Daily Rate Inputs - Updated Structure to hide/show specific fields -->
-                <div id="dailyRateInputs" class="mt-4 p-3 bg-bg-dark rounded-md hidden">
-                    
-                    <!-- Mason Count Group (Hidden by default, used for logic) -->
-                    <div id="masonCountGroup" class="hidden">
-                        <label for="masonCount">मिस्त्री की संख्या (₹999/दिन):</label>
-                        <input type="number" id="masonCount" name="masonCount" min="0" value="0" />
-                    </div>
-                    
-                    <!-- Labor Count Group (Hidden by default, used for logic) -->
-                    <div id="laborCountGroup" class="mt-3 hidden">
-                        <label for="laborCount">मजदूर (लेबर) की संख्या (₹799/दिन):</label>
-                        <input type="number" id="laborCount" name="laborCount" min="0" value="0" />
-                    </div>
-                    
-                    <!-- Days Count Group (Used for both Daily Mason/Labor) -->
-                    <div id="daysCountGroup" class="mt-3 hidden">
-                        <label for="daysCount">कितने दिनों के लिए:</label>
-                        <input type="number" id="daysCount" name="daysCount" min="1" value="1" />
-                    </div>
-                </div>
-                <!-- END: Daily Rate Inputs -->
-
-                <div id="contractInputs" class="mt-4 p-3 bg-bg-dark rounded-md hidden">
-                     <label for="squareFeet">कार्यक्षेत्र का क्षेत्रफल (वर्ग फुट):</label>
-                     <input type="number" id="squareFeet" name="squareFeet" placeholder="उदाहरण: 1000 वर्ग फुट" min="0" value="0" />
-                </div>
-                
-                <div id="priceCalculationSummary" class="price-calculation-summary">
-                    **सेवा प्रकार:** चुनें <br>
-                    **कुल अनुमानित लागत:** ₹0
-                </div>
+    <!-- Booking Form Popup (Replaced with AC Service Form Structure) -->
+    <div class="popup" id="popupForm">
+        <h2 class="text-2xl font-bold text-center">चिनाई मिस्त्री सेवा बुकिंग फॉर्म</h2>
+        <form id="lotteryForm">
+            
+            <label>1. सेवा का प्रकार चुनें:</label>
+            <div id="serviceSelectionDisplayWrapper" onclick="openServiceSelectionPopup()">
+                <span id="selectedServicesSummary">सेवाएँ चुनने के लिए क्लिक करें</span>
             </div>
             
-            <label for="name">Full Name (min 10 characters)</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" minlength="10" required>
+            <input type="hidden" name="selectedServices" id="selectedServicesHiddenField">
 
-            <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
+            <div class="flex justify-between items-center mt-3 p-3 rounded-lg quantity-selector-container border-primary">
+                <span class="text-text-light font-semibold">Total Payable Now (Fixed Booking Charge)</span>
+                <!-- Fixed price set to 99 -->
+                <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">₹99</span>
+            </div>
 
-            <!-- NEW FIELD ADDED for Server Logging Compatibility -->
-            <label for="email">Email Address (Required for booking)</label>
-            <input type="email" id="email" name="email" placeholder="masonry@service.com" autocomplete="email" required>
-            <!-- END NEW FIELD -->
+            <label for="fullName">Your Full Name (min 10 characters)</label>
+            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
             
-            <label for="location">Landmark (e.g. Shop , Place )</label>
-            <input type="text" id="location" name="location" placeholder="Sonipat" autocomplete="address-level2" required>
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
+            
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="field3" required placeholder="masonry@service.com" autocomplete="email" />
+            
+            <label for="location">Location (e.g. Sonipat, Delhi)</label>
+            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" />
             
             <label for="address">Complete Site Address (min 30 characters)</label>
-            <textarea id="address" name="address" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
-            
-            <div class="quantity-selector my-4">
-                <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
-                    <span>Final Calculated Price (Advance/Full)</span>
-                    <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹0</span>
-                </div>
-            </div>
+            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
 
+            <input type="hidden" name="ticket" id="ticketCode" />
+            <!-- Fixed final price input -->
+            <input type="hidden" name="finalPrice" id="finalPrice" value="99" />
+            
             <button type="submit">Submit Details & Proceed to Payment</button>
-            <p id="submit-message" class="text-center text-sm text-primary mt-2 hidden">Submitting...</p>
+            <p id="submitMessage" class="text-center mt-3 text-primary reorganize text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
         </form>
+    </div>
+    
+    <!-- NEW POPUP: Service Selection Popup -->
+    <div class="popup" id="serviceSelectionPopup" style="max-width: 900px;">
+        <h2 class="text-2xl font-bold text-center">चिनाई मिस्त्री सेवा का प्रकार चुनें</h2>
+        <div id="serviceCardsContainer" class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4 mb-6">
+            <!-- Service Cards will be injected here by JS -->
+        </div>
+        <button type="button" class="btn btn-primary" onclick="applyServiceSelection()">Apply Selection</button>
+        <button type="button" class="btn btn-secondary mt-2" onclick="closeServiceSelectionPopup()">Cancel</button>
     </div>
 
     <!-- Payment Popup -->
-    <div id="payment-popup" class="popup">
+    <div class="popup" id="paymentStep">
         <h2 class="text-2xl font-bold text-center">Complete Your Payment</h2>
-        <p class="text-text-subtle text-center mb-6">कृपया बुकिंग की पुष्टि के लिए पूरा/एडवांस भुगतान करें।</p>
-        <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
-        <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
-        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
-        <p class="mt-4 text-xs text-text-subtle text-center">
-            Note: Do not close this window during payment processing. Advance payment is non-refundable upon cancellation.
+        <p class="text-text-subtle text-center mb-6">कृपया बुकिंग की पुष्टि के लिए ₹99 का बुकिंग चार्ज जमा करें।</p>
+        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary text-text-light"></div>
+        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
+        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay ₹99 Now</button>
+        <p class="mt-4 reorganize text-xs text-text-subtle text-center">
+            Note: Do not close this window during payment processing.
         </p>
     </div>
 
     <!-- Confirmation Popup -->
-    <div id="confirmation-popup" class="popup">
-        <h2 id="welcome-message" class="text-2xl font-bold text-center text-primary"></h2>
+    <div class="popup" id="ticketStep">
+        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
         <p class="text-text-subtle text-center mb-4">आपकी सेवा बुक हो गई है! हमारी टीम 36 घंटे के भीतर मिस्त्री की व्यवस्था करेगी।</p>
-        <div id="ticket-info" class="space-y-2">
-            <!-- Details will be injected here -->
-        </div>
-        <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Download Booking Details</button>
-        <p class="mt-4 text-sm text-text-subtle text-center">📸 कृपया रिकॉर्ड के लिए स्क्रीनशॉट लें।</p>
-        <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
-    </div>
-
-    <!-- Price List Popup -->
-    <div id="price-list-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">मिस्त्री सेवा दरें (Masonry Service Rates)</h2>
-        <div class="overflow-x-auto mt-4">
-            <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
-                <thead>
-                    <tr class="text-left text-secondary">
-                        <th class="py-3 px-4 border-b border-text-subtle" colspan="3">दैनिक शुल्क (Daily Rate Service)</th>
-                    </tr>
-                </thead>
-                <tbody id="dailyRateTableBody">
-                    <tr>
-                        <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">मिस्त्री (Mason)</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹999</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle">प्रति दिन</td>
-                    </tr>
-                    <tr>
-                        <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">मजदूर (Labor)</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹799</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle">प्रति दिन</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table class="min-w-full bg-bg-dark rounded-lg border border-primary mt-6">
-                <thead>
-                    <tr class="text-left text-secondary">
-                        <th class="py-3 px-4 border-b border-text-subtle" colspan="3">ठेका सेवा (Contract Service)</th>
-                    </tr>
-                </thead>
-                <tbody id="contractRateTableBody">
-                    <tr>
-                        <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">निरीक्षण शुल्क (Site Visit)</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹299</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle">Consultation</td>
-                    </tr>
-                    <tr>
-                        <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">ठेका शुल्क (सामग्री रहित)</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹250</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle">प्रति वर्ग फुट (sq ft)</td>
-                    </tr>
-                    <tr>
-                        <td class="py-3 px-4 border-b border-gray-700 font-semibold text-primary">ठेका शुल्क (सामग्री सहित)</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹1299</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle">प्रति वर्ग फुट (sq ft)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <button id="close-price-list-btn" class="close-btn mt-4">Close Price List</button>
-    </div>
-
-    <!-- Description Popup (Terms & Conditions) -->
-    <div id="description-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">सेवा के नियम एवं शर्तें (Terms & Conditions)</h2>
-        <div class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
-            <ul class="list-disc list-inside space-y-3">
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-hard-hat mr-2"></i> अनुभवी कारीगर (Experienced Masons)</li>
-                <li>आपके कार्यस्थल पर आने वाला प्रत्येक मिस्त्री अपने क्षेत्र में **कुशल और अनुभवी** होगा।</li>
-
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-users-cog mr-2"></i> मजदूर व्यवस्था (Labor Management)</li>
-                <li>परियोजना की आवश्यकता के अनुसार, मजदूरों (लेबर) को बदला जा सकता है।</li>
-
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-calendar-alt mr-2"></i> बुकिंग समय (Booking Time)</li>
-                <li>मिस्त्री या मजदूर की सेवाएं बुक करने के लिए कम से कम **36 घंटे पहले** सूचित करना आवश्यक है।</li>
-
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-handshake mr-2"></i> दैनिक शुल्क vs सामग्री</li>
-                <li>दैनिक शुल्क (Daily Rate) **केवल कारीगरों की सेवाओं** के लिए है। निर्माण सामग्री (Construction Material) का खर्च ग्राहक को **अलग से** उठाना होगा।</li>
-                
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-money-check-alt mr-2"></i> निरीक्षण शुल्क</li>
-                <li>ठेका सेवा (Contract Service) चुनने पर, साइट निरीक्षण का **₹299** का शुल्क अलग से देय होगा। यह शुल्क साइट के मुआयना, सलाह और परामर्श के लिए है।</li>
-            </ul>
-        </div>
-        <button id="close-description-btn" class="close-btn mt-4">मैंने समझ लिया</button>
+        <div id="ticketDisplay" class="space-y-2"></div>
+        <button id="downloadTicketsBtn" class="mt-4">
+            <i class="fas fa-download mr-2"></i> Download Booking Details
+        </button>
+        <p class="mt-4 reorganize text-sm text-text-subtle text-center">📸 कृपया रिकॉर्ड के लिए स्क्रीनशॉट लें।</p>
+        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
     </div>
     
+   
     <script>
-        // Data for Masonry Service Rates
-        const RATES = {
-            DAILY_MASON: 999,
-            DAILY_LABOR: 799,
-            CONTRACT_MATERIAL_NOT_INCL: 250, // Per sq ft
-            CONTRACT_MATERIAL_INCL: 1299,    // Per sq ft
-            SITE_VISIT_FEE: 299
-        };
+        // --- Masonry Service Categories (Updated for Multi-Select) ---
+        const masonryServiceData = [
+            { "Category": "मिस्त्री दैनिक दर (₹999/दिन)", "Price": 999, "Icon": "fas fa-hard-hat", "Page": "details_mason.html" },
+            { "Category": "मजदूर दैनिक दर (₹799/दिन)", "Price": 799, "Icon": "fas fa-person-digging", "Page": "details_labor.html" },
+            { "Category": "ठेका (सामग्री रहित) - ₹250/sq ft", "Price": 250, "Icon": "fas fa-hammer", "Page": "details_contract_no_material.html" },
+            { "Category": "ठेका (सामग्री सहित) - ₹1299/sq ft", "Price": 1299, "Icon": "fas fa-warehouse", "Page": "details_contract_with_material.html" },
+            { "Category": "साइट निरीक्षण (₹299 शुल्क)", "Price": 299, "Icon": "fas fa-search-location", "Page": "details_site_visit.html" },
+            { "Category": "प्लास्टर/फिनिशिंग वर्क (Daily Est.)", "Price": 899, "Icon": "fas fa-paint-roller", "Page": "details_plastering.html" },
+            { "Category": "छोटा मरम्मत कार्य (Min. ₹599)", "Price": 599, "Icon": "fas fa-toolbox", "Page": "details_repair.html" },
+        ];
 
-        // --- Generic constants ---
-        const SERVICE_NAME = "Masonry Service";
-        const SERVICE_TAB_ID = "masonry-service";
-        const LOCAL_STORAGE_KEY = 'masonryBookingFormData';
+        // --- Constants ---
+        const SERVICE_NAME = "Masonry Service (चिनाई मिस्त्री)";
+        const SERVICE_TAB_ID = "masonry-service-new";
+        const LOCAL_STORAGE_KEY = 'masonryBookingFormDataNew'; 
         const RAZORPAY_IMAGE_TEXT = "MASON";
         const PAYMENT_TIME_LIMIT = 5 * 60;
-        const DAILY_SERVICE_ADVANCE = 500; // Fixed advance for daily rate booking
-        const SITE_VISIT_ADVANCE = RATES.SITE_VISIT_FEE;
-        const CONTRACT_SERVICE_ADVANCE_PERCENTAGE = 0.20; // Example: 20% advance for contract service
-
-        // **NEW:** Google Sheet URL from AC Service for server-side logging
+        const BOOKING_CHARGE = 99; // Fixed booking charge as requested
+        
+        // **Google Sheet URL retained from the original file for server-side logging**
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
 
         // --- DOM Element Selection ---
-        const bookNowBtn = document.getElementById('book-now-btn');
+        const participateBtn = document.getElementById('participate-btn');
         const popupOverlay = document.getElementById('popup-overlay');
         const allPopups = document.querySelectorAll('.popup');
-        const bookingPopup = document.getElementById('booking-popup');
-        const paymentPopup = document.getElementById('payment-popup');
-        const confirmationPopup = document.getElementById('confirmation-popup');
-        const bookingForm = document.getElementById('booking-form');
-        const serviceTypeSelect = document.getElementById('serviceType');
-        const dailyRateInputsDiv = document.getElementById('dailyRateInputs');
-        const contractInputsDiv = document.getElementById('contractInputs');
-        
-        // New selectors for groups inside dailyRateInputsDiv
-        const masonCountGroup = document.getElementById('masonCountGroup');
-        const laborCountGroup = document.getElementById('laborCountGroup');
-        const daysCountGroup = document.getElementById('daysCountGroup');
-
-        const masonCountInput = document.getElementById('masonCount');
-        const laborCountInput = document.getElementById('laborCount');
-        const daysCountInput = document.getElementById('daysCount');
-        const squareFeetInput = document.getElementById('squareFeet');
-        const calculatedPriceDisplay = document.getElementById('calculated-price');
-        const displayPrice = document.getElementById('displayPrice');
-        const submitMessage = document.getElementById('submit-message');
-        const paymentSummary = document.getElementById('payment-summary');
-        const timerDisplay = document.getElementById('timer-display');
+        const popupForm = document.getElementById('popupForm');
+        const paymentStep = document.getElementById('paymentStep');
+        const ticketStep = document.getElementById('ticketStep');
+        const timerDisplay = document.getElementById('timerDisplay');
         const razorpayBtn = document.getElementById('razorpay-payment-btn');
-        const ticketInfo = document.getElementById('ticket-info');
-        const downloadBtn = document.getElementById('downloadBtn');
+        const submitMessage = document.getElementById('submitMessage');
+        const serviceSelectionPopup = document.getElementById('serviceSelectionPopup');
+        const serviceCardsContainer = document.getElementById('serviceCardsContainer'); 
+        const selectedServicesSummary = document.getElementById('selectedServicesSummary'); 
+        const selectedServicesHiddenField = document.getElementById('selectedServicesHiddenField'); 
+        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
+        const paymentSummary = document.getElementById('paymentSummary');
+        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const displayPriceElement = document.getElementById('displayPrice');
+        const finalPriceInput = document.getElementById('finalPrice');
+        const form = document.getElementById('lotteryForm');
         const okayBtn = document.getElementById('okayBtn');
-        const welcomeMessage = document.getElementById('welcome-message');
-        const priceListBtn = document.getElementById('price-list-btn');
-        const descriptionBtn = document.getElementById('description-btn');
-        const priceListPopup = document.getElementById('price-list-popup');
-        const descriptionPopup = document.getElementById('description-popup');
-        const closePriceListBtn = document.getElementById('close-price-list-btn');
-        const closeDescriptionBtn = document.getElementById('close-description-btn');
-        const priceCalculationSummary = document.getElementById('priceCalculationSummary');
+        const selectedServicesDisplay = document.getElementById('selectedServicesDisplay');
+        const originalPriceDisplay = document.getElementById('originalPriceDisplay');
 
-        // --- State variables ---
-        let currentCalculatedPrice = 0;
-        let currentAdvanceAmount = 0;
-        let generatedTicket = '';
+
+        // --- State Variables ---
+        let generatedTicket = ''; 
         let countdownInterval = null;
+        let currentServicePrice = 0; // Actual total service cost
         let allowClose = false;
-        
-        // **UPDATED: Centralized data object to ensure consistent service text capture**
-        let currentBookingDetails = {};
+        // Array to hold the categories selected inside the popup (persistent state)
+        let selectedCategoriesState = []; 
 
-        // --- Local Storage Functions for Autofill ---
+        // --- Local Storage Functions ---
         function saveFormData() {
             const formData = {
-                fullName: bookingForm.name.value,
-                phone: bookingForm.phone.value,
-                email: bookingForm.email.value, // Added email field
-                location: bookingForm.location.value,
-                address: bookingForm.address.value,
-                serviceType: serviceTypeSelect.value,
-                masonCount: masonCountInput.value,
-                laborCount: laborCountInput.value,
-                daysCount: daysCountInput.value,
-                squareFeet: squareFeetInput.value
+                fullName: form.fullName.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                location: form.location.value,
+                address: form.address.value,
+                selectedServices: selectedServicesHiddenField.value
             };
             try {
                 localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
@@ -738,268 +750,246 @@
                 const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
                 if (savedData) {
                     const data = JSON.parse(savedData);
-                    bookingForm.name.value = data.fullName || '';
-                    bookingForm.phone.value = data.phone || '';
-                    bookingForm.email.value = data.email || ''; // Added email field
-                    bookingForm.location.value = data.location || '';
-                    bookingForm.address.value = data.address || '';
-                    // Do not load serviceType as it can cause calculation issues on page load if not handled carefully
-                    // serviceTypeSelect.value = data.serviceType || '';
-                    masonCountInput.value = data.masonCount || '0';
-                    laborCountInput.value = data.laborCount || '0';
-                    daysCountInput.value = data.daysCount || '1';
-                    squareFeetInput.value = data.squareFeet || '0';
+                    form.fullName.value = data.fullName || '';
+                    form.phone.value = data.phone || '';
+                    form.email.value = data.email || '';
+                    form.location.value = data.location || '';
+                    form.address.value = data.address || '';
+                    if (data.selectedServices) {
+                        // Reconstruct the state array
+                        selectedCategoriesState = data.selectedServices.split(', ').filter(s => s);
+                        updatePrices();
+                    }
                 }
             } catch (e) {
                 console.warn("Local storage loading failed:", e);
             }
         }
-
-        // --- Core Calculation & UI Logic (Unchanged) ---
-
-        function calculatePrice() {
-            const serviceType = serviceTypeSelect.value;
-            let totalCost = 0;
-            let advance = 0;
-            let summaryHtml = '';
-
-            // Get relevant values from inputs
-            let days = parseInt(daysCountInput.value) || 1;
-            let sqft = parseInt(squareFeetInput.value) || 0;
-            
-            // Variables for summary
-            let rateLabel = '';
-            let unitLabel = '';
-
-            switch (serviceType) {
-                case 'Daily_Mason':
-                    // Booking 1 Mason for 'days'
-                    const masonCost = 1 * RATES.DAILY_MASON * days;
-                    totalCost = masonCost;
-                    rateLabel = `₹${RATES.DAILY_MASON} प्रति दिन (1 मिस्त्री)`;
-                    unitLabel = `${days} दिन`;
-
-                    // Simple fixed advance for daily booking, capped at total cost
-                    if (totalCost > 0) {
-                        advance = Math.min(totalCost, DAILY_SERVICE_ADVANCE);
-                    }
-
-                    summaryHtml = `
-                        **सेवा प्रकार:** दैनिक दर - मिस्त्री <br>
-                        **दर:** ${rateLabel} <br>
-                        **अवधि:** ${unitLabel} <br>
-                        <strong class="text-xl text-secondary">कुल अनुमानित लागत: ₹${totalCost}</strong>
-                    `;
-                    break;
-                    
-                case 'Daily_Labor':
-                    // Booking 1 Laborer for 'days'
-                    const laborCost = 1 * RATES.DAILY_LABOR * days;
-                    totalCost = laborCost;
-                    rateLabel = `₹${RATES.DAILY_LABOR} प्रति दिन (1 मजदूर)`;
-                    unitLabel = `${days} दिन`;
-                    
-                    // Simple fixed advance for daily booking, capped at total cost
-                    if (totalCost > 0) {
-                        advance = Math.min(totalCost, DAILY_SERVICE_ADVANCE);
-                    }
-
-                    summaryHtml = `
-                        **सेवा प्रकार:** दैनिक दर - मजदूर <br>
-                        **दर:** ${rateLabel} <br>
-                        **अवधि:** ${unitLabel} <br>
-                        <strong class="text-xl text-secondary">कुल अनुमानित लागत: ₹${totalCost}</strong>
-                    `;
-                    break;
-
-                case 'Contract_Material_Not_Incl':
-                case 'Contract_Material_Incl':
-                    const rate = (serviceType === 'Contract_Material_Incl') ? RATES.CONTRACT_MATERIAL_INCL : RATES.CONTRACT_MATERIAL_NOT_INCL;
-                    totalCost = sqft * rate;
-                    
-                    // Contract service advance (20%)
-                    if (totalCost > 0) {
-                         advance = Math.round(totalCost * CONTRACT_SERVICE_ADVANCE_PERCENTAGE);
-                    }
-                    
-                    summaryHtml = `
-                        **सेवा प्रकार:** ठेका (Contract) <br>
-                        **दर:** ₹${rate} प्रति वर्ग फुट <br>
-                        **कार्यक्षेत्र:** ${sqft} वर्ग फुट <br>
-                        <strong class="text-xl text-secondary">कुल अनुमानित लागत: ₹${totalCost}</strong>
-                    `;
-                    break;
-                    
-                case 'SiteVisit':
-                    totalCost = RATES.SITE_VISIT_FEE;
-                    advance = RATES.SITE_VISIT_FEE; // Site visit fee is paid in full upfront
-                    summaryHtml = `
-                        **सेवा प्रकार:** निरीक्षण शुल्क (Site Visit & Consultation) <br>
-                        <strong class="text-xl text-secondary">कुल शुल्क: ₹${totalCost}</strong>
-                    `;
-                    break;
-
-                default:
-                    totalCost = 0;
-                    advance = 0;
-                    summaryHtml = `**सेवा प्रकार:** कृपया चुनें <br> **कुल अनुमानित लागत:** ₹0`;
-            }
-
-            currentCalculatedPrice = totalCost;
-            currentAdvanceAmount = advance;
-
-            priceCalculationSummary.innerHTML = summaryHtml;
-
-            // Update display message
-            let displayMessage = `Total: ₹${totalCost}`;
-            if (serviceType !== 'SiteVisit' && totalCost > 0 && advance > 0 && advance < totalCost) {
-                displayMessage = `Advance: ₹${advance} (Total: ₹${totalCost})`;
-            } else if (totalCost > 0 && advance === totalCost) {
-                 displayMessage = `Full Payment: ₹${totalCost}`;
-            }
-
-            calculatedPriceDisplay.textContent = displayMessage;
-            displayPrice.textContent = (totalCost > 0) ? `₹${totalCost} (Est.)` : 'Select Option';
-        }
-
-
-        // Updated toggleInputs function (Unchanged)
-        function toggleInputs() {
-            const serviceType = serviceTypeSelect.value;
-            dailyRateInputsDiv.classList.add('hidden');
-            contractInputsDiv.classList.add('hidden');
-
-            // Hide all groups inside dailyRateInputs
-            masonCountGroup.classList.add('hidden');
-            laborCountGroup.classList.add('hidden');
-            daysCountGroup.classList.add('hidden');
-
-            // Reset unused values
-            masonCountInput.value = 0;
-            laborCountInput.value = 0;
-            squareFeetInput.value = 0;
-            
-            // Ensure days is at least 1
-            if (daysCountInput.value < 1) daysCountInput.value = 1;
-
-            const daysLabel = daysCountInput.previousElementSibling;
-
-            if (serviceType === 'Daily_Mason') {
-                dailyRateInputsDiv.classList.remove('hidden');
-                daysCountGroup.classList.remove('hidden');
-                // Update label to reflect the booking type
-                daysLabel.textContent = "कितने दिनों के लिए मिस्त्री चाहिए (1 कारीगर):"; 
-            } else if (serviceType === 'Daily_Labor') {
-                dailyRateInputsDiv.classList.remove('hidden');
-                daysCountGroup.classList.remove('hidden');
-                // Update label to reflect the booking type
-                daysLabel.textContent = "कितने दिनों के लिए मजदूर चाहिए (1 लेबर):"; 
-            } else if (serviceType.startsWith('Contract')) {
-                contractInputsDiv.classList.remove('hidden');
-                if (squareFeetInput.value < 100) squareFeetInput.value = 100; // Set a sensible default for contract
-            } 
-            // SiteVisit doesn't need extra inputs
-            
-            calculatePrice();
-        }
-
-        // --- Generic Utility Functions (Unchanged) ---
         
-        function generateTicketId() {
-            return 'MASON-XXXXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
+        // --- Selection Popup Control ---
+
+        function openServiceSelectionPopup() {
+            generateServiceCards();
+            // Match checkboxes in the popup to the current persistent state
+            serviceCardsContainer.querySelectorAll('input[name="acServiceCategory"]').forEach(checkbox => {
+                const category = checkbox.value;
+                checkbox.checked = selectedCategoriesState.includes(category);
+                
+                // Manually trigger visual update for initial state
+                const cardWrapper = checkbox.closest('.service-card-wrapper');
+                updateCardVisuals(cardWrapper, checkbox.checked);
+            });
+            openPopup(serviceSelectionPopup);
         }
 
-        function showCustomAlert(message) {
-            const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert fixed bottom-5 right-5 bg-primary text-bg-dark p-3 rounded-lg shadow-2xl font-bold text-sm z-[1001] transition-opacity duration-300'; 
-            alertBox.textContent = message;
-            document.body.appendChild(alertBox);
-            setTimeout(() => {
-                alertBox.style.opacity = '0';
-                setTimeout(() => alertBox.remove(), 300);
-            }, 3700); 
-            alertBox.style.opacity = '1';
-        }
-
-        function closeAllPopups() {
-            if (!allowClose) {
-                if (bookingPopup.style.display !== 'block') {
-                    showCustomAlert("कृपया बुकिंग प्रक्रिया पूरी करने के बाद ही बंद करें।");
-                    return;
-                }
-            }
-            clearTimers();
-            popupOverlay.style.display = 'none';
-            allPopups.forEach(p => p.style.display = 'none');
-            document.body.style.overflow = 'auto';
-            bookingForm.reset();
-            serviceTypeSelect.value = '';
-            toggleInputs(); // Reset inputs display and calculation
-            calculatedPriceDisplay.textContent = 'Total: ₹0';
-            displayPrice.textContent = 'Select Option';
-            allowClose = false;
-        }
-
-        function openPopup(popupElement) {
-            document.body.style.overflow = 'hidden';
-            popupOverlay.style.display = 'block';
-            
-            allPopups.forEach(p => p.style.display = 'none');
-            
-            popupElement.style.display = 'block';
-            allowClose = (popupElement === bookingPopup || popupElement === confirmationPopup);
-        }
-
-        function closeSpecificPopup(popupElement) {
-            popupElement.style.display = 'none';
-            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
-            if (!isAnotherPopupOpen) {
+        function closeServiceSelectionPopup() {
+            serviceSelectionPopup.style.display = 'none';
+            if (popupForm.style.display === 'block') {
+                popupOverlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
                 popupOverlay.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
         }
+        
+        function applyServiceSelection() {
+            const selectedCheckboxes = Array.from(serviceCardsContainer.querySelectorAll('input[name="acServiceCategory"]:checked'));
+            selectedCategoriesState = selectedCheckboxes.map(cb => cb.value);
+            updatePrices();
+            closeServiceSelectionPopup(); 
+            popupForm.style.display = 'block';
+            popupOverlay.style.display = 'block';
+        }
 
-        // Updated downloadTicketDetails (Unchanged)
-        function downloadTicketDetails() {
-            const { serviceTypeFullText, ticketId, totalCost, advance, name, phone, location, address } = currentBookingDetails;
+        // --- Core Functions ---
+
+        function generateServiceCards() {
+            serviceCardsContainer.innerHTML = '';
             
-            let details = '';
-            const serviceType = serviceTypeSelect.value;
+            masonryServiceData.forEach((service, index) => {
+                const detailPageUrl = service.Page || `service_details_default.html?service=${encodeURIComponent(service.Category)}`;
+                const isChecked = selectedCategoriesState.includes(service.Category);
+                
+                // Using a placeholder image for masonry cards
+                const cardHtml = `
+                    <div class="service-card-wrapper" data-category="${service.Category}" data-price="${service.Price}">
+                        <label class="block h-full cursor-pointer"> 
+                            <div id="card-${index}" class="service-card p-3 rounded-xl border-2 transition duration-300 transform hover:scale-[1.02] 
+                                border-text-subtle/50 hover:border-primary/80" 
+                                style="background-image: url('https://placehold.co/400x300/6B4E00/FFFFFF?text=MASONRY'); background-color: ${isChecked ? 'rgba(59, 130, 246, 0.9)' : 'rgba(0, 0, 0, 0.5)'};">
+                                
+                                <input type="checkbox" id="service-checkbox-${index}" name="acServiceCategory" 
+                                       value="${service.Category}" data-price="${service.Price}" class="hidden" ${isChecked ? 'checked' : ''}>
+                                
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex items-center">
+                                        <div class="service-icon-container">
+                                            <i class="${service.Icon} text-lg"></i> 
+                                        </div>
+                                        <h4 class="text-base font-semibold text-white">${service.Category}</h4>
+                                    </div>
+                                    <i class="fas fa-check-circle text-xl card-check-icon ${isChecked ? 'text-white' : 'text-gray-200'}"></i>
+                                </div>
+                                
+                                <p class="text-xs text-yellow-300 font-bold mb-2">Estimated Cost: ₹${service.Price}</p>
+                                
+                                <a href="${detailPageUrl}" target="_blank"
+                                   onclick="event.stopPropagation(); showCustomAlert('यह बटन आपको ${service.Category} की विस्तृत जानकारी वाले पेज पर ले जाएगा।');"
+                                   class="btn-see-more py-1 px-3 rounded-full text-xs font-bold inline-flex items-center justify-center w-full mt-2 transition duration-200 hover:bg-[#2563EB]">
+                                    <i class="fas fa-search-plus mr-1"></i> See Details
+                                </a>
+                            </div>
+                        </label>
+                    </div>
+                `;
+                serviceCardsContainer.insertAdjacentHTML('beforeend', cardHtml);
+            });
             
-            if (serviceType === 'Daily_Mason') {
-                details = `दैनिक दर (मिस्त्री): 1 कारीगर x ${daysCountInput.value} दिन`;
-            } else if (serviceType === 'Daily_Labor') {
-                 details = `दैनिक दर (मजदूर): 1 लेबर x ${daysCountInput.value} दिन`;
-            } else if (serviceType.startsWith('Contract')) {
-                 details = `ठेका (Contract): ${squareFeetInput.value} वर्ग फुट`;
+             serviceCardsContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const cardWrapper = e.target.closest('.service-card-wrapper');
+                    updateCardVisuals(cardWrapper, e.target.checked);
+                });
+            });
+        }
+
+        function updateCardVisuals(wrapper, isChecked) {
+            const card = wrapper.querySelector('.service-card');
+            const checkIcon = wrapper.querySelector('.card-check-icon');
+            
+            if (isChecked) {
+                card.style.backgroundImage = 'none'; 
+                card.style.backgroundColor = 'rgba(59, 130, 246, 0.9)'; 
+                card.classList.add('border-primary', 'shadow-lg', 'shadow-primary/30');
+                card.classList.remove('border-text-subtle/50', 'hover:border-primary/80');
+                checkIcon.classList.remove('text-gray-200');
+                checkIcon.classList.add('text-white'); 
             } else {
-                 details = `सेवा: साइट निरीक्षण (Site Visit)`;
+                card.style.backgroundImage = 'url(\'https://placehold.co/400x300/6B4E00/FFFFFF?text=MASONRY\')'; 
+                card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                card.classList.remove('border-primary', 'shadow-lg', 'shadow-primary/30');
+                card.classList.add('border-text-subtle/50', 'hover:border-primary/80');
+                checkIcon.classList.remove('text-white'); 
+                checkIcon.classList.add('text-gray-200');
             }
+        }
 
-            const content = `${SERVICE_NAME} Booking Details\n\n` +
-                            `Booking ID: ${ticketId}\n` +
-                            `Service Type: ${serviceTypeFullText}\n` + // **Using the full text here**
-                            `Service Details: ${details}\n` +
-                            `Name: ${name}\n` +
-                            `Phone: ${phone}\n` +
-                            `Address: ${location}, ${address}\n` +
-                            `Total Estimated Cost: ₹${totalCost}\n` +
-                            `Advance Paid Now: ₹${advance}\n` +
-                            `Remaining Balance: ₹${totalCost - advance}\n\n` +
-                            `--- IMPORTANT NOTE ---\n` +
-                            `Booking requires 36 hours notice. Daily rate excludes material cost.`;
+        function updatePrices() {
+            const selectedMasonryCategories = masonryServiceData.filter(service => 
+                selectedCategoriesState.includes(service.Category)
+            );
+            
+            // Calculate actual total estimated service price
+            currentServicePrice = selectedMasonryCategories.reduce((total, service) => total + service.Price, 0);
 
-            const blob = new Blob([content], { type: 'text/plain' });
+            // Fixed final payment amount of 99 if any service is selected
+            const finalPaymentAmount = (selectedMasonryCategories.length > 0) ? BOOKING_CHARGE : 0;
+
+            
+            // Update selected services display
+            const selectedNames = selectedCategoriesState;
+            if (selectedNames.length > 0) {
+                const namesString = selectedNames.join(', ');
+                
+                selectedServicesHiddenField.value = namesString;
+                selectedServicesSummary.textContent = namesString; 
+                selectedServicesDisplay.textContent = namesString;
+                
+                originalPriceDisplay.textContent = `Total Estimated Service Cost: ₹${currentServicePrice}`;
+                displayPriceElement.textContent = `₹${BOOKING_CHARGE} Booking Charge`;
+                totalPriceQuantityDisplay.textContent = `₹${BOOKING_CHARGE}`;
+                finalPriceInput.value = BOOKING_CHARGE;
+            } else {
+                selectedServicesHiddenField.value = '';
+                selectedServicesSummary.textContent = 'सेवाएँ चुनने के लिए क्लिक करें';
+                selectedServicesDisplay.textContent = 'सेवाएँ चुनने के लिए क्लिक करें'; 
+                originalPriceDisplay.textContent = 'Total Estimated Cost: Select Service';
+                displayPriceElement.textContent = `₹99 Booking Charge`;
+                totalPriceQuantityDisplay.textContent = `₹0`;
+                finalPriceInput.value = 0; 
+            }
+            
+            // Update the razorpay button text
+            razorpayBtn.textContent = `Pay ₹${finalPaymentAmount} Now`;
+        }
+
+        function generateFormattedTicket() {
+            return 'MASON-xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            }).toUpperCase();
+        }
+
+        function downloadTickets() {
+            const selectedCategoryNames = selectedServicesHiddenField.value;
+            const totalServiceCost = currentServicePrice;
+            const amountPaid = finalPriceInput.value;
+            const remainingAmount = totalServiceCost - amountPaid;
+            
+            const ticketContent = `${SERVICE_NAME} Booking Details\n\n` +
+                                 `Customer Name: ${form.fullName.value}\n` +
+                                 `Contact: ${form.phone.value}\n` +
+                                 `Location: ${form.location.value}\n` +
+                                 `Service(s) Booked: ${selectedCategoryNames}\n` +
+                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
+                                 `Total Estimated Cost: ₹${totalServiceCost}\n` +
+                                 `Booking Charge Paid: ₹${amountPaid}\n` +
+                                 `Remaining Balance: ₹${remainingAmount > 0 ? remainingAmount : 0}\n\n` +
+                                 `--- IMPORTANT NOTE ---\n` +
+                                 `The remaining balance must be paid to the artisan/technician upon service completion.\n` +
+                                 `Booking requires 36 hours notice. Daily rate excludes material cost.`;
+            
+            const blob = new Blob([ticketContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `masonry-booking-${ticketId}.txt`;
+            a.download = `masonry-booking-${generatedTicket.substring(6, 14)}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
+        
+        function showCustomAlert(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert'; 
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            // Alert uses CSS animation for fade in/out
+            alertBox.style.opacity = '1';
+            alertBox.style.transform = 'translate(-50%, 0)';
+            setTimeout(() => {
+                alertBox.style.opacity = '0';
+                alertBox.style.transform = 'translate(-50%, 100%)';
+                setTimeout(() => alertBox.remove(), 300);
+            }, 3700); 
+        }
 
+        // --- Popup Control Functions ---
+        function closeAllPopups() {
+            if (!allowClose) {
+                showCustomAlert("कृपया बुकिंग प्रक्रिया पूरी करने के बाद ही बंद करें।");
+                return;
+            }
+            clearTimers();
+            popupOverlay.style.display = 'none';
+            allPopups.forEach(p => p.style.display = 'none');
+            document.body.style.overflow = 'auto';
+            allowClose = false; 
+            // Optionally clear the form here if needed, but usually persistent data is preferred
+            // form.reset(); 
+        }
+
+        function openPopup(popupElement) {
+            document.body.style.overflow = 'hidden';
+            popupOverlay.style.display = 'block';
+            allPopups.forEach(p => p.style.display = 'none');
+            popupElement.style.display = 'block';
+            allowClose = false;
+        }
+        
         function clearTimers() {
             if (countdownInterval) clearInterval(countdownInterval);
         }
@@ -1019,223 +1009,211 @@
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
                     showCustomAlert("Payment time expired. Please try again.");
-                    allowClose = true;
+                    allowClose = true; 
                     closeAllPopups();
                 }
             }, 1000);
         }
 
-        // **UPDATED handleRazorpayPayment: Removed Demo Success Logic**
-        function handleRazorpayPayment() {
-            const { serviceTypeFullText, ticketId, totalCost, advance, name, phone, email, location, address } = currentBookingDetails;
+        // --- Payment and Submission Logic ---
+        
+        function handleFormSubmit(e) {
+            e.preventDefault();
 
-            if (advance <= 0) {
-                 showCustomAlert("भुगतान करने के लिए कोई राशि नहीं है। कृपया बुकिंग विवरण जांचें।");
-                 return;
-            }
+            // Validation 
+            const selectedCategoryNames = selectedServicesHiddenField.value;
+            const finalPaymentAmount = parseInt(finalPriceInput.value);
+
+            if (!selectedCategoryNames) { showCustomAlert("कृपया सेवा का प्रकार चुनें।"); return; }
+            if (form.fullName.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
+            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें।"); return; }
+            if (form.location.value.trim().length < 3) { showCustomAlert("कृपया स्थान (Location) दर्ज करें।"); return; }
+            if (form.address.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
+            if (currentServicePrice <= 0) { showCustomAlert("कृपया सेवाएँ चुनने के लिए क्लिक करें।"); return; }
+            if (finalPaymentAmount !== BOOKING_CHARGE) { showCustomAlert("बुकिंग चार्ज ₹99 होना चाहिए। त्रुटि।"); return; }
             
+            submitMessage.style.display = 'block';
+            form.querySelector('button[type="submit"]').disabled = true;
+
+            generatedTicket = generatedTicket || generateFormattedTicket(); 
+            
+            const totalServiceCost = currentServicePrice; 
+            const serviceCount = selectedCategoryNames.split(',').length;
+
+            // --- Form Data for Google Sheet ---
+            const formData = new FormData();
+            formData.append('field1', form.fullName.value); 
+            formData.append('field2', form.phone.value);    
+            formData.append('field3', form.email.value);    
+            formData.append('field4', selectedCategoryNames);
+            formData.append('field5', form.location.value); 
+            formData.append('field6', form.address.value);  
+            formData.append('ticket', generatedTicket);     
+            formData.append('tab', SERVICE_TAB_ID); // New unique tab name
+            formData.append('serviceType', SERVICE_NAME);   
+            formData.append('servicePrice', totalServiceCost); 
+            formData.append('ticketQuantity', serviceCount); 
+            formData.append('finalPrice', finalPaymentAmount); 
+
+            // --- Google Script URL ---
+            fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(res => {
+                if (res.includes("Success") || res.includes("success")) { 
+                    saveFormData(); 
+                    
+                    popupForm.style.display = 'none';
+                    openPopup(paymentStep);
+                    
+                    const remainingAmount = totalServiceCost - finalPaymentAmount;
+
+                    paymentSummary.innerHTML = `
+                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
+                        <p class="text-text-light text-base mb-1">Service(s): <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
+                        <p class="text-text-light text-base mb-3">Total Estimated Cost: <span class="font-bold text-secondary">₹${totalServiceCost}</span></p>
+                        <p class="current-price text-secondary text-3xl font-bold">Payable Now: ₹${finalPaymentAmount}</p>
+                        <p class="text-text-subtle text-sm mt-2">यह ₹${finalPaymentAmount} बुकिंग शुल्क है। बची हुई राशि 
+                        <span class="font-bold text-primary">₹${remainingAmount > 0 ? remainingAmount : 0}</span> 
+                        सेवा पूरी होने के बाद कारीगर को देनी होगी।</p>
+                    `;
+                    startPaymentTimer();
+                } else {
+                    showCustomAlert("बुकिंग सबमिशन त्रुटि: आपके विवरण भेजने में कोई समस्या आई। कृपया पुनः प्रयास करें।");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showCustomAlert("नेटवर्क त्रुटि: डेटा सर्वर को भेजा नहीं जा सका। कृपया अपना इंटरनेट कनेक्शन जांचें।");
+            })
+            .finally(() => {
+                submitMessage.style.display = 'none';
+                form.querySelector('button[type="submit"]').disabled = false;
+            });
+        }
+
+        function handleRazorpayPayment() {
+            const finalPaymentAmount = parseInt(finalPriceInput.value); 
+            if (finalPaymentAmount <= 0) {
+                showCustomAlert("कृपया सेवाएँ चुनने के लिए क्लिक करें, बुकिंग चार्ज शून्य नहीं हो सकता।");
+                return;
+            }
+
+            const selectedCategoryNames = selectedServicesHiddenField.value;
+
             const options = {
-                "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": advance * 100, // Advance amount is passed for payment
+                // NOTE: Using the test key from the AC service file (rzp_live_RLjzp7VlXERwiG)
+                "key": "rzp_live_RLjzp7VlXERwiG", 
+                "amount": finalPaymentAmount * 100, 
                 "currency": "INR",
                 "name": `SonipatHomeService - ${SERVICE_NAME}`,
-                "description": `Advance/Full Payment for: ${serviceTypeFullText} (ID: ${ticketId})`,
-                "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`,
+                "description": `Booking Charge for Masonry Service(s): ${selectedCategoryNames}`,
+                "image": `https://placehold.co/100x100/F4F7FB/3B82F6?text=MASON`, 
                 "handler": function (response){
-                    // This is the REAL success handler. Only call paymentSuccess here.
                     paymentSuccess(response.razorpay_payment_id);
                 },
                 "prefill": {
-                    "name": name,
-                    "phone": phone,
-                    "email": email 
+                    "name": form.fullName.value,
+                    "email": form.email.value,
+                    "contact": form.phone.value
                 },
                 "notes": {
-                    // Google Sheet/Backend will receive this full service text:
-                    "service_type": serviceTypeFullText, 
-                    "address": `${location}, ${address}`,
-                    "total_cost": totalCost,
-                    "advance_paid": advance
+                    "address": `${form.location.value}, ${form.address.value}`,
+                    "service_details": selectedCategoryNames,
+                    "booking_ref": generatedTicket,
+                    "actual_cost": currentServicePrice,
                 },
-                "theme": { "color": "#FFB700" },
+                "theme": { "color": "#3B82F6" }, 
                 "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
             };
 
-            // NOTE: Razorpay is not guaranteed to work in this environment. 
-            // If the key is the live/demo one, we show a warning, but DO NOT simulate success.
-            if (options.key === "rzp_live_RLjzp7VlXERwiG") {
-                 console.warn("Razorpay: Using a test key in a non-Razorpay environment. Payment flow will rely on Razorpay interaction, which may not complete in this sandbox.");
-            }
-
             const rzp = new Razorpay(options);
             rzp.on('payment.failed', response => {
+                console.error("Payment Failed:", response.error);
                 showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
             });
             rzp.open();
         }
 
-        // Updated paymentSuccess (Unchanged)
         function paymentSuccess(paymentId) {
             clearTimers();
-            paymentPopup.style.display = 'none';
-            openPopup(confirmationPopup);
-
-            saveFormData();
+            paymentStep.style.display = 'none';
+            openPopup(ticketStep);
             
-            const { serviceTypeFullText, totalCost, advance, name, ticketId } = currentBookingDetails;
-            const remainingBalance = totalCost - advance;
-            const firstName = name.split(' ')[0];
-
-            welcomeMessage.textContent = `🎉 Booking Confirmed, ${firstName}! 🎉`;
+            const userName = form.fullName.value.split(' ')[0];
+            const selectedCategoryNames = selectedServicesHiddenField.value;
             
-            ticketInfo.innerHTML = `
-                <p><strong>Booking ID:</strong> <span class="font-bold text-text-light">${ticketId}</span></p>
-                <p><strong>Service:</strong> <span class="font-bold text-text-light">${serviceTypeFullText}</span></p>
-                <p class="text-secondary text-lg font-bold mt-3">Paid Now: ₹${advance}</p>
-                <p class="text-primary text-xl font-bold mt-1">Remaining Balance: ₹${remainingBalance} ${remainingBalance > 0 ? '(कार्य पूरा होने पर देय)' : ''}</p>
-                <p class="text-text-subtle text-sm mt-3">Technician will be arranged within 36 hours. Please ensure material readiness.</p>
+            const totalServiceCost = currentServicePrice; 
+            const amountPaid = parseInt(finalPriceInput.value); 
+            const remainingAmount = totalServiceCost - amountPaid; 
+
+            welcomeMessage.textContent = `🎉 Booking Confirmed, ${userName}! 🎉`;
+            
+            const remainingText = remainingAmount > 0 
+                ? `बुकिंग चार्ज ₹${amountPaid} उसमें से घटाकर, बाकी ₹${remainingAmount} आपको सेवा पूरी होने के बाद कारीगर को देनी है।`
+                : `बुकिंग चार्ज ₹${amountPaid} पूरी सर्विस कॉस्ट को कवर करता है।`;
+
+            ticketDisplay.innerHTML = `
+                <p><strong>Booking ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
+                <p><strong>Service(s) Booked:</strong> <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
+                <p><strong>Total Estimated Cost:</strong> <span class="font-bold text-secondary">₹${totalServiceCost}</span></p>
+                <p class="text-primary text-lg font-bold mt-3">Paid Now (Booking Charge): ₹${amountPaid}</p>
+                
+                <div class="mt-4 p-3 rounded-lg bg-bg-dark border border-secondary">
+                    <p class="text-text-light font-semibold">अंतिम भुगतान निर्देश (Final Payment Instruction):</p>
+                    <p class="text-sm text-text-subtle mt-1">
+                        आपकी सर्विस की कुल लागत (Total Service Cost) ₹${totalServiceCost} थी। 
+                        ${remainingText}
+                    </p>
+                </div>
+
+                <p class="text-text-subtle text-sm mt-3">Technician will be arranged within 36 hours at your site: ${form.location.value}.</p>
                 <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
             `;
+            
             allowClose = true;
         }
-
+        
         // --- Event Listeners Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            loadFormData();
-            // Initial call to set up the form state correctly
-            toggleInputs(); 
-            
-            // Listeners for input changes to recalculate price
-            serviceTypeSelect.addEventListener('change', toggleInputs);
-            
-            // Only daysCount and squareFeet are active for calculation now
-            daysCountInput.addEventListener('input', calculatePrice);
-            squareFeetInput.addEventListener('input', calculatePrice);
+        participateBtn.addEventListener('click', () => {
+            updatePrices();
+            openPopup(popupForm);
         });
-
-        bookNowBtn.addEventListener('click', () => {
-            calculatePrice();
-            loadFormData();
-            openPopup(bookingPopup);
-        });
-
+        
         popupOverlay.addEventListener('click', e => {
             if (e.target === popupOverlay) {
-                if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
-                else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
-                else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
-                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
-                else if (bookingPopup.style.display === 'block') closeAllPopups();
+                if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
+                else if (serviceSelectionPopup.style.display === 'block') closeServiceSelectionPopup();
+                else if (paymentStep.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
+                else if (popupForm.style.display === 'block') closeAllPopups();
             }
         });
         
-        okayBtn.addEventListener('click', closeAllPopups);
-        downloadBtn.addEventListener('click', downloadTicketDetails);
-
-        // *** UPDATED SUBMIT LOGIC (Unchanged - still goes to payment step) ***
-        bookingForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            // 1. Validation 
-            const type = serviceTypeSelect.value;
-            if (!type) { showCustomAlert("कृपया सेवा का प्रकार चुनें।"); return; }
-            if (currentCalculatedPrice <= 0 && type !== 'SiteVisit') { 
-                showCustomAlert("कृपया दिनों की संख्या या कार्यक्षेत्र दर्ज करें।"); 
-                return;
-            }
-            if (bookingForm.name.value.trim().length < 10) { showCustomAlert("कृपया अपना पूरा नाम (न्यूनतम 10 अक्षर) दर्ज करें।"); return; }
-            if (!/^\d{10}$/.test(bookingForm.phone.value.trim())) { showCustomAlert("कृपया 10 अंकों का सही फ़ोन नंबर दर्ज करें।"); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.email.value.trim())) { showCustomAlert("कृपया एक वैध ईमेल पता दर्ज करें।"); return; }
-            if (bookingForm.address.value.trim().length < 30) { showCustomAlert("कृपया पूरा पता (न्यूनतम 30 अक्षर) दर्ज करें।"); return; }
-            if (currentAdvanceAmount <= 0) { 
-                 showCustomAlert("भुगतान की राशि शून्य है। कृपया अपनी बुकिंग विवरण जांचें।"); 
-                 return;
-            }
-
-            submitMessage.classList.remove('hidden');
-            bookingForm.querySelector('button[type="submit"]').disabled = true;
-
-            // 2. Prepare Booking Details
-            generatedTicket = generateTicketId();
-            const typeText = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].textContent;
-
-            currentBookingDetails = {
-                ticketId: generatedTicket,
-                serviceTypeFullText: typeText, 
-                totalCost: currentCalculatedPrice,
-                advance: currentAdvanceAmount,
-                name: bookingForm.name.value,
-                phone: bookingForm.phone.value,
-                email: bookingForm.email.value, 
-                location: bookingForm.location.value,
-                address: bookingForm.address.value,
-            };
-            
-            // 3. Prepare Google Sheet FormData
-            const formData = new FormData();
-            formData.append('field1', currentBookingDetails.name);
-            formData.append('field2', currentBookingDetails.phone);
-            formData.append('field3', currentBookingDetails.email);
-            formData.append('field4', currentBookingDetails.serviceTypeFullText);
-            formData.append('field5', currentBookingDetails.location);
-            formData.append('field6', currentBookingDetails.address);
-            formData.append('ticket', currentBookingDetails.ticketId);
-            formData.append('tab', 'masonry-service'); // Unique tab name
-            formData.append('serviceType', SERVICE_NAME);
-            formData.append('totalCost', currentBookingDetails.totalCost); 
-            formData.append('advance', currentBookingDetails.advance); 
-            formData.append('finalPrice', currentBookingDetails.advance);
-
-            // 4. Send Data to Google Sheet (Async Fetch)
-            try {
-                const response = await fetch(GOOGLE_SHEET_URL, {
-                    method: "POST",
-                    body: formData
-                });
-
-                const result = await response.text();
-                
-                if (result.includes("Success") || result.includes("success")) {
-                    // Data successfully logged, proceed to payment step
-
-                    const totalDue = currentBookingDetails.totalCost;
-                    const advance = currentBookingDetails.advance;
-                    const remaining = totalDue - advance;
-                    
-                    paymentSummary.innerHTML = `
-                        <p class="text-text-subtle text-lg mb-2 font-bold">Service: <span class="text-primary">${currentBookingDetails.serviceTypeFullText}</span></p>
-                        <p class="text-text-light text-base mb-1">Total Estimated Cost: <span class="font-bold text-primary">₹${totalDue}</span></p>
-                        <p class="text-text-light text-base mb-3">Remaining Balance: <span class="font-bold text-secondary">₹${remaining}</span></p>
-                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Payable Now: ₹${advance}</p>
-                    `;
-                    
-                    bookingPopup.style.display = 'none';
-                    openPopup(paymentPopup);
-                    startPaymentTimer();
-
-                } else {
-                    showCustomAlert("बुकिंग सबमिशन त्रुटि: आपके विवरण भेजने में कोई समस्या आई। कृपया पुनः प्रयास करें।");
+        // Redirect to home on close
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const parentPopup = e.target.closest('.popup');
+                if (parentPopup.id === 'ticketStep' || parentPopup.id === 'popupForm') {
+                    window.location.href = 'index.html';
                 }
-
-            } catch (err) {
-                console.error("Submission error:", err);
-                showCustomAlert("नेटवर्क त्रुटि: डेटा सर्वर को भेजा नहीं जा सका। कृपया अपना इंटरनेट कनेक्शन जांचें।");
-            } finally {
-                submitMessage.classList.add('hidden');
-                bookingForm.querySelector('button[type="submit"]').disabled = false;
-            }
+            });
         });
-        // *** END UPDATED SUBMIT LOGIC ***
+        document.getElementById('okayBtn').addEventListener('click', () => window.location.href = 'index.html');
 
+
+        document.getElementById('serviceSelectionDisplayWrapper').addEventListener('click', openServiceSelectionPopup);
         razorpayBtn.addEventListener('click', handleRazorpayPayment);
-        priceListBtn.addEventListener('click', () => {
-            openPopup(priceListPopup);
+        downloadTicketsBtn.addEventListener('click', downloadTickets);
+        form.addEventListener('submit', handleFormSubmit);
+
+        // --- Page Load Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePrices(); 
+            loadFormData(); 
         });
-        descriptionBtn.addEventListener('click', () => {
-            openPopup(descriptionPopup);
-        });
-        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
-        closeDescriptionBtn.addEventListener('click', () => closeSpecificPopup(descriptionPopup));
     </script>
 </body>
 </html>
