@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="hi" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonipat Home Service - Internet Plans</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+        .toast.success {
+            background-color: #10b981;
+        }
+        .toast.error {
+            background-color: #ef4444;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-gradient-to-br from-blue-50 to-indigo-100 font-sans"><!-- Header -->
+  <header class="bg-white shadow-lg">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex flex-col sm:flex-row justify-between items-center">
+     <div class="mb-4 sm:mb-0">
+      <h1 id="company-name" class="text-2xl sm:text-3xl font-bold text-indigo-600">Sonipat Home Service.com</h1>
+      <p class="text-gray-600 text-sm">आपकी इंटरनेट की जरूरतों का समाधान</p>
+     </div>
+     <div class="text-right text-sm text-gray-600">
+      <p>📞 <span id="customer-care">8816014071</span></p>
+      <p>✉️ <span id="email-address">care@sonipathomeservice.com</span></p>
+     </div>
+    </div>
+   </div>
+  </header>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><!-- Location Selection -->
+   <div id="location-step" class="bg-white rounded-xl shadow-lg p-6 mb-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">अपना क्षेत्र चुनें</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4"><button onclick="selectLocation('सोनीपत')" class="location-btn bg-indigo-100 hover:bg-indigo-200 text-indigo-800 font-semibold py-3 px-4 rounded-lg transition-colors"> सोनीपत </button> <button onclick="selectLocation('बहालगढ़')" class="location-btn bg-indigo-100 hover:bg-indigo-200 text-indigo-800 font-semibold py-3 px-4 rounded-lg transition-colors"> बहालगढ़ </button> <button onclick="selectLocation('मुरथल')" class="location-btn bg-indigo-100 hover:bg-indigo-200 text-indigo-800 font-semibold py-3 px-4 rounded-lg transition-colors"> मुरथल </button> <button onclick="selectLocation('कुंडली')" class="location-btn bg-indigo-100 hover:bg-indigo-200 text-indigo-800 font-semibold py-3 px-4 rounded-lg transition-colors"> कुंडली </button> <button onclick="selectLocation('राइ')" class="location-btn bg-indigo-100 hover:bg-indigo-200 text-indigo-800 font-semibold py-3 px-4 rounded-lg transition-colors"> राइ </button>
+    </div>
+   </div><!-- Provider Selection -->
+   <div id="provider-step" class="bg-white rounded-xl shadow-lg p-6 mb-8 hidden">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">सेवा प्रदाता चुनें</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Local Company Card -->
+     <div onclick="selectProvider('लोकल कंपनी')" class="provider-card cursor-pointer bg-gradient-to-br from-green-50 to-green-100 hover:from-green-100 hover:to-green-200 border-2 border-green-200 hover:border-green-300 rounded-xl p-6 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+      <div class="text-center">
+       <div class="text-3xl mb-3">
+        🏢
+       </div>
+       <h3 class="text-xl font-bold text-green-800 mb-2">लोकल कंपनी</h3>
+       <div class="flex items-center justify-center mb-2">
+        <div class="flex text-yellow-400 text-lg">
+         ⭐⭐⭐⭐⭐
+        </div><span class="ml-2 text-sm font-semibold text-green-700">4.8/5</span>
+       </div>
+       <div class="text-xs text-green-600 mb-3">
+        <div>
+         ✓ सबसे तेज़ इंस्टालेशन
+        </div>
+        <div>
+         ✓ 24/7 लोकल सपोर्ट
+        </div>
+        <div>
+         ✓ बेस्ट प्राइस गारंटी
+        </div>
+       </div>
+       <div class="bg-green-600 text-white text-xs px-3 py-1 rounded-full inline-block">
+        RECOMMENDED
+       </div>
+      </div>
+     </div><!-- Airtel Card -->
+     <div onclick="selectProvider('एयरटेल')" class="provider-card cursor-pointer bg-gradient-to-br from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 border-2 border-red-200 hover:border-red-300 rounded-xl p-6 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+      <div class="text-center">
+       <div class="text-3xl mb-3">
+        📡
+       </div>
+       <h3 class="text-xl font-bold text-red-800 mb-2">एयरटेल</h3>
+       <div class="flex items-center justify-center mb-2">
+        <div class="flex text-yellow-400 text-lg">
+         ⭐⭐⭐☆☆
+        </div><span class="ml-2 text-sm font-semibold text-red-700">3.2/5</span>
+       </div>
+       <div class="text-xs text-red-600 mb-3">
+        <div>
+         ✓ नेशनल नेटवर्क
+        </div>
+        <div>
+         ✓ फाइबर कनेक्शन
+        </div>
+        <div>
+         ✓ OTT बेनिफिट्स
+        </div>
+       </div>
+      </div>
+     </div><!-- BSNL Card -->
+     <div onclick="selectProvider('बीएसएनएल')" class="provider-card cursor-pointer bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 border-2 border-blue-200 hover:border-blue-300 rounded-xl p-6 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+      <div class="text-center">
+       <div class="text-3xl mb-3">
+        🌐
+       </div>
+       <h3 class="text-xl font-bold text-blue-800 mb-2">बीएसएनएल</h3>
+       <div class="flex items-center justify-center mb-2">
+        <div class="flex text-yellow-400 text-lg">
+         ⭐⭐☆☆☆
+        </div><span class="ml-2 text-sm font-semibold text-blue-700">2.0/5</span>
+       </div>
+       <div class="text-xs text-blue-600 mb-3">
+        <div>
+         ✓ सरकारी कंपनी
+        </div>
+        <div>
+         ✓ किफायती दरें
+        </div>
+        <div>
+         ✓ व्यापक कवरेज
+        </div>
+       </div>
+      </div>
+     </div><!-- Jio Card -->
+     <div onclick="selectProvider('जिओ')" class="provider-card cursor-pointer bg-gradient-to-br from-purple-50 to-purple-100 hover:from-purple-100 hover:to-purple-200 border-2 border-purple-200 hover:border-purple-300 rounded-xl p-6 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+      <div class="text-center">
+       <div class="text-3xl mb-3">
+        💜
+       </div>
+       <h3 class="text-xl font-bold text-purple-800 mb-2">जिओ</h3>
+       <div class="flex items-center justify-center mb-2">
+        <div class="flex text-yellow-400 text-lg">
+         ⭐⭐☆☆☆
+        </div><span class="ml-2 text-sm font-semibold text-purple-700">2.5/5</span>
+       </div>
+       <div class="text-xs text-purple-600 mb-3">
+        <div>
+         ✓ हाई स्पीड फाइबर
+        </div>
+        <div>
+         ✓ डिजिटल सर्विसेज
+        </div>
+        <div>
+         ✓ JioTV &amp; JioCinema
+        </div>
+       </div>
+      </div>
+     </div><!-- Others Card -->
+     <div onclick="selectProvider('अन्य')" class="provider-card cursor-pointer bg-gradient-to-br from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 border-2 border-gray-200 hover:border-gray-300 rounded-xl p-6 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+      <div class="text-center">
+       <div class="text-3xl mb-3">
+        🔧
+       </div>
+       <h3 class="text-xl font-bold text-gray-800 mb-2">अन्य</h3>
+       <div class="flex items-center justify-center mb-2">
+        <div class="flex text-yellow-400 text-lg">
+         ⭐⭐⭐☆☆
+        </div><span class="ml-2 text-sm font-semibold text-gray-700">3.5/5</span>
+       </div>
+       <div class="text-xs text-gray-600 mb-3">
+        <div>
+         ✓ कस्टम सोल्यूशन
+        </div>
+        <div>
+         ✓ लोकल सपोर्ट
+        </div>
+        <div>
+         ✓ फ्लेक्सिबल प्लान्स
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Plans Selection -->
+   <div id="plans-step" class="hidden">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">अपना प्लान चुनें</h2>
+    <div id="plans-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"><!-- Plans will be populated here -->
+    </div>
+   </div><!-- Customer Details Form -->
+   <div id="customer-form" class="bg-white rounded-xl shadow-lg p-6 mb-8 hidden">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">ग्राहक विवरण</h2>
+    <form id="customer-details-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+     <div><label for="customer-name" class="block text-sm font-medium text-gray-700 mb-2">नाम *</label> <input type="text" id="customer-name" name="customer-name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+     </div>
+     <div><label for="mobile" class="block text-sm font-medium text-gray-700 mb-2">मोबाइल नंबर *</label> <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+     </div>
+     <div><label for="email" class="block text-sm font-medium text-gray-700 mb-2">ईमेल आईडी *</label> <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+     </div>
+     <div><label for="pincode" class="block text-sm font-medium text-gray-700 mb-2">पिनकोड *</label> <input type="text" id="pincode" name="pincode" required pattern="[0-9]{6}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+     </div>
+     <div class="md:col-span-2"><label for="address" class="block text-sm font-medium text-gray-700 mb-2">पूरा पता *</label> <textarea id="address" name="address" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+     </div>
+     <div class="md:col-span-2"><label for="landmark" class="block text-sm font-medium text-gray-700 mb-2">लैंडमार्क</label> <input type="text" id="landmark" name="landmark" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+     </div>
+    </form>
+    <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+     <h3 class="text-lg font-semibold text-gray-800 mb-4">ऑर्डर सारांश</h3>
+     <div id="order-summary" class="space-y-2 text-sm text-gray-600"><!-- Order summary will be populated here -->
+     </div>
+     <div class="border-t pt-4 mt-4">
+      <div class="flex justify-between items-center text-lg font-bold text-gray-800"><span>अभी भुगतान करें:</span> <span id="total-amount" class="text-green-600">₹99</span>
+      </div>
+     </div>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 mt-6"><button onclick="goBack()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"> वापस जाएं </button> <button onclick="proceedToPayment()" id="payment-btn" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"> ₹99 भुगतान करें </button>
+    </div>
+   </div><!-- Cart -->
+   <div id="cart" class="fixed bottom-4 right-4 bg-white rounded-lg shadow-lg p-4 hidden">
+    <div class="flex items-center justify-between mb-2">
+     <h3 class="font-semibold text-gray-800">कार्ट</h3><button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700">✕</button>
+    </div>
+    <div id="cart-items" class="space-y-2 mb-4"><!-- Cart items will be populated here -->
+    </div><button onclick="showCustomerForm()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"> चेकआउट </button>
+   </div>
+  </main><!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-16">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <h3 class="text-lg font-semibold mb-4">संपर्क जानकारी</h3>
+      <p class="mb-2">📞 <span id="footer-phone">8816014071</span></p>
+      <p class="mb-2">✉️ <span id="footer-email">care@sonipathomeservice.com</span></p>
+      <p id="office-address">128/1, Sainipura, Sonipat</p>
+     </div>
+     <div>
+      <h3 class="text-lg font-semibold mb-4">सेवा क्षेत्र</h3>
+      <ul class="space-y-1 text-sm">
+       <li>सोनीपत</li>
+       <li>बहालगढ़</li>
+       <li>मुरथल</li>
+       <li>कुंडली</li>
+       <li>राइ</li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-lg font-semibold mb-4">सेवाएं</h3>
+      <ul class="space-y-1 text-sm">
+       <li>✓ फ्री इंस्टालेशन</li>
+       <li>✓ जीरो सिक्योरिटी</li>
+       <li>✓ फ्री राउटर</li>
+       <li>✓ 24/7 सपोर्ट</li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+     <p>© 2024 Sonipat Home Service. सभी अधिकार सुरक्षित।</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            company_name: "Sonipat Home Service.com",
+            customer_care: "8816014071",
+            email_address: "care@sonipathomeservice.com",
+            office_address: "128/1, Sainipura, Sonipat"
+        };
+
+        // Razorpay Configuration
+        const RAZORPAY_KEY = "rzp_live_RLjzp7VlXERwiG"; // Live Razorpay key
+        const BOOKING_AMOUNT = 99; // Fixed booking amount
+        const razorpayOptions = {
+            currency: 'INR',
+            name: 'Sonipat Home Service',
+            description: 'Internet Plan Booking',
+            image: 'https://via.placeholder.com/200x200/4f46e5/ffffff?text=SHS',
+            theme: {
+                color: '#4f46e5'
+            }
+        };
+
+        // Global variables
+        let selectedLocation = '';
+        let selectedProvider = '';
+        let cart = [];
+        let currentRecordCount = 0;
+
+        // Location-wise Plans data - Each location has different pricing and availability
+        const plansData = {
+            'सोनीपत': {
+                'लोकल कंपनी': {
+                    '6 महीने': [
+                        { id: 'sonipat-local-6m-1', name: 'Internet Only', speed: '300 Mbps', price: 3499, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-6m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 4150, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'sonipat-local-12m-1', name: 'Internet Only', speed: '300 Mbps', price:5550 , features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-12m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 7850, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+                    ]
+                },
+                'एयरटेल': {
+                    '6 महीने': [
+                        { id: 'sonipat-airtel-6m-1', name: 'Internet Only', speed: '40 Mbps', price: 3004, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'फाइबर कनेक्शन'] },
+                         ],
+                    '12 महीने': [
+                        { id: 'sonipat-airtel-12m-1', name: 'Internet Only', speed: '40 Mbps', price: 6008, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'फाइबर कनेक्शन'] },
+                       
+                    ]
+                }
+            },
+            'बहालगढ़': {
+                'लोकल कंपनी': {
+                    '6 महीने': [
+                        { id: 'sonipat-local-6m-1', name: 'Internet Only', speed: '300 Mbps', price: 3499, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-6m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 4150, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'sonipat-local-12m-1', name: 'Internet Only', speed: '300 Mbps', price:5550 , features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-12m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 7850, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+
+                    ]
+                },
+
+                'एयरटेल': {
+                    '6 महीने': [
+                        { id: 'sonipat-airtel-6m-1', name: 'Internet Only', speed: '40 Mbps', price: 3004, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'फाइबर कनेक्शन']  },
+                        
+                    ],
+                    '12 महीने': [
+                        { id: 'bahalgarh-bsnl-12m-1', name: 'Internet Only', speed: '40 Mbps', price: 6008, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'फाइबर नेटवर्क'] },
+                        
+                    ]
+                }
+            },
+            'मुरथल': {
+                'लोकल कंपनी': {
+                    '6 महीने': [
+                        { id: 'sonipat-local-6m-1', name: 'Internet Only', speed: '300 Mbps', price: 3499, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-6m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 4150, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'sonipat-local-12m-1', name: 'Internet Only', speed: '300 Mbps', price:5550 , features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-12m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 7850, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+
+                    ]
+                },
+
+
+                'अन्य': {
+                    '6 महीने': [
+                        { id: 'murthal-other-6m-1', name: 'Internet Only', speed: '25 Mbps', price: 1800, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट'] },
+                        { id: 'murthal-other-6m-2', name: 'Internet + IPTV', speed: '50 Mbps', price: 3200, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट', '250+ TV चैनल्स', 'कस्टम पैकेज'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'murthal-other-12m-1', name: 'Internet Only', speed: '25 Mbps', price: 3200, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट'] },
+                        { id: 'murthal-other-12m-2', name: 'Internet + IPTV', speed: '50 Mbps', price: 5800, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट', '250+ TV चैनल्स', 'कस्टम पैकेज'] }
+                    ]
+                }
+            },
+            'कुंडली': {
+                'लोकल कंपनी': {
+                    '6 महीने': [
+                        { id: 'kundli-local-6m-1', name: 'Internet Only', speed: '50 Mbps', price: 3500, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-6m-1', name: 'Internet Only', speed: '100 Mbps', price: 5000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-6m-1', name: 'Internet Only', speed: '200 Mbps', price: 6000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-6m-1', name: 'Internet Only', speed: '300 Mbps', price: 7000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                       
+                    ],
+                    '12 महीने': [
+                        { id: 'kundli-local-12m-1', name: 'Internet Only', speed: '50 Mbps', price: 6000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-12m-1', name: 'Internet Only', speed: '100 Mbps', price: 8000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-12m-1', name: 'Internet Only', speed: '200 Mbps', price: 10000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-12m-1', name: 'Internet Only', speed: '300 Mbps', price: 12000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                    ]
+                },
+                'जिओ': {
+                    '6 महीने': [
+                        { id: 'kundli-jio-6m-1', name: 'Internet Only', speed: '30 Mbps', price: 2700, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'जिओ फाइबर'] },
+                        { id: 'kundli-jio-6m-2', name: 'Internet + IPTV', speed: '100 Mbps', price: 5000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'जिओ फाइबर', '600+ TV चैनल्स', 'JioTV & JioCinema'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'kundli-jio-12m-1', name: 'Internet Only', speed: '30 Mbps', price: 4800, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'जिओ फाइबर'] },
+                        { id: 'kundli-jio-12m-2', name: 'Internet + IPTV', speed: '100 Mbps', price: 9000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'जिओ फाइबर', '600+ TV चैनल्स', 'JioTV & JioCinema'] }
+                    ]
+                }
+            },
+            'राइ': {
+                'लोकल कंपनी': {
+                    '6 महीने': [
+                        { id: 'sonipat-local-6m-1', name: 'Internet Only', speed: '300 Mbps', price: 3499, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-6m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 4150, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'sonipat-local-12m-1', name: 'Internet Only', speed: '300 Mbps', price:5550 , features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-12m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 7850, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+
+                    ]
+                },
+                'अन्य': {
+                    '6 महीने': [
+                        { id: 'rai-other-6m-1', name: 'Internet Only', speed: '20 Mbps', price: 1600, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट'] },
+                        { id: 'rai-other-6m-2', name: 'Internet + IPTV', speed: '40 Mbps', price: 2800, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट', '200+ TV चैनल्स', 'कस्टम पैकेज'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'rai-other-12m-1', name: 'Internet Only', speed: '20 Mbps', price: 2900, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट'] },
+                        { id: 'rai-other-12m-2', name: 'Internet + IPTV', speed: '40 Mbps', price: 5000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट', '200+ TV चैनल्स', 'कस्टम पैकेज'] }
+                    ]
+                }
+            }
+        };
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+                // Update UI if needed
+            }
+        };
+
+        // Element SDK Configuration
+        async function onConfigChange(config) {
+            const companyName = config.company_name || defaultConfig.company_name;
+            const customerCare = config.customer_care || defaultConfig.customer_care;
+            const emailAddress = config.email_address || defaultConfig.email_address;
+            const officeAddress = config.office_address || defaultConfig.office_address;
+
+            // Update header
+            document.getElementById('company-name').textContent = companyName;
+            document.getElementById('customer-care').textContent = customerCare;
+            document.getElementById('email-address').textContent = emailAddress;
+
+            // Update footer
+            document.getElementById('footer-phone').textContent = customerCare;
+            document.getElementById('footer-email').textContent = emailAddress;
+            document.getElementById('office-address').textContent = officeAddress;
+        }
+
+        // Initialize SDKs
+        async function initializeApp() {
+            try {
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize data SDK");
+                    }
+                }
+
+                if (window.elementSdk) {
+                    await window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange,
+                        mapToCapabilities: (config) => ({
+                            recolorables: [
+                                {
+                                    get: () => config.primary_color || "#4f46e5",
+                                    set: (value) => {
+                                        config.primary_color = value;
+                                        window.elementSdk.setConfig({ primary_color: value });
+                                    }
+                                }
+                            ],
+                            borderables: [],
+                            fontEditable: undefined,
+                            fontSizeable: undefined
+                        }),
+                        mapToEditPanelValues: (config) => new Map([
+                            ["company_name", config.company_name || defaultConfig.company_name],
+                            ["customer_care", config.customer_care || defaultConfig.customer_care],
+                            ["email_address", config.email_address || defaultConfig.email_address],
+                            ["office_address", config.office_address || defaultConfig.office_address]
+                        ])
+                    });
+                }
+            } catch (error) {
+                console.error("Failed to initialize SDKs:", error);
+            }
+        }
+
+        // Utility functions
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 3000);
+        }
+
+        function setLoading(element, isLoading) {
+            if (isLoading) {
+                element.classList.add('loading');
+            } else {
+                element.classList.remove('loading');
+            }
+        }
+
+        // Get provider logo
+        function getProviderLogo(provider) {
+            const logos = {
+                'लोकल कंपनी': '<div class="text-2xl">🏢</div>',
+                'एयरटेल': '<div class="text-2xl text-red-600 font-bold">A</div>',
+                'बीएसएनएल': '<div class="text-2xl text-blue-600 font-bold">B</div>',
+                'जिओ': '<div class="text-2xl text-purple-600 font-bold">J</div>',
+                'अन्य': '<div class="text-2xl">🔧</div>'
+            };
+            return logos[provider] || '<div class="text-2xl">📡</div>';
+        }
+
+        // Find plan by ID (location-aware)
+        function findPlanById(planId) {
+            for (const location in plansData) {
+                for (const provider in plansData[location]) {
+                    for (const duration in plansData[location][provider]) {
+                        const plan = plansData[location][provider][duration].find(p => p.id === planId);
+                        if (plan) {
+                            return { plan, provider, duration, location };
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        // Location selection
+        function selectLocation(location) {
+            selectedLocation = location;
+            
+            // Update UI
+            document.querySelectorAll('.location-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white');
+                btn.classList.add('bg-indigo-100', 'text-indigo-800');
+            });
+            
+            event.target.classList.remove('bg-indigo-100', 'text-indigo-800');
+            event.target.classList.add('bg-indigo-600', 'text-white');
+            
+            // Show provider step
+            document.getElementById('provider-step').classList.remove('hidden');
+            showToast(`${location} चुना गया`);
+        }
+
+        // Provider selection
+        function selectProvider(provider) {
+            selectedProvider = provider;
+            
+            // Update UI - highlight selected provider card
+            document.querySelectorAll('.provider-card').forEach(card => {
+                card.classList.remove('ring-4', 'ring-green-400', 'ring-opacity-75');
+            });
+            
+            event.target.classList.add('ring-4', 'ring-green-400', 'ring-opacity-75');
+            
+            // Show plans
+            showPlans();
+            showToast(`${provider} चुना गया`);
+            
+            // Auto scroll to plans section after a short delay
+            setTimeout(() => {
+                document.getElementById('plans-step').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 500);
+        }
+
+        // Show plans with location-specific data
+        function showPlans() {
+            const plansContainer = document.getElementById('plans-container');
+            const plansStep = document.getElementById('plans-step');
+            
+            plansContainer.innerHTML = '';
+            
+            // Check if selected location and provider combination exists
+            if (!plansData[selectedLocation] || !plansData[selectedLocation][selectedProvider]) {
+                plansContainer.innerHTML = `
+                    <div class="col-span-full text-center py-8">
+                        <div class="text-6xl mb-4">😔</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">माफ करें!</h3>
+                        <p class="text-gray-600">${selectedProvider} की सेवा ${selectedLocation} में उपलब्ध नहीं है।</p>
+                        <p class="text-sm text-gray-500 mt-2">कृपया कोई अन्य सेवा प्रदाता चुनें।</p>
+                    </div>
+                `;
+                plansStep.classList.remove('hidden');
+                return;
+            }
+            
+            const durations = ['6 महीने', '12 महीने'];
+            
+            durations.forEach(duration => {
+                const plans = plansData[selectedLocation][selectedProvider][duration];
+                
+                plans.forEach(plan => {
+                    const planCard = document.createElement('div');
+                    planCard.className = 'bg-white rounded-lg shadow-md p-6 border-2 border-transparent hover:border-indigo-300 transition-colors';
+                    planCard.id = `plan-card-${plan.id}`;
+                    
+                    planCard.innerHTML = `
+                        <div class="relative mb-4">
+                            <!-- Company Logo -->
+                            <div class="absolute top-0 right-0 bg-white rounded-full p-2 shadow-md">
+                                ${getProviderLogo(selectedProvider)}
+                            </div>
+                            
+                            <div class="text-center pr-16">
+                                <h3 class="text-xl font-bold text-gray-800" id="plan-name-${plan.id}">${plan.name}</h3>
+                                <p class="text-gray-600">${duration}</p>
+                                <div class="text-3xl font-bold text-indigo-600 mt-2" id="plan-price-${plan.id}">₹${plan.price}</div>
+                                <p class="text-sm text-gray-500" id="plan-speed-${plan.id}">स्पीड: ${plan.speed}</p>
+                                <p class="text-xs text-blue-600 font-medium">📍 ${selectedLocation} के लिए विशेष मूल्य</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2 mb-6" id="plan-features-${plan.id}">
+                            ${plan.features.map(feature => `
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    ${feature}
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <button onclick="addToCart('${plan.id}', '${duration}', this)" 
+                                class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors">
+                            कार्ट में जोड़ें
+                        </button>
+                    `;
+                    
+                    plansContainer.appendChild(planCard);
+                });
+            });
+            
+            plansStep.classList.remove('hidden');
+        }
+
+
+
+        // Add to cart (updated to use plan ID)
+        function addToCart(planId, duration, button) {
+            const planData = findPlanById(planId);
+            if (!planData) return;
+            
+            const { plan } = planData;
+            
+            const cartItem = {
+                id: Date.now().toString(),
+                planId: planId,
+                location: selectedLocation,
+                provider: selectedProvider,
+                planName: plan.name,
+                duration,
+                speed: plan.speed,
+                basePrice: plan.price,
+                addOns: [],
+                totalPrice: plan.price,
+                ottPack: false,
+                iptvPack: plan.name.includes('IPTV')
+            };
+            
+            cart.push(cartItem);
+            updateCartDisplay();
+            showToast('प्लान कार्ट में जोड़ा गया');
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartElement = document.getElementById('cart');
+            const cartItems = document.getElementById('cart-items');
+            
+            if (cart.length === 0) {
+                cartElement.classList.add('hidden');
+                return;
+            }
+            
+            cartElement.classList.remove('hidden');
+            cartItems.innerHTML = '';
+            
+            cart.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'text-sm border-b pb-2';
+                itemElement.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="font-medium">${item.planName}</div>
+                            <div class="text-gray-600">${item.provider} - ${item.duration}</div>
+                            <div class="text-xs text-gray-500">${item.speed}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-medium">₹${item.totalPrice}</div>
+                            <button onclick="removeFromCart(${index})" class="text-red-500 text-xs hover:text-red-700">हटाएं</button>
+                        </div>
+                    </div>
+                `;
+                cartItems.appendChild(itemElement);
+            });
+        }
+
+        // Remove from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+            showToast('आइटम कार्ट से हटाया गया');
+        }
+
+        // Toggle cart
+        function toggleCart() {
+            const cartElement = document.getElementById('cart');
+            cartElement.classList.toggle('hidden');
+        }
+
+        // Show customer form
+        function showCustomerForm() {
+            if (cart.length === 0) {
+                showToast('कृपया पहले कोई प्लान चुनें', 'error');
+                return;
+            }
+            
+            document.getElementById('customer-form').classList.remove('hidden');
+            updateOrderSummary();
+            
+            // Scroll to form
+            document.getElementById('customer-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Update order summary
+        function updateOrderSummary() {
+            const orderSummary = document.getElementById('order-summary');
+            
+            let total = 0;
+            let summaryHTML = '';
+            
+            cart.forEach(item => {
+                total += item.totalPrice;
+                summaryHTML += `
+                    <div class="flex justify-between">
+                        <span>${item.planName} (${item.duration})</span>
+                        <span>₹${item.totalPrice}</span>
+                    </div>
+                `;
+                
+                if (item.addOns.length > 0) {
+                    summaryHTML += `
+                        <div class="text-xs text-gray-500 ml-4">
+                            ${item.addOns.join(', ')}
+                        </div>
+                    `;
+                }
+            });
+            
+            const remainingAmount = total - BOOKING_AMOUNT;
+            
+            summaryHTML += `
+                <div class="border-t pt-3 mt-3">
+                    <div class="flex justify-between text-sm text-gray-600">
+                        <span>कुल प्लान राशि:</span>
+                        <span>₹${total}</span>
+                    </div>
+                    <div class="flex justify-between text-sm text-green-600 font-medium">
+                        <span>बुकिंग राशि:</span>
+                        <span>₹${BOOKING_AMOUNT}</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-orange-600 mt-2">
+                        <span>बकाया राशि (इंस्टालेशन के दौरान):</span>
+                        <span>₹${remainingAmount}</span>
+                    </div>
+                </div>
+            `;
+            
+            orderSummary.innerHTML = summaryHTML;
+        }
+
+        // Go back
+        function goBack() {
+            document.getElementById('customer-form').classList.add('hidden');
+        }
+
+        // Google Sheet Integration
+        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec';
+
+        async function saveToGoogleSheet(customerData, paymentId = '', status = 'Pending') {
+            try {
+                const orderItems = cart.map(item => {
+                    let itemDesc = `${item.planName} (${item.duration}) - ₹${item.totalPrice}`;
+                    if (item.addOns.length > 0) {
+                        itemDesc += ` [${item.addOns.join(', ')}]`;
+                    }
+                    return itemDesc;
+                }).join('; ');
+
+                const sheetData = {
+                    timestamp: new Date().toLocaleString('hi-IN'),
+                    customerName: customerData.customer_name,
+                    mobile: customerData.mobile,
+                    email: customerData.email,
+                    address: customerData.address,
+                    landmark: customerData.landmark || '',
+                    pincode: customerData.pincode,
+                    orderItems: orderItems,
+                    totalAmount: customerData.total_amount,
+                    paymentId: paymentId,
+                    status: status,
+                    serviceType: `${selectedProvider} - Internet Connection`
+                };
+
+                const response = await fetch(GOOGLE_SHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(sheetData)
+                });
+
+                console.log('Data sent to Google Sheet successfully');
+                return true;
+            } catch (error) {
+                console.error('Error saving to Google Sheet:', error);
+                return false;
+            }
+        }
+
+        // Proceed to payment
+        async function proceedToPayment() {
+            const form = document.getElementById('customer-details-form');
+            const paymentBtn = document.getElementById('payment-btn');
+            
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            if (currentRecordCount >= 999) {
+                showToast('अधिकतम 999 ऑर्डर की सीमा पहुंच गई है। कृपया पहले कुछ ऑर्डर हटाएं।', 'error');
+                return;
+            }
+            
+            setLoading(paymentBtn, true);
+            
+            try {
+                const formData = new FormData(form);
+                const customerData = {
+                    id: Date.now().toString(),
+                    location: selectedLocation,
+                    provider: selectedProvider,
+                    plan_duration: cart[0].duration,
+                    plan_name: cart[0].planName,
+                    plan_price: cart[0].totalPrice,
+                    ott_pack: cart[0].ottPack,
+                    iptv_pack: cart[0].iptvPack,
+                    customer_name: formData.get('customer-name'),
+                    mobile: formData.get('mobile'),
+                    email: formData.get('email'),
+                    address: formData.get('address'),
+                    landmark: formData.get('landmark') || '',
+                    pincode: formData.get('pincode'),
+                    order_date: new Date().toISOString(),
+                    total_amount: cart.reduce((sum, item) => sum + item.totalPrice, 0)
+                };
+
+                // Save to Google Sheet first (before payment)
+                await saveToGoogleSheet(customerData, '', 'Payment Pending');
+                showToast('डेटा सफलतापूर्वक सेव हो गया!');
+                
+                if (window.dataSdk) {
+                    const result = await window.dataSdk.create(customerData);
+                    
+                    if (result.isOk) {
+                        // Initialize Razorpay payment with booking amount
+                        initializeRazorpayPayment(customerData);
+                    } else {
+                        showToast('ऑर्डर सेव करने में त्रुटि हुई', 'error');
+                    }
+                } else {
+                    // Fallback without SDK
+                    initializeRazorpayPayment(customerData);
+                }
+            } catch (error) {
+                showToast('कुछ गलत हुआ। कृपया दोबारा कोशिश करें।', 'error');
+            } finally {
+                setLoading(paymentBtn, false);
+            }
+        }
+
+        // Initialize Razorpay payment
+        function initializeRazorpayPayment(orderData) {
+            const remainingAmount = orderData.total_amount - BOOKING_AMOUNT;
+            
+            const options = {
+                key: RAZORPAY_KEY,
+                amount: BOOKING_AMOUNT * 100, // Booking amount in paise
+                currency: razorpayOptions.currency,
+                name: razorpayOptions.name,
+                description: `${orderData.plan_name} - Booking Amount`,
+                image: razorpayOptions.image,
+                order_id: '', // You would get this from your backend
+                handler: function (response) {
+                    // Payment successful
+                    handlePaymentSuccess(response, orderData, remainingAmount);
+                },
+                prefill: {
+                    name: orderData.customer_name,
+                    email: orderData.email,
+                    contact: orderData.mobile
+                },
+                notes: {
+                    location: orderData.location,
+                    provider: orderData.provider,
+                    plan: orderData.plan_name,
+                    duration: orderData.plan_duration,
+                    total_plan_amount: orderData.total_amount,
+                    remaining_amount: remainingAmount
+                },
+                theme: razorpayOptions.theme,
+                modal: {
+                    ondismiss: function() {
+                        showToast('भुगतान रद्द किया गया', 'error');
+                    }
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', function (response) {
+                handlePaymentFailure(response);
+            });
+            
+            rzp.open();
+        }
+
+        // Handle payment success
+        async function handlePaymentSuccess(response, orderData, remainingAmount) {
+            showToast('बुकिंग सफल! आपका ऑर्डर कन्फर्म हो गया है।');
+            
+            // Update Google Sheet with payment success
+            await saveToGoogleSheet(orderData, response.razorpay_payment_id, 'Payment Completed');
+            
+            // You can store payment details here
+            console.log('Payment ID:', response.razorpay_payment_id);
+            console.log('Order ID:', response.razorpay_order_id);
+            console.log('Signature:', response.razorpay_signature);
+            
+            // Reset form and cart
+            cart = [];
+            updateCartDisplay();
+            document.getElementById('customer-form').classList.add('hidden');
+            document.getElementById('customer-details-form').reset();
+            
+            // Show success message with order details
+            showOrderConfirmation(orderData, response.razorpay_payment_id, remainingAmount);
+        }
+
+        // Handle payment failure
+        async function handlePaymentFailure(response) {
+            showToast(`भुगतान असफल: ${response.error.description}`, 'error');
+            console.error('Payment failed:', response.error);
+            
+            // Update Google Sheet with payment failure
+            const formData = new FormData(document.getElementById('customer-details-form'));
+            const customerData = {
+                customer_name: formData.get('customer-name'),
+                mobile: formData.get('mobile'),
+                email: formData.get('email'),
+                address: formData.get('address'),
+                landmark: formData.get('landmark') || '',
+                pincode: formData.get('pincode'),
+                total_amount: cart.reduce((sum, item) => sum + item.totalPrice, 0)
+            };
+            
+            await saveToGoogleSheet(customerData, '', 'Payment Failed');
+        }
+
+        // Show order confirmation
+        function showOrderConfirmation(orderData, paymentId, remainingAmount) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+            modal.innerHTML = `
+                <div class="bg-white rounded-lg p-6 max-w-md w-full">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl text-green-500 mb-4">✅</div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">बुकिंग कन्फर्म!</h2>
+                        <p class="text-gray-600">आपका इंटरनेट प्लान सफलतापूर्वक बुक हो गया है।</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6 text-sm">
+                        <div class="flex justify-between">
+                            <span>ऑर्डर ID:</span>
+                            <span class="font-medium">${orderData.id}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Payment ID:</span>
+                            <span class="font-medium text-xs">${paymentId}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>ग्राहक:</span>
+                            <span class="font-medium">${orderData.customer_name}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>प्लान:</span>
+                            <span class="font-medium">${orderData.plan_name}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>अवधि:</span>
+                            <span class="font-medium">${orderData.plan_duration}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>क्षेत्र:</span>
+                            <span class="font-medium">${orderData.location}</span>
+                        </div>
+                        <div class="border-t pt-3">
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>कुल प्लान राशि:</span>
+                                <span>₹${orderData.total_amount}</span>
+                            </div>
+                            <div class="flex justify-between text-sm text-green-600 font-medium">
+                                <span>भुगतान की गई राशि:</span>
+                                <span>₹${BOOKING_AMOUNT}</span>
+                            </div>
+                            <div class="flex justify-between text-sm text-orange-600 font-medium">
+                                <span>बकाया राशि:</span>
+                                <span>₹${remainingAmount}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                        <p class="text-sm text-blue-800">
+                            <strong>अगले कदम:</strong><br>
+                            • हमारी टीम 24 घंटे में आपसे संपर्क करेगी<br>
+                            • इंस्टालेशन 2-3 दिन में होगा<br>
+                            • बकाया राशि ₹${remainingAmount} इंस्टालेशन के दौरान देनी होगी<br>
+                            • किसी भी सहायता के लिए: ${defaultConfig.customer_care}
+                        </p>
+                    </div>
+                    
+                    <button onclick="closeConfirmation()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors">
+                        बंद करें
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            window.closeConfirmation = () => {
+                document.body.removeChild(modal);
+                delete window.closeConfirmation;
+            };
+        }
+
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9960f0aa65cec51e',t:'MTc2MTcyMjczOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
