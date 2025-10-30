@@ -133,16 +133,7 @@
             margin-top: 4px;
         }
         
-        .demo-badge {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
+
         
         .feature-list {
             list-style: none;
@@ -390,21 +381,6 @@
         // CCTV Services data
         const services = [
             {
-                id: 1,
-                name: "Demo Payment Test",
-                price: 1,
-                originalPrice: null,
-                icon: "🧪",
-                description: "Test payment functionality with ₹1",
-                details: "Demo Category • Test Payment Only",
-                features: [
-                    "Payment gateway testing",
-                    "Order processing demo",
-                    "System functionality check"
-                ],
-                isDemo: true
-            },
-            {
                 id: 2,
                 name: "AHD 4 Camera Set",
                 price: 16000,
@@ -490,7 +466,7 @@
             servicesGrid.innerHTML = services.map(service => `
                 <div class="service-card p-6">
                     <div class="service-card-content">
-                        ${service.isDemo ? '<div class="demo-badge">DEMO CATEGORY</div>' : ''}
+
                         <div class="text-center mb-4">
                             <div class="text-4xl mb-3 icon-hover">${service.icon}</div>
                             <h4 class="font-bold text-base mb-2 text-gray-800 leading-tight">${service.name}</h4>
@@ -551,9 +527,8 @@
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
-            // Calculate payment amount (₹99 booking for CCTV services, ₹1 for demo)
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? totalAmount : 99;
+            // Calculate payment amount (₹99 booking for all CCTV services)
+            const payAmount = 99;
             
             if (totalItems > 0) {
                 cartCount.textContent = totalItems;
@@ -601,29 +576,17 @@
             const checkoutRemainingRow = document.getElementById('checkout-remaining-row');
             const remainingNote = document.getElementById('remaining-note');
             
-            if (hasDemo) {
-                if (cartButtonText) cartButtonText.textContent = `Pay ₹${payAmount.toLocaleString()}`;
-                if (checkoutButtonText) checkoutButtonText.textContent = `Pay ₹${payAmount.toLocaleString()}`;
-                if (remainingPaymentRow) remainingPaymentRow.style.display = 'none';
-                if (checkoutRemainingRow) checkoutRemainingRow.style.display = 'none';
-                if (remainingNote) remainingNote.textContent = 'Demo payment for testing purposes only';
-            } else {
-                if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${payAmount.toLocaleString()}`;
-                if (checkoutButtonText) checkoutButtonText.textContent = `Pay Booking Amount ₹${payAmount.toLocaleString()}`;
-                if (remainingPaymentRow) remainingPaymentRow.style.display = 'flex';
-                if (checkoutRemainingRow) checkoutRemainingRow.style.display = 'flex';
-                if (cartRemaining) cartRemaining.textContent = remainingAmount.toLocaleString();
-                if (checkoutRemaining) checkoutRemaining.textContent = remainingAmount.toLocaleString();
-                if (remainingNote) remainingNote.textContent = 'Remaining amount will be collected during installation';
-            }
+            if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${payAmount.toLocaleString()}`;
+            if (checkoutButtonText) checkoutButtonText.textContent = `Pay Booking Amount ₹${payAmount.toLocaleString()}`;
+            if (remainingPaymentRow) remainingPaymentRow.style.display = 'flex';
+            if (checkoutRemainingRow) checkoutRemainingRow.style.display = 'flex';
+            if (cartRemaining) cartRemaining.textContent = remainingAmount.toLocaleString();
+            if (checkoutRemaining) checkoutRemaining.textContent = remainingAmount.toLocaleString();
+            if (remainingNote) remainingNote.textContent = 'Remaining amount will be collected during installation';
             
             // Update payment note
             if (paymentNote) {
-                if (hasDemo) {
-                    paymentNote.textContent = `Demo payment for testing purposes only.`;
-                } else {
-                    paymentNote.textContent = `Booking amount ₹${payAmount}. Remaining ₹${remainingAmount.toLocaleString()} will be collected during installation.`;
-                }
+                paymentNote.textContent = `Booking amount ₹${payAmount}. Remaining ₹${remainingAmount.toLocaleString()} will be collected during installation.`;
             }
             
             proceedBtn.disabled = cart.length === 0;
@@ -649,8 +612,7 @@
         // Razorpay payment integration
         function initiatePayment(customerData) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? totalAmount : 99; // ₹99 booking for CCTV services, full amount for demo
+            const payAmount = 99; // ₹99 booking for all CCTV services
             
             const options = {
                 key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
@@ -686,8 +648,7 @@
         // Google Sheets integration
         async function submitToGoogleSheets(customerData, paymentId) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? totalAmount : 99; // ₹99 booking for CCTV services, full amount for demo
+            const payAmount = 99; // ₹99 booking for all CCTV services
             const remainingAmount = totalAmount - payAmount;
             
             const formData = new FormData();
@@ -703,7 +664,7 @@
             formData.append('paidAmount', payAmount);
             formData.append('remainingAmount', remainingAmount);
             formData.append('paymentId', paymentId);
-            formData.append('status', hasDemo ? 'Demo Payment Completed' : 'CCTV Installation Booking Confirmed - Remaining Payment On Installation');
+            formData.append('status', 'CCTV Installation Booking Confirmed - Remaining Payment On Installation');
 
             try {
                 // Show loading state
@@ -868,5 +829,5 @@
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'996714d455be59d8',t:'MTc2MTc4NzEzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99671bb6a0cc1c49',t:'MTc2MTc4NzQxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
