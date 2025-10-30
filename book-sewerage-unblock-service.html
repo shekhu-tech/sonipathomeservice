@@ -280,7 +280,7 @@
        <div class="space-y-2 mb-4">
         <div class="flex justify-between items-center"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="cart-total">0</span></span>
         </div>
-        <div class="border-t pt-2 flex justify-between items-center"><span class="font-bold text-lg">Total Amount:</span> <span class="font-bold text-lg text-green-600">₹<span id="cart-pay-now">0</span></span>
+        <div class="border-t pt-2 flex justify-between items-center"><span class="font-bold text-lg">Advance Payment:</span> <span class="font-bold text-lg text-green-600">₹<span id="cart-pay-now">0</span></span>
         </div>
        </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-lg font-semibold disabled:opacity-50" disabled> <span id="cart-button-text">Book Service</span> </button>
       </div>
@@ -316,7 +316,7 @@
         <div class="space-y-1 mb-2">
          <div class="flex justify-between items-center text-xs"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="checkout-total">0</span></span>
          </div>
-         <div class="border-t pt-1 flex justify-between items-center"><span class="font-bold text-sm">Total Amount:</span> <span class="font-bold text-green-600 text-sm">₹<span id="checkout-pay-now">0</span></span>
+         <div class="border-t pt-1 flex justify-between items-center"><span class="font-bold text-sm">Advance Payment:</span> <span class="font-bold text-green-600 text-sm">₹<span id="checkout-pay-now">0</span></span>
          </div>
          <div class="bg-green-50 border border-green-200 rounded p-1.5 mt-1">
           <p class="text-xs text-green-800"><strong>Note:</strong> <span id="payment-note">Complete payment for sewerage unblock service.</span></p>
@@ -449,7 +449,7 @@
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? Math.max(1, totalAmount) : totalAmount;
+            const payAmount = hasDemo ? 1 : 99; // Always ₹99 for real services, ₹1 for demo
             
             if (totalItems > 0) {
                 cartCount.textContent = totalItems;
@@ -496,7 +496,7 @@
                 if (hasDemo) {
                     paymentNote.textContent = "This is a demo payment to test the gateway functionality.";
                 } else {
-                    paymentNote.textContent = "Complete payment for sewerage unblock service.";
+                    paymentNote.textContent = "₹99 advance payment. Remaining amount will be collected on-site after service completion.";
                 }
             }
             
@@ -524,7 +524,7 @@
         function initiatePayment(customerData) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? Math.max(1, totalAmount) : totalAmount;
+            const payAmount = hasDemo ? 1 : 99; // Always ₹99 for real services, ₹1 for demo
             
             const options = {
                 key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
@@ -561,7 +561,7 @@
         async function submitToGoogleSheets(customerData, paymentId) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? Math.max(1, totalAmount) : totalAmount;
+            const payAmount = hasDemo ? 1 : 99; // Always ₹99 for real services, ₹1 for demo
             
             // Create URL parameters to match your App Script exactly
             const params = new URLSearchParams({
@@ -741,5 +741,5 @@
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9966b19477821c49',t:'MTc2MTc4MzA2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9966b82566f81c49',t:'MTc2MTc4MzMzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
