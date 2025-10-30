@@ -1,1303 +1,914 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - Premium Chimney Service</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
-
-        /* --- AC Service File Theme --- */
-        :root {
-            /* Classic White & Light Blue Theme */
-            --bg-dark: #F4F7FB; /* Very Light Blue/Gray Background */
-            --bg-card: #FFFFFF; /* White Card/Popup Background */
-            --primary: #3B82F6; /* Primary Accent (Classic Blue) */
-            --secondary: #1F83E7; /* Secondary Accent (Darker Blue for titles/prices) */
-            --text-light: #1F2937; /* Dark Gray/Black Text */
-            --text-subtle: #6B7280; /* Subtle Gray Text */
-            --shadow-depth: 0 5px 20px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chimney Service Pro - Professional Kitchen Chimney Solutions</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        /* --- Custom Components --- */
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-depth);
-            transition: var(--transition);
-            border: 1px solid rgba(59, 130, 246, 0.1); 
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
-        }
-
-        .stat-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .stat-card p {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .product-section {
-            background: linear-gradient(135deg, var(--bg-card), #E7EFF9);
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-depth);
-            margin-bottom: 3rem;
-            overflow: hidden;
-            border: 2px solid var(--primary);
-        }
-
-        .product-header {
-            background: linear-gradient(90deg, #E7EFF9, var(--bg-card));
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .product-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--secondary); 
-        }
-
-        .product-content {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 3rem;
-            gap: 3rem;
-            align-items: center; 
-            justify-content: center;
-        }
-
-        .product-details {
-            flex: 1; 
-            min-width: 300px;
-            text-align: center; 
-        }
-
-        .price-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-            padding: 1rem 0;
-            border-top: 1px dashed var(--text-subtle);
-            border-bottom: 1px dashed var(--text-subtle);
-            justify-content: center; 
+            box-sizing: border-box;
         }
         
-        #selectedServicesDisplay {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-top: 0.5rem;
-            min-height: 24px; 
-        }
-
-        .original-price {
-            font-size: 1.2rem;
-            text-decoration: line-through;
-            color: var(--text-subtle);
-            font-weight: 400;
-            min-height: 1.5rem;
-        }
-
-        .current-price {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-            min-height: 3rem;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-            justify-content: center;
-            flex-grow: 1;
-            max-width: 400px; 
-            min-width: 200px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--bg-card); 
-            border-color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .btn-primary:hover {
-            background: #2563EB; 
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--secondary);
-            border-color: var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(59, 130, 246, 0.1);
-            transform: scale(1.03);
-        }
-        
-        /* --- Service Card Styling --- */
         .service-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            cursor: pointer;
-            background-color: rgba(0, 0, 0, 0.5); 
-            background-image: url('https://placehold.co/400x200/4F46E5/FFFFFF/png?text=Chimney'); 
-            background-size: cover;
-            background-position: center;
-            color: white; 
-            position: relative; 
-            border-radius: 0.75rem; 
-            padding: 0.75rem; 
-            border: 2px solid transparent; 
-        }
-        
-        .service-card-wrapper {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            transform-style: preserve-3d;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.1),
+                0 4px 16px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            border-radius: 16px;
             position: relative;
+            overflow: hidden;
+            margin: 8px;
         }
-
-        /* Hide the actual checkbox */
-        .service-card-wrapper input[type="checkbox"] {
+        
+        .service-card::before {
+            content: '';
             position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-            top: 0;
-            right: 0;
-            width: 2.5rem;
-            height: 2.5rem;
-            z-index: 10; 
-        }
-
-        /* Style the card based on checked state (Blue card on Selection) */
-        .service-card-wrapper input[type="checkbox"]:checked + .service-card {
-            background-image: none !important; 
-            background-color: rgba(59, 130, 246, 0.7) !important; 
-            border-color: var(--primary) !important;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); 
-        }
-
-        /* FIX: Make check icon WHITE on selection for high visibility */
-        .service-card-wrapper input[type="checkbox"]:checked + .service-card .card-check-icon {
-            color: white; 
-            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.9)); 
-        }
-        
-        /* Check icon contrast adjustment for dark card background */
-        .service-card .card-check-icon {
-            color: #f7f7f7; 
-            transition: color 0.3s;
-        }
-        
-        /* Text visibility improvements */
-        .service-card h4, .service-card p {
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 1.0); 
-            font-weight: 700; 
-            font-size: 0.95rem;
-        }
-        .service-card h4 {
-            font-size: 0.95rem; 
-        }
-
-
-        .btn-see-more {
-            margin-top: auto; 
-            font-size: 0.8rem; 
-            padding: 0.4rem 0.8rem; 
-            max-width: 100%;
-            background-color: var(--primary) !important;
-            color: white !important;
-            border-radius: 0.5rem; 
-        }
-        
-        /* --- COMPACT CARD & ICON STYLING --- */
-        .service-icon-container {
-            width: 28px;
-            height: 28px;
-            background: white; 
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 6px;
-            color: var(--primary); 
-            flex-shrink: 0;
-            font-size: 0.8rem; 
-        }
-        
-        /* --- Popup Styling --- */
-        #popup-overlay {
-            display: none;
-            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); 
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 999;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(5,150,105,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
         }
-
-        .popup {
-            display: none;
-            background: var(--bg-card);
-            color: var(--text-light);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-depth);
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            width: 95%;
-            max-width: 750px; 
-            max-height: 95vh;
-            overflow-y: auto;
-            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-            border: 1px solid var(--primary);
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-12px) rotateX(3deg) rotateY(3deg) scale(1.01);
+            box-shadow: 
+                0 25px 50px rgba(16,185,129,0.2),
+                0 15px 30px rgba(0,0,0,0.1),
+                0 8px 16px rgba(16,185,129,0.08),
+                inset 0 2px 0 rgba(255,255,255,0.9);
+            border-color: #10b981;
+        }
+        
+        .service-card-content {
+            position: relative;
+            z-index: 2;
+            transform: translateZ(20px);
+        }
+        
+        .icon-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .icon-hover:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981, #059669);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .popup-overlay {
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .popup-content {
+            animation: slideUp 0.3s ease;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        .popup h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--secondary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .popup label {
-            display: block;
-            margin-top: 1rem;
-            margin-bottom: 0.4rem;
-            color: var(--primary);
-            font-size: 0.95rem;
-            font-weight: 500;
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        .popup input,
-        .popup select,
-        .popup textarea {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--text-subtle);
-            font-size: 1rem;
-            background: #F9FAFB; 
-            color: var(--text-light);
-            transition: border-color 0.3s ease;
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
-        .popup input:focus,
-        .popup select:focus,
-        .popup textarea:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); 
-        }
-
-        .popup textarea {
-            min-height: 8rem;
-            resize: vertical;
-        }
-
-        .popup button[type="submit"],
-        #razorpay-payment-btn,
-        #downloadTicketsBtn,
-        .popup button.close-btn,
-        #applySelectionBtn,
-        #closeSelectionBtn,
-        #close-details-btn,
-        #okayBtn {
-            width: 100%;
-            padding: 1rem;
-            margin-top: 1.5rem;
-            border-radius: 0.75rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .popup button[type="submit"],
-        #razorpay-payment-btn,
-        #downloadTicketsBtn,
-        #applySelectionBtn {
-            background: linear-gradient(45deg, var(--primary), #2563EB); 
-            color: var(--bg-card);
-        }
-
-        .popup button[type="submit"]:hover,
-        #razorpay-payment-btn:hover,
-        #downloadTicketsBtn:hover,
-        #applySelectionBtn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.6); 
+        .cart-badge {
+            animation: bounce 0.5s ease;
         }
         
-        #closeSelectionBtn,
-        #close-details-btn,
-        #okayBtn {
-            background: transparent;
-            color: var(--secondary);
-            border: 2px solid var(--secondary);
-        }
-
-        #closeSelectionBtn:hover,
-        #close-details-btn:hover,
-        #okayBtn:hover {
-            background: rgba(59, 130, 246, 0.1);
-            transform: scale(1.01);
-        }
-
-        
-        .quantity-selector-container {
-            background: #EFF6FF; 
-            padding: 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--primary);
-        }
-
-        .total-price-quantity {
-            font-size: 1.8rem !important;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--secondary) !important;
-        }
-
-        #ticketDisplay {
-            background: #F9FAFB;
-            border: 1px solid var(--primary);
-            color: var(--text-light);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            word-break: break-word;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
         
-        /* Custom Alert Styling */
-        .custom-alert {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--primary); 
-            color: var(--bg-card); 
-            padding: 1.25rem 1.875rem;
-            border-radius: 0.625rem;
-            z-index: 1002;
-            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
-            font-size: 1rem;
-            text-align: center;
-            max-width: 90%;
-            animation: fadeInOut 4s forwards;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, -40%); }
-            10% { opacity: 1; transform: translate(-50%, -50%); }
-            90% { opacity: 1; transform: translate(-50%, -50%); }
-            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
-        }
-
-        /* Price List Specific */
-        #detailsTableBody tr:nth-child(even) {
-            background-color: #F9FAFB;
-        }
-        #detailsTableBody td {
-            font-family: 'Roboto', sans-serif;
-        }
-        #detailsTableBody .font-semibold {
-            color: var(--secondary);
-            font-weight: 700;
-        }
-
-        /* Styling for the new selection display element (matching video) */
-        #serviceSelectionDisplayWrapper {
-            background-color: #F9FAFB; 
-            border: 1px solid var(--text-subtle);
-            border-radius: 0.75rem;
-            padding: 0.9rem 1.2rem;
-            cursor: pointer;
-            text-align: left;
-            margin-bottom: 1rem;
-            transition: border-color 0.3s ease;
-            min-height: 48px;
-        }
-        #serviceSelectionDisplayWrapper:hover {
-            border-color: var(--primary);
-        }
-
-        /* Custom style for displaying selected services as plain text within the wrapper */
-        #selectedServicesSummary {
-            display: block; 
-            color: var(--text-light); 
-            font-size: 1rem;
-            line-height: 1.25;
-            white-space: pre-wrap; 
-        }
-
-        /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
-        #serviceCardsContainer {
-            grid-template-columns: repeat(2, minmax(0, 1fr)); 
-        }
-
-        @media (min-width: 768px) {
-            #serviceCardsContainer {
-                grid-template-columns: repeat(3, minmax(0, 1fr)); 
-            }
+        .gradient-bg {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         }
         
-        @media (max-width: 1024px) {
-            .product-content { padding: 2rem; flex-direction: column; }
-            .product-details { text-align: center; }
-            .price-container, .action-buttons { justify-content: center; }
-            .btn { max-width: 400px; } 
-            .stat-grid { grid-template-columns: 1fr 1fr; }
-            main { padding: 3rem 1rem; }
-        }
-
-        @media (max-width: 600px) {
-            main { padding: 2rem 1rem; }
-            .product-header h2 { font-size: 2rem; }
-            .product-details h3 { font-size: 2rem; }
-            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
-            .current-price { font-size: 2.5rem; }
-            .popup { padding: 1.5rem; }
-            .popup h2 { font-size: 1.5rem; }
-            .action-buttons { flex-direction: column; }
-            .btn { min-width: 100%; max-width: 100%; }
-            .popup input, .popup select, .popup textarea {
-                padding: 0.7rem 1rem;
-            }
+        .service-icon {
+            width: 48px;
+            height: 48px;
         }
         
-        @media (max-width: 400px) {
-            .current-price { font-size: 2rem; }
-            .original-price { font-size: 1rem; }
-            .stat-card p { font-size: 1.8rem; }
-            .popup { padding: 1rem; }
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .warranty-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 4px;
+        }
+        
+        .savings-badge {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 14px;
+        }
+        
+        .smoke-animation {
+            animation: smokeRise 3s ease-in-out infinite;
+        }
+        
+        @keyframes smokeRise {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
+            50% { transform: translateY(-10px) scale(1.1); opacity: 1; }
         }
     </style>
-</head>
-<body>
-   
-    <main class="container">
-        
-        <section class="product-section">
-            <div class="product-header">
-                <h2 class="text-secondary">🍲 Chimney Installation, Cleaning & Repair 🔧</h2> 
-                <p class="text-text-subtle mt-2">Get rid of smoke and grease! With quick, reliable, and transparent service.</p>
-            </div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="min-h-full bg-gray-50"><!-- Header -->
+  <header class="gradient-bg text-white shadow-lg sticky top-0 z-40">
+   <div class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
+     <div class="flex items-center space-x-3">
+      <div class="service-icon icon-hover">
+       <svg viewbox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2M12,21.5C12,21.5 8.5,19.5 8.5,16.5C8.5,13.5 12,12 12,12S15.5,13.5 15.5,16.5C15.5,19.5 12,21.5 12,21.5Z" />
+       </svg>
+      </div>
+      <div>
+       <h1 id="company-name" class="text-xl font-bold"><a href="https://www.sonipathomeservice.com" target="_blank" rel="noopener noreferrer" class="hover:text-green-100 transition-colors">Chimney Service Pro</a></h1>
+       <p class="text-sm opacity-90">Professional Kitchen Chimney Solutions</p>
+      </div>
+     </div>
+     <div class="flex items-center space-x-4">
+      <div class="text-right hidden md:block">
+       <p id="customer-care" class="text-sm font-semibold">📞 8816014071</p>
+       <p id="email-address" class="text-xs opacity-90">service@chimneyservicepro.com</p>
+      </div><button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-lg transition-all duration-300"> <span class="flex items-center space-x-2">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7M9 3V4H15V3H9M7 6V19H17V6H7Z" />
+        </svg><span>Cart</span> <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-1 text-xs hidden">0</span> </span> </button>
+     </div>
+    </div>
+   </div>
+  </header><!-- Hero Section -->
+  <section class="gradient-bg text-white py-16">
+   <div class="container mx-auto px-4 text-center">
+    <div class="service-icon mx-auto mb-6 icon-hover smoke-animation"><span class="text-6xl">🏠</span>
+    </div>
+    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Professional Kitchen Chimney Service &amp; Installation</h2>
+    <p class="text-xl mb-4 opacity-90">Expert Chimney Solutions • Same Day Service • 1 Month Warranty</p>
+    <p class="text-sm mb-8 opacity-80 max-w-4xl mx-auto">Complete chimney installation, repair, cleaning, and maintenance services for all brands. Professional ducting, filter replacement, and motor repair solutions for smoke-free kitchens.</p>
+    <div class="flex justify-center space-x-6 text-sm">
+     <div class="flex items-center space-x-2"><span class="text-2xl">🔧</span> <span>Expert Installation</span>
+     </div>
+     <div class="flex items-center space-x-2"><span class="text-2xl">🧽</span> <span>Deep Cleaning</span>
+     </div>
+     <div class="flex items-center space-x-2"><span class="text-2xl">🛡️</span> <span>1 Month Warranty</span>
+     </div>
+    </div>
+   </div>
+  </section><!-- Services Section -->
+  <section class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">Chimney Services &amp; Pricing</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2" id="services-grid"><!-- Services will be populated by JavaScript -->
+    </div>
+   </div>
+  </section><!-- Service Details -->
+  <section class="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+   <div class="container mx-auto px-4">
+    <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose Our Chimney Services?</h3>
+    <div class="max-w-6xl mx-auto">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Expert Service Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-green-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">👨‍🔧</span>
+        </div>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Expert Technicians</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Certified chimney specialists</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>All brands expertise</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Professional installation</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Quick problem diagnosis</span></li>
+       </ul>
+      </div><!-- Quality Service Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-blue-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">🧽</span>
+        </div>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Quality Cleaning</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Deep cleaning service</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Filter mesh replacement</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Ducting installation</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Motor repair &amp; winding</span></li>
+       </ul>
+      </div><!-- Fast Service Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-yellow-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">⚡</span>
+        </div>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Fast Service</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>Same day service available</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>Emergency repair support</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>Quick installation service</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>24/7 customer support</span></li>
+       </ul>
+      </div>
+     </div><!-- Additional Info Banner -->
+     <div class="mt-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white text-center">
+      <div class="flex items-center justify-center space-x-4"><span class="text-2xl">🏆</span>
+       <div>
+        <h5 class="font-bold text-lg">Complete Chimney Solutions</h5>
+        <p class="text-sm opacity-90">Professional installation, cleaning &amp; repair with 1 month warranty</p>
+       </div><span class="text-2xl">🏠</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <h4 class="text-xl font-bold mb-4">Contact Information</h4>
+      <div class="space-y-2 text-sm">
+       <p>📞 <span id="footer-phone">8816014071</span></p>
+       <p>✉️ <span id="footer-email">service@chimneyservicepro.com</span></p>
+       <p>📍 <span id="office-address">Chimney Service Center, Tech City</span></p>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-xl font-bold mb-4">Our Services</h4>
+      <ul class="space-y-2 text-sm">
+       <li>• Chimney Installation &amp; Repair</li>
+       <li>• Deep Cleaning Service</li>
+       <li>• Ducting Installation</li>
+       <li>• Filter &amp; Motor Repair</li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-xl font-bold mb-4">Why Choose Us?</h4>
+      <ul class="space-y-2 text-sm">
+       <li>• Expert Technicians</li>
+       <li>• Same Day Service</li>
+       <li>• 1 Month Warranty</li>
+       <li>• Quality Parts &amp; Service</li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+     <p>© 2024 Chimney Service Pro. All rights reserved.</p>
+    </div>
+   </div>
+  </footer><!-- Cart Popup -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full popup-content">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4">
+       <h3 class="text-xl font-bold">Your Cart</h3><button id="close-cart" class="text-gray-500 hover:text-gray-700">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
+      </div>
+      <div id="cart-items" class="space-y-3 mb-4"><!-- Cart items will be populated here -->
+      </div>
+      <div class="border-t pt-4">
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="cart-total">0</span></span>
+        </div>
+        <div class="flex justify-between items-center"><span class="text-gray-600">Booking Amount:</span> <span class="font-semibold text-green-600">₹<span id="cart-pay-now">0</span></span>
+        </div>
+        <div class="flex justify-between items-center" id="remaining-payment-row"><span class="text-gray-600">Remaining Payment:</span> <span class="font-semibold text-orange-600">₹<span id="cart-remaining">0</span></span>
+        </div>
+        <div class="bg-orange-50 border border-orange-200 rounded p-2 text-xs text-orange-800"><span id="remaining-note">Remaining amount will be collected after service completion</span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-lg font-semibold disabled:opacity-50" disabled> <span id="cart-button-text">Book Service</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div><!-- Checkout Form Popup -->
+  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-start justify-center min-h-full p-2 py-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full popup-content" style="max-height: 90vh; overflow-y: auto;">
+     <div class="sticky top-0 bg-white p-3 border-b flex justify-between items-center">
+      <h3 class="text-lg font-bold">Customer Details</h3><button id="close-checkout" class="text-gray-500 hover:text-gray-700">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+       </svg></button>
+     </div>
+     <div class="p-3">
+      <form id="checkout-form" class="space-y-2">
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-green-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-green-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email-id" required class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-green-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Full Address *</label> <textarea id="full-address" required rows="2" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-green-500 focus:border-transparent resize-none"></textarea>
+       </div>
+       <div class="grid grid-cols-2 gap-2">
+        <div><label class="block text-xs font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-green-500 focus:border-transparent">
+        </div>
+        <div><label class="block text-xs font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required pattern="[0-9]{6}" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-green-500 focus:border-transparent">
+        </div>
+       </div>
+       <div class="border-t pt-2 mt-3">
+        <div class="space-y-1 mb-2">
+         <div class="flex justify-between items-center text-xs"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="checkout-total">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-xs"><span class="text-gray-600">Booking Amount:</span> <span class="font-semibold text-green-600">₹<span id="checkout-pay-now">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-xs" id="checkout-remaining-row"><span class="text-gray-600">Remaining Payment:</span> <span class="font-semibold text-orange-600">₹<span id="checkout-remaining">0</span></span>
+         </div>
+         <div class="bg-green-50 border border-green-200 rounded p-1.5 mt-1">
+          <p class="text-xs text-green-800"><strong>Note:</strong> <span id="payment-note">Booking amount ₹99. Remaining amount will be collected after service completion.</span></p>
+         </div>
+        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-2 rounded font-semibold text-sm"> <span id="checkout-button-text">Pay Now</span> </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            company_name: "Chimney Service Pro",
+            customer_care: "8816014071",
+            email_address: "care@sonipathomeservice.com",
+            office_address: "128/1, Sainipura, Sonipat"
+        };
 
-            <div class="product-content">
-                
-                <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">Expert Chimney Service</h3>
-                    <p class="text-text-subtle mb-4 text-base">
-                        Book for installation, deep cleaning, or repair. Expert technician service provided with a 1-month service warranty.
-                    </p>
-                    
-                    <div class="price-container">
-                        <!-- Display selected service names here -->
-                        <div id="selectedServicesDisplay" class="font-bold text-center text-secondary mb-2">Click to Select Service(s)</div>
-                        <div class="original-price" id="originalPriceDisplay">Actual Service Cost: N/A</div>
-                        <div class="current-price" id="displayPrice">₹99 Booking Charge</div>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" id="participate-btn">
-                            <i class="fas fa-screwdriver-wrench"></i> Book Chimney Service
+        // Chimney Services data
+        const services = [
+            {
+                id: 0,
+                name: "Demo Service (Testing)",
+                price: 1,
+                originalPrice: 99,
+                icon: "🧪",
+                description: "Demo service for payment testing only",
+                details: "Payment Test • Demo Only • Not Real Service",
+                features: [
+                    "Payment gateway testing",
+                    "Demo booking process",
+                    "Test transaction only",
+                    "No actual service provided",
+                    "For testing purposes only",
+                    "Sample booking flow",
+                    "Payment integration demo",
+                    "Development testing service"
+                ],
+                isDemo: true
+            },
+            {
+                id: 1,
+                name: "Chimney Repair/Diagnosis",
+                price: 299,
+                originalPrice: 399,
+                icon: "🔍",
+                description: "Complete chimney diagnosis and repair service",
+                details: "Problem Detection • Basic Repair • Performance Check",
+                features: [
+                    "Complete system diagnosis",
+                    "Motor performance check",
+                    "Suction power testing",
+                    "Electrical connection inspection",
+                    "Filter condition assessment",
+                    "Ducting inspection",
+                    "Professional repair report",
+                    "Basic maintenance service"
+                ]
+            },
+            {
+                id: 2,
+                name: "Chimney Installation",
+                price: 599,
+                originalPrice: 799,
+                icon: "🔧",
+                description: "Professional new chimney installation service",
+                details: "Complete Setup • Ducting • Electrical Connection",
+                features: [
+                    "Professional installation",
+                    "Ducting setup & connection",
+                    "Electrical wiring connection",
+                    "Wall mounting & support",
+                    "Performance testing",
+                    "System configuration",
+                    "Installation warranty",
+                    "Usage demonstration"
+                ]
+            },
+            {
+                id: 3,
+                name: "Chimney Deep Cleaning",
+                price: 1199,
+                originalPrice: 1499,
+                icon: "🧽",
+                description: "Complete deep cleaning service",
+                details: "Deep Clean • Filter Wash • Oil Removal",
+                features: [
+                    "Complete disassembly",
+                    "Deep oil & grease removal",
+                    "Filter mesh cleaning",
+                    "Motor cleaning service",
+                    "Ducting cleaning",
+                    "Reassembly & testing",
+                    "Performance optimization",
+                    "Quality assurance check"
+                ]
+            },
+            {
+                id: 4,
+                name: "Ducting Installation/Change",
+                price: 499,
+                originalPrice: 649,
+                icon: "🔄",
+                description: "Ducting installation and replacement service",
+                details: "New Ducting • Pipe Connection • Sealing",
+                features: [
+                    "Old ducting removal",
+                    "New ducting installation",
+                    "Proper pipe connection",
+                    "Air-tight sealing",
+                    "Wall penetration work",
+                    "External vent setup",
+                    "Performance testing",
+                    "Professional finish"
+                ]
+            },
+            {
+                id: 5,
+                name: "Filter Mesh Replacement",
+                price: 199,
+                originalPrice: 299,
+                icon: "🔄",
+                description: "Filter mesh replacement service",
+                details: "New Filter • Installation • Testing",
+                features: [
+                    "Old filter removal",
+                    "New filter mesh installation",
+                    "Proper fitting & alignment",
+                    "Performance testing",
+                    "Suction optimization",
+                    "Quality filter material",
+                    "Installation warranty",
+                    "Maintenance tips"
+                ]
+            },
+            {
+                id: 6,
+                name: "Motor Winding/Repair",
+                price: 799,
+                originalPrice: 999,
+                icon: "⚡",
+                description: "Motor winding and repair service",
+                details: "Motor Repair • Winding • Performance Test",
+                features: [
+                    "Motor disassembly",
+                    "Winding replacement",
+                    "Electrical repair work",
+                    "Bearing replacement",
+                    "Performance testing",
+                    "Speed optimization",
+                    "Quality assurance",
+                    "Extended motor life"
+                ]
+            }
+        ];
+
+        // Cart functionality
+        let cart = [];
+
+        function renderServices() {
+            const servicesGrid = document.getElementById('services-grid');
+            servicesGrid.innerHTML = services.map(service => `
+                <div class="service-card p-6 ${service.isDemo ? 'border-2 border-dashed border-orange-400 bg-orange-50' : ''}">
+                    <div class="service-card-content">
+                        ${service.isDemo ? '<div class="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full text-center mb-3">DEMO TESTING</div>' : ''}
+                        <div class="text-center mb-4">
+                            <div class="text-4xl mb-3 icon-hover">${service.icon}</div>
+                            <h4 class="font-bold text-base mb-2 ${service.isDemo ? 'text-orange-800' : 'text-gray-800'} leading-tight">${service.name}</h4>
+                            <p class="text-gray-600 text-xs mb-2">${service.description}</p>
+                            <p class="${service.isDemo ? 'text-orange-600' : 'text-green-600'} text-xs font-semibold">${service.details}</p>
+                            ${service.isDemo ? '<div class="bg-orange-400 text-white px-2 py-1 rounded text-xs mt-2">Payment Testing Only</div>' : '<div class="warranty-badge mt-2">1 Month Warranty</div>'}
+                        </div>
+                        <div class="mb-4">
+                            <ul class="feature-list text-xs text-gray-600">
+                                ${service.features.slice(0, 4).map(feature => `<li>${feature}</li>`).join('')}
+                                ${service.features.length > 4 ? `<li class="text-green-600 font-semibold">+${service.features.length - 4} more features</li>` : ''}
+                            </ul>
+                        </div>
+                        <div class="text-center mb-4">
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-xl font-bold text-green-600">₹${service.price.toLocaleString()}</span>
+                                ${service.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${service.originalPrice.toLocaleString()}</span>` : ''}
+                            </div>
+                            ${service.originalPrice ? `<div class="savings-badge mt-1">Save ₹${(service.originalPrice - service.price).toLocaleString()}</div>` : ''}
+                        </div>
+                        <button onclick="addToCart(${service.id})" class="w-full btn-primary text-white py-2.5 rounded-lg font-semibold text-sm transform transition-transform hover:scale-105">
+                            Book Service
                         </button>
                     </div>
-                    <!-- New details link -->
                 </div>
-            </div>
-        </section>
-
-        <div class="stat-grid">
-            <div class="stat-card">
-                <h3>Installation Starts</h3>
-                <p>₹599</p>
-            </div>
-            <div class="stat-card">
-                <h3>Cleaning Starts</h3>
-                <p>₹1199</p>
-            </div>
-            <div class="stat-card">
-                <h3>Service Warranty</h3>
-                <p>1 Month</p>
-            </div>
-            <div class="stat-card">
-                <h3>Technicians</h3>
-                <p>Experienced</p>
-            </div>
-        </div>
-    </main>
-
-    <div id="popup-overlay"></div>
-    
-    <!-- Booking Form Popup (Step 1) -->
-    <div class="popup" id="popupForm">
-        <h2 class="text-2xl font-bold text-center">Chimney Service Booking Form</h2>
-        <form id="lotteryForm">
-            
-            <label>1. Select Required Service(s):</label>
-            <!-- NEW: Wrapper for selection display (Clickable) -->
-            <div id="serviceSelectionDisplayWrapper" onclick="openServiceSelectionPopup()">
-                <span id="selectedServicesSummary">Click to select service(s)</span>
-            </div>
-            
-            <div class="flex justify-between items-center mt-3 p-3 rounded-lg quantity-selector-container border-primary">
-                <span class="text-text-light font-semibold">Total Payable Today (Booking Charge)</span>
-                <span class="total-price-quantity text-lg" id="calculated-price" style="color: var(--secondary) !important;">₹99</span>
-            </div>
-
-            <label for="fullName">Your Full Name (min 10 characters)</label>
-            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
-            
-            <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
-            
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
-            
-            <label for="location">Landmark (e.g. Sonipat, Delhi)</label>
-            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
-            
-            <label for="address">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
-
-            <input type="hidden" name="selectedServices" id="selectedServicesHiddenField" /> <!-- field4 -->
-            <input type="hidden" name="ticket" id="ticketCode" />
-            <input type="hidden" name="finalPrice" id="finalPrice" value="99" />
-            
-            <button type="submit">Submit Details & Proceed to Payment</button>
-            <p id="submitMessage" class="text-center mt-3 text-primary reorganize text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
-        </form>
-    </div>
-    
-    <!-- Service Selection Popup (New Card-based) -->
-    <div class="popup" id="serviceSelectionPopup" style="max-width: 900px;">
-        <h2 class="text-2xl font-bold text-center">Select Chimney Service Category</h2>
-        <div id="serviceCardsContainer" class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4 mb-6">
-            <!-- Service Cards will be injected here by JS -->
-        </div>
-        <button type="button" class="btn btn-primary" id="applySelectionBtn" onclick="applyServiceSelection()">Apply Selection</button>
-        <button type="button" class="btn btn-secondary mt-2" id="closeSelectionBtn" onclick="closeServiceSelectionPopup()">Cancel</button>
-    </div>
-
-    <!-- Payment Popup (Step 2) -->
-    <div class="popup" id="paymentStep">
-        <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
-        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your Chimney Service booking.</p>
-        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary text-text-light"></div>
-        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
-        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i>Pay ₹99 Now</button>
-        <p class="mt-4 reorganize text-xs text-text-subtle text-center">
-            Note: Do not close this window during payment processing.
-        </p>
-    </div>
-
-    <!-- Confirmation Popup (Step 3) -->
-    <div class="popup" id="ticketStep">
-        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">Your booking is confirmed! Details below:</p>
-        <div id="ticketDisplay" class="space-y-2"></div>
-        <button id="downloadTicketsBtn" class="mt-4">
-            <i class="fas fa-download mr-2"></i> Download Service Details
-        </button>
-        <p class="mt-4 reorganize text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
-        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
-    </div>
-
-    <!-- Combined Details Popup (Price List & T&C) -->
-    <div id="detailsPopup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Service Pricing & Warranty Details</h2>
-        
-        <h3 class="text-xl font-bold text-secondary mt-6 mb-3">Service Price List</h3>
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-bg-card rounded-lg border border-primary text-text-light">
-                <thead>
-                    <tr class="text-left text-secondary border-b-2 border-primary">
-                        <th class="py-3 px-4 border-b border-text-subtle">Service</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Our Price</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Market Price (Est.)</th>
-                    </tr>
-                </thead>
-                <tbody id="detailsTableBody" class="text-text-light">
-                    <!-- Data will be populated by JS -->
-                </tbody>
-            </table>
-        </div>
-
-        <h3 class="text-xl font-bold text-secondary mt-8 mb-3">Warranty & Terms</h3>
-        <div class="text-text-subtle text-base space-y-4 pr-3">
-            <ul class="list-disc list-inside space-y-3">
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-shield-alt mr-2"></i> Service Warranty</li>
-                <li>**1 month service warranty** is provided on all repair and cleaning services.</li>
-                <li>**3 months fitting warranty** is provided on installation.</li>
-
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-money-check-alt mr-2"></i> Pricing</li>
-                <li>The prices mentioned above are for **labor/service charges only**. If parts (like PCB, motor, Ducting material) are required, their **extra cost** will be quoted on-site.</li>
-                
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-wrench mr-2"></i> Installation/Repair</li>
-                <li>Installation charge includes **fixing the chimney to the wall**, but excludes Ducting material (pipe, elbow).</li>
-                <li>Deep Cleaning includes **cleaning of Chimney Filters and Motor Casing**.</li>
-            </ul>
-        </div>
-        <button id="close-details-btn" class="close-btn mt-4">Close Details</button>
-    </div>
-    
-   
-    <script>
-        // --- Service Data (Adapted for Chimney) ---
-        const chimneyServiceData = [
-            { "Category": "Chimney Deep Cleaning", "Price": 1199, "MarketPrice": 1500, "Icon": "fas fa-spray-can", "Page": "chimney_clean.html" },
-            { "Category": "Chimney Installation (Basic)", "Price": 599, "MarketPrice": 850, "Icon": "fas fa-fan", "Page": "chimney_install.html" },
-            { "Category": "Chimney Repair/Diagnosis", "Price": 299, "MarketPrice": 450, "Icon": "fas fa-magnifying-glass-chart", "Page": "chimney_repair.html" },
-            { "Category": "Ducting Installation/Change", "Price": 499, "MarketPrice": 700, "Icon": "fas fa-pipe", "Page": "chimney_ducting.html" },
-            { "Category": "Filter Mesh Replacement", "Price": 199, "MarketPrice": 400, "Icon": "fas fa-filter-circle-xmark", "Page": "filter_replace.html" },
-            { "Category": "Motor Winding/Repair", "Price": 799, "MarketPrice": 1100, "Icon": "fas fa-wind", "Page": "motor_repair.html" },
-        ];
-        
-        // --- Google Sheet Constants ---
-        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
-        const BOOKING_CHARGE = 99; // Fixed booking charge
-        
-        // --- DOM Element Selection ---
-        const participateBtn = document.getElementById('participate-btn');
-        const popupOverlay = document.getElementById('popup-overlay');
-        const allPopups = document.querySelectorAll('.popup');
-        const popupForm = document.getElementById('popupForm');
-        const paymentStep = document.getElementById('paymentStep');
-        const ticketStep = document.getElementById('ticketStep');
-        const timerDisplay = document.getElementById('timerDisplay');
-        const razorpayBtn = document.getElementById('razorpay-payment-btn');
-        const submitMessage = document.getElementById('submitMessage');
-        const serviceSelectionPopup = document.getElementById('serviceSelectionPopup');
-        const serviceCardsContainer = document.getElementById('serviceCardsContainer'); 
-        const selectedServicesSummary = document.getElementById('selectedServicesSummary'); 
-        const selectedServicesHiddenField = document.getElementById('selectedServicesHiddenField'); 
-        const calculatedPriceDisplay = document.getElementById('calculated-price');
-        const paymentSummary = document.getElementById('paymentSummary');
-        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
-        const welcomeMessage = document.getElementById('welcomeMessage');
-        const displayPriceElement = document.getElementById('displayPrice');
-        const finalPriceInput = document.getElementById('finalPrice');
-        const form = document.getElementById('lotteryForm');
-        const okayBtn = document.getElementById('okayBtn');
-        const selectedServicesDisplay = document.getElementById('selectedServicesDisplay');
-        const originalPriceDisplay = document.getElementById('originalPriceDisplay');
-        
-        const detailsPopup = document.getElementById('detailsPopup'); // NEW
-        const detailsTableBody = document.getElementById('detailsTableBody'); // NEW
-        const viewDetailsLink = document.getElementById('view-details-link'); // NEW
-
-        // --- State Variables ---
-        let generatedTicket = ''; 
-        let countdownInterval = null;
-        const PAYMENT_TIME_LIMIT = 5 * 60;
-        let currentServicePrice = 0; // Actual total service cost
-        let allowClose = false;
-        const LOCAL_STORAGE_KEY = 'chimneyServiceFormData'; 
-        let selectedCategoriesState = []; // Array to hold the categories selected inside the popup (persistent state)
-
-        // --- Local Storage Functions (kept client-side) ---
-        function saveFormData() {
-            const formData = {
-                fullName: form.fullName.value,
-                phone: form.phone.value,
-                email: form.email.value,
-                location: form.location.value,
-                address: form.address.value,
-                selectedServices: selectedServicesHiddenField.value
-            };
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+            `).join('');
         }
 
-        function loadFormData() {
-            const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                form.fullName.value = data.fullName || '';
-                form.phone.value = data.phone || '';
-                form.email.value = data.email || '';
-                form.location.value = data.location || '';
-                form.address.value = data.address || '';
-                if (data.selectedServices) {
-                    selectedCategoriesState = data.selectedServices.split(', ').filter(s => s);
-                    updatePrices();
-                }
-            }
-        }
-        
-        // --- Selection Popup Control (Client-side UI logic) ---
-
-        function openServiceSelectionPopup() {
-            generateServiceCards();
-            // Match checkboxes in the popup to the current persistent state
-            serviceCardsContainer.querySelectorAll('input[name="chimneyServiceCategory"]').forEach(checkbox => {
-                const category = checkbox.value;
-                checkbox.checked = selectedCategoriesState.includes(category);
-                
-                // Manually trigger visual update for initial state
-                const cardWrapper = checkbox.closest('.service-card-wrapper');
-                updateCardVisuals(cardWrapper, checkbox.checked);
-            });
-            openPopup(serviceSelectionPopup);
-        }
-
-        function closeServiceSelectionPopup() {
-            serviceSelectionPopup.style.display = 'none';
+        function addToCart(serviceId) {
+            const service = services.find(s => s.id === serviceId);
+            const existingItem = cart.find(item => item.id === serviceId);
             
-            if (popupForm.style.display === 'block') {
-                popupOverlay.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+            if (existingItem) {
+                existingItem.quantity += 1;
             } else {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                cart.push({ ...service, quantity: 1 });
             }
+            
+            updateCartUI();
+            showCartPopup();
         }
-        
-        function applyServiceSelection() {
-            // Read state from checkboxes inside the popup
-            const selectedCheckboxes = Array.from(serviceCardsContainer.querySelectorAll('input[name="chimneyServiceCategory"]:checked'));
-            
-            // Update persistent state
-            selectedCategoriesState = selectedCheckboxes.map(cb => cb.value);
 
-            // Update prices and main form display
-            updatePrices();
-            
-            closeServiceSelectionPopup(); 
-            
-            // Manually ensure the main form remains visible after closing selection popup 
-            if (participateBtn.textContent.includes('₹99')) {
-                popupForm.style.display = 'block';
-                popupOverlay.style.display = 'block';
+        function removeFromCart(serviceId) {
+            cart = cart.filter(item => item.id !== serviceId);
+            updateCartUI();
+            if (cart.length === 0) {
+                hideCartPopup();
             }
         }
 
-        // --- Core Functions ---
-
-        function generateServiceCards() {
-            serviceCardsContainer.innerHTML = '';
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutTotal = document.getElementById('checkout-total');
+            const proceedBtn = document.getElementById('proceed-checkout');
             
-            chimneyServiceData.forEach((service, index) => {
-                const detailPageUrl = service.Page || `service_details_default.html?service=${encodeURIComponent(service.Category)}`;
-                const isChecked = selectedCategoriesState.includes(service.Category);
-                
-                // NOTE: Using a placeholder image for the chimney card background
-                const cardHtml = `
-                    <div class="service-card-wrapper" data-category="${service.Category}" data-price="${service.Price}">
-                        <label class="block h-full cursor-pointer"> 
-                            <div id="card-${index}" class="service-card p-3 rounded-xl border-2 transition duration-300 transform hover:scale-[1.02] 
-                                border-text-subtle/50 hover:border-primary/80" 
-                                style="background-image: url('https://placehold.co/400x200/4F46E5/FFFFFF/png?text=Chimney'); 
-                                background-color: ${isChecked ? 'rgba(59, 130, 246, 0.7)' : 'rgba(0, 0, 0, 0.5)'};">
-                                
-                                <input type="checkbox" id="service-checkbox-${index}" name="chimneyServiceCategory" 
-                                       value="${service.Category}" data-price="${service.Price}" class="hidden" ${isChecked ? 'checked' : ''}>
-                                
-                                <div class="flex items-start justify-between mb-2">
-                                    <div class="flex items-center">
-                                        <div class="service-icon-container">
-                                            <i class="${service.Icon} text-lg"></i> 
-                                        </div>
-                                        <h4 class="text-base font-semibold text-white">${service.Category}</h4>
-                                    </div>
-                                    <i class="fas fa-check-circle text-xl card-check-icon ${isChecked ? 'text-white' : 'text-gray-200'}"></i>
-                                </div>
-                                
-                                <p class="text-xs text-yellow-300 font-bold mb-2">Cost: ₹${service.Price}</p>
-                                
-                                <a href="${detailPageUrl}" target="_blank"
-                                   onclick="event.stopPropagation(); showCustomAlert('This button will take you to the detailed information page for ${service.Category}.');"
-                                   class="btn-see-more py-1 px-3 rounded-full text-xs font-bold inline-flex items-center justify-center w-full mt-2 transition duration-200 hover:bg-[#2563EB]">
-                                    <i class="fas fa-search-plus mr-1"></i> See More
-                                </a>
-                            </div>
-                        </label>
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Calculate payment amount (₹1 for demo service, ₹99 for regular services)
+            const hasDemo = cart.some(item => item.isDemo);
+            const payAmount = hasDemo && cart.length === 1 && cart[0].isDemo ? 1 : 99;
+            
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+                cartCount.classList.add('cart-badge');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+            
+            cartItems.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="flex-1">
+                        <h5 class="font-semibold text-sm">${item.name}</h5>
+                        <p class="text-gray-600 text-xs">₹${item.price.toLocaleString()} x ${item.quantity}</p>
                     </div>
-                `;
-                serviceCardsContainer.insertAdjacentHTML('beforeend', cardHtml);
-            });
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold">₹${(item.price * item.quantity).toLocaleString()}</span>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
             
-            // Explicitly attach change listener to checkbox for robust functionality 
-             serviceCardsContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                checkbox.addEventListener('change', (e) => {
-                    const cardWrapper = e.target.closest('.service-card-wrapper');
-                    updateCardVisuals(cardWrapper, e.target.checked);
-                });
-            });
-        }
-
-        function updateCardVisuals(wrapper, isChecked) {
-            const card = wrapper.querySelector('.service-card');
-            const checkIcon = wrapper.querySelector('.card-check-icon');
+            cartTotal.textContent = totalAmount.toLocaleString();
+            checkoutTotal.textContent = totalAmount.toLocaleString();
             
-            if (isChecked) {
-                card.style.backgroundImage = 'url(\'drng1.png\')'; 
-                card.style.backgroundColor = 'rgba(59, 130, 246, 0.7)'; 
-                card.classList.add('border-primary', 'shadow-lg', 'shadow-primary/30');
-                card.classList.remove('border-text-subtle/50', 'hover:border-primary/80');
-                checkIcon.classList.remove('text-gray-200');
-                checkIcon.classList.add('text-white'); 
-            } else {
-                card.style.backgroundImage = 'url(\'https://placehold.co/400x200/4F46E5/FFFFFF/png?text=Chimney\')'; 
-                card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
-                card.classList.remove('border-primary', 'shadow-lg', 'shadow-primary/30');
-                card.classList.add('border-text-subtle/50', 'hover:border-primary/80');
-                checkIcon.classList.remove('text-white'); 
-                checkIcon.classList.add('text-gray-200');
+            // Update payment amount displays
+            const cartPayNow = document.getElementById('cart-pay-now');
+            const checkoutPayNow = document.getElementById('checkout-pay-now');
+            const cartButtonText = document.getElementById('cart-button-text');
+            const checkoutButtonText = document.getElementById('checkout-button-text');
+            const paymentNote = document.getElementById('payment-note');
+            const remainingAmount = totalAmount - payAmount;
+            
+            if (cartPayNow) cartPayNow.textContent = payAmount.toLocaleString();
+            if (checkoutPayNow) checkoutPayNow.textContent = payAmount.toLocaleString();
+            
+            // Update remaining payment displays
+            const cartRemaining = document.getElementById('cart-remaining');
+            const checkoutRemaining = document.getElementById('checkout-remaining');
+            const remainingPaymentRow = document.getElementById('remaining-payment-row');
+            const checkoutRemainingRow = document.getElementById('checkout-remaining-row');
+            const remainingNote = document.getElementById('remaining-note');
+            
+            if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${payAmount.toLocaleString()}`;
+            if (checkoutButtonText) checkoutButtonText.textContent = `Pay Booking Amount ₹${payAmount.toLocaleString()}`;
+            if (remainingPaymentRow) remainingPaymentRow.style.display = 'flex';
+            if (checkoutRemainingRow) checkoutRemainingRow.style.display = 'flex';
+            if (cartRemaining) cartRemaining.textContent = remainingAmount.toLocaleString();
+            if (checkoutRemaining) checkoutRemaining.textContent = remainingAmount.toLocaleString();
+            if (remainingNote) remainingNote.textContent = 'Remaining amount will be collected after service completion';
+            
+            // Update payment note
+            if (paymentNote) {
+                paymentNote.textContent = `Booking amount ₹${payAmount}. Remaining ₹${remainingAmount.toLocaleString()} will be collected after service completion.`;
             }
-        }
-
-        function updatePrices() {
-            // Calculate total based on the persistent state (selectedCategoriesState)
-            const selectedChimneyServices = chimneyServiceData.filter(service => 
-                selectedCategoriesState.includes(service.Category)
-            );
             
-            // Calculate actual total service price (for one unit, simplified as per AC file)
-            currentServicePrice = selectedChimneyServices.reduce((total, service) => total + service.Price, 0);
+            proceedBtn.disabled = cart.length === 0;
+        }
 
-            // Fixed final payment amount
-            const finalPaymentAmount = (currentServicePrice > 0) ? BOOKING_CHARGE : 0;
+        function showCartPopup() {
+            document.getElementById('cart-popup').classList.remove('hidden');
+        }
+
+        function hideCartPopup() {
+            document.getElementById('cart-popup').classList.add('hidden');
+        }
+
+        function showCheckoutPopup() {
+            hideCartPopup();
+            document.getElementById('checkout-popup').classList.remove('hidden');
+        }
+
+        function hideCheckoutPopup() {
+            document.getElementById('checkout-popup').classList.add('hidden');
+        }
+
+        // Razorpay payment integration
+        function initiatePayment(customerData) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
-            // Update selected services display
-            const selectedNames = selectedCategoriesState;
-            if (selectedNames.length > 0) {
-                const namesString = selectedNames.join(', ');
-                
-                // Update hidden field for submission
-                selectedServicesHiddenField.value = namesString;
-
-                // Update display in the main booking form
-                selectedServicesSummary.textContent = namesString; 
-                selectedServicesDisplay.textContent = namesString; 
-                
-                originalPriceDisplay.textContent = `Actual Service Cost: ₹${currentServicePrice}`;
-                displayPriceElement.textContent = `₹${BOOKING_CHARGE} Booking Charge`;
-                calculatedPriceDisplay.textContent = `₹${BOOKING_CHARGE}`;
-                finalPriceInput.value = BOOKING_CHARGE;
-                
-                participateBtn.innerHTML = `<i class="fas fa-screwdriver-wrench"></i> Book Chimney Service: ₹${BOOKING_CHARGE}`;
-            } else {
-                selectedServicesHiddenField.value = '';
-                selectedServicesSummary.textContent = 'Click to select service(s)';
-                selectedServicesDisplay.textContent = 'Click to Select Service(s)'; 
-                originalPriceDisplay.textContent = 'Actual Service Cost: N/A';
-                displayPriceElement.textContent = `₹99 Booking Charge`;
-                calculatedPriceDisplay.textContent = `₹0`;
-                finalPriceInput.value = 0; 
-                
-                participateBtn.innerHTML = `<i class="fas fa-screwdriver-wrench"></i> Book Chimney Service`;
-            }
-        }
-
-        function generateFormattedTicket() {
-            return 'CHIMNEY-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-                const r = Math.random() * 16 | 0;
-                const v = c === 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            }).toUpperCase();
-        }
-
-        function downloadTickets() {
-            const selectedChimneyServiceCategoryNames = selectedServicesHiddenField.value;
-            const totalServiceCost = currentServicePrice;
-            const amountPaid = BOOKING_CHARGE;
-            const remainingAmount = totalServiceCost - amountPaid;
+            // Payment amount: ₹1 for demo service only, ₹99 for regular services
+            const hasDemo = cart.some(item => item.isDemo);
+            const payAmount = hasDemo && cart.length === 1 && cart[0].isDemo ? 1 : 99;
             
-            const ticketContent = `PREMIUM CHIMNEY SERVICE BOOKING DETAILS\n\n` +
-                                 `Customer Name: ${form.fullName.value}\n` +
-                                 `Contact: ${form.phone.value}\n` +
-                                 `Location: ${form.location.value}\n` +
-                                 `Service(s) Booked: ${selectedChimneyServiceCategoryNames}\n` +
-                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
-                                 `Total Service Cost (Estimated): ₹${totalServiceCost}\n` +
-                                 `Booking Charge Paid: ₹${amountPaid}\n` +
-                                 `Remaining Balance Due: ₹${remainingAmount > 0 ? remainingAmount : 0}\n\n` +
-                                 `--- IMPORTANT NOTE ---\n` +
-                                 `The remaining amount must be paid to the technician after service delivery.\n` +
-                                 `Final charges for parts (e.g., motor, PCB, ducting) and additional labor will be communicated by the technician after an on-site diagnosis.`;
-            
-            const blob = new Blob([ticketContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `chimney_service_booking_${generatedTicket.substring(0, 8)}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-        
-        function showCustomAlert(message) {
-            const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert'; 
-            alertBox.textContent = message;
-            document.body.appendChild(alertBox);
-            setTimeout(() => alertBox.remove(), 4000); 
-        }
-
-        // --- Popup Control Functions (AC Style) ---
-        function closeAllPopups() {
-            if (!allowClose) {
-                showCustomAlert("Please complete the booking process before closing.");
-                return;
-            }
-            clearTimers();
-            popupOverlay.style.display = 'none';
-            allPopups.forEach(p => p.style.display = 'none');
-            document.body.style.overflow = 'auto';
-            allowClose = false; 
-        }
-
-        function openPopup(popupElement) {
-            document.body.style.overflow = 'hidden';
-            popupOverlay.style.display = 'block';
-            allPopups.forEach(p => p.style.display = 'none');
-            popupElement.style.display = 'block';
-            allowClose = false;
-        }
-        
-        function closeSpecificPopup(popupElement) {
-            popupElement.style.display = 'none';
-            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
-            if (!isAnotherPopupOpen) {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-        
-        function clearTimers() {
-            if (countdownInterval) clearInterval(countdownInterval);
-        }
-
-        function startPaymentTimer() {
-            let timeLeft = PAYMENT_TIME_LIMIT;
-            const updateDisplay = () => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            };
-            updateDisplay();
-
-            countdownInterval = setInterval(() => {
-                timeLeft--;
-                updateDisplay();
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    showCustomAlert("Payment time expired. Please try again.");
-                    allowClose = true; 
-                    closeAllPopups();
-                }
-            }, 1000);
-        }
-
-        // NEW function to populate the combined details table
-        function populateDetailsPopup() {
-            detailsTableBody.innerHTML = '';
-            chimneyServiceData.forEach(service => {
-                const row = `
-                    <tr class="text-text-light hover:bg-[#F9FAFB]">
-                        <td class="py-3 px-4 border-b border-text-subtle/50">${service.Category}</td>
-                        <td class="py-3 px-4 border-b border-text-subtle/50 text-right font-semibold text-secondary">₹${service.Price}</td>
-                        <td class="py-3 px-4 border-b border-text-subtle/50 text-right text-text-subtle line-through">₹${service.MarketPrice}</td>
-                    </tr>
-                `;
-                detailsTableBody.insertAdjacentHTML('beforeend', row);
-            });
-        }
-
-        // --- Payment and Submission Logic (AC Style) ---
-        
-        function handleFormSubmit(e) {
-            e.preventDefault();
-
-            // Validation 
-            const selectedCategoryNames = selectedServicesHiddenField.value;
-            if (!selectedCategoryNames) { showCustomAlert("Please select at least one Chimney Service."); return; }
-            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
-            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location/landmark name."); return; }
-            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
-            if (currentServicePrice <= 0) { showCustomAlert("Please select a valid service before proceeding with the booking."); return; }
-            
-            submitMessage.style.display = 'block';
-            form.querySelector('button[type="submit"]').disabled = true;
-
-            generatedTicket = generateFormattedTicket(); 
-            
-            const finalPaymentAmount = BOOKING_CHARGE; // Fixed at 99
-            const totalServiceCost = currentServicePrice; 
-            const serviceCount = selectedCategoryNames.split(',').length;
-
-            // --- Form Data for Google Sheet ---
-            const formData = new FormData();
-            formData.append('field1', form.fullName.value); 
-            formData.append('field2', form.phone.value);    
-            formData.append('field3', form.email.value);    
-            formData.append('field4', selectedCategoryNames); // Service Details
-            formData.append('field5', form.location.value); 
-            formData.append('field6', form.address.value);  
-            formData.append('ticket', generatedTicket);     
-            formData.append('tab', 'chimney-service');           
-            formData.append('serviceType', 'Chimney Service');   
-            formData.append('servicePrice', totalServiceCost); 
-            formData.append('ticketQuantity', serviceCount); 
-            formData.append('finalPrice', finalPaymentAmount); 
-
-            // --- Google Script URL ---
-            fetch(GOOGLE_SHEET_URL, {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.text())
-            .then(res => {
-                if (res.includes("Success") || res.includes("success")) { 
-                    saveFormData(); 
-                    
-                    popupForm.style.display = 'none';
-                    openPopup(paymentStep);
-                    
-                    const remainingAmount = totalServiceCost - finalPaymentAmount;
-
-                    paymentSummary.innerHTML = `
-                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
-                        <p class="text-text-light text-base mb-1">Service(s): <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
-                        <p class="text-text-light text-base mb-3">Actual Service Cost: <span class="font-bold text-secondary">₹${totalServiceCost}</span></p>
-                        <p class="current-price text-secondary text-3xl font-bold">Total Payable Today: ₹${finalPaymentAmount}</p>
-                        <p class="text-text-subtle text-sm mt-2">This is the ₹99 booking fee. The remaining amount of 
-                        <span class="font-bold text-primary">₹${remainingAmount > 0 ? remainingAmount : 0}</span> 
-                        must be paid to the technician after service completion.</p>
-                    `;
-                    startPaymentTimer();
-                    razorpayBtn.textContent = `Pay ₹${finalPaymentAmount} Now`;
-                } else {
-                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
-                }
-            })
-            .catch(err => {
-                console.error("Submission error:", err);
-                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
-            })
-            .finally(() => {
-                submitMessage.style.display = 'none';
-                form.querySelector('button[type="submit"]').disabled = false;
-            });
-        }
-
-        function handleRazorpayPayment() {
-            const finalPaymentAmount = finalPriceInput.value; 
-             if (finalPaymentAmount == 0) {
-                showCustomAlert("Please select a service for booking.");
-                return;
-            }
-
-            const selectedCategoryNames = selectedServicesHiddenField.value;
-
             const options = {
-                "key": "rzp_live_RLjzp7VlXERwiG", // Placeholder Key
-                "amount": finalPaymentAmount * 100, 
-                "currency": "INR",
-                "name": `SonipatHomeService - Chimney Service Booking`,
-                "description": `Booking Charge for Chimney Service(s): ${selectedCategoryNames}`,
-                "image": `https://placehold.co/100x100/F4F7FB/3B82F6?text=CHIMNEY`, 
-                "handler": function (response){
-                    console.log("Payment successful:", response.razorpay_payment_id);
-                    paymentSuccess(response.razorpay_payment_id);
+                key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
+                amount: payAmount * 100, // Amount in paise
+                currency: 'INR',
+                name: 'Chimney Service Pro',
+                description: 'Chimney Service Booking',
+                image: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiMxMGI5ODEiPjxwYXRoIGQ9Ik0xMiwyTDEzLjA5LDguMjZMMjIsOUwxMy4wOSw5Ljc0TDEyLDE2TDEwLjkxLDkuNzRMMiw5TDEwLjkxLDguMjZMMTIsMk0xMiwyMS41QzEyLDIxLjUgOC41LDE5LjUgOC41LDE2LjVDOC41LDEzLjUgMTIsMTIgMTIsMTJTMTUuNSwxMy41IDE1LjUsMTYuNUMxNS41LDE5LjUgMTIsMjEuNSAxMiwyMS41WiIvPjwvc3ZnPg==',
+                prefill: {
+                    name: customerData.name,
+                    email: customerData.email,
+                    contact: customerData.mobile
                 },
-                "prefill": {
-                    "name": form.fullName.value,
-                    "email": form.email.value,
-                    "contact": form.phone.value
+                theme: {
+                    color: '#10b981'
                 },
-                "notes": {
-                    "address": `${form.location.value}, ${form.address.value}`,
-                    "service_details": selectedCategoryNames,
-                    "booking_ref": generatedTicket,
-                    "actual_cost": currentServicePrice,
+                handler: function(response) {
+                    // Payment successful
+                    submitToGoogleSheets(customerData, response.razorpay_payment_id);
                 },
-                "theme": { "color": "#3B82F6" }, 
-                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+                modal: {
+                    ondismiss: function() {
+                        // Payment cancelled
+                        console.log('Payment cancelled');
+                    }
+                }
             };
-
+            
             const rzp = new Razorpay(options);
-            rzp.on('payment.failed', response => {
-                console.error("Payment Failed:", response.error);
-                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
-            });
             rzp.open();
         }
 
-        function paymentSuccess(paymentId) {
-            clearTimers();
-            paymentStep.style.display = 'none';
-            openPopup(ticketStep);
+        // Google Sheets integration
+        async function submitToGoogleSheets(customerData, paymentId) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const hasDemo = cart.some(item => item.isDemo);
+            const payAmount = hasDemo && cart.length === 1 && cart[0].isDemo ? 1 : 99; // ₹1 for demo, ₹99 for regular
+            const remainingAmount = totalAmount - payAmount;
             
-            const userName = form.fullName.value.split(' ')[0];
-            const selectedCategoryNames = selectedServicesHiddenField.value;
-            
-            const totalServiceCost = currentServicePrice; 
-            const amountPaid = finalPriceInput.value; 
-            const remainingAmount = totalServiceCost - amountPaid; 
+            const formData = new FormData();
+            formData.append('timestamp', new Date().toLocaleString('en-IN'));
+            formData.append('customerName', customerData.name);
+            formData.append('mobile', customerData.mobile);
+            formData.append('email', customerData.email);
+            formData.append('address', customerData.address);
+            formData.append('landmark', customerData.landmark || '');
+            formData.append('pincode', customerData.pincode);
+            formData.append('orderItems', cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', '));
+            formData.append('totalAmount', totalAmount);
+            formData.append('paidAmount', payAmount);
+            formData.append('remainingAmount', remainingAmount);
+            formData.append('paymentId', paymentId);
+            formData.append('status', 'Chimney Service Booking Confirmed - Remaining Payment After Service');
 
-            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
-            
-            const remainingText = remainingAmount > 0 
-                ? `The remaining ₹${remainingAmount} is due to the technician after service completion.`
-                : `The booking charge of ₹${amountPaid} covers the full service cost.`;
-
-            ticketDisplay.innerHTML = `
-                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p>Selected Service(s): <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
-                <p>Total Estimated Service Cost: <span class="font-bold text-secondary">₹${totalServiceCost}</span></p>
-                <p class="text-primary text-lg font-bold mt-3">Paid Today (Booking Charge): ₹${amountPaid}</p>
+            try {
+                // Show loading state
+                showLoadingMessage();
                 
-                <div class="mt-4 p-3 rounded-lg bg-bg-dark border border-secondary">
-                    <p class="text-text-light font-semibold">Final Payment Instruction:</p>
-                    <p class="text-sm text-text-subtle mt-1">
-                        Your total service cost was ₹${totalServiceCost}. 
-                        ${remainingText}
-                    </p>
-                </div>
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec', {
+                    method: 'POST',
+                    body: formData
+                });
 
-                <p class="text-text-subtle text-sm mt-3">Our technician will contact you shortly to schedule the service at your location: ${form.location.value}.</p>
-                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
-            `;
-            
-            allowClose = true;
-        }
-        
-        // --- Event Listeners Initialization ---
-        participateBtn.addEventListener('click', () => {
-            updatePrices();
-            openPopup(popupForm);
-        });
-        
-        viewDetailsLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            populateDetailsPopup();
-            openPopup(detailsPopup);
-        });
-        
-        popupOverlay.addEventListener('click', e => {
-            if (e.target === popupOverlay) {
-                if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
-                else if (serviceSelectionPopup.style.display === 'block') closeSpecificPopup(serviceSelectionPopup);
-                else if (detailsPopup.style.display === 'block') closeSpecificPopup(detailsPopup);
-                else if (paymentStep.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
-                else if (popupForm.style.display === 'block') closeAllPopups();
+                // Hide loading and show success
+                hideLoadingMessage();
+                hideCheckoutPopup();
+                showSuccessMessage();
+                cart = [];
+                updateCartUI();
+                
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                hideLoadingMessage();
+                showErrorMessage();
             }
+        }
+
+        function showLoadingMessage() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = 'loading-message';
+            loadingDiv.className = 'fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50';
+            loadingDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    <div>
+                        <p class="font-semibold">Processing...</p>
+                        <p class="text-sm">Saving your service booking</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(loadingDiv);
+        }
+
+        function hideLoadingMessage() {
+            const loadingDiv = document.getElementById('loading-message');
+            if (loadingDiv) {
+                loadingDiv.remove();
+            }
+        }
+
+        function showSuccessMessage() {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50';
+            successDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl">✅</span>
+                    <div>
+                        <p class="font-semibold">Booking Successful!</p>
+                        <p class="text-sm">Your chimney service booking confirmed.</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 5000);
+        }
+
+        function showErrorMessage() {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50';
+            errorDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl">❌</span>
+                    <div>
+                        <p class="font-semibold">Error!</p>
+                        <p class="text-sm">Please try again or contact support.</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            renderServices();
+            updateCartUI();
+
+            // Cart button
+            document.getElementById('cart-btn').addEventListener('click', showCartPopup);
+            
+            // Close buttons
+            document.getElementById('close-cart').addEventListener('click', hideCartPopup);
+            document.getElementById('close-checkout').addEventListener('click', hideCheckoutPopup);
+            
+            // Proceed to checkout
+            document.getElementById('proceed-checkout').addEventListener('click', showCheckoutPopup);
+            
+            // Checkout form
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const customerData = {
+                    name: document.getElementById('customer-name').value,
+                    mobile: document.getElementById('mobile-number').value,
+                    email: document.getElementById('email-id').value,
+                    address: document.getElementById('full-address').value,
+                    landmark: document.getElementById('landmark').value,
+                    pincode: document.getElementById('pincode').value
+                };
+                
+                initiatePayment(customerData);
+            });
+
+            // Close popups when clicking outside
+            document.getElementById('cart-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCartPopup();
+            });
+            
+            document.getElementById('checkout-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCheckoutPopup();
+            });
         });
 
-        // Close button for final ticket step
-        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
-        // Close button for details popup
-        document.getElementById('close-details-btn').addEventListener('click', () => closeSpecificPopup(detailsPopup));
-        // Close button for service selection popup
-        document.getElementById('closeSelectionBtn').addEventListener('click', () => closeSpecificPopup(serviceSelectionPopup));
+        // Element SDK integration
+        async function onConfigChange(config) {
+            const companyNameElement = document.querySelector('#company-name a');
+            if (companyNameElement) {
+                companyNameElement.textContent = config.company_name || defaultConfig.company_name;
+            }
+            document.getElementById('customer-care').textContent = `📞 ${config.customer_care || defaultConfig.customer_care}`;
+            document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
+            document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
+            document.getElementById('footer-phone').textContent = config.customer_care || defaultConfig.customer_care;
+            document.getElementById('footer-email').textContent = config.email_address || defaultConfig.email_address;
+        }
 
-        document.getElementById('applySelectionBtn').addEventListener('click', applyServiceSelection);
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
 
-        document.getElementById('serviceSelectionDisplayWrapper').addEventListener('click', openServiceSelectionPopup);
-        razorpayBtn.addEventListener('click', handleRazorpayPayment);
-        downloadTicketsBtn.addEventListener('click', downloadTickets);
-        form.addEventListener('submit', handleFormSubmit);
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["company_name", config.company_name || defaultConfig.company_name],
+                ["customer_care", config.customer_care || defaultConfig.customer_care],
+                ["email_address", config.email_address || defaultConfig.email_address],
+                ["office_address", config.office_address || defaultConfig.office_address]
+            ]);
+        }
 
-        // --- Page Load Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePrices(); 
-            loadFormData(); 
-        });
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
     </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'996758b435d91c49',t:'MTc2MTc4OTkxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
