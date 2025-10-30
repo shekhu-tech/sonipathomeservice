@@ -340,16 +340,6 @@
         // Sewerage Unblock Services data
         const services = [
             {
-                id: 1,
-                name: "Demo Category - Payment Test",
-                price: 1,
-                originalPrice: null,
-                icon: "🧪",
-                description: "Test payment gateway functionality (Demo only)",
-                details: "Demo service for testing",
-                isDemo: true
-            },
-            {
                 id: 2,
                 name: "Indoor Unblocking",
                 price: 499,
@@ -448,8 +438,7 @@
             
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? 1 : 99; // Always ₹99 for real services, ₹1 for demo
+            const payAmount = 99; // Always ₹99 advance payment for all services
             
             if (totalItems > 0) {
                 cartCount.textContent = totalItems;
@@ -488,17 +477,13 @@
             
             if (cartPayNow) cartPayNow.textContent = payAmount;
             if (checkoutPayNow) checkoutPayNow.textContent = payAmount;
-            if (cartButtonText) cartButtonText.textContent = hasDemo ? `Test Payment - Pay ₹${payAmount}` : `Book Service - Pay ₹${payAmount}`;
-            if (checkoutButtonText) checkoutButtonText.textContent = hasDemo ? `Pay ₹${payAmount} (Demo Test)` : `Pay ₹${payAmount}`;
+            if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${payAmount}`;
+            if (checkoutButtonText) checkoutButtonText.textContent = `Pay ₹${payAmount}`;
             
             // Update payment note
             if (paymentNote) {
-                if (hasDemo) {
-                    paymentNote.textContent = "This is a demo payment to test the gateway functionality.";
-                } else {
-                    const remainingAmount = totalAmount - 99;
-                    paymentNote.textContent = `₹99 advance payment. Remaining amount (₹${remainingAmount}) will be collected on-site after service completion.`;
-                }
+                const remainingAmount = totalAmount - 99;
+                paymentNote.textContent = `₹99 advance payment. Remaining amount (₹${remainingAmount}) will be collected on-site after service completion.`;
             }
             
             proceedBtn.disabled = cart.length === 0;
@@ -524,8 +509,7 @@
         // Razorpay payment integration
         function initiatePayment(customerData) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? 1 : 99; // Always ₹99 for real services, ₹1 for demo
+            const payAmount = 99; // Always ₹99 advance payment for all services
             
             const options = {
                 key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
@@ -561,8 +545,7 @@
         // Google Sheets integration
         async function submitToGoogleSheets(customerData, paymentId) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo ? 1 : 99; // Always ₹99 for real services, ₹1 for demo
+            const payAmount = 99; // Always ₹99 advance payment for all services
             
             // Create URL parameters to match your App Script exactly
             const params = new URLSearchParams({
@@ -576,7 +559,7 @@
                 orderItems: cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', '),
                 totalAmount: totalAmount,
                 paymentId: paymentId,
-                status: hasDemo ? 'Demo Payment Test' : 'Service Booking Confirmed'
+                status: 'Service Booking Confirmed'
             });
 
             try {
@@ -591,7 +574,7 @@
                 // Hide loading and show success
                 hideLoadingMessage();
                 hideCheckoutPopup();
-                showSuccessMessage(hasDemo);
+                showSuccessMessage();
                 cart = [];
                 updateCartUI();
                 
@@ -625,15 +608,15 @@
             }
         }
 
-        function showSuccessMessage(isDemo = false) {
+        function showSuccessMessage() {
             const successDiv = document.createElement('div');
             successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50';
             successDiv.innerHTML = `
                 <div class="flex items-center space-x-2">
                     <span class="text-xl">✅</span>
                     <div>
-                        <p class="font-semibold">${isDemo ? 'Demo Payment Successful!' : 'Payment Successful!'}</p>
-                        <p class="text-sm">${isDemo ? 'Demo test completed successfully.' : 'Your service booking has been confirmed.'}</p>
+                        <p class="font-semibold">Payment Successful!</p>
+                        <p class="text-sm">Your service booking has been confirmed.</p>
                     </div>
                 </div>
             `;
@@ -742,5 +725,5 @@
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9966bd50d5ddc51e',t:'MTc2MTc4MzU1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9966c538f311c51e',t:'MTc2MTc4Mzg3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
