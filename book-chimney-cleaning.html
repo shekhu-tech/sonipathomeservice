@@ -396,26 +396,6 @@
         // Chimney Services data
         const services = [
             {
-                id: 0,
-                name: "Demo Service (Testing)",
-                price: 1,
-                originalPrice: 99,
-                icon: "🧪",
-                description: "Demo service for payment testing only",
-                details: "Payment Test • Demo Only • Not Real Service",
-                features: [
-                    "Payment gateway testing",
-                    "Demo booking process",
-                    "Test transaction only",
-                    "No actual service provided",
-                    "For testing purposes only",
-                    "Sample booking flow",
-                    "Payment integration demo",
-                    "Development testing service"
-                ],
-                isDemo: true
-            },
-            {
                 id: 1,
                 name: "Chimney Repair/Diagnosis",
                 price: 299,
@@ -537,15 +517,14 @@
         function renderServices() {
             const servicesGrid = document.getElementById('services-grid');
             servicesGrid.innerHTML = services.map(service => `
-                <div class="service-card p-6 ${service.isDemo ? 'border-2 border-dashed border-orange-400 bg-orange-50' : ''}">
+                <div class="service-card p-6">
                     <div class="service-card-content">
-                        ${service.isDemo ? '<div class="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full text-center mb-3">DEMO TESTING</div>' : ''}
                         <div class="text-center mb-4">
                             <div class="text-4xl mb-3 icon-hover">${service.icon}</div>
-                            <h4 class="font-bold text-base mb-2 ${service.isDemo ? 'text-orange-800' : 'text-gray-800'} leading-tight">${service.name}</h4>
+                            <h4 class="font-bold text-base mb-2 text-gray-800 leading-tight">${service.name}</h4>
                             <p class="text-gray-600 text-xs mb-2">${service.description}</p>
-                            <p class="${service.isDemo ? 'text-orange-600' : 'text-green-600'} text-xs font-semibold">${service.details}</p>
-                            ${service.isDemo ? '<div class="bg-orange-400 text-white px-2 py-1 rounded text-xs mt-2">Payment Testing Only</div>' : '<div class="warranty-badge mt-2">1 Month Warranty</div>'}
+                            <p class="text-green-600 text-xs font-semibold">${service.details}</p>
+                            <div class="warranty-badge mt-2">1 Month Warranty</div>
                         </div>
                         <div class="mb-4">
                             <ul class="feature-list text-xs text-gray-600">
@@ -600,9 +579,8 @@
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
-            // Calculate payment amount (₹1 for demo service, ₹99 for regular services)
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo && cart.length === 1 && cart[0].isDemo ? 1 : 99;
+            // Calculate payment amount (₹99 booking amount for all services)
+            const payAmount = 99;
             
             if (totalItems > 0) {
                 cartCount.textContent = totalItems;
@@ -687,9 +665,8 @@
         function initiatePayment(customerData) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
-            // Payment amount: ₹1 for demo service only, ₹99 for regular services
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo && cart.length === 1 && cart[0].isDemo ? 1 : 99;
+            // Payment amount: ₹99 booking amount for all services
+            const payAmount = 99;
             
             const options = {
                 key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
@@ -725,8 +702,7 @@
         // Google Sheets integration
         async function submitToGoogleSheets(customerData, paymentId) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const hasDemo = cart.some(item => item.isDemo);
-            const payAmount = hasDemo && cart.length === 1 && cart[0].isDemo ? 1 : 99; // ₹1 for demo, ₹99 for regular
+            const payAmount = 99; // ₹99 booking amount for all services
             const remainingAmount = totalAmount - payAmount;
             
             const formData = new FormData();
@@ -910,5 +886,5 @@
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'996758b435d91c49',t:'MTc2MTc4OTkxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99675f53b656c51e',t:'MTc2MTc5MDE4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
