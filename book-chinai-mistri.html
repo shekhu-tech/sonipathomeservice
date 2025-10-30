@@ -1599,23 +1599,6 @@
       <div class="booking-info">
        Daily Estimation - Material separate
       </div><button class="add-to-cart-btn" onclick="addToCart('Plastering Finishing Work', 899, event)"> Add to Cart </button>
-     </div><!-- Demo Testing Service -->
-     <div class="service-card" style="border: 3px solid #dc2626; background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(185, 28, 28, 0.1) 100%);">
-      <div class="service-name" style="color: #dc2626;">
-       🧪 DEMO - Payment Testing
-      </div>
-      <div class="service-price" style="color: #dc2626;">
-       ₹1 Only
-      </div>
-      <div class="service-details" style="background: rgba(220, 38, 38, 0.1); border-color: rgba(220, 38, 38, 0.3);"><strong style="color: #dc2626;">FOR TESTING PURPOSE ONLY:</strong><br>
-        • Test payment gateway functionality<br>
-        • Demo booking process<br>
-        • Sample service for developers<br>
-        • Not a real service booking
-      </div>
-      <div class="booking-info" style="background: rgba(220, 38, 38, 0.15); border-color: rgba(220, 38, 38, 0.4); color: #dc2626; font-weight: 700;">
-       ⚠️ DEMO ONLY - No actual service provided
-      </div><button class="add-to-cart-btn" onclick="addToCart('DEMO Payment Testing', 1, event)" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);"> Add Demo Service </button>
      </div>
     </div>
    </section><!-- Conditions Section -->
@@ -1949,23 +1932,15 @@
             cartItemsContainer.innerHTML = cartHTML;
             document.getElementById('total-amount').textContent = totalAmount;
             
-            // Check if cart contains only demo service
-            const isDemoOnly = cart.length === 1 && cart[0].name === 'DEMO Payment Testing';
-            const paymentAmount = isDemoOnly ? 1 : 99;
+            // Standard payment amount for all services
+            const paymentAmount = 99;
             const remainingAmount = totalAmount - paymentAmount;
             document.getElementById('remaining-amount').textContent = remainingAmount;
             
-            if (isDemoOnly) {
-                advancePaymentInfo.innerHTML = `
-                    <div style="color: #dc2626; font-weight: 700;">Demo Payment: ₹1</div>
-                    <div style="color: #dc2626; font-size: 1rem;">⚠️ Testing Only - No Service</div>
-                `;
-            } else {
-                advancePaymentInfo.innerHTML = `
-                    <div>Advance Payment: ₹99</div>
-                    <div>Remaining: ₹<span id="remaining-amount">${remainingAmount}</span> (Pay on-site)</div>
-                `;
-            }
+            advancePaymentInfo.innerHTML = `
+                <div>Advance Payment: ₹99</div>
+                <div>Remaining: ₹<span id="remaining-amount">${remainingAmount}</span> (Pay on-site)</div>
+            `;
             advancePaymentInfo.style.display = 'block';
             
             document.getElementById('pay-amount').textContent = paymentAmount;
@@ -2085,8 +2060,7 @@
             }
             
             const totalAmount = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            const isDemoOnly = cart.length === 1 && cart[0].name === 'DEMO Payment Testing';
-            const paymentAmount = isDemoOnly ? 1 : 99; // ₹1 for demo, ₹99 for real services
+            const paymentAmount = 99; // Standard advance payment
             
             // Show loading
             showLoading();
@@ -2197,43 +2171,24 @@
                             "⚠️ Booking saved locally. Please share Payment ID with customer care.";
                         
                         const remainingAmount = totalAmount - paymentAmount;
-                        const isDemoPayment = cart.length === 1 && cart[0].name === 'DEMO Payment Testing';
                         
-                        let successMessage;
-                        if (isDemoPayment) {
-                            successMessage = `
-                                <div style="text-align: center;">
-                                    <div style="font-size: 1.5rem; margin-bottom: 15px; color: #dc2626;">🧪 Demo Payment Successful!</div>
-                                    <div style="margin-bottom: 10px;"><strong>Demo Amount Paid:</strong> ₹${paymentAmount}</div>
-                                    <div style="margin-bottom: 10px;"><strong>Payment ID:</strong> ${response.razorpay_payment_id}</div>
-                                    <div style="background: rgba(220, 38, 38, 0.1); padding: 15px; border-radius: 8px; margin-top: 15px; border: 2px solid rgba(220, 38, 38, 0.3);">
-                                        <div style="color: #dc2626; font-weight: bold; font-size: 1.1rem;">⚠️ DEMO TESTING COMPLETED</div>
-                                        <div style="margin-top: 10px; color: #dc2626;">This was a payment gateway test.</div>
-                                        <div style="color: #dc2626;">No actual service will be provided.</div>
-                                        <div style="margin-top: 10px; color: #dc2626; font-weight: 600;">Payment gateway is working correctly!</div>
-                                        ${sheetSaveSuccess ? '<div style="margin-top: 8px; color: #059669;">✅ Test data saved successfully</div>' : ''}
-                                    </div>
+                        const successMessage = `
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 15px;">🎉 Advance Payment Successful!</div>
+                                <div style="margin-bottom: 10px;"><strong>Total Service Amount:</strong> ₹${totalAmount}</div>
+                                <div style="margin-bottom: 10px;"><strong>Advance Paid:</strong> ₹${paymentAmount}</div>
+                                <div style="margin-bottom: 10px; color: #059669; font-weight: bold;"><strong>Remaining Amount:</strong> ₹${remainingAmount} (Pay on completion)</div>
+                                <div style="margin-bottom: 10px;"><strong>Payment ID:</strong> ${response.razorpay_payment_id}</div>
+                                <div style="margin-bottom: 15px;"><strong>Work Date:</strong> ${formData.preferredDate}</div>
+                                <div style="background: rgba(245, 158, 11, 0.1); padding: 10px; border-radius: 8px; margin-top: 15px;">
+                                    <strong>${sheetStatusMsg}</strong><br>
+                                    हमारी टीम आपसे संपर्क करके काम की पुष्टि करेगी।<br>
+                                    24 घंटे पहले से बुकिंग की आवश्यकता है।<br>
+                                    <strong>बाकी ₹${remainingAmount} काम पूरा होने पर दें।</strong>
+                                    ${!sheetSaveSuccess ? '<br><br><strong>Customer Care:</strong> 8816014071' : ''}
                                 </div>
-                            `;
-                        } else {
-                            successMessage = `
-                                <div style="text-align: center;">
-                                    <div style="font-size: 1.5rem; margin-bottom: 15px;">🎉 Advance Payment Successful!</div>
-                                    <div style="margin-bottom: 10px;"><strong>Total Service Amount:</strong> ₹${totalAmount}</div>
-                                    <div style="margin-bottom: 10px;"><strong>Advance Paid:</strong> ₹${paymentAmount}</div>
-                                    <div style="margin-bottom: 10px; color: #059669; font-weight: bold;"><strong>Remaining Amount:</strong> ₹${remainingAmount} (Pay on completion)</div>
-                                    <div style="margin-bottom: 10px;"><strong>Payment ID:</strong> ${response.razorpay_payment_id}</div>
-                                    <div style="margin-bottom: 15px;"><strong>Work Date:</strong> ${formData.preferredDate}</div>
-                                    <div style="background: rgba(245, 158, 11, 0.1); padding: 10px; border-radius: 8px; margin-top: 15px;">
-                                        <strong>${sheetStatusMsg}</strong><br>
-                                        हमारी टीम आपसे संपर्क करके काम की पुष्टि करेगी।<br>
-                                        24 घंटे पहले से बुकिंग की आवश्यकता है।<br>
-                                        <strong>बाकी ₹${remainingAmount} काम पूरा होने पर दें।</strong>
-                                        ${!sheetSaveSuccess ? '<br><br><strong>Customer Care:</strong> 8816014071' : ''}
-                                    </div>
-                                </div>
-                            `;
-                        }
+                            </div>
+                        `;
                         
                         showMessage('success', successMessage);
                         
@@ -2330,5 +2285,5 @@
             });
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9969045655c3c51e',t:'MTc2MTgwNzQzMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99690c6b923dc51e',t:'MTc2MTgwNzc2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
