@@ -1,1079 +1,860 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - Premium Geyser Service</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
-
-        :root {
-            /* Theme: Deep Space Black, Arctic Teal, and Electric Gold (Consistent with other services) */
-            --bg-dark: #101827; /* Deep Space Black */
-            --bg-card: #1C2738; /* Dark Navy Card */
-            --primary: #52D1DC; /* Arctic Teal Accent (Service Button) */
-            --secondary: #FFD700; /* Electric Gold Accent (Price Highlight/Border) */
-            --text-light: #E0E7FF; /* Off-White Text */
-            --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
-            --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geyser Repair Service - Professional Water Heater Solutions</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
+            box-sizing: border-box;
         }
-
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        /* --- Custom Components --- */
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-depth);
-            transition: var(--transition);
-            border: 1px solid rgba(82, 209, 220, 0.2);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(82, 209, 220, 0.3);
-        }
-
-        .stat-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .stat-card p {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .product-section {
-            background: linear-gradient(135deg, var(--bg-card), #22324C);
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-depth);
-            margin-bottom: 3rem;
-            overflow: hidden;
-            border: 2px solid var(--secondary);
-        }
-
-        .product-header {
-            background: linear-gradient(90deg, #101827, #22324C);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .product-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .product-content {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 3rem;
-            gap: 3rem;
-            align-items: center; 
-            justify-content: center;
-        }
-
-        .product-details {
-            flex: 1; 
-            min-width: 300px;
-            text-align: center; 
-        }
-
-        .price-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-            padding: 1rem 0;
-            border-top: 1px dashed var(--text-subtle);
-            border-bottom: 1px dashed var(--text-subtle);
-            justify-content: center; 
-        }
-
-        .original-price {
-            font-size: 1.2rem;
-            text-decoration: line-through;
-            color: var(--text-subtle);
-            font-weight: 400;
-        }
-
-        .current-price {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--secondary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
+        
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid transparent;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-            justify-content: center;
-            flex-grow: 1;
-            max-width: 300px;
-            min-width: 150px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transform-style: preserve-3d;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.1),
+                0 4px 16px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            margin: 8px;
         }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--bg-dark);
-            border-color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .btn-primary:hover {
-            background: #42C2CC;
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(82, 209, 220, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--secondary);
-            border-color: var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 215, 0, 0.1);
-            transform: scale(1.03);
-        }
-
-        /* --- Popup Styling (Crucial for ProMax look) --- */
-        #popup-overlay {
-            display: none;
-            position: fixed;
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            z-index: 999;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(239,68,68,0.1) 0%, rgba(220,38,38,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
         }
-
-        .popup {
-            display: none;
-            background: var(--bg-card);
-            color: var(--text-light);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-depth);
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            width: 95%;
-            max-width: 650px;
-            max-height: 95vh;
-            overflow-y: auto;
-            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-            border: 1px solid var(--primary);
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-12px) rotateX(3deg) rotateY(3deg) scale(1.01);
+            box-shadow: 
+                0 25px 50px rgba(239,68,68,0.2),
+                0 15px 30px rgba(0,0,0,0.1),
+                0 8px 16px rgba(239,68,68,0.08),
+                inset 0 2px 0 rgba(255,255,255,0.9);
+            border-color: #ef4444;
+        }
+        
+        .service-card-content {
+            position: relative;
+            z-index: 2;
+            transform: translateZ(20px);
+        }
+        
+        .icon-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .icon-hover:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+        }
+        
+        .popup-overlay {
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .popup-content {
+            animation: slideUp 0.3s ease;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        .popup h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--secondary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .popup label {
-            display: block;
-            margin-top: 1rem;
-            margin-bottom: 0.4rem;
-            color: var(--primary);
-            font-size: 0.95rem;
-            font-weight: 500;
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        .popup input,
-        .popup select,
-        .popup textarea {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--text-subtle);
-            font-size: 1rem;
-            background: #22324C;
-            color: var(--text-light);
-            transition: border-color 0.3s ease;
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
-        .popup input:focus,
-        .popup select:focus,
-        .popup textarea:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(82, 209, 220, 0.2);
-        }
-
-        .popup textarea {
-            min-height: 8rem;
-            resize: vertical;
-        }
-
-        .popup button[type="submit"],
-        #razorpay-payment-btn,
-        #downloadTicketsBtn,
-        .popup button.close-btn {
-            width: 100%;
-            padding: 1rem;
-            margin-top: 1.5rem;
-            border-radius: 0.75rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .popup button[type="submit"],
-        #razorpay-payment-btn,
-        #downloadTicketsBtn {
-            background: linear-gradient(45deg, var(--primary), #42C2CC);
-            color: var(--bg-dark);
-        }
-
-        .popup button[type="submit"]:hover,
-        #razorpay-payment-btn:hover,
-        #downloadTicketsBtn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(82, 209, 220, 0.6);
+        .cart-badge {
+            animation: bounce 0.5s ease;
         }
         
-        .quantity-selector-container {
-            background: #22324C;
-            padding: 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--text-subtle);
-        }
-
-        .total-price-quantity {
-            font-size: 1.8rem !important;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--secondary) !important;
-        }
-
-        #selectedServiceCategoriesDisplay {
-            background: var(--bg-dark);
-            color: var(--text-light);
-            border: 1px solid var(--primary);
-            cursor: pointer;
-        }
-
-        #ticketDisplay {
-            background: #22324C;
-            border: 1px solid var(--primary);
-            color: var(--text-light);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            word-break: break-word;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
         
-        /* Custom Alert Styling */
-        .custom-alert {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--primary);
-            color: var(--bg-dark);
-            padding: 1.25rem 1.875rem;
-            border-radius: 0.625rem;
-            z-index: 1002;
-            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
-            font-size: 1rem;
-            text-align: center;
-            max-width: 90%;
-            animation: fadeInOut 4s forwards;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, -40%); }
-            10% { opacity: 1; transform: translate(-50%, -50%); }
-            90% { opacity: 1; transform: translate(-50%, -50%); }
-            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
-        }
-
-        /* Price List Specific */
-        #priceListTableBody tr:nth-child(even) {
-            background-color: #22324C;
-        }
-        #priceListTableBody td {
-            font-family: 'Roboto', sans-serif;
-        }
-        #priceListTableBody .font-semibold {
-            color: var(--secondary);
-            font-weight: 700;
-        }
-
-        /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
-
-        /* Tablet/Desktop Tweaks (1024px and below) */
-        @media (max-width: 1024px) {
-            .product-content { padding: 2rem; flex-direction: column; }
-            .product-details { text-align: center; }
-            .price-container, .action-buttons { justify-content: center; }
-            .btn { max-width: 400px; } 
-            .stat-grid { grid-template-columns: 1fr 1fr; }
-            main { padding: 3rem 1rem; }
-        }
-
-        /* Mobile Tweaks (600px and below) */
-        @media (max-width: 600px) {
-            main { padding: 2rem 1rem; }
-            .product-header h2 { font-size: 2rem; }
-            .product-details h3 { font-size: 2rem; }
-            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
-            .current-price { font-size: 2.5rem; }
-            .popup { padding: 1.5rem; }
-            .popup h2 { font-size: 1.5rem; }
-            .action-buttons { flex-direction: column; }
-            .btn { min-width: 100%; max-width: 100%; }
-            
-            /* Category selection popup for very small screens */
-            #serviceCategorySelectionPopup {
-                width: 98%;
-                padding: 1rem;
-            }
-            #serviceCategoryCheckboxes {
-                grid-template-columns: 1fr; 
-            }
-            .popup input, .popup select, .popup textarea {
-                padding: 0.7rem 1rem;
-            }
+        .gradient-bg {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
         }
         
-        /* Smallest Mobile Tweaks (400px and below) */
-        @media (max-width: 400px) {
-            .current-price { font-size: 2rem; }
-            .original-price { font-size: 1rem; }
-            .stat-card p { font-size: 1.8rem; }
-            .popup { padding: 1rem; }
+        .service-icon {
+            width: 48px;
+            height: 48px;
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .warranty-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 4px;
+        }
+        
+        .savings-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 14px;
         }
     </style>
-</head>
-<body>
-   
-    <main class="container">
-        
-        <section class="product-section">
-            <div class="product-header">
-                <h2 class="text-white">Professional Geyser Service & Repair</h2>
-                <p class="text-sm text-gray-400 mt-2">Book the best water heater service in Sonipat - Quick, Reliable, and Transparent.</p>
-            </div>
-
-            <div class="product-content">
-                
-                <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">Certified & Guaranteed Geyser Repair</h3>
-                    <p class="text-text-subtle mb-4 text-base">
-                        Get expert service from our certified technicians for all types of geysers (Electric/Gas). Select your service category for instant, transparent pricing. We ensure hot water is always available.
-                    </p>
-                    
-                    <div class="price-container">
-                        <div class="original-price">Market Price Varies</div>
-                        <div class="current-price" id="displayPrice">Select Service</div>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" id="participate-btn">
-                            <i class="fas fa-thermometer-half"></i> Book Geyser Service Now
-                        </button>
-                        <button id="price-list-btn" class="btn btn-secondary">
-                            <i class="fas fa-tags"></i> Transparent Price List
-                        </button>
-                         <button id="conditions-btn" class="btn btn-secondary">
-                            <i class="fas fa-file-contract"></i> Service Conditions
-                        </button>
-                        <button class="btn btn-secondary" onclick="window.open('index.html')">
-                            <i class="fas fa-home"></i> Back To Home
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="stat-grid">
-            <div class="stat-card">
-                <h3>Total Customers Trusting Us</h3>
-                <p>28,500+</p>
-            </div>
-            <div class="stat-card">
-                <h3>Monthly Geysers Serviced</h3>
-                <p>1000+</p>
-            </div>
-            <div class="stat-card">
-                <h3>Customer Satisfaction Score</h3>
-                <p>4.9/5 Stars</p>
-            </div>
-            <div class="stat-card">
-                <h3>Quickest Slot Available</h3>
-                <p>Today!</p>
-            </div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="min-h-full bg-gray-50"><!-- Header -->
+  <header class="gradient-bg text-white shadow-lg sticky top-0 z-40">
+   <div class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
+     <div class="flex items-center space-x-3">
+      <div class="service-icon icon-hover">
+       <svg viewbox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M9,2V8H7V10H9V14H7V16H9V22H11V16H13V14H11V10H13V8H11V2H9M12,4.5A0.5,0.5 0 0,1 12.5,5A0.5,0.5 0 0,1 12,5.5A0.5,0.5 0 0,1 11.5,5A0.5,0.5 0 0,1 12,4.5M12,6.5A0.5,0.5 0 0,1 12.5,7A0.5,0.5 0 0,1 12,7.5A0.5,0.5 0 0,1 11.5,7A0.5,0.5 0 0,1 12,6.5M12,11.5A0.5,0.5 0 0,1 12.5,12A0.5,0.5 0 0,1 12,12.5A0.5,0.5 0 0,1 11.5,12A0.5,0.5 0 0,1 12,11.5M12,17.5A0.5,0.5 0 0,1 12.5,18A0.5,0.5 0 0,1 12,18.5A0.5,0.5 0 0,1 11.5,18A0.5,0.5 0 0,1 12,17.5M12,19.5A0.5,0.5 0 0,1 12.5,20A0.5,0.5 0 0,1 12,20.5A0.5,0.5 0 0,1 11.5,20A0.5,0.5 0 0,1 12,19.5Z" />
+       </svg>
+      </div>
+      <div>
+       <h1 id="company-name" class="text-xl font-bold"><a href="https://www.sonipathomeservice.com" target="_blank" rel="noopener noreferrer" class="hover:text-red-100 transition-colors">Geyser Repair Service</a></h1>
+       <p class="text-sm opacity-90">Professional Water Heater Solutions</p>
+      </div>
+     </div>
+     <div class="flex items-center space-x-4">
+      <div class="text-right hidden md:block">
+       <p id="customer-care" class="text-sm font-semibold">📞 8816014071</p>
+       <p id="email-address" class="text-xs opacity-90">service@geyserrepair.com</p>
+      </div><button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-lg transition-all duration-300"> <span class="flex items-center space-x-2">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7M9 3V4H15V3H9M7 6V19H17V6H7Z" />
+        </svg><span>Cart</span> <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-1 text-xs hidden">0</span> </span> </button>
+     </div>
+    </div>
+   </div>
+  </header><!-- Hero Section -->
+  <section class="gradient-bg text-white py-16">
+   <div class="container mx-auto px-4 text-center">
+    <div class="service-icon mx-auto mb-6 icon-hover"><span class="text-6xl">🔥</span>
+    </div>
+    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Professional Geyser Repair &amp; Installation Service</h2>
+    <p class="text-xl mb-4 opacity-90">Expert Water Heater Solutions • Same Day Service • 6 Month Warranty</p>
+    <p class="text-sm mb-8 opacity-80 max-w-4xl mx-auto">Professional geyser repair, installation, and maintenance services for all brands. Quick diagnosis, quality parts replacement, and reliable hot water solutions for your home and office.</p>
+    <div class="flex justify-center space-x-6 text-sm">
+     <div class="flex items-center space-x-2"><span class="text-2xl">🔧</span> <span>Expert Repair</span>
+     </div>
+     <div class="flex items-center space-x-2"><span class="text-2xl">⚡</span> <span>Same Day Service</span>
+     </div>
+     <div class="flex items-center space-x-2"><span class="text-2xl">🛡️</span> <span>6 Month Warranty</span>
+     </div>
+    </div>
+   </div>
+  </section><!-- Services Section -->
+  <section class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">Geyser Services &amp; Pricing</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2" id="services-grid"><!-- Services will be populated by JavaScript -->
+    </div>
+   </div>
+  </section><!-- Service Details -->
+  <section class="py-16 bg-gradient-to-br from-red-50 to-orange-50">
+   <div class="container mx-auto px-4">
+    <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose Our Geyser Services?</h3>
+    <div class="max-w-6xl mx-auto">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Expert Service Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-red-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">👨‍🔧</span>
         </div>
-    </main>
-
-    <div id="popup-overlay"></div>
-    
-    <div class="popup" id="popupForm">
-        <h2 class="text-2xl font-bold text-center">Geyser Service Booking Form</h2>
-        <form id="lotteryForm">
-            <div class="quantity-selector-container my-4">
-                <label>Select Geyser Service Category:</label>
-                <div id="selectedServiceCategoriesDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openServiceCategorySelectionPopup()">Click to select service(s)</div>
-                
-                <div id="serviceCategorySelectionPopup" class="popup" style="display: none;">
-                    <h3 class="text-xl font-bold text-center mb-4 text-primary">Select Geyser Service Category</h3>
-                    <div id="serviceCategoryCheckboxes" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-80 overflow-y-auto p-2">
-                        </div>
-                    <button type="button" class="btn btn-primary mt-4 py-3" onclick="applySelectedServiceCategories()">Apply Selection</button>
-                    <button type="button" class="btn btn-secondary mt-2 py-3 close-btn" onclick="closeServiceCategorySelectionPopup()">Cancel</button>
-                </div>
-
-                <label for="ticketQuantity" class="mt-4">Number of Services (Max 5):</label>
-                <select id="ticketQuantity" name="ticketQuantity" required class="bg-bg-dark border-primary">
-                    <option value="" disabled selected>Select quantity</option>
-                </select>
-
-                <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
-                    <span>Quantity based total service price</span>
-                    <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">Total: ₹0</span>
-                </div>
-            </div>
-
-            <label for="fullName">Your Full Name (min 10 characters)</label>
-            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
-            
-            <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
-            
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
-            
-            <label for="location">Landmark (e.g. Shop , Place )</label>
-            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
-            
-            <label for="address">Complete Address (min 30 characters)</label>
-            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
-
-            <input type="hidden" name="ticket" id="ticketCode" />
-            <input type="hidden" name="finalPrice" id="finalPrice" />
-            
-            <button type="submit">Submit Details & Proceed to Payment</button>
-            <p id="submitMessage" class="text-center mt-3 text-primary text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
-        </form>
-    </div>
-
-    <div class="popup" id="paymentStep">
-        <h2 class="text-2xl font-bold text-center">Finalize Payment</h2>
-        <p class="text-text-subtle text-center mb-6">Complete the payment to confirm your Geyser Service booking.</p>
-        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
-        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
-        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
-        <p class="mt-4 text-xs text-text-subtle text-center">
-            Note: Do not close this window during payment processing.
-        </p>
-    </div>
-
-    <div class="popup" id="ticketStep">
-        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below for <span id="ticketCountDisplay" class="font-bold text-secondary"></span>:</p>
-        <div id="ticketDisplay" class="space-y-2"></div>
-        <button id="downloadTicketsBtn" class="mt-4">
-            <i class="fas fa-download mr-2"></i> Download Service Details
-        </button>
-        <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
-        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
-    </div>
-    
-    <div class="popup" id="priceListPopup">
-        <h2 class="text-2xl font-bold text-center">Geyser Service Transparent Price List</h2>
-        <div class="overflow-x-auto mt-4">
-            <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
-                <thead>
-                    <tr class="text-left text-secondary">
-                        <th class="py-3 px-4 border-b border-text-subtle">Service</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Our Price</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Market Price</th>
-                    </tr>
-                </thead>
-                <tbody id="priceListTableBody">
-                    <!-- Rows will be injected by JavaScript -->
-                </tbody>
-            </table>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Expert Technicians</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-red-500 mt-1">✓</span> <span>Certified geyser specialists</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-500 mt-1">✓</span> <span>All brands expertise</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-500 mt-1">✓</span> <span>Quick problem diagnosis</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-500 mt-1">✓</span> <span>Professional service approach</span></li>
+       </ul>
+      </div><!-- Quality Parts Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-orange-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">⚙️</span>
         </div>
-        <button id="closePriceListBtn" class="btn btn-secondary close-btn mt-4">Close Price List</button>
-    </div>
-
-    <div class="popup" id="conditionsPopup">
-        <h2 class="text-2xl font-bold text-center">Detailed Service Conditions & Guarantee</h2>
-        <div id="conditionsContent" class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
-             <ul class="list-disc list-inside space-y-3">
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-user-shield mr-2"></i> Professional Technicians</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>All work carried out by certified and experienced technicians</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-magnifying-glass mr-2"></i> Diagnosis & Inspection</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>On-site diagnosis and detailed problem assessment</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Rapid response for urgent geyser breakdowns</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Initial visiting charge ₹299 (adjustable based on distance in Sonipat)</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-cogs mr-2"></i> Repair & Maintenance</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Geyser Heating Rod Change Service</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Geyser Sensor Change Service</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Solutions for various emergency geyser problems (e.g., no hot water, leakage, heating issues)</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Transparent pricing for parts and additional labor provided after diagnosis</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-receipt mr-2"></i> Transparency & Pricing</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Transparent pricing for parts and additional labor charges will be provided before work begins</li>
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-headset mr-2"></i> Customer Support & Warranty</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>1-year service warranty on installation work</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>1-month warranty on repairs and part replacements</li>
-                <li><i class="fas fa-circle-check text-secondary mr-2"></i>Long-lasting and reliable performance</li>
-            </ul>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Quality Parts</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-orange-500 mt-1">✓</span> <span>Original &amp; compatible parts</span></li>
+        <li class="flex items-start space-x-2"><span class="text-orange-500 mt-1">✓</span> <span>Heating elements &amp; sensors</span></li>
+        <li class="flex items-start space-x-2"><span class="text-orange-500 mt-1">✓</span> <span>Thermostats &amp; safety valves</span></li>
+        <li class="flex items-start space-x-2"><span class="text-orange-500 mt-1">✓</span> <span>6 month parts warranty</span></li>
+       </ul>
+      </div><!-- Fast Service Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-yellow-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">⚡</span>
         </div>
-        <button id="closeConditionsBtn" class="btn btn-secondary close-btn mt-4">I Understand</button>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Fast Service</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>Same day service available</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>Emergency repair support</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>Quick installation service</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>24/7 customer support</span></li>
+       </ul>
+      </div>
+     </div><!-- Additional Info Banner -->
+     <div class="mt-8 bg-gradient-to-r from-red-500 to-orange-600 rounded-xl p-6 text-white text-center">
+      <div class="flex items-center justify-center space-x-4"><span class="text-2xl">🏆</span>
+       <div>
+        <h5 class="font-bold text-lg">Complete Geyser Solutions</h5>
+        <p class="text-sm opacity-90">Professional repair, installation &amp; maintenance with 6 month warranty</p>
+       </div><span class="text-2xl">🔥</span>
+      </div>
+     </div>
     </div>
-   
-    <script>
-        // Data updated based on the provided image (image_9b43cf.png)
-        const serviceData = [
-            // Geyser Service & Diagnose
-            { "Category": "Geyser Service & Diagnose", "Price": 299 },
-            // Geyser Installation
-            { "Category": "Geyser Installation (New Installation)", "Price": 499 }, // New Installation service added
-            // Repair
-            { "Category": "Geyser Heating Rod Change Service", "Price": 699 }, // Price kept as is
-            { "Category": "Geyser Sensor Change Service", "Price": 299 } // Price updated from 249 to 299
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <h4 class="text-xl font-bold mb-4">Contact Information</h4>
+      <div class="space-y-2 text-sm">
+       <p>📞 <span id="footer-phone">8816014071</span></p>
+       <p>✉️ <span id="footer-email">service@geyserrepair.com</span></p>
+       <p>📍 <span id="office-address">Water Heater Service Center, Tech City</span></p>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-xl font-bold mb-4">Our Services</h4>
+      <ul class="space-y-2 text-sm">
+       <li>• Geyser Repair &amp; Diagnosis</li>
+       <li>• New Geyser Installation</li>
+       <li>• Heating Element Replacement</li>
+       <li>• Sensor &amp; Thermostat Repair</li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-xl font-bold mb-4">Why Choose Us?</h4>
+      <ul class="space-y-2 text-sm">
+       <li>• Expert Technicians</li>
+       <li>• Same Day Service</li>
+       <li>• 6 Month Warranty</li>
+       <li>• Quality Parts &amp; Service</li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+     <p>© 2024 Geyser Repair Service. All rights reserved.</p>
+    </div>
+   </div>
+  </footer><!-- Cart Popup -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full popup-content">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4">
+       <h3 class="text-xl font-bold">Your Cart</h3><button id="close-cart" class="text-gray-500 hover:text-gray-700">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
+      </div>
+      <div id="cart-items" class="space-y-3 mb-4"><!-- Cart items will be populated here -->
+      </div>
+      <div class="border-t pt-4">
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="cart-total">0</span></span>
+        </div>
+        <div class="flex justify-between items-center"><span class="text-gray-600">Booking Amount:</span> <span class="font-semibold text-red-600">₹<span id="cart-pay-now">0</span></span>
+        </div>
+        <div class="flex justify-between items-center" id="remaining-payment-row"><span class="text-gray-600">Remaining Payment:</span> <span class="font-semibold text-orange-600">₹<span id="cart-remaining">0</span></span>
+        </div>
+        <div class="bg-orange-50 border border-orange-200 rounded p-2 text-xs text-orange-800"><span id="remaining-note">Remaining amount will be collected after service completion</span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-lg font-semibold disabled:opacity-50" disabled> <span id="cart-button-text">Book Service</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div><!-- Checkout Form Popup -->
+  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-start justify-center min-h-full p-2 py-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full popup-content" style="max-height: 90vh; overflow-y: auto;">
+     <div class="sticky top-0 bg-white p-3 border-b flex justify-between items-center">
+      <h3 class="text-lg font-bold">Customer Details</h3><button id="close-checkout" class="text-gray-500 hover:text-gray-700">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+       </svg></button>
+     </div>
+     <div class="p-3">
+      <form id="checkout-form" class="space-y-2">
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-red-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-red-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email-id" required class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-red-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Full Address *</label> <textarea id="full-address" required rows="2" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-red-500 focus:border-transparent resize-none"></textarea>
+       </div>
+       <div class="grid grid-cols-2 gap-2">
+        <div><label class="block text-xs font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-red-500 focus:border-transparent">
+        </div>
+        <div><label class="block text-xs font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required pattern="[0-9]{6}" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-red-500 focus:border-transparent">
+        </div>
+       </div>
+       <div class="border-t pt-2 mt-3">
+        <div class="space-y-1 mb-2">
+         <div class="flex justify-between items-center text-xs"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="checkout-total">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-xs"><span class="text-gray-600">Booking Amount:</span> <span class="font-semibold text-red-600">₹<span id="checkout-pay-now">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-xs" id="checkout-remaining-row"><span class="text-gray-600">Remaining Payment:</span> <span class="font-semibold text-orange-600">₹<span id="checkout-remaining">0</span></span>
+         </div>
+         <div class="bg-red-50 border border-red-200 rounded p-1.5 mt-1">
+          <p class="text-xs text-red-800"><strong>Note:</strong> <span id="payment-note">Booking amount ₹99. Remaining amount will be collected after service completion.</span></p>
+         </div>
+        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-2 rounded font-semibold text-sm"> <span id="checkout-button-text">Pay Now</span> </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            company_name: "Geyser Repair Service",
+            customer_care: "8816014071",
+            email_address: "care@sonipathomeservice.com",
+            office_address: "128/1, Sainipura, Sonipat"
+        };
+
+        // Geyser Services data
+        const services = [
+            {
+                id: 0,
+                name: "Demo Service (Testing Only)",
+                price: 1,
+                originalPrice: 99,
+                icon: "🧪",
+                description: "Demo service for payment testing purposes",
+                details: "Testing • Demo • Payment Gateway Test",
+                features: [
+                    "Payment gateway testing",
+                    "Demo booking process",
+                    "System functionality test",
+                    "Order processing demo",
+                    "Sample service booking",
+                    "Testing purposes only",
+                    "Not a real service",
+                    "For demonstration only"
+                ]
+            },
+            {
+                id: 1,
+                name: "Geyser Service & Diagnose",
+                price: 299,
+                originalPrice: 389,
+                icon: "🔍",
+                description: "Complete geyser diagnosis and basic service",
+                details: "Problem Detection • Basic Cleaning • Performance Check",
+                features: [
+                    "Complete system diagnosis",
+                    "Heating element inspection",
+                    "Thermostat checking",
+                    "Water leakage detection",
+                    "Performance testing",
+                    "Basic cleaning service",
+                    "Safety valve inspection",
+                    "Professional report"
+                ]
+            },
+            {
+                id: 2,
+                name: "Geyser Installation (New)",
+                price: 499,
+                originalPrice: 649,
+                icon: "🔧",
+                description: "Professional new geyser installation service",
+                details: "Complete Setup • Pipe Connection • Safety Installation",
+                features: [
+                    "Professional installation",
+                    "Pipe connection setup",
+                    "Electrical wiring connection",
+                    "Safety valve installation",
+                    "Water pressure testing",
+                    "System configuration",
+                    "Installation warranty",
+                    "Usage demonstration"
+                ]
+            },
+            {
+                id: 3,
+                name: "Geyser Heating Rod Change",
+                price: 699,
+                originalPrice: 909,
+                icon: "⚡",
+                description: "Heating element replacement service",
+                details: "Element Replacement • Testing • 6 Month Warranty",
+                features: [
+                    "Old element removal",
+                    "New heating rod installation",
+                    "Electrical connection setup",
+                    "Insulation checking",
+                    "Performance testing",
+                    "Temperature calibration",
+                    "6 month warranty",
+                    "Quality assurance"
+                ]
+            },
+            {
+                id: 4,
+                name: "Geyser Sensor Change Service",
+                price: 299,
+                originalPrice: 389,
+                icon: "🌡️",
+                description: "Temperature sensor replacement service",
+                details: "Sensor Replacement • Calibration • Testing",
+                features: [
+                    "Faulty sensor removal",
+                    "New sensor installation",
+                    "Temperature calibration",
+                    "Thermostat adjustment",
+                    "Safety testing",
+                    "Performance verification",
+                    "6 month warranty",
+                    "Professional service"
+                ]
+            }
         ];
 
-        // --- Generic constants ---
-        const SERVICE_NAME = "Geyser Service";
-        const SERVICE_TAB_ID = "geyser-service"; // Unique tab ID
-        const LOCAL_STORAGE_KEY = 'geyserServiceFormData'; // Unique key for Local Storage
-        const RAZORPAY_IMAGE_TEXT = "GS";
-        
-        // --- GOOGLE SCRIPT URL COPIED from book-ac-services.html ---
-        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
-        
-        // --- DOM Element Selection ---
-        const participateBtn = document.getElementById('participate-btn');
-        const popupOverlay = document.getElementById('popup-overlay');
-        const allPopups = document.querySelectorAll('.popup');
-        const popupForm = document.getElementById('popupForm');
-        const paymentStep = document.getElementById('paymentStep');
-        const ticketStep = document.getElementById('ticketStep');
-        const timerDisplay = document.getElementById('timerDisplay');
-        const razorpayBtn = document.getElementById('razorpay-payment-btn');
-        const submitMessage = document.getElementById('submitMessage');
-        const serviceCategoryCheckboxesContainer = document.getElementById('serviceCategoryCheckboxes');
-        const selectedServiceCategoriesDisplay = document.getElementById('selectedServiceCategoriesDisplay');
-        const serviceCategorySelectionPopup = document.getElementById('serviceCategorySelectionPopup');
-        const ticketQuantitySelect = document.getElementById('ticketQuantity');
-        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
-        const paymentSummary = document.getElementById('paymentSummary');
-        const ticketCountDisplay = document.getElementById('ticketCountDisplay');
-        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
-        const welcomeMessage = document.getElementById('welcomeMessage');
-        const displayPriceElement = document.getElementById('displayPrice');
-        const finalPriceInput = document.getElementById('finalPrice');
-        const form = document.getElementById('lotteryForm');
-        const okayBtn = document.getElementById('okayBtn');
-        
-        // New elements for popups
-        const priceListBtn = document.getElementById('price-list-btn');
-        const conditionsBtn = document.getElementById('conditions-btn');
-        const priceListPopup = document.getElementById('priceListPopup');
-        const conditionsPopup = document.getElementById('conditionsPopup');
-        const priceListTableBody = document.getElementById('priceListTableBody');
+        // Cart functionality
+        let cart = [];
 
-        // --- State Variables ---
-        let generatedTicket = ''; 
-        let paymentTimeout = null;
-        let countdownInterval = null;
-        const PAYMENT_TIME_LIMIT = 5 * 60;
-        let currentServicePrice = 0;
-        let selectedQuantity = 1;
-        let allowClose = false;
-
-        // --- Local Storage Functions for Autofill ---
-
-        function saveFormData() {
-            const formData = {
-                fullName: form.fullName.value,
-                phone: form.phone.value,
-                email: form.email.value,
-                location: form.location.value,
-                address: form.address.value
-            };
-            try {
-                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
-            } catch (e) {
-                console.warn("Local storage saving failed:", e);
-            }
+        function renderServices() {
+            const servicesGrid = document.getElementById('services-grid');
+            servicesGrid.innerHTML = services.map(service => `
+                <div class="service-card p-6">
+                    <div class="service-card-content">
+                        <div class="text-center mb-4">
+                            <div class="text-4xl mb-3 icon-hover">${service.icon}</div>
+                            <h4 class="font-bold text-base mb-2 text-gray-800 leading-tight">${service.name}</h4>
+                            <p class="text-gray-600 text-xs mb-2">${service.description}</p>
+                            <p class="text-red-600 text-xs font-semibold">${service.details}</p>
+                            <div class="warranty-badge mt-2">6 Month Warranty</div>
+                        </div>
+                        <div class="mb-4">
+                            <ul class="feature-list text-xs text-gray-600">
+                                ${service.features.slice(0, 4).map(feature => `<li>${feature}</li>`).join('')}
+                                ${service.features.length > 4 ? `<li class="text-red-600 font-semibold">+${service.features.length - 4} more features</li>` : ''}
+                            </ul>
+                        </div>
+                        <div class="text-center mb-4">
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-xl font-bold text-red-600">₹${service.price.toLocaleString()}</span>
+                                ${service.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${service.originalPrice.toLocaleString()}</span>` : ''}
+                            </div>
+                            ${service.originalPrice ? `<div class="savings-badge mt-1">Save ₹${(service.originalPrice - service.price).toLocaleString()}</div>` : ''}
+                        </div>
+                        <button onclick="addToCart(${service.id})" class="w-full btn-primary text-white py-2.5 rounded-lg font-semibold text-sm transform transition-transform hover:scale-105">
+                            Book Service
+                        </button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function loadFormData() {
-            try {
-                const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-                if (savedData) {
-                    const data = JSON.parse(savedData);
-                    form.fullName.value = data.fullName || '';
-                    form.phone.value = data.phone || '';
-                    form.email.value = data.email || '';
-                    form.location.value = data.location || '';
-                    form.address.value = data.address || '';
-                }
-            } catch (e) {
-                console.warn("Local storage loading failed:", e);
-            }
-        }
-        
-        // --- Core Functions ---
-
-        function populateServiceCategories() {
-            serviceCategoryCheckboxesContainer.innerHTML = '';
-            serviceData.forEach(service => {
-                const checkboxHtml = `
-                    <label class="inline-flex items-center text-text-light w-full p-2 bg-bg-dark rounded-md border border-primary hover:bg-bg-card transition duration-200 cursor-pointer">
-                        <input type="checkbox" name="serviceCategory" value="${service.Category}" data-price="${service.Price}" 
-                               class="form-checkbox h-5 w-5 text-secondary rounded focus:ring-secondary checked:bg-secondary">
-                        <span class="ml-2 text-sm">${service.Category} (<span class="text-secondary">₹${service.Price}</span>)</span>
-                    </label>
-                `;
-                serviceCategoryCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
-            });
-            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(checkbox => {
-                checkbox.addEventListener('change', updatePrices);
-            });
-        }
-
-        function initQuantitySelector() {
-            const maxServices = 5; 
-            ticketQuantitySelect.innerHTML = '<option value="" disabled selected>Select quantity</option>';
-            for (let i = 1; i <= maxServices; i++) {
-                const option = document.createElement('option');
-                option.value = i;
-                option.textContent = i + (i === 1 ? ' service' : ' services');
-                ticketQuantitySelect.appendChild(option);
-            }
-            ticketQuantitySelect.value = 1;
-        }
-
-        function updatePrices() {
-            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => ({
-                category: cb.value,
-                price: parseFloat(cb.dataset.price)
-            }));
+        function addToCart(serviceId) {
+            const service = services.find(s => s.id === serviceId);
+            const existingItem = cart.find(item => item.id === serviceId);
             
-            selectedQuantity = parseInt(ticketQuantitySelect.value) || 1;
-            
-            currentServicePrice = selectedCategories.reduce((total, service) => total + service.price, 0);
-            const totalFinalPrice = currentServicePrice * selectedQuantity;
-
-            if (selectedCategories.length > 0) {
-                selectedServiceCategoriesDisplay.textContent = selectedCategories.map(s => s.category).join(', ');
-                displayPriceElement.textContent = `₹${currentServicePrice}`;
+            if (existingItem) {
+                existingItem.quantity += 1;
             } else {
-                selectedServiceCategoriesDisplay.textContent = `Click to select service(s)`;
-                displayPriceElement.textContent = `Select Service`;
+                cart.push({ ...service, quantity: 1 });
             }
             
-            totalPriceQuantityDisplay.textContent = `Total: ₹${totalFinalPrice}`;
-            finalPriceInput.value = totalFinalPrice;
+            updateCartUI();
+            showCartPopup();
         }
 
-        function generateFormattedTicket() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-                const r = Math.random() * 16 | 0;
-                const v = c === 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            }).toUpperCase();
+        function removeFromCart(serviceId) {
+            cart = cart.filter(item => item.id !== serviceId);
+            updateCartUI();
+            if (cart.length === 0) {
+                hideCartPopup();
+            }
         }
 
-        function downloadTickets() {
-            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
-            const ticketContent = `PREMIUM ${SERVICE_NAME} BOOKING DETAILS\n\n` +
-                                 `Customer Name: ${form.field1.value}\n` +
-                                 `Contact: ${form.field2.value}\n` +
-                                 `Location: ${form.field5.value}\n` +
-                                 `Service Category(s): ${selectedCategoryNames}\n` +
-                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
-                                 `Total Services: ${selectedQuantity}\n` +
-                                 `Service Charge Paid: ₹${finalPriceInput.value}\n\n` +
-                                 `--- IMPORTANT NOTE ---\n` +
-                                 `Final charges for parts and additional labor (beyond the selected service) will be transparently communicated by the technician after a full on-site diagnosis.`;
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutTotal = document.getElementById('checkout-total');
+            const proceedBtn = document.getElementById('proceed-checkout');
             
-            const blob = new Blob([ticketContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${SERVICE_TAB_ID}_booking_${generatedTicket.substring(0, 8)}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-        
-        function showCustomAlert(message) {
-            const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert'; 
-            alertBox.textContent = message;
-            document.body.appendChild(alertBox);
-            setTimeout(() => alertBox.remove(), 4000); 
-        }
-
-        // --- Popup Control Functions ---
-        function closeAllPopups() {
-            if (!allowClose) {
-                showCustomAlert("Please complete the booking process before closing.");
-                return;
-            }
-            clearTimers();
-            popupOverlay.style.display = 'none';
-            allPopups.forEach(p => p.style.display = 'none');
-            document.body.style.overflow = 'auto';
-            allowClose = false; 
-        }
-
-        function openPopup(popupElement) {
-            document.body.style.overflow = 'hidden';
-            popupOverlay.style.display = 'block';
-            allPopups.forEach(p => p.style.display = 'none');
-            popupElement.style.display = 'block';
-            allowClose = false;
-        }
-        
-        function closeSpecificPopup(popupElement) {
-            popupElement.style.display = 'none';
-            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
-            if (!isAnotherPopupOpen) {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        function openServiceCategorySelectionPopup() {
-            populateServiceCategories();
-            const currentlySelectedCategories = selectedServiceCategoriesDisplay.textContent.split(', ').map(s => s.trim()).filter(s => s && s !== 'Click to select service(s)');
-            serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]').forEach(checkbox => {
-                checkbox.checked = currentlySelectedCategories.includes(checkbox.value);
-            });
-            serviceCategorySelectionPopup.style.display = 'block';
-            popupOverlay.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeServiceCategorySelectionPopup() {
-            serviceCategorySelectionPopup.style.display = 'none';
-            if (popupForm.style.display !== 'block' && priceListPopup.style.display !== 'block' && conditionsPopup.style.display !== 'block') {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        function applySelectedServiceCategories() {
-            updatePrices();
-            closeServiceCategorySelectionPopup();
-        }
-        
-        // --- Timer Functions ---
-        function clearTimers() {
-            if (paymentTimeout) clearTimeout(paymentTimeout);
-            if (countdownInterval) clearInterval(countdownInterval);
-        }
-
-        function startPaymentTimer() {
-            let timeLeft = PAYMENT_TIME_LIMIT;
-            const updateDisplay = () => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            };
-            updateDisplay();
-
-            countdownInterval = setInterval(() => {
-                timeLeft--;
-                updateDisplay();
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    showCustomAlert("Payment time expired. Please try again.");
-                    allowClose = true; 
-                    closeAllPopups();
-                }
-            }, 1000);
-        }
-
-        // --- Price List Function ---
-        function populatePriceList() {
-            priceListTableBody.innerHTML = '';
-            serviceData.forEach(service => {
-                const marketPrice = Math.round(service.Price * 1.3); 
-                const row = `
-                    <tr class="text-text-light hover:bg-bg-dark">
-                        <td class="py-3 px-4 border-b border-gray-700">${service.Category}</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.Price}</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right text-text-subtle line-through">₹${marketPrice}</td>
-                    </tr>
-                `;
-                priceListTableBody.insertAdjacentHTML('beforeend', row);
-            });
-        }
-
-        // --- Payment and Submission Logic ---
-        
-        function handleFormSubmit(e) {
-            e.preventDefault();
-
-            // Validation 
-            const selectedCategories = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked'));
-            if (selectedCategories.length === 0) { showCustomAlert("Please select at least one service category."); return; }
-            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
-            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
-            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address with at least 30 characters."); return; }
-            if (!ticketQuantitySelect.value || parseInt(ticketQuantitySelect.value) <= 0) { showCustomAlert("Please select the number of services."); return; }
-
-            submitMessage.style.display = 'block';
-            form.querySelector('button[type="submit"]').disabled = true;
-
-            generatedTicket = generateFormattedTicket(); 
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
-            const selectedCategoryNames = selectedCategories.map(cb => cb.value).join(', ');
-
-            // --- Form Data for Google Sheet (using original field names) ---
-            const formData = new FormData();
-            formData.append('field1', form.fullName.value); 
-            formData.append('field2', form.phone.value);    
-            formData.append('field3', form.email.value);    
-            formData.append('field4', selectedCategoryNames); 
-            formData.append('field5', form.location.value); 
-            formData.append('field6', form.address.value);  
-            formData.append('ticket', generatedTicket);     
-            formData.append('tab', SERVICE_TAB_ID);           
-            formData.append('serviceType', SERVICE_NAME);   
-            formData.append('servicePrice', currentServicePrice); 
-            formData.append('ticketQuantity', selectedQuantity); 
-            formData.append('finalPrice', finalPriceInput.value);
-
-            // --- Google Script URL (UPDATED TO COMMON URL) ---
-            const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
-            fetch(GOOGLE_SHEET_URL, {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.text())
-            .then(res => {
-                if (res.includes("Success") || res.includes("success")) { 
-                    // Save data to local storage on successful submission
-                    saveFormData(); 
-                    
-                    popupForm.style.display = 'none';
-                    openPopup(paymentStep);
-                    paymentSummary.innerHTML = `
-                        <p class="text-text-subtle text-lg mb-2 font-bold">Booking Details:</p>
-                        <p class="text-text-light text-base mb-1">Service(s): <span class="font-bold text-primary">${selectedCategoryNames}</span></p>
-                        <p class="text-text-light text-base mb-3">Quantity: <span class="font-bold text-primary">${selectedQuantity}</span></p>
-                        <p class="current-price text-secondary text-3xl font-bold">Total Payable: ₹${finalPriceInput.value}</p>
-                        <p class="text-gray-400 text-sm mt-2">The amount paid covers the services selected. Extra charges for parts/labor, if needed, will be discussed by the technician.</p>
-                    `;
-                    startPaymentTimer();
-                } else {
-                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
-                }
-            })
-            .catch(err => {
-                console.error("Submission error:", err);
-                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
-            })
-            .finally(() => {
-                submitMessage.style.display = 'none';
-                form.querySelector('button[type="submit"]').disabled = false;
-            });
+            // Calculate payment amount (₹99 booking for all geyser services)
+            const payAmount = 99;
+            
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+                cartCount.classList.add('cart-badge');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+            
+            cartItems.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="flex-1">
+                        <h5 class="font-semibold text-sm">${item.name}</h5>
+                        <p class="text-gray-600 text-xs">₹${item.price.toLocaleString()} x ${item.quantity}</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold">₹${(item.price * item.quantity).toLocaleString()}</span>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            cartTotal.textContent = totalAmount.toLocaleString();
+            checkoutTotal.textContent = totalAmount.toLocaleString();
+            
+            // Update payment amount displays
+            const cartPayNow = document.getElementById('cart-pay-now');
+            const checkoutPayNow = document.getElementById('checkout-pay-now');
+            const cartButtonText = document.getElementById('cart-button-text');
+            const checkoutButtonText = document.getElementById('checkout-button-text');
+            const paymentNote = document.getElementById('payment-note');
+            const remainingAmount = totalAmount - payAmount;
+            
+            if (cartPayNow) cartPayNow.textContent = payAmount.toLocaleString();
+            if (checkoutPayNow) checkoutPayNow.textContent = payAmount.toLocaleString();
+            
+            // Update remaining payment displays
+            const cartRemaining = document.getElementById('cart-remaining');
+            const checkoutRemaining = document.getElementById('checkout-remaining');
+            const remainingPaymentRow = document.getElementById('remaining-payment-row');
+            const checkoutRemainingRow = document.getElementById('checkout-remaining-row');
+            const remainingNote = document.getElementById('remaining-note');
+            
+            if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${payAmount.toLocaleString()}`;
+            if (checkoutButtonText) checkoutButtonText.textContent = `Pay Booking Amount ₹${payAmount.toLocaleString()}`;
+            if (remainingPaymentRow) remainingPaymentRow.style.display = 'flex';
+            if (checkoutRemainingRow) checkoutRemainingRow.style.display = 'flex';
+            if (cartRemaining) cartRemaining.textContent = remainingAmount.toLocaleString();
+            if (checkoutRemaining) checkoutRemaining.textContent = remainingAmount.toLocaleString();
+            if (remainingNote) remainingNote.textContent = 'Remaining amount will be collected after service completion';
+            
+            // Update payment note
+            if (paymentNote) {
+                paymentNote.textContent = `Booking amount ₹${payAmount}. Remaining ₹${remainingAmount.toLocaleString()} will be collected after service completion.`;
+            }
+            
+            proceedBtn.disabled = cart.length === 0;
         }
 
-        function handleRazorpayPayment() {
-            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
+        function showCartPopup() {
+            document.getElementById('cart-popup').classList.remove('hidden');
+        }
+
+        function hideCartPopup() {
+            document.getElementById('cart-popup').classList.add('hidden');
+        }
+
+        function showCheckoutPopup() {
+            hideCartPopup();
+            document.getElementById('checkout-popup').classList.remove('hidden');
+        }
+
+        function hideCheckoutPopup() {
+            document.getElementById('checkout-popup').classList.add('hidden');
+        }
+
+        // Razorpay payment integration
+        function initiatePayment(customerData) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const payAmount = 99; // ₹99 booking for all geyser services
+            
             const options = {
-                "key": "rzp_live_RLjzp7VlXERwiG",
-                "amount": finalPriceInput.value * 100, // Amount in paise
-                "currency": "INR",
-                "name": `SonipatHomeService - ${SERVICE_NAME}`,
-                "description": `Payment for ${selectedQuantity} ${SERVICE_NAME}(s) for ${selectedCategoryNames}`,
-                "image": `https://placehold.co/100x100/1C2738/52D1DC?text=${RAZORPAY_IMAGE_TEXT}`,
-                "handler": function (response){
-                    console.log("Payment successful:", response.razorpay_payment_id);
-                    paymentSuccess(response.razorpay_payment_id);
+                key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
+                amount: payAmount * 100, // Amount in paise
+                currency: 'INR',
+                name: 'Geyser Repair Service',
+                description: 'Geyser Service Booking',
+                image: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiNlZjQ0NDQiPjxwYXRoIGQ9Ik05LDJWOEg3VjEwSDlWMTRIN1YxNkg5VjIySDExVjE2SDEzVjE0SDExVjEwSDEzVjhIMTFWMkg5TTEyLDQuNUEwLjUsMC41IDAgMCwxIDEyLjUsNUEwLjUsMC41IDAgMCwxIDEyLDUuNUEwLjUsMC41IDAgMCwxIDExLjUsNUEwLjUsMC41IDAgMCwxIDEyLDQuNU0xMiw2LjVBMC41LDAuNSAwIDAsMSAxMi41LDdBMC41LDAuNSAwIDAsMSAxMiw3LjVBMC41LDAuNSAwIDAsMSAxMS41LDdBMC41LDAuNSAwIDAsMSAxMiw2LjVNMTIsMTEuNUEwLjUsMC41IDAgMCwxIDEyLjUsMTJBMC41LDAuNSAwIDAsMSAxMiwxMi41QTAuNSwwLjUgMCAwLDEgMTEuNSwxMkEwLjUsMC41IDAgMCwxIDEyLDExLjVNMTIsMTcuNUEwLjUsMC41IDAgMCwxIDEyLjUsMThBMC41LDAuNSAwIDAsMSAxMiwxOC41QTAuNSwwLjUgMCAwLDEgMTEuNSwxOEEwLjUsMC41IDAgMCwxIDEyLDE3LjVNMTIsMTkuNUEwLjUsMC41IDAgMCwxIDEyLjUsMjBBMC41LDAuNSAwIDAsMSAxMiwyMC41QTAuNSwwLjUgMCAwLDEgMTEuNSwyMEEwLjUsMC41IDAgMCwxIDEyLDE5LjVaIi8+PC9zdmc+',
+                prefill: {
+                    name: customerData.name,
+                    email: customerData.email,
+                    contact: customerData.mobile
                 },
-                "prefill": {
-                    "name": form.fullName.value,
-                    "email": form.email.value,
-                    "contact": form.phone.value
+                theme: {
+                    color: '#ef4444'
                 },
-                "notes": {
-                    "address": `${form.location.value}, ${form.address.value}`,
-                    "service_details": selectedCategoryNames,
-                    "booking_ref": generatedTicket
+                handler: function(response) {
+                    // Payment successful
+                    submitToGoogleSheets(customerData, response.razorpay_payment_id);
                 },
-                "theme": { "color": "#52D1DC" },
-                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+                modal: {
+                    ondismiss: function() {
+                        // Payment cancelled
+                        console.log('Payment cancelled');
+                    }
+                }
             };
-
+            
             const rzp = new Razorpay(options);
-            rzp.on('payment.failed', response => {
-                console.error("Payment Failed:", response.error);
-                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
-            });
             rzp.open();
         }
 
-        function paymentSuccess(paymentId) {
-            clearTimers();
-            paymentStep.style.display = 'none';
-            openPopup(ticketStep);
+        // Google Sheets integration
+        async function submitToGoogleSheets(customerData, paymentId) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const payAmount = 99; // ₹99 booking for all geyser services
+            const remainingAmount = totalAmount - payAmount;
             
-            const userName = form.fullName.value.split(' ')[0];
-            const selectedCategoryNames = Array.from(serviceCategoryCheckboxesContainer.querySelectorAll('input[name="serviceCategory"]:checked')).map(cb => cb.value).join(', ');
+            const formData = new FormData();
+            formData.append('timestamp', new Date().toLocaleString('en-IN'));
+            formData.append('customerName', customerData.name);
+            formData.append('mobile', customerData.mobile);
+            formData.append('email', customerData.email);
+            formData.append('address', customerData.address);
+            formData.append('landmark', customerData.landmark || '');
+            formData.append('pincode', customerData.pincode);
+            formData.append('orderItems', cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', '));
+            formData.append('totalAmount', totalAmount);
+            formData.append('paidAmount', payAmount);
+            formData.append('remainingAmount', remainingAmount);
+            formData.append('paymentId', paymentId);
+            formData.append('status', 'Geyser Service Booking Confirmed - Remaining Payment After Service');
 
-            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
-            
-            ticketDisplay.innerHTML = `
-                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p>Service: <span class="font-bold text-text-light">${selectedCategoryNames}</span></p>
-                <p>Quantity: <span class="font-bold text-text-light">${selectedQuantity}</span></p>
-                <p class="text-secondary text-lg font-bold mt-3">Amount Paid: ₹${finalPriceInput.value}</p>
-                <p class="text-text-subtle text-sm mt-3">Our technician will contact you shortly to schedule the service at your location: ${form.location.value}.</p>
-                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
-            `;
-            
-            ticketCountDisplay.textContent = `${selectedQuantity} ${SERVICE_NAME}(s)`;
-            allowClose = true;
-        }
-        
-        // --- Event Listeners Initialization ---
-        participateBtn.addEventListener('click', () => {
-            initQuantitySelector();
-            updatePrices();
-            loadFormData(); // Load data on popup open
-            openPopup(popupForm);
-        });
-        
-        ticketQuantitySelect.addEventListener('change', updatePrices); 
+            try {
+                // Show loading state
+                showLoadingMessage();
+                
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec', {
+                    method: 'POST',
+                    body: formData
+                });
 
-        // Centralized Overlay Click Handling
-        popupOverlay.addEventListener('click', e => {
-            if (e.target === popupOverlay) {
-                if (serviceCategorySelectionPopup.style.display === 'block') closeServiceCategorySelectionPopup();
-                else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
-                else if (conditionsPopup.style.display === 'block') closeSpecificPopup(conditionsPopup);
-                else if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
-                else if (popupForm.style.display === 'block' || paymentStep.style.display === 'block') showCustomAlert("Please complete the booking process before closing.");
-                else closeAllPopups();
+                // Hide loading and show success
+                hideLoadingMessage();
+                hideCheckoutPopup();
+                showSuccessMessage();
+                cart = [];
+                updateCartUI();
+                
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                hideLoadingMessage();
+                showErrorMessage();
             }
-        });
-        
-        // Popup Close buttons
-        document.querySelectorAll('.close-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const parentPopup = e.target.closest('.popup');
-                if (parentPopup.id === 'ticketStep') {
-                    window.location.href = 'index.html';
-                } else {
-                    closeSpecificPopup(parentPopup);
-                }
+        }
+
+        function showLoadingMessage() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = 'loading-message';
+            loadingDiv.className = 'fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50';
+            loadingDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    <div>
+                        <p class="font-semibold">Processing...</p>
+                        <p class="text-sm">Saving your service booking</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(loadingDiv);
+        }
+
+        function hideLoadingMessage() {
+            const loadingDiv = document.getElementById('loading-message');
+            if (loadingDiv) {
+                loadingDiv.remove();
+            }
+        }
+
+        function showSuccessMessage() {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50';
+            successDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl">✅</span>
+                    <div>
+                        <p class="font-semibold">Booking Successful!</p>
+                        <p class="text-sm">Your geyser service booking confirmed.</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 5000);
+        }
+
+        function showErrorMessage() {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50';
+            errorDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl">❌</span>
+                    <div>
+                        <p class="font-semibold">Error!</p>
+                        <p class="text-sm">Please try again or contact support.</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            renderServices();
+            updateCartUI();
+
+            // Cart button
+            document.getElementById('cart-btn').addEventListener('click', showCartPopup);
+            
+            // Close buttons
+            document.getElementById('close-cart').addEventListener('click', hideCartPopup);
+            document.getElementById('close-checkout').addEventListener('click', hideCheckoutPopup);
+            
+            // Proceed to checkout
+            document.getElementById('proceed-checkout').addEventListener('click', showCheckoutPopup);
+            
+            // Checkout form
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const customerData = {
+                    name: document.getElementById('customer-name').value,
+                    mobile: document.getElementById('mobile-number').value,
+                    email: document.getElementById('email-id').value,
+                    address: document.getElementById('full-address').value,
+                    landmark: document.getElementById('landmark').value,
+                    pincode: document.getElementById('pincode').value
+                };
+                
+                initiatePayment(customerData);
+            });
+
+            // Close popups when clicking outside
+            document.getElementById('cart-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCartPopup();
+            });
+            
+            document.getElementById('checkout-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCheckoutPopup();
             });
         });
 
-        // Specific listeners
-        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
-        razorpayBtn.addEventListener('click', handleRazorpayPayment);
-        downloadTicketsBtn.addEventListener('click', downloadTickets);
-        form.addEventListener('submit', handleFormSubmit);
+        // Element SDK integration
+        async function onConfigChange(config) {
+            const companyNameElement = document.querySelector('#company-name a');
+            if (companyNameElement) {
+                companyNameElement.textContent = config.company_name || defaultConfig.company_name;
+            }
+            document.getElementById('customer-care').textContent = `📞 ${config.customer_care || defaultConfig.customer_care}`;
+            document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
+            document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
+            document.getElementById('footer-phone').textContent = config.customer_care || defaultConfig.customer_care;
+            document.getElementById('footer-email').textContent = config.email_address || defaultConfig.email_address;
+        }
 
-        // Listeners for new popups
-        priceListBtn.addEventListener('click', () => {
-            populatePriceList();
-            openPopup(priceListPopup);
-        });
-        conditionsBtn.addEventListener('click', () => openPopup(conditionsPopup));
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
 
-        // --- Page Load Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // NOTE: loadFormData() is now called on participateBtn click
-            populateServiceCategories();
-            initQuantitySelector();
-            updatePrices();
-        });
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["company_name", config.company_name || defaultConfig.company_name],
+                ["customer_care", config.customer_care || defaultConfig.customer_care],
+                ["email_address", config.email_address || defaultConfig.email_address],
+                ["office_address", config.office_address || defaultConfig.office_address]
+            ]);
+        }
+
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
     </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99673c67f218c51e',t:'MTc2MTc4ODc1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
