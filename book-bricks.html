@@ -1723,11 +1723,12 @@
             }
         }
 
-        // Update quantity in cart
+        // Update quantity in cart - FIXED FUNCTION
         function updateQuantity(itemId, newQuantity) {
             const quantity = parseInt(newQuantity);
-            if (cart.length > 0 && selectedBrick) {
-                cart[0].quantity = quantity;
+            const item = cart.find(cartItem => cartItem.id === itemId);
+            if (item) {
+                item.quantity = quantity;
                 updateCartDisplay();
             }
         }
@@ -1776,7 +1777,7 @@
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                             <label style="font-weight: 600; color: #8b4513; font-size: 0.9rem;">Quantity Selection:</label>
-                            <select onchange="updateQuantity(${item.id}, this.value)" style="
+                            <select onchange="updateQuantity('${item.id}', this.value)" style="
                                 padding: 10px; 
                                 border: 2px solid rgba(139, 69, 19, 0.3); 
                                 border-radius: 8px; 
@@ -1829,8 +1830,6 @@
             selectedBrick = null;
             updateCartDisplay();
         }
-
-
 
         // Open Checkout Form
         function openCheckoutForm() {
@@ -2165,5 +2164,5 @@
             });
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'996b4a81034059d8',t:'MTc2MTgzMTI3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'996b6f65135f59d8',t:'MTc2MTgzMjc4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
