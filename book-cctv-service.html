@@ -1,1239 +1,840 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - CCTV Installation and Service</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <style>
-        /* --- CSS copied from AC service file for consistent look --- */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
-
-        :root {
-            /* Classic White & Light Blue Theme (Matching AC Service) */
-            --bg-dark: #F4F7FB; /* Very Light Blue/Gray Background */
-            --bg-card: #FFFFFF; /* White Card/Popup Background */
-            --primary: #3B82F6; /* Primary Accent (Classic Blue) */
-            --secondary: #1F83E7; /* Secondary Accent (Darker Blue for titles/prices) */
-            --text-light: #1F2937; /* Dark Gray/Black Text */
-            --text-subtle: #6B7280; /* Subtle Gray Text */
-            --shadow-depth: 0 5px 20px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCTV Camera Installation &amp; Repair Service - Professional Security Solutions</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        /* --- Custom Components --- */
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-depth);
-            transition: var(--transition);
-            border: 1px solid rgba(59, 130, 246, 0.1); 
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
-        }
-
-        .stat-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .stat-card p {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .product-section {
-            background: linear-gradient(135deg, var(--bg-card), #E7EFF9);
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-depth);
-            margin-bottom: 3rem;
-            overflow: hidden;
-            border: 2px solid var(--primary);
-        }
-
-        .product-header {
-            background: linear-gradient(90deg, #E7EFF9, var(--bg-card));
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .product-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--secondary);
-        }
-
-        .product-content {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 3rem;
-            gap: 3rem;
-            align-items: center; 
-            justify-content: center;
-        }
-
-        .product-details {
-            flex: 1; 
-            min-width: 300px;
-            text-align: center; 
-        }
-
-        .price-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-            padding: 1rem 0;
-            border-top: 1px dashed var(--text-subtle);
-            border-bottom: 1px dashed var(--text-subtle);
-            justify-content: center; 
+            box-sizing: border-box;
         }
         
-        /* Display for selected services */
-        #selectedServicesDisplay {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-top: 0.5rem;
-            min-height: 24px; 
-        }
-
-        .original-price {
-            font-size: 1.2rem;
-            text-decoration: line-through;
-            color: var(--text-subtle);
-            font-weight: 400;
-        }
-
-        .current-price {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-            justify-content: center;
-            flex-grow: 1;
-            max-width: 400px; 
-            min-width: 200px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--bg-card); /* White text on blue button */
-            border-color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .btn-primary:hover {
-            background: #2563EB; /* Darker blue shade for hover */
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--secondary);
-            border-color: var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(59, 130, 246, 0.1);
-            transform: scale(1.03);
-        }
-        
-        /* --- Service Card Styling (Updated for Image Background) --- */
         .service-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            cursor: pointer;
-            /* Default styles for the card */
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay for readability */
-            background-image: url('placeholder.png'); /* Default background image */
-            background-size: cover;
-            background-position: center;
-            color: white; /* Ensure text is readable over the image */
-            position: relative; /* Needed for z-index of children */
-            border-radius: 0.75rem; /* Smaller radius for compact look */
-            /* Adjusted padding for compactness */
-            padding: 0.75rem; 
-            border: 2px solid transparent; /* Default border */
-        }
-        
-        .service-card-wrapper {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            transform-style: preserve-3d;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.1),
+                0 4px 16px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            border-radius: 16px;
             position: relative;
+            overflow: hidden;
+            margin: 8px;
         }
-
-        /* Hide the actual checkbox */
-        .service-card-wrapper input[type="checkbox"] {
+        
+        .service-card::before {
+            content: '';
             position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-            top: 0;
-            right: 0;
-            width: 2.5rem;
-            height: 2.5rem;
-            z-index: 10; 
-        }
-
-        /* Style the card based on checked state (Blue card on Selection) */
-        .service-card-wrapper input[type="checkbox"]:checked + .service-card {
-            background-image: none !important; 
-            background-color: rgba(59, 130, 246, 0.7) !important; /* Primary blue overlay */
-            border-color: var(--primary) !important;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); 
-        }
-
-        /* FIX: Make check icon WHITE on selection for high visibility */
-        .service-card-wrapper input[type="checkbox"]:checked + .service-card .card-check-icon {
-            color: white; 
-            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.9)); 
-        }
-        
-        /* Check icon contrast adjustment for dark card background */
-        .service-card .card-check-icon {
-            color: #f7f7f7; /* Light gray checkmark for visibility */
-            transition: color 0.3s;
-        }
-        
-        /* Text visibility improvements */
-        .service-card h4, .service-card p {
-            /* Increased text shadow for much better contrast against any image */
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 1.0); 
-            font-weight: 700; /* Made text bold */
-            /* Adjusted font size for compactness */
-            font-size: 0.95rem;
-        }
-        .service-card h4 {
-            /* Adjusted font size for compactness */
-            font-size: 0.95rem; 
-        }
-
-
-        .btn-see-more {
-            margin-top: auto; 
-            font-size: 0.8rem; /* Smaller font for compactness */
-            padding: 0.4rem 0.8rem; /* Smaller padding for compactness */
-            max-width: 100%;
-            /* Fixed button color to always be a clear blue (primary) */
-            background-color: var(--primary) !important;
-            color: white !important;
-            border-radius: 0.5rem; /* Slightly smaller border radius for the button */
-        }
-        
-        /* --- COMPACT CARD & ICON STYLING --- */
-        .service-icon-container {
-            /* Reduced size from 32px to 28px */
-            width: 28px;
-            height: 28px;
-            /* White background for icon visibility over dark/image background */
-            background: white; 
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Reduced margin-right from 8px to 6px */
-            margin-right: 6px;
-            color: var(--primary); /* Primary blue icon color */
-            flex-shrink: 0;
-            font-size: 0.8rem; /* Reduced icon size */
-        }
-        /* --- END COMPACT CARD & ICON STYLING --- */
-        
-        /* --- Popup Styling --- */
-        #popup-overlay {
-            display: none;
-            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 999;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(37,99,235,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
         }
-
-        .popup {
-            display: none;
-            background: var(--bg-card);
-            color: var(--text-light);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-depth);
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            width: 95%;
-            max-width: 750px; 
-            max-height: 95vh;
-            overflow-y: auto;
-            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-            border: 1px solid var(--primary);
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-12px) rotateX(3deg) rotateY(3deg) scale(1.01);
+            box-shadow: 
+                0 25px 50px rgba(59,130,246,0.2),
+                0 15px 30px rgba(0,0,0,0.1),
+                0 8px 16px rgba(59,130,246,0.08),
+                inset 0 2px 0 rgba(255,255,255,0.9);
+            border-color: #3b82f6;
+        }
+        
+        .service-card-content {
+            position: relative;
+            z-index: 2;
+            transform: translateZ(20px);
+        }
+        
+        .icon-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .icon-hover:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        .popup-overlay {
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .popup-content {
+            animation: slideUp 0.3s ease;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        .popup h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--secondary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .popup label {
-            display: block;
-            margin-top: 1rem;
-            margin-bottom: 0.4rem;
-            color: var(--primary);
-            font-size: 0.95rem;
-            font-weight: 500;
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        .popup input,
-        .popup select,
-        .popup textarea {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--text-subtle);
-            font-size: 1rem;
-            background: #F9FAFB; /* Very light input background */
-            color: var(--text-light);
-            transition: border-color 0.3s ease;
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
-        .popup input:focus,
-        .popup select:focus,
-        .popup textarea:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); 
-        }
-
-        .popup textarea {
-            min-height: 8rem;
-            resize: vertical;
-        }
-
-        .popup button[type="submit"],
-        #razorpay-payment-btn,
-        #downloadTicketsBtn,
-        .popup button.close-btn {
-            width: 100%;
-            padding: 1rem;
-            margin-top: 1.5rem;
-            border-radius: 0.75rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .popup button[type="submit"],
-        #razorpay-payment-btn,
-        #downloadTicketsBtn {
-            background: linear-gradient(45deg, var(--primary), #2563EB); 
-            color: var(--bg-card);
-        }
-
-        .popup button[type="submit"]:hover,
-        #razorpay-payment-btn:hover,
-        #downloadTicketsBtn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.6); 
+        .cart-badge {
+            animation: bounce 0.5s ease;
         }
         
-        .quantity-selector-container {
-            background: #EFF6FF; /* Very light blue background */
-            padding: 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--primary);
-        }
-
-        .total-price-quantity {
-            font-size: 1.8rem !important;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--secondary) !important;
-        }
-
-        #ticketDisplay {
-            background: #F9FAFB;
-            border: 1px solid var(--primary);
-            color: var(--text-light);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            word-break: break-word;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
         
-        /* Custom Alert Styling */
-        .custom-alert {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--primary); /* Blue alert background */
-            color: var(--bg-card); /* White alert text */
-            padding: 1.25rem 1.875rem;
-            border-radius: 0.625rem;
-            z-index: 1002;
-            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
-            font-size: 1rem;
-            text-align: center;
-            max-width: 90%;
-            animation: fadeInOut 4s forwards;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, -40%); }
-            10% { opacity: 1; transform: translate(-50%, -50%); }
-            90% { opacity: 1; transform: translate(-50%, -50%); }
-            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
-        }
-
-        /* --- RESPONSIVENESS TWEAKS --- */
-        #serviceCardsContainer {
-            grid-template-columns: repeat(2, minmax(0, 1fr)); 
-        }
-
-        @media (min-width: 768px) {
-            #serviceCardsContainer {
-                grid-template-columns: repeat(3, minmax(0, 1fr)); 
-            }
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
         }
         
-        @media (max-width: 1024px) {
-            .product-content { padding: 2rem; flex-direction: column; }
-            .product-details { text-align: center; }
-            .price-container, .action-buttons { justify-content: center; }
-            .btn { max-width: 400px; } 
-            .stat-grid { grid-template-columns: 1fr 1fr; }
-            main { padding: 3rem 1rem; }
-        }
-
-        @media (max-width: 600px) {
-            main { padding: 2rem 1rem; }
-            .product-header h2 { font-size: 2rem; }
-            .product-details h3 { font-size: 2rem; }
-            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
-            .current-price { font-size: 2.5rem; }
-            .popup { padding: 1.5rem; }
-            .popup h2 { font-size: 1.5rem; }
-            .action-buttons { flex-direction: column; }
-            .btn { min-width: 100%; max-width: 100%; }
-            
-            .popup input, .popup select, .popup textarea {
-                padding: 0.7rem 1rem;
-            }
+        .service-icon {
+            width: 48px;
+            height: 48px;
         }
         
-        @media (max-width: 400px) {
-            .current-price { font-size: 2rem; }
-            .original-price { font-size: 1rem; }
-            .stat-card p { font-size: 1.8rem; }
-            .popup { padding: 1rem; }
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
         }
-
-        /* Styling for the new selection display element (matching AC service file) */
-        #serviceSelectionDisplayWrapper {
-            background-color: #F9FAFB;
-            border: 1px solid var(--text-subtle);
-            border-radius: 0.75rem;
-            padding: 0.9rem 1.2rem;
-            cursor: pointer;
-            text-align: left;
-            margin-bottom: 1rem;
-            transition: border-color 0.3s ease;
-            min-height: 48px;
+        
+        .warranty-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 4px;
         }
-        #serviceSelectionDisplayWrapper:hover {
-            border-color: var(--primary);
+        
+        .demo-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
         }
-
-        #selectedServicesSummary {
-            display: block;
-            color: var(--text-light);
-            font-size: 1rem;
-            line-height: 1.25;
-            white-space: pre-wrap;
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
         }
-        /* --- END OF AC CSS COPY --- */
+        
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 14px;
+        }
     </style>
-</head>
-<body>
-    <main class="container">
-        
-        <section class="product-section">
-            <div class="product-header">
-                <h2 class="text-secondary">CCTV Installation and Service</h2> 
-                <p class="text-text-subtle mt-2">Ensure the safety and security of your property - Quick, Reliable, and Transparent.</p>
-            </div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="min-h-full bg-gray-50"><!-- Header -->
+  <header class="gradient-bg text-white shadow-lg sticky top-0 z-40">
+   <div class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
+     <div class="flex items-center space-x-3">
+      <div class="service-icon icon-hover">
+       <svg viewbox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M17,9H7V7A5,5 0 0,1 12,2A5,5 0 0,1 17,7V9M20,9A2,2 0 0,1 22,11V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V11A2,2 0 0,1 4,9H6V7A6,6 0 0,1 12,1A6,6 0 0,1 18,7V9H20M12,17A2,2 0 0,0 14,15A2,2 0 0,0 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17Z" />
+       </svg>
+      </div>
+      <div>
+       <h1 id="company-name" class="text-xl font-bold">CCTV Camera Installation Service</h1>
+       <p class="text-sm opacity-90">Professional Security Solutions &amp; Repair</p>
+      </div>
+     </div>
+     <div class="flex items-center space-x-4">
+      <div class="text-right hidden md:block">
+       <p id="customer-care" class="text-sm font-semibold">📞 8816014071</p>
+       <p id="email-address" class="text-xs opacity-90">security@cctvservice.com</p>
+      </div><button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-lg transition-all duration-300"> <span class="flex items-center space-x-2">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7M9 3V4H15V3H9M7 6V19H17V6H7Z" />
+        </svg><span>Cart</span> <span id="cart-count" class="bg-blue-500 text-white rounded-full px-2 py-1 text-xs hidden">0</span> </span> </button>
+     </div>
+    </div>
+   </div>
+  </header><!-- Hero Section -->
+  <section class="gradient-bg text-white py-16">
+   <div class="container mx-auto px-4 text-center">
+    <div class="service-icon mx-auto mb-6 icon-hover">
+     <svg viewbox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M17,9H7V7A5,5 0 0,1 12,2A5,5 0 0,1 17,7V9M20,9A2,2 0 0,1 22,11V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V11A2,2 0 0,1 4,9H6V7A6,6 0 0,1 12,1A6,6 0 0,1 18,7V9H20M12,17A2,2 0 0,0 14,15A2,2 0 0,0 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17Z" />
+     </svg>
+    </div>
+    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Professional CCTV Camera Installation &amp; Repair</h2>
+    <p class="text-xl mb-4 opacity-90">Complete Security Solutions • 1 Year Warranty • Free Installation</p>
+    <p class="text-sm mb-8 opacity-80 max-w-4xl mx-auto">Professional CCTV camera installation and repair services for homes, offices, and commercial spaces. High-quality cameras with complete setup and maintenance.</p>
+    <div class="flex justify-center space-x-6 text-sm">
+     <div class="flex items-center space-x-2"><span class="text-2xl">📹</span> <span>HD Cameras</span>
+     </div>
+     <div class="flex items-center space-x-2"><span class="text-2xl">🔧</span> <span>Free Installation</span>
+     </div>
+     <div class="flex items-center space-x-2"><span class="text-2xl">🛡️</span> <span>1 Year Warranty</span>
+     </div>
+    </div>
+   </div>
+  </section><!-- Services Section -->
+  <section class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">CCTV Camera Packages &amp; Pricing</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2" id="services-grid"><!-- Services will be populated by JavaScript -->
+    </div>
+   </div>
+  </section><!-- Service Details -->
+  <section class="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+   <div class="container mx-auto px-4">
+    <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose Our CCTV Services?</h3>
+    <div class="max-w-6xl mx-auto">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Installation Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-blue-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">🔧</span>
+        </div>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Professional Installation</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Free installation service</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Expert technician team</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Complete wiring setup</span></li>
+        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>System configuration</span></li>
+       </ul>
+      </div><!-- Warranty Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-green-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">🛡️</span>
+        </div>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Complete Warranty</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>1 year warranty on all items</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>1 year free service</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Free repair &amp; maintenance</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>24/7 technical support</span></li>
+       </ul>
+      </div><!-- Quality Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-purple-500">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">⭐</span>
+        </div>
+        <h4 class="font-bold text-xl text-gray-800 mb-2">Premium Quality</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>HD &amp; Full HD cameras</span></li>
+        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>Night vision capability</span></li>
+        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>Weather resistant</span></li>
+        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>Mobile app monitoring</span></li>
+       </ul>
+      </div>
+     </div><!-- Additional Info Banner -->
+     <div class="mt-8 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl p-6 text-white text-center">
+      <div class="flex items-center justify-center space-x-4"><span class="text-2xl">🏆</span>
+       <div>
+        <h5 class="font-bold text-lg">Complete CCTV Security Solutions</h5>
+        <p class="text-sm opacity-90">Professional installation with 1 year warranty and free service support</p>
+       </div><span class="text-2xl">📹</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <h4 class="text-xl font-bold mb-4">Contact Information</h4>
+      <div class="space-y-2 text-sm">
+       <p>📞 <span id="footer-phone">8816014071</span></p>
+       <p>✉️ <span id="footer-email">security@cctvservice.com</span></p>
+       <p>📍 <span id="office-address">Security Solutions Center, Tech City</span></p>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-xl font-bold mb-4">Our Services</h4>
+      <ul class="space-y-2 text-sm">
+       <li>• CCTV Camera Installation</li>
+       <li>• Security System Repair</li>
+       <li>• HD &amp; IP Camera Setup</li>
+       <li>• 24/7 Monitoring Solutions</li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-xl font-bold mb-4">Why Choose Us?</h4>
+      <ul class="space-y-2 text-sm">
+       <li>• Professional Installation</li>
+       <li>• 1 Year Complete Warranty</li>
+       <li>• Free Service &amp; Support</li>
+       <li>• Premium Quality Equipment</li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+     <p>© 2024 CCTV Camera Installation Service. All rights reserved.</p>
+    </div>
+   </div>
+  </footer><!-- Cart Popup -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full popup-content">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4">
+       <h3 class="text-xl font-bold">Your Cart</h3><button id="close-cart" class="text-gray-500 hover:text-gray-700">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
+      </div>
+      <div id="cart-items" class="space-y-3 mb-4"><!-- Cart items will be populated here -->
+      </div>
+      <div class="border-t pt-4">
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="cart-total">0</span></span>
+        </div>
+        <div class="border-t pt-2 flex justify-between items-center"><span class="font-bold text-lg">Payment Amount:</span> <span class="font-bold text-lg text-blue-600">₹<span id="cart-pay-now">0</span></span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-lg font-semibold disabled:opacity-50" disabled> <span id="cart-button-text">Book Service</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div><!-- Checkout Form Popup -->
+  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-start justify-center min-h-full p-2 py-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full popup-content" style="max-height: 90vh; overflow-y: auto;">
+     <div class="sticky top-0 bg-white p-3 border-b flex justify-between items-center">
+      <h3 class="text-lg font-bold">Customer Details</h3><button id="close-checkout" class="text-gray-500 hover:text-gray-700">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+       </svg></button>
+     </div>
+     <div class="p-3">
+      <form id="checkout-form" class="space-y-2">
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email-id" required class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+       </div>
+       <div><label class="block text-xs font-medium text-gray-700 mb-1">Full Address *</label> <textarea id="full-address" required rows="2" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+       </div>
+       <div class="grid grid-cols-2 gap-2">
+        <div><label class="block text-xs font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+        </div>
+        <div><label class="block text-xs font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required pattern="[0-9]{6}" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+        </div>
+       </div>
+       <div class="border-t pt-2 mt-3">
+        <div class="space-y-1 mb-2">
+         <div class="flex justify-between items-center text-xs"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="checkout-total">0</span></span>
+         </div>
+         <div class="border-t pt-1 flex justify-between items-center"><span class="font-bold text-sm">Payment Amount:</span> <span class="font-bold text-blue-600 text-sm">₹<span id="checkout-pay-now">0</span></span>
+         </div>
+         <div class="bg-blue-50 border border-blue-200 rounded p-1.5 mt-1">
+          <p class="text-xs text-blue-800"><strong>Note:</strong> <span id="payment-note">Complete payment for CCTV installation service.</span></p>
+         </div>
+        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-2 rounded font-semibold text-sm"> <span id="checkout-button-text">Pay Now</span> </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            company_name: "CCTV Camera Installation Service",
+            customer_care: "8816014071",
+            email_address: "security@cctvservice.com",
+            office_address: "Security Solutions Center, Tech City"
+        };
 
-            <div class="product-content">
-                
-                <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">Professional Installation & Packages</h3>
-                    <p class="text-text-subtle mb-4 text-base">
-                        Select your required camera set or service below. Pay a **₹99 Booking Charge** to confirm the technician visit.
-                    </p>
-                    
-                    <div class="price-container">
-                        <!-- Display selected package name here -->
-                        <div id="selectedServicesDisplay" class="font-bold text-center text-secondary mb-2">Select package(s) or service(s) to view cost</div>
-                        <div class="original-price" id="originalPriceDisplay">Estimated Total Cost: Select Option</div>
-                        <!-- Display fixed booking charge -->
-                        <div class="current-price" id="displayPrice">₹99 Booking Charge</div>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" id="participate-btn">
-                            <i class="fas fa-video"></i> Book CCTV Service Now
+        // CCTV Services data
+        const services = [
+            {
+                id: 1,
+                name: "Demo Payment Test",
+                price: 1,
+                originalPrice: null,
+                icon: "🧪",
+                description: "Test payment functionality with ₹1",
+                details: "Demo Category • Test Payment Only",
+                features: [
+                    "Payment gateway testing",
+                    "Order processing demo",
+                    "System functionality check"
+                ],
+                isDemo: true
+            },
+            {
+                id: 2,
+                name: "AHD 4 Camera Set",
+                price: 16000,
+                originalPrice: null,
+                icon: "📹",
+                description: "Complete AHD 4 camera security system with DVR",
+                details: "4 Cameras • 1 DVR • 500GB HDD • 1 Year Warranty",
+                features: [
+                    "4 AHD Cameras",
+                    "1 DVR 4 Channel",
+                    "Supply - 4 Channel",
+                    "1 HDD - 500 GB",
+                    "3+1 Wire 90 Meters",
+                    "Free Installation",
+                    "1 Year Warranty",
+                    "1 Year Free Service"
+                ]
+            },
+            {
+                id: 3,
+                name: "IP Camera 4 Camera Set",
+                price: 24000,
+                originalPrice: null,
+                icon: "🌐",
+                description: "Advanced IP camera system with NVR and POE",
+                details: "4 IP Cameras • 1 NVR • POE Switch • 1 Year Warranty",
+                features: [
+                    "4 IP Cameras",
+                    "1 NVR 4 Channel",
+                    "1 POE 4 Channel",
+                    "CAT-6 Wire 90 Meters",
+                    "1 HDD - 500 GB",
+                    "Remote Monitoring",
+                    "1 Year Warranty",
+                    "1 Year Free Service"
+                ]
+            },
+            {
+                id: 4,
+                name: "AHD 8 Camera Set",
+                price: 24000,
+                originalPrice: null,
+                icon: "🏢",
+                description: "Extended AHD 8 camera system for larger areas",
+                details: "8 Cameras • 1 DVR • 1TB HDD • 1 Year Warranty",
+                features: [
+                    "8 AHD Cameras",
+                    "1 DVR 8 Channel",
+                    "Supply - 8 Channel",
+                    "HDD - 1TB",
+                    "3+1 Wire 180 Meters",
+                    "Complete Coverage",
+                    "1 Year Warranty",
+                    "1 Year Free Service"
+                ]
+            },
+            {
+                id: 5,
+                name: "IP Camera 8 Camera Set",
+                price: 34000,
+                originalPrice: null,
+                icon: "🏭",
+                description: "Premium IP camera system for comprehensive security",
+                details: "8 IP Cameras • 1 NVR • POE Switch • 1 Year Warranty",
+                features: [
+                    "8 IP Cameras",
+                    "1 NVR 8 Channel",
+                    "1 POE 8 Channel",
+                    "CAT-6 Wire 180 Meters",
+                    "HDD - 1TB",
+                    "Advanced Features",
+                    "1 Year Warranty",
+                    "1 Year Free Service"
+                ]
+            }
+        ];
+
+        // Cart functionality
+        let cart = [];
+
+        function renderServices() {
+            const servicesGrid = document.getElementById('services-grid');
+            servicesGrid.innerHTML = services.map(service => `
+                <div class="service-card p-6">
+                    <div class="service-card-content">
+                        ${service.isDemo ? '<div class="demo-badge">DEMO CATEGORY</div>' : ''}
+                        <div class="text-center mb-4">
+                            <div class="text-4xl mb-3 icon-hover">${service.icon}</div>
+                            <h4 class="font-bold text-base mb-2 text-gray-800 leading-tight">${service.name}</h4>
+                            <p class="text-gray-600 text-xs mb-2">${service.description}</p>
+                            <p class="text-blue-600 text-xs font-semibold">${service.details}</p>
+                            ${!service.isDemo ? '<div class="warranty-badge mt-2">1 Year Warranty + Free Service</div>' : ''}
+                        </div>
+                        <div class="mb-4">
+                            <ul class="feature-list text-xs text-gray-600">
+                                ${service.features.slice(0, 4).map(feature => `<li>${feature}</li>`).join('')}
+                                ${service.features.length > 4 ? `<li class="text-blue-600 font-semibold">+${service.features.length - 4} more features</li>` : ''}
+                            </ul>
+                        </div>
+                        <div class="text-center mb-4">
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-xl font-bold text-blue-600">₹${service.price.toLocaleString()}</span>
+                                ${service.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${service.originalPrice.toLocaleString()}</span>` : ''}
+                            </div>
+                            ${service.originalPrice ? `<div class="text-xs text-blue-600 font-semibold">Save ₹${(service.originalPrice - service.price).toLocaleString()}</div>` : ''}
+                        </div>
+                        <button onclick="addToCart(${service.id})" class="w-full btn-primary text-white py-2.5 rounded-lg font-semibold text-sm transform transition-transform hover:scale-105">
+                            Add to Cart
                         </button>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <div class="stat-grid">
-            <div class="stat-card">
-                <h3>Total Installations</h3>
-                <p>15,000+</p>
-            </div>
-            <div class="stat-card">
-                <h3>Camera Brands</h3>
-                <p>3+ Brands</p>
-            </div>
-            <div class="stat-card">
-                <h3>Service Rating</h3>
-                <p>4.8/5 Stars</p>
-            </div>
-            <div class="stat-card">
-                <h3>Quickest Slot Available</h3>
-                <p>Today!</p>
-            </div>
-        </div>
-    </main>
-
-    <div id="popup-overlay"></div>
-    
-    <!-- MAIN BOOKING FORM (Renamed to popupForm for consistency) -->
-    <div class="popup" id="popupForm">
-        <h2 class="text-2xl font-bold text-center">CCTV Service Booking</h2>
-        <form id="lotteryForm">
-            
-            <label>Select CCTV Package / Service:</label>
-            <!-- Wrapper for selection display (Matching AC service file) -->
-            <div id="serviceSelectionDisplayWrapper" onclick="openServiceSelectionPopup()">
-                <span id="selectedServicesSummary">Click to select package(s) or service(s)</span>
-            </div>
-            
-            <!-- Hidden fields -->
-            <input type="hidden" name="selectedServices" id="selectedServicesHiddenField">
-
-            <div class="flex justify-between items-center mt-3 p-3 rounded-lg quantity-selector-container border-primary">
-                <span class="text-text-light font-semibold">Total Payable Now (Booking Charge)</span>
-                <!-- Fixed booking charge -->
-                <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">₹99</span>
-            </div>
-
-            <label for="fullName">Your Full Name (min 10 characters)</label>
-            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
-            
-            <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
-            
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
-            
-            <label for="location">Service Landmark (e.g. Near Main Market)</label>
-            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
-            
-            <label for="address">Full Service Address (min 30 characters)</label>
-            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
-
-            <input type="hidden" name="ticket" id="ticketCode" />
-            <input type="hidden" name="finalPrice" id="finalPrice" value="99" />
-            <input type="hidden" name="totalCost" id="totalCostInput" value="0" />
-            
-            <button type="submit">Next</button>
-            <p id="submitMessage" class="text-center mt-3 text-primary reorganize text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
-        </form>
-    </div>
-    
-    <!-- SELECTION POPUP (Matching AC Service File) -->
-    <div class="popup" id="serviceSelectionPopup" style="max-width: 900px;">
-        <h2 class="text-2xl font-bold text-center">Select CCTV Packages / Services</h2>
-        <div id="serviceCardsContainer" class="grid grid-cols-2 md:grid-cols-2 gap-3 mt-4 mb-6">
-            <!-- Service Cards will be injected here by JS -->
-        </div>
-        <button type="button" class="btn btn-primary" onclick="applyServiceSelection()">Apply Selection</button>
-        <button type="button" class="btn btn-secondary mt-2" onclick="closeServiceSelectionPopup()">Cancel</button>
-    </div>
-    <!-- END SELECTION POPUP -->
-
-    <!-- PAYMENT STEP -->
-    <div class="popup" id="paymentStep">
-        <h2 class="text-2xl font-bold text-center">Finalize Booking Charge</h2>
-        <p class="text-text-subtle text-center mb-6">Please pay the **₹99 booking charge** to confirm your service slot.</p>
-        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary text-text-light"></div>
-        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
-        <!-- Updated button text and price to 99 -->
-        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i>Pay ₹99 Booking Charge Now</button>
-        <p class="mt-4 reorganize text-xs text-text-subtle text-center">
-            Note: The remaining service/product cost must be paid to the technician after service delivery. Do not close this window during payment processing.
-        </p>
-    </div>
-
-    <!-- TICKET STEP -->
-    <div class="popup" id="ticketStep">
-        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">Your booking is confirmed. Details below:</p>
-        <div id="ticketDisplay" class="space-y-2"></div>
-        <button id="downloadTicketsBtn" class="mt-4">
-            <i class="fas fa-download mr-2"></i> Download Booking Details
-        </button>
-        <p class="mt-4 reorganize text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
-        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
-    </div>
-    
-   
-    <script>
-        // Data adapted for CCTV Services
-        const serviceData = [
-            { "Category": "AHD 4 Camera Set", "Price": 16000, "Icon": "fas fa-camera", "Details": "Complete 4 Camera AHD set with installation." },
-            { "Category": "AHD 8 Camera Set", "Price": 24000, "Icon": "fas fa-video", "Details": "Complete 8 Camera AHD set with installation." },
-            { "Category": "IP Camera 4 Camera Set", "Price": 24000, "Icon": "fas fa-network-wired", "Details": "Complete 4 Camera IP set (Higher Quality)." },
-            { "Category": "IP Camera 8 Camera Set", "Price": 34000, "Icon": "fas fa-network-wired", "Details": "Complete 8 Camera IP set (Higher Quality)." },
-            { "Category": "CCTV Diagnosis & Repair Visit", "Price": 299, "Icon": "fas fa-tools", "Details": "Standard visiting charge for repair diagnosis." }
-        ];
-
-        // --- Configuration Constants ---
-        const SERVICE_TAB_ID = 'cctv-service'; // Updated ID
-        const LOCAL_STORAGE_KEY = 'cctvServiceFormData'; // Updated Key
-        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
-        
-        // --- DOM Element Selection ---
-        const participateBtn = document.getElementById('participate-btn');
-        const popupOverlay = document.getElementById('popup-overlay');
-        const allPopups = document.querySelectorAll('.popup');
-        const popupForm = document.getElementById('popupForm');
-        const paymentStep = document.getElementById('paymentStep');
-        const ticketStep = document.getElementById('ticketStep');
-        const timerDisplay = document.getElementById('timerDisplay');
-        const razorpayBtn = document.getElementById('razorpay-payment-btn');
-        const submitMessage = document.getElementById('submitMessage');
-        const serviceSelectionPopup = document.getElementById('serviceSelectionPopup');
-        const serviceCardsContainer = document.getElementById('serviceCardsContainer'); 
-        const selectedServicesSummary = document.getElementById('selectedServicesSummary'); 
-        const selectedServicesHiddenField = document.getElementById('selectedServicesHiddenField'); 
-        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
-        const paymentSummary = document.getElementById('paymentSummary');
-        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
-        const welcomeMessage = document.getElementById('welcomeMessage');
-        const displayPriceElement = document.getElementById('displayPrice');
-        const finalPriceInput = document.getElementById('finalPrice');
-        const totalCostInput = document.getElementById('totalCostInput');
-        const form = document.getElementById('lotteryForm');
-        const okayBtn = document.getElementById('okayBtn');
-        const selectedServicesDisplay = document.getElementById('selectedServicesDisplay');
-
-        // --- State Variables ---
-        let generatedTicket = ''; 
-        let paymentTimeout = null;
-        let countdownInterval = null;
-        const PAYMENT_TIME_LIMIT = 5 * 60;
-        let currentTotalCost = 0; // Actual total service cost (sum of selected base prices)
-        const BOOKING_CHARGE = 99; 
-        let allowClose = false;
-        let selectedCategoriesState = []; // Array to hold multiple selected items
-
-        // --- Local Storage Functions ---
-        function saveFormData() {
-            const formData = {
-                fullName: form.fullName.value,
-                phone: form.phone.value,
-                email: form.email.value,
-                location: form.location.value,
-                address: form.address.value,
-                selectedServices: selectedServicesHiddenField.value
-            };
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+            `).join('');
         }
 
-        function loadFormData() {
-            const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                form.fullName.value = data.fullName || '';
-                form.phone.value = data.phone || '';
-                form.email.value = data.email || '';
-                form.location.value = data.location || '';
-                form.address.value = data.address || '';
-                if (data.selectedServices) {
-                    // Load multiple selections
-                    selectedCategoriesState = data.selectedServices.split(', ').filter(s => s);
-                }
-            }
-        }
-        
-        // --- Selection Popup Control (Client-side UI logic) ---
-
-        function openServiceSelectionPopup() {
-            generateServiceCards();
-            // Re-check all previously selected items
-            serviceCardsContainer.querySelectorAll('input[name="cctvService"]').forEach(checkbox => {
-                const category = checkbox.value;
-                checkbox.checked = selectedCategoriesState.includes(category);
-                
-                const cardWrapper = checkbox.closest('.service-card-wrapper');
-                updateCardVisuals(cardWrapper, checkbox.checked);
-            });
-            openPopup(serviceSelectionPopup);
-        }
-
-        function closeServiceSelectionPopup() {
-            serviceSelectionPopup.style.display = 'none';
-            if (popupForm.style.display === 'block') {
-                popupOverlay.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+        function addToCart(serviceId) {
+            const service = services.find(s => s.id === serviceId);
+            const existingItem = cart.find(item => item.id === serviceId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
             } else {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                cart.push({ ...service, quantity: 1 });
+            }
+            
+            updateCartUI();
+            showCartPopup();
+        }
+
+        function removeFromCart(serviceId) {
+            cart = cart.filter(item => item.id !== serviceId);
+            updateCartUI();
+            if (cart.length === 0) {
+                hideCartPopup();
             }
         }
-        
-        function applyServiceSelection() {
-            // NOTE: Since the checkboxes are updated instantly on click/change in this AC-style logic, 
-            // this function mainly serves to close the popup and trigger the final price update.
-            const selectedCheckboxes = Array.from(serviceCardsContainer.querySelectorAll('input[name="cctvService"]:checked'));
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutTotal = document.getElementById('checkout-total');
+            const proceedBtn = document.getElementById('proceed-checkout');
             
-            if (selectedCheckboxes.length === 0) {
-                selectedCategoriesState = [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Calculate payment amount (full amount for CCTV services)
+            const payAmount = totalAmount;
+            
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+                cartCount.classList.add('cart-badge');
             } else {
-                 // Update state from current checkbox values
-                selectedCategoriesState = selectedCheckboxes.map(cb => cb.value);
+                cartCount.classList.add('hidden');
             }
-
-            updatePrices();
             
-            closeServiceSelectionPopup(); 
-            
-            popupForm.style.display = 'block';
-            popupOverlay.style.display = 'block';
-        }
-
-        // --- Core Functions ---
-
-        function generateServiceCards() {
-            serviceCardsContainer.innerHTML = '';
-            
-            serviceData.forEach((service, index) => {
-                // Generate a unique placeholder image URL for each service category (Blue/Teal theme for security)
-                const baseColor = service.Category.includes('Diagnosis') ? 'F7B500' : '007BA7';
-                const imageUrl = `https://placehold.co/400x200/${baseColor}/FFFFFF?font=Montserrat&text=${encodeURIComponent(service.Category.replace(/\s/g, '+'))}`;
-                
-                const isChecked = selectedCategoriesState.includes(service.Category);
-                
-                const cardHtml = `
-                    <div class="service-card-wrapper" data-category="${service.Category}" data-price="${service.Price}" data-image-url="${imageUrl}"> 
-                        <label class="block h-full cursor-pointer"> 
-                            <div id="card-${index}" class="service-card p-3 rounded-xl border-2 transition duration-300 transform hover:scale-[1.02] 
-                                border-text-subtle/50 hover:border-primary/80" 
-                                style="background-image: url('${imageUrl}'); background-color: ${isChecked ? 'rgba(59, 130, 246, 0.7)' : 'rgba(0, 0, 0, 0.5)'};">
-                                
-                                <input type="checkbox" id="service-checkbox-${index}" name="cctvService" 
-                                       value="${service.Category}" data-price="${service.Price}" class="hidden" ${isChecked ? 'checked' : ''}>
-                                
-                                <div class="flex items-start justify-between mb-2">
-                                    <div class="flex items-center">
-                                        <div class="service-icon-container">
-                                            <i class="${service.Icon} text-lg"></i> 
-                                        </div>
-                                        <h4 class="text-base font-semibold text-white">${service.Category}</h4>
-                                    </div>
-                                    <i class="fas fa-check-circle text-xl card-check-icon ${isChecked ? 'text-white' : 'text-gray-200'}"></i>
-                                </div>
-                                
-                                <p class="text-xs text-yellow-300 font-bold mb-2">Price: ₹${service.Price.toLocaleString('en-IN')}</p>
-                                <p class="text-xs text-white font-medium">${service.Details}</p>
-                                
-                                <a href="#"
-                                   onclick="event.preventDefault(); showCustomAlert('The full price includes installation and warranty details.');"
-                                   class="btn-see-more py-1 px-3 rounded-full text-xs font-bold inline-flex items-center justify-center w-full mt-2 transition duration-200 hover:bg-[#2563EB]">
-                                    <i class="fas fa-search-plus mr-1"></i> View Details
-                                </a>
-                            </div>
-                        </label>
+            cartItems.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="flex-1">
+                        <h5 class="font-semibold text-sm">${item.name}</h5>
+                        <p class="text-gray-600 text-xs">₹${item.price.toLocaleString()} x ${item.quantity}</p>
                     </div>
-                `;
-                serviceCardsContainer.insertAdjacentHTML('beforeend', cardHtml);
-            });
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold">₹${(item.price * item.quantity).toLocaleString()}</span>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
             
-             serviceCardsContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                checkbox.addEventListener('change', (e) => {
-                    // Update visuals
-                    const cardWrapper = e.target.closest('.service-card-wrapper');
-                    updateCardVisuals(cardWrapper, e.target.checked);
-                    
-                    // --- NEW: AC style instant state update on card click/change ---
-                    const category = e.target.value;
-                    if (e.target.checked) {
-                        if (!selectedCategoriesState.includes(category)) {
-                            selectedCategoriesState.push(category);
-                        }
-                    } else {
-                        selectedCategoriesState = selectedCategoriesState.filter(c => c !== category);
-                    }
-                    // Optional: Update prices instantly (commented out to stick to "Apply" button logic,
-                    // but keeping the state update instant ensures "Apply" uses correct data)
-                    // updatePrices(); 
-                    // --- END NEW ---
-                });
-                
-                // Add click listener to the label itself to handle full card clicks
-                const label = checkbox.closest('label');
-                label.addEventListener('click', (e) => {
-                    // If the click target is the card itself (not the inner anchor link), and not the checkbox input (handled by 'change')
-                    if (e.target.closest('.service-card') && e.target.tagName !== 'A' && e.target.tagName !== 'I') {
-                        // Toggle the checkbox state if the click wasn't directly on the checkbox or button
-                        // The 'change' listener above handles the rest of the logic
-                        checkbox.checked = !checkbox.checked;
-                        checkbox.dispatchEvent(new Event('change'));
-                    }
-                });
-            });
-        }
-
-        function updateCardVisuals(wrapper, isChecked) {
-            const card = wrapper.querySelector('.service-card');
-            const checkIcon = wrapper.querySelector('.card-check-icon');
-            const imageUrl = wrapper.dataset.imageUrl; 
+            cartTotal.textContent = totalAmount.toLocaleString();
+            checkoutTotal.textContent = totalAmount.toLocaleString();
             
-            if (isChecked) {
-                card.style.backgroundImage = 'url(\'drng1.png\')'; 
-                card.style.backgroundColor = 'rgba(59, 130, 246, 0.7)'; 
-                card.classList.add('border-primary', 'shadow-lg', 'shadow-primary/30');
-                card.classList.remove('border-text-subtle/50', 'hover:border-primary/80');
-                checkIcon.classList.remove('text-gray-200');
-                checkIcon.classList.add('text-white'); 
-            } else {
-                card.style.backgroundImage = `url('${imageUrl}')`; 
-                card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
-                card.classList.remove('border-primary', 'shadow-lg', 'shadow-primary/30');
-                card.classList.add('border-text-subtle/50', 'hover:border-primary/80');
-                checkIcon.classList.remove('text-white'); 
-                checkIcon.classList.add('text-gray-200');
-            }
-        }
-
-        function updatePrices() {
-            // Filter selected items from serviceData and sum their prices
-            const selectedProducts = serviceData.filter(service => 
-                selectedCategoriesState.includes(service.Category)
-            );
+            // Update payment amount displays
+            const cartPayNow = document.getElementById('cart-pay-now');
+            const checkoutPayNow = document.getElementById('checkout-pay-now');
+            const cartButtonText = document.getElementById('cart-button-text');
+            const checkoutButtonText = document.getElementById('checkout-button-text');
+            const paymentNote = document.getElementById('payment-note');
             
-            // Sum the prices of all selected products
-            currentTotalCost = selectedProducts.reduce((sum, product) => sum + product.Price, 0);
-
-            const originalPriceDisplay = document.getElementById('originalPriceDisplay');
+            if (cartPayNow) cartPayNow.textContent = payAmount.toLocaleString();
+            if (checkoutPayNow) checkoutPayNow.textContent = payAmount.toLocaleString();
+            if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${payAmount.toLocaleString()}`;
+            if (checkoutButtonText) checkoutButtonText.textContent = `Pay ₹${payAmount.toLocaleString()}`;
             
-            const selectedNames = selectedCategoriesState;
-            if (selectedNames.length > 0) {
-                const namesString = selectedNames.join(', ');
-                
-                selectedServicesHiddenField.value = namesString;
-                totalCostInput.value = currentTotalCost;
-
-                selectedServicesSummary.textContent = namesString; 
-                selectedServicesDisplay.textContent = `Selected: ${selectedNames.length} Item(s)`; 
-                
-                originalPriceDisplay.textContent = `Estimated Total Cost: ₹${currentTotalCost.toLocaleString('en-IN')}`;
-                displayPriceElement.textContent = `₹${BOOKING_CHARGE.toLocaleString('en-IN')} Booking Charge`;
-                // Update the visible charge display in the main form
-                totalPriceQuantityDisplay.textContent = `₹${BOOKING_CHARGE.toLocaleString('en-IN')}`;
-                finalPriceInput.value = BOOKING_CHARGE;
-            } else {
-                selectedServicesHiddenField.value = '';
-                totalCostInput.value = 0;
-
-                selectedServicesSummary.textContent = 'Click to select package(s) or service(s)';
-                selectedServicesDisplay.textContent = 'Select package(s) or service(s) to view cost'; 
-                originalPriceDisplay.textContent = 'Estimated Total Cost: Select Option';
-                displayPriceElement.textContent = `₹99 Booking Charge`;
-                totalPriceQuantityDisplay.textContent = `₹99`;
-                finalPriceInput.value = BOOKING_CHARGE;
-            }
-        }
-
-        function generateFormattedTicket() {
-            return 'CCTV-BOOK-' + 'xxxxxxxx'.replace(/x/g, c => {
-                const r = Math.random() * 16 | 0;
-                return r.toString(16);
-            }).toUpperCase();
-        }
-
-        function downloadTickets() {
-            const selectedItems = selectedServicesHiddenField.value;
-            const totalProductCost = currentTotalCost;
-            const amountPaid = BOOKING_CHARGE;
-            const remainingAmount = totalProductCost - amountPaid;
-            
-            const ticketContent = `CCTV SERVICE BOOKING DETAILS\n\n` +
-                                 `Customer Name: ${form.fullName.value}\n` +
-                                 `Contact: ${form.phone.value}\n` +
-                                 `Location: ${form.location.value}\n` +
-                                 `Service/Package Booked: ${selectedItems}\n` +
-                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
-                                 `Estimated Total Cost: ₹${totalProductCost.toLocaleString('en-IN')}\n` +
-                                 `Booking Charge Paid: ₹${amountPaid.toLocaleString('en-IN')}\n` +
-                                 `Remaining Balance: ₹${remainingAmount.toLocaleString('en-IN')}\n\n` +
-                                 `--- IMPORTANT NOTE ---\n` +
-                                 `The final price (including exact package/service details) and remaining balance (₹${remainingAmount.toLocaleString('en-IN')}) will be paid upon service delivery.`;
-            
-            const blob = new Blob([ticketContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `cctv_booking_${generatedTicket}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-        
-        function showCustomAlert(message) {
-            const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert'; 
-            alertBox.textContent = message;
-            document.body.appendChild(alertBox);
-            setTimeout(() => alertBox.remove(), 4000); 
-        }
-
-        // --- Popup Control Functions ---
-        function closeAllPopups() {
-            if (!allowClose) {
-                showCustomAlert("Please complete the booking process before closing.");
-                return;
-            }
-            clearTimers();
-            popupOverlay.style.display = 'none';
-            allPopups.forEach(p => p.style.display = 'none');
-            document.body.style.overflow = 'auto';
-            allowClose = false; 
-        }
-
-        function openPopup(popupElement) {
-            document.body.style.overflow = 'hidden';
-            popupOverlay.style.display = 'block';
-            allPopups.forEach(p => p.style.display = 'none');
-            popupElement.style.display = 'block';
-            allowClose = false;
-        }
-        
-        function closeSpecificPopup(popupElement) {
-            popupElement.style.display = 'none';
-            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
-            if (!isAnotherPopupOpen) {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-        
-        function clearTimers() {
-            if (paymentTimeout) clearTimeout(paymentTimeout);
-            if (countdownInterval) clearInterval(countdownInterval);
-        }
-
-        function startPaymentTimer() {
-            let timeLeft = PAYMENT_TIME_LIMIT;
-            const updateDisplay = () => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            };
-            updateDisplay();
-
-            countdownInterval = setInterval(() => {
-                timeLeft--;
-                updateDisplay();
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    showCustomAlert("Payment time has expired. Please try again.");
-                    allowClose = true; 
-                    closeAllPopups();
-                }
-            }, 1000);
-        }
-
-        // --- Payment and Submission Logic ---
-        
-        function handleFormSubmit(e) {
-            e.preventDefault();
-
-            // Validation 
-            const selectedItems = selectedServicesHiddenField.value;
-            if (selectedCategoriesState.length === 0 || currentTotalCost <= 0) { showCustomAlert("Please select at least one package or service."); return; }
-            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
-            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
-            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address (minimum 30 characters)."); return; }
-            
-            submitMessage.style.display = 'block';
-            form.querySelector('button[type="submit"]').disabled = true;
-
-            generatedTicket = generateFormattedTicket(); 
-            
-            const totalProductCost = currentTotalCost; 
-            const advancePaid = BOOKING_CHARGE;
-            const remainingAmount = totalProductCost - advancePaid;
-
-            // --- Form Data for Google Sheet ---
-            const formData = new FormData();
-            formData.append('field1', form.fullName.value); 
-            formData.append('field2', form.phone.value);    
-            formData.append('field3', form.email.value);    
-            formData.append('field4', selectedItems); // Comma separated list of selected items
-            formData.append('field5', form.location.value); 
-            formData.append('field6', form.address.value);  
-            formData.append('ticket', generatedTicket);     
-            formData.append('tab', SERVICE_TAB_ID);           
-            formData.append('serviceType', 'CCTV Service');   
-            formData.append('totalCost', totalProductCost); // Sum of base costs
-            formData.append('advancePaid', advancePaid);
-            formData.append('remainingDue', remainingAmount);
-            formData.append('finalPrice', advancePaid); // Final price for payment gateway
-            formData.append('ticketQuantity', selectedCategoriesState.length); // Number of different items booked
-
-            // --- Google Script URL ---
-            fetch(GOOGLE_SHEET_URL, {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.text())
-            .then(res => {
-                if (res.includes("Success") || res.includes("success")) { 
-                    saveFormData(); 
-                    
-                    popupForm.style.display = 'none';
-                    openPopup(paymentStep);
-                    
-                    paymentSummary.innerHTML = `
-                        <p class="text-text-subtle text-lg mb-2 font-bold">Order Details:</p>
-                        <p class="text-text-light text-base mb-1">Services/Packages: <span class="font-bold text-primary">${selectedItems}</span></p>
-                        <p class="text-text-light text-base mb-3">Estimated Total Cost: <span class="font-bold text-secondary">₹${totalProductCost.toLocaleString('en-IN')}</span></p>
-                        <p class="text-text-subtle text-sm mt-2">The remaining balance 
-                        <span class="font-bold text-primary">₹${remainingAmount.toLocaleString('en-IN')}</span> 
-                        must be paid upon service delivery.</p>
-                        <p class="current-price text-secondary text-3xl font-bold mt-3">Booking Charge Payable Now: ₹${advancePaid.toLocaleString('en-IN')}</p>
-                    `;
-                    startPaymentTimer();
+            // Update payment note
+            if (paymentNote) {
+                const hasDemo = cart.some(item => item.isDemo);
+                if (hasDemo) {
+                    paymentNote.textContent = `Complete payment for CCTV installation service. Demo payment for testing purposes.`;
                 } else {
-                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
+                    paymentNote.textContent = `Complete payment for CCTV installation service. Installation will be scheduled after payment confirmation.`;
                 }
-            })
-            .catch(err => {
-                console.error("Submission error:", err);
-                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
-            })
-            .finally(() => {
-                submitMessage.style.display = 'none';
-                form.querySelector('button[type="submit"]').disabled = false;
-            });
+            }
+            
+            proceedBtn.disabled = cart.length === 0;
         }
 
-        function handleRazorpayPayment() {
-            const finalPaymentAmount = BOOKING_CHARGE; 
-             if (finalPaymentAmount == 0) {
-                showCustomAlert("Please select a package/service before proceeding.");
-                return;
-            }
+        function showCartPopup() {
+            document.getElementById('cart-popup').classList.remove('hidden');
+        }
 
-            const selectedItems = selectedServicesHiddenField.value;
+        function hideCartPopup() {
+            document.getElementById('cart-popup').classList.add('hidden');
+        }
 
+        function showCheckoutPopup() {
+            hideCartPopup();
+            document.getElementById('checkout-popup').classList.remove('hidden');
+        }
+
+        function hideCheckoutPopup() {
+            document.getElementById('checkout-popup').classList.add('hidden');
+        }
+
+        // Razorpay payment integration
+        function initiatePayment(customerData) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const payAmount = totalAmount; // Full payment for CCTV services
+            
             const options = {
-                "key": "rzp_live_RLjzp7VlXERwiG",
-                "amount": finalPaymentAmount * 100, 
-                "currency": "INR",
-                "name": `SonipatHomeService - CCTV Booking Charge`,
-                "description": `Booking Charge for CCTV Services: ${selectedItems}`,
-                "image": `https://placehold.co/100x100/F4F7FB/3B82F6?text=CCTV`, 
-                "handler": function (response){
-                    console.log("Payment successful:", response.razorpay_payment_id);
-                    paymentSuccess(response.razorpay_payment_id);
+                key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
+                amount: payAmount * 100, // Amount in paise
+                currency: 'INR',
+                name: 'CCTV Camera Installation Service',
+                description: 'CCTV Security System',
+                image: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiMzYjgyZjYiPjxwYXRoIGQ9Ik0xNyw5SDdWN0E1LDUgMCAwLDEgMTIsQUE1LDUgMCAwLDEgMTcsN1Y5TTIwLDlBMiwyIDAgMCwxIDIyLDExVjIwQTIsMiAwIDAsMSAyMCwyMkg0QTIsMiAwIDAsMSAyLDIwVjExQTIsMiAwIDAsMSA0LDlINlY3QTYsNiAwIDAsMSAxMiwxQTYsNiAwIDAsMSAxOCw3VjlIMjBNMTIsMTdBMiwyIDAgMCwwIDE0LDE1QTIsMiAwIDAsMCAxMiwxM0EyLDIgMCAwLDAgMTAsMTVBMiwyIDAgMCwwIDEyLDE3WiIvPjwvc3ZnPg==',
+                prefill: {
+                    name: customerData.name,
+                    email: customerData.email,
+                    contact: customerData.mobile
                 },
-                "prefill": {
-                    "name": form.fullName.value,
-                    "email": form.email.value,
-                    "contact": form.phone.value
+                theme: {
+                    color: '#3b82f6'
                 },
-                "notes": {
-                    "address": `${form.location.value}, ${form.address.value}`,
-                    "service_details": selectedItems,
-                    "booking_ref": generatedTicket,
-                    "total_cost": currentTotalCost,
+                handler: function(response) {
+                    // Payment successful
+                    submitToGoogleSheets(customerData, response.razorpay_payment_id);
                 },
-                "theme": { "color": "#3B82F6" }, 
-                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+                modal: {
+                    ondismiss: function() {
+                        // Payment cancelled
+                        console.log('Payment cancelled');
+                    }
+                }
             };
-
+            
             const rzp = new Razorpay(options);
-            rzp.on('payment.failed', response => {
-                console.error("Payment Failed:", response.error);
-                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
-            });
             rzp.open();
         }
 
-        function paymentSuccess(paymentId) {
-            clearTimers();
-            paymentStep.style.display = 'none';
-            openPopup(ticketStep);
+        // Google Sheets integration
+        async function submitToGoogleSheets(customerData, paymentId) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const payAmount = totalAmount; // Full payment for CCTV services
             
-            const userName = form.fullName.value.split(' ')[0];
-            const selectedItems = selectedServicesHiddenField.value;
-            
-            const totalProductCost = currentTotalCost; 
-            const amountPaid = BOOKING_CHARGE; 
-            const remainingAmount = totalProductCost - amountPaid; 
+            const formData = new FormData();
+            formData.append('timestamp', new Date().toLocaleString('en-IN'));
+            formData.append('customerName', customerData.name);
+            formData.append('mobile', customerData.mobile);
+            formData.append('email', customerData.email);
+            formData.append('address', customerData.address);
+            formData.append('landmark', customerData.landmark || '');
+            formData.append('pincode', customerData.pincode);
+            formData.append('orderItems', cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', '));
+            formData.append('totalAmount', totalAmount);
+            formData.append('paidAmount', payAmount);
+            formData.append('paymentId', paymentId);
+            formData.append('status', 'CCTV Installation Booking Confirmed');
 
-            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Booking Confirmed! 🎉`;
-            
-            ticketDisplay.innerHTML = `
-                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p>Service/Package(s): <span class="font-bold text-text-light">${selectedItems}</span></p>
-                <p>Estimated Total Cost: <span class="font-bold text-secondary">₹${totalProductCost.toLocaleString('en-IN')}</span></p>
-                <p class="text-primary text-lg font-bold mt-3">Booking Charge Paid: ₹${amountPaid.toLocaleString('en-IN')}</p>
+            try {
+                // Show loading state
+                showLoadingMessage();
                 
-                <div class="mt-4 p-3 rounded-lg bg-bg-dark border border-secondary">
-                    <p class="text-text-light font-semibold">Remaining Balance Due:</p>
-                    <p class="text-xl text-primary font-bold mt-1">₹${remainingAmount.toLocaleString('en-IN')}</p>
-                    <p class="text-sm text-text-subtle mt-1">This amount will be paid upon service completion.</p>
-                </div>
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec', {
+                    method: 'POST',
+                    body: formData
+                });
 
-                <p class="text-text-subtle text-sm mt-3">Our team will contact you shortly to schedule the service at your location: ${form.location.value}.</p>
-                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
-            `;
-            
-            allowClose = true;
-        }
-        
-        // --- Event Listeners Initialization ---
-        participateBtn.addEventListener('click', () => {
-            updatePrices();
-            loadFormData(); 
-            openPopup(popupForm);
-        });
-        
-        // Centralized Overlay Click Handling (Copied from AC file logic)
-        popupOverlay.addEventListener('click', e => {
-            if (e.target === popupOverlay) {
-                if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
-                else if (serviceSelectionPopup.style.display === 'block') closeServiceSelectionPopup();
+                // Hide loading and show success
+                hideLoadingMessage();
+                hideCheckoutPopup();
+                showSuccessMessage();
+                cart = [];
+                updateCartUI();
+                
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                hideLoadingMessage();
+                showErrorMessage();
             }
-        });
-        
-        // Close Buttons
-        document.querySelectorAll('.close-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const parentPopup = e.target.closest('.popup');
-                if (parentPopup.id === 'ticketStep' || parentPopup.id === 'okayBtn') {
-                    window.location.href = 'index.html';
-                } else {
-                    closeSpecificPopup(parentPopup);
-                }
+        }
+
+        function showLoadingMessage() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = 'loading-message';
+            loadingDiv.className = 'fixed top-4 right-4 bg-blue-500 text-white p-4 rounded-lg shadow-lg z-50';
+            loadingDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    <div>
+                        <p class="font-semibold">Processing...</p>
+                        <p class="text-sm">Saving your booking details</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(loadingDiv);
+        }
+
+        function hideLoadingMessage() {
+            const loadingDiv = document.getElementById('loading-message');
+            if (loadingDiv) {
+                loadingDiv.remove();
+            }
+        }
+
+        function showSuccessMessage() {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50';
+            successDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl">✅</span>
+                    <div>
+                        <p class="font-semibold">Payment Successful!</p>
+                        <p class="text-sm">Your CCTV installation booking confirmed.</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 5000);
+        }
+
+        function showErrorMessage() {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50';
+            errorDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl">❌</span>
+                    <div>
+                        <p class="font-semibold">Error!</p>
+                        <p class="text-sm">Please try again or contact support.</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            renderServices();
+            updateCartUI();
+
+            // Cart button
+            document.getElementById('cart-btn').addEventListener('click', showCartPopup);
+            
+            // Close buttons
+            document.getElementById('close-cart').addEventListener('click', hideCartPopup);
+            document.getElementById('close-checkout').addEventListener('click', hideCheckoutPopup);
+            
+            // Proceed to checkout
+            document.getElementById('proceed-checkout').addEventListener('click', showCheckoutPopup);
+            
+            // Checkout form
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const customerData = {
+                    name: document.getElementById('customer-name').value,
+                    mobile: document.getElementById('mobile-number').value,
+                    email: document.getElementById('email-id').value,
+                    address: document.getElementById('full-address').value,
+                    landmark: document.getElementById('landmark').value,
+                    pincode: document.getElementById('pincode').value
+                };
+                
+                initiatePayment(customerData);
+            });
+
+            // Close popups when clicking outside
+            document.getElementById('cart-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCartPopup();
+            });
+            
+            document.getElementById('checkout-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCheckoutPopup();
             });
         });
 
-        document.getElementById('serviceSelectionDisplayWrapper').addEventListener('click', openServiceSelectionPopup);
-        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
-        razorpayBtn.addEventListener('click', handleRazorpayPayment);
-        downloadTicketsBtn.addEventListener('click', downloadTickets);
-        form.addEventListener('submit', handleFormSubmit);
+        // Element SDK integration
+        async function onConfigChange(config) {
+            document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+            document.getElementById('customer-care').textContent = `📞 ${config.customer_care || defaultConfig.customer_care}`;
+            document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
+            document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
+            document.getElementById('footer-phone').textContent = config.customer_care || defaultConfig.customer_care;
+            document.getElementById('footer-email').textContent = config.email_address || defaultConfig.email_address;
+        }
 
-        // --- Page Load Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePrices(); 
-        });
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["company_name", config.company_name || defaultConfig.company_name],
+                ["customer_care", config.customer_care || defaultConfig.customer_care],
+                ["email_address", config.email_address || defaultConfig.email_address],
+                ["office_address", config.office_address || defaultConfig.office_address]
+            ]);
+        }
+
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
     </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99670c08f3ef59d8',t:'MTc2MTc4Njc3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
