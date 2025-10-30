@@ -551,8 +551,9 @@
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
-            // Calculate payment amount (₹99 booking for all geyser services)
-            const payAmount = 99;
+            // Calculate payment amount (₹1 for demo, ₹99 for real services)
+            const hasDemo = cart.some(item => item.id === 0);
+            const payAmount = hasDemo ? 1 : 99;
             
             if (totalItems > 0) {
                 cartCount.textContent = totalItems;
@@ -636,7 +637,10 @@
         // Razorpay payment integration
         function initiatePayment(customerData) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const payAmount = 99; // ₹99 booking for all geyser services
+            
+            // Check if cart contains demo service (id: 0)
+            const hasDemo = cart.some(item => item.id === 0);
+            const payAmount = hasDemo ? 1 : 99; // ₹1 for demo, ₹99 for real services
             
             const options = {
                 key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
@@ -672,7 +676,8 @@
         // Google Sheets integration
         async function submitToGoogleSheets(customerData, paymentId) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const payAmount = 99; // ₹99 booking for all geyser services
+            const hasDemo = cart.some(item => item.id === 0);
+            const payAmount = hasDemo ? 1 : 99; // ₹1 for demo, ₹99 for real services
             const remainingAmount = totalAmount - payAmount;
             
             const formData = new FormData();
@@ -856,5 +861,5 @@
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99673c67f218c51e',t:'MTc2MTc4ODc1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9967425a63c0c51e',t:'MTc2MTc4ODk5OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
