@@ -1,1117 +1,2078 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonipatHomeService.com - Electrician Service</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
-
-        :root {
-            /* Premium Dark Teal & Gold Theme (AC Colors) */
-            --bg-dark: #101827; /* Deep Space Black */
-            --bg-card: #1C2738; /* Dark Navy Card */
-            --primary: #00FFFF; /* Electric Teal Accent */
-            --secondary: #FFC72C; /* Sunset Gold Accent */
-            --text-light: #E0E7FF; /* Off-White Text */
-            --text-subtle: #A0AEC0; /* Gray-Blue Subtle Text */
-            --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.5);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-            /* AC Button Colors used for Popup Actions (for consistent look across popups) */
-            --ac-primary: #00FFFF; /* Electric Teal */
-            --ac-secondary: #FFC72C; /* Sunset Gold */
-        }
-
-        * {
+<!doctype html>
+<html lang="hi">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electrician Service Sonipat - Professional Home Electrical Services</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fef7e0 0%, #fef3c7 50%, #fde68a 100%);
+            min-height: 100%;
+            position: relative;
             overflow-x: hidden;
-            min-height: 100vh;
         }
-
-        main {
-            max-width: 1400px;
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(180, 83, 9, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        html {
+            height: 100%;
+        }
+        
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 1.5rem;
+            padding: 20px;
         }
-
-        /* --- Custom Components --- */
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+        
+        /* Top Header Styles */
+        .top-header {
+            background: linear-gradient(135deg, #92400e 0%, #d97706 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
         }
-
-        .stat-card {
-            background: var(--bg-card);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-depth);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 255, 255, 0.1);
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+        
+        .header-left {
+            display: flex;
+            align-items: center;
         }
-
-        .stat-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-            font-family: 'Montserrat', sans-serif;
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .company-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            margin-bottom: 2px;
+        }
+        
+        .company-subtitle {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .header-contact {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .contact-item-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
             font-weight: 600;
         }
-
-        .stat-card p {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
+        
+        .contact-icon {
+            font-size: 1.1rem;
         }
-
-        .product-section {
-            background: linear-gradient(135deg, var(--bg-card), #22324C);
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-depth);
-            margin-bottom: 3rem;
-            overflow: hidden;
-            border: 2px solid var(--secondary);
-        }
-
-        .product-header {
-            background: linear-gradient(90deg, #101827, #22324C);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .product-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .product-content {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 3rem;
-            gap: 3rem;
-            align-items: center; 
-            justify-content: center;
-        }
-
-        .product-details {
-            flex: 1; 
-            min-width: 300px;
-            text-align: center; 
-        }
-
-        .price-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-            padding: 1rem 0;
-            border-top: 1px dashed var(--text-subtle);
-            border-bottom: 1px dashed var(--text-subtle);
-            justify-content: center; 
-        }
-
-        .original-price {
-            font-size: 1.2rem;
-            text-decoration: line-through;
-            color: var(--text-subtle);
-            font-weight: 400;
-            visibility: visible; 
-            height: auto;
-        }
-
-        .current-price {
-            font-size: 3rem; 
-            font-weight: 800; 
-            color: var(--secondary);
-            font-family: 'Montserrat', sans-serif;
-            min-height: 3rem; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
+        
+        .emergency-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
             font-weight: 700;
+            font-size: 0.75rem;
             cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+            animation: emergencyPulse 2s infinite;
+        }
+        
+        @keyframes emergencyPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .emergency-btn:hover {
+            background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Main Banner Styles */
+        .main-banner {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.15);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+
+        
+        .main-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+            animation: bannerGlow 6s ease-in-out infinite alternate;
+        }
+        
+        @keyframes bannerGlow {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(180deg) scale(1.1); }
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%);
+            color: white;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            padding: 20px;
+        }
+        
+        .footer-logo {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            flex-grow: 1;
-            max-width: 300px;
-            min-width: 150px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            font-size: 2rem;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
         }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--bg-dark);
-            border-color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
+        
+        .footer-company-name {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #f59e0b;
+            margin-bottom: 5px;
         }
-
-        .btn-primary:hover {
-            background: #00D5D5;
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5);
+        
+        .footer-tagline {
+            font-size: 0.9rem;
+            color: #d1d5db;
+            font-weight: 500;
         }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--secondary);
-            border-color: var(--secondary);
+        
+        .footer-description {
+            color: #d1d5db;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
-
-        .btn-secondary:hover {
-            background: rgba(255, 199, 44, 0.1);
-            transform: scale(1.03);
+        
+        .footer-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #f59e0b;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
         }
-
-        /* --- Popup Styling --- */
-        #popup-overlay {
+        
+        .footer-services,
+        .footer-areas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-services li,
+        .footer-areas li {
+            padding: 8px 0;
+            color: #d1d5db;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .footer-services li:hover,
+        .footer-areas li:hover {
+            color: #f59e0b;
+            transform: translateX(5px);
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #d1d5db;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .footer-contact-item:hover {
+            color: #f59e0b;
+            transform: translateX(5px);
+        }
+        
+        .footer-icon {
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+        
+        .footer-bottom {
+            border-top: 2px solid rgba(245, 158, 11, 0.2);
+            padding: 30px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer-bottom-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-copyright {
+            color: #d1d5db;
+            font-weight: 600;
+        }
+        
+        .footer-features {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-feature {
+            color: #f59e0b;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 8px 15px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-feature:hover {
+            background: rgba(245, 158, 11, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .company-name {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #92400e;
+            margin-bottom: 8px;
+            text-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            color: #374151;
+            margin-bottom: 15px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #d97706;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 6px 10px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(245, 158, 11, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .electrical-services {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.15);
+        }
+        
+        .services-title {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #92400e;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+        }
+        
+        .electrical-icons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 15px;
+            align-items: center;
+            justify-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .electrical-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.2) 100%);
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .electrical-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .electrical-icon:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.4);
+            border-color: rgba(245, 158, 11, 0.7);
+        }
+        
+        .electrical-icon:hover::before {
+            left: 100%;
+        }
+        
+        .services-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.15);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .service-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.18) 0%, rgba(217, 119, 6, 0.12) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(245, 158, 11, 0.35);
+            color: #92400e;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(245, 158, 11, 0.35);
+            border-color: rgba(245, 158, 11, 0.6);
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-name {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .service-price {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: #d97706;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+        
+        .booking-info {
+            font-size: 0.8rem;
+            color: #374151;
+            margin-bottom: 15px;
+            padding: 8px 12px;
+            background: rgba(245, 158, 11, 0.12);
+            border-radius: 8px;
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            font-weight: 500;
+        }
+        
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .add-to-cart-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .add-to-cart-btn:hover {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+        }
+        
+        .add-to-cart-btn:hover::before {
+            left: 100%;
+        }
+        
+        .cart-section {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            width: 380px;
+            max-height: 85%;
+            overflow-y: auto;
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 15px 60px rgba(245, 158, 11, 0.25);
+            z-index: 100;
+            transition: all 0.4s ease;
+            display: none;
+        }
+        
+        .cart-section:hover {
+            box-shadow: 0 20px 80px rgba(245, 158, 11, 0.35);
+        }
+        
+        .cart-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #92400e;
+            margin-bottom: 25px;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            text-align: center;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px;
+            background: rgba(245, 158, 11, 0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            color: #92400e;
+            transition: all 0.3s ease;
+        }
+        
+        .cart-item:hover {
+            background: rgba(245, 158, 11, 0.18);
+            transform: translateX(5px);
+        }
+        
+        .cart-total {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #92400e;
+            text-align: right;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(245, 158, 11, 0.3);
+            text-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+        }
+        
+        .checkout-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .checkout-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .checkout-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.5);
+        }
+        
+        .checkout-btn:hover::before {
+            left: 100%;
+        }
+        
+        .checkout-btn:disabled {
+            background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            z-index: 999;
-        }
-
-        .popup {
-            display: none;
-            background: var(--bg-card);
-            color: var(--text-light);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-depth);
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.6);
             z-index: 1000;
-            width: 95%;
-            max-width: 650px;
-            max-height: 95vh;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
+            backdrop-filter: blur(20px);
+            margin: 3% auto;
+            padding: 40px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 550px;
+            max-height: 90%;
             overflow-y: auto;
-            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-            border: 1px solid var(--primary);
+            box-shadow: 0 25px 100px rgba(0,0,0,0.3);
+            border: 2px solid rgba(245, 158, 11, 0.3);
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        .popup h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--secondary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .popup label {
-            display: block;
-            margin-top: 1rem;
-            margin-bottom: 0.4rem;
-            color: var(--primary);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-        
-        .popup input,
-        .popup select,
-        .popup textarea {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--text-subtle);
-            font-size: 1rem;
-            background: #22324C;
-            color: var(--text-light);
-            transition: border-color 0.3s ease;
-        }
-        
-        .popup input:focus,
-        .popup select:focus,
-        .popup textarea:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.2);
-        }
-
-        .popup textarea {
-            min-height: 8rem;
-            resize: vertical;
-        }
-
-        /* START: AC Button Styles Applied Here (Consistent Look) */
-        .popup button[type="submit"],
-        #razorpay-payment-btn,
-        #downloadBtn,
-        #okayBtn,
-        .popup button.close-btn {
-            width: 100%;
-            padding: 1rem;
-            margin-top: 1.5rem;
-            border-radius: 0.75rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .popup button[type="submit"],
-        #razorpay-payment-btn,
-        #downloadBtn { /* Primary Action Buttons (Teal Gradient) */
-            background: linear-gradient(45deg, var(--ac-primary), #00D5D5);
-            color: var(--bg-dark);
-        }
-
-        .popup button[type="submit"]:hover,
-        #razorpay-payment-btn:hover,
-        #downloadBtn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
-        }
-
-        #okayBtn,
-        #close-price-list-btn,
-        #close-description-btn,
-        #closeSelectionBtn,
-        #applySelectionBtn { /* Secondary/Close Buttons (Gold Accent) */
-            background: transparent;
-            color: var(--ac-secondary);
-            border: 2px solid var(--ac-secondary);
-        }
-        
-        #okayBtn:hover,
-        #close-price-list-btn:hover,
-        #close-description-btn:hover,
-        #closeSelectionBtn:hover,
-        #applySelectionBtn:hover {
-            background: rgba(255, 199, 44, 0.1);
-            transform: scale(1.01);
-        }
-        /* END: AC Button Styles Applied Here */
-        
-        .quantity-selector-container {
-            background: #22324C;
-            padding: 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--text-subtle);
-        }
-
-        .total-price-quantity {
-            font-size: 1.8rem !important;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--secondary) !important;
-        }
-        
-        .price-calculation-summary {
-            background: #22324C;
-            padding: 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--text-subtle);
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            text-align: left;
-        }
-        .price-calculation-summary strong {
-            color: var(--primary);
-        }
-        
-        /* Custom Alert Styling */
-        .custom-alert {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--ac-primary); 
-            color: var(--bg-dark);
-            padding: 1.25rem 1.875rem;
-            border-radius: 0.625rem;
-            z-index: 1002;
-            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
-            font-size: 1rem;
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #92400e;
+            margin-bottom: 30px;
             text-align: center;
-            max-width: 90%;
-            animation: fadeInOut 4s forwards;
-            font-family: 'Montserrat', sans-serif;
+            text-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+            background: rgba(255,255,255,0.95);
+        }
+        
+        .form-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 35px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+            color: #4a5568;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #cbd5e0 0%, #a0aec0 100%);
+            transform: scale(1.02);
+        }
+        
+        .conditions-section {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.2) 100%);
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            color: #92400e;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            color: #6b7280;
+            font-style: italic;
+            padding: 50px;
+            font-size: 1.1rem;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 25px;
+            color: #f59e0b;
+            font-size: 1.2rem;
             font-weight: 600;
         }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, -40%); }
-            10% { opacity: 1; transform: translate(-50%, -50%); }
-            90% { opacity: 1; transform: translate(-50%, -50%); }
-            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
-        }
-
-        /* --- Service Selection Styling --- */
-        #serviceSelectionDisplay {
-            background: var(--bg-dark);
-            color: var(--text-light);
-            border: 1px solid var(--primary);
-            cursor: pointer;
-        }
-        #serviceCheckboxes {
-            grid-template-columns: 1fr;
-        }
-        .service-checkbox-label {
-             transition: background-color 0.2s;
-        }
-        .service-checkbox-label input:checked + span {
-            color: var(--primary); 
-        }
-
-        /* --- ULTRA PRO MAX RESPONSIVENESS TWEAKS --- */
-
-        @media (max-width: 1024px) {
-            .product-content { padding: 2rem; flex-direction: column; }
-            .product-details { text-align: center; }
-            .price-container, .action-buttons { justify-content: center; }
-            .btn { max-width: 400px; } 
-            .stat-grid { grid-template-columns: 1fr 1fr; }
-            main { padding: 3rem 1rem; }
-        }
-
-        @media (max-width: 600px) {
-            main { padding: 2rem 1rem; }
-            .product-header h2 { font-size: 2rem; }
-            .product-details h3 { font-size: 2rem; }
-            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
-            .current-price { font-size: 2.5rem; }
-            .popup { padding: 1.5rem; }
-            .popup h2 { font-size: 1.5rem; }
-            .action-buttons { flex-direction: column; }
-            .btn { min-width: 100%; max-width: 100%; }
-            .popup input, .popup select, .popup textarea {
-                padding: 0.7rem 1rem;
-            }
+        
+        .success-message {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            color: #22543d;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none;
+            font-weight: 600;
+            border: 2px solid #68d391;
         }
         
-        @media (max-width: 400px) {
-            .current-price { font-size: 2rem; }
-            .original-price { font-size: 1rem; }
-            .stat-card p { font-size: 1.8rem; }
-            .popup { padding: 1rem; }
+        .error-message {
+            background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+            color: #742a2a;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none;
+            font-weight: 600;
+            border: 2px solid #fc8181;
+        }
+        
+        .remove-btn {
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-btn:hover {
+            background: linear-gradient(135deg, #c53030 0%, #9c2626 100%);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .header-contact {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .company-title {
+                font-size: 1.3rem;
+            }
+            
+            .emergency-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            
+            .cart-section {
+                position: fixed;
+                top: 15px;
+                right: 15px;
+                left: 15px;
+                width: auto;
+                max-height: 70%;
+                padding: 25px;
+            }
+            
+            .company-name {
+                font-size: 2.2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .electrical-icons {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            }
+            
+            .electrical-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .modal-content {
+                margin: 5% auto;
+                width: 95%;
+                padding: 25px;
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-bottom-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .footer-features {
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .footer-feature {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 25px;
+            }
+            
+            .company-name {
+                font-size: 1.8rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .services-title {
+                font-size: 1.8rem;
+            }
+            
+            .service-card {
+                padding: 25px;
+            }
+            
+            .service-name {
+                font-size: 1.2rem;
+            }
+            
+            .service-price {
+                font-size: 1.8rem;
+            }
+            
+            .conditions-section {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
         }
     </style>
-</head>
-<body>
-    <main class="container">
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Top Header -->
+  <header class="top-header">
+   <div class="header-container">
+    <div class="header-left">
+     <div class="logo-section">
+      <div class="logo-icon">
+       ⚡
+      </div>
+      <div class="logo-text"><a href="https://www.sonipathomeservice.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+        <div class="company-title" id="header-company-name" style="cursor: pointer; transition: all 0.3s ease;">
+         Electrician Service
+        </div></a>
+       <div class="company-subtitle">
+        Professional Electrician Services
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="header-right">
+     <div class="header-contact">
+      <div class="contact-item-header"><span class="contact-icon">📞</span> <span id="header-phone">8816014071</span>
+      </div>
+      <div class="contact-item-header"><span class="contact-icon">✉️</span> <span id="header-email">care@sonipathomeservice.com</span>
+      </div>
+     </div><button class="emergency-btn" onclick="window.open('tel:8816014071', '_self')"> 🚨 Emergency Call </button>
+    </div>
+   </div>
+  </header>
+  <div class="container"><!-- Main Banner Section -->
+   <section class="main-banner">
+    <h1 class="company-name" id="company-name">Sonipat Home Service.com</h1>
+    <p class="tagline">Professional Electrician Service in Sonipat</p>
+    <div class="contact-info">
+     <div class="contact-item"><span>📞</span> <span id="customer-care">8816014071</span>
+     </div>
+     <div class="contact-item"><span>✉️</span> <span id="email-address">care@sonipathomeservice.com</span>
+     </div>
+     <div class="contact-item"><span>📍</span> <span id="office-address">128/1, Sainipura, Sonipat</span>
+     </div>
+    </div> <!-- Electrical Services Icons -->
+    <section class="electrical-services">
+     <h2 class="services-title">हमारी इलेक्ट्रिकल सर्विसेज</h2>
+     <div class="electrical-icons">
+      <div class="electrical-icon">
+       ⚡
+      </div>
+      <div class="electrical-icon">
+       🔌
+      </div>
+      <div class="electrical-icon">
+       💡
+      </div>
+      <div class="electrical-icon">
+       🔧
+      </div>
+      <div class="electrical-icon">
+       ⚙️
+      </div>
+      <div class="electrical-icon">
+       🏠
+      </div>
+     </div>
+    </section><!-- Services Section -->
+    <section class="services-section">
+     <h2 class="services-title">हमारी सर्विसेज और रेट्स</h2>
+     <div class="services-grid">
+      <div class="service-card">
+       <div class="service-name">
+        Switch Box Installation
+       </div>
+       <div class="service-price">
+        ₹249
+       </div>
+       <div class="booking-info">
+        Booking: ₹99 | Remaining: ₹150 (On-site)
+       </div><button class="add-to-cart-btn" onclick="addToCart('Switch Box Installation', 249, event)"> Add to Cart </button>
+      </div>
+      <div class="service-card">
+       <div class="service-name">
+        MCB Installation
+       </div>
+       <div class="service-price">
+        ₹249
+       </div>
+       <div class="booking-info">
+        Booking: ₹99 | Remaining: ₹150 (On-site)
+       </div><button class="add-to-cart-btn" onclick="addToCart('MCB Installation', 249, event)"> Add to Cart </button>
+      </div>
+      <div class="service-card">
+       <div class="service-name">
+        Socket Replacement
+       </div>
+       <div class="service-price">
+        ₹199
+       </div>
+       <div class="booking-info">
+        Booking: ₹99 | Remaining: ₹100 (On-site)
+       </div><button class="add-to-cart-btn" onclick="addToCart('Socket Replacement', 199, event)"> Add to Cart </button>
+      </div>
+      <div class="service-card">
+       <div class="service-name">
+        Button Change
+       </div>
+       <div class="service-price">
+        ₹199
+       </div>
+       <div class="booking-info">
+        Booking: ₹99 | Remaining: ₹100 (On-site)
+       </div><button class="add-to-cart-btn" onclick="addToCart('Button Change', 199, event)"> Add to Cart </button>
+      </div>
+      <div class="service-card">
+       <div class="service-name">
+        Ceiling Fan Installation
+       </div>
+       <div class="service-price">
+        ₹299
+       </div>
+       <div class="booking-info">
+        Booking: ₹99 | Remaining: ₹200 (On-site)
+       </div><button class="add-to-cart-btn" onclick="addToCart('Ceiling Fan Installation', 299, event)"> Add to Cart </button>
+      </div>
+      <div class="service-card">
+       <div class="service-name">
+        Exhaust Fan Installation
+       </div>
+       <div class="service-price">
+        ₹299
+       </div>
+       <div class="booking-info">
+        Booking: ₹99 | Remaining: ₹200 (On-site)
+       </div><button class="add-to-cart-btn" onclick="addToCart('Exhaust Fan Installation', 299, event)"> Add to Cart </button>
+      </div>
+      <div class="service-card">
+       <div class="service-name">
+        House Wire Checking &amp; Diagnose
+       </div>
+       <div class="service-price">
+        ₹199
+       </div>
+       <div class="booking-info">
+        Booking: ₹99 | Remaining: ₹100 (On-site)
+       </div><button class="add-to-cart-btn" onclick="addToCart('House Wire Checking &amp; Diagnose', 199, event)"> Add to Cart </button>
+      </div>
+     </div>
+    </section><!-- Conditions Section -->
+    <section class="conditions-section">
+     <div style="font-size: 1.5rem; margin-bottom: 15px;">
+      ⚠️ महत्वपूर्ण शर्तें
+     </div>
+     <div>
+      ये सभी लेबर रेट्स हैं - इसमें कोई भी इलेक्ट्रॉनिक आइटम शामिल नहीं है
+     </div>
+     <div style="margin-top: 10px; font-size: 1.1rem; color: #b45309;">
+      (These are Labour Rates - Not Include any Electronic Items)
+     </div>
+    </section><!-- Cart Section -->
+    <section class="cart-section" id="cart-section">
+     <h2 class="cart-title">Your Cart</h2>
+     <div id="cart-items">
+      <div class="empty-cart">
+       आपका कार्ट खाली है। कृपया कोई सर्विस चुनें।
+      </div>
+     </div>
+     <div class="cart-total" id="cart-total" style="display: none;">
+      <div>
+       Service Total: ₹<span id="service-total">0</span>
+      </div>
+      <div style="color: #d97706; font-size: 1.8rem; margin-top: 10px; text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);">
+       Booking Amount: ₹<span id="booking-total">0</span>
+      </div>
+      <div style="font-size: 1rem; color: #6b7280; margin-top: 5px;">
+       Remaining amount will be collected on-site
+      </div>
+     </div><button class="checkout-btn" id="checkout-btn" onclick="openCheckoutForm()" disabled> Proceed to Checkout </button>
+    </section>
+   </section>
+  </div><!-- Footer Section -->
+  <footer class="footer">
+   <div class="footer-container">
+    <div class="footer-content">
+     <div class="footer-section">
+      <div class="footer-logo">
+       <div class="footer-logo-icon">
+        ⚡
+       </div>
+       <div class="footer-logo-text">
+        <div class="footer-company-name" id="footer-company-name">
+         Sonipat Home Service.com
+        </div>
+        <div class="footer-tagline">
+         Your Trusted Electrical Partner
+        </div>
+       </div>
+      </div>
+      <p class="footer-description">Professional electrician services in Sonipat with 24/7 emergency support. Quality work, affordable rates, and customer satisfaction guaranteed.</p>
+     </div>
+     <div class="footer-section">
+      <h3 class="footer-title">Our Services</h3>
+      <ul class="footer-services">
+       <li>⚡ Switch Box Installation</li>
+       <li>🔌 MCB Installation</li>
+       <li>💡 Socket Replacement</li>
+       <li>🔧 Button Change</li>
+       <li>🌀 Fan Installation</li>
+       <li>🏠 House Wiring</li>
+      </ul>
+     </div>
+     <div class="footer-section">
+      <h3 class="footer-title">Contact Info</h3>
+      <div class="footer-contact">
+       <div class="footer-contact-item"><span class="footer-icon">📍</span> <span id="footer-address">128/1, Sainipura, Sonipat</span>
+       </div>
+       <div class="footer-contact-item"><span class="footer-icon">📞</span> <span id="footer-phone">8816014071</span>
+       </div>
+       <div class="footer-contact-item"><span class="footer-icon">✉️</span> <span id="footer-email">care@sonipathomeservice.com</span>
+       </div>
+       <div class="footer-contact-item"><span class="footer-icon">🌐</span> <span>www.sonipathomeservice.com</span>
+       </div>
+      </div>
+     </div>
+     <div class="footer-section">
+      <h3 class="footer-title">Service Areas</h3>
+      <ul class="footer-areas">
+       <li>🏘️ Sonipat City</li>
+       <li>🏘️ Sainipura</li>
+       <li>🏘️ Murthal</li>
+       <li>🏘️ Gohana</li>
+       <li>🏘️ Kharkhoda</li>
+       <li>🏘️ Nearby Areas</li>
+      </ul>
+     </div>
+    </div>
+    <div class="footer-bottom">
+     <div class="footer-bottom-content">
+      <div class="footer-copyright">
+       © 2024 Sonipat Home Service.com - All Rights Reserved
+      </div>
+      <div class="footer-features"><span class="footer-feature">✅ Licensed Electricians</span> <span class="footer-feature">🛡️ Insured Services</span> <span class="footer-feature">⚡ 24/7 Emergency</span> <span class="footer-feature">💯 Satisfaction Guaranteed</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </footer><!-- Customer Form Modal -->
+  <div id="customer-form-modal" class="modal">
+   <div class="modal-content">
+    <h2 class="modal-title">Customer Information</h2>
+    <div class="success-message" id="customer-success-message"></div>
+    <div class="error-message" id="customer-error-message"></div>
+    <form id="customer-form">
+     <div class="form-group"><label class="form-label" for="cust-name">Customer Name *</label> <input type="text" id="cust-name" class="form-input" required placeholder="Enter your full name">
+     </div>
+     <div class="form-group"><label class="form-label" for="cust-mobile">Mobile Number *</label> <input type="tel" id="cust-mobile" class="form-input" pattern="[0-9]{10}" required placeholder="Enter 10-digit mobile number">
+     </div>
+     <div class="form-group"><label class="form-label" for="cust-email">Email ID *</label> <input type="email" id="cust-email" class="form-input" required placeholder="Enter your email address">
+     </div>
+     <div class="form-group"><label class="form-label" for="cust-address">Full Address *</label> <textarea id="cust-address" class="form-input" rows="3" required placeholder="Enter your complete address"></textarea>
+     </div>
+     <div class="form-group"><label class="form-label" for="cust-landmark">Landmark</label> <input type="text" id="cust-landmark" class="form-input" placeholder="Enter nearby landmark (optional)">
+     </div>
+     <div class="form-group"><label class="form-label" for="cust-pincode">Pincode *</label> <input type="text" id="cust-pincode" class="form-input" pattern="[0-9]{6}" required placeholder="Enter 6-digit pincode">
+     </div>
+     <div class="form-buttons"><button type="button" class="btn-secondary" onclick="closeCustomerForm()">Cancel</button> <button type="submit" class="btn-primary">Save &amp; Continue</button>
+     </div>
+    </form>
+   </div>
+  </div><!-- Checkout Modal -->
+  <div id="checkout-modal" class="modal">
+   <div class="modal-content">
+    <h2 class="modal-title">Customer Details</h2>
+    <div class="success-message" id="success-message"></div>
+    <div class="error-message" id="error-message"></div>
+    <div class="loading" id="loading">
+     <div>
+      🔄 Processing your payment...
+     </div>
+     <div style="margin-top: 10px;">
+      Please wait...
+     </div>
+    </div>
+    <form id="checkout-form">
+     <div class="form-group"><label class="form-label" for="customer-name">Customer Name *</label> <input type="text" id="customer-name" class="form-input" required placeholder="Enter your full name">
+     </div>
+     <div class="form-group"><label class="form-label" for="mobile-number">Mobile Number *</label> <input type="tel" id="mobile-number" class="form-input" pattern="[0-9]{10}" required placeholder="Enter 10-digit mobile number">
+     </div>
+     <div class="form-group"><label class="form-label" for="email-id">Email ID *</label> <input type="email" id="email-id" class="form-input" required placeholder="Enter your email address">
+     </div>
+     <div class="form-group"><label class="form-label" for="full-address">Full Address *</label> <textarea id="full-address" class="form-input" rows="3" required placeholder="Enter your complete address"></textarea>
+     </div>
+     <div class="form-group"><label class="form-label" for="landmark">Landmark</label> <input type="text" id="landmark" class="form-input" placeholder="Enter nearby landmark (optional)">
+     </div>
+     <div class="form-group"><label class="form-label" for="pincode">Pincode *</label> <input type="text" id="pincode" class="form-input" pattern="[0-9]{6}" required placeholder="Enter 6-digit pincode">
+     </div>
+     <div class="form-buttons"><button type="button" class="btn-secondary" onclick="closeCheckoutForm()">Cancel</button> <button type="submit" class="btn-primary" id="pay-now-btn">Pay Now ₹<span id="pay-amount">0</span></button>
+     </div>
+    </form>
+   </div>
+  </div>
+  <script>
+        let cart = [];
+        let currentRecordCount = 0;
         
-        <section class="product-section">
-            <div class="product-header">
-                <h2 class="text-white">⚡ Professional Electrician Service 💡</h2>
-                <p class="text-sm text-gray-400 mt-2">Affordable Labor Rates for Home Wiring and Fitting.</p>
-            </div>
+        const defaultConfig = {
+            company_name: "Electrician Service",
+            customer_care: "8816014071",
+            email_address: "care@sonipathomeservice.com",
+            office_address: "128/1, Sainipura, Sonipat"
+        };
 
-            <div class="product-content">
-                
-                <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">Fixed Labor Rate Per Task</h3>
-                    <p class="text-text-subtle mb-4 text-base">
-                        Select the required task(s). Price is only the **Labor Rate**, electric items (materials) are not included.
-                    </p>
-                    
-                    <div class="price-container">
-                        <div class="original-price">Material cost will be separate</div>
-                        <div class="current-price" id="displayPrice">Select Service</div>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" id="book-now-btn">
-                            <i class="fas fa-plug"></i> Book Electrician Service Now
-                        </button>
-                        <button id="price-list-btn" class="btn btn-secondary">
-                            <i class="fas fa-tags"></i> Labor Rate List
-                        </button>
-                         <button id="description-btn" class="btn btn-secondary">
-                            <i class="fas fa-file-alt"></i> Terms & Conditions (T&C)
-                        </button>
-                        <button id="go-back-btn" class="btn btn-secondary" onclick="window.location.href='index.html'">
-                            <i class="fas fa-home"></i> Back To Home
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="stat-grid">
-            <div class="stat-card">
-                <h3>Minimum Rate</h3>
-                <p>₹199</p>
-            </div>
-            <div class="stat-card">
-                <h3>Service Type</h3>
-                <p>Labor Rate</p>
-            </div>
-            <div class="stat-card">
-                <h3>Warranty</h3>
-                <p>1 Month</p>
-            </div>
-            <div class="stat-card">
-                <h3>Materials</h3>
-                <p>Not Included</p>
-            </div>
-        </div>
-    </main>
-
-    <div id="popup-overlay"></div>
-    
-    <!-- Booking Form Popup (Step 1) -->
-    <div id="booking-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Electrician Service Booking</h2>
-        <form id="booking-form">
-            <div class="quantity-selector-container my-4">
-                <label>1. Select Required Service(s):</label>
-                <div id="serviceSelectionDisplay" class="p-3 rounded-lg cursor-pointer text-center text-lg" onclick="openServiceSelectionPopup()">Click to select service(s)</div>
-                
-                <label for="quantitySelect" class="mt-4">2. Number of Tasks (Units):</label>
-                <!-- field8: Quantity (Represents number of units/tasks) -->
-                <select id="quantitySelect" name="field8" required>
-                    <option value="1">1 Task</option>
-                    <option value="2">2 Tasks</option>
-                    <option value="3">3 Tasks</option>
-                    <option value="4">4 Tasks</option>
-                    <option value="5">5+ Tasks (Site Inspection)</option>
-                </select>
-                
-                <div id="priceCalculationSummary" class="price-calculation-summary">
-                    **Selected Fee (Per Task):** ₹0 <br>
-                    <strong class="text-xl text-secondary">Total Payable: ₹0</strong>
-                </div>
-            </div>
-            
-            <label for="name">Full Name (min 10 characters)</label>
-            <input type="text" id="name" name="field1" placeholder="John Doe" autocomplete="name" minlength="10" required>
-
-            <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="field2" placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" required>
-            
-            <label for="email">Email ID</label>
-            <input type="email" id="email" name="field3" placeholder="email@example.com" autocomplete="email" required>
-
-            <label for="location">Landmark (e.g. Shop , Place )</label>
-            <input type="text" id="location" name="field5" placeholder="Sonipat" autocomplete="address-level2" required>
-            
-            <label for="address">Complete Site Address (min 30 characters)</label>
-            <textarea id="address" name="field6" placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4" required></textarea>
-            
-            <div class="quantity-selector my-4">
-                <div class="flex justify-between items-center mt-3 text-text-subtle text-sm">
-                    <span>Amount Payable Today</span>
-                    <span id="calculated-price" class="total-price-quantity text-lg">Total: ₹0</span>
-                </div>
-            </div>
-
-            <!-- Hidden fields for sheet submission -->
-            <input type="hidden" name="ticket" id="ticketCode" />
-            <input type="hidden" name="serviceDetails" id="serviceDetailsInput" /> <!-- field4 -->
-            <input type="hidden" name="basePrice" id="basePriceInput" />
-            <input type="hidden" name="totalCost" id="totalCostInput" />
-
-            <button type="submit">Submit Details & Proceed to Payment</button>
-            <p id="submit-message" class="text-center text-sm text-primary mt-2 hidden">Submitting...</p>
-        </form>
-    </div>
-
-    <!-- Service Selection Popup -->
-    <div id="selection-popup" class="popup" style="display: none;">
-        <h3 class="text-xl font-bold text-center mb-4 text-primary">Select Electrician Service</h3>
-        <p class="text-xs text-text-subtle text-center mb-4">You can select one or more services. Price is labor rate only.</p>
-        <div id="serviceCheckboxes" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto p-2">
-            <!-- Checkboxes will be dynamically inserted here -->
-        </div>
-        <button type="button" class="btn btn-primary mt-4 py-3" id="applySelectionBtn">Apply Selection</button>
-        <button type="button" class="btn btn-secondary mt-2 py-3" id="closeSelectionBtn">Cancel</button>
-    </div>
-
-    <!-- Payment Popup (Step 2) -->
-    <div id="payment-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Payment</h2>
-        <p class="text-text-subtle text-center mb-6">Please complete the full payment to confirm the service.</p>
-        <div id="payment-summary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary"></div>
-        <div id="timer-display" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
-        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i> Pay with Razorpay</button>
-        <p class="mt-4 text-xs text-text-subtle text-center">
-            Note: Paid amount is for labor/service only. Electric items cost separately. Do not close this window during payment processing.
-        </p>
-    </div>
-
-    <!-- Confirmation Popup (Step 3) -->
-    <div id="confirmation-popup" class="popup">
-        <h2 id="welcome-message" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">Your Electrician Service is booked! Technician will contact you soon.</p>
-        <div id="ticket-info" class="space-y-2">
-            <!-- Details will be injected here -->
-        </div>
-        <button id="downloadBtn" class="mt-4"><i class="fas fa-download mr-2"></i> Download Booking Details</button>
-        <p class="mt-4 text-sm text-text-subtle text-center">📸 Please take a screenshot for your record.</p>
-        <button id="okayBtn" class="close-btn mt-4"><i class="fas fa-check"></i> Okay, Got It!</button>
-    </div>
-
-    <!-- Price List Popup -->
-    <div id="price-list-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Electrician Labor Rate List</h2>
-        <div class="overflow-x-auto mt-4">
-            <table class="min-w-full bg-bg-dark rounded-lg border border-primary">
-                <thead>
-                    <tr class="text-left text-secondary">
-                        <th class="py-3 px-4 border-b border-text-subtle">Service Name</th>
-                        <th class="py-3 px-4 border-b border-text-subtle text-right">Labor Rate</th>
-                    </tr>
-                </thead>
-                <tbody id="priceListTableBody">
-                    <!-- Data will be populated by JS -->
-                </tbody>
-            </table>
-        </div>
-        <p class="text-sm text-center mt-4 text-primary">
-            **Note:** This is **Labor Rate** only. It does not include any electric items (materials).
-        </p>
-        <button id="close-price-list-btn" class="btn btn-secondary close-btn mt-4">Close Details</button>
-    </div>
-
-    <!-- Terms & Conditions Popup -->
-    <div id="description-popup" class="popup">
-        <h2 class="text-2xl font-bold text-center">Terms & Conditions (T&C)</h2>
-        <div class="text-text-subtle text-base space-y-4 max-h-[70vh] overflow-y-auto pr-3">
-            <ul class="list-disc list-inside space-y-3">
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-money-check-alt mr-2"></i> Labor Rate Only</li>
-                <li>The above prices are for **Labor/Service** charges only. The cost of **electric items (materials) is not included.**</li>
-                
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-phone-volume mr-2"></i> Material Requirement</li>
-                <li>If you require electric materials (e.g., switches, sockets, wire), please contact our **Customer Support Team at 88160-14071.**</li>
-                
-                <li class="font-bold text-primary mt-4 text-lg"><i class="fas fa-shield-alt mr-2"></i> Warranty</li>
-                <li>A **1-Month Service Warranty** is provided on the labor work performed.</li>
-            </ul>
-        </div>
-        <button id="close-description-btn" class="close-btn mt-4">I Understand</button>
-    </div>
-    
-    <script>
-        // --- Service Data (Based on user request) ---
-        const electricianServiceData = [
-            { "Category": "Switch Box Install (Single/Double)", "Price": 249, "MarketPrice": 400 },
-            { "Category": "MCB Installation (Single Phase)", "Price": 249, "MarketPrice": 400 },
-            { "Category": "Socket / Button Replacement (Single Point)", "Price": 199, "MarketPrice": 300 },
-            { "Category": "Celling / Exhaust Fan Install/Uninstall", "Price": 299, "MarketPrice": 450 },
-            { "Category": "House Wire Fault Check & Repair (Diagnosis)", "Price": 199, "MarketPrice": 350 }
-        ];
-
-        // --- Google Sheet Constants (Same link as AC Service File) ---
-        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
-        
-        // --- Generic constants ---
-        const SERVICE_NAME = "Electrician Service";
-        const SERVICE_TAB_ID = "electrician-service"; 
-        const LOCAL_STORAGE_KEY = 'electricianBookingFormData';
-        const RAZORPAY_IMAGE_TEXT = "ELEC";
-        const PAYMENT_TIME_LIMIT = 5 * 60;
-        
-        // --- DOM Element Selection ---
-        const bookNowBtn = document.getElementById('book-now-btn');
-        const popupOverlay = document.getElementById('popup-overlay');
-        const allPopups = document.querySelectorAll('.popup');
-        const bookingPopup = document.getElementById('booking-popup');
-        const paymentPopup = document.getElementById('payment-popup');
-        const confirmationPopup = document.getElementById('confirmation-popup');
-        const bookingForm = document.getElementById('booking-form');
-        const quantitySelect = document.getElementById('quantitySelect');
-        const calculatedPriceDisplay = document.getElementById('calculated-price');
-        const displayPrice = document.getElementById('displayPrice');
-        const submitMessage = document.getElementById('submit-message');
-        const paymentSummary = document.getElementById('payment-summary');
-        const timerDisplay = document.getElementById('timer-display');
-        const razorpayBtn = document.getElementById('razorpay-payment-btn');
-        const ticketInfo = document.getElementById('ticket-info');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const okayBtn = document.getElementById('okayBtn');
-        const welcomeMessage = document.getElementById('welcome-message');
-        const priceListBtn = document.getElementById('price-list-btn');
-        const descriptionBtn = document.getElementById('description-btn');
-        const priceListPopup = document.getElementById('price-list-popup');
-        const descriptionPopup = document.getElementById('description-popup');
-        const closePriceListBtn = document.getElementById('close-price-list-btn');
-        const closeDescriptionBtn = document.getElementById('close-description-btn');
-        const priceCalculationSummary = document.getElementById('priceCalculationSummary');
-        
-        // Service Selection Specific elements
-        const serviceSelectionDisplay = document.getElementById('serviceSelectionDisplay');
-        const selectionPopup = document.getElementById('selection-popup');
-        const serviceCheckboxesContainer = document.getElementById('serviceCheckboxes');
-        const applySelectionBtn = document.getElementById('applySelectionBtn');
-        const closeSelectionBtn = document.getElementById('closeSelectionBtn');
-        const priceListTableBody = document.getElementById('priceListTableBody');
-
-        // Hidden input fields
-        const serviceDetailsInput = document.getElementById('serviceDetailsInput');
-        const basePriceInput = document.getElementById('basePriceInput');
-        const totalCostInput = document.getElementById('totalCostInput');
-
-
-        // --- State variables ---
-        let currentServicePrice = 0; // Price of selected services (1 unit)
-        let selectedQuantity = 1;
-        let generatedTicket = '';
-        let countdownInterval = null;
-        let allowClose = false;
-
-        // --- Local Storage Functions for Autofill ---
-        function saveFormData() {
-            const formData = {
-                fullName: bookingForm.field1.value,
-                phone: bookingForm.field2.value,
-                email: bookingForm.field3.value,
-                location: bookingForm.field5.value,
-                address: bookingForm.field6.value,
-                quantity: quantitySelect.value
-            };
-            try {
-                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
-            } catch (e) {
-                console.warn("Local storage saving failed:", e);
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+                console.log(`Current record count: ${currentRecordCount}`);
             }
-        }
+        };
 
-        function loadFormData() {
+        // Element SDK Configuration
+        const elementConfig = {
+            defaultConfig: defaultConfig,
+            onConfigChange: async (config) => {
+                // Update header elements
+                document.getElementById('header-company-name').textContent = config.company_name || defaultConfig.company_name;
+                document.getElementById('header-phone').textContent = config.customer_care || defaultConfig.customer_care;
+                document.getElementById('header-email').textContent = config.email_address || defaultConfig.email_address;
+                
+                // Update main banner elements
+                document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+                document.getElementById('customer-care').textContent = config.customer_care || defaultConfig.customer_care;
+                document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
+                document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
+                
+                // Update footer elements
+                document.getElementById('footer-company-name').textContent = config.company_name || defaultConfig.company_name;
+                document.getElementById('footer-address').textContent = config.office_address || defaultConfig.office_address;
+                document.getElementById('footer-phone').textContent = config.customer_care || defaultConfig.customer_care;
+                document.getElementById('footer-email').textContent = config.email_address || defaultConfig.email_address;
+            },
+            mapToCapabilities: (config) => ({
+                recolorables: [],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            }),
+            mapToEditPanelValues: (config) => new Map([
+                ["company_name", config.company_name || defaultConfig.company_name],
+                ["customer_care", config.customer_care || defaultConfig.customer_care],
+                ["email_address", config.email_address || defaultConfig.email_address],
+                ["office_address", config.office_address || defaultConfig.office_address]
+            ])
+        };
+
+        // Initialize SDKs
+        async function initializeApp() {
             try {
-                const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-                if (savedData) {
-                    const data = JSON.parse(savedData);
-                    bookingForm.field1.value = data.fullName || '';
-                    bookingForm.field2.value = data.phone || '';
-                    bookingForm.field3.value = data.email || '';
-                    bookingForm.field5.value = data.location || '';
-                    bookingForm.field6.value = data.address || '';
-                    if (data.quantity) quantitySelect.value = data.quantity;
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize data SDK:", initResult.error);
+                    } else {
+                        console.log("Data SDK initialized successfully");
+                    }
                 }
-            } catch (e) {
-                console.warn("Local storage loading failed:", e);
+                
+                if (window.elementSdk) {
+                    window.elementSdk.init(elementConfig);
+                    console.log("Element SDK initialized successfully");
+                }
+            } catch (error) {
+                console.error("Error initializing app:", error);
             }
         }
 
-        // --- Core Functions ---
-        
-        function populateServiceCheckboxes() {
-            serviceCheckboxesContainer.innerHTML = '';
-            electricianServiceData.forEach(service => {
-                const checkboxHtml = `
-                    <label class="service-checkbox-label inline-flex items-center text-text-light w-full p-2 bg-bg-dark rounded-md border border-primary hover:bg-bg-card transition duration-200 cursor-pointer">
-                        <input type="checkbox" name="electricianServiceCategory" value="${service.Category}" data-price="${service.Price}" 
-                               class="form-checkbox h-5 w-5 text-secondary rounded focus:ring-secondary checked:bg-secondary">
-                        <span class="ml-2 text-sm">${service.Category} (<span class="text-secondary">₹${service.Price}</span>)</span>
-                    </label>
-                `;
-                serviceCheckboxesContainer.insertAdjacentHTML('beforeend', checkboxHtml);
-            });
-            serviceCheckboxesContainer.querySelectorAll('input[name="electricianServiceCategory"]').forEach(checkbox => {
-                checkbox.addEventListener('change', updatePrices);
-            });
-        }
-        
-        function populatePriceList() {
-            priceListTableBody.innerHTML = '';
-            electricianServiceData.forEach(service => {
-                const row = `
-                    <tr class="text-text-light hover:bg-bg-dark">
-                        <td class="py-3 px-4 border-b border-gray-700">${service.Category}</td>
-                        <td class="py-3 px-4 border-b border-gray-700 text-right font-semibold text-secondary">₹${service.Price}</td>
-                    </tr>
-                `;
-                priceListTableBody.insertAdjacentHTML('beforeend', row);
-            });
-        }
+        // Customer data storage
+        let customerData = null;
 
-        function updatePrices() {
-            const selectedCategories = Array.from(serviceCheckboxesContainer.querySelectorAll('input[name="electricianServiceCategory"]:checked'));
+        // Add to Cart Function
+        function addToCart(serviceName, price, event) {
+            // Prevent any default behavior
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
             
-            // Sum of prices of selected categories (per unit)
-            currentServicePrice = selectedCategories.reduce((total, service) => total + parseFloat(service.dataset.price), 0);
-            selectedQuantity = parseInt(quantitySelect.value) || 1;
-
-            const totalFinalPrice = currentServicePrice * selectedQuantity;
+            // Always add to cart immediately
+            const existingItem = cart.find(item => item.name === serviceName);
             
-            const serviceNames = selectedCategories.map(s => s.value).join(', ');
-            
-            // Update UI elements
-            if (selectedCategories.length > 0) {
-                serviceSelectionDisplay.textContent = serviceNames;
-                displayPrice.textContent = `₹${currentServicePrice} x ${selectedQuantity}`;
+            if (existingItem) {
+                existingItem.quantity += 1;
             } else {
-                serviceSelectionDisplay.textContent = 'Click to select service(s)';
-                displayPrice.textContent = 'Select Service';
+                cart.push({
+                    id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+                    name: serviceName,
+                    price: price,
+                    quantity: 1
+                });
             }
             
-            calculatedPriceDisplay.textContent = `Total: ₹${totalFinalPrice.toLocaleString('en-IN')}`;
+            // Update cart display immediately
+            updateCartDisplay();
             
-            priceCalculationSummary.innerHTML = `
-                **Selected Fee (Per Task):** ₹${currentServicePrice.toLocaleString('en-IN')} <br>
-                **Total Units:** ${selectedQuantity} <br>
-                <strong class="text-xl text-secondary">Total Payable: ₹${totalFinalPrice.toLocaleString('en-IN')}</strong>
-            `;
-
-            // Update hidden form fields for submission
-            serviceDetailsInput.value = serviceNames;
-            basePriceInput.value = currentServicePrice;
-            totalCostInput.value = totalFinalPrice;
-        }
-
-        function generateTicketId() {
-            return 'ELEC-XXXXXX'.replace(/X/g, () => (Math.random() * 36 | 0).toString(36).toUpperCase());
-        }
-
-        function showCustomAlert(message) {
-            const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert'; 
-            alertBox.textContent = message;
-            document.body.appendChild(alertBox);
-            setTimeout(() => alertBox.remove(), 4000); 
-        }
-
-        function closeAllPopups() {
-            if (!allowClose) {
-                if (bookingPopup.style.display !== 'block') {
-                    showCustomAlert("Please complete the booking process before closing.");
-                    return;
-                }
+            // Add visual feedback
+            const button = event ? event.target : document.querySelector(`button[onclick*="${serviceName}"]`);
+            if (button) {
+                const originalText = button.textContent;
+                button.textContent = 'Added! ✓';
+                button.style.background = 'linear-gradient(135deg, #d97706 0%, #b45309 100%)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)';
+                }, 1000);
             }
-            clearTimers();
-            popupOverlay.style.display = 'none';
-            allPopups.forEach(p => p.style.display = 'none');
+        }
+
+        // Update Cart Display
+        function updateCartDisplay() {
+            const cartSection = document.getElementById('cart-section');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            if (cart.length === 0) {
+                cartSection.style.display = 'none';
+                cartItemsContainer.innerHTML = '<div class="empty-cart">आपका कार्ट खाली है। कृपया कोई सर्विस चुनें।</div>';
+                cartTotal.style.display = 'none';
+                checkoutBtn.disabled = true;
+                return;
+            }
+            
+            cartSection.style.display = 'block';
+            
+            let serviceTotal = 0;
+            let bookingTotal = 0;
+            let cartHTML = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                const itemBooking = 99 * item.quantity;
+                serviceTotal += itemTotal;
+                bookingTotal += itemBooking;
+                
+                cartHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>₹${item.price} x ${item.quantity} | Booking: ₹${itemBooking}</small>
+                        </div>
+                        <div>
+                            <button class="remove-btn" onclick="removeFromCart('${item.id}')">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItemsContainer.innerHTML = cartHTML;
+            document.getElementById('service-total').textContent = serviceTotal;
+            document.getElementById('booking-total').textContent = bookingTotal;
+            document.getElementById('pay-amount').textContent = bookingTotal;
+            cartTotal.style.display = 'block';
+            checkoutBtn.disabled = false;
+        }
+
+        // Remove from Cart
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCartDisplay();
+        }
+
+        // Open Customer Form
+        function openCustomerForm() {
+            document.getElementById('customer-form-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Pre-fill form if customer data exists
+            if (customerData) {
+                document.getElementById('cust-name').value = customerData.name || '';
+                document.getElementById('cust-mobile').value = customerData.mobile || '';
+                document.getElementById('cust-email').value = customerData.email || '';
+                document.getElementById('cust-address').value = customerData.address || '';
+                document.getElementById('cust-landmark').value = customerData.landmark || '';
+                document.getElementById('cust-pincode').value = customerData.pincode || '';
+            }
+        }
+
+        // Close Customer Form
+        function closeCustomerForm() {
+            document.getElementById('customer-form-modal').style.display = 'none';
+            document.getElementById('customer-form').reset();
             document.body.style.overflow = 'auto';
-            bookingForm.reset();
-            // Reset state and UI to initial values
-            quantitySelect.value = 1;
-            serviceSelectionDisplay.textContent = 'Click to select service(s)';
-            updatePrices(); 
-            allowClose = false;
+            hideCustomerMessages();
+            window.pendingService = null;
         }
 
-        function openPopup(popupElement) {
+        // Open Checkout Form
+        function openCheckoutForm() {
+            if (cart.length === 0) return;
+            
+            // If no customer data exists, open customer form first
+            if (!customerData) {
+                openCustomerForm();
+                return;
+            }
+            
+            // Pre-fill checkout form with customer data
+            document.getElementById('customer-name').value = customerData.name || '';
+            document.getElementById('mobile-number').value = customerData.mobile || '';
+            document.getElementById('email-id').value = customerData.email || '';
+            document.getElementById('full-address').value = customerData.address || '';
+            document.getElementById('landmark').value = customerData.landmark || '';
+            document.getElementById('pincode').value = customerData.pincode || '';
+            
+            document.getElementById('checkout-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
-            popupOverlay.style.display = 'block';
-            
-            // Close other major popups before opening a new one
-            [bookingPopup, paymentPopup, confirmationPopup, priceListPopup, descriptionPopup].forEach(p => p.style.display = 'none');
-            
-            popupElement.style.display = 'block';
-            // Allow closing only for the main form and confirmation step
-            allowClose = (popupElement === bookingPopup || popupElement === confirmationPopup);
         }
 
-        function closeSpecificPopup(popupElement) {
-            popupElement.style.display = 'none';
-            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
-            if (!isAnotherPopupOpen) {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
+        // Close Checkout Form
+        function closeCheckoutForm() {
+            document.getElementById('checkout-modal').style.display = 'none';
+            document.getElementById('checkout-form').reset();
+            document.body.style.overflow = 'auto';
+            hideMessages();
+        }
+
+        // Show/Hide Messages
+        function showMessage(type, message) {
+            hideMessages();
+            const messageElement = document.getElementById(type + '-message');
+            messageElement.innerHTML = message;
+            messageElement.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageElement.style.display = 'none';
+                }, 8000);
             }
         }
-        
-        function openServiceSelectionPopup() {
-            populateServiceCheckboxes(); // Ensure fresh checkboxes
-            selectionPopup.style.display = 'block';
-            popupOverlay.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function applySelectedServices() {
-            updatePrices();
-            closeSpecificPopup(selectionPopup);
+
+        function hideMessages() {
+            document.getElementById('success-message').style.display = 'none';
+            document.getElementById('error-message').style.display = 'none';
         }
 
-        function downloadTicketDetails() {
-            const name = bookingForm.field1.value;
-            const phone = bookingForm.field2.value;
-            const location = bookingForm.field5.value;
-            const selectedService = serviceDetailsInput.value;
-            const quantity = quantitySelect.value;
-            const totalPrice = totalCostInput.value;
-
-            const content = `${SERVICE_NAME} Booking Details\n\n` +
-                            `Booking ID: ${generatedTicket}\n` +
-                            `Service(s): ${selectedService}\n` +
-                            `Units: ${quantity}\n` +
-                            `Name: ${name}\n` +
-                            `Phone: ${phone}\n` +
-                            `Location: ${location}\n` +
-                            `Fee Paid: ₹${totalPrice}\n\n` +
-                            `--- NOTE ---\n` +
-                            `The paid amount covers the labor cost for the selected service(s) only. Electric items cost separately.`;
-
-            const blob = new Blob([content], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `electrician-service-booking-${generatedTicket}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+        function showCustomerMessage(type, message) {
+            hideCustomerMessages();
+            const messageElement = document.getElementById('customer-' + type + '-message');
+            messageElement.innerHTML = message;
+            messageElement.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageElement.style.display = 'none';
+                }, 3000);
+            }
         }
 
-        function clearTimers() {
-            if (countdownInterval) clearInterval(countdownInterval);
+        function hideCustomerMessages() {
+            document.getElementById('customer-success-message').style.display = 'none';
+            document.getElementById('customer-error-message').style.display = 'none';
         }
 
-        function startPaymentTimer() {
-            let timeLeft = PAYMENT_TIME_LIMIT;
-            const updateDisplay = () => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('pay-now-btn').disabled = true;
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('pay-now-btn').disabled = false;
+        }
+
+        // Calculate Booking Total
+        function calculateBookingTotal() {
+            return cart.reduce((total, item) => {
+                return total + (99 * item.quantity);
+            }, 0);
+        }
+
+        // Validate Form Data
+        function validateFormData(formData) {
+            const errors = [];
+            
+            if (!formData.customerName || formData.customerName.length < 2) {
+                errors.push('कृपया वैध नाम दर्ज करें (कम से कम 2 अक्षर)');
+            }
+            
+            if (!/^[0-9]{10}$/.test(formData.mobile)) {
+                errors.push('कृपया वैध 10 अंकों का मोबाइल नंबर दर्ज करें');
+            }
+            
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+                errors.push('कृपया वैध ईमेल पता दर्ज करें');
+            }
+            
+            if (!formData.address || formData.address.length < 10) {
+                errors.push('कृपया पूरा पता दर्ज करें (कम से कम 10 अक्षर)');
+            }
+            
+            if (!/^[0-9]{6}$/.test(formData.pincode)) {
+                errors.push('कृपया वैध 6 अंकों का पिनकोड दर्ज करें');
+            }
+            
+            return errors;
+        }
+
+        // Handle Customer Form Submission
+        document.getElementById('customer-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('cust-name').value.trim(),
+                mobile: document.getElementById('cust-mobile').value.trim(),
+                email: document.getElementById('cust-email').value.trim(),
+                address: document.getElementById('cust-address').value.trim(),
+                landmark: document.getElementById('cust-landmark').value.trim(),
+                pincode: document.getElementById('cust-pincode').value.trim()
             };
-            updateDisplay();
-
-            countdownInterval = setInterval(() => {
-                timeLeft--;
-                updateDisplay();
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    showCustomAlert("Payment time expired. Please try again.");
-                    allowClose = true;
-                    closeAllPopups();
-                }
-            }, 1000);
-        }
-
-        function handleRazorpayPayment() {
-            const totalFinalPrice = parseFloat(totalCostInput.value);
-            if (totalFinalPrice <= 0) {
-                 showCustomAlert("Please select a valid service.");
-                 return;
+            
+            // Validate form data
+            const validationErrors = validateFormData({
+                customerName: formData.name,
+                mobile: formData.mobile,
+                email: formData.email,
+                address: formData.address,
+                pincode: formData.pincode
+            });
+            
+            if (validationErrors.length > 0) {
+                showCustomerMessage('error', '❌ ' + validationErrors.join('<br>'));
+                return;
             }
             
-            const selectedService = serviceDetailsInput.value;
+            // Save customer data
+            customerData = formData;
+            
+            // Close customer form immediately and proceed to payment
+            closeCustomerForm();
+            
+            // Proceed directly to payment gateway
+            if (cart.length > 0) {
+                processPaymentDirectly(formData);
+            }
+        });
 
+        // Process Payment Directly (called from customer form)
+        async function processPaymentDirectly(customerFormData) {
+            // Check record limit
+            if (currentRecordCount >= 999) {
+                alert('⚠️ Maximum limit of 999 orders reached. Please contact customer care at 8816014071.');
+                return;
+            }
+            
+            const formData = {
+                customerName: customerFormData.name,
+                mobile: customerFormData.mobile,
+                email: customerFormData.email,
+                address: customerFormData.address,
+                landmark: customerFormData.landmark,
+                pincode: customerFormData.pincode
+            };
+            
+            const bookingAmount = calculateBookingTotal();
+            
+            // Check if Razorpay is loaded
+            if (typeof Razorpay === 'undefined') {
+                alert('❌ Payment gateway not loaded. Please refresh the page and try again.');
+                return;
+            }
+            
+            // Razorpay options
             const options = {
-                "key": "rzp_live_opiqkRmGpjG1hF",
-                "amount": totalFinalPrice * 100, 
+                "key": "rzp_live_RLjzp7VlXERwiG", // Live Razorpay key
+                "amount": bookingAmount * 100, // Amount in paise
                 "currency": "INR",
-                "name": `SonipatHomeService - ${SERVICE_NAME}`,
-                "description": `Payment for: ${selectedService} x ${selectedQuantity} (ID: ${generatedTicket})`,
-                "image": `https://placehold.co/100x100/1C2738/00FFFF?text=${RAZORPAY_IMAGE_TEXT}`,
-                "handler": function (response){
-                    paymentSuccess(response.razorpay_payment_id);
+                "name": "Sonipat Home Service",
+                "description": `Electrician Service Booking - ${cart.length} service(s)`,
+                "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiNmNTllMGIiLz4KPHN2ZyB4PSIxNiIgeT0iMTYiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Ik0xMiAyQzEzLjEgMiAxNCAyLjkgMTQgNFY4SDE2VjEwSDE0VjE0SDE2VjE2SDE0VjIwQzE0IDIxLjEgMTMuMSAyMiAxMiAyMkMxMC45IDIyIDEwIDIxLjEgMTAgMjBWMTZIOFYxNEgxMFYxMEg4VjhIMTBWNEMxMCAyLjkgMTAuOSAyIDEyIDJaIi8+Cjwvc3ZnPgo8L3N2Zz4K",
+                "handler": async function (response) {
+                    try {
+                        const totalAmount = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                        const orderItems = cart.map(item => `${item.name} (Qty: ${item.quantity}, Price: ₹${item.price})`).join('; ');
+                        
+                        // Prepare data for Google Sheet
+                        const sheetData = {
+                            timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                            customerName: formData.customerName,
+                            mobile: formData.mobile,
+                            email: formData.email,
+                            address: formData.address,
+                            landmark: formData.landmark || 'Not provided',
+                            pincode: formData.pincode,
+                            orderItems: orderItems,
+                            totalAmount: totalAmount,
+                            paymentId: response.razorpay_payment_id,
+                            status: 'Booking Confirmed - Paid ₹' + bookingAmount
+                        };
+                        
+                        // Save to Google Sheet (primary storage)
+                        let sheetSaveSuccess = false;
+                        
+                        try {
+                            const params = new URLSearchParams({
+                                timestamp: sheetData.timestamp,
+                                customerName: sheetData.customerName,
+                                mobile: sheetData.mobile,
+                                email: sheetData.email,
+                                address: sheetData.address,
+                                landmark: sheetData.landmark,
+                                pincode: sheetData.pincode,
+                                orderItems: sheetData.orderItems,
+                                totalAmount: sheetData.totalAmount,
+                                paymentId: sheetData.paymentId,
+                                status: sheetData.status
+                            });
+                            
+                            const response1 = await fetch('https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                body: params.toString()
+                            });
+                            
+                            console.log('✅ Data sent to Google Sheet successfully');
+                            sheetSaveSuccess = true;
+                        } catch (error1) {
+                            console.log('⚠️ Google Sheet method failed', error1);
+                        }
+                        
+                        // Also save to Data SDK for backup
+                        const orderData = {
+                            id: Date.now().toString() + '_' + Math.random().toString(36).substr(2, 9),
+                            service_type: cart.map(item => `${item.name} (${item.quantity})`).join(', '),
+                            price: totalAmount,
+                            customer_name: formData.customerName,
+                            mobile: formData.mobile,
+                            email: formData.email,
+                            address: formData.address,
+                            landmark: formData.landmark || 'Not provided',
+                            pincode: formData.pincode,
+                            order_date: new Date().toISOString(),
+                            payment_status: "Booking Paid - ₹" + bookingAmount,
+                            payment_id: response.razorpay_payment_id
+                        };
+                        
+                        if (window.dataSdk) {
+                            try {
+                                const result = await window.dataSdk.create(orderData);
+                                if (result.isOk) {
+                                    console.log('✅ Data also saved to Canva Sheet as backup');
+                                }
+                            } catch (sdkError) {
+                                console.error('❌ Data SDK save error:', sdkError);
+                            }
+                        }
+                        
+                        // Show success message using alert for direct payment
+                        const sheetStatusMsg = sheetSaveSuccess ? 
+                            "Order details saved successfully!" : 
+                            "Order saved locally. Please share Payment ID with customer care.";
+                            
+                        alert(`🎉 Payment Successful!
+
+Booking Amount Paid: ₹${bookingAmount}
+Payment ID: ${response.razorpay_payment_id}
+Total Service Cost: ₹${totalAmount}
+
+${sheetStatusMsg}
+हमारा इलेक्ट्रिशियन 2-4 घंटे में आपसे संपर्क करेगा।
+बाकी राशि (₹${totalAmount - bookingAmount}) सर्विस पूरी होने के बाद ली जाएगी।
+${!sheetSaveSuccess ? '\nCustomer Care: 8816014071' : ''}`);
+                        
+                        // Clear cart
+                        cart = [];
+                        updateCartDisplay();
+                        
+                    } catch (error) {
+                        console.error('❌ Order processing error:', error);
+                        alert(`⚠️ Payment Successful
+
+Payment ID: ${response.razorpay_payment_id}
+
+Your payment was successful but there was an issue saving the order details.
+Please contact customer care at 8816014071 with your Payment ID.`);
+                    }
                 },
                 "prefill": {
-                    "name": bookingForm.field1.value,
-                    "phone": bookingForm.field2.value,
-                    "email": bookingForm.field3.value
+                    "name": formData.customerName,
+                    "email": formData.email,
+                    "contact": formData.mobile
                 },
-                "notes": {
-                    "address": `${bookingForm.field5.value}, ${bookingForm.field6.value}`,
-                    "service_details": selectedService,
-                    "booking_ref": generatedTicket
+                "theme": {
+                    "color": "#f59e0b"
                 },
-                "theme": { "color": "#00FFFF" }, // AC Teal
-                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+                "modal": {
+                    "ondismiss": function() {
+                        alert('❌ Payment cancelled. Please try again to complete your booking.');
+                    }
+                }
             };
-
-            const rzp = new Razorpay(options);
-            rzp.on('payment.failed', response => {
-                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
-            });
-            rzp.open();
+            
+            try {
+                const rzp = new Razorpay(options);
+                
+                rzp.on('payment.failed', function (response) {
+                    const errorMsg = response.error.description || response.error.reason || 'Unknown payment error';
+                    alert(`❌ Payment failed: ${errorMsg}\n\nPlease try again or contact customer care at 8816014071.`);
+                });
+                
+                rzp.open();
+                
+            } catch (error) {
+                console.error('❌ Razorpay initialization error:', error);
+                alert('❌ Payment gateway error. Please refresh the page and try again, or contact customer care at 8816014071.');
+            }
         }
 
-        function paymentSuccess(paymentId) {
-            clearTimers();
-            paymentPopup.style.display = 'none';
-            openPopup(confirmationPopup);
-
-            saveFormData();
+        // Handle Form Submission and Payment
+        document.getElementById('checkout-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            const name = bookingForm.field1.value.split(' ')[0];
-            const selectedService = serviceDetailsInput.value;
-            const totalPrice = totalCostInput.value;
-
-            welcomeMessage.textContent = `🎉 Booking Confirmed, ${name}! 🎉`;
+            // Check record limit
+            if (currentRecordCount >= 999) {
+                showMessage('error', '⚠️ Maximum limit of 999 orders reached. Please contact customer care at 8816014071.');
+                return;
+            }
             
-            ticketInfo.innerHTML = `
-                <p><strong>Booking ID:</strong> <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p><strong>Service(s):</strong> <span class="font-bold text-text-light">${selectedService}</span></p>
-                <p><strong>Quantity:</strong> <span class="font-bold text-text-light">${selectedQuantity}</span></p>
-                <p class="text-secondary text-lg font-bold mt-3">Paid Now: ₹${totalPrice.toLocaleString('en-IN')}</p>
-                <p class="text-primary text-sm font-bold mt-3">This amount is for labor/service charge only. Electric material cost will apply separately.</p>
-                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
-            `;
-            allowClose = true;
-        }
-        
-        // --- Event Listeners Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            loadFormData();
-            populateServiceCheckboxes();
-            populatePriceList();
-            // Initial price calculation (will be 0 if no service selected)
-            updatePrices(); 
+            const formData = {
+                customerName: document.getElementById('customer-name').value.trim(),
+                mobile: document.getElementById('mobile-number').value.trim(),
+                email: document.getElementById('email-id').value.trim(),
+                address: document.getElementById('full-address').value.trim(),
+                landmark: document.getElementById('landmark').value.trim(),
+                pincode: document.getElementById('pincode').value.trim()
+            };
             
-            // Event listeners for calculation
-            quantitySelect.addEventListener('change', updatePrices);
-        });
-
-        bookNowBtn.addEventListener('click', () => {
-            updatePrices();
-            loadFormData();
-            openPopup(bookingPopup);
-        });
-        
-        // Multi-select listeners
-        serviceSelectionDisplay.addEventListener('click', openServiceSelectionPopup);
-        applySelectionBtn.addEventListener('click', applySelectedServices);
-        closeSelectionBtn.addEventListener('click', () => closeSpecificPopup(selectionPopup));
-        
-        // Popup Overlay and Button Listeners
-        popupOverlay.addEventListener('click', e => {
-            if (e.target === popupOverlay) {
-                if (selectionPopup.style.display === 'block') closeSpecificPopup(selectionPopup);
-                else if (priceListPopup.style.display === 'block') closeSpecificPopup(priceListPopup);
-                else if (descriptionPopup.style.display === 'block') closeSpecificPopup(descriptionPopup);
-                else if (confirmationPopup.style.display === 'block' && allowClose) closeAllPopups();
-                else if (paymentPopup.style.display === 'block') showCustomAlert("Please complete the payment process before closing.");
-                else if (bookingPopup.style.display === 'block') closeAllPopups();
+            // Validate form data
+            const validationErrors = validateFormData(formData);
+            if (validationErrors.length > 0) {
+                showMessage('error', '❌ ' + validationErrors.join('<br>'));
+                return;
+            }
+            
+            const bookingAmount = calculateBookingTotal();
+            
+            // Show loading
+            showLoading();
+            hideMessages();
+            
+            // Check if Razorpay is loaded
+            if (typeof Razorpay === 'undefined') {
+                hideLoading();
+                showMessage('error', '❌ Payment gateway not loaded. Please refresh the page and try again.');
+                return;
+            }
+            
+            // Razorpay options
+            const options = {
+                "key": "rzp_live_1DP5mmOlF5G5ag", // Live Razorpay key
+                "amount": bookingAmount * 100, // Amount in paise
+                "currency": "INR",
+                "name": "Sonipat Home Service",
+                "description": `Electrician Service Booking - ${cart.length} service(s)`,
+                "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiNmNTllMGIiLz4KPHN2ZyB4PSIxNiIgeT0iMTYiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Ik0xMiAyQzEzLjEgMiAxNCAyLjkgMTQgNFY4SDE2VjEwSDE0VjE0SDE2VjE2SDE0VjIwQzE0IDIxLjEgMTMuMSAyMiAxMiAyMkMxMC45IDIyIDEwIDIxLjEgMTAgMjBWMTZIOFYxNEgxMFYxMEg4VjhIMTBWNEMxMCAyLjkgMTAuOSAyIDEyIDJaIi8+Cjwvc3ZnPgo8L3N2Zz4K",
+                "handler": async function (response) {
+                    hideLoading();
+                    
+                    try {
+                        const totalAmount = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                        const orderItems = cart.map(item => `${item.name} (Qty: ${item.quantity}, Price: ₹${item.price})`).join('; ');
+                        
+                        // Prepare data for Google Sheet
+                        const sheetData = {
+                            timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                            customerName: formData.customerName,
+                            mobile: formData.mobile,
+                            email: formData.email,
+                            address: formData.address,
+                            landmark: formData.landmark || 'Not provided',
+                            pincode: formData.pincode,
+                            orderItems: orderItems,
+                            totalAmount: totalAmount,
+                            paymentId: response.razorpay_payment_id,
+                            status: 'Booking Confirmed - Paid ₹' + bookingAmount
+                        };
+                        
+                        // Save to Google Sheet (primary storage)
+                        let sheetSaveSuccess = false;
+                        let sheetResponse = null;
+                        
+                        // Method 1: POST with URL parameters
+                        try {
+                            const params = new URLSearchParams({
+                                timestamp: sheetData.timestamp,
+                                customerName: sheetData.customerName,
+                                mobile: sheetData.mobile,
+                                email: sheetData.email,
+                                address: sheetData.address,
+                                landmark: sheetData.landmark,
+                                pincode: sheetData.pincode,
+                                orderItems: sheetData.orderItems,
+                                totalAmount: sheetData.totalAmount,
+                                paymentId: sheetData.paymentId,
+                                status: sheetData.status
+                            });
+                            
+                            const response1 = await fetch('https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                body: params.toString()
+                            });
+                            
+                            sheetResponse = await response1.text();
+                            console.log('✅ Data sent to Google Sheet successfully');
+                            console.log('Response:', sheetResponse);
+                            sheetSaveSuccess = true;
+                        } catch (error1) {
+                            console.log('⚠️ Google Sheet method failed, trying fallback...', error1);
+                        }
+                        
+                        // Also save to Data SDK for backup
+                        const orderData = {
+                            id: Date.now().toString() + '_' + Math.random().toString(36).substr(2, 9),
+                            service_type: cart.map(item => `${item.name} (${item.quantity})`).join(', '),
+                            price: totalAmount,
+                            customer_name: formData.customerName,
+                            mobile: formData.mobile,
+                            email: formData.email,
+                            address: formData.address,
+                            landmark: formData.landmark || 'Not provided',
+                            pincode: formData.pincode,
+                            order_date: new Date().toISOString(),
+                            payment_status: "Booking Paid - ₹" + bookingAmount,
+                            payment_id: response.razorpay_payment_id
+                        };
+                        
+                        if (window.dataSdk) {
+                            try {
+                                const result = await window.dataSdk.create(orderData);
+                                if (result.isOk) {
+                                    console.log('✅ Data also saved to Canva Sheet as backup');
+                                } else {
+                                    console.log('⚠️ Canva Sheet backup failed, but Google Sheet saved successfully');
+                                }
+                            } catch (sdkError) {
+                                console.error('❌ Data SDK save error:', sdkError);
+                            }
+                        }
+                        
+                        // Show success message
+                        const sheetStatusMsg = sheetSaveSuccess ? 
+                            "✅ Order details saved successfully!" : 
+                            "⚠️ Order saved locally. Please share Payment ID with customer care.";
+                            
+                        showMessage('success', `
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 15px;">🎉 Payment Successful!</div>
+                                <div style="margin-bottom: 10px;"><strong>Booking Amount Paid:</strong> ₹${bookingAmount}</div>
+                                <div style="margin-bottom: 10px;"><strong>Payment ID:</strong> ${response.razorpay_payment_id}</div>
+                                <div style="margin-bottom: 15px;"><strong>Total Service Cost:</strong> ₹${totalAmount}</div>
+                                <div style="background: rgba(245, 158, 11, 0.1); padding: 10px; border-radius: 8px; margin-top: 15px;">
+                                    <strong>${sheetStatusMsg}</strong><br>
+                                    हमारा इलेक्ट्रिशियन 2-4 घंटे में आपसे संपर्क करेगा।<br>
+                                    बाकी राशि (₹${totalAmount - bookingAmount}) सर्विस पूरी होने के बाद ली जाएगी।
+                                    ${!sheetSaveSuccess ? '<br><br><strong>Customer Care:</strong> 8816014071' : ''}
+                                </div>
+                            </div>
+                        `);
+                        
+                        // Clear cart and close modal after delay
+                        cart = [];
+                        updateCartDisplay();
+                        
+                        setTimeout(() => {
+                            closeCheckoutForm();
+                        }, 8000);
+                        
+                    } catch (error) {
+                        console.error('❌ Order processing error:', error);
+                        showMessage('error', `
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.2rem; margin-bottom: 10px;">⚠️ Payment Successful</div>
+                                <div style="margin-bottom: 10px;"><strong>Payment ID:</strong> ${response.razorpay_payment_id}</div>
+                                <div style="background: rgba(251, 191, 36, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                    Your payment was successful but there was an issue saving the order details.<br>
+                                    Please contact customer care at <strong>8816014071</strong> with your Payment ID.
+                                </div>
+                            </div>
+                        `);
+                    }
+                },
+                "prefill": {
+                    "name": formData.customerName,
+                    "email": formData.email,
+                    "contact": formData.mobile
+                },
+                "theme": {
+                    "color": "#f59e0b"
+                },
+                "modal": {
+                    "ondismiss": function() {
+                        hideLoading();
+                        showMessage('error', '❌ Payment cancelled. Please try again to complete your booking.');
+                    }
+                }
+            };
+            
+            try {
+                const rzp = new Razorpay(options);
+                
+                rzp.on('payment.failed', function (response) {
+                    hideLoading();
+                    const errorMsg = response.error.description || response.error.reason || 'Unknown payment error';
+                    showMessage('error', `❌ Payment failed: ${errorMsg}<br><br>Please try again or contact customer care at 8816014071.`);
+                });
+                
+                hideLoading();
+                rzp.open();
+                
+            } catch (error) {
+                hideLoading();
+                console.error('❌ Razorpay initialization error:', error);
+                showMessage('error', '❌ Payment gateway error. Please refresh the page and try again, or contact customer care at 8816014071.');
             }
         });
-        
-        okayBtn.addEventListener('click', closeAllPopups);
-        downloadBtn.addEventListener('click', downloadTicketDetails);
 
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Validation 
-            if (serviceDetailsInput.value.trim() === '') { showCustomAlert("Please select at least one Electrician Service."); return; }
-            if (parseFloat(totalCostInput.value) <= 0) { showCustomAlert("Selected service price is ₹0. Please check your booking."); return; }
-            if (bookingForm.field1.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(bookingForm.field2.value.trim())) { showCustomAlert("Please enter the correct 10-digit phone number."); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.field3.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
-            if (bookingForm.field6.value.trim().length < 30) { showCustomAlert("Please enter the complete address (minimum 30 characters)."); return; }
-
-
-            submitMessage.classList.remove('hidden');
-            bookingForm.querySelector('button[type="submit"]').disabled = true;
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const checkoutModal = document.getElementById('checkout-modal');
+            const customerModal = document.getElementById('customer-form-modal');
             
-            // --- GENERATE TICKET & PRE-PAYMENT SUBMISSION ---
-            generatedTicket = generatedTicket || generateTicketId(); 
+            if (event.target === checkoutModal) {
+                closeCheckoutForm();
+            }
             
-            const totalCost = parseFloat(totalCostInput.value);
-            
-            // Form data mapping to Google Sheet columns
-            const formData = new FormData();
-            formData.append('field1', bookingForm.field1.value); // Full Name
-            formData.append('field2', bookingForm.field2.value); // Phone
-            formData.append('field3', bookingForm.field3.value); // Email
-            formData.append('field4', serviceDetailsInput.value); // Service Details/Type
-            formData.append('field5', bookingForm.field5.value); // Location
-            formData.append('field6', bookingForm.field6.value); // Address
-            
-            // Custom Fields
-            formData.append('serviceType', serviceDetailsInput.value); 
-            formData.append('basePrice', basePriceInput.value);
-            formData.append('ticketQuantity', selectedQuantity); 
-            formData.append('totalCost', totalCost);         
-            formData.append('ticket', generatedTicket);
-            formData.append('tab', SERVICE_TAB_ID); // electrician-service
+            if (event.target === customerModal) {
+                closeCustomerForm();
+            }
+        });
 
+        // Prevent form submission on Enter key in input fields
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && event.target.tagName !== 'BUTTON' && event.target.type !== 'submit') {
+                event.preventDefault();
+            }
+        });
 
-            fetch(GOOGLE_SHEET_URL, {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.text())
-            .then(res => {
-                if (res.includes("Success") || res.includes("success") || !res.includes("Error")) {
-                    console.log("Booking data successfully logged to Google Sheet (Pre-Payment).");
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Initializing Electrician Service Booking System...');
+            initializeApp();
+        });
 
-                    // Proceed to payment popup
-                    bookingPopup.style.display = 'none';
-
-                    paymentSummary.innerHTML = `
-                        <p class="text-text-subtle text-lg mb-2 font-bold">Service(s): <span class="text-primary">${serviceDetailsInput.value}</span> x ${selectedQuantity}</p>
-                        <p class="total-price-quantity text-secondary text-3xl font-bold mt-3">Total Payable: ₹${totalCost.toLocaleString('en-IN')}</p>
-                        <p class="text-gray-400 text-sm mt-2">This amount is for labor/service charge only. Electric material cost will apply separately.</p>
-                    `;
-                    openPopup(paymentPopup);
-                    startPaymentTimer();
-                } else {
-                    console.error("Failed to log data to Google Sheet:", res);
-                    showCustomAlert("Booking Error: Data submission failed. Please try again.");
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
-            })
-            .catch(err => {
-                console.error("Google Sheet API Error:", err);
-                showCustomAlert("Network Error: Could not submit booking. Please check your connection.");
-            })
-            .finally(() => {
-                submitMessage.classList.add('hidden');
-                bookingForm.querySelector('button[type="submit"]').disabled = false;
             });
         });
-
-        razorpayBtn.addEventListener('click', handleRazorpayPayment);
-        priceListBtn.addEventListener('click', () => {
-            populatePriceList();
-            openPopup(priceListPopup); 
-        });
-        descriptionBtn.addEventListener('click', () => {
-            openPopup(descriptionPopup); 
-        });
-        closePriceListBtn.addEventListener('click', () => closeSpecificPopup(priceListPopup));
-        closeDescriptionBtn.addEventListener('click', () => closeSpecificPopup(descriptionPopup));
     </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99682d18a3e459d8',t:'MTc2MTc5ODYxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
