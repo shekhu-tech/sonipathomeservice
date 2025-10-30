@@ -1471,25 +1471,6 @@
    <section class="services-section">
     <h2 class="services-title">बोरवेल इंस्टालेशन पैकेज</h2>
     <div class="services-grid">
-     <div class="service-card" style="border: 3px solid #ff9800; background: linear-gradient(135deg, rgba(255, 152, 0, 0.2) 0%, rgba(255, 193, 7, 0.15) 100%);">
-      <div class="service-name" style="color: #e65100;">
-       🧪 Demo Service Package (Testing Only)
-      </div>
-      <div class="service-price" style="color: #e65100;">
-       ₹1
-      </div>
-      <div class="service-details" style="background: rgba(255, 152, 0, 0.15); border-color: rgba(255, 152, 0, 0.3);"><strong>Demo Package for Testing:</strong><br>
-        • This is a test service for ₹1<br>
-        • Used for payment gateway testing<br>
-        • No actual service provided<br>
-        • For demonstration purposes only<br>
-        • Complete payment process testing<br>
-        • Sample booking workflow
-      </div>
-      <div class="booking-info" style="background: rgba(255, 152, 0, 0.2); border-color: rgba(255, 152, 0, 0.4);">
-       Demo Payment: ₹1 | No remaining amount
-      </div><button class="add-to-cart-btn" onclick="addToCart('Demo Service Package (Testing Only)', 1, event)" style="background: linear-gradient(135deg, #ff9800 0%, #e65100 100%);"> Add Demo to Cart </button>
-     </div>
      <div class="service-card">
       <div class="service-name">
        230 Feet Borewell Installation Package
@@ -1852,15 +1833,8 @@
             
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
-                let itemBooking;
-                
-                // For demo service, charge the full amount (₹1)
-                if (item.name.includes('Demo Service Package')) {
-                    itemBooking = item.price * item.quantity;
-                } else {
-                    // For regular services, charge ₹5000 booking per item
-                    itemBooking = 5000 * item.quantity;
-                }
+                // For all services, charge ₹5000 booking per item
+                const itemBooking = 5000 * item.quantity;
                 
                 serviceTotal += itemTotal;
                 bookingTotal += itemBooking;
@@ -1997,11 +1971,7 @@
         // Calculate Booking Total
         function calculateBookingTotal() {
             return cart.reduce((total, item) => {
-                // For demo service, charge the full amount (₹1)
-                if (item.name.includes('Demo Service Package')) {
-                    return total + (item.price * item.quantity);
-                }
-                // For regular services, charge ₹5000 booking per item
+                // For all services, charge ₹5000 booking per item
                 return total + (5000 * item.quantity);
             }, 0);
         }
@@ -2497,7 +2467,5 @@ Please contact customer care at 8816014071 with your Payment ID.`);
             });
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'996869e0248a1c49',t:'MTc2MTgwMTEwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99686fa201b71c49',t:'MTc2MTgwMTMzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
