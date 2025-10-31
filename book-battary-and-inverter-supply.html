@@ -2171,7 +2171,7 @@
       <div style="margin-top: 10px;">
        Please wait...
       </div>
-     </div><button type="submit" class="book-installation-btn" id="book-installation-btn" disabled> Book Inverter Battery Service - ₹<span id="book-amount">0</span> </button>
+     </div><button type="submit" class="book-installation-btn" id="book-installation-btn" disabled> Pay Booking Amount - ₹<span id="book-amount">99</span> </button>
     </form>
    </section><!-- Cart Modal -->
    <div id="cart-modal" class="modal">
@@ -2454,7 +2454,7 @@
 
             // Enable booking button
             document.getElementById('book-installation-btn').disabled = false;
-            document.getElementById('book-amount').textContent = ourPrice.toLocaleString();
+            document.getElementById('book-amount').textContent = '99';
 
             // Scroll to booking section
             document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
@@ -2500,6 +2500,37 @@
             document.getElementById('display-service-type').textContent = selectedPricing.serviceType;
             document.getElementById('display-price').textContent = '₹' + selectedPricing.ourPrice.toLocaleString();
             document.getElementById('display-savings').textContent = '₹' + selectedPricing.savings.toLocaleString();
+            
+            // Update pricing breakdown to show booking and balance amounts
+            const pricingBreakdown = document.querySelector('.pricing-breakdown');
+            if (pricingBreakdown) {
+                pricingBreakdown.innerHTML = `
+                    <div class="pricing-item">
+                        <div class="pricing-item-label">Battery Type</div>
+                        <div class="pricing-item-value">${selectedPricing.batteryType}</div>
+                    </div>
+                    <div class="pricing-item">
+                        <div class="pricing-item-label">Capacity/Details</div>
+                        <div class="pricing-item-value">${selectedPricing.serviceType}</div>
+                    </div>
+                    <div class="pricing-item">
+                        <div class="pricing-item-label">Total Service Cost</div>
+                        <div class="pricing-item-value">₹${selectedPricing.ourPrice.toLocaleString()}</div>
+                    </div>
+                    <div class="pricing-item">
+                        <div class="pricing-item-label">Booking Amount</div>
+                        <div class="pricing-item-value" style="color: #059669;">₹99</div>
+                    </div>
+                    <div class="pricing-item">
+                        <div class="pricing-item-label">Balance After Delivery</div>
+                        <div class="pricing-item-value" style="color: #dc2626;">₹${(selectedPricing.ourPrice - 99).toLocaleString()}</div>
+                    </div>
+                    <div class="pricing-item">
+                        <div class="pricing-item-label">You Save</div>
+                        <div class="pricing-item-value" style="color: #059669;">₹${selectedPricing.savings.toLocaleString()}</div>
+                    </div>
+                `;
+            }
         }
 
         // Update Cart Count Display
@@ -2612,9 +2643,13 @@
                     <span>Total Savings:</span>
                     <span>₹${cartItems.reduce((sum, item) => sum + item.savings, 0).toLocaleString()}</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 2px solid rgba(185, 28, 28, 0.3); color: #b91c1c; font-weight: 700;">
-                    <span>Total Amount:</span>
-                    <span>₹${totalAmount.toLocaleString()}</span>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px; color: #059669; font-weight: 700;">
+                    <span>Pay Now (Booking):</span>
+                    <span>₹99</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 2px solid rgba(185, 28, 28, 0.3); color: #dc2626; font-weight: 700;">
+                    <span>Balance After Delivery:</span>
+                    <span>₹${(totalAmount - 99).toLocaleString()}</span>
                 </div>
             `;
             
@@ -2790,9 +2825,9 @@
                 formData.append('landmark', bookingData.delivery_landmark);
                 formData.append('pincode', bookingData.delivery_pincode);
                 formData.append('orderItems', `Inverter Battery Service - ${bookingData.battery_type} | ${bookingData.battery_brand} | ${bookingData.battery_capacity} | Property: ${bookingData.property_type} | Warranty: ${bookingData.warranty_period}`);
-                formData.append('totalAmount', `₹${bookingData.service_cost.toLocaleString()}`);
+                formData.append('totalAmount', `₹${bookingData.service_cost.toLocaleString()} (Booking: ₹${bookingData.booking_amount}, Balance: ₹${bookingData.balance_amount.toLocaleString()})`);
                 formData.append('paymentId', bookingData.payment_id || 'N/A');
-                formData.append('status', bookingData.payment_status || 'PENDING');
+                formData.append('status', bookingData.payment_status || 'BOOKING_PAID');
                 
                 console.log('📤 Sending inverter battery service booking data to Google Sheet...');
                 
@@ -2810,13 +2845,13 @@
         }
 
         // Razorpay Payment Integration
-        function initializeRazorpayPayment(bookingData, totalAmount) {
+        function initializeRazorpayPayment(bookingData, bookingAmount) {
             const options = {
                 key: 'rzp_live_RLjzp7VlXERwiG', // Live Production Key
-                amount: totalAmount * 100, // Amount in paise
+                amount: bookingAmount * 100, // Amount in paise (₹99)
                 currency: 'INR',
-                name: 'Inverter Battery Service',
-                description: `Inverter Battery Service - ${bookingData.battery_type} | ${bookingData.battery_brand}`,
+                name: 'Inverter Battery Service - Booking',
+                description: `Booking Amount for ${bookingData.battery_type} | ${bookingData.battery_brand}`,
                 image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMzIiIGZpbGw9IiNkYzI2MjYiLz4KPHN2ZyB4PSIxNiIgeT0iMTYiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+CjxwYXRoIGQ9Ik0xMiAyQzEzLjEgMiAxNCAyLjkgMTQgNFYxMEMxNCA5LjQ1IDEzLjU1IDkgMTMgOUgxMUM5LjkgOSA5IDkuOSA5IDExVjEzQzkgMTQuMSA5LjkgMTUgMTEgMTVIMTNDMTMuNTUgMTUgMTQgMTQuNTUgMTQgMTRWMjBDMTQgMjEuMSAxMy4xIDIyIDEyIDIyQzEwLjkgMjIgMTAgMjEuMSAxMCAyMFY0QzEwIDIuOSAxMC45IDIgMTIgMloiLz4KPC9zdmc+Cjwvc3ZnPgo=',
                 handler: function (response) {
                     handlePaymentSuccess(response, bookingData);
@@ -2875,7 +2910,9 @@
                         <div style="font-size: 1.5rem; margin-bottom: 15px;">🎉 Inverter Battery Service Booked Successfully!</div>
                         <div style="background: rgba(5, 150, 105, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 15px; border: 2px solid rgba(5, 150, 105, 0.3);">
                             <div style="font-weight: 700; color: #059669; margin-bottom: 10px;">Payment ID: ${paymentResponse.razorpay_payment_id}</div>
-                            <div style="font-weight: 700; color: #059669; margin-bottom: 10px;">Amount Paid: ₹${bookingData.service_cost.toLocaleString()}</div>
+                            <div style="font-weight: 700; color: #059669; margin-bottom: 10px;">Booking Amount Paid: ₹${bookingData.booking_amount}</div>
+                            <div style="font-weight: 700; color: #dc2626; margin-bottom: 10px;">Balance Amount: ₹${bookingData.balance_amount.toLocaleString()}</div>
+                            <div style="font-weight: 700; color: #b91c1c; margin-bottom: 10px;">Total Service Cost: ₹${bookingData.service_cost.toLocaleString()}</div>
                             <div style="color: #374151; margin-bottom: 10px;">Delivery: ${bookingData.delivery_address}</div>
                             <div style="color: #374151; margin-bottom: 10px;">Battery: ${bookingData.battery_type} ${bookingData.battery_brand}</div>
                             <div style="color: #374151;">Capacity: ${bookingData.battery_capacity}</div>
@@ -2886,6 +2923,7 @@
                                 • Our inverter battery service team will contact you within 1 hour<br>
                                 • Battery will be delivered as per selected service<br>
                                 • Free doorstep installation within scheduled time<br>
+                                • <strong style="color: #dc2626;">Balance amount ₹${bookingData.balance_amount.toLocaleString()} to be paid after delivery</strong><br>
                                 • Warranty assured and same day service available
                             </div>
                         </div>
@@ -2966,6 +3004,9 @@
                 const deviceType = isIPhone ? `iPhone-${screenWidth}px` : isMobile ? `Mobile-${screenWidth}px` : `Desktop-${screenWidth}px`;
                 
                 // Prepare booking data
+                const bookingAmount = 99; // Fixed booking amount
+                const balanceAmount = selectedPricing.ourPrice - bookingAmount;
+                
                 const bookingData = {
                     id: Date.now().toString() + '_' + Math.random().toString(36).substr(2, 9),
                     customer_name: formData.customerName,
@@ -2981,10 +3022,10 @@
                     service_type: formData.serviceType,
                     warranty_period: selectedPricing.warranty,
                     service_cost: selectedPricing.ourPrice,
-                    booking_amount: selectedPricing.ourPrice,
-                    balance_amount: 0,
+                    booking_amount: bookingAmount,
+                    balance_amount: balanceAmount,
                     booking_date: new Date().toISOString(),
-                    payment_status: 'PENDING',
+                    payment_status: 'BOOKING_PAID',
                     payment_id: '',
                     version: 'Inverter-V1-Production',
                     device_type: deviceType
@@ -2996,9 +3037,11 @@
                 // Show payment initiation message
                 showMessage('success', `
                     <div style="text-align: center;">
-                        <div style="font-size: 1.3rem; margin-bottom: 15px;">💳 Initiating Secure Payment</div>
+                        <div style="font-size: 1.3rem; margin-bottom: 15px;">💳 Pay Booking Amount Only</div>
                         <div style="background: rgba(185, 28, 28, 0.1); padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 2px solid rgba(185, 28, 28, 0.3);">
-                            <div style="font-weight: 700; color: #b91c1c; margin-bottom: 8px;">Inverter Battery Service Cost: ₹${selectedPricing.ourPrice.toLocaleString()}</div>
+                            <div style="font-weight: 700; color: #b91c1c; margin-bottom: 8px;">Total Service Cost: ₹${selectedPricing.ourPrice.toLocaleString()}</div>
+                            <div style="font-weight: 700; color: #059669; margin-bottom: 8px;">Pay Now (Booking): ₹99</div>
+                            <div style="font-weight: 700; color: #dc2626; margin-bottom: 8px;">Balance After Delivery: ₹${balanceAmount.toLocaleString()}</div>
                             <div style="color: #374151;">Razorpay secure payment gateway will open shortly...</div>
                             <div style="margin-top: 8px; font-size: 0.9rem; color: #059669; font-weight: 600;">
                                 You save ₹${selectedPricing.savings.toLocaleString()} compared to market price!
@@ -3015,7 +3058,7 @@
                 // Initialize Razorpay payment after a short delay
                 setTimeout(() => {
                     showLoading();
-                    initializeRazorpayPayment(bookingData, selectedPricing.ourPrice);
+                    initializeRazorpayPayment(bookingData, bookingAmount);
                 }, 2000);
                 
             } catch (error) {
@@ -3069,5 +3112,5 @@
             });
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9970dc1e82341c49',t:'MTc2MTg4OTY2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9970f7d7f523c51e',t:'MTc2MTg5MDgwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
