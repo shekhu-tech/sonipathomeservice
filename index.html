@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- यह 'viewport-fit=cover' टैग पूरे स्क्रीन को उपयोग करने की अनुमति देता है, जिसे अब हम CSS Safe Area Variables से सुरक्षित करेंगे -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="google-site-verification" content="o2aVfORGFZbKqnl38ZA7GPMdA9nv9Icy_ksU1AMY1jU" />
+ 
+
+<title>Sonipat Home Service – Trusted Home Appliance Repair in Sonipat</title>
+<meta name="description" content="30+ Repair & Service @ DoorStep in Sonipat: AC & Appliance Repair, DishTV & Wi-Fi Installation, Septic Tank & Pest Control. Fast, affordable doorstep service with genuine parts. Book!" />
+<meta name="keywords" content="AC Repair Sonipat, Fridge Repair, Washing Machine Service, Septic Tank Cleaning, Geyser Installation, Chimney Cleaning, Electrician Services, Borewell Installation, Sewerage Unblock, Barber Booking, Masonry Work, CCTV Installation, RO Repair, Vehicle Booking, Car Repair, Parcel Delivery, LED TV Repair, Solar Panel Installation, Catering Service, Halwai, WiFi Installation, DTH Installation, Pest Control, RO Water Supply, Waiter Booking, Auto Battery, Inverter Battery, Building Materials, Sofa Cleaning, Water Tank Cleaning, Room Rent, Car Pool" />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Sonipat Home Service Team" />
+
+<link rel="canonical" href="https://sonipathomeservice.com/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Sonipat Home Service – Reliable Appliance Repair" />
+<meta property="og:description" content="Doorstep appliance repair of ACs, fridges, geysers and more in Sonipat. Trained technicians & guaranteed service." />
+<meta property="og:image" content="https://sonipathomeservice.com/images/og-preview.jpg" />
+<meta property="og:url" content="https://sonipathomeservice.com/" />
+<meta property="og:site_name" content="Sonipat Home Service" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sonipat Home Service – Trusted Appliance Repair at Your Doorstep" />
+<meta property="twitter:description" content="Expert repair of AC, fridge, geyser, cooler, washing machine & more in Sonipat. Book now!" />
+<meta property="twitter:image" content="https://sonipathomeservice.com/images/twitter-card.jpg" />
+<meta name="twitter:creator" content="@sonipathome" />
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+
+<!-- Favicon Implementation -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/faviconex.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/faviconex.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/faviconex.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Sonipat Home Service",
+  "image": "https://sonipathomeservice.com/images/logo.png",
+  "url": "https://sonipathomeservice.com",
+  "telephone": "+91-8816014071",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "128/1, Sainipura",
+    "addressLocality": "Sonipat",
+    "addressRegion": "Haryana",
+    "postalCode": "131101",
+    "addressCountry": "IN"
+  },
+  "openingHours": "Mo-Su 08:00-20:00",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-88160-14071",
+    "contactType": "Customer Service",
+    "areaServed": "IN",
+    "availableLanguage": ["Hindi", "English"]
+  },
+  "sameAs": [
+    "https://www.facebook.com/sonipathomeservice",
+    "https://www.instagram.com/sonipathomeservice"
+  ]
+}
+</script>
+  <style>
+    :root {
+      /* Reverting to golden colors for the bottom nav as per trail.html */
+      --golden-light: #3a321f;     
+      --golden-medium: #FFE5A3;    
+      --golden-dark: #A37A00;      
+      --text-light: #f3f4f6;       
+      --popup-bg: #1f2937;         
+      --popup-overlay-bg: rgba(0, 0, 0, 0.85);
+      --popup-link-hover: #4b5563; 
+      --list-link-text: #e5e7eb;   
+    }
+
+    /* ----------------------------------------------------- */
+    /* सुरक्षित क्षेत्र (Safe Area) फिक्स: टॉप और बॉटम ओवरले को रोकना */
+    /* ----------------------------------------------------- */
+    
+    /* * NOTE: Agar aapka header fixed nahi hai, to body padding theek kaam karega. 
+     * Agar fixed hai, to hamein fixed header mein padding/margin adjust karna hoga.
+     */
+    body {
+        /* body ko padding sirf bottom nav space ke liye chahiye */
+        padding-top: 0; /* Default padding-top hata diya */
+        
+        /*
+         * बॉटम फिक्स: (64px bottom nav height + safe area)
+         */
+        padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    }
+
+    /* Fixed Top Element Adjustment (Agar aapka header fixed hai) */
+    /* Agar aapka header-container fixed position mein hai, to yeh use karein */
+    #header-container, .fixed-header { 
+        /* * Important: Aapki image se lagta hai ki aapka header fixed hai.
+         * Agar aapka header fixed hai, toh uspar yeh CSS lagana hoga.
+         * Agar yeh fixed nahi hai, to iski zarurat nahi hai.
+         * Mai maan raha hoon ki "#header-container" fixed hai.
+         */
+        position: fixed; /* Agar fixed nahi hai to yeh line add karein */
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50; /* Z-index high rakhein */
+        
+        /* Upar ke overlay ko theek karne ke liye padding aur box-sizing */
+        padding-top: env(safe-area-inset-top, 0px);
+        box-sizing: content-box; 
+    }
+    
+    /* Content ko header ke neeche shuru karne ke liye, 
+       main ya koi wrapper element mein top margin dena padega.
+       Hum main element mein margin de rahe hain. 
+       Header ki height (approx 60px) + safe area top margin.
+       Aapko apne header ki actual height ke hisaab se 60px change karna pad sakta hai.
+    */
+    main {
+        margin-top: calc(60px + env(safe-area-inset-top, 0px));
+        position: relative;
+    }
+
+
+    .hidden-h1 { position: absolute; left: -9999px; visibility: hidden; }
+
+    #products-section {
+        padding: 4rem 1rem;
+        text-align: center;
+        background: #f4f4f4;
+    }
+    
+    /* ... (Rest of existing CSS for sections, cards, and popups) ... */
+    
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #005f99;
+        text-transform: uppercase;
+        border-bottom: 3px solid #007bff;
+        display: inline-block;
+        padding-bottom: 6px;
+    }
+
+    #services-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .card {
+        display: flex;
+        align-items: center;
+        background: #ffffff;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        width: calc(25% - 1.125rem); 
+        min-width: 280px; 
+        height: 120px; 
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .card-image {
+        width: 100px; 
+        height: 100px; 
+        object-fit: cover;
+        flex-shrink: 0;
+        margin-left: 10px;
+        border-radius: 10px;
+    }
+
+    .card-content-wrapper {
+        padding: 0.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center; 
+        width: 100%;
+        gap: 0.1rem; 
+    }
+
+    .card-heading {
+        font-size: 1.1rem; 
+        font-weight: 700;
+        color: #005f99;
+        margin: 0;
+    }
+
+    .card-category {
+        font-size: 0.75rem; 
+        font-weight: 600;
+        color: #6c757d;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .card-button {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 0.4rem 1.2rem; 
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.8rem; 
+        transition: background-color 0.3s ease;
+        align-self: center; 
+        width: auto; 
+        margin-top: 0.25rem;
+    }
+
+    .card-button:hover {
+        background-color: #0056b3;
+    }
+
+    
+    @media (max-width: 1200px) {
+        .card {
+            width: calc(33.333% - 1rem); 
+        }
+    }
+
+    @media (max-width: 900px) {
+        .card {
+            width: calc(50% - 0.75rem); 
+        }
+    }
+
+    @media (max-width: 640px) {
+        #products-section {
+            padding: 2rem 0.5rem;
+        }
+        .card {
+            width: 95%; 
+            max-width: 500px; 
+        }
+        .card-image {
+            width: 100px; 
+            height: 100px; 
+        }
+        .card-content-wrapper {
+            padding: 1rem;
+        }
+    }
+
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .popup-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .popup-container {
+        background: white;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 1200px;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 2rem;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .popup-overlay.active .popup-container {
+        transform: scale(1);
+    }
+
+    .popup-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #333;
+    }
+
+    .popup-title {
+        font-size: 1.8rem;
+        color: #005f99;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .popup-cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    .popup-card {
+        width: calc(25% - 1.2rem);
+        min-width: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        text-decoration: none;
+        position: relative;
+        background: white;
+    }
+
+    .popup-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .popup-card-image {
+        height: 100px;
+        background-size: cover;
+        background-position: center;
+        background-color: #e0e0e0;
+    }
+
+    .popup-card-content {
+        padding: 1rem 0.8rem;
+        text-align: center;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .popup-card-title {
+        font-size: 1rem;
+        color: #005f99;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+
+    .popup-card-btn {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #007bff;
+        color: white;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    .popup-card-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .popup-card-badge {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        z-index: 2;
+    }
+
+    @media (max-width: 1024px) {
+        .popup-card {
+            width: calc(33.333% - 1.2rem);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .popup-card {
+            width: calc(50% - 1rem);
+            min-width: 160px;
+        }
+        .popup-card-image {
+            height: 90px;
+        }
+        .popup-card-content {
+            height: 110px;
+            padding: 0.8rem 0.6rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .popup-card {
+            width: 100%;
+            max-width: 300px;
+        }
+        .popup-card-image {
+            height: 110px;
+        }
+        .popup-card-content {
+            height: auto;
+        }
+    }
+
+    /* Bottom Navigation CSS from trail.html */
+    .bottom-nav {
+        background-color: #000;
+        border-top: 2px solid var(--golden-dark);
+        box-shadow: 0 -5px 20px rgba(163, 122, 0, 0.2);
+        height: 64px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 10px;
+        z-index: 50;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        
+        /* * FIX: बॉटम नेविगेशन के कंटेंट को बॉटम नॉच/होम इंडिकेटर से ऊपर 
+         * रखने के लिए padding-bottom और box-sizing का उपयोग करें।
+         */
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        box-sizing: content-box; 
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #9ca3af; 
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 0.75rem;
+    }
+
+    .nav-item:hover, .nav-item.active {
+        color: #fff; 
+    }
+    
+    .nav-icon {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 2px;
+    }
+    
+    .nav-item-central {
+        transform: translateY(-20px);
+        position: relative;
+    }
+
+    .central-icon-wrapper {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, #4f46e5 0%, #312e81 100%);
+        border: 3px solid #fff;
+        box-shadow: 0 0 15px #4f46e5, 0 5px 20px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease;
+    }
+
+    .nav-item-central:hover .central-icon-wrapper {
+        transform: scale(1.1);
+    }
+
+    .nav-item-central .nav-text {
+        position: absolute;
+        bottom: -18px;
+        font-size: 0.75rem;
+        color: #fff;
+    }
+
+    /* Utility to hide on desktop */
+    @media (min-width: 768px) {
+      .bottom-nav {
+        display: none;
+      }
+    }
+  
+</style>
+  </head>
+
+<body>
+
+  <style>
+        /* Import a modern font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            height: 200vh; /* Just for scrolling context */
+            background-color: #f8f9fa;
+        }
+
+        /* --- Modern Button Styles --- */
+        .floating-download-button {
+            /* Fixed position on the left edge */
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: 1000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .download-button-inner {
+            /* Dimensions to fit vertical text */
+            height: 180px;
+            width: 30px;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            /* Modern Gradient Background (Indigo/Violet) */
+            background: linear-gradient(180deg, #6366F1 0%, #8B5CF6 100%);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+
+            /* Smooth, rounded corner only on the right side */
+            border-radius: 0 12px 12px 0;
+
+            /* Ultra Pro Max Shadow */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+            /* Vertical Text Orientation */
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            
+            /* Transitions for interaction */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Optional: Add a subtle inner shadow/glow */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .download-button-inner:hover {
+            /* Hover effect: lift and darken slightly */
+            background: linear-gradient(180deg, #4F46E5 0%, #7C3AED 100%);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2), 0 6px 10px -3px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05) translateX(5px); /* Push out slightly */
+        }
+        
+        /* Ensure the link itself moves and doesn't just contain the inner div */
+        .floating-download-button:hover .download-button-inner {
+            transform: scale(1); /* Reset inner transform if link handles the move */
+        }
+
+        /* Responsive adjustment for small screens */
+        @media (max-width: 640px) {
+            .download-button-inner {
+                height: 160px;
+                width: 28px;
+                font-size: 12px;
+                border-radius: 0 8px 8px 0;
+            }
+        }
+    </style>
+    <!-- The button link -->
+    <a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice&pcampaignid=web_share" class="floating-download-button" role="button" aria-label="Download the Android App">
+        <div class="download-button-inner">
+            Download Android App
+        </div>
+    </a>
+  <!-- Header container ko fixed-header bana diya gaya hai -->
+  <div id="header-container" class="fixed-header"></div>
+  
+
+  <h1 class="hidden-h1">No Any Subscription Gym, Yoga, Calisthenics, Detox & Diet Programs | LivFit.pro</h1>
+  <main>
+<div class="image-slider" id="slider">
+  <div class="slider-background">
+  <img src="drng1.png" alt="AC Installation" class="active" loading="lazy"> 
+  <img src="drng2.png" alt="Fridge Repair" loading="lazy">
+  <img src="drng3.jpeg" alt="Washing Machine Service" loading="lazy">
+  <img src="drng29.png" alt="Cooler Cleaning" loading="lazy"> 
+  <img src="five.png" alt="Geyser Setup" loading="lazy">
+  <img src="six.png" alt="chimney" loading="lazy">
+  <img src="drng7.png" alt="chimney" loading="lazy">
+  <img src="drng8.png" alt="chimney" loading="lazy">
+  <img src="drng9.png" alt="chimney" loading="lazy">
+  <img src="drng10.png" alt="chimney" loading="lazy">
+  <img src="drng11.png" alt="chimney" loading="lazy">
+  <img src="drng12.png" alt="chimney" loading="lazy">
+  <img src="drng13.png" alt="chimney" loading="lazy">
+  <img src="drng14.jpg" alt="chimney" loading="lazy">
+  <img src="drng15.jpeg" alt="chimney" loading="lazy">
+  <img src="drng16.png" alt="chimney" loading="lazy">
+  <img src="drng17.png" alt="chimney" loading="lazy">
+  <img src="drng18.png" alt="chimney" loading="lazy">
+  <img src="drng19.png" alt="chimney" loading="lazy">
+  <img src="drng20.png" alt="chimney" loading="lazy">
+  <img src="drng21.png" alt="chimney" loading="lazy">
+  <img src="drng22.png" alt="chimney" loading="lazy">
+  <img src="drng23.png" alt="chimney" loading="lazy">
+  <img src="drng24.png" alt="chimney" loading="lazy">
+  <img src="drng25.png" alt="chimney" loading="lazy">
+  <img src="drng26.png" alt="chimney" loading="lazy">
+  <img src="drng27.png" alt="chimney" loading="lazy">
+  <img src="drng28.png" alt="chimney" loading="lazy">
+  <img src="drng29.png" alt="chimney" loading="lazy">
+  <img src="drng30.png" alt="chimney" loading="lazy">
+    
+    
+</div>
+  <div class="slider-overlay">
+    <h1>Professional Appliance Repair in Sonipat</h1>
+    <p>AC Repair | Fridge | Washing Machine | Wi-Fi | DTH | Sofa Cleaning | Geyser | Chimney| LED Repair | Chimney | Pest Control |  Ro Purifier | Halwai |   Soler System | Parcel Delivery | Shopping | Car Repair | CCTV | Masonry | Barber | Septic Tank | Borewell</p>
+    <div class="jackpot-display" style="font-size: 1rem;">
+      <i class="fas fa-wrench"></i> All Service on Single Click • Place24x7 Support • Verified Technicians • 10K+ Homes Served <i class="fas fa-tools"></i>
+    </div>
+    <a href="#products-section" class="slider-btn">Book Service Now </a>
+  </div>
+</div>
+
+<div class="lottery-stats">
+  <div class="stat-card">
+    <h3>👑Expert Technicians</h3>
+    <p>12+</p>
+  </div>
+  <div class="stat-card">
+    <h3>🏡Households Served</h3>
+    <p>10,000+</p>
+  </div>
+  <div class="stat-card">
+    <h3>⚡Avg Response Time</h3>
+    <p>30 Mins</p>
+  </div>
+  <div class="stat-card">
+    <h3>🛡️Service Availability</h3>
+    <p>24x7</p>
+  </div>
+</div>
+<br><br><br>
+      
+<section id="products-section">
+    <h2 class="section-title" >Our Services</h2>
+   
+    <div id="services-container">
+        <a class="card" href="book-ac-services.html">
+            <img src="drng1.png" alt="AC Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">AC Installation & Repair</h3>
+                <p class="card-category">AC Services</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="book-wifi-service.html">
+            <img src="drng21.png" alt="Wifi Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Wi-Fi Connection</h3>
+                <p class="card-category">Connectivity</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+      <a class="card" href="Book-dth-installation-service.html">
+            <img src="drng22.png" alt="DTH Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">DTH Installation</h3>
+                <p class="card-category">Connectivity</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+       <a class="card" href="book-tv-repair.html">
+            <img src="drng17.png" alt="TV Repair Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">LED TV Repair & Installation</h3>
+                <p class="card-category">Electronics</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+      
+       <a class="card" href="website-design-service.html">
+            <img src="drng33.png" alt="TV Repair Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">वेबसाइट बनवाये</h3>
+                <p class="card-category">Personal/Business</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+<a class="card" href="index.html">
+            <img src="drng37.jpeg" alt="Washing Machine Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Ladies Corner</h3>
+                <p class="card-category">makeup & Mehandi</p>
+                <span class="card-button">coming soon..</span>
+            </div>
+</a>
+      
+        <a class="card" href="book-fridge-refrigrator-services.html">
+            <img src="drng2.png" alt="Refrigerator Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Refrigerator Repair</h3>
+                <p class="card-category">Fridge</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+        
+        <a class="card" href="book-halwai-service.html">
+            <img src="drng20a.png" alt="Waiter & Catering Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Halwai Booking</h3>
+                <p class="card-category">Events</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="book-washing-machine-services.html">
+            <img src="drng3.jpeg" alt="Washing Machine Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Washing Machine Repair</h3>
+                <p class="card-category">Washing Machine</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="book-safty-tank-service.html">
+            <img src="drng29.png" alt="Cooler Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Septic Tank Cleaning</h3>
+                <p class="card-category">Cleanning</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="book-sewerage-unblock-service.html">
+            <img src="drng9.png" alt="Cleaning Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Sewerage Unblock</h3>
+                <p class="card-category">Cleaning</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+      <a class="card" href="book-bricks.html">
+            <img src="drng35.png" alt="DTH Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Bricks Supply</h3>
+                <p class="card-category">सबसे कम दाम</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        
+      <a class="card" href="book-pasti-control-service.html">
+            <img src="drng23.png" alt="DTH Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Pest Control Service</h3>
+                <p class="card-category">Cleaning-Service</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+      
+        <a class="card" href="book-cctv-service.html">
+            <img src="drng12.png" alt="Security Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">CCTV Solutions</h3>
+                <p class="card-category">Security</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+
+        <a class="card" href="book-geyser-services.html">
+            <img src="five.png" alt="Geyser Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Geyser Repair </h3>
+                <p class="card-category">Geyser</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="book-chimney-cleaning.html">
+            <img src="six.png" alt="Kitchen Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Chimney Cleaning</h3>
+                <p class="card-category">Kitchen</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="electricianservice.html">
+            <img src="drng7.png" alt="Electrical Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Electrician Services</h3>
+                <p class="card-category">Electrical</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="book-borewell-service.html">
+            <img src="drng30.png" alt="Waiter & Catering Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Borewell Installation</h3>
+                <p class="card-category">Boring</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="book-barber-service.html">
+            <img src="drng10.png" alt="Salon Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Barber Services</h3>
+                <p class="card-category">Salon</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="book-chinai-mistri.html">
+            <img src="drng11.png" alt="Handyman Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Masonry Services</h3>
+                <p class="card-category">Masonry</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+      <a class="card" href="book-ro-serrvice.html">
+            <img src="drng13.png" alt="R.O Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">R.O install & Repair </h3>
+                <p class="card-category">Purification</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+       <a class="card" href="book-vehicle-service.html">
+            <img src="drng14.png" alt="vehicle Booking" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Taxi Booking</h3>
+                <p class="card-category">Transportation</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+      <a class="card" href="automobile-repairing-services.html">
+            <img src="drng15.png" alt="Automobile Repairing Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Car Repair Services</h3>
+                <p class="card-category">Automobile</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+      
+       <a class="card" href="book-parcel-delivery-service-services.html">
+            <img src="drng16.png" alt="Parcel Delivery Service" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Fast Parcel Delivery</h3>
+                <p class="card-category">Parcel-Delivery</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+       
+        <a class="card" href="book-solar-installation.html">
+            <img src="drng18.png" alt="book-solar-installation.html" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Solar Panel Installation</h3>
+                <p class="card-category">Energy</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+        <a class="card" href="comingsoon.html">
+            <img src="drng20.png" alt="Waiter & Catering Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Cater Booking</h3>
+                <p class="card-category">Events</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+      <a class="card" href="book-ro-water-services-services.html">
+            <img src="drng24.png" alt="DTH Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">RO Camper Water Supply</h3>
+                <p class="card-category">Water-Supply</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+      <a class="card" href="book-auto-bike-car-battary.html">
+            <img src="drng26.png" alt="DTH Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading"> Car/Bike-Battery</h3>
+                <p class="card-category">Automative</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+      <a class="card" href="book-battary-and-inverter-supply.html">
+            <img src="drng27.png" alt="DTH Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Inverter Battery</h3>
+                <p class="card-category">Electorial-Service</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+
+      <a class="card" href="book-building-material-supply.html">
+            <img src="drng28.png" alt="DTH Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Building Material Supply</h3>
+                <p class="card-category">Construction</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+      
+      <a class="card" href="book-Sofa-cleaning.html">
+            <img src="drng25.png" alt="DTH Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Sofa Cleaning Service</h3>
+                <p class="card-category">Maintenance</p>
+                <span class="card-button">Book Now</span>
+            </div>
+        </a>
+ 
+      <a class="card" href="#wifi-connection.html">
+            <img src="drng31.png" alt="DTH Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Water Tank Cleaning</h3>
+                <p class="card-category">Maintenance</p>
+                <span class="card-button">Coming Soon...</span>
+            </div>
+        </a>
+       <a class="card" href="#wifi-connection.html">
+            <img src="drng32.png" alt="DTH Services" class="card-image">
+            <div class="card-content-wrapper">
+                <h3 class="card-heading">Loan</h3>
+                <p class="card-category">Finance</p>
+                <span class="card-button">Coming Soon...</span>
+            </div>
+        </a>
+</div>
+      </section>
+
+<!-- Removed the popup overlay and its script since it's no longer needed -->
+<div class="popup-overlay" id="servicePopup" style="display: none;">
+    <div class="popup-container">
+        <button class="popup-close" onclick="closePopup()">&times;</button>
+        <h2 class="popup-title" id="popupTitle">Services</h2>
+        <div class="popup-cards-container" id="popupCardsContainer">
+            </div>
+    </div>
+</div>
+  <br>
+<script>
+    // The serviceData object and popup functions are no longer needed for card clicks, but are kept for reference if needed elsewhere.
+  
+    function showPopup(category, imageUrl) {
+        const popup = document.getElementById('servicePopup');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupCardsContainer = document.getElementById('popupCardsContainer');
+        
+        popupTitle.textContent = category;
+        
+        popupCardsContainer.innerHTML = '';
+        
+        if (serviceData[category]) {
+            serviceData[category].forEach(service => {
+                const card = document.createElement('a');
+                card.className = 'popup-card';
+                card.href = service.link;
+                card.innerHTML = `
+                    <span class="popup-card-badge">${category.split(' ')[0]}</span>
+                    <div class="popup-card-image" style="background-image: url('${imageUrl}')"></div>
+                    <div class="popup-card-content">
+                        <h4 class="popup-card-title">${service.title}</h4>
+                        <span class="popup-card-btn">Book Now</span>
+                    </div>
+                `;
+                popupCardsContainer.appendChild(card);
+            });
+        }
+        
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+        const popup = document.getElementById('servicePopup');
+        popup.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('servicePopup').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closePopup();
+        }
+    });
+</script>
+   
+    </main>
+<div id="Container1"></div>
+    <div id="footer-container"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-background img');
+        const totalSlides = slides.length;
+        const slideInterval = 7000;
+
+        function showSlide(index) {
+            slides.forEach((img, i) => {
+                img.classList.remove('active');
+                if (i === index) {
+                    img.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, slideInterval);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.feature-card');
+            setTimeout(() => {
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = "1";
+                        card.style.transform = "translateY(0)";
+                    }, 200 * index);
+                });
+            }, 500);
+
+            cards.forEach(card => {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(30px)";
+                card.style.transition = "all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-15px)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+  <script>
+document.querySelector('.slider-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector('#products-section').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
+</script>
+
+  <script src="script.js" defer></script>
+
+<!-- Bottom Navigation from trail.html -->
+<div class="fixed bottom-0 left-0 w-full md:hidden bottom-nav z-50">
+        <a href="chat.html" class="nav-item">
+            <svg class="nav-icon w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.83 9 12.296 9 11.75c0-1.554-.87-2.92-2.13-3.612a1.71 1.71 0 01-1.373-1.636c0-.665.414-1.233 1.03-1.564a5.95 5.95 0 00.57-1.348m9.223 3.493a6.007 6.007 0 00-.57 1.348c-.616.33-1.03.899-1.03 1.564a1.71 1.71 0 01-1.373 1.636C15.87 11.23 15 12.596 15 14.15c0 1.554.87 2.92 2.13 3.612a1.71 1.71 0 01 1.373 1.636c0 .665-.414 1.233-1.03 1.564a5.95 5.95 0 01-.57 1.348M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 100-16 8 8 0 000 16z" />
+        </svg>
+        <span class="nav-text mt-1 text-xs font-semibold">Chat</span>
+        </a>
+
+  
+        <a href="comingsoon.html" class="nav-item">
+             <svg class="nav-icon w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span class="nav-text mt-1 text-xs font-semibold">Shop</span>
+        </a>
+
+  
+        <a href="index.html" class="nav-item nav-item-central">
+            <div class="central-icon-wrapper">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>
+            </div>
+            <span class="nav-text">Home</span>
+        </a>
+
+  
+        <a href="contact.html" class="nav-item">
+            <svg class="nav-icon w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+        <span class="nav-text mt-1 text-xs font-semibold">Contact</span>
+        </a>
+  
+        <a href="social.html" class="nav-item">
+       <svg class="nav-icon w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> 
+         <path stroke-linecap="round" stroke-linejoin="round"d="M10.875 18.75h-1.372a2.25 2.25 0 01-1.637-.665 2.25 2.25 0 01-.665-1.637v-4.12a2.25 2.25 0 01.665-1.637 2.25 2.25 0 011.637-.665h1.372M16.875 18.75h-1.372a2.25 2.25 0 01-1.637-.665 2.25 2.25 0 01-.665-1.637v-4.12a2.25 2.25 0 01.665-1.637 2.25 2.25 0 011.637-.665h1.372M6 21.75V2.25c0-.621.504-1.125 1.125-1.125h9.75c.621 0 1.125.504 1.125 1.125v19.5a.375.375 0 01-.375.375H6.375a.375.375 0 01-.375-.375z" /> 
+       </svg> 
+  <span class="nav-text mt-1 text-xs font-semibold">Social</span> </a>
+    </div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telegram Chat Popup</title>
+<style>
+.open-button {
+  background-color: #0088cc;
+  color: white;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 24px;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+.open-button:hover {
+  transform: scale(1.1);
+}
+
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  border: 2px solid #ccc;
+  background-color: white;
+  width: 300px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  z-index: 20;
+}
+
+.chat-header {
+  background-color: #0088cc;
+  color: white;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.chat-popup button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.chat-popup .start-btn {
+  background-color: #0088cc;
+  color: white;
+}
+.chat-popup .close-btn {
+  background-color: #f44336;
+  color: white;
+}
+.chat-popup .start-btn:hover {
+  background-color: #009de0;
+}
+.chat-popup .close-btn:hover {
+  background-color: #ff5c5c;
+}
+</style>
+</head>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
