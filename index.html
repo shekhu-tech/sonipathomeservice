@@ -16,6 +16,7 @@
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
 
     <!-- Tailwind CSS Configuration (Updated for a more modern, color-centric palette) -->
     <script>
@@ -86,6 +87,8 @@
       }
     </style>
 </head>
+    <!-- Header container ko fixed-header bana diya gaya hai -->
+  <div id="header-container" class="fixed-header"></div>
 <body className="font-sans">
     <div id="root"></div>
 
@@ -411,5 +414,7 @@
       const root = ReactDOM.createRoot(rootElement);
       root.render(<App />);
     </script>
+    <script src="script.js" defer></script>
 </body>
 </html>
+
