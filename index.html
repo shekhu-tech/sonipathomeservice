@@ -1,555 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-<!-- यह 'viewport-fit=cover' टैग पूरे स्क्रीन को उपयोग करने की अनुमति देता है, जिसे अब हम CSS Safe Area Variables से सुरक्षित करेंगे -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Sonipat Home Service – Trusted Home Appliance Repair</title>
     
-    <!-- SEO Meta Tags -->
+    <!-- SEO Meta Tags (Retained) -->
     <meta name="description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support with expert technicians. Book now!" />
     <meta name="keywords" content="Sonipat home service, appliance repair Sonipat, AC Repair Sonipat, Fridge Repair, Washing Machine Service, Septic Tank Cleaning, Geyser Installation, Chimney Cleaning, Electrician Services, Borewell Installation, Sewerage Unblock, Barber Booking, Masonry Work, CCTV Installation, RO Repair, Vehicle Booking, Car Repair, Parcel Delivery, LED TV Repair, Solar Panel Installation, Catering Service, Halwai, WiFi Installation, DTH Installation, Pest Control, RO Water Supply, Waiter Booking, Auto Battery, Inverter Battery, Building Materials, Sofa Cleaning, Water Tank Cleaning, Room Rent, Car Pool, home services in Sonipat" />
     <meta name="author" content="Sonipat Home Service" />
-    <link rel="canonical" href="https://sonipat-home-service.com/" />
-    <meta name="robots" content="index, follow" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sonipat-home-service.com/" />
-    <meta property="og:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="og:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="og:image" content="drng1.png" />
-    <meta property="og:site_name" content="Sonipat Home Service" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sonipat-home-service.com/" />
-    <meta property="twitter:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="twitter:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="twitter:image" content="drng1.png" />
-
-<!-- Favicon Implementation -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/faviconex.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/faviconex.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/faviconex.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-
-
     
-    <!-- Structured Data (JSON-LD) for Local SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Sonipat Home Service",
-      "description": "Professional and reliable home appliance repair services available 24x7 in Sonipat, Murthal, Bahalgarh, Kundli, Rai, and Ganaur. Specializing in AC, Fridge, Washing Machine, Geyser, TV repair and more.",
-      "image": "drng1.png",
-      "url": "https://sonipat-home-service.com/",
-      "telephone": "+91-8816014071",
-      "email": "care@sonipathomeservice.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "128/1, Sainipura",
-        "addressLocality": "Sonipat",
-        "addressRegion": "HR",
-        "postalCode": "131001",
-        "addressCountry": "IN"
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "00:00",
-        "closes": "23:59"
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Sonipat" },
-        { "@type": "City", "name": "Murthal" },
-        { "@type": "City", "name": "Bahalgarh" },
-        { "@type": "City", "name": "Kundli" },
-        { "@type": "City", "name": "Rai" },
-        { "@type": "City", "name": "Ganaur" }
-      ]
-    }
-    </script>
-
- <style>
-    :root {
-      /* Reverting to golden colors for the bottom nav as per trail.html */
-      --golden-light: #3a321f;     
-      --golden-medium: #FFE5A3;    
-      --golden-dark: #A37A00;      
-      --text-light: #f3f4f6;       
-      --popup-bg: #1f2937;         
-      --popup-overlay-bg: rgba(0, 0, 0, 0.85);
-      --popup-link-hover: #4b5563; 
-      --list-link-text: #e5e7eb;   
-    }
-
-    /* ----------------------------------------------------- */
-    /* सुरक्षित क्षेत्र (Safe Area) फिक्स: टॉप और बॉटम ओवरले को रोकना */
-    /* ----------------------------------------------------- */
-    
-    /* * NOTE: Agar aapka header fixed nahi hai, to body padding theek kaam karega. 
-     * Agar fixed hai, to hamein fixed header mein padding/margin adjust karna hoga.
-     */
-    body {
-        /* body ko padding sirf bottom nav space ke liye chahiye */
-        padding-top: 0; /* Default padding-top hata diya */
-        
-        /*
-         * बॉटम फिक्स: (64px bottom nav height + safe area)
-         */
-        padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
-    }
-
-    /* Fixed Top Element Adjustment (Agar aapka header fixed hai) */
-    /* Agar aapka header-container fixed position mein hai, to yeh use karein */
-    #header-container, .fixed-header { 
-        /* * Important: Aapki image se lagta hai ki aapka header fixed hai.
-         * Agar aapka header fixed hai, toh uspar yeh CSS lagana hoga.
-         * Agar yeh fixed nahi hai, to iski zarurat nahi hai.
-         * Mai maan raha hoon ki "#header-container" fixed hai.
-         */
-        position: fixed; /* Agar fixed nahi hai to yeh line add karein */
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 50; /* Z-index high rakhein */
-        
-        /* Upar ke overlay ko theek karne ke liye padding aur box-sizing */
-        padding-top: env(safe-area-inset-top, 0px);
-        box-sizing: content-box; 
-    }
-    
-    /* Content ko header ke neeche shuru karne ke liye, 
-       main ya koi wrapper element mein top margin dena padega.
-       Hum main element mein margin de rahe hain. 
-       Header ki height (approx 60px) + safe area top margin.
-       Aapko apne header ki actual height ke hisaab se 60px change karna pad sakta hai.
-    */
-    main {
-        margin-top: calc(60px + env(safe-area-inset-top, 0px));
-        position: relative;
-    }
-
-
-    .hidden-h1 { position: absolute; left: -9999px; visibility: hidden; }
-
-    #products-section {
-        padding: 4rem 1rem;
-        text-align: center;
-        background: #f4f4f4;
-    }
-    
-    /* ... (Rest of existing CSS for sections, cards, and popups) ... */
-    
-    .section-title {
-        font-size: 2.5rem;
-        margin-bottom: 3rem;
-        color: #005f99;
-        text-transform: uppercase;
-        border-bottom: 3px solid #007bff;
-        display: inline-block;
-        padding-bottom: 6px;
-    }
-
-    #services-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1.5rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .card {
-        display: flex;
-        align-items: center;
-        background: #ffffff;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        text-decoration: none;
-        color: inherit;
-        cursor: pointer;
-        width: calc(25% - 1.125rem); 
-        min-width: 280px; 
-        height: 120px; 
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    }
-
-    .card-image {
-        width: 100px; 
-        height: 100px; 
-        object-fit: cover;
-        flex-shrink: 0;
-        margin-left: 10px;
-        border-radius: 10px;
-    }
-
-    .card-content-wrapper {
-        padding: 0.5rem 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center; 
-        width: 100%;
-        gap: 0.1rem; 
-    }
-
-    .card-heading {
-        font-size: 1.1rem; 
-        font-weight: 700;
-        color: #005f99;
-        margin: 0;
-    }
-
-    .card-category {
-        font-size: 0.75rem; 
-        font-weight: 600;
-        color: #6c757d;
-        text-transform: uppercase;
-        margin: 0;
-    }
-
-    .card-button {
-        display: inline-block;
-        background-color: #007bff;
-        color: white;
-        padding: 0.4rem 1.2rem; 
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.8rem; 
-        transition: background-color 0.3s ease;
-        align-self: center; 
-        width: auto; 
-        margin-top: 0.25rem;
-    }
-
-    .card-button:hover {
-        background-color: #0056b3;
-    }
-
-    
-    @media (max-width: 1200px) {
-        .card {
-            width: calc(33.333% - 1rem); 
-        }
-    }
-
-    @media (max-width: 900px) {
-        .card {
-            width: calc(50% - 0.75rem); 
-        }
-    }
-
-    @media (max-width: 640px) {
-        #products-section {
-            padding: 2rem 0.5rem;
-        }
-        .card {
-            width: 95%; 
-            max-width: 500px; 
-        }
-        .card-image {
-            width: 100px; 
-            height: 100px; 
-        }
-        .card-content-wrapper {
-            padding: 1rem;
-        }
-    }
-
-    .popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .popup-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .popup-container {
-        background: white;
-        border-radius: 15px;
-        width: 90%;
-        max-width: 1200px;
-        max-height: 90vh;
-        overflow-y: auto;
-        padding: 2rem;
-        position: relative;
-        transform: scale(0.9);
-        transition: transform 0.3s ease;
-    }
-
-    .popup-overlay.active .popup-container {
-        transform: scale(1);
-    }
-
-    .popup-close {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        font-size: 1.5rem;
-        cursor: pointer;
-        background: none;
-        border: none;
-        color: #333;
-    }
-
-    .popup-title {
-        font-size: 1.8rem;
-        color: #005f99;
-        margin-bottom: 1.5rem;
-        text-align: center;
-    }
-
-    .popup-cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        justify-content: center;
-    }
-
-    .popup-card {
-        width: calc(25% - 1.2rem);
-        min-width: 200px;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-        text-decoration: none;
-        position: relative;
-        background: white;
-    }
-
-    .popup-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .popup-card-image {
-        height: 100px;
-        background-size: cover;
-        background-position: center;
-        background-color: #e0e0e0;
-    }
-
-    .popup-card-content {
-        padding: 1rem 0.8rem;
-        text-align: center;
-        height: 120px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .popup-card-title {
-        font-size: 1rem;
-        color: #005f99;
-        margin-bottom: 0.5rem;
-        line-height: 1.3;
-    }
-
-    .popup-card-btn {
-        display: inline-block;
-        padding: 6px 12px;
-        background: #007bff;
-        color: white;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .popup-card-btn:hover {
-        background-color: #0056b3;
-    }
-
-    .popup-card-badge {
-        position: absolute;
-        top: 8px;
-        left: 8px;
-        background: rgba(0,0,0,0.7);
-        color: white;
-        padding: 3px 8px;
-        border-radius: 12px;
-        font-size: 0.7rem;
-        z-index: 2;
-    }
-
-    @media (max-width: 1024px) {
-        .popup-card {
-            width: calc(33.333% - 1.2rem);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .popup-card {
-            width: calc(50% - 1rem);
-            min-width: 160px;
-        }
-        .popup-card-image {
-            height: 90px;
-        }
-        .popup-card-content {
-            height: 110px;
-            padding: 0.8rem 0.6rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .popup-card {
-            width: 100%;
-            max-width: 300px;
-        }
-        .popup-card-image {
-            height: 110px;
-        }
-        .popup-card-content {
-            height: auto;
-        }
-    }
-
-    /* Bottom Navigation CSS from trail.html */
-    .bottom-nav {
-        background-color: #000;
-        border-top: 2px solid var(--golden-dark);
-        box-shadow: 0 -5px 20px rgba(163, 122, 0, 0.2);
-        height: 64px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 0 10px;
-        z-index: 50;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        
-        /* * FIX: बॉटम नेविगेशन के कंटेंट को बॉटम नॉच/होम इंडिकेटर से ऊपर 
-         * रखने के लिए padding-bottom और box-sizing का उपयोग करें।
-         */
-        padding-bottom: env(safe-area-inset-bottom, 0px);
-        box-sizing: content-box; 
-    }
-
-    .nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: #9ca3af; 
-        text-decoration: none;
-        transition: color 0.3s ease;
-        font-size: 0.75rem;
-    }
-
-    .nav-item:hover, .nav-item.active {
-        color: #fff; 
-    }
-    
-    .nav-icon {
-        width: 24px;
-        height: 24px;
-        margin-bottom: 2px;
-    }
-    
-    .nav-item-central {
-        transform: translateY(-20px);
-        position: relative;
-    }
-
-    .central-icon-wrapper {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: radial-gradient(circle, #4f46e5 0%, #312e81 100%);
-        border: 3px solid #fff;
-        box-shadow: 0 0 15px #4f46e5, 0 5px 20px rgba(0,0,0,0.5);
-        transition: transform 0.3s ease;
-    }
-
-    .nav-item-central:hover .central-icon-wrapper {
-        transform: scale(1.1);
-    }
-
-    .nav-item-central .nav-text {
-        position: absolute;
-        bottom: -18px;
-        font-size: 0.75rem;
-        color: #fff;
-    }
-
-    /* Utility to hide on desktop */
-    @media (min-width: 768px) {
-      .bottom-nav {
-        display: none;
-      }
-    }
-  
-</style>
-
-
-
     <!-- External Libraries & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <!-- React & Babel for in-browser JSX transpilation -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- Tailwind CSS Configuration -->
+    <!-- Tailwind CSS Configuration (Updated for a more modern, color-centric palette) -->
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              primary: 'var(--color-primary)',
-              secondary: 'var(--color-secondary)',
+              // Primary: Vibrant Blue-Green (Teal)
+              primary: 'var(--color-primary)', 
+              // Secondary: Deep Indigo/Navy for contrast
+              secondary: 'var(--color-secondary)', 
               background: 'var(--color-background)',
               card: 'var(--color-card)',
               'text-primary': 'var(--color-text-primary)',
               'text-secondary': 'var(--color-text-secondary)',
               'button-text': 'var(--color-button-text)',
             },
-            transitionProperty: {
-              'background': 'background-color, background',
-            }
+            boxShadow: {
+                '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+                'card-glow': '0 0 15px rgba(0, 200, 200, 0.4)',
+            },
           },
         },
       };
@@ -557,102 +44,107 @@
 
     <!-- Custom Styles -->
     <style>
-      /* Default Theme Variables (initial load) */
+      /* Default Theme Variables: VIBRANT TEAL */
       :root {
-        --color-primary: #007bff;
-        --color-secondary: #005f99;
-        --color-background: #f4f4f4;
+        --color-primary: #06b6d4; /* Teal 500 */
+        --color-secondary: #1e40af; /* Blue 800 */
+        --color-background: #f0f9ff; /* Blue 50 */
         --color-card: #ffffff;
-        --color-text-primary: #005f99;
-        --color-text-secondary: #6c757d;
+        --color-text-primary: #111827; /* Gray 900 */
+        --color-text-secondary: #4b5563; /* Gray 600 */
         --color-button-text: #ffffff;
       }
-      /* Smooth transition for theme changes */
+      
+      /* Global transition for smooth theme changes */
       body, .transition-colors {
-        transition: background-color 0.7s ease-in-out, color 0.7s ease-in-out;
+        transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
       }
-      .card-image-container:hover .card-image {
-        transform: scale(1.05);
+      
+      /* --- Responsive Footer Hiding (Mobile) --- */
+      @media (max-width: 767px) {
+        .mobile-hidden-footer {
+          display: none !important;
+        }
+      }
+
+      /* --- Hero Specific Adjustments --- */
+      .hero-bg-image {
+        transition: opacity 1.5s ease-in-out;
+      }
+
+      /* --- Safe Area Padding Adjustment (Header is now removed, only need bottom padding for fixed nav) --- */
+      body {
+        padding-top: 0; 
+        /* Bottom nav height (4rem/64px) + safe area */
+        padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); 
+      }
+      
+      /* Ensure main content starts immediately */
+      main {
+          margin-top: 0;
+          position: relative;
       }
     </style>
 </head>
-<body>
+<body className="font-sans">
     <div id="root"></div>
 
     <script type="text/babel">
       // Data and Constants
       const servicesData = [
-          { title: "AC Installation & Repair", category: "AC Services", imageUrl: "drng1.png", href: "book-ac-services.html" },
-          { title: "Wi-Fi Connection", category: "Connectivity", imageUrl: "drng21.png", href: "book-wifi-service.html" },
-          { title: "DTH Installation", category: "Connectivity", imageUrl: "drng22.png", href: "Book-dth-installation-service.html" },
-          { title: "LED TV Repair & Installation", category: "Electronics", imageUrl: "drng17.png", href: "book-tv-repair.html" },
-          { title: "वेबसाइट बनवाये", category: "Personal/Business", imageUrl: "drng33.png", href: "website-design-service.html" },
-           { title: "Ladies Corner", category: "Makeup & Mehandi", imageUrl: "drng37.jpeg", href: "index.html" },
+          { title: "AC Installation & Repair", category: "Cooling", imageUrl: "drng1.png", href: "book-ac-services.html" },
           { title: "Refrigerator Repair", category: "Fridge", imageUrl: "drng2.png", href: "book-fridge-refrigrator-services.html" },
-          { title: "Halwai Booking", category: "Events", imageUrl: "drng20a.png", href: "book-halwai-service.html" },
-          { title: "Washing Machine Repair", category: "Washing Machine", imageUrl: "drng3.jpeg", href: "book-washing-machine-services.html" },
-          { title: "Septic Tank Cleaning", category: "Cleanning", imageUrl: "drng29.png", href: "book-safty-tank-service.html" },
-          { title: "Sewerage Unblock", category: "Cleaning", imageUrl: "drng9.png", href: "book-sewerage-unblock-service.html" },
-          { title: "Bricks", category: "सबसे कम दाम", imageUrl: "drng35.png", href: "book-bricks.html" },
-          { title: "Pest Control Service", category: "Cleaning-Service", imageUrl: "drng23.png", href: "book-pasti-control-service.html" },
-          { title: "CCTV Solutions", category: "Security", imageUrl: "drng12.png", href: "book-cctv-service.html" },
-          { title: "Geyser Repair", category: "Geyser", imageUrl: "five.png", href: "book-geyser-services.html" },
-          { title: "Chimney Cleaning", category: "Kitchen", imageUrl: "six.png", href: "book-chimney-cleaning.html" },
+          { title: "Washing Machine Repair", category: "Laundry", imageUrl: "drng3.jpeg", href: "book-washing-machine-services.html" },
+          { title: "LED TV Repair & Installation", category: "Electronics", imageUrl: "drng17.png", href: "book-tv-repair.html" },
+          { title: "Geyser Repair", category: "Heating", imageUrl: "five.png", href: "book-geyser-services.html" },
           { title: "Electrician Services", category: "Electrical", imageUrl: "drng7.png", href: "electricianservice.html" },
-          { title: "Borewell Installation", category: "Boring", imageUrl: "drng30.png", href: "book-borewell-service.html" },
-          { title: "Barber Services", category: "Salon", imageUrl: "drng10.png", href: "book-barber-service.html" },
-          { title: "Masonry Services", category: "Masonry", imageUrl: "drng11.png", href: "book-chinai-mistri.html" },
           { title: "R.O install & Repair", category: "Purification", imageUrl: "drng13.png", href: "book-ro-serrvice.html" },
-          { title: "Vehicle Booking", category: "Transportation", imageUrl: "drng14.png", href: "book-vehicle-service.html" },
-          { title: "Car Repair Services", category: "Automobile", imageUrl: "drng15.png", href: "automobile-repairing-services.html" },
-          { title: "Fast Parcel Delivery", category: "Parcel-Delivery", imageUrl: "drng16.png", href: "book-parcel-delivery-service-services.html" },
-          { title: "Solar Panel Installation", category: "Energy", imageUrl: "drng18.png", href: "book-solar-installation.html" },
-          { title: "Cater Booking", category: "Events", imageUrl: "drng20.png", href: "comingsoon.html" },
-          { title: "RO Camper Water Supply", category: "Water-Supply", imageUrl: "drng24.png", href: "book-ro-water-services-services.html" },
-          { title: "Car/Bike-Battery", category: "Automative", imageUrl: "drng26.png", href: "book-auto-bike-car-battary.html" },
-          { title: "Inverter Battery", category: "Electorial-Service", imageUrl: "drng27.png", href: "book-battary-and-inverter-supply.html" },
-          { title: "Building Material Supply", category: "Construction", imageUrl: "drng28.png", href: "book-building-material-supply.html" },
+          { title: "Chimney Cleaning", category: "Kitchen", imageUrl: "six.png", href: "book-chimney-cleaning.html" },
+          
+          { title: "Septic Tank Cleaning", category: "Cleaning", imageUrl: "drng29.png", href: "book-safty-tank-service.html" },
+          { title: "Sewerage Unblock", category: "Plumbing", imageUrl: "drng9.png", href: "book-sewerage-unblock-service.html" },
+          { title: "Pest Control Service", category: "Cleaning", imageUrl: "drng23.png", href: "book-pasti-control-service.html" },
           { title: "Sofa Cleaning Service", category: "Maintenance", imageUrl: "drng25.png", href: "book-Sofa-cleaning.html" },
           { title: "Water Tank Cleaning", category: "Maintenance", imageUrl: "drng31.png", href: "watertankcleaning.html" },
-          { title: "Loan", category: "Finance", imageUrl: "drng32.png", href: "#wifi-connection.html", status: "coming-soon" },
+          
+          { title: "Wi-Fi Connection", category: "Connectivity", imageUrl: "drng21.png", href: "book-wifi-service.html" },
+          { title: "DTH Installation", category: "Connectivity", imageUrl: "drng22.png", href: "Book-dth-installation-service.html" },
+          { title: "CCTV Solutions", category: "Security", imageUrl: "drng12.png", href: "book-cctv-service.html" },
+          
+          { title: "Borewell Installation", category: "Boring", imageUrl: "drng30.png", href: "book-borewell-service.html" },
+          { title: "Masonry Services", category: "Construction", imageUrl: "drng11.png", href: "book-chinai-mistri.html" },
+          { title: "Building Material Supply", category: "Construction", imageUrl: "drng28.png", href: "book-building-material-supply.html" },
+          
+          { title: "Halwai Booking", category: "Events", imageUrl: "drng20a.png", href: "book-halwai-service.html" },
+          { title: "Cater Booking", category: "Events", imageUrl: "drng20.png", href: "comingsoon.html" },
+          { title: "Barber Services", category: "Salon", imageUrl: "drng10.png", href: "book-barber-service.html" },
+          { title: "Ladies Corner", category: "Beauty", imageUrl: "drng37.jpeg", href: "index.html" },
+          
+          { title: "Vehicle Booking", category: "Transportation", imageUrl: "drng14.png", href: "book-vehicle-service.html" },
+          { title: "Car Repair Services", category: "Automobile", imageUrl: "drng15.png", href: "automobile-repairing-services.html" },
+          { title: "Fast Parcel Delivery", category: "Delivery", imageUrl: "drng16.png", href: "book-parcel-delivery-service-services.html" },
+          { title: "Solar Panel Installation", category: "Energy", imageUrl: "drng18.png", href: "book-solar-installation.html" },
+          { title: "RO Water Supply", category: "Water", imageUrl: "drng24.png", href: "book-ro-water-services-services.html" },
+          
+          { title: "वेबसाइट बनवाये", category: "Digital", imageUrl: "drng33.png", href: "website-design-service.html" },
+          { title: "Bricks", category: "Material", imageUrl: "drng35.png", href: "book-bricks.html" },
+          { title: "Loan", category: "Finance", imageUrl: "drng32.png", href: "#loan", status: "coming-soon" },
       ];
 
       const themes = [
-        { name: 'Oceanic Blue', primary: '#007bff', secondary: '#005f99', background: '#f4f4f4', card: '#ffffff', textPrimary: '#005f99', textSecondary: '#6c757d', buttonText: '#ffffff' },
-        { name: 'Forest Green', primary: '#28a745', secondary: '#218838', background: '#e9f5ec', card: '#ffffff', textPrimary: '#155724', textSecondary: '#5a6268', buttonText: '#ffffff' },
-        { name: 'Royal Purple', primary: '#6f42c1', secondary: '#5a32a3', background: '#f4f0f8', card: '#ffffff', textPrimary: '#49326b', textSecondary: '#6c757d', buttonText: '#ffffff' },
-        { name: 'Sunset Orange', primary: '#fd7e14', secondary: '#e36d0a', background: '#fff3e0', card: '#ffffff', textPrimary: '#854d0e', textSecondary: '#6c757d', buttonText: '#ffffff' },
+        // Vibrant Teal (Default)
+        { name: 'Vibrant Teal', primary: '#06b6d4', secondary: '#1e40af', background: '#f0f9ff', card: '#ffffff', textPrimary: '#111827', textSecondary: '#4b5563', buttonText: '#ffffff' },
+        // Sunset Red/Orange
+        { name: 'Sunset Burst', primary: '#ef4444', secondary: '#c2410c', background: '#fff7ed', card: '#ffffff', textPrimary: '#7f1d1d', textSecondary: '#991b1b', buttonText: '#ffffff' },
+        // Deep Purple/Pink
+        { name: 'Galaxy Pink', primary: '#ec4899', secondary: '#8b5cf6', background: '#fdf2f8', card: '#ffffff', textPrimary: '#581c87', textSecondary: '#7e22ce', buttonText: '#ffffff' },
+        // Forest Green/Gold
+        { name: 'Emerald Gold', primary: '#10b981', secondary: '#064e3b', background: '#f0fff4', card: '#ffffff', textPrimary: '#047857', textSecondary: '#059669', buttonText: '#ffffff' },
       ];
       
-      const heroImages = [ "drng1.png", "drng2.png", "drng3.jpeg", "drng29.png", "five.png", "six.png", "drng7.png", "drng8.png", "drng9.png", "drng10.png", "drng11.png", "drng12.png", "drng13.png", "drng14.jpg", "drng15.jpeg", "drng16.png", "drng17.png", "drng18.png", "drng19.png", "drng20.png", "drng21.png", "drng22.png", "drng23.png", "drng24.png", "drng25.png", "drng26.png", "drng27.png", "drng28.png", "drng29.png", "drng30.png" ];
+      const heroImages = [ "drng1.png", "drng2.png", "drng3.jpeg", "drng29.png", "five.png", "six.png", "drng7.png", "drng9.png", "drng10.png", "drng11.png", "drng12.png", "drng13.png", "drng17.png", "drng18.png", "drng21.png", "drng22.png", "drng23.png", "drng24.png", "drng25.png", "drng26.png", "drng27.png", "drng28.png", "drng30.png" ];
 
-      // React Components
-      const Header = () => (
-        <header className="bg-card shadow-md p-4 fixed top-0 left-0 right-0 z-50 transition-colors">
-          <div className="container mx-auto flex justify-between items-center" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
-            <div className="text-2xl font-bold text-secondary transition-colors">Sonipat Home Service</div>
-             <div className="hidden md:flex items-center space-x-6">
-                <nav className="flex space-x-6">
-                    <a href="partner.html" className="text-text-primary hover:text-primary transition-colors">Become A Partner</a>
-                    <a href="technician.html" className="text-text-primary hover:text-primary transition-colors">Join Technician</a>
-                    <a href="contact.html" className="text-text-primary hover:text-primary transition-colors">Contact</a>
-
-                </nav>
-                <div className="border-l border-gray-300 pl-6 text-sm">
-                    <a href="tel:8816014071" className="flex items-center font-semibold text-text-primary hover:text-primary transition-colors">
-                       <span>📞</span> <span className="ml-2">8816014071</span>
-                    </a>
-                    <a href="mailto:care@sonipathomeservice.com" className="flex items-center text-xs text-text-secondary hover:text-primary transition-colors mt-1">
-                       <span>📧</span> <span className="ml-2">care@sonipathomeservice.com</span>
-                    </a>
-                </div>
-            </div>
-            <button className="md:hidden text-text-primary">
-              <i className="fas fa-bars text-xl"></i>
-            </button>
-          </div>
-        </header>
-      );
+      // --- Components (Header Removed) ---
 
       const Hero = () => {
         const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
@@ -662,23 +154,39 @@
         }, []);
 
         const scrollToServices = () => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
-
+        
+        // This is now the very top section of the page, so we use full height
         return (
-          <section id="home" className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-white text-center pt-16">
+          <section id="home" className="relative h-[85vh] w-full flex items-center justify-center text-white text-center">
             <div className="absolute inset-0 w-full h-full overflow-hidden">
               {heroImages.map((img, index) => (
-                <img key={img + index} src={img} alt="Appliance Repair Service" className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`} />
+                <img 
+                  key={img + index} 
+                  src={img} 
+                  alt="Appliance Repair Service" 
+                  className={`w-full h-full object-cover absolute top-0 left-0 hero-bg-image ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`} 
+                  onError={(e) => e.target.src = "https://placehold.co/1200x800/292524/ffffff?text=Service+Placeholder"}
+                />
               ))}
             </div>
-            <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-            <div className="relative z-10 p-4">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-4 drop-shadow-lg">Professional Appliance Repair in Sonipat</h1>
-              <p className="text-sm md:text-lg max-w-4xl mx-auto mb-6 drop-shadow-md">AC Repair | Fridge | Washing Machine | Wi-Fi | DTH | Sofa Cleaning | Geyser | Chimney| LED Repair | Chimney | Pest Control | Ro Purifier | Halwai | Soler System | Parcel Delivery | Shopping | Car Repair | CCTV | Masonry | Barber | Septic Tank | Borewell</p>
-              <div className="text-xs md:text-sm mb-8 bg-black bg-opacity-30 p-2 rounded-lg inline-block">
-                <i className="fas fa-wrench mx-2"></i> All Service on Single Click • 24x7 Support • Verified Technicians • 10K+ Homes Served <i className="fas fa-tools mx-2"></i>
-              </div>
-              <div>
-                <button onClick={scrollToServices} className="bg-primary text-button-text font-bold py-3 px-8 rounded-full text-lg hover:bg-secondary transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg">Book Service Now</button>
+            <div className="absolute inset-0 bg-black bg-opacity-70 backdrop-blur-sm"></div>
+            <div className="relative z-10 p-6 md:p-12">
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-3xl border border-white/20">
+                <p className="text-sm md:text-base font-semibold text-primary mb-3 uppercase tracking-widest transition-colors">Sonipat's #1 Home Service Provider</p>
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-4 drop-shadow-2xl leading-tight">
+                  <span className="text-primary transition-colors">Expert</span> Appliance Repair & <span className="text-white">Home Services</span>
+                </h1>
+                <p className="text-sm md:text-lg max-w-4xl mx-auto mb-6 font-light drop-shadow-md">
+                  AC | Fridge | Washing Machine | Wi-Fi | CCTV | Halwai | Masonry | And 25+ More Services
+                </p>
+                <div className="text-xs md:text-sm mb-8 bg-white/20 p-3 rounded-xl inline-block font-medium shadow-inner">
+                  <i className="fas fa-check-circle mx-2 text-primary transition-colors"></i> Verified Technicians • 24x7 Support • Quick Response Guarantee
+                </div>
+                <div>
+                  <button onClick={scrollToServices} className="bg-primary text-button-text font-bold py-3 px-10 rounded-full text-lg shadow-xl hover:bg-secondary transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-primary/50">
+                    Book Service Now <i className="fas fa-arrow-right ml-2"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </section>
@@ -686,22 +194,22 @@
       };
       
       const StatCard = ({ icon, title, value }) => (
-          <div className="bg-card shadow-md rounded-lg p-4 text-center">
-            <h3 className="text-sm font-semibold text-text-secondary mb-1 flex items-center justify-center transition-colors">
-              <span className="mr-2 text-primary text-lg transition-colors">{icon}</span> {title}
+          <div className="bg-card shadow-xl rounded-2xl p-6 text-center border-t-4 border-primary/70 transition-colors hover:shadow-2xl">
+            <h3 className="text-lg font-bold text-text-primary mb-1 flex items-center justify-center transition-colors">
+              <span className="mr-3 text-primary text-2xl transition-colors">{icon}</span> {title}
             </h3>
-            <p className="text-2xl font-bold text-secondary transition-colors">{value}</p>
+            <p className="text-3xl font-extrabold text-secondary transition-colors mt-2">{value}</p>
           </div>
       );
 
       const Stats = () => (
-        <section className="py-12 px-4">
+        <section className="py-12 px-4 bg-background transition-colors">
           <div className="container mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <StatCard icon="👑" title="Expert Technicians" value="12+" />
-              <StatCard icon="🏡" title="Households Served" value="10,000+" />
-              <StatCard icon="⚡" title="Avg Response Time" value="30 Mins" />
-              <StatCard icon="🛡️" title="Service Availability" value="24x7" />
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <StatCard icon={<i className="fas fa-medal"></i>} title="Expert Technicians" value="12+" />
+              <StatCard icon={<i className="fas fa-home"></i>} title="Homes Served" value="10,000+" />
+              <StatCard icon={<i className="fas fa-clock"></i>} title="Avg Response" value="30 Mins" />
+              <StatCard icon={<i className="fas fa-headset"></i>} title="Availability" value="24x7" />
             </div>
           </div>
         </section>
@@ -710,14 +218,20 @@
       const ServiceCard = ({ service }) => {
         const isComingSoon = service.status === 'coming-soon';
         return (
-          <a href={isComingSoon ? '#' : service.href} className={`group card bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl flex items-center p-3 transition-all duration-300 transform hover:-translate-y-1 ${isComingSoon ? 'cursor-not-allowed opacity-70' : ''}`}>
-            <div className="w-24 h-24 overflow-hidden rounded-xl flex-shrink-0 card-image-container">
-               <img src={service.imageUrl} alt={service.title} className="w-full h-full object-cover card-image transition-transform duration-300" />
+          <a href={isComingSoon ? '#' : service.href} className={`group bg-card rounded-2xl overflow-hidden shadow-xl hover:shadow-card-glow border border-gray-100 flex items-center p-4 transition-all duration-500 ease-in-out transform hover:-translate-y-2 ${isComingSoon ? 'cursor-not-allowed opacity-70 grayscale' : ''}`}>
+            <div className="w-20 h-20 md:w-24 md:h-24 overflow-hidden rounded-full flex-shrink-0 relative">
+               <img 
+                 src={service.imageUrl} 
+                 alt={service.title} 
+                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                 onError={(e) => e.target.src = "https://placehold.co/100x100/e5e7eb/4b5563?text=S"}
+               />
+               {isComingSoon && <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white text-xs font-bold">Soon</div>}
             </div>
             <div className="pl-4 flex flex-col justify-center text-left w-full">
-              <h3 className="text-base font-bold text-text-primary transition-colors">{service.title}</h3>
-              <p className="text-xs font-semibold text-text-secondary uppercase transition-colors">{service.category}</p>
-              <span className={`mt-2 inline-block text-xs font-bold py-2 px-4 rounded-full transition-all duration-300 ${isComingSoon ? 'bg-gray-400 text-gray-800' : 'bg-primary text-button-text group-hover:bg-secondary'}`}>
+              <h3 className="text-lg font-extrabold text-text-primary transition-colors leading-snug">{service.title}</h3>
+              <p className="text-xs font-semibold text-primary uppercase transition-colors mt-0.5">{service.category}</p>
+              <span className={`mt-2 inline-block text-sm font-bold py-1 px-4 rounded-full transition-all duration-300 w-fit ${isComingSoon ? 'bg-gray-300 text-gray-700' : 'bg-primary text-button-text group-hover:bg-secondary'}`}>
                 {isComingSoon ? 'Coming Soon' : 'Book Now'}
               </span>
             </div>
@@ -726,106 +240,124 @@
       };
 
       const Services = () => (
-        <section id="services-section" className="py-16 px-4 text-center">
-          <h2 className="text-4xl font-extrabold mb-3 text-secondary transition-colors">Our Services</h2>
-          <div className="inline-block h-1 w-24 bg-primary rounded mb-12 transition-colors"></div>
-          <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {servicesData.map((service, index) => <ServiceCard key={index} service={service} />)}
+        <section id="services-section" className="py-16 px-4 bg-background transition-colors">
+          <div className="container mx-auto max-w-7xl">
+            <h2 className="text-4xl font-extrabold mb-3 text-secondary transition-colors">Our Services</h2>
+            <p className="text-xl text-text-secondary mb-12">The largest collection of home services in Sonipat, all at your fingertips.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {servicesData.map((service, index) => <ServiceCard key={index} service={service} />)}
+            </div>
           </div>
         </section>
       );
 
       const Footer = () => (
-        <footer id="contact" className="bg-gray-800 text-gray-300 py-12 px-4">
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-                {/* Column 1: About & App */}
+        // Added 'mobile-hidden-footer' class
+        <footer id="contact" className="mobile-hidden-footer bg-secondary text-gray-200 py-12 px-4 shadow-inner">
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 text-center md:text-left max-w-7xl">
+                {/* Column 1: Logo & App */}
                 <div>
-                    <h3 className="text-xl font-bold text-white mb-4">Sonipat Home Service .com</h3>
-                    <p className="text-sm mb-4">Your trusted partner for all home appliance repairs and services. Fast, reliable, and available 24x7.</p>
-                    <h4 className="text-lg font-semibold text-white mb-2">Download Our App</h4>
+                    <h3 className="text-2xl font-black text-white mb-4">Sonipat Home Service</h3>
+                    <p className="text-sm mb-6 font-light">Your trusted partner for all home appliance repairs and services. Fast, reliable, and available 24x7.</p>
                     <a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" className="inline-block transition-transform hover:scale-105">
-                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" className="h-12"/>
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" className="h-10"/>
                     </a>
                 </div>
                 
-                {/* Column 2: Service Areas */}
+                {/* Column 2: Quick Links (New) */}
                 <div>
-                    <h3 className="text-xl font-bold text-white mb-4">Our Service Areas</h3>
+                    <h3 className="text-xl font-bold text-primary mb-4 transition-colors">Quick Links</h3>
                     <ul className="space-y-2 text-sm">
-                        <li>Sonipat (All Sectors & Societies)</li>
-                        <li>Murthal</li>
-                        <li>Bahalgarh</li>
-                        <li>Kundli</li>
-                        <li>Rai</li>
-                        <li>Ganaur</li>
+                        <li><a href="partner.html" className="hover:text-primary transition-colors">Become A Partner</a></li>
+                        <li><a href="technician.html" className="hover:text-primary transition-colors">Join Technician</a></li>
+                        <li><a href="contact.html" className="hover:text-primary transition-colors">Contact Us</a></li>
+                        <li><a href="about.html" className="hover:text-primary transition-colors">About Us</a></li>
                     </ul>
                 </div>
                 
-                {/* Column 3: Contact & Social */}
+                {/* Column 3: Service Areas */}
                 <div>
-                    <h3 className="text-xl font-bold text-white mb-4">Get In Touch</h3>
-                    <address className="not-italic">
-                        <p className="text-sm mb-2"><i className="fas fa-map-marker-alt mr-2 text-primary w-4 text-center"></i>128/1, Sainipura, Sonipat</p>
-                        <p className="text-sm mb-4"><a href="tel:8816014071" className="hover:text-primary"><i className="fas fa-phone-alt mr-2 text-primary w-4 text-center"></i>8816014071</a></p>
+                    <h3 className="text-xl font-bold text-primary mb-4 transition-colors">Service Areas</h3>
+                    <ul className="space-y-2 text-sm text-gray-300">
+                        <li>Sonipat (All Sectors)</li>
+                        <li>Murthal</li>
+                        <li>Bahalgarh</li>
+                        <li>Kundli</li>
+                        <li>Rai & Ganaur</li>
+                        <li>Select NCR Regions</li>
+                    </ul>
+                </div>
+                
+                {/* Column 4: Contact & Social */}
+                <div>
+                    <h3 className="text-xl font-bold text-primary mb-4 transition-colors">Contact Details</h3>
+                    <address className="not-italic space-y-3">
+                        <p className="text-sm"><i className="fas fa-map-marker-alt mr-2 text-white w-4 text-center"></i>128/1, Sainipura, Sonipat</p>
+                        <p className="text-sm"><a href="tel:8816014071" className="hover:text-primary"><i className="fas fa-phone-alt mr-2 text-white w-4 text-center"></i>+91 8816014071</a></p>
+                        <p className="text-sm"><a href="mailto:care@sonipathomeservice.com" className="hover:text-primary"><i className="fas fa-envelope mr-2 text-white w-4 text-center"></i>care@sonipathomeservice.com</a></p>
                     </address>
-                    <h4 className="text-lg font-semibold text-white mb-2">Connect With Us</h4>
+                    
+                    <h4 className="text-lg font-semibold text-white mt-6 mb-3">Connect</h4>
                     <div className="flex justify-center md:justify-start space-x-4">
-                        <a href="https://facebook.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary transition-colors" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
-                        <a href="https://instagram.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary transition-colors" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-                        <a href="https://x.com/sonipathome" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary transition-colors" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
-                        <a href="https://wa.me/918816014071" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary transition-colors" aria-label="WhatsApp"><i className="fab fa-whatsapp"></i></a>
+                        <a href="https://facebook.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary transition-transform hover:scale-110" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary transition-transform hover:scale-110" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918816014071" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary transition-transform hover:scale-110" aria-label="WhatsApp"><i className="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
-            <div className="mt-8 pt-8 border-t border-gray-700 text-center text-sm">
-                <div className="flex justify-center space-x-2 sm:space-x-4 mb-4 text-xs sm:text-sm">
+            
+            {/* Copyright and Policies */}
+            <div className="mt-10 pt-8 border-t border-gray-700 text-center text-sm">
+                <div className="flex justify-center space-x-4 mb-4 text-xs sm:text-sm font-medium">
                     <a href="policy.html" className="hover:text-primary transition-colors">Privacy Policy</a>
                     <span className="text-gray-500">|</span>
                     <a href="terms.html" className="hover:text-primary transition-colors">Terms & Conditions</a>
                     <span className="text-gray-500">|</span>
                     <a href="refund.html" className="hover:text-primary transition-colors">Refund Policy</a>
                 </div>
-                <p>&copy; {new Date().getFullYear()} Sonipat Home Service .com. All Rights Reserved.</p>
+                <p>&copy; {new Date().getFullYear()} Sonipat Home Service. All Rights Reserved.</p>
             </div>
         </footer>
       );
 
       const NavItem = ({ href, icon, label }) => (
-        <a href={href} className="flex flex-col items-center justify-center text-gray-400 hover:text-white transition-colors text-xs w-1/5">
+        <a href={href} className="flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors text-xs w-1/5 pt-1">
             {icon}
-            <span className="mt-1">{label}</span>
+            <span className="mt-1 font-medium">{label}</span>
         </a>
       );
 
       const CentralNavItem = ({ href, icon, label }) => (
-        <a href={href} className="relative w-1/5 flex justify-center">
-            <div className="absolute bottom-2 flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center bg-primary border-4 border-gray-900 shadow-lg transform hover:scale-110 transition-transform transition-colors">
+        <a href={href} className="relative w-1/5 flex justify-center h-full">
+            <div className="absolute bottom-0 md:bottom-2 flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center bg-primary border-4 border-background shadow-xl transform hover:scale-110 transition-transform duration-300">
                     {icon}
                 </div>
-                <span className="text-white text-xs mt-1 font-semibold">{label}</span>
+                <span className="text-primary text-xs mt-1 font-semibold">{label}</span>
             </div>
         </a>
       );
 
       const BottomNav = () => (
         <nav 
-            className="md:hidden fixed bottom-0 left-0 w-full bg-black border-t-2 border-primary/50 z-50 shadow-[0_-5px_20px_rgba(0,0,0,0.3)] transition-colors" 
+            className="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 z-50 shadow-2xl transition-colors" 
             style={{paddingBottom: 'env(safe-area-inset-bottom)'}}
         >
             <div className="flex justify-around items-center h-16">
-                <NavItem href="chat.html" icon={<i className="fa fa-comments text-2xl"></i>} label="Chat" />
-                <NavItem href="comingsoon.html" icon={<i className="fa fa-shopping-cart text-2xl"></i>} label="Shop" />
-                <CentralNavItem href="index.html" icon={<i className="fa fa-home text-3xl text-white"></i>} label="Home" />
-                <NavItem href="contact.html" icon={<i className="fa fa-envelope text-2xl"></i>} label="Contact" />
-                <NavItem href="social.html" icon={<i className="fa fa-mobile-alt text-2xl"></i>} label="Social" />
+                <NavItem href="index.html" icon={<i className="fa fa-home text-xl"></i>} label="Home" />
+                <NavItem href="comingsoon.html" icon={<i className="fa fa-shopping-cart text-xl"></i>} label="Shop" />
+                {/* Central Button */}
+                <CentralNavItem href="tel:8816014071" icon={<i className="fa fa-phone-alt text-2xl text-white"></i>} label="Call Now" />
+                <NavItem href="contact.html" icon={<i className="fa fa-envelope text-xl"></i>} label="Contact" />
+                <NavItem href="https://wa.me/918816014071" icon={<i className="fab fa-whatsapp text-xl"></i>} label="WhatsApp" />
             </div>
         </nav>
       );
       
       const FloatingButton = () => (
+        // The Floating Button is only for Desktop (md:block) to push the app
         <a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice&pcampaignid=web_share" className="hidden md:block fixed top-1/2 transform -translate-y-1/2 z-40 group" role="button" aria-label="Download the Android App" target="_blank" rel="noopener noreferrer" style={{ left: 'env(safe-area-inset-left)' }}>
-          <div className="h-48 w-8 flex items-center justify-center bg-gradient-to-b from-indigo-500 to-purple-600 text-white text-sm font-bold rounded-r-xl shadow-lg transition-all duration-300 ease-in-out group-hover:from-indigo-600 group-hover:to-purple-700 group-hover:scale-105 group-hover:translate-x-1" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
+          <div className="h-48 w-8 flex items-center justify-center bg-gradient-to-b from-primary to-secondary text-white text-sm font-bold rounded-r-xl shadow-2xl transition-all duration-300 ease-in-out group-hover:from-primary/90 group-hover:to-secondary/90 group-hover:scale-105 group-hover:translate-x-1" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
             Download Android App
           </div>
         </a>
@@ -836,6 +368,7 @@
         const [currentThemeIndex, setCurrentThemeIndex] = React.useState(0);
 
         React.useEffect(() => {
+          // Change theme every 30 seconds
           const intervalId = setInterval(() => {
             setCurrentThemeIndex(prevIndex => (prevIndex + 1) % themes.length);
           }, 30000);
@@ -843,6 +376,7 @@
         }, []);
 
         React.useEffect(() => {
+          // Apply current theme
           const theme = themes[currentThemeIndex];
           const root = document.documentElement;
           root.style.setProperty('--color-primary', theme.primary);
@@ -856,14 +390,17 @@
 
         return (
           <div className="bg-background text-text-secondary transition-colors duration-700">
-            <Header />
+            {/* Header component removed as per user request */}
             <main>
               <Hero />
+              <Stats /> {/* Moved stats below hero for better visibility */}
               <Services />
             </main>
-            <Stats />
+            {/* Footer is now hidden on mobile via CSS class: mobile-hidden-footer */}
             <Footer />
+            {/* BottomNav is for mobile only (md:hidden) and is always present */}
             <BottomNav />
+            {/* Floating button remains for desktop */}
             <FloatingButton />
           </div>
         );
@@ -876,8 +413,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
