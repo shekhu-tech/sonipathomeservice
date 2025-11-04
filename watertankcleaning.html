@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional Water Tank Cleaning Services in Sonipat, Murthal, Bahalgarh, Kundli, Rai, Ganaur. Book now at ₹99 only. Expert cleaning for all societies and sectors.">
+  <meta name="keywords" content="water tank cleaning Sonipat, tank cleaning service, water tank sanitization, Sonipat home service, Murthal tank cleaning, Bahalgarh cleaning service">
+  <meta name="author" content="Sonipat Home Service">
+  <meta property="og:title" content="Water Tank Cleaning - Sonipat Home Service">
+  <meta property="og:description" content="Professional Water Tank Cleaning Services across Sonipat. Book now at ₹99 only!">
+  <meta property="og:type" content="website">
+  <title>Water Tank Cleaning - Sonipat Home Service | Professional Cleaning Services</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background-color 1s ease;
+      min-height: 100%;
+    }
+    
+    html, body {
+      height: 100%;
+    }
+    
+    .header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    
+    .logo {
+      font-size: 36px;
+    }
+    
+    .company-info h1 {
+      font-size: 20px;
+      color: #2563eb;
+      margin-bottom: 2px;
+    }
+    
+    .company-info p {
+      font-size: 12px;
+      color: #666;
+    }
+    
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    
+    .cart-icon {
+      font-size: 28px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    
+    .cart-icon:hover {
+      transform: scale(1.1);
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ef4444;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+    }
+    
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    }
+    
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+    
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    
+    .location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.2);
+      padding: 10px 20px;
+      border-radius: 25px;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    
+    .services-section {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #1f2937;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    
+    .service-card {
+      background: linear-gradient(145deg, #ffffff, #f0f0f0);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 
+        0 8px 32px rgba(0,0,0,0.12),
+        0 2px 6px rgba(0,0,0,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+      transform-style: preserve-3d;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+    
+    .service-card:hover {
+      transform: perspective(1000px) rotateX(-5deg) rotateY(5deg) translateY(-10px) scale(1.02);
+      box-shadow: 
+        0 20px 60px rgba(0,0,0,0.2),
+        0 8px 20px rgba(0,0,0,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    
+    .service-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+    
+    .service-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #1f2937;
+    }
+    
+    .service-card p {
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2563eb;
+      margin: 15px 0;
+    }
+    
+    .booking-amount {
+      font-size: 14px;
+      color: #059669;
+      margin-bottom: 15px;
+    }
+    
+    .add-to-cart-btn {
+      width: 100%;
+      padding: 12px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .add-to-cart-btn:hover {
+      background: #1d4ed8;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .modal.active {
+      display: flex;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 500px;
+      width: 100%;
+      max-height: 90%;
+      overflow-y: auto;
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    
+    .modal-header h3 {
+      font-size: 24px;
+      color: #1f2937;
+    }
+    
+    .close-btn {
+      font-size: 28px;
+      cursor: pointer;
+      color: #666;
+      background: none;
+      border: none;
+      padding: 0;
+      line-height: 1;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #374151;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: #059669;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .submit-btn:hover {
+      background: #047857;
+    }
+    
+    .submit-btn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+    
+    .success-message {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      z-index: 3000;
+      text-align: center;
+      max-width: 90%;
+    }
+    
+    .success-message.active {
+      display: block;
+    }
+    
+    .success-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+    
+    .footer {
+      background: #1f2937;
+      color: white;
+      padding: 40px 20px 20px;
+      margin-top: 60px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    
+    .footer-section h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #60a5fa;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+      color: #d1d5db;
+      line-height: 1.8;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .social-links a {
+      font-size: 24px;
+      transition: transform 0.2s;
+    }
+    
+    .social-links a:hover {
+      transform: scale(1.2);
+    }
+    
+    .app-download {
+      display: inline-block;
+      margin-top: 15px;
+    }
+    
+    .app-download img {
+      height: 40px;
+      cursor: pointer;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #374151;
+      color: #9ca3af;
+    }
+    
+    .service-locations {
+      background: #f3f4f6;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+    
+    .locations-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .locations-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 25px;
+    }
+    
+    .location-tag {
+      background: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      font-size: 14px;
+      color: #374151;
+    }
+    
+    /* iPhone Compatibility - All Models */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 28px;
+      }
+      
+      .hero p {
+        font-size: 16px;
+      }
+      
+      .section-title {
+        font-size: 24px;
+      }
+      
+      .header-content {
+        justify-content: center;
+      }
+      
+      .contact-info {
+        font-size: 14px;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 10px;
+      }
+      
+      .services-section {
+        padding: 0 10px;
+      }
+    }
+    
+    /* iPhone SE (375px) and smaller */
+    @media (max-width: 375px) {
+      .header {
+        padding: 10px 15px;
+      }
+      
+      .logo {
+        font-size: 28px;
+      }
+      
+      .company-info h1 {
+        font-size: 16px;
+      }
+      
+      .company-info p {
+        font-size: 10px;
+      }
+      
+      .hero {
+        padding: 40px 15px;
+      }
+      
+      .hero h2 {
+        font-size: 24px;
+        line-height: 1.2;
+      }
+      
+      .hero p {
+        font-size: 14px;
+      }
+      
+      .location-badge {
+        font-size: 12px;
+        padding: 8px 16px;
+      }
+      
+      .service-card {
+        padding: 15px;
+        margin: 0 5px;
+      }
+      
+      .service-card h3 {
+        font-size: 18px;
+      }
+      
+      .price {
+        font-size: 24px;
+      }
+      
+      .modal-content {
+        padding: 20px;
+        margin: 10px;
+      }
+      
+      .form-group input,
+      .form-group textarea {
+        padding: 10px;
+        font-size: 16px; /* Prevents zoom on iOS */
+      }
+    }
+    
+    /* iPhone 12/13/14 Pro Max (428px) */
+    @media (min-width: 376px) and (max-width: 428px) {
+      .services-grid {
+        padding: 0 15px;
+      }
+      
+      .service-card {
+        max-width: 100%;
+      }
+    }
+    
+    /* iPhone X/11/12/13/14 (390px-414px) */
+    @media (min-width: 376px) and (max-width: 414px) {
+      .header-content {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .header-right {
+        gap: 15px;
+      }
+    }
+    
+    /* Touch-friendly interactions for iOS */
+    @media (hover: none) and (pointer: coarse) {
+      .service-card:hover {
+        transform: none;
+        box-shadow: 
+          0 8px 32px rgba(0,0,0,0.12),
+          0 2px 6px rgba(0,0,0,0.08),
+          inset 0 1px 0 rgba(255,255,255,0.6);
+      }
+      
+      .add-to-cart-btn {
+        padding: 14px 12px;
+        font-size: 16px;
+        min-height: 44px; /* iOS touch target minimum */
+      }
+      
+      .cart-icon {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .close-btn {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    
+    /* iOS Safari specific fixes */
+    @supports (-webkit-touch-callout: none) {
+      .modal {
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .modal-content {
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      input, textarea, select {
+        -webkit-appearance: none;
+        border-radius: 6px;
+      }
+      
+      .add-to-cart-btn {
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="header-content">
+    <div class="logo-section" onclick="window.open('https://www.sonipathomeservice.com', '_blank', 'noopener,noreferrer')">
+     <div class="logo">
+      💧
+     </div>
+     <div class="company-info">
+      <h1 id="company-name">Sonipat Home Service</h1>
+      <p id="tagline">Professional Water Tank Cleaning</p>
+     </div>
+    </div>
+    <div class="header-right">
+     <div class="contact-info">
+      <div>
+       📞 8816014071
+      </div>
+      <div>
+       ✉️ care@sonipathomeservice.com
+      </div>
+     </div>
+     <div class="cart-icon" onclick="showCart()">
+      🛒 <span class="cart-count" id="cart-count">0</span>
+     </div>
+    </div>
+   </div>
+  </header>
+  <section class="hero">
+   <h2 id="hero-title">Crystal Clear Water Tanks</h2>
+   <p id="hero-subtitle">Professional cleaning services across Sonipat</p>
+   <div class="location-badge">
+    📍 Serving Sonipat &amp; Surrounding Areas
+   </div>
+  </section>
+  <section class="services-section">
+   <h2 class="section-title" id="service-title">Our Services</h2>
+   <div class="services-grid">
+    <div class="service-card">
+     <div class="service-icon">
+      <svg width="60" height="60" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="30" width="60" height="50" rx="5" fill="#2563eb" stroke="#1e40af" stroke-width="2" /> <rect x="25" y="35" width="50" height="40" fill="#60a5fa" opacity="0.7" /> <path d="M30 45 Q35 40 40 45 Q45 50 50 45 Q55 40 60 45 Q65 50 70 45" stroke="#ffffff" stroke-width="2" fill="none" /> <path d="M30 55 Q35 50 40 55 Q45 60 50 55 Q55 50 60 55 Q65 60 70 55" stroke="#ffffff" stroke-width="2" fill="none" /> <circle cx="45" cy="25" r="3" fill="#ef4444" /> <rect x="42" y="15" width="6" height="10" fill="#6b7280" /> <circle cx="50" cy="20" r="1" fill="#3b82f6" /> <circle cx="55" cy="25" r="1" fill="#3b82f6" /> <circle cx="40" cy="22" r="1" fill="#3b82f6" />
+      </svg>
+     </div>
+     <h3>500 Liters Tank Cleaning</h3>
+     <div style="text-align: left; margin-bottom: 15px;">
+      <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
+       <li>Perfect for small homes and apartments</li>
+       <li>🚫 No Acid Used</li>
+       <li>🧪 Only Chemical Cleaning</li>
+       <li>⏰ 24X7 Service</li>
+       <li>⭐ Most Reliable Service</li>
+      </ul>
+     </div>
+     <div class="price">
+      ₹399
+     </div>
+     <div class="booking-amount">
+      Book now at ₹99 only | Pay rest on completion
+     </div><button class="add-to-cart-btn" onclick="addToCart('500 Liters Tank Cleaning', 399)">Add to Cart</button>
+    </div>
+    <div class="service-card">
+     <div class="service-icon">
+      <svg width="60" height="60" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="25" width="70" height="55" rx="6" fill="#2563eb" stroke="#1e40af" stroke-width="2" /> <rect x="20" y="30" width="60" height="45" fill="#60a5fa" opacity="0.8" /> <path d="M25 40 Q30 35 35 40 Q40 45 45 40 Q50 35 55 40 Q60 45 65 40 Q70 35 75 40" stroke="#ffffff" stroke-width="2" fill="none" /> <path d="M25 50 Q30 45 35 50 Q40 55 45 50 Q50 45 55 50 Q60 55 65 50 Q70 45 75 50" stroke="#ffffff" stroke-width="2" fill="none" /> <path d="M25 60 Q30 55 35 60 Q40 65 45 60 Q50 55 55 60 Q60 65 65 60 Q70 55 75 60" stroke="#ffffff" stroke-width="2" fill="none" /> <circle cx="50" cy="20" r="4" fill="#ef4444" /> <rect x="46" y="10" width="8" height="10" fill="#6b7280" /> <rect x="25" y="15" width="50" height="3" fill="#374151" rx="1" /> <circle cx="45" cy="18" r="1" fill="#3b82f6" /> <circle cx="55" cy="18" r="1" fill="#3b82f6" />
+      </svg>
+     </div>
+     <h3>1000 Liters Tank Cleaning</h3>
+     <div style="text-align: left; margin-bottom: 15px;">
+      <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
+       <li>Ideal for medium-sized homes</li>
+       <li>🚫 No Acid Used</li>
+       <li>🧪 Only Chemical Cleaning</li>
+       <li>⏰ 24X7 Service</li>
+       <li>⭐ Most Reliable Service</li>
+      </ul>
+     </div>
+     <div class="price">
+      ₹699
+     </div>
+     <div class="booking-amount">
+      Book now at ₹99 only | Pay rest on completion
+     </div><button class="add-to-cart-btn" onclick="addToCart('1000 Liters Tank Cleaning', 699)">Add to Cart</button>
+    </div>
+    <div class="service-card">
+     <div class="service-icon">
+      <svg width="60" height="60" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="20" width="80" height="60" rx="8" fill="#2563eb" stroke="#1e40af" stroke-width="2" /> <rect x="15" y="25" width="70" height="50" fill="#60a5fa" opacity="0.9" /> <path d="M20 35 Q25 30 30 35 Q35 40 40 35 Q45 30 50 35 Q55 40 60 35 Q65 30 70 35 Q75 40 80 35" stroke="#ffffff" stroke-width="2" fill="none" /> <path d="M20 45 Q25 40 30 45 Q35 50 40 45 Q45 40 50 45 Q55 50 60 45 Q65 40 70 45 Q75 50 80 45" stroke="#ffffff" stroke-width="2" fill="none" /> <path d="M20 55 Q25 50 30 55 Q35 60 40 55 Q45 50 50 55 Q55 60 60 55 Q65 50 70 55 Q75 60 80 55" stroke="#ffffff" stroke-width="2" fill="none" /> <path d="M20 65 Q25 60 30 65 Q35 70 40 65 Q45 60 50 65 Q55 70 60 65 Q65 60 70 65 Q75 70 80 65" stroke="#ffffff" stroke-width="2" fill="none" /> <circle cx="50" cy="15" r="5" fill="#ef4444" /> <rect x="45" y="5" width="10" height="10" fill="#6b7280" /> <rect x="20" y="10" width="60" height="4" fill="#374151" rx="2" /> <circle cx="40" cy="13" r="1" fill="#3b82f6" /> <circle cx="50" cy="13" r="1" fill="#3b82f6" /> <circle cx="60" cy="13" r="1" fill="#3b82f6" />
+      </svg>
+     </div>
+     <h3>2000 Liters Tank Cleaning</h3>
+     <div style="text-align: left; margin-bottom: 15px;">
+      <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
+       <li>Best for large homes and small societies</li>
+       <li>🚫 No Acid Used</li>
+       <li>🧪 Only Chemical Cleaning</li>
+       <li>⏰ 24X7 Service</li>
+       <li>⭐ Most Reliable Service</li>
+      </ul>
+     </div>
+     <div class="price">
+      ₹999
+     </div>
+     <div class="booking-amount">
+      Book now at ₹99 only | Pay rest on completion
+     </div><button class="add-to-cart-btn" onclick="addToCart('2000 Liters Tank Cleaning', 999)">Add to Cart</button>
+    </div>
+   </div>
+  </section>
+  <section style="background: white; padding: 40px 20px; margin-top: 50px;">
+   <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;">
+     <div style="padding: 20px; border-radius: 12px; background: #f8fafc; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+      <div style="font-size: 48px; margin-bottom: 15px;">
+       🚫
+      </div>
+      <h3 style="color: #1f2937; margin-bottom: 10px;">No Acid Used</h3>
+      <p style="color: #666;">Safe and eco-friendly cleaning process without harmful acids</p>
+     </div>
+     <div style="padding: 20px; border-radius: 12px; background: #f8fafc; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+      <div style="font-size: 48px; margin-bottom: 15px;">
+       🧪
+      </div>
+      <h3 style="color: #1f2937; margin-bottom: 10px;">Only Chemical Cleaning</h3>
+      <p style="color: #666;">Professional grade chemicals for thorough sanitization</p>
+     </div>
+     <div style="padding: 20px; border-radius: 12px; background: #f8fafc; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+      <div style="font-size: 48px; margin-bottom: 15px;">
+       ⏰
+      </div>
+      <h3 style="color: #1f2937; margin-bottom: 10px;">24X7 Service</h3>
+      <p style="color: #666;">Round the clock availability for emergency cleaning</p>
+     </div>
+     <div style="padding: 20px; border-radius: 12px; background: #f8fafc; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+      <div style="font-size: 48px; margin-bottom: 15px;">
+       ⭐
+      </div>
+      <h3 style="color: #1f2937; margin-bottom: 10px;">Most Reliable Service</h3>
+      <p style="color: #666;">Trusted by thousands of customers across Sonipat</p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section style="background: white; padding: 50px 20px; margin-top: 50px;">
+   <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+    <h2 class="section-title">Payment Methods Accepted</h2>
+    <p style="color: #666; font-size: 18px; margin-bottom: 40px;">We accept all major payment methods for your convenience</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 30px;">
+     <div style="padding: 20px; border-radius: 10px; background: linear-gradient(145deg, #ffffff, #f0f0f0); box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+      <div style="font-size: 28px; margin-bottom: 10px;">
+       💳
+      </div>
+      <h3 style="color: #1f2937; margin-bottom: 8px; font-size: 16px;">Credit Cards</h3>
+      <p style="color: #666; font-size: 12px;">Visa, MasterCard, American Express, RuPay</p>
+     </div>
+     <div style="padding: 20px; border-radius: 10px; background: linear-gradient(145deg, #ffffff, #f0f0f0); box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+      <div style="font-size: 28px; margin-bottom: 10px;">
+       🏦
+      </div>
+      <h3 style="color: #1f2937; margin-bottom: 8px; font-size: 16px;">Debit Cards</h3>
+      <p style="color: #666; font-size: 12px;">All major bank debit cards accepted</p>
+     </div>
+     <div style="padding: 20px; border-radius: 10px; background: linear-gradient(145deg, #ffffff, #f0f0f0); box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+      <div style="font-size: 28px; margin-bottom: 10px;">
+       🌐
+      </div>
+      <h3 style="color: #1f2937; margin-bottom: 8px; font-size: 16px;">Net Banking</h3>
+      <p style="color: #666; font-size: 12px;">All major banks supported</p>
+     </div>
+     <div style="padding: 20px; border-radius: 10px; background: linear-gradient(145deg, #ffffff, #f0f0f0); box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+      <div style="font-size: 28px; margin-bottom: 10px;">
+       📱
+      </div>
+      <h3 style="color: #1f2937; margin-bottom: 8px; font-size: 16px;">UPI Payments</h3>
+      <p style="color: #666; font-size: 12px;">Google Pay, PhonePe, Paytm, BHIM</p>
+     </div>
+     <div style="padding: 20px; border-radius: 10px; background: linear-gradient(145deg, #ffffff, #f0f0f0); box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+      <div style="font-size: 28px; margin-bottom: 10px;">
+       💰
+      </div>
+      <h3 style="color: #1f2937; margin-bottom: 8px; font-size: 16px;">Digital Wallets</h3>
+      <p style="color: #666; font-size: 12px;">Paytm, Amazon Pay, Mobikwik</p>
+     </div>
+    </div>
+    <div style="margin-top: 40px; padding: 20px; background: #f0f9ff; border-radius: 12px; border-left: 4px solid #2563eb;">
+     <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;"><span style="font-size: 24px;">🔒</span>
+      <h3 style="color: #1f2937; margin: 0;">100% Secure Payments</h3>
+     </div>
+     <p style="color: #666; margin: 0;">Your payment information is encrypted and secure. We use industry-standard security measures.</p>
+    </div>
+   </div>
+  </section>
+  <section class="service-locations">
+   <div class="locations-content">
+    <h2 class="section-title">Service Locations</h2>
+    <div class="locations-grid">
+     <div class="location-tag">
+      📍 Sonipat
+     </div>
+     <div class="location-tag">
+      📍 Murthal
+     </div>
+     <div class="location-tag">
+      📍 Bahalgarh
+     </div>
+     <div class="location-tag">
+      📍 Kundli
+     </div>
+     <div class="location-tag">
+      📍 Rai
+     </div>
+     <div class="location-tag">
+      📍 Ganaur
+     </div>
+     <div class="location-tag">
+      📍 All Societies &amp; Sectors
+     </div>
+    </div>
+    <div style="margin-top: 25px;"><a href="https://www.google.com/maps?q=29.0,77.0" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: none; font-weight: 600;"> 📍 View Our Office Location on Google Maps </a>
+    </div>
+   </div>
+  </section>
+  <div class="modal" id="booking-modal">
+   <div class="modal-content">
+    <div class="modal-header">
+     <h3>Complete Your Booking</h3><button class="close-btn" onclick="closeModal()">×</button>
+    </div>
+    <form id="booking-form" onsubmit="handleSubmit(event)">
+     <div class="form-group"><label for="customer-name">Customer Name *</label> <input type="text" id="customer-name" required>
+     </div>
+     <div class="form-group"><label for="mobile">Mobile Number *</label> <input type="tel" id="mobile" pattern="[0-9]{10}" minlength="10" maxlength="10" required placeholder="10 digit mobile number" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
+     </div>
+     <div class="form-group"><label for="email">Email ID *</label> <input type="email" id="email" required>
+     </div>
+     <div class="form-group"><label for="address">Full Address *</label> <textarea id="address" required></textarea>
+     </div>
+     <div class="form-group"><label for="landmark">Landmark *</label> <input type="text" id="landmark" required>
+     </div>
+     <div class="form-group"><label for="pincode">Pin Code *</label> <input type="text" id="pincode" pattern="[0-9]{6}" minlength="6" maxlength="6" required placeholder="6 digit pin code" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
+     </div>
+     <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+      <div style="font-weight: 600; margin-bottom: 8px;">
+       Booking Summary:
+      </div>
+      <div id="booking-summary"></div>
+     </div><button type="submit" class="submit-btn" id="submit-btn">Proceed to Payment</button>
+    </form>
+   </div>
+  </div>
+  <div class="success-message" id="success-message">
+   <div class="success-icon">
+    ✅
+   </div>
+   <h3 style="margin-bottom: 15px; color: #059669;">Booking Confirmed!</h3>
+   <div id="transaction-details" style="text-align: left; margin-bottom: 20px;"></div>
+  </div>
+  <footer class="footer">
+   <div class="footer-content">
+    <div class="footer-section">
+     <h4>Sonipat Home Service</h4>
+     <p id="footer-address">128/1, Sainipura, Sonipat</p>
+     <p>📞 8816014071</p>
+     <p>✉️ care@sonipathomeservice.com</p>
+    </div>
+    <div class="footer-section">
+     <h4>Quick Links</h4><a href="https://www.sonipathomeservice.com" target="_blank" rel="noopener noreferrer">Home</a> <a href="https://www.sonipathomeservice.com" target="_blank" rel="noopener noreferrer">About Us</a> <a href="https://www.sonipathomeservice.com" target="_blank" rel="noopener noreferrer">Contact</a>
+    </div>
+    <div class="footer-section">
+     <h4>Follow Us</h4>
+     <div class="social-links"><a href="https://facebook.com/sonipathomeservice" target="_blank" rel="noopener noreferrer">📘</a> <a href="https://instagram.com/sonipathomeservice" target="_blank" rel="noopener noreferrer">📷</a> <a href="https://x.com/sonipathome" target="_blank" rel="noopener noreferrer">🐦</a> <a href="https://wa.me/918816014071" target="_blank" rel="noopener noreferrer">💬</a>
+     </div>
+     <div class="app-download"><a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer"> <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='135' height='40' viewBox='0 0 135 40'%3E%3Cpath fill='%23000' d='M130 40H5c-2.8 0-5-2.2-5-5V5c0-2.8 2.2-5 5-5h125c2.8 0 5 2.2 5 5v30c0 2.8-2.2 5-5 5z'/%3E%3Cpath fill='%23FFF' d='M47.4 10.2c0 .8-.2 1.5-.7 2-.6.6-1.3.9-2.2.9s-1.6-.3-2.2-.9c-.6-.6-.9-1.3-.9-2.2s.3-1.6.9-2.2c.6-.6 1.3-.9 2.2-.9.4 0 .8.1 1.2.3.4.2.7.4.9.7l-.5.5c-.4-.5-.9-.7-1.6-.7-.6 0-1.2.2-1.6.7-.5.4-.7 1-.7 1.7s.2 1.3.7 1.7c.5.4 1 .7 1.6.7.7 0 1.2-.2 1.7-.7.3-.3.5-.7.5-1.2h-2.2v-.8h2.9v.4zm3.7-2.2h-2.6v1.9h2.3v.7h-2.3v1.9h2.6v.8h-3.5V7.2h3.5v.8zm4.8 5.3h-.9V8.7h-1.6v-.8h4.1v.8h-1.6v4.6zm3.8 0V7.2h.9v5.3h-.9zm4.8 0h-.9V8.7h-1.6v-.8h4.1v.8h-1.6v4.6zm9.4-.8c-.6.6-1.3.9-2.2.9s-1.6-.3-2.2-.9c-.6-.6-.9-1.3-.9-2.2s.3-1.6.9-2.2c.6-.6 1.3-.9 2.2-.9s1.6.3 2.2.9c.6.6.9 1.3.9 2.2s-.3 1.6-.9 2.2zm-3.8-.5c.4.4 1 .7 1.6.7s1.2-.2 1.6-.7c.4-.4.7-1 .7-1.7s-.2-1.3-.7-1.7c-.4-.4-1-.7-1.6-.7s-1.2.2-1.6.7c-.4.4-.7 1-.7 1.7s.2 1.3.7 1.7zm5.8 1.3V7.2h1.3l2.1 3.5 2.1-3.5h1.3v5.3h-.9V8.7l-2.1 3.5h-.7l-2.1-3.5v4.6h-.9z'/%3E%3Cpath fill='%23FFF' d='M68.1 21.8c-2.4 0-4.3 1.8-4.3 4.3 0 2.4 1.9 4.3 4.3 4.3s4.3-1.8 4.3-4.3c0-2.6-1.9-4.3-4.3-4.3zm0 6.8c-1.3 0-2.4-1.1-2.4-2.6s1.1-2.6 2.4-2.6 2.4 1.1 2.4 2.6-1.1 2.6-2.4 2.6zm-9.3-6.8c-2.4 0-4.3 1.8-4.3 4.3 0 2.4 1.9 4.3 4.3 4.3s4.3-1.8 4.3-4.3c0-2.6-1.9-4.3-4.3-4.3zm0 6.8c-1.3 0-2.4-1.1-2.4-2.6s1.1-2.6 2.4-2.6 2.4 1.1 2.4 2.6-1.1 2.6-2.4 2.6zm-11.1-5.5v1.8h4.3c-.1 1-.5 1.8-1 2.3-.6.6-1.6 1.3-3.3 1.3-2.7 0-4.7-2.1-4.7-4.8s2.1-4.8 4.7-4.8c1.4 0 2.5.6 3.3 1.3l1.3-1.3c-1.1-1-2.5-1.8-4.5-1.8-3.6 0-6.7 3-6.7 6.6 0 3.6 3.1 6.6 6.7 6.6 2 0 3.4-.6 4.6-1.9 1.2-1.2 1.6-2.9 1.6-4.2 0-.4 0-.8-.1-1.1h-6.2zm45.4 1.4c-.4-1-1.4-2.7-3.6-2.7s-4 1.7-4 4.3c0 2.4 1.8 4.3 4.2 4.3 1.9 0 3.1-1.2 3.5-1.9l-1.4-1c-.5.7-1.1 1.2-2.1 1.2s-1.6-.4-2.1-1.3l5.7-2.4-.2-.5zm-5.8 1.4c0-1.6 1.3-2.5 2.2-2.5.7 0 1.4.4 1.6.9l-3.8 1.6zM82.6 30h1.9V17.5h-1.9V30zm-3-7.3c-.5-.5-1.3-1-2.3-1-2.1 0-4.1 1.9-4.1 4.3s1.9 4.2 4.1 4.2c1 0 1.8-.5 2.2-1h.1v.6c0 1.6-.9 2.5-2.3 2.5-1.1 0-1.9-.8-2.1-1.5l-1.6.7c.5 1.1 1.7 2.5 3.8 2.5 2.2 0 4-1.3 4-4.4V22h-1.8v.7zm-2.2 5.9c-1.3 0-2.4-1.1-2.4-2.6s1.1-2.6 2.4-2.6 2.3 1.1 2.3 2.6-1 2.6-2.3 2.6zm24.4-11.1h-4.5V30h1.9v-4.7h2.6c2.1 0 4.1-1.5 4.1-3.9s-2-3.9-4.1-3.9zm.1 6h-2.7v-4.3h2.7c1.4 0 2.2 1.2 2.2 2.1-.1 1.1-.9 2.2-2.2 2.2zm11.5-1.8c-1.4 0-2.8.6-3.3 1.9l1.7.7c.4-.7 1-.9 1.7-.9 1 0 1.9.6 2 1.6v.1c-.3-.2-1.1-.5-1.9-.5-1.8 0-3.6 1-3.6 2.8 0 1.7 1.5 2.8 3.1 2.8 1.3 0 1.9-.6 2.4-1.2h.1v1h1.8v-4.8c-.2-2.2-1.9-3.5-4-3.5zm-.2 6.9c-.6 0-1.5-.3-1.5-1.1 0-1 1.1-1.3 2-1.3.8 0 1.2.2 1.7.4-.2 1.2-1.2 2-2.2 2zm10.5-6.6l-2.1 5.4h-.1l-2.2-5.4h-2l3.3 7.6-1.9 4.2h1.9l5.1-11.8h-2zm-16.8 8h1.9V17.5h-1.9V30z'/%3E%3Cpath fill='%2300D7FE' d='M10.4 7.5c-.3.3-.4.8-.4 1.4V31c0 .6.2 1.1.5 1.4l.1.1L23 20.1v-.2L10.4 7.5z'/%3E%3Cpath fill='%23FFCE00' d='M27 24.3l-4.1-4.1V19.9l4.1-4.1.1.1 4.9 2.8c1.4.8 1.4 2.1 0 2.9l-5 2.7z'/%3E%3Cpath fill='%23F43249' d='M27.1 24.2L22.9 20 10.4 32.5c.5.5 1.2.5 2.1.1l14.6-8.4'/%3E%3Cpath fill='%2300D7FE' d='M27.1 15.8L12.5 7.5c-.9-.5-1.6-.4-2.1.1L22.9 20l4.2-4.2z'/%3E%3C/svg%3E" alt="Get it on Google Play" onerror="this.src=''; this.alt='Download on Google Play'; this.style.display='none';"> </a>
+     </div>
+    </div>
+   </div>
+   <div class="footer-bottom">
+    <p>© 2024 Sonipat Home Service.com - All Rights Reserved</p>
+   </div>
+  </footer>
+  <script>
+    const defaultConfig = {
+      company_name: "Sonipat Home Service",
+      tagline: "Professional Water Tank Cleaning",
+      hero_title: "Crystal Clear Water Tanks",
+      hero_subtitle: "Professional cleaning services across Sonipat",
+      service_title: "Our Services",
+      footer_address: "128/1, Sainipura, Sonipat",
+      background_color: "#e0f2fe",
+      primary_color: "#2563eb",
+      text_color: "#1f2937",
+      accent_color: "#059669",
+      button_color: "#2563eb"
+    };
+
+    let currentService = null;
+    let cartCount = 0;
+    
+    const backgroundColors = [
+      '#e0f2fe', '#fce7f3', '#fef3c7', '#dbeafe', '#e0e7ff',
+      '#fce4ec', '#e8f5e9', '#fff3e0', '#f3e5f5', '#e1f5fe'
+    ];
+    let colorIndex = 0;
+
+    function changeBackground() {
+      document.body.style.backgroundColor = backgroundColors[colorIndex];
+      colorIndex = (colorIndex + 1) % backgroundColors.length;
+    }
+
+    setInterval(changeBackground, 60000);
+    changeBackground();
+
+    function addToCart(serviceName, price, isTestService = false) {
+      currentService = {
+        name: serviceName,
+        price: price,
+        isTestService: isTestService
+      };
+      cartCount++;
+      document.getElementById('cart-count').textContent = cartCount;
+      
+      const bookingAmount = isTestService ? price : 99;
+      document.getElementById('booking-summary').innerHTML = `
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+          <span>Service:</span>
+          <strong>${serviceName}</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+          <span>Total Amount:</span>
+          <strong>₹${price}</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; color: #059669; font-weight: 600;">
+          <span>Booking Amount:</span>
+          <strong>₹${bookingAmount}</strong>
+        </div>
+        ${!isTestService ? '<div style="margin-top: 10px; font-size: 13px; color: #666;">Remaining ₹' + (price - 99) + ' to be paid on work completion</div>' : ''}
+      `;
+      
+      document.getElementById('booking-modal').classList.add('active');
+    }
+
+    function showCart() {
+      if (cartCount > 0 && currentService) {
+        document.getElementById('booking-modal').classList.add('active');
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('booking-modal').classList.remove('active');
+    }
+
+    async function handleSubmit(event) {
+      event.preventDefault();
+      
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Processing...';
+      
+      const formData = {
+        customerName: document.getElementById('customer-name').value,
+        mobile: document.getElementById('mobile').value,
+        email: document.getElementById('email').value,
+        address: document.getElementById('address').value,
+        landmark: document.getElementById('landmark').value,
+        pincode: document.getElementById('pincode').value,
+        service: currentService.name,
+        totalAmount: currentService.price,
+        bookingAmount: currentService.isTestService ? currentService.price : 99,
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        const formDataForSheet = new FormData();
+        formDataForSheet.append('timestamp', formData.timestamp);
+        formDataForSheet.append('customerName', formData.customerName);
+        formDataForSheet.append('mobile', formData.mobile);
+        formDataForSheet.append('email', formData.email);
+        formDataForSheet.append('address', formData.address);
+        formDataForSheet.append('landmark', formData.landmark);
+        formDataForSheet.append('pincode', formData.pincode);
+        formDataForSheet.append('orderItems', formData.service);
+        formDataForSheet.append('totalAmount', formData.totalAmount);
+        formDataForSheet.append('paymentId', 'Pending');
+        formDataForSheet.append('status', 'Booking Created');
+
+        await fetch('https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec', {
+          method: 'POST',
+          body: formDataForSheet
+        });
+      } catch (error) {
+        console.error('Error submitting to Google Sheets:', error);
+      }
+
+      initiatePayment(formData);
+    }
+
+    function initiatePayment(formData) {
+      const options = {
+        key: 'rzp_live_RLjzp7VlXERwiG',
+        amount: formData.bookingAmount * 100,
+        currency: 'INR',
+        name: 'Sonipat Home Service',
+        description: formData.service,
+        image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext y="80" font-size="80"%3E💧%3C/text%3E%3C/svg%3E',
+        handler: function(response) {
+          showSuccess(response.razorpay_payment_id, formData);
+        },
+        prefill: {
+          name: formData.customerName,
+          email: formData.email,
+          contact: formData.mobile
+        },
+        notes: {
+          address: formData.address,
+          landmark: formData.landmark,
+          pincode: formData.pincode
+        },
+        theme: {
+          color: '#2563eb'
+        },
+        modal: {
+          ondismiss: function() {
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Proceed to Payment';
+          }
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+    }
+
+    async function showSuccess(transactionId, formData) {
+      closeModal();
+      
+      // Update Google Sheet with payment success
+      try {
+        const paymentUpdateData = new FormData();
+        paymentUpdateData.append('timestamp', formData.timestamp);
+        paymentUpdateData.append('customerName', formData.customerName);
+        paymentUpdateData.append('mobile', formData.mobile);
+        paymentUpdateData.append('email', formData.email);
+        paymentUpdateData.append('address', formData.address);
+        paymentUpdateData.append('landmark', formData.landmark);
+        paymentUpdateData.append('pincode', formData.pincode);
+        paymentUpdateData.append('orderItems', formData.service);
+        paymentUpdateData.append('totalAmount', formData.totalAmount);
+        paymentUpdateData.append('paymentId', transactionId);
+        paymentUpdateData.append('status', 'Payment Completed');
+
+        await fetch('https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec', {
+          method: 'POST',
+          body: paymentUpdateData
+        });
+      } catch (error) {
+        console.error('Error updating payment status:', error);
+      }
+      
+      const successDiv = document.getElementById('success-message');
+      document.getElementById('transaction-details').innerHTML = `
+        <p><strong>Transaction ID:</strong> ${transactionId}</p>
+        <p><strong>Service:</strong> ${formData.service}</p>
+        <p><strong>Customer:</strong> ${formData.customerName}</p>
+        <p><strong>Mobile:</strong> ${formData.mobile}</p>
+        <p><strong>Amount Paid:</strong> ₹${formData.bookingAmount}</p>
+        ${!currentService.isTestService ? `<p><strong>Balance:</strong> ₹${formData.totalAmount - formData.bookingAmount} (Pay on completion)</p>` : ''}
+        <p style="margin-top: 15px; color: #059669;">We will contact you shortly to schedule the service!</p>
+      `;
+      
+      successDiv.classList.add('active');
+      
+      setTimeout(() => {
+        successDiv.classList.remove('active');
+        document.getElementById('booking-form').reset();
+        cartCount = 0;
+        document.getElementById('cart-count').textContent = '0';
+        currentService = null;
+      }, 5000);
+    }
+
+    async function onConfigChange(config) {
+      document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+      document.getElementById('tagline').textContent = config.tagline || defaultConfig.tagline;
+      document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('service-title').textContent = config.service_title || defaultConfig.service_title;
+      document.getElementById('footer-address').textContent = config.footer_address || defaultConfig.footer_address;
+      
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const buttonColor = config.button_color || defaultConfig.button_color;
+      
+      document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.style.backgroundColor = buttonColor;
+      });
+      
+      document.querySelector('.hero').style.background = `linear-gradient(135deg, ${primaryColor} 0%, #1e40af 100%)`;
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => {
+                config.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            },
+            {
+              get: () => config.button_color || defaultConfig.button_color,
+              set: (value) => {
+                config.button_color = value;
+                window.elementSdk.setConfig({ button_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["company_name", config.company_name || defaultConfig.company_name],
+          ["tagline", config.tagline || defaultConfig.tagline],
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+          ["service_title", config.service_title || defaultConfig.service_title],
+          ["footer_address", config.footer_address || defaultConfig.footer_address]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99937ebe35dfc51e',t:'MTc2MjI1Mjg2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
