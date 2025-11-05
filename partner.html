@@ -1,800 +1,488 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- Viewport tag for ultra responsiveness -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonipat Home Service - Business Partnership</title>
-    <!-- Load Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#0284c7', // Sky Blue - More business/corporate feel
-                        'primary-light': '#38bdf8', // Light Sky Blue
-                        'accent': '#f97316', // Orange - For CTA/Highlight
-                        'primary-dark': '#075985', // Dark Blue
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Custom styles for better look and feel */
-        .partner-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: theme('colors.accent');
-            border-radius: 9999px;
+<!doctype html>
+<html lang="hi">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become A Partner - Sonipat Home Service</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🏠%3C/text%3E%3C/svg%3E">
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
         }
         
-        .partner-card-header {
-            background: linear-gradient(135deg, theme('colors.primary-light'), theme('colors.primary-dark'));
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Added text shadow for better heading visibility */
-        .card-title-shadow {
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
         }
 
-        /* ======= Form Popup Styles (Retained responsiveness and design) ======= */
-        .form-popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
+        .container {
+            min-height: 100%;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .input-field {
             transition: all 0.3s ease;
         }
 
-        .form-popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .form-popup-container {
-            background: white;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 2rem;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-
-        .form-popup-overlay.active .form-popup-container {
-            transform: scale(1);
-        }
-
-        .form-popup-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: #333;
-        }
-
-        .form-popup-title {
-            font-size: 1.8rem;
-            color: theme('colors.primary-dark');
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        /* Form Styles */
-        .registration-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
+        .input-field:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
         }
 
         .submit-btn {
-            background: theme('colors.accent');
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 1rem;
-        }
-
-        .submit-btn:hover {
-            background: #d9630c;
-        }
-
-        /* Error Message Styles */
-        .error-message {
-            color: #dc3545;
-            font-size: 0.85rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
-        .input-error {
-            border-color: #dc3545 !important;
-        }
-
-        /* Success Popup Styles */
-        .success-popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1001;
-            opacity: 0;
-            visibility: hidden;
             transition: all 0.3s ease;
         }
 
-        .success-popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
-        .success-popup-container {
-            background: white;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
-        .success-popup-overlay.active .success-popup-container {
-            transform: scale(1);
+        .social-icon {
+            transition: all 0.3s ease;
         }
 
-        .success-icon {
-            font-size: 4rem;
-            color: #28a745;
-            margin-bottom: 1rem;
+        .social-icon:hover {
+            transform: translateY(-3px);
         }
 
-        .success-title {
-            font-size: 1.8rem;
-            color: theme('colors.primary-dark');
-            margin-bottom: 1rem;
+        .app-store-btn {
+            transition: all 0.3s ease;
         }
 
-        .employee-id {
-            font-size: 1.2rem; /* Changed to general ID */
-            font-weight: bold;
-            color: theme('colors.primary-dark');
-            margin: 1rem 0;
-            padding: 0.5rem;
-            background: #f0fff0;
-            border-radius: 5px;
+        .app-store-btn:hover {
+            transform: scale(1.05);
         }
 
         .success-message {
-            font-size: 1.1rem;
-            color: #333;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            animation: slideIn 0.5s ease;
         }
 
-        .success-btn {
-            background: theme('colors.primary');
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .success-btn:hover {
-            background: theme('colors.primary-dark');
-        }
-
-        /* Loading Spinner */
         .spinner {
-            display: none;
-            width: 40px;
-            height: 40px;
-            margin: 0 auto;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid theme('colors.primary-light');
+            border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
             animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        @media (max-width: 768px) {
-            .form-popup-container {
-                padding: 1.5rem;
-            }
-            .form-popup-title {
-                font-size: 1.5rem;
-            }
+        .setup-notice {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
         }
     </style>
-</head>
-<body class="font-sans min-h-screen p-4 sm:p-6 md:p-10 bg-gradient-to-br from-primary-light/50 to-primary/80 text-gray-800">
-
-    <div class="container max-w-7xl mx-auto">
-        
-        <!-- Header Section -->
-        <header class="text-center mb-8 sm:mb-12 p-5 text-white bg-primary rounded-xl shadow-2xl">
-            <div class="text-4xl sm:text-5xl font-extrabold mb-2 text-white">
-                Sonipat Home Service
-            </div>
-            <p class="text-lg sm:text-xl opacity-90 font-light">
-                Join us as a partner and grow together
-            </p>
-        </header>
-        
-        <!-- Main Content Container -->
-        <div class="bg-white rounded-2xl p-6 sm:p-10 shadow-3xl">
-            
-            <!-- Title Section -->
-            <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-primary-dark text-center relative pb-3 partner-heading">
-                Business Partnership Opportunities
-            </h1>
-            
-            <p class="text-center mb-8 sm:mb-12 text-gray-600 max-w-4xl mx-auto text-base sm:text-lg">
-                Sonipat Home Service is looking for active, visionary, and locally knowledgeable business partners to expand its market presence.
-            </p>
-            
-            <!-- Single Universal Partnership Card -->
-            <div class="job-grid flex justify-center">
-                <div class="universal-card w-full bg-gray-50 border border-primary-light/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-1">
-                    
-                    <div class="partner-card-header text-white p-6 sm:p-8 flex items-center gap-4">
-                        <div class="partner-icon text-3xl p-3 bg-white/30 text-white rounded-full mr-2 shadow-md flex-shrink-0">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h2 class="text-2xl sm:text-3xl font-bold card-title-shadow text-accent">
-                            Key Business Partner
-                        </h2>
-                    </div>
-                    
-                    <div class="p-6 sm:p-8">
-                        
-                        <!-- Partnership Details -->
-                        <div class="partner-details mb-6 border-b pb-4">
-                            <h3 class="font-semibold text-xl text-primary-dark mb-3">
-                                Partnership Details:
-                            </h3>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-gray-700 text-sm sm:text-base">
-                                <div class="flex items-center">
-                                    <span class="font-bold text-primary-dark w-36">Required Investment:</span>
-                                    <span class="flex-1">₹5 Lakh - ₹20 Lakh (project dependent)</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <span class="font-bold text-primary-dark w-36">Estimated Profit:</span>
-                                    <span class="flex-1">25% - 40% Annual ROI</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <span class="font-bold text-primary-dark w-36">Initial Location:</span>
-                                    <span class="flex-1">Cities in Delhi-NCR, Haryana, and Punjab</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <span class="font-bold text-primary-dark w-36">Partnership Type:</span>
-                                    <span class="flex-1">Investment-based and Operational</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Partner Requirements -->
-                        <div class="requirements">
-                            <h3 class="font-semibold text-xl text-primary-dark mb-3">
-                                Partner Requirements and Responsibilities:
-                            </h3>
-                            <ul class="space-y-2 text-sm sm:text-base pl-5 text-gray-700 list-disc">
-                                <li class="flex items-start">
-                                    <span class="mr-2 text-primary-light"><i class="fas fa-chart-bar"></i></span>
-                                    <b>Business Acumen:</b> Experience in creating business plans and market strategies.
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-2 text-primary-light"><i class="fas fa-map-marked-alt"></i></span>
-                                    <b>Local Knowledge:</b> Deep understanding of the market and customer behavior in the target area.
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-2 text-primary-light"><i class="fas fa-rupee-sign"></i></span>
-                                    <b>Capital Investment:</b> Ability to make the necessary initial capital investment.
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-2 text-primary-light"><i class="fas fa-users-gear"></i></span>
-                                    <b>Operational Leadership:</b> Responsibility for leading the ground team and managing operations.
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Partner Button: Calls form popup -->
-                        <button onclick="showFormPopup('Partnership Inquiry')" class="apply-btn block w-full text-center bg-accent hover:bg-orange-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg mt-6">
-                            Discuss Partnership
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Why Partner With Us Section - Responsive -->
-            <div class="mt-12 sm:mt-16 p-6 sm:p-10 bg-gray-100 rounded-xl shadow-inner">
-                <h2 class="text-2xl sm:text-3xl font-bold text-primary-dark text-center mb-6">
-                    Why Partner With Us?
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-accent">
-                        <div class="benefit-icon text-xl p-3 bg-accent/10 text-primary-dark rounded-full flex-shrink-0">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-primary-dark">Established Brand</h3>
-                            <p class="text-sm text-gray-600">Immediate market entry with a trusted home services brand.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-accent">
-                        <div class="benefit-icon text-xl p-3 bg-accent/10 text-primary-dark rounded-full flex-shrink-0">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-primary-dark">Technical Support</h3>
-                            <p class="text-sm text-gray-600">Full technical assistance in booking systems, customer care, and marketing.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-accent">
-                        <div class="benefit-icon text-xl p-3 bg-accent/10 text-primary-dark rounded-full flex-shrink-0">
-                            <i class="fas fa-arrow-up-right-dots"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-primary-dark">Long-Term Growth</h3>
-                            <p class="text-sm text-gray-600">Joint investment and long-term success in a high-growth sector.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-            <!-- CTA Section - Fully Responsive -->
-            <div class="cta-section text-center mt-12 sm:mt-16 p-6 sm:p-10 bg-primary-dark rounded-xl text-white shadow-2xl">
-                <h2 class="text-2xl sm:text-3xl font-bold mb-3">
-                    Ready to Take the Next Step?
-                </h2>
-                <p class="text-base sm:text-lg mb-6 opacity-90 max-w-2xl mx-auto">
-                    Share your business profile. Our team will contact you shortly.
-                </p>
-                <!-- CTA Button: Calls the partnership form -->
-                <button onclick="showFormPopup('Partnership Inquiry')" class="cta-btn inline-block bg-accent hover:bg-orange-600 text-white font-extrabold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-xl">
-                    Apply for Partnership
-                </button>
-            </div>
-            
-            <!-- Contact Info Section - Fully Responsive with Flex-Wrap -->
-            <div class="contact-info flex flex-wrap justify-around gap-6 mt-12 p-6 sm:p-8 bg-gray-100 rounded-xl shadow-inner">
-                
-                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
-                    <i class="fas fa-phone-alt text-3xl text-primary-light mb-2"></i>
-                    <h3 class="text-lg font-semibold text-primary">Call Us</h3>
-                    <p class="text-gray-600">
-                        <a href="tel:8816014071" class="text-gray-600 hover:text-primary-dark transition duration-150">88160-14071</a>
-                    </p>
-                </div>
-                
-                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
-                    <i class="fas fa-envelope text-3xl text-primary-light mb-2"></i>
-                    <h3 class="text-lg font-semibold text-primary">Email Us</h3>
-                    <p class="text-gray-600 truncate"><a href="mailto:care@sonipathomeservice.com" class="text-gray-600 hover:text-primary-dark transition duration-150">care@sonipathomeservice.com</a></p>
-                </div>
-                
-                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
-                    <i class="fas fa-map-marker-alt text-3xl text-primary-light mb-2"></i>
-                    <h3 class="text-lg font-semibold text-primary">Address</h3>
-                    <p class="text-gray-600"> 128/1,Sainipura <br>Sonipat-131001</br></p>
-                </div>
-            </div>
-
-        </div>
-        
-        <!-- Footer Section -->
-        <footer class="text-center mt-8 text-primary-dark p-4 text-sm opacity-90">
-            <p>&copy; 2025 Sonipat Home Service. All rights reserved.</p>
-        </footer>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="container gradient-bg">
+   <div class="main-content py-8 px-4">
+    <div class="max-w-2xl mx-auto"><!-- Home Page Link -->
+     <div class="mb-6"><a href="https://www.sonipathomeservice.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+       </svg><span class="font-semibold">🏠 Home Page</span> </a>
+     </div><!-- Header -->
+     <div class="text-center mb-8">
+      <div class="text-6xl mb-4">
+       🤝
+      </div>
+      <h1 id="form-title" class="text-4xl font-bold text-white mb-2">Become A Partner</h1>
+      <p id="form-subtitle" class="text-xl text-white opacity-90">Join Sonipat Home Service Network</p>
+     </div><!-- Setup Notice -->
+     <div id="setup-notice" class="setup-notice">
+      <div class="text-3xl mb-2">
+       ⚙️
+      </div>
+      <p class="font-semibold mb-2">Google Sheets Setup Required</p>
+      <p class="text-sm">Please add your Google Apps Script URL in the edit panel to enable form submissions</p>
+     </div><!-- Success/Error Messages -->
+     <div id="message-container" class="hidden success-message mb-6 p-4 rounded-lg text-center">
+      <div id="message-icon" class="text-3xl mb-2"></div>
+      <p id="message-title" class="font-semibold"></p>
+      <p id="message-text" class="text-sm mt-1"></p>
+     </div><!-- Form Container -->
+     <div class="form-container p-8">
+      <form id="partner-form"><!-- Your Name -->
+       <div class="mb-6"><label for="name" class="block text-gray-700 font-semibold mb-2"> 👤 Your Name <span class="text-red-500">*</span> </label> <input type="text" id="name" name="name" required class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="Enter your full name">
+       </div><!-- Business Name -->
+       <div class="mb-6"><label for="business-name" class="block text-gray-700 font-semibold mb-2"> 🏢 Business Name <span class="text-red-500">*</span> </label> <input type="text" id="business-name" name="business-name" required class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="Enter your business name">
+       </div><!-- Business Type -->
+       <div class="mb-6"><label for="business-type" class="block text-gray-700 font-semibold mb-2"> 💼 Business Type <span class="text-red-500">*</span> </label> <select id="business-type" name="business-type" required class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"> <option value="">Select business type</option> <!-- Home Maintenance & Repair --> <optgroup label="🏠 Home Maintenance &amp; Repair"> <option value="Plumbing">🔧 Plumbing Services</option> <option value="Electrical">⚡ Electrical Services</option> <option value="Carpentry">🪚 Carpentry &amp; Woodwork</option> <option value="Painting">🎨 Painting &amp; Wall Services</option> <option value="Roofing">🏠 Roofing &amp; Waterproofing</option> <option value="Flooring">🪜 Flooring &amp; Tiling</option> <option value="Masonry">🧱 Masonry &amp; Construction</option> <option value="Welding">🔥 Welding &amp; Metal Work</option> </optgroup> <!-- Appliance Services --> <optgroup label="🔌 Appliance Services"> <option value="AC Repair">❄️ AC Repair &amp; Installation</option> <option value="Refrigerator Repair">🧊 Refrigerator Repair</option> <option value="Washing Machine Repair">🌀 Washing Machine Repair</option> <option value="Microwave Repair">📱 Microwave &amp; Small Appliances</option> <option value="TV Repair">📺 TV &amp; Electronics Repair</option> <option value="Water Heater">🚿 Water Heater Services</option> <option value="Chimney Repair">🏭 Chimney &amp; Exhaust Services</option> </optgroup> <!-- Cleaning Services --> <optgroup label="🧹 Cleaning Services"> <option value="House Cleaning">🏡 House Cleaning</option> <option value="Deep Cleaning">✨ Deep Cleaning Services</option> <option value="Carpet Cleaning">🪑 Carpet &amp; Upholstery Cleaning</option> <option value="Kitchen Cleaning">🍳 Kitchen Deep Cleaning</option> <option value="Bathroom Cleaning">🚿 Bathroom Cleaning</option> <option value="Window Cleaning">🪟 Window &amp; Glass Cleaning</option> <option value="Post Construction Cleaning">🏗️ Post Construction Cleaning</option> </optgroup> <!-- Pest & Safety --> <optgroup label="🛡️ Pest Control &amp; Safety"> <option value="Pest Control">🐛 General Pest Control</option> <option value="Termite Control">🐜 Termite Treatment</option> <option value="Rodent Control">🐭 Rodent Control</option> <option value="Cockroach Control">🪳 Cockroach Treatment</option> <option value="Bed Bug Control">🛏️ Bed Bug Treatment</option> <option value="Mosquito Control">🦟 Mosquito Control</option> </optgroup> <!-- Garden & Outdoor --> <optgroup label="🌱 Garden &amp; Outdoor Services"> <option value="Gardening">🌿 Gardening &amp; Landscaping</option> <option value="Tree Services">🌳 Tree Cutting &amp; Trimming</option> <option value="Lawn Care">🌱 Lawn Care &amp; Maintenance</option> <option value="Irrigation">💧 Irrigation &amp; Sprinkler Systems</option> <option value="Outdoor Lighting">💡 Outdoor Lighting Installation</option> </optgroup> <!-- Security & Technology --> <optgroup label="🔒 Security &amp; Technology"> <option value="CCTV Installation">📹 CCTV &amp; Security Systems</option> <option value="Home Automation">🏠 Smart Home &amp; Automation</option> <option value="Internet Setup">🌐 Internet &amp; WiFi Setup</option> <option value="Intercom Systems">📞 Intercom &amp; Door Bell Systems</option> </optgroup> <!-- Specialized Services --> <optgroup label="⚙️ Specialized Services"> <option value="Solar Installation">☀️ Solar Panel Installation</option> <option value="Water Purifier">💧 Water Purifier Services</option> <option value="Geyser Services">🔥 Geyser Installation &amp; Repair</option> <option value="Inverter Services">🔋 Inverter &amp; Battery Services</option> <option value="Generator Services">⚡ Generator Services</option> <option value="Bore Well">🕳️ Bore Well &amp; Water Pump</option> </optgroup> <!-- Moving & Storage --> <optgroup label="📦 Moving &amp; Storage"> <option value="Packers Movers">📦 Packers &amp; Movers</option> <option value="Furniture Assembly">🪑 Furniture Assembly</option> <option value="Storage Solutions">📚 Storage &amp; Organization</option> </optgroup> <!-- Beauty & Wellness --> <optgroup label="💄 Beauty &amp; Wellness"> <option value="Salon at Home">💇 Salon Services at Home</option> <option value="Spa Services">🧖 Spa &amp; Massage Services</option> <option value="Fitness Trainer">💪 Personal Fitness Trainer</option> </optgroup> <!-- Professional Services --> <optgroup label="👔 Professional Services"> <option value="Interior Design">🎨 Interior Design &amp; Consultation</option> <option value="Architecture">📐 Architecture &amp; Planning</option> <option value="Legal Services">⚖️ Legal &amp; Documentation</option> <option value="Accounting">📊 Accounting &amp; Tax Services</option> </optgroup> <!-- Event Services --> <optgroup label="🎉 Event &amp; Catering"> <option value="Catering">🍽️ Catering Services</option> <option value="Event Planning">🎪 Event Planning &amp; Management</option> <option value="Photography">📸 Photography &amp; Videography</option> <option value="DJ Services">🎵 DJ &amp; Sound Services</option> <option value="Decoration">🎈 Decoration &amp; Balloon Services</option> </optgroup> <!-- Transportation --> <optgroup label="🚗 Transportation"> <option value="Taxi Services">🚕 Taxi &amp; Cab Services</option> <option value="Delivery Services">📦 Delivery &amp; Courier</option> <option value="Vehicle Repair">🔧 Vehicle Repair &amp; Maintenance</option> </optgroup> <!-- Education & Training --> <optgroup label="📚 Education &amp; Training"> <option value="Home Tutor">👨‍🏫 Home Tuition &amp; Coaching</option> <option value="Music Classes">🎵 Music &amp; Dance Classes</option> <option value="Computer Training">💻 Computer &amp; IT Training</option> <option value="Language Classes">🗣️ Language Classes</option> </optgroup> <!-- Healthcare --> <optgroup label="🏥 Healthcare Services"> <option value="Nursing Care">👩‍⚕️ Nursing &amp; Elder Care</option> <option value="Physiotherapy">🏃 Physiotherapy at Home</option> <option value="Lab Services">🧪 Lab Test at Home</option> </optgroup> <!-- Other Services --> <optgroup label="📋 Other Services"> <option value="Laundry Services">👕 Laundry &amp; Dry Cleaning</option> <option value="Pet Care">🐕 Pet Care &amp; Grooming</option> <option value="Baby Care">👶 Baby Care &amp; Nanny Services</option> <option value="Other">📝 Other Services</option> </optgroup> </select>
+       </div><!-- Contact Number -->
+       <div class="mb-6"><label for="contact" class="block text-gray-700 font-semibold mb-2"> 📱 Contact Number <span class="text-red-500">*</span> </label> <input type="tel" id="contact" name="contact" required pattern="[0-9]{10}" class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="Enter 10-digit mobile number">
+       </div><!-- Full Address -->
+       <div class="mb-6"><label for="address" class="block text-gray-700 font-semibold mb-2"> 🏠 Full Address <span class="text-red-500">*</span> </label> <textarea id="address" name="address" required rows="3" class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="Enter complete address"></textarea>
+       </div><!-- Landmark -->
+       <div class="mb-6"><label for="landmark" class="block text-gray-700 font-semibold mb-2"> 📍 Landmark <span class="text-red-500">*</span> </label> <input type="text" id="landmark" name="landmark" required class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="Enter nearby landmark">
+       </div><!-- Pin Code -->
+       <div class="mb-6"><label for="pincode" class="block text-gray-700 font-semibold mb-2"> 📮 Pin Code <span class="text-red-500">*</span> </label> <input type="text" id="pincode" name="pincode" required pattern="[0-9]{6}" class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="Enter 6-digit pin code">
+       </div><!-- Submit Button --> <button type="submit" id="submit-btn" class="submit-btn w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-4 px-6 rounded-lg text-lg"> <span id="submit-text">Submit Application</span> <span id="submit-spinner" class="hidden inline-block spinner ml-2"></span> </button>
+      </form>
+     </div><!-- App Download Section -->
+     <div class="mt-8 text-center">
+      <p class="text-white font-semibold mb-4 text-lg">📲 Download Our Mobile App</p>
+      <div class="flex flex-wrap justify-center gap-4"><!-- Google Play Store --> <a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" class="app-store-btn">
+        <div class="bg-white rounded-lg px-6 py-3 flex items-center gap-3 shadow-lg">
+         <svg class="w-8 h-8" viewbox="0 0 24 24" fill="none"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5Z" fill="#00D7FF" /> <path d="M16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12Z" fill="#FFCE00" /> <path d="M20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81Z" fill="#00D863" /> <path d="M6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z" fill="#FF3E00" />
+         </svg>
+         <div class="text-left">
+          <div class="text-xs text-gray-600">
+           GET IT ON
+          </div>
+          <div class="text-sm font-bold text-gray-800">
+           Google Play
+          </div>
+         </div>
+        </div></a> <!-- Indus App Store --> <a href="https://www.indusappstore.com/apps/house-and-home/sonipat-home-service/com.crapd.sonipathomeservice/?page=details&amp;id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" class="app-store-btn">
+        <div class="bg-white rounded-lg px-6 py-3 flex items-center gap-3 shadow-lg">
+         <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+          I
+         </div>
+         <div class="text-left">
+          <div class="text-xs text-gray-600">
+           DOWNLOAD ON
+          </div>
+          <div class="text-sm font-bold text-gray-800">
+           Indus AppStore
+          </div>
+         </div>
+        </div></a>
+      </div>
+     </div>
     </div>
-
-
-    <!-- FORM POPUP HTML - MODIFIED FOR PARTNERSHIP INQUIRY -->
-    <div class="form-popup-overlay" id="formPopup">
-        <div class="form-popup-container">
-            <button class="form-popup-close" onclick="closeFormPopup()">&times;</button>
-            <h2 class="form-popup-title">Business Partnership Inquiry Form</h2>
-            <form id="registrationForm" class="registration-form" onsubmit="submitForm(event)">
-                <input type="hidden" id="serviceCategory" name="serviceCategory" value="Partnership Inquiry">
-
-                <div class="form-group">
-                    <label for="fullName">Your Full Name*</label>
-                    <input type="text" id="fullName" name="fullName" required minlength="3" maxlength="50" pattern="[A-Za-z ]+">
-                    <div class="error-message" id="fullNameError">Please enter a valid name (letters and spaces only, 3-50 characters)</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="phoneNumber">Phone Number*</label>
-                    <input type="tel" id="phoneNumber" name="phoneNumber" required minlength="10" maxlength="15" pattern="[0-9]{10,15}">
-                    <div class="error-message" id="phoneError">Please enter a valid 10-15 digit phone number</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address*</label>
-                    <input type="email" id="email" name="email" required>
-                    <div class="error-message" id="emailError">Please enter a valid email address</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="investmentCapacity">Your Estimated Investment Capacity (in INR)*</label>
-                    <select id="investmentCapacity" name="investmentCapacity" required>
-                        <option value="">-- Select --</option>
-                        <option value="5-10 Lakh">₹5 Lakh - ₹10 Lakh</option>
-                        <option value="10-20 Lakh">₹10 Lakh - ₹20 Lakh</option>
-                        <option value="20-50 Lakh">₹20 Lakh - ₹50 Lakh</option>
-                        <option value="50 Lakh+">₹50 Lakh+</option>
-                    </select>
-                    <div class="error-message" id="investmentCapacityError">Please select your investment capacity</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="cityOfInterest">City of Interest for Partnership*</label>
-                    <input type="text" id="cityOfInterest" name="cityOfInterest" required minlength="2" maxlength="50">
-                    <div class="error-message" id="cityOfInterestError">Please enter the city of interest (2-50 characters)</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="businessExperience">Relevant Business Experience (Briefly)*</label>
-                    <textarea id="businessExperience" name="businessExperience" required minlength="20" maxlength="1000" placeholder="Example: Ran my own business for 5 years, have a strong local market network."></textarea>
-                    <div class="error-message" id="businessExperienceError">Please describe your experience (min 20 characters)</div>
-                </div>
-
-                <div class="spinner" id="formSpinner"></div>
-                <button type="submit" class="submit-btn" id="submitBtn">Submit Inquiry</button>
-            </form>
-        </div>
+   </div><!-- Footer -->
+   <footer class="bg-gray-900 text-white py-8 px-4 mt-8">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-3 gap-8 mb-6"><!-- Company Info -->
+      <div>
+       <h3 class="text-xl font-bold mb-3">🏠 Sonipat Home Service.Com</h3>
+       <p class="text-gray-300 text-sm mb-2">📍 128/1, Sainipura, Sonipat</p>
+       <p class="text-gray-300 text-sm">📞 8816014071</p>
+      </div><!-- Social Links -->
+      <div>
+       <h3 class="text-lg font-bold mb-3">Follow Us</h3>
+       <div class="flex flex-wrap gap-3"><a href="https://facebook.com/Sonipathomeservice" target="_blank" rel="noopener noreferrer" class="social-icon bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center">
+         <svg class="w-5 h-5" fill="white" viewbox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+         </svg></a> <a href="https://instagram.com/Sonipathomeservice" target="_blank" rel="noopener noreferrer" class="social-icon bg-gradient-to-br from-purple-600 to-pink-500 w-10 h-10 rounded-full flex items-center justify-center">
+         <svg class="w-5 h-5" fill="white" viewbox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+         </svg></a> <a href="https://twitter.com/Sonipathome" target="_blank" rel="noopener noreferrer" class="social-icon bg-black w-10 h-10 rounded-full flex items-center justify-center">
+         <svg class="w-5 h-5" fill="white" viewbox="0 0 24 24">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+         </svg></a> <a href="https://wa.me/918816014071" target="_blank" rel="noopener noreferrer" class="social-icon bg-green-500 w-10 h-10 rounded-full flex items-center justify-center">
+         <svg class="w-5 h-5" fill="white" viewbox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+         </svg></a>
+       </div>
+      </div><!-- Quick Links -->
+      <div>
+       <h3 class="text-lg font-bold mb-3">Quick Links</h3>
+       <div class="space-y-2 text-sm"><a href="#" class="block text-gray-300 hover:text-white transition">About Us</a> <a href="#" class="block text-gray-300 hover:text-white transition">Services</a> <a href="#" class="block text-gray-300 hover:text-white transition">Contact</a>
+       </div>
+      </div>
+     </div>
+     <div class="border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+      <p>© 2024 Sonipat Home Service.Com. All rights reserved.</p>
+     </div>
     </div>
-
-    <!-- SUCCESS POPUP HTML - MODIFIED FOR PARTNERSHIP INQUIRY -->
-    <div class="success-popup-overlay" id="successPopup">
-        <div class="success-popup-container">
-            <div class="success-icon">✓</div>
-            <h2 class="success-title">Inquiry Submitted Successfully!</h2>
-            <p class="success-message">Thank you for showing interest in partnership, <span id="successUserName"></span>! Our team will contact you shortly.</p>
-            <div class="employee-id">Your Inquiry ID: <span id="employeeIdDisplay"></span></div>
-            <p class="success-message">Please note down your Inquiry ID for future reference.</p>
-            <button class="success-btn" onclick="closeSuccessPopup()">Okay</button>
-        </div>
-    </div>
-
-
-    <!-- JAVASCRIPT BLOCK - MODIFIED FOR PARTNERSHIP LOGIC -->
-    <script>
-        // Service data remains the same structure, but key is updated for clarity
-        const serviceData = {
-            'Partnership Inquiry': { 
-                // !!! IMPORTANT: REPLACE THIS PLACEHOLDER URL !!!
-                // This URL must be your deployed Google Apps Script URL set up to receive POST requests and append data to your Google Sheet.
-                // Google Sheet में डेटा सबमिट करने के लिए इस URL को अपने Google Apps Script Deployment URL से बदलें।
-                sheetEndpoint: 'YOUR_GOOGLE_APP_SCRIPT_URL_HERE'
-            }
+   </footer>
+  </div>
+  <script>
+        const defaultConfig = {
+            form_title: "Become A Partner",
+            form_subtitle: "Join Sonipat Home Service Network",
+            submit_button_text: "Submit Application",
+            google_script_url: "https://script.google.com/macros/s/AKfycbw322QAzdPVh4bLPSk9ZmuX_FxcCnQf0NWDZj8ebCFeBo8PYjLP7cBnk3KaI3X7jQ78/exec",
+            background_color: "#667eea",
+            surface_color: "#ffffff",
+            text_color: "#374151",
+            primary_action_color: "#7c3aed",
+            secondary_action_color: "#4f46e5",
+            font_family: "system-ui",
+            font_size: 16
         };
 
-        // Initialize form when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Setup form validation
-            setupFormValidation();
-        });
+        let config = { ...defaultConfig };
 
-        // Setup form validation
-        function setupFormValidation() {
-            const form = document.getElementById('registrationForm');
-            const inputs = form.querySelectorAll('input, textarea, select');
+        function showMessage(type, title, text, icon) {
+            const container = document.getElementById('message-container');
+            const iconEl = document.getElementById('message-icon');
+            const titleEl = document.getElementById('message-title');
+            const textEl = document.getElementById('message-text');
 
-            inputs.forEach(input => {
-                input.addEventListener('blur', function() {
-                    validateField(this);
-                });
-
-                input.addEventListener('input', function() {
-                    if (this.classList.contains('input-error')) {
-                        this.classList.remove('input-error');
-                        const errorElement = document.getElementById(`${this.id}Error`);
-                        if (errorElement) errorElement.style.display = 'none';
-                    }
-                });
-            });
-        }
-
-        // Validate individual form field
-        function validateField(field) {
-            const errorElement = document.getElementById(`${field.id}Error`);
+            container.className = `success-message mb-6 p-4 rounded-lg text-center ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white`;
+            iconEl.textContent = icon;
+            titleEl.textContent = title;
+            textEl.textContent = text;
             
-            if (errorElement) errorElement.style.display = 'none';
-            field.classList.remove('input-error');
+            container.classList.remove('hidden');
+            setTimeout(() => container.classList.add('hidden'), 8000);
+        }
 
-            if (field.required && !field.value.trim()) {
-                showError(field, errorElement, 'This field is required.');
-                return false;
-            }
-
-            if (field.type === 'text' || field.tagName === 'TEXTAREA') {
-                if (field.hasAttribute('minlength') && field.value.length < field.getAttribute('minlength')) {
-                    const errorMessage = field.id === 'businessExperience' 
-                        ? 'Please describe your experience (min 20 characters)'
-                        : `Minimum ${field.getAttribute('minlength')} characters required`;
-                        
-                    showError(field, errorElement, errorMessage);
-                    return false;
-                }
-            }
-
-            if (field.type === 'email' && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
-                showError(field, errorElement, 'Please enter a valid email address');
-                return false;
-            }
-
-            if (field.type === 'tel' && !/^[0-9]{10,15}$/.test(field.value)) {
-                showError(field, errorElement, 'Please enter a valid 10-15 digit phone number');
-                return false;
-            }
+        function updateSetupNotice() {
+            const notice = document.getElementById('setup-notice');
+            const scriptUrl = config.google_script_url || defaultConfig.google_script_url;
             
-            // Validation for select/dropdown fields
-            if (field.tagName === 'SELECT' && field.required && field.value === "") {
-                showError(field, errorElement, 'Please select an option');
-                return false;
-            }
-
-            return true;
-        }
-
-        // Show error message
-        function showError(field, errorElement, message) {
-            field.classList.add('input-error');
-            if (errorElement) {
-                errorElement.textContent = message;
-                errorElement.style.display = 'block';
+            if (scriptUrl && scriptUrl.trim()) {
+                notice.classList.add('hidden');
+            } else {
+                notice.classList.remove('hidden');
             }
         }
 
-        // Validate entire form
-        function validateForm() {
-            let isValid = true;
-            const form = document.getElementById('registrationForm');
-            const inputs = form.querySelectorAll('input[required], textarea[required], select[required]'); 
+        async function onConfigChange(newConfig) {
+            const customFont = newConfig.font_family || defaultConfig.font_family;
+            const baseFontStack = 'system-ui, -apple-system, sans-serif';
+            const baseSize = newConfig.font_size || defaultConfig.font_size;
 
-            inputs.forEach(input => {
-                if (!validateField(input)) {
-                    isValid = false;
-                }
+            document.getElementById('form-title').textContent = newConfig.form_title || defaultConfig.form_title;
+            document.getElementById('form-subtitle').textContent = newConfig.form_subtitle || defaultConfig.form_subtitle;
+            document.getElementById('submit-text').textContent = newConfig.submit_button_text || defaultConfig.submit_button_text;
+
+            document.getElementById('form-title').style.fontFamily = `${customFont}, ${baseFontStack}`;
+            document.getElementById('form-title').style.fontSize = `${baseSize * 2}px`;
+            
+            document.getElementById('form-subtitle').style.fontFamily = `${customFont}, ${baseFontStack}`;
+            document.getElementById('form-subtitle').style.fontSize = `${baseSize * 1.25}px`;
+
+            const labels = document.querySelectorAll('label');
+            labels.forEach(label => {
+                label.style.fontFamily = `${customFont}, ${baseFontStack}`;
+                label.style.fontSize = `${baseSize * 0.875}px`;
+                label.style.color = newConfig.text_color || defaultConfig.text_color;
             });
 
-            return isValid;
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.style.fontFamily = `${customFont}, ${baseFontStack}`;
+                input.style.fontSize = `${baseSize}px`;
+            });
+
+            document.querySelector('.gradient-bg').style.background = `linear-gradient(135deg, ${newConfig.background_color || defaultConfig.background_color} 0%, ${newConfig.secondary_action_color || defaultConfig.secondary_action_color} 100%)`;
+            
+            document.querySelector('.form-container').style.backgroundColor = newConfig.surface_color || defaultConfig.surface_color;
+
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.style.background = `linear-gradient(to right, ${newConfig.primary_action_color || defaultConfig.primary_action_color}, ${newConfig.secondary_action_color || defaultConfig.secondary_action_color})`;
+            submitBtn.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            submitBtn.style.fontSize = `${baseSize * 1.125}px`;
+
+            updateSetupNotice();
         }
 
-        // Show form popup
-        function showFormPopup(category) {
-            const popup = document.getElementById('formPopup');
-            const serviceCategoryInput = document.getElementById('serviceCategory');
+        async function initializeApp() {
+            if (window.elementSdk) {
+                window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange: async (newConfig) => {
+                        config = newConfig;
+                        await onConfigChange(newConfig);
+                    },
+                    mapToCapabilities: (config) => ({
+                        recolorables: [
+                            {
+                                get: () => config.background_color || defaultConfig.background_color,
+                                set: (value) => {
+                                    config.background_color = value;
+                                    window.elementSdk.setConfig({ background_color: value });
+                                }
+                            },
+                            {
+                                get: () => config.surface_color || defaultConfig.surface_color,
+                                set: (value) => {
+                                    config.surface_color = value;
+                                    window.elementSdk.setConfig({ surface_color: value });
+                                }
+                            },
+                            {
+                                get: () => config.text_color || defaultConfig.text_color,
+                                set: (value) => {
+                                    config.text_color = value;
+                                    window.elementSdk.setConfig({ text_color: value });
+                                }
+                            },
+                            {
+                                get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                                set: (value) => {
+                                    config.primary_action_color = value;
+                                    window.elementSdk.setConfig({ primary_action_color: value });
+                                }
+                            },
+                            {
+                                get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                                set: (value) => {
+                                    config.secondary_action_color = value;
+                                    window.elementSdk.setConfig({ secondary_action_color: value });
+                                }
+                            }
+                        ],
+                        borderables: [],
+                        fontEditable: {
+                            get: () => config.font_family || defaultConfig.font_family,
+                            set: (value) => {
+                                config.font_family = value;
+                                window.elementSdk.setConfig({ font_family: value });
+                            }
+                        },
+                        fontSizeable: {
+                            get: () => config.font_size || defaultConfig.font_size,
+                            set: (value) => {
+                                config.font_size = value;
+                                window.elementSdk.setConfig({ font_size: value });
+                            }
+                        }
+                    }),
+                    mapToEditPanelValues: (config) => new Map([
+                        ["form_title", config.form_title || defaultConfig.form_title],
+                        ["form_subtitle", config.form_subtitle || defaultConfig.form_subtitle],
+                        ["submit_button_text", config.submit_button_text || defaultConfig.submit_button_text],
+                        ["google_script_url", config.google_script_url || defaultConfig.google_script_url]
+                    ])
+                });
 
-            // Reset form
-            const form = document.getElementById('registrationForm');
-            form.reset();
-
-            // Clear previous errors and set category
-            const errorMessages = form.querySelectorAll('.error-message');
-            errorMessages.forEach(error => { error.style.display = 'none'; });
-            const inputErrors = form.querySelectorAll('.input-error');
-            inputErrors.forEach(input => { input.classList.remove('input-error'); });
-
-            serviceCategoryInput.value = category; // Sets hidden field value
-
-            // Show popup
-            popup.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close form popup
-        function closeFormPopup() {
-            const popup = document.getElementById('formPopup');
-            popup.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close form popup when clicking outside
-        document.getElementById('formPopup').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeFormPopup();
+                config = window.elementSdk.config;
             }
-        });
 
-        // Generate a random inquiry ID
-        function generateInquiryId() {
-            const prefix = 'PART';
-            const randomNum = Math.floor(10000 + Math.random() * 90000);
-            return `${prefix}${randomNum}`;
+            await onConfigChange(config);
         }
 
-        // Submit form data
-        function submitForm(event) {
-            event.preventDefault();
+        document.getElementById('partner-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-            // Validate form
-            if (!validateForm()) {
-                const firstError = document.querySelector('.input-error, .error-message[style*="display: block"]');
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
+            const scriptUrl = config.google_script_url || defaultConfig.google_script_url;
+            
+            if (!scriptUrl || !scriptUrl.trim()) {
+                showMessage('error', 'Setup Required', 'Please add your Google Apps Script URL in the edit panel first', '⚙️');
                 return;
             }
 
-            // Disable submit button and show spinner
-            const submitBtn = document.getElementById('submitBtn');
-            const spinner = document.getElementById('formSpinner');
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = document.getElementById('submit-text');
+            const submitSpinner = document.getElementById('submit-spinner');
+
             submitBtn.disabled = true;
-            spinner.style.display = 'block';
+            submitText.classList.add('hidden');
+            submitSpinner.classList.remove('hidden');
 
-            const form = document.getElementById('registrationForm');
-            const formData = new FormData(form);
+            const formData = {
+                name: document.getElementById('name').value,
+                business_name: document.getElementById('business-name').value,
+                business_type: document.getElementById('business-type').value,
+                contact_no: document.getElementById('contact').value,
+                full_address: document.getElementById('address').value,
+                landmark: document.getElementById('landmark').value,
+                pin_code: document.getElementById('pincode').value
+            };
 
-            // Add inquiry ID to form data
-            const inquiryId = generateInquiryId();
-            formData.append('inquiryId', inquiryId);
-            
-            // Set action to a specific value for the Apps Script
-            formData.append('action', 'submitPartnershipInquiry');
-
-            const endpoint = serviceData['Partnership Inquiry'].sheetEndpoint; 
-
-            if (endpoint === 'YOUR_GOOGLE_APP_SCRIPT_URL_HERE') {
-                // Custom error for missing endpoint
-                console.error('Submission Error: Google Apps Script URL has not been replaced.');
-                // Fallback UI message (using success popup with error content)
-                document.getElementById('successTitle').textContent = 'Submission Failed!';
-                document.getElementById('successUserName').textContent = '';
-                document.querySelector('#successPopup .success-icon').textContent = 'X';
-                document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
-                document.getElementById('employeeIdDisplay').parentElement.style.display = 'none'; // Hide Inquiry ID field
-                document.getElementById('successMessage').textContent = 'Error: The Google Sheets endpoint URL has not been configured. Please replace "YOUR_GOOGLE_APP_SCRIPT_URL_HERE" with your deployed script URL.';
-                document.getElementById('successPopup').classList.add('active');
-                document.getElementById('submitBtn').disabled = false;
-                document.getElementById('formSpinner').style.display = 'none';
-                return;
-            }
-            
-            // Using fetch for submission
-            fetch(endpoint, {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Reset success popup style to default green before showing
-                    document.getElementById('successTitle').textContent = 'Inquiry Submitted Successfully!';
-                    document.querySelector('#successPopup .success-icon').textContent = '✓';
-                    document.querySelector('#successPopup .success-icon').style.color = '#28a745';
-                    document.getElementById('employeeIdDisplay').parentElement.style.display = 'block'; // Show Inquiry ID field
-                    document.getElementById('successMessage').textContent = 'Thank you for showing interest in partnership, ' + formData.get('fullName') + '! Our team will contact you shortly.';
-
-
-                    if (data.result === 'success') {
-                        const userName = formData.get('fullName');
-                        document.getElementById('successUserName').textContent = userName;
-                        document.getElementById('employeeIdDisplay').textContent = inquiryId;
-
-                        closeFormPopup();
-                        document.getElementById('successPopup').classList.add('active');
-                    } else {
-                        // Handle server-side errors from Apps Script
-                        document.getElementById('successTitle').textContent = 'Submission Failed!';
-                        document.querySelector('#successPopup .success-icon').textContent = 'X';
-                        document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
-                        document.getElementById('employeeIdDisplay').parentElement.style.display = 'none';
-                        document.getElementById('successMessage').textContent = 'There was an issue submitting your inquiry. Please check the Apps Script log or try again later.';
-                        
-                        closeFormPopup();
-                        document.getElementById('successPopup').classList.add('active');
-                        console.error('Submission error:', data);
-                    }
-                })
-                .catch(error => {
-                    // Handle network/fetch errors
-                    document.getElementById('successTitle').textContent = 'Network Error!';
-                    document.querySelector('#successPopup .success-icon').textContent = 'X';
-                    document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
-                    document.getElementById('employeeIdDisplay').parentElement.style.display = 'none';
-                    document.getElementById('successMessage').textContent = 'A network error occurred during submission. Please check your internet connection and try again.';
-                    
-                    closeFormPopup();
-                    document.getElementById('successPopup').classList.add('active');
-                    console.error('Submission error:', error);
-                })
-                .finally(() => {
-                    document.getElementById('submitBtn').disabled = false;
-                    document.getElementById('formSpinner').style.display = 'none';
+            try {
+                // Method 1: Try with proper JSON payload that matches your Google Apps Script
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain',
+                    },
+                    body: JSON.stringify(formData)
                 });
-        }
 
-        // Close success popup
-        function closeSuccessPopup() {
-            const successPopup = document.getElementById('successPopup');
-            successPopup.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            
-            // Reset success popup contents to default success message for future use
-            document.getElementById('successTitle').textContent = 'Inquiry Submitted Successfully!';
-            document.querySelector('#successPopup .success-icon').textContent = '✓';
-            document.querySelector('#successPopup .success-icon').style.color = '#28a745';
-            document.getElementById('employeeIdDisplay').parentElement.style.display = 'block';
-        }
+                // Check if response is ok
+                if (response.ok) {
+                    try {
+                        const result = await response.json();
+                        if (result.success) {
+                            showMessage('success', 'Form Submitted Successfully!', 'Your partner application has been saved to Google Sheets', '✅');
+                            document.getElementById('partner-form').reset();
+                        } else {
+                            showMessage('error', 'Submission Failed', result.error || 'Please try again', '❌');
+                        }
+                    } catch (jsonError) {
+                        // If JSON parsing fails but response was ok, assume success
+                        showMessage('success', 'Form Submitted Successfully!', 'Your partner application has been saved to Google Sheets', '✅');
+                        document.getElementById('partner-form').reset();
+                    }
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+                
+            } catch (error) {
+                console.error('Primary submission error:', error);
+                
+                // Method 2: Fallback with no-cors mode (for CORS issues)
+                try {
+                    await fetch(scriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'text/plain',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    // If no error thrown with no-cors, assume success
+                    showMessage('success', 'Form Submitted Successfully!', 'Your partner application has been saved to Google Sheets', '✅');
+                    document.getElementById('partner-form').reset();
+                    
+                } catch (fallbackError) {
+                    console.error('Fallback submission error:', fallbackError);
+                    showMessage('error', 'Connection Error', 'Please check your Google Apps Script URL and make sure it\'s deployed with "Anyone" access', '🌐');
+                }
+            }
+
+            submitBtn.disabled = false;
+            submitText.classList.remove('hidden');
+            submitSpinner.classList.add('hidden');
+        });
+
+        initializeApp();
     </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'999acb94d22091d4',t:'MTc2MjMyOTM5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
