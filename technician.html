@@ -1,861 +1,483 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- Viewport tag for ultra responsiveness -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title is now Hindi/English for Technicians -->
-    <title>Sonipat Home Service - करियर के अवसर / Technician Career</title>
-    <!-- Load Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        // Matching the Business Partner Page colors (Blue/Orange)
-                        'primary': '#0284c7', // Sky Blue - More corporate feel
-                        'primary-light': '#38bdf8', // Light Sky Blue
-                        'accent': '#f97316', // Orange - For CTA/Highlight
-                        'primary-dark': '#075985', // Dark Blue
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Custom styles for better look and feel (Updated prefixes from .job- to .career- for clarity) */
-        .career-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: theme('colors.accent');
-            border-radius: 9999px;
+<!doctype html>
+<html lang="hi">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become A Partner - Sonipat Home Service</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🏠%3C/text%3E%3C/svg%3E">
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
         }
         
-        .career-card-header {
-            background: linear-gradient(135deg, theme('colors.primary-light'), theme('colors.primary-dark'));
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Added text shadow for better heading visibility */
-        .card-title-shadow {
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
         }
 
-        /* ======= Form Popup Styles - Matching Blue/Orange Theme ======= */
-        .form-popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
+        .container {
+            min-height: 100%;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .input-field {
             transition: all 0.3s ease;
         }
 
-        .form-popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .form-popup-container {
-            background: white;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 2rem;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-
-        .form-popup-overlay.active .form-popup-container {
-            transform: scale(1);
-        }
-
-        .form-popup-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: #333;
-        }
-
-        .form-popup-title {
-            font-size: 1.8rem;
-            color: theme('colors.primary-dark'); /* Changed color to dark primary */
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        /* Form Styles */
-        .registration-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
+        .input-field:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
         }
 
         .submit-btn {
-            background: theme('colors.accent'); /* Used accent color */
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 1rem;
-        }
-
-        .submit-btn:hover {
-            background: #d9630c; /* Darker accent */
-        }
-
-        /* Error Message Styles */
-        .error-message {
-            color: #dc3545;
-            font-size: 0.85rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
-        .input-error {
-            border-color: #dc3545 !important;
-        }
-
-        /* Success Popup Styles */
-        .success-popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1001;
-            opacity: 0;
-            visibility: hidden;
             transition: all 0.3s ease;
         }
 
-        .success-popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
-        .success-popup-container {
-            background: white;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
-        .success-popup-overlay.active .success-popup-container {
-            transform: scale(1);
+        .social-icon {
+            transition: all 0.3s ease;
         }
 
-        .success-icon {
-            font-size: 4rem;
-            color: #28a745;
-            margin-bottom: 1rem;
+        .social-icon:hover {
+            transform: translateY(-3px);
         }
 
-        .success-title {
-            font-size: 1.8rem;
-            color: theme('colors.primary-dark'); /* Changed color to dark primary */
-            margin-bottom: 1rem;
+        .app-store-btn {
+            transition: all 0.3s ease;
         }
 
-        .employee-id {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: theme('colors.primary'); /* Used primary color */
-            margin: 1rem 0;
-            padding: 0.5rem;
-            background: #f0fff0;
-            border-radius: 5px;
+        .app-store-btn:hover {
+            transform: scale(1.05);
         }
 
         .success-message {
-            font-size: 1.1rem;
-            color: #333;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            animation: slideIn 0.5s ease;
         }
 
-        .success-btn {
-            background: theme('colors.primary'); /* Used primary color */
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .success-btn:hover {
-            background: theme('colors.primary-dark');
-        }
-
-        /* Loading Spinner */
         .spinner {
-            display: none;
-            width: 40px;
-            height: 40px;
-            margin: 0 auto;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid theme('colors.primary-light');
+            border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
             animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        @media (max-width: 768px) {
-            .form-popup-container {
-                padding: 1.5rem;
-            }
-            .form-popup-title {
-                font-size: 1.5rem;
-            }
-            /* Removed service-checkbox styles as the element was removed */
+        .setup-notice {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
         }
     </style>
-</head>
-<body class="font-sans min-h-screen p-4 sm:p-6 md:p-10 bg-gradient-to-br from-primary-light/50 to-primary/80 text-gray-800">
-    
-    <div class="container max-w-7xl mx-auto">
-        
-        <!-- Header Section -->
-        <header class="text-center mb-8 sm:mb-12 p-5 text-white bg-primary rounded-xl shadow-2xl">
-            <div class="text-4xl sm:text-5xl font-extrabold mb-2 text-white">
-                Join Our Team - Technician Careers | Sonipat Home Service
-            </div>
-            <p class="text-lg sm:text-xl opacity-90 font-light">
-                We are looking for experienced and skilled technicians to join our growing team. At Sonipat Home Service, we value professionalism, expertise, and above all, customer satisfaction.
-            </p>
-        </header>
-        
-        <!-- Main Content Container -->
-        <div class="bg-white rounded-2xl p-6 sm:p-10 shadow-3xl">
-            
-            <!-- Title Section -->
-            <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-primary-dark text-center relative pb-3 career-heading">
-               करियर के अवसर / Career Opportunity
-            </h1>
-            
-            <p class="text-center mb-8 sm:mb-12 text-gray-600 max-w-4xl mx-auto text-base sm:text-lg">
-                हम अपनी बढ़ती टीम में अनुभवी और कुशल तकनीशियनों की तलाश कर रहे हैं। सोनीपत होम सर्विस में, हम व्यावसायिकता, विशेषज्ञता और ग्राहकों की संतुष्टि को महत्व देते हैं।
-            </p>
-            
-            <!-- Single Universal Job Card - Updated Style -->
-            <div class="job-grid flex justify-center">
-                <div class="universal-card w-full bg-gray-50 border border-primary-light/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-1">
-                    
-                    <div class="career-card-header text-white p-6 sm:p-8 flex items-center gap-4">
-                        <div class="job-icon text-3xl p-3 bg-white/30 text-white rounded-full mr-2 shadow-md flex-shrink-0">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h2 class="text-2xl sm:text-3xl font-bold card-title-shadow text-accent">
-                            Multi-Service Home Appliance Technician
-                        </h2>
-                    </div>
-                    
-                    <div class="p-6 sm:p-8">
-                        
-                        <!-- Fixed Job Details -->
-                        <div class="job-details mb-6 border-b pb-4">
-                            <h3 class="font-semibold text-xl text-primary-dark mb-3">
-                                पद का विवरण / Position Details:
-                            </h3>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-gray-700 text-sm sm:text-base">
-                                <div class="flex items-center">
-                                    <span class="font-bold text-primary-dark w-20">Salary:-</span>
-                                    <span class="flex-1"> ₹13,000 - ₹18,000 प्रति माह  </span>
-                                </div>
-                                <div class="flex items-center">
-                                    <span class="font-bold text-primary-dark w-20">Exp.:- </span>
-                                    <span class="flex-1"> न्यूनतम 2 वर्ष </span>
-                                </div>
-                                <div class="flex items-center">
-                                    <span class="font-bold text-primary-dark w-20">Location:-</span>
-                                    <span class="flex-1"> सोनीपत और आसपास के इलाके </span>
-                                </div>
-                                <div class="flex items-center">
-                                    <span class="font-bold text-primary-dark w-20">Type:-</span>
-                                    <span class="flex-1"> फुल टाइम </span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Combined Requirements for All Services -->
-                        <div class="requirements">
-                            <h3 class="font-semibold text-xl text-primary-dark mb-3">
-                                आवश्यक कौशल और जिम्मेदारियाँ:
-                            </h3>
-                            <ul class="space-y-2 text-sm sm:text-base pl-5 text-gray-700 list-disc">
-                                <li class="flex items-start">
-                                    <span class="mr-2 text-primary-light"><i class="fas fa-screwdriver-wrench"></i></span>
-                                    <b>एसी:</b> इंस्टॉलेशन, रिपेयरिंग, गैस चार्जिंग और डीप क्लीनिंग का ज्ञान।
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-2 text-primary-light"><i class="fas fa-hand-holding-water"></i></span>
-                                    <b>आरओ/वॉटर प्यूरीफायर:</b> सभी प्रकार के फिल्टर बदलने और रिपेयरिंग का अनुभव।
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-2 text-primary-light"><i class="fas fa-washing-machine"></i></span>
-                                    <b>वॉशिंग मशीन:</b> फुली/सेमी-ऑटोमैटिक मशीन की मोटर, ड्रायर और पीसीबी मरम्मत।
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-2 text-primary-light"><i class="fas fa-temperature-low"></i></span>
-                                    <b>फ्रिज/गीज़र:</b> फ्रिज कंप्रेसर और गीज़र हीटिंग एलिमेंट की मरम्मत और इंस्टॉलेशन।
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="mr-2 text-primary-light"><i class="fas fa-user-check"></i></span>
-                                    उत्कृष्ट ग्राहक सेवा और समस्या-समाधान कौशल होना अनिवार्य है।
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Register button: Calls form popup -->
-                        <button onclick="showFormPopup('Registrations')" class="apply-btn block w-full text-center bg-accent hover:bg-orange-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg mt-6">
-                            Apply for Post
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Why Work With Us Section - Responsive -->
-            <div class="mt-12 sm:mt-16 p-6 sm:p-10 bg-gray-100 rounded-xl shadow-inner">
-                <h2 class="text-2xl sm:text-3xl font-bold text-primary-dark text-center mb-6">
-                    हमारे साथ क्यों काम करें?
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-primary-light">
-                        <div class="benefit-icon text-xl p-3 bg-primary-light/10 text-primary-dark rounded-full flex-shrink-0">
-                            <i class="fas fa-money-bill-wave"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-primary-dark">आकर्षक वेतन</h3>
-                            <p class="text-sm text-gray-600">प्रदर्शन बोनस के साथ प्रतिस्पर्धी भुगतान।</p>
-                        </div>
-                    </div>
-                    
-                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-primary-light">
-                        <div class="benefit-icon text-xl p-3 bg-primary-light/10 text-primary-dark rounded-full flex-shrink-0">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-primary-dark">सहयोगी टीम</h3>
-                            <p class="text-sm text-gray-600">अनुभवी पेशेवरों के साथ काम करने का मौका।</p>
-                        </div>
-                    </div>
-                    
-                    <div class="benefit-item flex items-start gap-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-primary-light">
-                        <div class="benefit-icon text-xl p-3 bg-primary-light/10 text-primary-dark rounded-full flex-shrink-0">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-primary-dark">करियर ग्रोथ</h3>
-                            <p class="text-sm text-gray-600">आगे बढ़ने और सीखने के लिए भरपूर अवसर।</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-            <!-- CTA Section - Fully Responsive -->
-            <div class="cta-section text-center mt-12 sm:mt-16 p-6 sm:p-10 bg-primary rounded-xl text-white shadow-2xl">
-                <h2 class="text-2xl sm:text-3xl font-bold mb-3">
-                    क्या आप तैयार हैं?
-                </h2>
-                <p class="text-base sm:text-lg mb-6 opacity-90 max-w-2xl mx-auto">
-                    यदि आपके पास ये कौशल और अनुभव है, तो तुरंत हमसे संपर्क करें और हमारी बढ़ती टीम का हिस्सा बनें।
-                </p>
-                <!-- CTA Button: Uses tel: protocol (works seamlessly in browsers and apps) -->
-                <button class="cta-btn inline-block bg-accent hover:bg-orange-600 text-white font-extrabold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-xl" onclick="window.location.href='#tel:8816014071'">
-                    कॉल करें: 88160-14071
-                </button>
-
-            </div>
-            
-            <!-- Contact Info Section - Fully Responsive with Flex-Wrap -->
-            <div class="contact-info flex flex-wrap justify-around gap-6 mt-12 p-6 sm:p-8 bg-gray-100 rounded-xl shadow-inner">
-                
-                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
-                    <i class="fas fa-phone-alt text-3xl text-primary-light mb-2"></i>
-                    <h3 class="text-lg font-semibold text-primary">कॉल करें</h3>
-                    <p class="text-gray-600">
-                        <a href="tel:8816014071" class="text-gray-600 hover:text-primary-dark transition duration-150">88160-14071</a>
-                    </p>
-                </div>
-                
-                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
-                    <i class="fas fa-envelope text-3xl text-primary-light mb-2"></i>
-                    <h3 class="text-lg font-semibold text-primary">ईमेल करें</h3>
-                    <p class="text-gray-600 truncate"><a href="mailto:care@sonipathomeservice.com" class="text-gray-600 hover:text-primary-dark transition duration-150">care@sonipathomeservice.com</a></p>
-                </div>
-                
-                <div class="contact-item text-center p-4 min-w-[200px] flex-1 bg-white rounded-lg shadow-md">
-                    <i class="fas fa-map-marker-alt text-3xl text-primary-light mb-2"></i>
-                    <h3 class="text-lg font-semibold text-primary">पता</h3>
-                    <p class="text-gray-600"> 128/1 <br> Sainipura <br> Near Baba Dhaam Mandir <br>Sonipat-131001</br></p>
-                </div>
-            </div>
-
-        </div>
-        
-        <!-- Footer Section -->
-        <footer class="text-center mt-8 text-primary-dark p-4 text-sm opacity-90">
-            <p>&copy; 2025 Sonipat Home Service. All rights reserved.</p>
-        </footer>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="container gradient-bg">
+   <div class="main-content py-8 px-4">
+    <div class="max-w-2xl mx-auto"><!-- Home Page Link -->
+     <div class="mb-6"><a href="https://www.sonipathomeservice.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+       </svg><span class="font-semibold">🏠 Home Page</span> </a>
+     </div><!-- Header -->
+     <div class="text-center mb-8">
+      <div class="text-6xl mb-4">
+       🤝
+      </div>
+      <h1 id="form-title" class="text-4xl font-bold text-white mb-2">मैकेनिक</h1>
+      <p id="form-subtitle" class="text-xl text-white opacity-90">सोनीपत होम सर्विस नेटवर्क से जुड़ें और रोजाना घर या शॉप पर बैठ काम प्राप्त करें</p>
+     </div><!-- Setup Notice -->
+     <div id="setup-notice" class="setup-notice">
+      <div class="text-3xl mb-2">
+       ⚙️
+      </div>
+      <p class="font-semibold mb-2">Google Sheets Setup Required</p>
+      <p class="text-sm">Please add your Google Apps Script URL in the edit panel to enable form submissions</p>
+     </div><!-- Success/Error Messages -->
+     <div id="message-container" class="hidden success-message mb-6 p-4 rounded-lg text-center">
+      <div id="message-icon" class="text-3xl mb-2"></div>
+      <p id="message-title" class="font-semibold"></p>
+      <p id="message-text" class="text-sm mt-1"></p>
+     </div><!-- Form Container -->
+     <div class="form-container p-8">
+      <form id="partner-form"><!-- Mistri Ka Naam -->
+       <div class="mb-6"><label for="name" class="block text-gray-700 font-semibold mb-2"> 👤 मिस्त्री का नाम <span class="text-red-500">*</span> </label> <input type="text" id="name" name="name" required class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="अपना पूरा नाम लिखें">
+       </div><!-- Mistri Ka Kary -->
+       <div class="mb-6"><label for="business-name" class="block text-gray-700 font-semibold mb-2"> 🏢 मिस्त्री का कार्य <span class="text-red-500">*</span> </label> <input type="text" id="business-name" name="business-name" required class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="अपना व्यवसाय/काम का नाम लिखें">
+       </div><!-- Mistri Type -->
+       <div class="mb-6"><label for="business-type" class="block text-gray-700 font-semibold mb-2"> 💼 मिस्त्री का प्रकार <span class="text-red-500">*</span> </label> <select id="business-type" name="business-type" required class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"> <option value="">काम का प्रकार चुनें</option> <!-- घर की मरम्मत और रखरखाव --> <optgroup label="🏠 घर की मरम्मत और रखरखाव"> <option value="Plumber">🔧 प्लंबर - नल, पाइप, टंकी की मरम्मत</option> <option value="Electrician">⚡ इलेक्ट्रीशियन - बिजली का काम</option> <option value="Carpenter">🪚 बढ़ई - लकड़ी का काम, फर्नीचर</option> <option value="Painter">🎨 पेंटर - दीवार पेंटिंग, रंगाई</option> <option value="Mason">🧱 राजमिस्त्री - निर्माण, चिनाई</option> <option value="Tiles Worker">🏠 टाइल्स मिस्त्री - फर्श, दीवार टाइल्स</option> <option value="Roofing Worker">🏠 छत मिस्त्री - छत की मरम्मत</option> <option value="Waterproofing">💧 वाटरप्रूफिंग मिस्त्री</option> <option value="Welder">🔥 वेल्डर - लोहे का काम</option> <option value="Glass Worker">🪟 कांच मिस्त्री - खिड़की, दरवाजे</option> <option value="Door Window">🚪 दरवाजा-खिड़की मिस्त्री</option> <option value="Marble Worker">✨ संगमरमर मिस्त्री</option> </optgroup> <!-- घरेलू उपकरण सेवा --> <optgroup label="🔌 घरेलू उपकरण सेवा"> <option value="AC Technician">❄️ AC तकनीशियन - एसी रिपेयर</option> <option value="Refrigerator Repair">🧊 फ्रिज रिपेयर मिस्त्री</option> <option value="Washing Machine Repair">🌀 वाशिंग मशीन रिपेयर</option> <option value="Microwave Repair">📱 माइक्रोवेव रिपेयर</option> <option value="TV Repair">📺 टीवी रिपेयर तकनीशियन</option> <option value="Geyser Repair">🚿 गीजर रिपेयर मिस्त्री</option> <option value="Chimney Repair">🏭 चिमनी रिपेयर</option> <option value="Cooler Repair">🌀 कूलर रिपेयर मिस्त्री</option> <option value="Fan Repair">🌀 पंखा रिपेयर</option> <option value="Mixer Grinder Repair">🥤 मिक्सर ग्राइंडर रिपेयर</option> <option value="Iron Repair">👔 प्रेस रिपेयर</option> <option value="Induction Repair">🔥 इंडक्शन रिपेयर</option> </optgroup> <!-- सफाई सेवा --> <optgroup label="🧹 सफाई सेवा"> <option value="House Cleaner">🏡 घर की सफाई वाली</option> <option value="Deep Cleaning">✨ डीप क्लीनिंग सेवा</option> <option value="Carpet Cleaning">🪑 कारपेट सफाई</option> <option value="Kitchen Cleaning">🍳 रसोई की सफाई</option> <option value="Bathroom Cleaning">🚿 बाथरूम सफाई</option> <option value="Window Cleaning">🪟 खिड़की सफाई</option> <option value="Sofa Cleaning">🛋️ सोफा सफाई</option> <option value="Tank Cleaning">🪣 टंकी सफाई</option> <option value="Floor Cleaning">🧽 फर्श सफाई</option> <option value="Office Cleaning">🏢 ऑफिस सफाई</option> </optgroup> <!-- कीट नियंत्रण --> <optgroup label="🛡️ कीट नियंत्रण सेवा"> <option value="Pest Control">🐛 कीट नियंत्रण विशेषज्ञ</option> <option value="Termite Control">🐜 दीमक नियंत्रण</option> <option value="Rodent Control">🐭 चूहा नियंत्रण</option> <option value="Cockroach Control">🪳 तिलचट्टा नियंत्रण</option> <option value="Bed Bug Control">🛏️ खटमल नियंत्रण</option> <option value="Mosquito Control">🦟 मच्छर नियंत्रण</option> <option value="Lizard Control">🦎 छिपकली नियंत्रण</option> <option value="Snake Catcher">🐍 सांप पकड़ने वाला</option> </optgroup> <!-- बागवानी और बाहरी सेवा --> <optgroup label="🌱 बागवानी और बाहरी सेवा"> <option value="Gardener">🌿 माली - बागवानी</option> <option value="Tree Cutter">🌳 पेड़ काटने वाला</option> <option value="Lawn Care">🌱 लॉन की देखभाल</option> <option value="Plant Care">🪴 पौधों की देखभाल</option> <option value="Irrigation">💧 सिंचाई सिस्टम</option> <option value="Outdoor Lighting">💡 बाहरी लाइटिंग</option> <option value="Fence Worker">🚧 बाड़ लगाने वाला</option> <option value="Pool Cleaner">🏊 स्विमिंग पूल सफाई</option> </optgroup> <!-- सुरक्षा और तकनीक --> <optgroup label="🔒 सुरक्षा और तकनीक"> <option value="CCTV Technician">📹 CCTV तकनीशियन</option> <option value="Security Guard">👮 सिक्योरिटी गार्ड</option> <option value="Home Automation">🏠 स्मार्ट होम तकनीशियन</option> <option value="Internet Technician">🌐 इंटरनेट तकनीशियन</option> <option value="Intercom Technician">📞 इंटरकॉम तकनीशियन</option> <option value="Alarm System">🚨 अलार्म सिस्टम</option> <option value="Satellite Dish">📡 सैटेलाइट डिश तकनीशियन</option> </optgroup> <!-- विशेष सेवाएं --> <optgroup label="⚙️ विशेष सेवाएं"> <option value="Solar Technician">☀️ सोलर पैनल तकनीशियन</option> <option value="Water Purifier">💧 वाटर प्यूरीफायर तकनीशियन</option> <option value="Inverter Technician">🔋 इन्वर्टर तकनीशियन</option> <option value="Generator Technician">⚡ जेनरेटर तकनीशियन</option> <option value="Bore Well">🕳️ बोरवेल तकनीशियन</option> <option value="Water Pump">💧 वाटर पंप तकनीशियन</option> <option value="Lift Technician">🛗 लिफ्ट तकनीशियन</option> <option value="Fire Safety">🔥 फायर सेफ्टी तकनीशियन</option> </optgroup> <!-- परिवहन और स्थानांतरण --> <optgroup label="📦 परिवहन और स्थानांतरण"> <option value="Packers Movers">📦 पैकर्स एंड मूवर्स</option> <option value="Furniture Assembly">🪑 फर्नीचर असेंबली</option> <option value="Loading Unloading">📦 लोडिंग अनलोडिंग</option> <option value="Truck Driver">🚛 ट्रक ड्राइवर</option> <option value="Tempo Driver">🚐 टेम्पो ड्राइवर</option> <option value="Rickshaw Driver">🛺 रिक्शा ड्राइवर</option> <option value="Bike Taxi">🏍️ बाइक टैक्सी</option> </optgroup> <!-- सौंदर्य और स्वास्थ्य --> <optgroup label="💄 सौंदर्य और स्वास्थ्य"> <option value="Beautician">💇 ब्यूटीशियन - घर पर सेवा</option> <option value="Barber">✂️ नाई - घर पर सेवा</option> <option value="Massage Therapist">🧖 मसाज थेरेपिस्ट</option> <option value="Yoga Instructor">🧘 योग प्रशिक्षक</option> <option value="Fitness Trainer">💪 फिटनेस ट्रेनर</option> <option value="Mehendi Artist">🎨 मेहंदी आर्टिस्ट</option> <option value="Nail Artist">💅 नेल आर्टिस्ट</option> </optgroup> <!-- व्यावसायिक सेवाएं --> <optgroup label="👔 व्यावसायिक सेवाएं"> <option value="Interior Designer">🎨 इंटीरियर डिजाइनर</option> <option value="Architect">📐 आर्किटेक्ट</option> <option value="Lawyer">⚖️ वकील</option> <option value="Accountant">📊 अकाउंटेंट</option> <option value="CA">📋 चार्टर्ड अकाउंटेंट</option> <option value="Insurance Agent">🛡️ इंश्योरेंस एजेंट</option> <option value="Real Estate Agent">🏠 रियल एस्टेट एजेंट</option> <option value="Consultant">💼 कंसल्टेंट</option> </optgroup> <!-- इवेंट और कैटरिंग --> <optgroup label="🎉 इवेंट और कैटरिंग"> <option value="Caterer">🍽️ कैटरर - खाना बनाने वाला</option> <option value="Cook">👨‍🍳 रसोइया - घर का खाना</option> <option value="Event Planner">🎪 इवेंट प्लानर</option> <option value="Photographer">📸 फोटोग्राफर</option> <option value="Videographer">🎥 वीडियोग्राफर</option> <option value="DJ">🎵 डीजे</option> <option value="Decorator">🎈 डेकोरेटर</option> <option value="Tent House">⛺ टेंट हाउस</option> <option value="Sound System">🔊 साउंड सिस्टम</option> <option value="Light Decoration">💡 लाइट डेकोरेशन</option> </optgroup> <!-- वाहन सेवा --> <optgroup label="🚗 वाहन सेवा"> <option value="Car Mechanic">🔧 कार मैकेनिक</option> <option value="Bike Mechanic">🏍️ बाइक मैकेनिक</option> <option value="Auto Mechanic">🛺 ऑटो मैकेनिक</option> <option value="Tyre Puncture">🛞 पंक्चर वाला</option> <option value="Car Wash">🚿 कार वॉश</option> <option value="Bike Wash">🏍️ बाइक वॉश</option> <option value="Driver">🚗 ड्राइवर</option> <option value="Delivery Boy">📦 डिलीवरी बॉय</option> </optgroup> <!-- शिक्षा और प्रशिक्षण --> <optgroup label="📚 शिक्षा और प्रशिक्षण"> <option value="Home Tutor">👨‍🏫 होम ट्यूटर</option> <option value="Math Teacher">🔢 गणित शिक्षक</option> <option value="English Teacher">🗣️ अंग्रेजी शिक्षक</option> <option value="Hindi Teacher">📖 हिंदी शिक्षक</option> <option value="Science Teacher">🔬 विज्ञान शिक्षक</option> <option value="Music Teacher">🎵 संगीत शिक्षक</option> <option value="Dance Teacher">💃 डांस टीचर</option> <option value="Computer Teacher">💻 कंप्यूटर शिक्षक</option> <option value="Drawing Teacher">🎨 ड्राइंग टीचर</option> <option value="Spoken English">🗣️ स्पोकन इंग्लिश</option> </optgroup> <!-- स्वास्थ्य सेवा --> <optgroup label="🏥 स्वास्थ्य सेवा"> <option value="Nurse">👩‍⚕️ नर्स - घर पर सेवा</option> <option value="Physiotherapist">🏃 फिजियोथेरेपिस्ट</option> <option value="Lab Technician">🧪 लैब टेक्नीशियन</option> <option value="Compounder">💊 कंपाउंडर</option> <option value="Elder Care">👴 बुजुर्गों की देखभाल</option> <option value="Patient Care">🤒 मरीज की देखभाल</option> <option value="Ayurvedic Doctor">🌿 आयुर्वेदिक डॉक्टर</option> </optgroup> <!-- कृषि और पशुपालन --> <optgroup label="🌾 कृषि और पशुपालन"> <option value="Farmer">🌾 किसान</option> <option value="Tractor Driver">🚜 ट्रैक्टर चालक</option> <option value="Veterinarian">🐄 पशु चिकित्सक</option> <option value="Milk Man">🥛 दूध वाला</option> <option value="Poultry Worker">🐔 मुर्गी पालन</option> <option value="Cattle Care">🐄 पशु देखभाल</option> <option value="Farm Worker">🌱 खेत मजदूर</option> </optgroup> <!-- खाद्य सेवा --> <optgroup label="🍽️ खाद्य सेवा"> <option value="Tiffin Service">🍱 टिफिन सेवा</option> <option value="Sweet Maker">🍬 मिठाई बनाने वाला</option> <option value="Snack Maker">🥪 नाश्ता बनाने वाला</option> <option value="Juice Vendor">🥤 जूस वाला</option> <option value="Tea Vendor">☕ चाय वाला</option> <option value="Ice Cream Vendor">🍦 आइसक्रीम वाला</option> <option value="Fruit Vendor">🍎 फल वाला</option> <option value="Vegetable Vendor">🥬 सब्जी वाला</option> </optgroup> <!-- अन्य सेवाएं --> <optgroup label="📋 अन्य सेवाएं"> <option value="Laundry Service">👕 कपड़े धोने की सेवा</option> <option value="Ironing Service">👔 प्रेस सेवा</option> <option value="Tailor">✂️ दर्जी</option> <option value="Cobbler">👞 मोची</option> <option value="Barber Shop">💈 नाई की दुकान</option> <option value="Pet Care">🐕 पालतू जानवर की देखभाल</option> <option value="Baby Sitter">👶 बेबी सिटर</option> <option value="Maid">🧹 घरेलू सहायिका</option> <option value="Watchman">👮 चौकीदार</option> <option value="Newspaper Delivery">📰 अखबार वितरण</option> <option value="Milk Delivery">🥛 दूध वितरण</option> <option value="Gas Delivery">🔥 गैस डिलीवरी</option> <option value="Water Delivery">💧 पानी डिलीवरी</option> <option value="Grocery Delivery">🛒 किराना डिलीवरी</option> <option value="Other Service">📝 अन्य सेवा</option> </optgroup> </select>
+       </div><!-- Contact Number -->
+       <div class="mb-6"><label for="contact" class="block text-gray-700 font-semibold mb-2"> 📱 संपर्क नंबर <span class="text-red-500">*</span> </label> <input type="tel" id="contact" name="contact" required pattern="[0-9]{10}" minlength="10" maxlength="10" class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="10 अंकों का मोबाइल नंबर लिखें" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
+       </div><!-- Full Address -->
+       <div class="mb-6"><label for="address" class="block text-gray-700 font-semibold mb-2"> 🏠 पूरा पता <span class="text-red-500">*</span> </label> <textarea id="address" name="address" required rows="3" class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="अपना पूरा पता लिखें"></textarea>
+       </div><!-- Landmark -->
+       <div class="mb-6"><label for="landmark" class="block text-gray-700 font-semibold mb-2"> 📍 लैंडमार्क <span class="text-red-500">*</span> </label> <input type="text" id="landmark" name="landmark" required class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="नजदीकी लैंडमार्क लिखें">
+       </div><!-- Pin Code -->
+       <div class="mb-6"><label for="pincode" class="block text-gray-700 font-semibold mb-2"> 📮 पिन कोड <span class="text-red-500">*</span> </label> <input type="text" id="pincode" name="pincode" required pattern="[0-9]{6}" minlength="6" maxlength="6" class="input-field w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" placeholder="6 अंकों का पिन कोड लिखें" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
+       </div><!-- Submit Button --> <button type="submit" id="submit-btn" class="submit-btn w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-4 px-6 rounded-lg text-lg"> <span id="submit-text">Submit Application</span> <span id="submit-spinner" class="hidden inline-block spinner ml-2"></span> </button>
+      </form>
+     </div><!-- App Download Section -->
+     <div class="mt-8 text-center">
+      <p class="text-white font-semibold mb-4 text-lg">📲 Download Our Mobile App</p>
+      <div class="flex flex-wrap justify-center gap-4"><!-- Google Play Store --> <a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" class="app-store-btn">
+        <div class="bg-white rounded-lg px-6 py-3 flex items-center gap-3 shadow-lg">
+         <svg class="w-8 h-8" viewbox="0 0 24 24" fill="none"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5Z" fill="#00D7FF" /> <path d="M16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12Z" fill="#FFCE00" /> <path d="M20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81Z" fill="#00D863" /> <path d="M6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z" fill="#FF3E00" />
+         </svg>
+         <div class="text-left">
+          <div class="text-xs text-gray-600">
+           GET IT ON
+          </div>
+          <div class="text-sm font-bold text-gray-800">
+           Google Play
+          </div>
+         </div>
+        </div></a> <!-- Indus App Store --> <a href="https://www.indusappstore.com/apps/house-and-home/sonipat-home-service/com.crapd.sonipathomeservice/?page=details&amp;id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" class="app-store-btn">
+        <div class="bg-white rounded-lg px-6 py-3 flex items-center gap-3 shadow-lg">
+         <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+          I
+         </div>
+         <div class="text-left">
+          <div class="text-xs text-gray-600">
+           DOWNLOAD ON
+          </div>
+          <div class="text-sm font-bold text-gray-800">
+           Indus AppStore
+          </div>
+         </div>
+        </div></a>
+      </div>
+     </div>
     </div>
-
-
-    <!-- FORM POPUP HTML - MODIFIED FOR TECHNICIAN REGISTRATION -->
-    <div class="form-popup-overlay" id="formPopup">
-        <div class="form-popup-container">
-            <button class="form-popup-close" onclick="closeFormPopup()">&times;</button>
-            <h2 class="form-popup-title">तकनीशियन पंजीकरण फॉर्म</h2>
-            <form id="registrationForm" class="registration-form" onsubmit="submitForm(event)">
-                <input type="hidden" id="serviceCategory" name="serviceCategory">
-
-                <div class="form-group">
-                    <label for="fullName">Full Name*</label>
-                    <input type="text" id="fullName" name="fullName" required minlength="3" maxlength="50" pattern="[A-Za-z ]+">
-                    <div class="error-message" id="fullNameError">Please enter a valid name (letters and spaces only, 3-50 characters)</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="phoneNumber">Phone Number*</label>
-                    <input type="tel" id="phoneNumber" name="phoneNumber" required minlength="10" maxlength="15" pattern="[0-9]{10,15}">
-                    <div class="error-message" id="phoneError">Please enter a valid 10-15 digit phone number</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email">
-                    <div class="error-message" id="emailError">Please enter a valid email address</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="dob">Date of Birth*</label>
-                    <input type="date" id="dob" name="dob" required max="">
-                    <div class="error-message" id="dobError">Please select a valid date of birth</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="block">Block*</label>
-                    <input type="text" id="block" name="block" required minlength="2" maxlength="50">
-                    <div class="error-message" id="blockError">Please enter a valid block name (2-50 characters)</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="area">Area*</label>
-                    <input type="text" id="area" name="area" required minlength="2" maxlength="50">
-                    <div class="error-message" id="areaError">Please enter a valid area name (2-50 characters)</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="district">District*</label>
-                    <input type="text" id="district" name="district" required minlength="2" maxlength="50">
-                    <div class="error-message" id="districtError">Please enter a valid district name (2-50 characters)</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="fullAddress">Full Address*</label>
-                    <textarea id="fullAddress" name="fullAddress" required minlength="10" maxlength="200"></textarea>
-                    <div class="error-message" id="addressError">Please enter a valid address (10-200 characters)</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="servicesKnown">आप कौन सा काम जानते हैं? (कम से कम एक चुनें)*</label>
-                    <textarea id="servicesKnown" name="selectedServices" required minlength="10" maxlength="500" placeholder="उदाहरण: AC रिपेयरिंग, वॉशिंग मशीन मोटर बदलना, प्लंबिंग"></textarea>
-                    <div class="error-message" id="servicesError">कृपया बताएं कि आपको कौन-कौन से काम आते हैं (कम से कम 10 अक्षर)</div>
-                </div>
-
-                <div class="spinner" id="formSpinner"></div>
-                <button type="submit" class="submit-btn" id="submitBtn">Submit Registration</button>
-            </form>
-        </div>
+   </div><!-- Footer -->
+   <footer class="bg-gray-900 text-white py-8 px-4 mt-8">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-3 gap-8 mb-6"><!-- Company Info -->
+      <div>
+       <h3 class="text-xl font-bold mb-3">🏠 Sonipat Home Service.Com</h3>
+       <p class="text-gray-300 text-sm mb-2">📍 128/1, Sainipura, Sonipat</p>
+       <p class="text-gray-300 text-sm">📞 8816014071</p>
+      </div><!-- Social Links -->
+      <div>
+       <h3 class="text-lg font-bold mb-3">Follow Us</h3>
+       <div class="flex flex-wrap gap-3"><a href="https://facebook.com/Sonipathomeservice" target="_blank" rel="noopener noreferrer" class="social-icon bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center">
+         <svg class="w-5 h-5" fill="white" viewbox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+         </svg></a> <a href="https://instagram.com/Sonipathomeservice" target="_blank" rel="noopener noreferrer" class="social-icon bg-gradient-to-br from-purple-600 to-pink-500 w-10 h-10 rounded-full flex items-center justify-center">
+         <svg class="w-5 h-5" fill="white" viewbox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+         </svg></a> <a href="https://twitter.com/Sonipathome" target="_blank" rel="noopener noreferrer" class="social-icon bg-black w-10 h-10 rounded-full flex items-center justify-center">
+         <svg class="w-5 h-5" fill="white" viewbox="0 0 24 24">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+         </svg></a> <a href="https://wa.me/918816014071" target="_blank" rel="noopener noreferrer" class="social-icon bg-green-500 w-10 h-10 rounded-full flex items-center justify-center">
+         <svg class="w-5 h-5" fill="white" viewbox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+         </svg></a>
+       </div>
+      </div><!-- Quick Links -->
+      <div>
+       <h3 class="text-lg font-bold mb-3">Quick Links</h3>
+       <div class="space-y-2 text-sm"><a href="#" class="block text-gray-300 hover:text-white transition">About Us</a> <a href="#" class="block text-gray-300 hover:text-white transition">Services</a> <a href="#" class="block text-gray-300 hover:text-white transition">Contact</a>
+       </div>
+      </div>
+     </div>
+     <div class="border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+      <p>© 2024 Sonipat Home Service.Com. All rights reserved.</p>
+     </div>
     </div>
-
-    <!-- SUCCESS POPUP HTML - MODIFIED FOR TECHNICIAN REGISTRATION -->
-    <div class="success-popup-overlay" id="successPopup">
-        <div class="success-popup-container">
-            <div class="success-icon">✓</div>
-            <h2 class="success-title">Registration Successful!</h2>
-            <p class="success-message">Thank you for joining us, <span id="successUserName"></span>! We're excited to have you on board.</p>
-            <div class="employee-id">Your Employee ID: <span id="employeeIdDisplay"></span></div>
-            <p class="success-message">Please note down your Employee ID for future reference. Our team will contact you shortly.</p>
-            <button class="success-btn" onclick="closeSuccessPopup()">Okay</button>
-        </div>
-    </div>
-
-
-    <!-- JAVASCRIPT BLOCK - MODIFIED -->
-    <script>
-        // Service data is kept only for the endpoint, using the old 'Registrations' key
-        const serviceData = {
-            'Registrations': { 
-                // !!! IMPORTANT: REPLACE THIS PLACEHOLDER URL !!!
-                // This URL must be your deployed Google Apps Script URL set up to receive POST requests and append data to your Google Sheet.
-                sheetEndpoint: 'YOUR_GOOGLE_APP_SCRIPT_URL_HERE'
-            }
+   </footer>
+  </div>
+  <script>
+        const defaultConfig = {
+            form_title: "मैकेनिक",
+            form_subtitle: "सोनीपत होम सर्विस नेटवर्क से जुड़ें और रोजाना घर या शॉप पर बैठ काम प्राप्त करें",
+            submit_button_text: "Submit Application",
+            google_script_url: "https://script.google.com/macros/s/AKfycbw322QAzdPVh4bLPSk9ZmuX_FxcCnQf0NWDZj8ebCFeBo8PYjLP7cBnk3KaI3X7jQ78/exec",
+            background_color: "#667eea",
+            surface_color: "#ffffff",
+            text_color: "#374151",
+            primary_action_color: "#7c3aed",
+            secondary_action_color: "#4f46e5",
+            font_family: "system-ui",
+            font_size: 16
         };
 
-        // Initialize form when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set max date for DOB (minimum age 18 years)
-            const dobInput = document.getElementById('dob');
-            const today = new Date();
-            const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-            dobInput.max = maxDate.toISOString().split('T')[0];
+        let config = { ...defaultConfig };
 
-            // Setup form validation
-            setupFormValidation();
-        });
+        function showMessage(type, title, text, icon) {
+            const container = document.getElementById('message-container');
+            const iconEl = document.getElementById('message-icon');
+            const titleEl = document.getElementById('message-title');
+            const textEl = document.getElementById('message-text');
 
-        // Setup form validation
-        function setupFormValidation() {
-            const form = document.getElementById('registrationForm');
-            const inputs = form.querySelectorAll('input, textarea, select');
-
-            inputs.forEach(input => {
-                // Validate on blur
-                input.addEventListener('blur', function() {
-                    validateField(this);
-                });
-
-                // Clear error when user starts typing
-                input.addEventListener('input', function() {
-                    if (this.classList.contains('input-error')) {
-                        this.classList.remove('input-error');
-                        const errorElement = document.getElementById(`${this.id}Error`);
-                        if (errorElement) errorElement.style.display = 'none';
-                    }
-                });
-            });
-        }
-
-        // Validate individual form field
-        function validateField(field) {
-            const errorElement = document.getElementById(`${field.id}Error`);
+            container.className = `success-message mb-6 p-4 rounded-lg text-center ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white`;
+            iconEl.textContent = icon;
+            titleEl.textContent = title;
+            textEl.textContent = text;
             
-            // Hide previous error before re-validation
-            if (errorElement) errorElement.style.display = 'none';
-            field.classList.remove('input-error');
-
-            if (field.required && !field.value.trim()) {
-                showError(field, errorElement, 'This field is required');
-                return false;
-            }
-
-            if (field.type === 'text' || field.tagName === 'TEXTAREA') {
-                if (field.hasAttribute('minlength') && field.value.length < field.getAttribute('minlength')) {
-                    const errorMessage = field.id === 'servicesKnown' 
-                        ? 'कृपया बताएं कि आपको कौन-कौन से काम आते हैं (कम से कम 10 अक्षर)'
-                        : `Minimum ${field.getAttribute('minlength')} characters required`;
-                        
-                    showError(field, errorElement, errorMessage);
-                    return false;
-                }
-
-                if (field.hasAttribute('maxlength') && field.value.length > field.getAttribute('maxlength')) {
-                    showError(field, errorElement, `Maximum ${field.getAttribute('maxlength')} characters allowed`);
-                    return false;
-                }
-
-                if (field.hasAttribute('pattern')) {
-                    const pattern = new RegExp(field.getAttribute('pattern'));
-                    if (!pattern.test(field.value)) {
-                        showError(field, errorElement, 'Invalid format');
-                        return false;
-                    }
-                }
-            }
-
-            if (field.type === 'email' && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
-                showError(field, errorElement, 'Please enter a valid email address');
-                return false;
-            }
-
-            if (field.type === 'tel' && !/^[0-9]{10,15}$/.test(field.value)) {
-                showError(field, errorElement, 'Please enter a valid 10-15 digit phone number');
-                return false;
-            }
-
-            if (field.type === 'date' && field.value) {
-                const selectedDate = new Date(field.value);
-                const maxDate = new Date(field.max);
-                if (selectedDate > maxDate) {
-                    showError(field, errorElement, 'You must be at least 18 years old');
-                    return false;
-                }
-            }
-
-            return true;
+            container.classList.remove('hidden');
+            setTimeout(() => container.classList.add('hidden'), 8000);
         }
 
-        // Show error message
-        function showError(field, errorElement, message) {
-            field.classList.add('input-error');
-            if (errorElement) {
-                errorElement.textContent = message;
-                errorElement.style.display = 'block';
+        function updateSetupNotice() {
+            const notice = document.getElementById('setup-notice');
+            const scriptUrl = config.google_script_url || defaultConfig.google_script_url;
+            
+            if (scriptUrl && scriptUrl.trim()) {
+                notice.classList.add('hidden');
+            } else {
+                notice.classList.remove('hidden');
             }
         }
 
-        // Validate entire form
-        function validateForm() {
-            let isValid = true;
-            const form = document.getElementById('registrationForm');
-            // This now includes the required textarea 'servicesKnown'
-            const inputs = form.querySelectorAll('input[required], textarea[required], select[required]'); 
+        async function onConfigChange(newConfig) {
+            const customFont = newConfig.font_family || defaultConfig.font_family;
+            const baseFontStack = 'system-ui, -apple-system, sans-serif';
+            const baseSize = newConfig.font_size || defaultConfig.font_size;
 
-            // Validate all required fields
+            document.getElementById('form-title').textContent = newConfig.form_title || defaultConfig.form_title;
+            document.getElementById('form-subtitle').textContent = newConfig.form_subtitle || defaultConfig.form_subtitle;
+            document.getElementById('submit-text').textContent = newConfig.submit_button_text || defaultConfig.submit_button_text;
+
+            document.getElementById('form-title').style.fontFamily = `${customFont}, ${baseFontStack}`;
+            document.getElementById('form-title').style.fontSize = `${baseSize * 2}px`;
+            
+            document.getElementById('form-subtitle').style.fontFamily = `${customFont}, ${baseFontStack}`;
+            document.getElementById('form-subtitle').style.fontSize = `${baseSize * 1.25}px`;
+
+            const labels = document.querySelectorAll('label');
+            labels.forEach(label => {
+                label.style.fontFamily = `${customFont}, ${baseFontStack}`;
+                label.style.fontSize = `${baseSize * 0.875}px`;
+                label.style.color = newConfig.text_color || defaultConfig.text_color;
+            });
+
+            const inputs = document.querySelectorAll('input, select, textarea');
             inputs.forEach(input => {
-                if (!validateField(input)) {
-                    isValid = false;
-                }
+                input.style.fontFamily = `${customFont}, ${baseFontStack}`;
+                input.style.fontSize = `${baseSize}px`;
             });
 
-            return isValid;
+            document.querySelector('.gradient-bg').style.background = `linear-gradient(135deg, ${newConfig.background_color || defaultConfig.background_color} 0%, ${newConfig.secondary_action_color || defaultConfig.secondary_action_color} 100%)`;
+            
+            document.querySelector('.form-container').style.backgroundColor = newConfig.surface_color || defaultConfig.surface_color;
+
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.style.background = `linear-gradient(to right, ${newConfig.primary_action_color || defaultConfig.primary_action_color}, ${newConfig.secondary_action_color || defaultConfig.secondary_action_color})`;
+            submitBtn.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            submitBtn.style.fontSize = `${baseSize * 1.125}px`;
+
+            updateSetupNotice();
         }
 
-        // Show form popup with relevant services
-        function showFormPopup(category) {
-            const popup = document.getElementById('formPopup');
-            const serviceCategoryInput = document.getElementById('serviceCategory');
+        async function initializeApp() {
+            if (window.elementSdk) {
+                window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange: async (newConfig) => {
+                        config = newConfig;
+                        await onConfigChange(newConfig);
+                    },
+                    mapToCapabilities: (config) => ({
+                        recolorables: [
+                            {
+                                get: () => config.background_color || defaultConfig.background_color,
+                                set: (value) => {
+                                    config.background_color = value;
+                                    window.elementSdk.setConfig({ background_color: value });
+                                }
+                            },
+                            {
+                                get: () => config.surface_color || defaultConfig.surface_color,
+                                set: (value) => {
+                                    config.surface_color = value;
+                                    window.elementSdk.setConfig({ surface_color: value });
+                                }
+                            },
+                            {
+                                get: () => config.text_color || defaultConfig.text_color,
+                                set: (value) => {
+                                    config.text_color = value;
+                                    window.elementSdk.setConfig({ text_color: value });
+                                }
+                            },
+                            {
+                                get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                                set: (value) => {
+                                    config.primary_action_color = value;
+                                    window.elementSdk.setConfig({ primary_action_color: value });
+                                }
+                            },
+                            {
+                                get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                                set: (value) => {
+                                    config.secondary_action_color = value;
+                                    window.elementSdk.setConfig({ secondary_action_color: value });
+                                }
+                            }
+                        ],
+                        borderables: [],
+                        fontEditable: {
+                            get: () => config.font_family || defaultConfig.font_family,
+                            set: (value) => {
+                                config.font_family = value;
+                                window.elementSdk.setConfig({ font_family: value });
+                            }
+                        },
+                        fontSizeable: {
+                            get: () => config.font_size || defaultConfig.font_size,
+                            set: (value) => {
+                                config.font_size = value;
+                                window.elementSdk.setConfig({ font_size: value });
+                            }
+                        }
+                    }),
+                    mapToEditPanelValues: (config) => new Map([
+                        ["form_title", config.form_title || defaultConfig.form_title],
+                        ["form_subtitle", config.form_subtitle || defaultConfig.form_subtitle],
+                        ["submit_button_text", config.submit_button_text || defaultConfig.submit_button_text],
+                        ["google_script_url", config.google_script_url || defaultConfig.google_script_url]
+                    ])
+                });
 
-            // Reset form
-            const form = document.getElementById('registrationForm');
-            form.reset();
-
-            // Clear previous errors
-            const errorMessages = form.querySelectorAll('.error-message');
-            errorMessages.forEach(error => {
-                error.style.display = 'none';
-            });
-
-            const inputErrors = form.querySelectorAll('.input-error');
-            inputErrors.forEach(input => {
-                input.classList.remove('input-error');
-            });
-
-            // Set the service category to 'Registrations'
-            serviceCategoryInput.value = 'Registrations';
-
-            // Show popup
-            popup.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close form popup
-        function closeFormPopup() {
-            const popup = document.getElementById('formPopup');
-            popup.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close form popup when clicking outside
-        document.getElementById('formPopup').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeFormPopup();
+                config = window.elementSdk.config;
             }
-        });
 
-        // Generate a random employee ID
-        function generateEmployeeId() {
-            const prefix = 'EMP';
-            const randomNum = Math.floor(10000 + Math.random() * 90000);
-            return `${prefix}${randomNum}`;
+            await onConfigChange(config);
         }
 
-        // Submit form data
-        function submitForm(event) {
-            event.preventDefault();
+        document.getElementById('partner-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-            // Validate form
-            if (!validateForm()) {
-                // Scroll to the first error
-                const firstError = document.querySelector('.input-error, .error-message[style*="display: block"]');
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
+            const scriptUrl = config.google_script_url || defaultConfig.google_script_url;
+            
+            if (!scriptUrl || !scriptUrl.trim()) {
+                showMessage('error', 'Setup Required', 'Please add your Google Apps Script URL in the edit panel first', '⚙️');
                 return;
             }
 
-            // Disable submit button and show spinner
-            const submitBtn = document.getElementById('submitBtn');
-            const spinner = document.getElementById('formSpinner');
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = document.getElementById('submit-text');
+            const submitSpinner = document.getElementById('submit-spinner');
+
             submitBtn.disabled = true;
-            spinner.style.display = 'block';
+            submitText.classList.add('hidden');
+            submitSpinner.classList.remove('hidden');
 
-            const form = document.getElementById('registrationForm');
-            const formData = new FormData(form);
+            const formData = {
+                name: document.getElementById('name').value,
+                business_name: document.getElementById('business-name').value,
+                business_type: document.getElementById('business-type').value,
+                contact_no: document.getElementById('contact').value,
+                full_address: document.getElementById('address').value,
+                landmark: document.getElementById('landmark').value,
+                pin_code: document.getElementById('pincode').value
+            };
 
-            // Add employee ID to form data
-            const employeeId = generateEmployeeId();
-            formData.append('employeeId', employeeId);
-            
-            // Set action to a specific value for the Apps Script
-            formData.append('action', 'submitTechnicianRegistration');
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain',
+                    },
+                    body: JSON.stringify(formData)
+                });
 
-
-            // Determine the correct endpoint based on the hardcoded 'Registrations' key
-            const endpoint = serviceData['Registrations'].sheetEndpoint; 
-
-            if (endpoint === 'YOUR_GOOGLE_APP_SCRIPT_URL_HERE') {
-                // Custom error for missing endpoint
-                console.error('Submission Error: Google Apps Script URL has not been replaced.');
+                if (response.ok) {
+                    try {
+                        const result = await response.json();
+                        if (result.success) {
+                            showMessage('success', 'Form Submitted Successfully!', 'Your partner application has been saved to Google Sheets', '✅');
+                            document.getElementById('partner-form').reset();
+                        } else {
+                            showMessage('error', 'Submission Failed', result.error || 'Please try again', '❌');
+                        }
+                    } catch (jsonError) {
+                        showMessage('success', 'Form Submitted Successfully!', 'Your partner application has been saved to Google Sheets', '✅');
+                        document.getElementById('partner-form').reset();
+                    }
+                } else {
+                    throw new Error('Network response was not ok');
+                }
                 
-                // Show user-friendly error popup
-                document.getElementById('successTitle').textContent = 'Submission Failed!';
-                document.getElementById('successUserName').textContent = '';
-                document.querySelector('#successPopup .success-icon').textContent = 'X';
-                document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
-                document.getElementById('employeeIdDisplay').parentElement.style.display = 'none'; 
-                document.querySelector('#successPopup .success-message').textContent = 'Error: The Google Sheets endpoint URL has not been configured. Please replace "YOUR_GOOGLE_APP_SCRIPT_URL_HERE" in the code.';
+            } catch (error) {
+                console.error('Primary submission error:', error);
                 
-                closeFormPopup();
-                document.getElementById('successPopup').classList.add('active');
-                
-                document.getElementById('submitBtn').disabled = false;
-                document.getElementById('formSpinner').style.display = 'none';
-                return;
+                try {
+                    await fetch(scriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'text/plain',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    showMessage('success', 'Form Submitted Successfully!', 'Your partner application has been saved to Google Sheets', '✅');
+                    document.getElementById('partner-form').reset();
+                    
+                } catch (fallbackError) {
+                    console.error('Fallback submission error:', fallbackError);
+                    showMessage('error', 'Connection Error', 'Please check your Google Apps Script URL and make sure it\'s deployed with "Anyone" access', '🌐');
+                }
             }
 
-            // --- Network Fetch Logic ---
-            fetch(endpoint, {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Revert success popup to default successful state
-                    document.getElementById('successTitle').textContent = 'Registration Successful!';
-                    document.querySelector('#successPopup .success-icon').textContent = '✓';
-                    document.querySelector('#successPopup .success-icon').style.color = '#28a745';
-                    document.getElementById('employeeIdDisplay').parentElement.style.display = 'block';
-                    document.querySelector('#successPopup .success-message').textContent = "Thank you for joining us, " + formData.get('fullName') + "! We're excited to have you on board.";
+            submitBtn.disabled = false;
+            submitText.classList.remove('hidden');
+            submitSpinner.classList.add('hidden');
+        });
 
-
-                    if (data.result === 'success') {
-                        const userName = formData.get('fullName');
-                        document.getElementById('successUserName').textContent = userName;
-                        document.getElementById('employeeIdDisplay').textContent = employeeId;
-
-                        // Hide the form popup and show success
-                        closeFormPopup();
-                        document.getElementById('successPopup').classList.add('active');
-                    } else {
-                        // Handle server-side errors from Apps Script
-                        document.getElementById('successTitle').textContent = 'Submission Failed!';
-                        document.querySelector('#successPopup .success-icon').textContent = 'X';
-                        document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
-                        document.getElementById('employeeIdDisplay').parentElement.style.display = 'none';
-                        document.querySelector('#successPopup .success-message').textContent = 'There was an issue submitting your registration. Please check the Apps Script log or try again later.';
-                        
-                        closeFormPopup();
-                        document.getElementById('successPopup').classList.add('active');
-                        console.error('Submission error:', data);
-                    }
-                })
-                .catch(error => {
-                    // Handle network/fetch errors
-                    document.getElementById('successTitle').textContent = 'Network Error!';
-                    document.querySelector('#successPopup .success-icon').textContent = 'X';
-                    document.querySelector('#successPopup .success-icon').style.color = '#dc3545';
-                    document.getElementById('employeeIdDisplay').parentElement.style.display = 'none';
-                    document.querySelector('#successPopup .success-message').textContent = 'A network error occurred during submission. Please check your internet connection and try again.';
-                    
-                    closeFormPopup();
-                    document.getElementById('successPopup').classList.add('active');
-                    console.error('Submission error:', error);
-                })
-                .finally(() => {
-                    // Re-enable button and hide spinner regardless of success or failure
-                    document.getElementById('submitBtn').disabled = false;
-                    document.getElementById('formSpinner').style.display = 'none';
-                });
-        }
-
-        // Close success popup
-        function closeSuccessPopup() {
-            const successPopup = document.getElementById('successPopup');
-            successPopup.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            
-            // Reset success popup contents to default success message for future use
-            document.getElementById('successTitle').textContent = 'Registration Successful!';
-            document.querySelector('#successPopup .success-icon').textContent = '✓';
-            document.querySelector('#successPopup .success-icon').style.color = '#28a745';
-            document.getElementById('employeeIdDisplay').parentElement.style.display = 'block';
-        }
+        initializeApp();
     </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'999af227c1785a14',t:'MTc2MjMzMDk3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
