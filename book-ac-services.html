@@ -2,7 +2,8 @@
 <html lang="hi">
  <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- FIX: Removed viewport-fit=cover from viewport meta tag to prevent excess top padding in some webviews/browsers -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="icon" type="image/svg+xml" href="logo.png">
   <title>Sonipat AC Service - Air Conditioner Repair &amp; Service</title>
   <!-- SEO Meta Tags -->
@@ -38,11 +39,20 @@ Fridge Repair, Washing Machine Service, Septic Tank Cleaning, Geyser Installatio
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* Subtle light background */
+            /* FIX: Ensure no unwanted margin/padding at the top of the body for webview */
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
         
         /* --- Gradient Colors for Header and Primary Buttons --- */
         .gradient-bg {
             background: linear-gradient(135deg, #0f62fe 0%, #1e40af 100%); /* Deep Blue/Indigo */
+        }
+
+        /* FIX: Adjusted header styling for better webview compatibility */
+        header {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            /* Removed backdrop-blur-md for a cleaner fix on some webviews */
         }
         
         /* --- Service Card (Ultra Stylish) --- */
@@ -190,7 +200,8 @@ Fridge Repair, Washing Machine Service, Septic Tank Cleaning, Geyser Installatio
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="min-h-full bg-gray-50"><!-- Header -->
-  <header class="gradient-bg text-white shadow-2xl sticky top-0 z-40 backdrop-blur-md">
+  <!-- FIX: Removed backdrop-blur-md for better webview rendering and simplified header shadow -->
+  <header class="gradient-bg text-white shadow-2xl sticky top-0 z-40"> 
    <div class="container mx-auto px-4 py-4">
     <div class="flex justify-between items-center"><a href="index.html" class="flex items-center space-x-3 hover:opacity-90 transition-opacity"><img src="logo.png" alt="Sonipat Home Service Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-lg border border-white/50">
       <div>
@@ -212,6 +223,7 @@ Fridge Repair, Washing Machine Service, Septic Tank Cleaning, Geyser Installatio
    </div>
   </header>
   
+ 
 
   <!-- NEW: Info Cards Section -->
   <section class="py-6 bg-white">
@@ -726,7 +738,7 @@ Fridge Repair, Washing Machine Service, Septic Tank Cleaning, Geyser Installatio
                 currency: 'INR',
                 name: 'Air Conditioner (AC) Repair & Service in Sonipat',
                 description: 'Booking Charge - AC Repair & Service',
-                image: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiMzYjgyZjYiPjxwYXRoIGQ9Ik0xMiwyQTEwLDEwIDAgMCwxIDIyLDEyQTEwLDEwIDAgMCwxIDEyLDIyQTEwLDEwIDAgMCwxIDIsMTJBMTAsMTAgMCAwLDEgMTIsMk0xMiw0QTgsOCAwIDAsMCA0LDEyQTgsOCAwIDAsMCAxMiwyMEE4LDggMCAwLDAgMjAsMTJBOCw4IDAgMCwwIDEyLDRNMTIsNkE2LDYgMCAwLDEgMTgsMTJBNiw2IDAgMCwxIDEyLDE4QTYsNiAwIDAsMSA2LDEyQTYsNiAwIDAsMSAxMiw2TTEyLDhBNCw0IDAgMCwwIDgsMTJBNCw0IDAgMCwwIDEyLDE2QTQsNCAwIDAsMCAxNiwxMkE0LDQgMCAwLDAgMTIsOFoiLz48L3N2Zz4=',
+                image: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiMzYjgyZjYiPjxwYXRoIGQ9Ik0xMiwyQTEwLDEwIDAgMCwxIDIyLDEyQTEwLDEwIDAgMCwxIDEyLDIyQTEwLDEwIDAgMCwxIDIsMTJBMTAsMTAgMCAwLDEgMTIsMk0xMiw0QTgsOCAwIDAsMCA0LDEyQTgsOCAwIDAsMCAxMiwyMEE4LDggMCAwLDAgMjAsMTJBOCw4IDAgMCwwIDEyLDRNMTIsNkE2LDYgMCAwLDEgMTgsMTJBNiw2IDAgMCwxIDEyLDE4QTYsNiAwIDAsMSA2LDEyQTYsNiAwIDAsMSAxMiw2TTEyLDhBNCw0IDAgMCwwIDgsMTJBNCw0IDAgMCwwIDEyLDE2QTQsNCAwIDAsMCAxNiwxMkE0LDQgMCAwLDAgMTIsOFoiLz48L2N2Zz4=',
                 prefill: {
                     name: customerData.name,
                     email: customerData.email,
