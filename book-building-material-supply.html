@@ -1,1234 +1,1004 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="logo.png">
-    <title>SonipatHomeService.com - Building Material Supply</title>
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Get 30+ fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support with expert technicians. Book now!" />
-    <meta name="keywords" content="AC Repair Sonipat, ac service sonipat, ac service near me ,Fridge Repair, Washing Machine Service, Septic Tank Cleaning, Geyser Installation, Chimney Cleaning, Electrician Services, Borewell Installation, Sewerage Unblock, Barber Booking, Masonry Work, CCTV Installation, RO Repair, Vehicle Booking, Car Repair, Parcel Delivery, LED TV Repair, Solar Panel Installation, Catering Service, Halwai, WiFi Installation, DTH Installation, Pest Control, RO Water Supply, Waiter Booking, Auto Battery, Inverter Battery, Building Materials, Sofa Cleaning, Water Tank Cleaning, Room On Rent, home services in Sonipat" />
+<!doctype html>
+<html lang="hi">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="icon" type="image/svg+xml" href="logo.png">
+  <title>Sonipat Building Material Supply - Bricks, Sand & Dust Delivery</title>
+  <!-- SEO Meta Tags updated for consistency -->
+    <meta name="description" content="Order quality building materials like Bricks, Sand, and Dust for home construction in Sonipat. Get doorstep delivery with transparent pricing and low advance booking." />
+    <meta name="keywords" content="building material supply sonipat, red bricks price, sand rate, dust for construction, construction material delivery, bricks supplier, cement supply, construction labor" />
     <meta name="author" content="Sonipat Home Service" />
-    <link rel="canonical" href="https://sonipathomeservice.com/" />
+    <link rel="canonical" href="https://sonipathomeservice.com/book-building-material-supply.html" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sonipathomeservice.com/" />
-    <meta property="og:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="og:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="og:image" content="logo.png" />
-    <meta property="og:site_name" content="Sonipat Home Service" />
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sonipathomeservice.com/" />
-    <meta property="twitter:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="twitter:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="twitter:image" content="logo.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <style>
-        /* --- CSS copied from book-ac-services.html for exact look --- */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
-
-        :root {
-            /* Classic White & Light Blue Theme (Matching AC Service) */
-            --bg-dark: #F4F7FB; /* Very Light Blue/Gray Background */
-            --bg-card: #FFFFFF; /* White Card/Popup Background */
-            --primary: #3B82F6; /* Primary Accent (Classic Blue) */
-            --secondary: #1F83E7; /* Secondary Accent (Darker Blue for titles/prices) */
-            --text-light: #1F2937; /* Dark Gray/Black Text */
-            --text-subtle: #6B7280; /* Subtle Gray Text */
-            --shadow-depth: 0 5px 20px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
+  <style>
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        /* --- Custom Components --- */
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-depth);
-            transition: var(--transition);
-            border: 1px solid rgba(59, 130, 246, 0.1); 
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
-        }
-
-        .stat-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .stat-card p {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .product-section {
-            background: linear-gradient(135deg, var(--bg-card), #E7EFF9);
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-depth);
-            margin-bottom: 3rem;
-            overflow: hidden;
-            border: 2px solid var(--primary);
-        }
-
-        .product-header {
-            background: linear-gradient(90deg, #E7EFF9, var(--bg-card));
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .product-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--secondary);
-        }
-
-        .product-content {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 3rem;
-            gap: 3rem;
-            align-items: center; 
-            justify-content: center;
-        }
-
-        .product-details {
-            flex: 1; 
-            min-width: 300px;
-            text-align: center; 
-        }
-
-        .price-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-            padding: 1rem 0;
-            border-top: 1px dashed var(--text-subtle);
-            border-bottom: 1px dashed var(--text-subtle);
-            justify-content: center; 
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; 
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
         
-        /* Display for selected services */
-        #selectedServicesDisplay {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-top: 0.5rem;
-            min-height: 24px; 
+        /* --- Gradient Colors for Header and Primary Buttons --- */
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f62fe 0%, #1e40af 100%); /* Deep Blue/Indigo */
         }
 
-        .original-price {
-            font-size: 1.2rem;
-            text-decoration: line-through;
-            color: var(--text-subtle);
-            font-weight: 400;
-        }
-
-        .current-price {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-            justify-content: center;
-            flex-grow: 1;
-            max-width: 400px; 
-            min-width: 200px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--bg-card); /* White text on blue button */
-            border-color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .btn-primary:hover {
-            background: #2563EB; /* Darker blue shade for hover */
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--secondary);
-            border-color: var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(59, 130, 246, 0.1);
-            transform: scale(1.03);
+        header {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
         }
         
-        /* --- Service Card Styling (Updated for Image Background) --- */
-        .service-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            cursor: pointer;
-            /* Default styles for the card */
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay for readability */
-            background-image: url('placeholder.png'); /* Default background image */
-            background-size: cover;
-            background-position: center;
-            color: white; /* Ensure text is readable over the image */
-            position: relative; /* Needed for z-index of children */
-            border-radius: 0.75rem; /* Smaller radius for compact look */
-            /* Adjusted padding for compactness */
-            padding: 0.75rem; 
-            border: 2px solid transparent; /* Default border */
-        }
-        
-        .service-card-wrapper {
+        /* --- Service/Plan Card (Ultra Stylish - From AC/CCTV File) --- */
+        .plan-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            transform-style: preserve-3d;
+            background: #ffffff;
+            box-shadow: 
+                0 15px 30px rgba(0,0,0,0.1),
+                0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 20px; 
             position: relative;
+            overflow: hidden;
+            margin: 8px;
+            cursor: pointer;
         }
-
-        /* Hide the actual checkbox */
-        .service-card-wrapper input[type="checkbox"] {
+        
+        .plan-card::before {
+            content: '';
             position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-            top: 0;
-            right: 0;
-            width: 2.5rem;
-            height: 2.5rem;
-            z-index: 10; 
-        }
-
-        /* Style the card based on checked state (Blue card on Selection) */
-        .service-card-wrapper input[type="checkbox"]:checked + .service-card {
-            background-image: none !important; 
-            background-color: rgba(59, 130, 246, 0.7) !important; /* Primary blue overlay */
-            border-color: var(--primary) !important;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); 
-        }
-
-        /* FIX: Make check icon WHITE on selection for high visibility */
-        .service-card-wrapper input[type="checkbox"]:checked + .service-card .card-check-icon {
-            color: white; 
-            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.9)); 
-        }
-        
-        /* Check icon contrast adjustment for dark card background */
-        .service-card .card-check-icon {
-            color: #f7f7f7; /* Light gray checkmark for visibility */
-            transition: color 0.3s;
-        }
-        
-        /* Text visibility improvements */
-        .service-card h4, .service-card p {
-            /* Increased text shadow for much better contrast against any image */
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 1.0); 
-            font-weight: 700; /* Made text bold */
-            /* Adjusted font size for compactness */
-            font-size: 0.95rem;
-        }
-        .service-card h4 {
-            /* Adjusted font size for compactness */
-            font-size: 0.95rem; 
-        }
-
-
-        .btn-see-more {
-            margin-top: auto; 
-            font-size: 0.8rem; /* Smaller font for compactness */
-            padding: 0.4rem 0.8rem; /* Smaller padding for compactness */
-            max-width: 100%;
-            /* Fixed button color to always be a clear blue (primary) */
-            background-color: var(--primary) !important;
-            color: white !important;
-            border-radius: 0.5rem; /* Slightly smaller border radius for the button */
-        }
-        
-        /* --- COMPACT CARD & ICON STYLING --- */
-        .service-icon-container {
-            /* Reduced size from 32px to 28px */
-            width: 28px;
-            height: 28px;
-            /* White background for icon visibility over dark/image background */
-            background: white; 
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Reduced margin-right from 8px to 6px */
-            margin-right: 6px;
-            color: var(--primary); /* Primary blue icon color */
-            flex-shrink: 0;
-            font-size: 0.8rem; /* Reduced icon size */
-        }
-        /* --- END COMPACT CARD & ICON STYLING --- */
-        
-        /* --- Popup Styling --- */
-        #popup-overlay {
-            display: none;
-            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 999;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15,98,254,0.1) 0%, rgba(30,64,175,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
         }
-
-        .popup {
-            display: none;
-            background: var(--bg-card);
-            color: var(--text-light);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-depth);
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            width: 95%;
-            max-width: 750px; 
-            max-height: 95vh;
-            overflow-y: auto;
-            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-            border: 1px solid var(--primary);
+        
+        .plan-card:hover::before {
+            opacity: 1;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-8px) scale(1.02); 
+            box-shadow: 
+                0 25px 50px rgba(15,98,254,0.3), /* Stronger shadow */
+                0 15px 30px rgba(0,0,0,0.15),
+                inset 0 2px 0 rgba(255,255,255,0.9);
+            border-color: #0f62fe; /* Primary color border on hover */
+        }
+        
+        .plan-card-content {
+            position: relative;
+            z-index: 2;
+            padding: 24px;
+        }
+        
+        /* --- Primary Button --- */
+        .btn-primary {
+            background: linear-gradient(135deg, #0f62fe, #1e40af);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(15,98,254,0.4);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e40af, #11368e);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(15,98,254,0.6);
+        }
+        
+        /* --- Utility classes for Modals and Loading --- */
+        .popup-overlay {
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .popup-content {
+            animation: slideUp 0.3s ease;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        .popup h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--secondary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .popup label {
-            display: block;
-            margin-top: 1rem;
-            margin-bottom: 0.4rem;
-            color: var(--primary);
-            font-size: 0.95rem;
-            font-weight: 500;
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        .popup input,
-        .popup select,
-        .popup textarea {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--text-subtle);
-            font-size: 1rem;
-            background: #F9FAFB; /* Very light input background */
-            color: var(--text-light);
-            transition: border-color 0.3s ease;
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
-        .popup input:focus,
-        .popup select:focus,
-        .popup textarea:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); 
-        }
-
-        .popup textarea {
-            min-height: 8rem;
-            resize: vertical;
-        }
-
-        .popup button[type="submit"],
-        #razorpay-payment-btn,
-        #downloadTicketsBtn,
-        .popup button.close-btn {
-            width: 100%;
-            padding: 1rem;
-            margin-top: 1.5rem;
-            border-radius: 0.75rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .popup button[type="submit"],
-        #razorpay-payment-btn,
-        #downloadTicketsBtn {
-            background: linear-gradient(45deg, var(--primary), #2563EB); 
-            color: var(--bg-card);
-        }
-
-        .popup button[type="submit"]:hover,
-        #razorpay-payment-btn:hover,
-        #downloadTicketsBtn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.6); 
+        .cart-badge {
+            animation: bounce 0.5s ease;
         }
         
-        .quantity-selector-container {
-            background: #EFF6FF; /* Very light blue background */
-            padding: 1.2rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--primary);
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
-        .total-price-quantity {
-            font-size: 1.8rem !important;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--secondary) !important;
+        /* --- Marquee/Slider Styling --- */
+        .services-slider {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            background: #374151; 
         }
 
-        #ticketDisplay {
-            background: #F9FAFB;
-            border: 1px solid var(--primary);
-            color: var(--text-light);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            word-break: break-word;
+        .services-track {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
         }
-        
-        /* Custom Alert Styling */
-        .custom-alert {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--primary); /* Blue alert background */
-            color: var(--bg-card); /* White alert text */
-            padding: 1.25rem 1.875rem;
-            border-radius: 0.625rem;
-            z-index: 1002;
-            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.4);
-            font-size: 1rem;
-            text-align: center;
-            max-width: 90%;
-            animation: fadeInOut 4s forwards;
-            font-family: 'Montserrat', sans-serif;
+
+        .services-track a, .services-track span {
+            display: inline-block;
+            color: #d1d5db; 
+            padding: 0 15px;
+            text-decoration: none;
             font-weight: 600;
-        }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, -40%); }
-            10% { opacity: 1; transform: translate(-50%, -50%); }
-            90% { opacity: 1; transform: translate(-50%, -50%); }
-            100% { opacity: 0; transform: translate(-50%, -60%); display: none; }
+            font-size: 14px;
+            transition: color 0.3s;
         }
 
-        /* --- RESPONSIVENESS TWEAKS --- */
-        #serviceCardsContainer {
-            grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        .services-track a:hover {
+            color: #60a5fa; 
         }
 
-        @media (min-width: 768px) {
-            #serviceCardsContainer {
-                grid-template-columns: repeat(3, minmax(0, 1fr)); 
-            }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- Material Specific Styles --- */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 12px;
+            font-size: 14px;
         }
         
-        @media (max-width: 1024px) {
-            .product-content { padding: 2rem; flex-direction: column; }
-            .product-details { text-align: center; }
-            .price-container, .action-buttons { justify-content: center; }
-            .btn { max-width: 400px; } 
-            .stat-grid { grid-template-columns: 1fr 1fr; }
-            main { padding: 3rem 1rem; }
-        }
-
-        @media (max-width: 600px) {
-            main { padding: 2rem 1rem; }
-            .product-header h2 { font-size: 2rem; }
-            .product-details h3 { font-size: 2rem; }
-            .stat-grid { grid-template-columns: 1fr; gap: 1rem;} 
-            .current-price { font-size: 2.5rem; }
-            .popup { padding: 1.5rem; }
-            .popup h2 { font-size: 1.5rem; }
-            .action-buttons { flex-direction: column; }
-            .btn { min-width: 100%; max-width: 100%; }
-            
-            .popup input, .popup select, .popup textarea {
-                padding: 0.7rem 1rem;
-            }
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 6px;
         }
         
-        @media (max-width: 400px) {
-            .current-price { font-size: 2rem; }
-            .original-price { font-size: 1rem; }
-            .stat-card p { font-size: 1.8rem; }
-            .popup { padding: 1rem; }
+        .feature-list li .feature-icon {
+            color: #f59e0b; /* Amber checkmark for material theme */
+            margin-right: 8px;
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .icon-package {
+             background: #eff6ff; /* blue-50 */
+             color: #1d4ed8; /* blue-700 */
         }
 
-        /* Styling for the new selection display element (matching AC service file) */
-        #serviceSelectionDisplayWrapper {
-            background-color: #F9FAFB;
-            border: 1px solid var(--text-subtle);
-            border-radius: 0.75rem;
-            padding: 0.9rem 1.2rem;
-            cursor: pointer;
-            text-align: left;
-            margin-bottom: 1rem;
-            transition: border-color 0.3s ease;
-            min-height: 48px;
-        }
-        #serviceSelectionDisplayWrapper:hover {
-            border-color: var(--primary);
-        }
-
-        #selectedServicesSummary {
-            display: block;
-            color: var(--text-light);
-            font-size: 1rem;
-            line-height: 1.25;
-            white-space: pre-wrap;
-        }
-        /* --- END OF AC CSS COPY --- */
     </style>
-</head>
-<body>
-    <main class="container">
-        
-        <section class="product-section">
-            <div class="product-header">
-                <h2 class="text-secondary">Building Material Supply Service</h2> 
-                <p class="text-text-subtle mt-2">Order Quality Bricks, Sand, and Dust for doorstep delivery.</p>
-            </div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="min-h-full bg-gray-50"><!-- Header (From CCTV/Borewell File) -->
+  <header class="gradient-bg text-white shadow-2xl sticky top-0 z-40"> 
+   <div class="container mx-auto px-4 py-4">
+    <br>
+    <div class="flex justify-between items-center"><a href="index.html" class="flex items-center space-x-3 hover:opacity-90 transition-opacity"><img src="logo.png" alt="Sonipat Home Service Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-lg border border-white/50">
+      <div>
+       <h1 id="company-name" class="text-xl sm:text-2xl font-extrabold tracking-tight"> <span class="text-yellow-300">SonipatHomeService</span></h1>
+       <p class="text-sm font-semibold opacity-90">Professional Building Material Supply & Delivery</p>
+      </div></a>
+     <div class="flex items-center space-x-4">
+      <!-- Desktop Contact Side Bar -->
+      <div class="text-right hidden md:block border-l pl-4 border-white/30">
+       <a href="tel:8816014071" class="text-lg font-bold hover:text-yellow-300 transition-colors">📞 8816014071</a>
+       <p id="email-address" class="text-xs opacity-80 mt-1">care@sonipathomeservice.com</p>
+      </div>
+      <!-- Cart Button with Pop -->
+      <button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-md"> <span class="flex items-center space-x-2">
+        <i class="fas fa-shopping-cart w-5 h-5"></i>
+        <span class="hidden sm:inline">Cart</span> <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-0.5 text-xs hidden font-bold">0</span> </span> </button>
+     </div>
+    </div>
+   </div>
+  </header>
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-            <div class="product-content">
-                
-                <div class="product-details">
-                    <h3 class="text-3xl font-semibold text-text-light mb-4">Quality Material Delivery</h3>
-                    <p class="text-text-subtle mb-4 text-base">
-                        Select your required material type below. Rates are fixed, and you pay a **₹99 Booking Charge** to confirm delivery.
-                    </p>
-                    
-                    <div class="price-container">
-                        <!-- Display selected package name here -->
-                        <div id="selectedServicesDisplay" class="font-bold text-center text-secondary mb-2">Select material(s) to view cost</div>
-                        <div class="original-price" id="originalPriceDisplay">Total Order Cost: Select Option</div>
-                        <!-- Display fixed booking charge -->
-                        <div class="current-price" id="displayPrice">₹99 Booking Charge</div>
+    <!-- Info Cards Section (From CCTV/Borewell File) -->
+    <section class="py-6 bg-white rounded-xl shadow-lg mb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Info Card 1: Quality Guaranteed -->
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl text-green-600"><i class="fas fa-certificate"></i></span>
+                        <div>
+                            <h4 class="font-extrabold text-lg text-gray-800">Quality Guaranteed</h4>
+                            <p class="text-sm text-gray-600">ISI standards for Bricks, Sand, and Cement.</p>
+                        </div>
                     </div>
-                    
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" id="participate-btn">
-                            <i class="fas fa-truck-loading"></i> Book Material Order Now
+                </div>
+                <!-- Info Card 2: Doorstep Delivery -->
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl text-blue-600"><i class="fas fa-truck"></i></span>
+                        <div>
+                            <h4 class="font-extrabold text-lg text-gray-800">Doorstep Delivery</h4>
+                            <p class="text-sm text-gray-600">Timely delivery across Sonipat area.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Info Card 3: Pay on Delivery -->
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl text-yellow-600"><i class="fas fa-money-bill-wave"></i></span>
+                        <div>
+                            <h4 class="font-extrabold text-lg text-gray-800">Pay on Delivery</h4>
+                            <p class="text-sm text-gray-600">Low advance booking, balance on delivery.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services/Packages Section (Updated styling) -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-extrabold text-center mb-10 text-gray-800">Building Material Price Estimates</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-2" id="services-grid">
+                <!-- Packages will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+  
+  <!-- Terms & Conditions (From CCTV/Borewell File) -->
+  <section class="py-16 bg-gray-100">
+   <div class="container mx-auto px-4">
+    <h3 class="text-3xl font-extrabold text-center mb-12 text-gray-800">Order Process & Quality Promise</h3>
+    <div class="max-w-5xl mx-auto">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Service Terms Card -->
+      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-blue-500 hover:shadow-3xl transition-all duration-300">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600"><i class="fas fa-truck-loading text-3xl"></i>
+        </div>
+        <h4 class="font-extrabold text-xl text-gray-800 mb-2">Delivery Process</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>24-48 hours delivery commitment.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Order quantity confirmation before delivery.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Transparent pricing per truckload/unit.</span></li>
+       </ul>
+      </div><!-- Payment Terms Card -->
+      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-green-500 hover:shadow-3xl transition-all duration-300">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 text-green-600"><i class="fas fa-coins text-3xl"></i>
+        </div>
+        <h4 class="font-extrabold text-xl text-gray-800 mb-2">Payment Flexibility</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Low upfront booking fee (₹99 fixed).</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Balance payment upon successful delivery.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Accept UPI/Cash on Delivery.</span></li>
+       </ul>
+      </div><!-- Construction Expertise Card -->
+      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-yellow-500 hover:shadow-3xl transition-all duration-300">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3 text-yellow-600"><i class="fas fa-warehouse text-3xl"></i>
+        </div>
+        <h4 class="font-extrabold text-xl text-gray-800 mb-2">Material Quality</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>Direct supply from trusted dealers.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>No compromise on material grade.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-yellow-500 mt-1">✓</span> <span>Inspection allowed on delivery.</span></li>
+       </ul>
+      </div>
+     </div><!-- Additional Info Banner -->
+     <div class="mt-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl p-6 text-white text-center shadow-lg">
+      <div class="flex items-center justify-center space-x-4"><span class="text-3xl">🏗️</span>
+       <div>
+        <h5 class="font-extrabold text-xl">Build with Confidence</h5>
+        <p class="text-sm opacity-90">Your reliable partner for all construction material needs.</p>
+       </div><span class="text-3xl">🧱</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  </main>
+  
+  <!-- Cart Popup (From CCTV/Borewell File) -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+       <h3 class="text-2xl font-extrabold text-gray-800">Your Cart</h3><button id="close-cart" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
+      </div>
+      <div id="cart-items" class="space-y-3 mb-4 max-h-60 overflow-y-auto"><!-- Cart items will be populated here -->
+      </div>
+      <div class="border-t pt-4">
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600 font-semibold">Estimated Total:</span> <span class="font-extrabold text-lg">₹<span id="cart-total">0</span></span>
+        </div>
+        <div class="flex justify-between items-center text-blue-600"><span class="font-semibold">Booking Charge:</span> <span class="font-extrabold">₹<span id="cart-booking-charge">99</span></span>
+        </div>
+        <div class="flex justify-between items-center text-green-600"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="onsite-balance">0</span></span>
+        </div>
+        <div class="border-t pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="cart-pay-now">99</span></span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform disabled:opacity-50" disabled> <span id="cart-button-text">Book Order - Pay ₹99</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Checkout Form Popup (From CCTV/Borewell File) -->
+  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-start justify-center min-h-full p-2 py-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content" style="max-height: 95vh; overflow-y: auto;">
+     <div class="sticky top-0 bg-white p-4 border-b flex justify-between items-center z-10">
+      <h3 class="text-xl font-extrabold">Customer Details</h3><button id="close-checkout" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+       </svg></button>
+     </div>
+     <div class="p-4">
+      <form id="checkout-form" class="space-y-4">
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" maxlength="10" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email-id" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+       </div>
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Full Delivery Address *</label> <textarea id="full-address" required rows="3" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+         </div>
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required pattern="[0-9]{6}" maxlength="6" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+         </div>
+        </div>
+       </div>
+       <div class="border-t pt-4 mt-4">
+        <h4 class="text-lg font-extrabold mb-3">Payment Summary</h4>
+        <div class="space-y-2 mb-4 bg-blue-50 p-3 rounded-lg border border-blue-200">
+         <div class="flex justify-between items-center text-sm"><span class="text-gray-700 font-semibold">Estimated Total Cost:</span> <span class="font-extrabold">₹<span id="checkout-total">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-blue-700 text-sm"><span class="font-semibold">Booking Charge (Non-refundable):</span> <span class="font-extrabold">₹<span id="checkout-booking-charge">99</span></span>
+         </div>
+         <div class="flex justify-between items-center text-green-700 text-sm"><span class="font-semibold">Balance Due On Delivery:</span> <span class="font-extrabold">₹<span id="checkout-onsite-balance">0</span></span>
+         </div>
+         <div class="border-t border-blue-300 pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="checkout-pay-now">99</span></span>
+         </div>
+        </div>
+        <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-3 mb-4">
+         <p class="text-xs text-yellow-800"><strong>Note:</strong> You are paying only the booking charge (₹<span id="note-booking-charge">99</span>) now. <span id="onsite-note">Remaining amount will be paid on delivery after quantity confirmation.</span></p>
+        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform"> <span id="checkout-button-text">Pay ₹99 Booking Charge</span> </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+
+
+  <!-- Footer (Updated with Marquee) -->
+  <footer class="bg-gray-900 text-white pt-12">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Contact Information</h4>
+      <div class="space-y-2 text-sm">
+       <p class="flex items-center">📞 <span class="ml-2 font-semibold" id="footer-phone">8816014071</span></p>
+       <p class="flex items-center">✉️ <span class="ml-2" id="footer-email">care@sonipathomeservice.com</span></p>
+       <p class="flex items-center">📍 <span class="ml-2" id="office-address">128/1, Sainipura, Sonipat</span></p>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+       <li><a href="index.html" class="hover:text-blue-400 transition-colors">• Home Page</a></li>
+       <li><a href="policy.html" class="hover:text-blue-400 transition-colors">• Privacy Policy</a></li>
+       <li><a href="terms.html" class="hover:text-blue-400 transition-colors">• Terms &amp; Conditions</a></li>
+       <li><a href="refund.html" class="hover:text-blue-400 transition-colors">• Refund Policy</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Material Highlights</h4>
+      <ul class="space-y-2 text-sm">
+       <li>✓ Bricks, Sand, Dust Delivery</li>
+       <li>✓ Pay on Delivery Available</li>
+       <li>✓ ISI Certified Quality</li>
+       <li>✓ Bulk Orders Accepted</li>
+      </ul>
+     </div>
+    </div>
+    <!-- Marquee Slider for All Services (Copied styling and structure from AC/CCTV file) -->
+    <div style="background: #374151; padding: 15px 0; margin-top: 30px; border-radius: 10px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 10px; font-size: 16px; font-weight: bold;">All Our Services</h4>
+     <div class="services-slider">
+      <div class="services-track"><a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span> <!-- Duplicate for seamless loop --> <a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span>
+      </div>
+     </div>
+    </div>
+   </div>
+
+    <div class="border-t border-gray-800 mt-8 pt-6 pb-2 text-center text-sm">
+     <p>© 2024 Building Material Supply & Delivery in Sonipat. All rights reserved.</p>
+    </div>
+   </div>
+  </footer>
+  
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            company_name: "Building Material Supply & Delivery in Sonipat",
+            customer_care: "8816014071",
+            email_address: "care@sonipathomeservice.com",
+            office_address: "128/1, Sainipura, Sonipat"
+        };
+        const BOOKING_AMOUNT = 99;
+
+        var cart = []; 
+        var currentRecordCount = 0; 
+
+        // Material Services data (Base cost is ESTIMATED/UNIT, actual depends on quantity/delivery)
+        const services = [
+            {
+                id: 1,
+                name: "Red Bricks (1000 Pcs)",
+                price: 8499,
+                originalPrice: 9000,
+                icon: "fas fa-warehouse",
+                description: "Per 1000 Pcs. Final price depends on quality/loading/location.",
+                details: "Estimated Base Price for 1000 Bricks.",
+                features: [
+                    "Best Quality Red Bricks",
+                    "ISI Standard",
+                    "Delivery Included",
+                    "Advance Booking Required"
+                ]
+            },
+            {
+                id: 2,
+                name: "1st Quality Dust (Truckload)",
+                price: 5500,
+                originalPrice: 6000,
+                icon: "fas fa-mound",
+                description: "Estimated Base Price per Truckload/Unit.",
+                details: "Price varies by quantity & location. Pay Balance on Delivery.",
+                features: [
+                    "Top Grade Construction Dust",
+                    "Sourced from Reliable Mines",
+                    "Bulk Order Capacity",
+                    "Inspection on Site"
+                ]
+            },
+            {
+                id: 3,
+                name: "Yamunanagar Sand (Truckload)",
+                price: 3800,
+                originalPrice: 4200,
+                icon: "fas fa-sand-castle",
+                description: "Estimated Base Price per Truckload/Unit.",
+                details: "High quality fine sand for finishing. Pay Balance on Delivery.",
+                features: [
+                    "Yamunanagar Fine Sand",
+                    "Quality Assured",
+                    "Delivery Scheduling",
+                    "Advance Booking Required"
+                ]
+            },
+            {
+                id: 4,
+                name: "Cement Bags (Per Bag)",
+                price: 380, // Low cost to represent a per-bag estimate
+                originalPrice: 400,
+                icon: "fas fa-box",
+                description: "Estimated Per Bag Price (Min. Order 50 Bags).",
+                details: "ACC/Ultratech/Ambuja. Final price based on brand/quantity.",
+                features: [
+                    "Major Cement Brands Available",
+                    "Fresh Stock Guaranteed",
+                    "Delivery Fees May Apply",
+                    "Advance Booking Required"
+                ]
+            }
+        ];
+
+        // Utility function to show custom toast message
+        function showToast(message, type) {
+            const existing = document.getElementById('app-message');
+            if(existing) existing.remove();
+            
+            const colors = {
+                success: { bg: 'bg-green-500', icon: '✅' },
+                error: { bg: 'bg-red-500', icon: '❌' },
+                loading: { bg: 'bg-blue-500', icon: '<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>' }
+            };
+            
+            const msg = colors[type] || colors.loading;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.id = 'app-message';
+            messageDiv.className = `fixed top-4 right-4 ${msg.bg} text-white p-4 rounded-xl shadow-2xl z-[1000] transition-opacity duration-300`;
+            messageDiv.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <span class="text-xl">${msg.icon}</span>
+                    <div>
+                        <p class="font-bold text-lg">${type === 'success' ? 'Success' : (type === 'error' ? 'Error' : 'Processing...')}</p>
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(messageDiv);
+            
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    messageDiv.classList.add('opacity-0');
+                    setTimeout(() => messageDiv.remove(), 300);
+                }, 5000);
+            }
+        }
+        
+        // Helper functions
+        function showLoadingMessage() { showToast('Saving your order details', 'loading'); }
+        function hideLoadingMessage() { const loadingDiv = document.getElementById('app-message'); if (loadingDiv) loadingDiv.remove(); }
+        function showErrorMessage() { showToast('Order Failed! Please try again or contact support.', 'error'); }
+
+        // Initialize SDKs
+        async function initializeApp() {
+            if (window.elementSdk) {
+                await window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange,
+                    mapToCapabilities,
+                    mapToEditPanelValues
+                });
+            }
+
+            if (window.dataSdk) {
+                const initResult = await window.dataSdk.init(dataHandler);
+                if (!initResult.isOk) {
+                    console.error("Failed to initialize data storage");
+                }
+            }
+            renderServices();
+        }
+
+        // Data SDK Handler (From CCTV File)
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+            }
+        };
+
+        // Cart functionality 
+        function renderServices() {
+            const servicesGrid = document.getElementById('services-grid');
+            servicesGrid.innerHTML = services.map(service => `
+                <div class="plan-card" onclick="addToCart(${service.id})">
+                    <div class="plan-card-content">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 mr-4 text-blue-600 text-2xl icon-package">
+                                <i class="${service.icon}"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-extrabold text-lg mb-1 text-gray-800 leading-snug">${service.name}</h4>
+                                <p class="text-gray-600 text-xs">${service.description}</p>
+                                <p class="text-blue-600 text-xs font-semibold">${service.details}</p>
+                            </div>
+                        </div>
+                        
+                        <ul class="feature-list text-gray-700">
+                            ${service.features.map(feature => `
+                                <li><i class="fas fa-check-circle feature-icon"></i> ${feature}</li>
+                            `).join('')}
+                        </ul>
+
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-100 mt-4">
+                            <div class="flex flex-col">
+                                <span class="text-2xl font-extrabold text-red-600">₹${service.price.toLocaleString('en-IN')}</span>
+                                ${service.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${service.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+                            </div>
+                            <button class="btn-primary text-white px-4 py-2 rounded-full font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-300" onclick="event.stopPropagation(); addToCart(${service.id});">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(serviceId) {
+            const service = services.find(s => s.id === serviceId);
+            const existingItem = cart.find(item => item.id === serviceId);
+            
+            // For material supply, allow multiple different items and quantities of the same item
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...service, quantity: 1 });
+            }
+            
+            updateCartUI();
+            showToast(`${service.name} added to cart! (Qty: ${existingItem ? existingItem.quantity : 1})`, "success");
+            showCartPopup();
+        }
+
+        function removeFromCart(serviceId) {
+            const itemIndex = cart.findIndex(item => item.id === serviceId);
+            if (itemIndex > -1) {
+                if (cart[itemIndex].quantity > 1) {
+                    cart[itemIndex].quantity -= 1;
+                    showToast(`${cart[itemIndex].name} quantity reduced.`, "success");
+                } else {
+                    cart.splice(itemIndex, 1);
+                    showToast(`Item removed from cart.`, "success");
+                }
+            }
+            updateCartUI();
+            if (cart.length === 0) {
+                hideCartPopup(); 
+                hideCheckoutPopup();
+            }
+        }
+        
+        function removeItemFromCart(serviceId) {
+             const service = services.find(s => s.id === serviceId);
+             cart = cart.filter(item => item.id !== serviceId);
+             updateCartUI();
+             showToast(`${service.name} removed completely.`, "success");
+             if (cart.length === 0) {
+                hideCartPopup();
+                hideCheckoutPopup();
+            }
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const proceedBtn = document.getElementById('proceed-checkout');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT; 
+            const onsiteAmount = Math.max(0, totalAmount - bookingCharge);
+            
+            // 1. Update Cart Count Badge
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+                cartCount.classList.add('cart-badge');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+            
+            // 2. Update Cart Items in Popup
+            cartItems.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-100">
+                    <div class="flex-1">
+                        <h5 class="font-bold text-base text-gray-800">${item.name}</h5>
+                        <div class="flex items-center space-x-2 mt-1">
+                            <button onclick="removeFromCart(${item.id})" class="text-blue-500 hover:text-red-500 text-sm font-bold w-6 h-6 rounded-full bg-white border">
+                                <i class="fas fa-minus text-xs"></i>
+                            </button>
+                            <span class="font-bold text-gray-700 text-sm">${item.quantity}</span>
+                            <button onclick="addToCart(${item.id})" class="text-blue-500 hover:text-green-500 text-sm font-bold w-6 h-6 rounded-full bg-white border">
+                                <i class="fas fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-end space-y-1">
+                        <span class="font-extrabold text-lg text-red-600">₹${(item.price * item.quantity).toLocaleString('en-IN')}</span>
+                        <button onclick="removeItemFromCart(${item.id})" class="text-red-500 hover:text-red-700 text-xs">
+                            <i class="fas fa-trash-alt mr-1"></i> Remove All
                         </button>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <div class="stat-grid">
-            <div class="stat-card">
-                <h3>Total Orders Delivered</h3>
-                <p>7,500+</p>
-            </div>
-            <div class="stat-card">
-                <h3>Materials Available</h3>
-                <p>4+ Types</p>
-            </div>
-            <div class="stat-card">
-                <h3>Quality Rating</h3>
-                <p>4.8/5 Stars</p>
-            </div>
-            <div class="stat-card">
-                <h3>Fastest Delivery</h3>
-                <p>Same Day!</p>
-            </div>
-        </div>
-    </main>
-
-    <div id="popup-overlay"></div>
-    
-    <!-- MAIN BOOKING FORM (Renamed to popupForm for consistency) -->
-    <div class="popup" id="popupForm">
-        <h2 class="text-2xl font-bold text-center">Building Material Order Booking</h2>
-        <form id="lotteryForm">
+            `).join('');
             
-            <label>Select Material Type:</label>
-            <!-- Wrapper for selection display (Matching AC service file) -->
-            <div id="serviceSelectionDisplayWrapper" onclick="openServiceSelectionPopup()">
-                <span id="selectedServicesSummary">Click to select material type</span>
-            </div>
-            
-            <!-- Hidden fields -->
-            <input type="hidden" name="selectedServices" id="selectedServicesHiddenField">
-
-            <div class="flex justify-between items-center mt-3 p-3 rounded-lg quantity-selector-container border-primary">
-                <span class="text-text-light font-semibold">Total Payable Now (Booking Charge)</span>
-                <!-- Fixed booking charge -->
-                <span class="total-price-quantity text-lg" style="color: var(--secondary) !important;">₹99</span>
-            </div>
-
-            <label for="fullName">Your Full Name (min 10 characters)</label>
-            <input type="text" id="fullName" name="field1" required placeholder="John Doe" autocomplete="name" minlength="10" />
-            
-            <label for="phone">Phone Number (10 digits)</label>
-            <input type="tel" id="phone" name="field2" required placeholder="9876543210" autocomplete="tel" pattern="[0-9]{10}" />
-            
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="field3" required placeholder="john.doe@example.com" autocomplete="email" />
-            
-            <label for="location">Delivery Landmark (e.g. Near Main Market)</label>
-            <input type="text" id="location" name="field5" required placeholder="Sonipat" autocomplete="address-level2" list="locations" />
-            
-            <label for="address">Full Delivery Address (min 30 characters)</label>
-            <textarea id="address" name="field6" required placeholder="House No, Street, Area, Landmark, City, State, PIN code" autocomplete="street-address" minlength="30" rows="4"></textarea>
-
-            <input type="hidden" name="ticket" id="ticketCode" />
-            <input type="hidden" name="finalPrice" id="finalPrice" value="99" />
-            <input type="hidden" name="totalCost" id="totalCostInput" value="0" />
-            
-            <button type="submit">Next</button>
-            <p id="submitMessage" class="text-center mt-3 text-primary reorganize text-sm font-semibold" style="display: none;">Submitting... Please wait</p>
-        </form>
-    </div>
-    
-    <!-- SELECTION POPUP (Matching AC Service File) -->
-    <div class="popup" id="serviceSelectionPopup" style="max-width: 900px;">
-        <h2 class="text-2xl font-bold text-center">Select Building Material Type</h2>
-        <div id="serviceCardsContainer" class="grid grid-cols-2 md:grid-cols-2 gap-3 mt-4 mb-6">
-            <!-- Service Cards will be injected here by JS -->
-        </div>
-        <button type="button" class="btn btn-primary" onclick="applyServiceSelection()">Apply Selection</button>
-        <button type="button" class="btn btn-secondary mt-2" onclick="closeServiceSelectionPopup()">Cancel</button>
-    </div>
-    <!-- END SELECTION POPUP -->
-
-    <!-- PAYMENT STEP -->
-    <div class="popup" id="paymentStep">
-        <h2 class="text-2xl font-bold text-center">Finalize Booking Charge</h2>
-        <p class="text-text-subtle text-center mb-6">Please pay the **₹99 booking charge** to confirm your order.</p>
-        <div id="paymentSummary" class="bg-bg-dark p-5 rounded-lg mb-6 text-center border border-secondary text-text-light"></div>
-        <div id="timerDisplay" class="text-xl font-bold text-primary text-center mb-4">Time remaining: 05:00</div>
-        <!-- Updated button text and price to 99 -->
-        <button id="razorpay-payment-btn"><i class="fas fa-credit-card mr-2"></i>Pay ₹99 Booking Charge Now</button>
-        <p class="mt-4 reorganize text-xs text-text-subtle text-center">
-            Note: The remaining product cost must be paid upon delivery. Do not close this window during payment processing.
-        </p>
-    </div>
-
-    <!-- TICKET STEP -->
-    <div class="popup" id="ticketStep">
-        <h2 id="welcomeMessage" class="text-2xl font-bold text-center text-primary"></h2>
-        <p class="text-text-subtle text-center mb-4">Your order is confirmed. Details below:</p>
-        <div id="ticketDisplay" class="space-y-2"></div>
-        <button id="downloadTicketsBtn" class="mt-4">
-            <i class="fas fa-download mr-2"></i> Download Order Details
-        </button>
-        <p class="mt-4 reorganize text-sm text-text-subtle text-center">📸 Please take a screenshot for proof and reference.</p>
-        <button id="okayBtn" class="w-full btn-secondary mt-4 close-btn">Okay, Got It!</button>
-    </div>
-    
-   
-    <script>
-        // Data adapted for Building Material (Base cost assumed for 100 units/ft for calculation ease)
-        const serviceData = [
-            { "Category": "Red Bricks (1000 Pcs)", "Price": 8499, "Icon": "fas fa-warehouse", "Details": "Price per 1000 bricks delivered (Single Item)." },
-            { "Category": "1st Quality Dust (Per Ft)", "Price": 5500, "Icon": "fas fa-mound", "Details": "Base cost estimate for initial calculation (e.g., 100 ft @ 55/ft)." },
-            { "Category": "Yamunanagar Sand (Per Ft)", "Price": 3800, "Icon": "fas fa-sand-castle", "Details": "Base cost estimate for initial calculation (e.g., 100 ft @ 38/ft)." },
-            { "Category": "Local Sand (Per Ft)", "Price": 3300, "Icon": "fas fa-truck-moving", "Details": "Base cost estimate for initial calculation (e.g., 100 ft @ 33/ft)." }
-        ];
-
-        // --- Configuration Constants ---
-        const SERVICE_TAB_ID = 'building-material';
-        const LOCAL_STORAGE_KEY = 'buildingMaterialFormData'; 
-        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwvO8RKxi2zxIZsilgYB74V_kO00EQIA_QIefdhsv9Dv0cEgh300B8kx6WsjHzpXnA1gg/exec";
-        
-        // --- DOM Element Selection ---
-        const participateBtn = document.getElementById('participate-btn');
-        const popupOverlay = document.getElementById('popup-overlay');
-        const allPopups = document.querySelectorAll('.popup');
-        const popupForm = document.getElementById('popupForm');
-        const paymentStep = document.getElementById('paymentStep');
-        const ticketStep = document.getElementById('ticketStep');
-        const timerDisplay = document.getElementById('timerDisplay');
-        const razorpayBtn = document.getElementById('razorpay-payment-btn');
-        const submitMessage = document.getElementById('submitMessage');
-        const serviceSelectionPopup = document.getElementById('serviceSelectionPopup');
-        const serviceCardsContainer = document.getElementById('serviceCardsContainer'); 
-        const selectedServicesSummary = document.getElementById('selectedServicesSummary'); 
-        const selectedServicesHiddenField = document.getElementById('selectedServicesHiddenField'); 
-        const totalPriceQuantityDisplay = document.querySelector('.total-price-quantity');
-        const paymentSummary = document.getElementById('paymentSummary');
-        const downloadTicketsBtn = document.getElementById('downloadTicketsBtn');
-        const welcomeMessage = document.getElementById('welcomeMessage');
-        const displayPriceElement = document.getElementById('displayPrice');
-        const finalPriceInput = document.getElementById('finalPrice');
-        const totalCostInput = document.getElementById('totalCostInput');
-        const form = document.getElementById('lotteryForm');
-        const okayBtn = document.getElementById('okayBtn');
-        const selectedServicesDisplay = document.getElementById('selectedServicesDisplay');
-
-        // --- State Variables ---
-        let generatedTicket = ''; 
-        let paymentTimeout = null;
-        let countdownInterval = null;
-        const PAYMENT_TIME_LIMIT = 5 * 60;
-        let currentTotalCost = 0; // Actual total service cost (sum of selected base prices)
-        const BOOKING_CHARGE = 99; 
-        let allowClose = false;
-        let selectedCategoriesState = []; // Array to hold multiple selected items
-
-        // --- Local Storage Functions ---
-        function saveFormData() {
-            const formData = {
-                fullName: form.fullName.value,
-                phone: form.phone.value,
-                email: form.email.value,
-                location: form.location.value,
-                address: form.address.value,
-                selectedServices: selectedServicesHiddenField.value
-            };
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
-        }
-
-        function loadFormData() {
-            const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                form.fullName.value = data.fullName || '';
-                form.phone.value = data.phone || '';
-                form.email.value = data.email || '';
-                form.location.value = data.location || '';
-                form.address.value = data.address || '';
-                if (data.selectedServices) {
-                    // Load multiple selections
-                    selectedCategoriesState = data.selectedServices.split(', ').filter(s => s);
-                }
-            }
-        }
-        
-        // --- Selection Popup Control (Client-side UI logic) ---
-
-        function openServiceSelectionPopup() {
-            generateServiceCards();
-            // Re-check all previously selected items
-            serviceCardsContainer.querySelectorAll('input[name="buildingMaterial"]').forEach(checkbox => {
-                const category = checkbox.value;
-                checkbox.checked = selectedCategoriesState.includes(category);
-                
-                const cardWrapper = checkbox.closest('.service-card-wrapper');
-                updateCardVisuals(cardWrapper, checkbox.checked);
+            // 3. Update Cart Totals
+            const totalElements = ['cart-total', 'checkout-total'];
+            totalElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = totalAmount.toLocaleString('en-IN');
             });
-            openPopup(serviceSelectionPopup);
-        }
 
-        function closeServiceSelectionPopup() {
-            serviceSelectionPopup.style.display = 'none';
-            if (popupForm.style.display === 'block') {
-                popupOverlay.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            } else {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-        
-        function applyServiceSelection() {
-            const selectedCheckboxes = Array.from(serviceCardsContainer.querySelectorAll('input[name="buildingMaterial"]:checked'));
-            
-            if (selectedCheckboxes.length === 0) {
-                selectedCategoriesState = [];
-            } else {
-                 // Allow Multiple Selections
-                selectedCategoriesState = selectedCheckboxes.map(cb => cb.value);
-            }
-
-            updatePrices();
-            
-            closeServiceSelectionPopup(); 
-            
-            popupForm.style.display = 'block';
-            popupOverlay.style.display = 'block';
-        }
-
-        // --- Core Functions ---
-
-        function generateServiceCards() {
-            serviceCardsContainer.innerHTML = '';
-            
-            serviceData.forEach((service, index) => {
-                // Generate a unique placeholder image URL for each service category
-                // Use a neutral gray/brown color for building materials
-                const baseColor = service.Category.includes('Bricks') ? 'A34300' : (service.Category.includes('Sand') ? 'E6C374' : '5E5E5E');
-                const imageUrl = `https://placehold.co/400x200/${baseColor}/FFFFFF?font=Montserrat&text=${encodeURIComponent(service.Category.replace(/\s/g, '+'))}`;
-                
-                const isChecked = selectedCategoriesState.includes(service.Category);
-                
-                const cardHtml = `
-                    <div class="service-card-wrapper" data-category="${service.Category}" data-price="${service.Price}" data-image-url="${imageUrl}"> 
-                        <label class="block h-full cursor-pointer"> 
-                            <div id="card-${index}" class="service-card p-3 rounded-xl border-2 transition duration-300 transform hover:scale-[1.02] 
-                                border-text-subtle/50 hover:border-primary/80" 
-                                style="background-image: url('${imageUrl}'); background-color: ${isChecked ? 'rgba(59, 130, 246, 0.7)' : 'rgba(0, 0, 0, 0.5)'};">
-                                
-                                <input type="checkbox" id="service-checkbox-${index}" name="buildingMaterial" 
-                                       value="${service.Category}" data-price="${service.Price}" class="hidden" ${isChecked ? 'checked' : ''}>
-                                
-                                <div class="flex items-start justify-between mb-2">
-                                    <div class="flex items-center">
-                                        <div class="service-icon-container">
-                                            <i class="${service.Icon} text-lg"></i> 
-                                        </div>
-                                        <h4 class="text-base font-semibold text-white">${service.Category}</h4>
-                                    </div>
-                                    <i class="fas fa-check-circle text-xl card-check-icon ${isChecked ? 'text-white' : 'text-gray-200'}"></i>
-                                </div>
-                                
-                                <p class="text-xs text-yellow-300 font-bold mb-2">Base Cost: ₹${service.Price.toLocaleString('en-IN')}</p>
-                                <p class="text-xs text-white font-medium">${service.Details}</p>
-                                
-                                <a href="#"
-                                   onclick="event.preventDefault(); showCustomAlert('The full price will depend on your exact quantity and location.');"
-                                   class="btn-see-more py-1 px-3 rounded-full text-xs font-bold inline-flex items-center justify-center w-full mt-2 transition duration-200 hover:bg-[#2563EB]">
-                                    <i class="fas fa-search-plus mr-1"></i> View Price Details
-                                </a>
-                            </div>
-                        </label>
-                    </div>
-                `;
-                serviceCardsContainer.insertAdjacentHTML('beforeend', cardHtml);
+            const onsiteElements = ['onsite-balance', 'checkout-onsite-balance'];
+            onsiteElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = onsiteAmount.toLocaleString('en-IN');
             });
             
-             serviceCardsContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                checkbox.addEventListener('change', (e) => {
-                    // Update visuals without enforcing single selection
-                    const cardWrapper = e.target.closest('.service-card-wrapper');
-                    updateCardVisuals(cardWrapper, e.target.checked);
-                    // No automatic price update here; waits for 'Apply Selection'
-                });
+            // Update charge displays
+            const chargeElements = ['cart-booking-charge', 'checkout-booking-charge', 'cart-pay-now', 'checkout-pay-now', 'note-booking-charge'];
+            chargeElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = bookingCharge;
             });
-        }
-
-        function updateCardVisuals(wrapper, isChecked) {
-            const card = wrapper.querySelector('.service-card');
-            const checkIcon = wrapper.querySelector('.card-check-icon');
-            const imageUrl = wrapper.dataset.imageUrl; 
             
-            if (isChecked) {
-                card.style.backgroundImage = 'url(\'drng1.png\')'; 
-                card.style.backgroundColor = 'rgba(59, 130, 246, 0.7)'; 
-                card.classList.add('border-primary', 'shadow-lg', 'shadow-primary/30');
-                card.classList.remove('border-text-subtle/50', 'hover:border-primary/80');
-                checkIcon.classList.remove('text-gray-200');
-                checkIcon.classList.add('text-white'); 
-            } else {
-                card.style.backgroundImage = `url('${imageUrl}')`; 
-                card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
-                card.classList.remove('border-primary', 'shadow-lg', 'shadow-primary/30');
-                card.classList.add('border-text-subtle/50', 'hover:border-primary/80');
-                checkIcon.classList.remove('text-white'); 
-                checkIcon.classList.add('text-gray-200');
-            }
-        }
-
-        function updatePrices() {
-            // Filter selected items from serviceData and sum their base prices
-            const selectedProducts = serviceData.filter(service => 
-                selectedCategoriesState.includes(service.Category)
-            );
-            
-            // Sum the base prices of all selected products
-            currentTotalCost = selectedProducts.reduce((sum, product) => sum + product.Price, 0);
-
-            const originalPriceDisplay = document.getElementById('originalPriceDisplay');
-            
-            const selectedNames = selectedCategoriesState;
-            if (selectedNames.length > 0) {
-                const namesString = selectedNames.join(', ');
-                
-                selectedServicesHiddenField.value = namesString;
-                totalCostInput.value = currentTotalCost;
-
-                selectedServicesSummary.textContent = namesString; 
-                selectedServicesDisplay.textContent = `Selected: ${selectedNames.length} Material(s)`; 
-                
-                originalPriceDisplay.textContent = `Estimated Base Cost: ₹${currentTotalCost.toLocaleString('en-IN')}`;
-                displayPriceElement.textContent = `₹${BOOKING_CHARGE.toLocaleString('en-IN')} Booking Charge`;
-                // Update the visible charge display in the main form
-                totalPriceQuantityDisplay.textContent = `₹${BOOKING_CHARGE.toLocaleString('en-IN')}`;
-                finalPriceInput.value = BOOKING_CHARGE;
-            } else {
-                selectedServicesHiddenField.value = '';
-                totalCostInput.value = 0;
-
-                selectedServicesSummary.textContent = 'Click to select material type';
-                selectedServicesDisplay.textContent = 'Select material(s) to view cost'; 
-                originalPriceDisplay.textContent = 'Estimated Order Cost: Select Option';
-                displayPriceElement.textContent = `₹99 Booking Charge`;
-                totalPriceQuantityDisplay.textContent = `₹99`;
-                finalPriceInput.value = BOOKING_CHARGE;
-            }
-        }
-
-        function generateFormattedTicket() {
-            return 'MAT-DEL-' + 'xxxxxxxx'.replace(/x/g, c => {
-                const r = Math.random() * 16 | 0;
-                return r.toString(16);
-            }).toUpperCase();
-        }
-
-        function downloadTickets() {
-            const selectedMaterialName = selectedServicesHiddenField.value;
-            const totalProductCost = currentTotalCost;
-            const amountPaid = BOOKING_CHARGE;
-            const remainingAmount = totalProductCost - amountPaid;
-            
-            const ticketContent = `BUILDING MATERIAL ORDER DETAILS\n\n` +
-                                 `Customer Name: ${form.fullName.value}\n` +
-                                 `Contact: ${form.phone.value}\n` +
-                                 `Location: ${form.location.value}\n` +
-                                 `Material Booked: ${selectedMaterialName}\n` +
-                                 `Booking Reference Number: ${generatedTicket}\n\n` + 
-                                 `Estimated Total Order Base Cost: ₹${totalProductCost.toLocaleString('en-IN')}\n` +
-                                 `Booking Charge Paid: ₹${amountPaid.toLocaleString('en-IN')}\n` +
-                                 `Remaining Balance: ₹${remainingAmount.toLocaleString('en-IN')}\n\n` +
-                                 `--- IMPORTANT NOTE ---\n` +
-                                 `The final price (including exact quantity confirmation) and remaining balance (₹${remainingAmount.toLocaleString('en-IN')}) will be paid upon delivery.`;
-            
-            const blob = new Blob([ticketContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `material_order_${generatedTicket}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-        
-        function showCustomAlert(message) {
-            const alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert'; 
-            alertBox.textContent = message;
-            document.body.appendChild(alertBox);
-            setTimeout(() => alertBox.remove(), 4000); 
-        }
-
-        // --- Popup Control Functions ---
-        function closeAllPopups() {
-            if (!allowClose) {
-                showCustomAlert("Please complete the booking process before closing.");
-                return;
-            }
-            clearTimers();
-            popupOverlay.style.display = 'none';
-            allPopups.forEach(p => p.style.display = 'none');
-            document.body.style.overflow = 'auto';
-            allowClose = false; 
-        }
-
-        function openPopup(popupElement) {
-            document.body.style.overflow = 'hidden';
-            popupOverlay.style.display = 'block';
-            allPopups.forEach(p => p.style.display = 'none');
-            popupElement.style.display = 'block';
-            allowClose = false;
-        }
-        
-        function closeSpecificPopup(popupElement) {
-            popupElement.style.display = 'none';
-            const isAnotherPopupOpen = Array.from(allPopups).some(p => p.style.display === 'block');
-            if (!isAnotherPopupOpen) {
-                popupOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-        
-        function clearTimers() {
-            if (paymentTimeout) clearTimeout(paymentTimeout);
-            if (countdownInterval) clearInterval(countdownInterval);
-        }
-
-        function startPaymentTimer() {
-            let timeLeft = PAYMENT_TIME_LIMIT;
-            const updateDisplay = () => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerDisplay.textContent = `Time remaining: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            };
-            updateDisplay();
-
-            countdownInterval = setInterval(() => {
-                timeLeft--;
-                updateDisplay();
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    showCustomAlert("Payment time has expired. Please try again.");
-                    allowClose = true; 
-                    closeAllPopups();
-                }
-            }, 1000);
-        }
-
-        // --- Payment and Submission Logic ---
-        
-        function handleFormSubmit(e) {
-            e.preventDefault();
-
-            // Validation 
-            const selectedMaterialName = selectedServicesHiddenField.value;
-            if (selectedCategoriesState.length === 0 || currentTotalCost <= 0) { showCustomAlert("Please select at least one material type."); return; }
-            if (form.fullName.value.trim().length < 10) { showCustomAlert("Please enter your full name (minimum 10 characters)."); return; }
-            if (!/^\d{10}$/.test(form.phone.value.trim())) { showCustomAlert("Please enter a valid 10-digit phone number."); return; }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { showCustomAlert("Please enter a valid email address."); return; }
-            if (form.location.value.trim().length < 3) { showCustomAlert("Please enter a valid location name."); return; }
-            if (form.address.value.trim().length < 30) { showCustomAlert("Please enter a complete address (minimum 30 characters)."); return; }
-            
-            submitMessage.style.display = 'block';
-            form.querySelector('button[type="submit"]').disabled = true;
-
-            generatedTicket = generateFormattedTicket(); 
-            
-            const totalProductCost = currentTotalCost; 
-            const advancePaid = BOOKING_CHARGE;
-            const remainingAmount = totalProductCost - advancePaid;
-
-            // --- Form Data for Google Sheet ---
-            const formData = new FormData();
-            formData.append('field1', form.fullName.value); 
-            formData.append('field2', form.phone.value);    
-            formData.append('field3', form.email.value);    
-            formData.append('field4', selectedMaterialName); // Comma separated list of selected materials
-            formData.append('field5', form.location.value); 
-            formData.append('field6', form.address.value);  
-            formData.append('ticket', generatedTicket);     
-            formData.append('tab', SERVICE_TAB_ID);           
-            formData.append('serviceType', 'Building Material Supply');   
-            formData.append('totalCost', totalProductCost); // Sum of base costs
-            formData.append('advancePaid', advancePaid);
-            formData.append('remainingDue', remainingAmount);
-            formData.append('finalPrice', advancePaid); // Final price for payment gateway
-            formData.append('ticketQuantity', selectedCategoriesState.length); // Number of different materials booked
-
-            // --- Google Script URL ---
-            fetch(GOOGLE_SHEET_URL, {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.text())
-            .then(res => {
-                if (res.includes("Success") || res.includes("success")) { 
-                    saveFormData(); 
-                    
-                    popupForm.style.display = 'none';
-                    openPopup(paymentStep);
-                    
-                    paymentSummary.innerHTML = `
-                        <p class="text-text-subtle text-lg mb-2 font-bold">Order Details:</p>
-                        <p class="text-text-light text-base mb-1">Materials: <span class="font-bold text-primary">${selectedMaterialName}</span></p>
-                        <p class="text-text-light text-base mb-3">Estimated Total Base Cost: <span class="font-bold text-secondary">₹${totalProductCost.toLocaleString('en-IN')}</span></p>
-                        <p class="text-text-subtle text-sm mt-2">The remaining balance 
-                        <span class="font-bold text-primary">₹${remainingAmount.toLocaleString('en-IN')}</span> 
-                        must be paid upon delivery (after quantity and rate confirmation).</p>
-                        <p class="current-price text-secondary text-3xl font-bold mt-3">Booking Charge Payable Now: ₹${advancePaid.toLocaleString('en-IN')}</p>
-                    `;
-                    startPaymentTimer();
+            const onsiteNote = document.getElementById('onsite-note');
+            if (onsiteNote) {
+                if (onsiteAmount === 0) {
+                    onsiteNote.textContent = "Full amount has been paid online (₹0 Onsite Balance).";
                 } else {
-                    showCustomAlert("Booking Error: There was an issue submitting your details. Please try again.");
+                    onsiteNote.textContent = "Remaining amount will be paid on delivery after quantity confirmation.";
                 }
-            })
-            .catch(err => {
-                console.error("Submission error:", err);
-                showCustomAlert("Network Error: An unexpected error occurred. Please check your connection and try again.");
-            })
-            .finally(() => {
-                submitMessage.style.display = 'none';
-                form.querySelector('button[type="submit"]').disabled = false;
-            });
+            }
+            
+            if (proceedBtn) {
+                proceedBtn.disabled = cart.length === 0;
+                document.getElementById('cart-button-text').textContent = `Book Order - Pay ₹${bookingCharge}`;
+                const checkoutBtnText = document.getElementById('checkout-button-text');
+                if (checkoutBtnText) checkoutBtnText.textContent = `Pay ₹${bookingCharge} Booking Charge`;
+            }
         }
 
-        function handleRazorpayPayment() {
-            const finalPaymentAmount = BOOKING_CHARGE; 
-             if (finalPaymentAmount == 0) {
-                showCustomAlert("Please select a material before proceeding.");
-                return;
+        // Functions to control popups
+        function showCartPopup() {
+            document.getElementById('cart-popup').classList.remove('hidden');
+        }
+
+        function hideCartPopup() {
+            document.getElementById('cart-popup').classList.add('hidden');
+        }
+
+        function showCheckoutPopup() {
+            if (cart.length === 0) {
+                 showToast('Please add material to the cart first.', 'error');
+                 return;
             }
+            hideCartPopup();
+            document.getElementById('checkout-popup').classList.remove('hidden');
+        }
 
-            const selectedMaterialName = selectedServicesHiddenField.value;
+        function hideCheckoutPopup() {
+            document.getElementById('checkout-popup').classList.add('hidden');
+            document.getElementById('checkout-form').reset(); 
+        }
 
+        // Razorpay payment integration
+        function initiatePayment(customerData) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT; 
+            
             const options = {
-                "key": "rzp_live_RLjzp7VlXERwiG",
-                "amount": finalPaymentAmount * 100, 
-                "currency": "INR",
-                "name": `SonipatHomeService - Material Booking Charge`,
-                "description": `Booking Charge for Materials: ${selectedMaterialName}`,
-                "image": `https://placehold.co/100x100/F4F7FB/3B82F6?text=MAT`, 
-                "handler": function (response){
-                    console.log("Payment successful:", response.razorpay_payment_id);
-                    paymentSuccess(response.razorpay_payment_id);
+                key: 'rzp_live_RLjzp7VlXERwiG', 
+                amount: bookingCharge * 100, // Amount in paise
+                currency: 'INR',
+                name: 'Building Material Supply',
+                description: `Booking Charge - Material Delivery`,
+                image: 'https://via.placeholder.com/200x200/0f62fe/ffffff?text=SHS',
+                prefill: {
+                    name: customerData.name,
+                    email: customerData.email,
+                    contact: customerData.mobile
                 },
-                "prefill": {
-                    "name": form.fullName.value,
-                    "email": form.email.value,
-                    "contact": form.phone.value
+                theme: {
+                    color: '#0f62fe'
                 },
-                "notes": {
-                    "address": `${form.location.value}, ${form.address.value}`,
-                    "material_details": selectedMaterialName,
-                    "booking_ref": generatedTicket,
-                    "total_cost": currentTotalCost,
+                handler: function(response) {
+                    // Payment successful
+                    submitToGoogleSheets(customerData, response.razorpay_payment_id);
                 },
-                "theme": { "color": "#3B82F6" }, 
-                "modal": { "ondismiss": () => console.log('Razorpay checkout modal closed.') }
+                modal: {
+                    ondismiss: function() {
+                        showToast('Payment cancelled', 'error');
+                    }
+                }
             };
-
+            
             const rzp = new Razorpay(options);
-            rzp.on('payment.failed', response => {
-                console.error("Payment Failed:", response.error);
-                showCustomAlert(`Payment Failed: ${response.error.description} (Code: ${response.error.code})`);
-            });
             rzp.open();
         }
 
-        function paymentSuccess(paymentId) {
-            clearTimers();
-            paymentStep.style.display = 'none';
-            openPopup(ticketStep);
+        // Google Sheets integration
+        async function submitToGoogleSheets(customerData, paymentId) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT;
+            const onsiteBalance = Math.max(0, totalAmount - bookingCharge);
             
-            const userName = form.fullName.value.split(' ')[0];
-            const selectedMaterialName = selectedServicesHiddenField.value;
-            
-            const totalProductCost = currentTotalCost; 
-            const amountPaid = BOOKING_CHARGE; 
-            const remainingAmount = totalProductCost - amountPaid; 
+            const orderItems = cart.map(item => `${item.name} (Qty: ${item.quantity}, Est Price: ${item.price})`).join(' | ');
 
-            welcomeMessage.textContent = `🎉 Bravo, ${userName}! Order Confirmed! 🎉`;
-            
-            ticketDisplay.innerHTML = `
-                <p>Booking ID: <span class="font-bold text-text-light">${generatedTicket}</span></p>
-                <p>Material Ordered: <span class="font-bold text-text-light">${selectedMaterialName}</span></p>
-                <p>Estimated Total Cost: <span class="font-bold text-secondary">₹${totalProductCost.toLocaleString('en-IN')}</span></p>
-                <p class="text-primary text-lg font-bold mt-3">Booking Charge Paid: ₹${amountPaid.toLocaleString('en-IN')}</p>
+            const params = new URLSearchParams({
+                timestamp: new Date().toLocaleString('hi-IN'),
+                customerName: customerData.name,
+                mobile: customerData.mobile,
+                email: customerData.email,
+                address: customerData.address,
+                landmark: customerData.landmark || '',
+                pincode: customerData.pincode,
+                orderItems: orderItems,
+                totalAmount: totalAmount,
+                paidAmount: bookingCharge,
+                onsiteBalance: onsiteBalance,
+                paymentId: paymentId,
+                status: onsiteBalance > 0 ? 'Material Order Confirmed - Balance On Delivery' : 'Material Payment Complete'
+            });
+
+            try {
+                showLoadingMessage();
                 
-                <div class="mt-4 p-3 rounded-lg bg-bg-dark border border-secondary">
-                    <p class="text-text-light font-semibold">Remaining Balance Due:</p>
-                    <p class="text-xl text-primary font-bold mt-1">₹${remainingAmount.toLocaleString('en-IN')}</p>
-                    <p class="text-sm text-text-subtle mt-1">This amount will be finalized and must be paid upon delivery.</p>
-                </div>
+                const response = await fetch(`https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec?${params.toString()}`, {
+                    method: 'POST',
+                    mode: 'no-cors' 
+                });
 
-                <p class="text-text-subtle text-sm mt-3">Our team will contact you shortly to schedule the delivery at your location: ${form.location.value}.</p>
-                <p class="text-text-subtle text-xs mt-1">Payment ID: ${paymentId}</p>
-            `;
-            
-            allowClose = true;
+                hideLoadingMessage();
+                hideCheckoutPopup();
+                showSuccessMessage(paymentId, totalAmount, bookingCharge, onsiteBalance);
+                
+                cart = [];
+                updateCartUI();
+                
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                hideLoadingMessage();
+                showErrorMessage();
+            }
         }
         
-        // --- Event Listeners Initialization ---
-        participateBtn.addEventListener('click', () => {
-            updatePrices();
-            loadFormData(); 
-            openPopup(popupForm);
-        });
-        
-        // Centralized Overlay Click Handling (Copied from AC file logic)
-        popupOverlay.addEventListener('click', e => {
-            if (e.target === popupOverlay) {
-                if (ticketStep.style.display === 'block' && allowClose) closeAllPopups();
-                else if (serviceSelectionPopup.style.display === 'block') closeServiceSelectionPopup();
-            }
-        });
-        
-        // Close Buttons
-        document.querySelectorAll('.close-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const parentPopup = e.target.closest('.popup');
-                if (parentPopup.id === 'ticketStep' || parentPopup.id === 'okayBtn') {
-                    window.location.href = 'index.html';
-                } else {
-                    closeSpecificPopup(parentPopup);
+        function showSuccessMessage(paymentId, totalAmount, bookingCharge, onsiteBalance) { 
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 popup-overlay';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl p-6 max-w-md w-full popup-content">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl text-green-500 mb-4">✅</div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">ऑर्डर कन्फर्म!</h2>
+                        <p class="text-gray-600">आपका Material Order सफलतापूर्वक बुक हो गया है।</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6 text-sm bg-green-50 p-4 rounded-lg">
+                        <div class="flex justify-between">
+                            <span>Payment ID:</span>
+                            <span class="font-medium text-xs break-all">${paymentId}</span>
+                        </div>
+                        <div class="flex justify-between font-bold">
+                            <span>Estimated Total Cost:</span>
+                            <span>₹${totalAmount.toLocaleString('en-IN')}</span>
+                        </div>
+                        <div class="flex justify-between text-green-700">
+                            <span>भुगतान की गई राशि (बुकिंग):</span>
+                            <span>₹${bookingCharge}</span>
+                        </div>
+                        <div class="flex justify-between text-red-600 font-bold">
+                            <span>बकाया राशि (On Delivery):</span>
+                            <span>₹${onsiteBalance.toLocaleString('en-IN')}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                        <p class="text-sm text-blue-800">
+                            <strong>अगले कदम:</strong><br>
+                            • हमारी टीम 24 घंटे में आपसे संपर्क करेगी<br>
+                            • Delivery जल्द ही शेड्यूल की जाएगी<br>
+                            • बकाया राशि ₹${onsiteBalance.toLocaleString('en-IN')} डिलीवरी पर ली जाएगी<br>
+                        </p>
+                    </div>
+                    
+                    <button onclick="closeConfirmation()" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-sm transition-colors">
+                        धन्यवाद
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            window.closeConfirmation = () => {
+                document.body.removeChild(modal);
+                delete window.closeConfirmation;
+            };
+        }
+
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+
+            // Cart button
+            document.getElementById('cart-btn').addEventListener('click', showCartPopup);
+            
+            // Close buttons
+            document.getElementById('close-cart').addEventListener('click', hideCartPopup);
+            document.getElementById('close-checkout').addEventListener('click', hideCheckoutPopup);
+            
+            // Proceed to checkout
+            document.getElementById('proceed-checkout').addEventListener('click', showCheckoutPopup);
+            
+            // Checkout form
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const customerData = {
+                    name: document.getElementById('customer-name').value,
+                    mobile: document.getElementById('mobile-number').value,
+                    email: document.getElementById('email-id').value,
+                    address: document.getElementById('full-address').value,
+                    landmark: document.getElementById('landmark').value,
+                    pincode: document.getElementById('pincode').value
+                };
+                
+                if (cart.length === 0) {
+                     showToast('Please add material to the cart first.', 'error');
+                     return;
                 }
+                
+                initiatePayment(customerData);
+            });
+
+            // Close popups when clicking outside
+            document.getElementById('cart-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCartPopup();
+            });
+            
+            document.getElementById('checkout-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCheckoutPopup();
             });
         });
 
-        document.getElementById('serviceSelectionDisplayWrapper').addEventListener('click', openServiceSelectionPopup);
-        okayBtn.addEventListener('click', () => window.location.href = 'index.html');
-        razorpayBtn.addEventListener('click', handleRazorpayPayment);
-        downloadTicketsBtn.addEventListener('click', downloadTickets);
-        form.addEventListener('submit', handleFormSubmit);
+        // Element SDK integration
+        async function onConfigChange(config) {
+            document.getElementById('company-name').textContent = (config.company_name || defaultConfig.company_name).split(' ')[0] + 'HomeService';
+            document.querySelector('header a[href^="tel:"]').textContent = `📞 ${config.customer_care || defaultConfig.customer_care}`;
+            document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
+            document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
+            document.getElementById('footer-phone').textContent = config.customer_care || defaultConfig.customer_care;
+            document.getElementById('footer-email').textContent = config.email_address || defaultConfig.email_address;
+        }
 
-        // --- Page Load Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePrices(); 
-        });
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["company_name", defaultConfig.company_name],
+                ["customer_care", config.customer_care || defaultConfig.customer_care],
+                ["email_address", config.email_address || defaultConfig.email_address],
+                ["office_address", config.office_address || defaultConfig.office_address]
+            ]);
+        }
+
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
     </script>
-</body>
+ </body>
+
 </html>
