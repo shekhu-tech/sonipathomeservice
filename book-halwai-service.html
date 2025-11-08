@@ -1,286 +1,418 @@
-<!doctype html><!---->
+<!doctype html>
 <html lang="hi">
  <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="icon" type="image/svg+xml" href="logo.png">
-  <title>हलवाई बुकिंग सर्विस - ऑनलाइन ऑर्डर</title>
-  <!-- SEO Meta Tags -->
-    <meta name="description" content="Get 30+ fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support with expert technicians. Book now!" />
-    <meta name="keywords" content=" घर पर मिठाई बनवाने की,best halwai in sonipat,halwai service near me,mithai maker near me,professional halwai service,sweet maker near me,हलवाई सर्विस,affordable halwai service sonipat,anniversary mithai maker sonipat,barfi maker sonipat,best price halwai sonipat,birthday sweet service sonipat,catering halwai sonipat,cheap sweet maker sonipat,commercial sweet maker sonipat,Contract basis halwai for establishments,Daily mithai preparation for shops,daily sweet maker sonipat,desi mithai maker sonipat,diwali halwai service sonipat,experienced halwai sonipat,expert sweet maker sonipat,Festival special sweets,festival sweet maker sonipat,full time sweet chef sonipat,function halwai service sonipat,gulab jamun maker sonipat,halwai at home sonipat,halwai course sonipat,halwai equipment sonipat,halwai for ceremony sonipat,halwai for party sonipat,halwai for shop sonipat,halwai for wedding sonipat,halwai home service sonipat,halwai on contract sonipat,halwai per day rate sonipat,halwai service charges sonipat,halwai service murthal,halwai service near me sonipat,halwai service sector 15 sonipat,halwai service sonipat,halwai setup service sonipat,halwai training sonipat,Home functions catering,home sweet maker sonipat,hotel halwai sonipat,jalebi specialist sonipat,laddu specialist sonipat,learn mithai making sonipat,mithai at home service sonipat,mithai expert sonipat,mithai kadhai sonipat,mithai maker shiv colony sonipat,
-" />
+  <title>Sonipat Halwai Service - Catering Menu & Online Booking</title>
+  <!-- SEO Meta Tags updated for consistency -->
+    <meta name="description" content="Book professional Halwai (Sweet Maker) service for home functions, weddings, and parties in Sonipat. Choose from a wide menu of sweets, vegetables, and stall items. Low advance booking available." />
+    <meta name="keywords" content="halwai service sonipat, catering service, mithai maker, sweet maker, shadi ka khana, party catering, jalebi, gulab jamun, veg menu" />
     <meta name="author" content="Sonipat Home Service" />
-    <link rel="canonical" href="https://sonipathomeservice.com/" />
+    <link rel="canonical" href="https://sonipathomeservice.com/book-halwai-service.html" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sonipathomeservice.com/" />
-    <meta property="og:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="og:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="og:image" content="logo.png" />
-    <meta property="og:site_name" content="Sonipat Home Service" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sonipathomeservice.com/" />
-    <meta property="twitter:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="twitter:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="twitter:image" content="logo.png" />
   <script src="/_sdk/element_sdk.js"></script>
   <script src="/_sdk/data_sdk.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script><!-- Google Apps Script Web App URL for Google Sheets Integration -->
-  <script>
-        // 🔥 GOOGLE SHEETS SETUP INSTRUCTIONS:
-        // 1. Google Drive में जाएं और नई Google Sheet बनाएं
-        // 2. Sheet का नाम "Catering Orders" रखें
-        // 3. पहली row में ये headers डालें:
-        //    A1: Timestamp | B1: Customer Name | C1: Mobile | D1: Email | E1: Address 
-        //    F1: Landmark | G1: Pincode | H1: Order Items | I1: Total Amount | J1: Payment ID | K1: Status
-        // 4. Extensions > Apps Script पर जाएं
-        // 5. नीचे दिया गया Google Apps Script code paste करें
-        // 6. Deploy > New Deployment > Type: Web App > Execute as: Me > Access: Anyone
-        // 7. Deploy करके Web App URL copy करें
-        // 8. नीचे GOOGLE_SHEETS_URL में paste करें
-        
-        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbylUIJN1kcyFvkpcs3aWhP6Abpej9A7CVRxtb4U84oRtPWJcTyjhfTRoLsBeFdTcuE/exec";
-        // ✅ Google Apps Script Web App URL successfully configured
-    </script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
   <style>
         body {
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; 
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
         
+        /* --- Gradient Colors for Header and Primary Buttons (Deep Blue/Indigo) --- */
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f62fe 0%, #1e40af 100%); /* Deep Blue/Indigo */
+        }
+
+        header {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        
+        /* --- PRO MENU CARD STYLING --- */
         .menu-card {
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 2px solid #e5e7eb; /* Light gray border */
+            background: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 12px; 
+            padding: 12px; /* Reduced padding for more internal space */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            
+            /* --- FIX: Uniform Height and Width (Square Card) --- */
+            aspect-ratio: 1 / 1; 
+            /* min-height removed to allow better vertical compression on mobile */
+            justify-content: space-between; 
+            /* --- END FIX --- */
         }
         
         .menu-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2); 
+            border-color: #ff6b35; /* Orange border on hover */
         }
         
-        .cart-item {
-            animation: slideIn 0.3s ease;
+        .item-image {
+            font-size: 2.5rem; /* Reduced icon size */
+            margin-bottom: 4px; /* Reduced margin */
+            transition: transform 0.3s ease;
+            flex-shrink: 0; 
+        }
+
+        .menu-card:hover .item-image {
+            transform: scale(1.1) rotate(-3deg);
         }
         
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
+        .item-name-wrapper {
+             /* Ensures name wrapper takes minimum necessary height */
+             flex-grow: 1;
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+             width: 100%;
+        }
+
+        .item-price {
+            font-size: 1.3rem; /* Reduced price size */
+            font-weight: 800;
+            color: #d97706; 
+        }
+
+        /* --- Quantity Selector Styling (Enhanced Pro) --- */
+        .qty-selector {
+            flex-shrink: 0; 
+            margin-top: auto; 
+            width: 100%; /* Make selector width full for proper centering */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;
+        }
+        .qty-selector button {
+            background: #f59e0b; 
+            color: white;
+            transition: all 0.2s ease;
+            border: 2px solid rgba(255, 255, 255, 0.5); 
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15); /* Reduced shadow depth */
+            width: 30px; /* Reduced button size */
+            height: 30px; /* Reduced button size */
+            border-radius: 50%;
+            font-size: 0.9rem; /* Reduced font size */
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .qty-selector button:hover {
+            transform: scale(1.15);
+            background: #d97706; 
         }
         
+        .qty-selector button.minus-btn {
+            background: #ef4444; 
+        }
+
+        .qty-selector button.minus-btn:hover {
+            background: #dc2626; 
+        }
+        
+        .qty-span {
+            font-size: 0.95rem; /* Reduced quantity size */
+            font-weight: 900;
+            color: #1f2937;
+            min-width: 25px; /* Reduced width */
+            text-align: center;
+        }
+        /* --- END PRO MENU CARD STYLING --- */
+
+
+        /* --- Primary Button (Halwai Theme: Orange Gradient) --- */
         .btn-primary {
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            background: linear-gradient(135deg, #ff6b35, #f7931e); /* Orange Gradient */
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
         }
         
         .btn-primary:hover {
+            background: linear-gradient(135deg, #f7931e, #ff6b35);
             transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(247, 147, 30, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
         }
-        
+
+        /* --- Tabs --- */
         .category-tab {
             transition: all 0.3s ease;
         }
         
         .category-tab.active {
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
             color: white;
+            box-shadow: 0 4px 10px rgba(255, 107, 53, 0.4);
         }
+
+        /* --- Marquee/Slider Styling --- */
+        .services-slider {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            background: #374151; 
+        }
+
+        .services-track {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        .services-track a, .services-track span {
+            display: inline-block;
+            color: #d1d5db; 
+            padding: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .services-track a:hover {
+            color: #60a5fa; 
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- Modals --- */
+        .popup-overlay {
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .popup-content {
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .cart-badge {
+            animation: bounce 0.5s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        /* Message Box Styling */
+        #app-message {
+            z-index: 5000;
+        }
+
     </style>
   <style>@view-transition { navigation: auto; }</style>
  </head>
- <body class="min-h-full bg-gray-50"><!-- Header -->
-  <header class="bg-white shadow-lg sticky top-0 z-50">
-   <div class="max-w-7xl mx-auto px-4 py-4">
-    <div class="flex justify-between items-center">
-     <div class="flex items-center space-x-4">
-      <div class="text-3xl">
-       🍽️
-      </div>
+ <body class="min-h-full bg-gray-50"><!-- Header (Updated to AC/CCTV style) -->
+  <header class="gradient-bg text-white shadow-2xl sticky top-0 z-40"> 
+   <div class="container mx-auto px-4 py-4">
+    <br>
+    <div class="flex justify-between items-center"><a href="index.html" class="flex items-center space-x-3 hover:opacity-90 transition-opacity"><img src="logo.png" alt="Sonipat Home Service Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-lg border border-white/50">
       <div>
-       <h1 class="text-2xl font-bold text-orange-600" id="company-name">हलवाई बुकिंग सर्विस</h1>
-       <p class="text-sm text-gray-600">स्वादिष्ट खाना, बेहतरीन सेवा</p>
-      </div>
-     </div>
+       <h1 id="company-name" class="text-xl sm:text-2xl font-extrabold tracking-tight"> <span class="text-yellow-300">SonipatHomeService</span></h1>
+       <p class="text-sm font-semibold opacity-90">Professional Halwai & Catering Service</p>
+      </div></a>
      <div class="flex items-center space-x-4">
-      <div class="hidden md:block text-right">
-       <p class="text-sm text-gray-600">📞 <span id="header-phone">88160 14071</span></p>
-       <p class="text-sm text-gray-600">✉️ <span id="header-email">care@sonipathamservice.com</span></p>
-      </div><button id="share-btn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"> 📤 शेयर करें </button> <button id="cart-btn" class="relative bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors"> 🛒 Cart (<span id="cart-count">0</span>) </button>
+      <!-- Desktop Contact Side Bar -->
+      <div class="text-right hidden md:block border-l pl-4 border-white/30">
+       <a href="tel:8816014071" class="text-lg font-bold hover:text-yellow-300 transition-colors">📞 8816014071</a>
+       <p id="email-address" class="text-xs opacity-80 mt-1">care@sonipathomeservice.com</p>
+      </div>
+      <!-- Cart Button with Pop -->
+      <button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-md"> <span class="flex items-center space-x-2">
+        <i class="fas fa-shopping-cart w-5 h-5"></i>
+        <span class="hidden sm:inline">Cart</span> <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-0.5 text-xs hidden font-bold">0</span> </span> </button>
      </div>
     </div>
    </div>
-  </header><!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 py-8"><!-- Category Tabs -->
-   <div class="flex flex-wrap gap-4 mb-8 justify-center"><button class="category-tab active px-6 py-3 rounded-full font-semibold" data-category="vegetables"> 🥬 सब्जियाँ </button> <button class="category-tab px-6 py-3 rounded-full font-semibold" data-category="sweets"> 🍬 मिठाइयाँ </button> <button class="category-tab px-6 py-3 rounded-full font-semibold" data-category="stall"> 🏪 स्टॉल आइटम्स </button>
-   </div><!-- Menu Items -->
-   <div id="menu-container" class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2"><!-- Menu items will be populated by JavaScript -->
+  </header>
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><!-- Category Tabs -->
+   <h3 class="text-3xl font-extrabold text-center mb-8 text-gray-800">हलवाई सर्विस मेनू <i class="fas fa-utensils text-orange-500 ml-2"></i></h3>
+   <div class="alert-info bg-yellow-100 text-yellow-800 p-4 rounded-xl text-center font-semibold mb-8 border border-yellow-300">
+    ⚠️ यहाँ दिए गए सभी रेट <strong>50 लोगों के खाना बनाने के लिए</strong> हैं।
+    फाइनल रेट बुकिंग के समय कन्फर्म होगा।
    </div>
-  </main><!-- Share Modal -->
-  <div id="share-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
-   <div class="flex items-center justify-center min-h-full p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full">
-     <div class="p-6">
-      <div class="flex justify-between items-center mb-6">
-       <h2 class="text-2xl font-bold">शेयर करें</h2><button id="close-share" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
-      </div>
-      <div class="space-y-4"><button onclick="shareOnWhatsApp()" class="w-full flex items-center space-x-3 p-4 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors"> <span class="text-2xl">📱</span> <span class="font-semibold">WhatsApp पर शेयर करें</span> </button> <button onclick="shareOnInstagram()" class="w-full flex items-center space-x-3 p-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-colors"> <span class="text-2xl">📷</span> <span class="font-semibold">Instagram पर शेयर करें</span> </button> <button onclick="shareOnTelegram()" class="w-full flex items-center space-x-3 p-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"> <span class="text-2xl">✈️</span> <span class="font-semibold">Telegram पर शेयर करें</span> </button> <button onclick="shareOnFacebook()" class="w-full flex items-center space-x-3 p-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"> <span class="text-2xl">📘</span> <span class="font-semibold">Facebook पर शेयर करें</span> </button> <button onclick="shareOnTwitter()" class="w-full flex items-center space-x-3 p-4 bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition-colors"> <span class="text-2xl">🐦</span> <span class="font-semibold">Twitter पर शेयर करें</span> </button>
-       <div class="border-t pt-4"><button onclick="copyLink()" class="w-full flex items-center space-x-3 p-4 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors"> <span class="text-2xl">🔗</span> <span class="font-semibold">लिंक कॉपी करें</span> </button> <button onclick="shareViaWebAPI()" class="w-full flex items-center space-x-3 p-4 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors mt-2"> <span class="text-2xl">📤</span> <span class="font-semibold">अन्य ऐप्स में शेयर करें</span> </button>
+   <div class="flex flex-wrap gap-4 mb-8 justify-center"><button class="category-tab active px-6 py-3 rounded-full font-extrabold bg-blue-100 text-gray-800" data-category="vegetables"> 🥬 सब्जियाँ </button> <button class="category-tab px-6 py-3 rounded-full font-extrabold bg-blue-100 text-gray-800" data-category="sweets"> 🍬 मिठाइयाँ </button> <button class="category-tab px-6 py-3 rounded-full font-extrabold bg-blue-100 text-gray-800" data-category="stall"> 🏪 स्टॉल आइटम्स </button>
+   </div><!-- Menu Items -->
+   <div id="menu-container" class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-6 px-2"><!-- Menu items will be populated by JavaScript -->
+   </div>
+   <section class="py-16 bg-gray-100 mt-12">
+    <div class="container mx-auto px-4">
+     <h3 class="text-3xl font-extrabold text-center mb-12 text-gray-800">नियम और महत्वपूर्ण जानकारी</h3>
+     <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><!-- Left Column -->
+       <div class="bg-white rounded-xl p-6 shadow-2xl border-b-4 border-red-500 hover:shadow-3xl transition-all duration-300">
+        <h3 class="text-xl font-extrabold text-red-600 mb-4 flex items-center"><i class="fas fa-user-times mr-2"></i> हलवाई सेवा नियम</h3>
+        <ul class="space-y-3 text-sm text-gray-600">
+         <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>हलवाई केवल खाना बनाने का काम करेंगे (लेबर अलग से).</span></li>
+         <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>सभी हलवाई अनुभवी और प्रशिक्षित होंगे.</span></li>
+         <li class="flex items-start space-x-2"><span class="text-red-500 mt-1">✗</span> <span>कस्टमर को सभी कच्चा सामान अरेंज करना होगा.</span></li>
+         <li class="flex items-start space-x-2"><span class="text-red-500 mt-1">✗</span> <span>बर्तन, गैस, और किचन की व्यवस्था कस्टमर की होगी.</span></li>
+        </ul>
+       </div><!-- Right Column -->
+       <div class="bg-white rounded-xl p-6 shadow-2xl border-b-4 border-blue-500 hover:shadow-3xl transition-all duration-300">
+        <h3 class="text-xl font-extrabold text-blue-600 mb-4 flex items-center"><i class="fas fa-clipboard-list mr-2"></i> सामान की लिस्ट (Ingredients List)</h3>
+        <div class="bg-blue-50 rounded-lg p-4">
+         <p class="text-gray-700 text-sm mb-3">ऑर्डर बुकिंग के तुरंत बाद आपको <strong>WhatsApp पर</strong> एक डिटेल्ड लिस्ट भेजी जाएगी:</p>
+         <ul class="text-gray-700 text-sm space-y-1 ml-4 list-disc">
+          <li>आपके ऑर्डर किए गए सभी आइटम्स की लिस्ट</li>
+          <li>हर आइटम के लिए जरूरी सामान (Ingredients) की मात्रा</li>
+          <li>आवश्यक बर्तन और गैस की जानकारी</li>
+         </ul>
+         <p class="text-red-600 font-semibold mt-3 text-sm">⚠️ कृपया इस लिस्ट के अनुसार ही सामान अरेंज करें।</p>
+        </div>
        </div>
       </div>
      </div>
     </div>
-   </div>
-  </div><!-- Cart Modal -->
-  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+   </section>
+  </main>
+  
+  <!-- Cart Popup (From CCTV/Borewell File) -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
    <div class="flex items-center justify-center min-h-full p-4">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content">
      <div class="p-6">
-      <div class="flex justify-between items-center mb-6">
-       <h2 class="text-2xl font-bold">आपका Cart</h2><button id="close-cart" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+       <h3 class="text-2xl font-extrabold text-gray-800">आपका Cart</h3><button id="close-cart" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
       </div>
-      <div id="cart-items" class="space-y-4 mb-6"><!-- Cart items will be populated here -->
+      <div id="cart-items" class="space-y-3 mb-4 max-h-60 overflow-y-auto"><!-- Cart items will be populated here -->
       </div>
       <div class="border-t pt-4">
-       <div class="flex justify-between items-center text-xl font-bold mb-4"><span>कुल राशि:</span> <span>₹<span id="total-amount">0</span></span>
-       </div><button id="checkout-btn" class="btn-primary w-full py-3 rounded-lg text-white font-semibold text-lg"> चेकआउट करें </button>
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600 font-semibold">कुल अनुमानित सर्विस शुल्क:</span> <span class="font-extrabold text-lg">₹<span id="cart-total">0</span></span>
+        </div>
+        <div class="flex justify-between items-center text-blue-600"><span class="font-semibold">Booking Charge (Pay Now):</span> <span class="font-extrabold">₹<span id="cart-booking-charge">99</span></span>
+        </div>
+        <div class="flex justify-between items-center text-green-600"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="onsite-balance">0</span></span>
+        </div>
+        <div class="border-t pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="cart-pay-now">99</span></span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform disabled:opacity-50" disabled> <span id="cart-button-text">Book Service - Pay ₹99</span> </button>
       </div>
      </div>
     </div>
    </div>
-  </div><!-- Checkout Modal -->
-  <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
-   <div class="flex items-center justify-center min-h-full p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full">
-     <div class="p-6">
-      <div class="flex justify-between items-center mb-6">
-       <h2 class="text-2xl font-bold">ऑर्डर की जानकारी</h2><button id="close-checkout" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
-      </div>
+  </div>
+
+  <!-- Checkout Form Popup (From CCTV/Borewell File) -->
+  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-start justify-center min-h-full p-2 py-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content" style="max-height: 95vh; overflow-y: auto;">
+     <div class="sticky top-0 bg-white p-4 border-b flex justify-between items-center z-10">
+      <h3 class="text-xl font-extrabold">ग्राहक विवरण और पेमेंट</h3><button id="close-checkout" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+       </svg></button>
+     </div>
+     <div class="p-4">
       <form id="checkout-form" class="space-y-4">
-       <div><label for="customer-name" class="block text-sm font-medium text-gray-700 mb-1">नाम *</label> <input type="text" id="customer-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" maxlength="10" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email-id" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
        </div>
-       <div><label for="customer-mobile" class="block text-sm font-medium text-gray-700 mb-1">मोबाइल नंबर *</label> <input type="tel" id="customer-mobile" required pattern="[0-9]{10}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Full Address *</label> <textarea id="full-address" required rows="3" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+         </div>
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required pattern="[0-9]{6}" maxlength="6" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+         </div>
+        </div>
        </div>
-       <div><label for="customer-email" class="block text-sm font-medium text-gray-700 mb-1">ईमेल *</label> <input type="email" id="customer-email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
-       </div>
-       <div><label for="customer-address" class="block text-sm font-medium text-gray-700 mb-1">पूरा पता *</label> <textarea id="customer-address" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
-       </div>
-       <div><label for="customer-landmark" class="block text-sm font-medium text-gray-700 mb-1">लैंडमार्क</label> <input type="text" id="customer-landmark" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
-       </div>
-       <div><label for="customer-pincode" class="block text-sm font-medium text-gray-700 mb-1">पिन कोड *</label> <input type="text" id="customer-pincode" required pattern="[0-9]{6}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
-       </div>
-       <div class="border-t pt-4">
-        <div class="flex justify-between items-center text-lg font-bold mb-4"><span>कुल राशि:</span> <span>₹<span id="checkout-total">0</span></span>
-        </div><button type="submit" id="pay-btn" class="btn-primary w-full py-3 rounded-lg text-white font-semibold text-lg"> 💳 पेमेंट करें </button>
+       <div class="border-t pt-4 mt-4">
+        <h4 class="text-lg font-extrabold mb-3">Payment Summary</h4>
+        <div class="space-y-2 mb-4 bg-blue-50 p-3 rounded-lg border border-blue-200">
+         <div class="flex justify-between items-center text-sm"><span class="text-gray-700 font-semibold">Estimated Service Total:</span> <span class="font-extrabold">₹<span id="checkout-total">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-blue-700 text-sm"><span class="font-semibold">Booking Charge (Non-refundable):</span> <span class="font-extrabold">₹<span id="checkout-booking-charge">99</span></span>
+         </div>
+         <div class="flex justify-between items-center text-green-700 text-sm"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="checkout-onsite-balance">0</span></span>
+         </div>
+         <div class="border-t border-blue-300 pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="checkout-pay-now">99</span></span>
+         </div>
+        </div>
+        <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-3 mb-4">
+         <p class="text-xs text-yellow-800"><strong>Note:</strong> You are paying only the booking charge (₹<span id="note-booking-charge">99</span>) now. <span id="onsite-note">Remaining amount must be paid to the Halwai on-site after service completion.</span></p>
+        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform"> <span id="checkout-button-text">Pay ₹99 Booking Charge</span> </button>
        </div>
       </form>
      </div>
     </div>
    </div>
-  </div><!-- Terms and Conditions Section -->
-  <section class="bg-blue-50 py-12 mt-16">
-   <div class="max-w-7xl mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center text-blue-800 mb-8">📋 नियम और शर्तें</h2>
-    <div class="grid md:grid-cols-2 gap-8"><!-- Left Column -->
-     <div class="bg-white rounded-xl p-6 shadow-lg">
-      <h3 class="text-xl font-bold text-orange-600 mb-4 flex items-center">👨‍🍳 हलवाई सेवा नियम</h3>
-      <ul class="space-y-3 text-gray-700">
-       <li class="flex items-start space-x-2"><span class="text-green-500 font-bold">✓</span> <span>हमारे हलवाई केवल खाना बनाने का काम करेंगे</span></li>
-       <li class="flex items-start space-x-2"><span class="text-green-500 font-bold">✓</span> <span>सभी हलवाई बिल्कुल साफ-सुथरे और अनुभवी होंगे</span></li>
-       <li class="flex items-start space-x-2"><span class="text-red-500 font-bold">✗</span> <span>हलवाइयों को किसी भी प्रकार का नशा या तंबाकू न दें</span></li>
-       <li class="flex items-start space-x-2"><span class="text-green-500 font-bold">✓</span> <span>हमारे स्टाफ पूर्णतः प्रशिक्षित और विश्वसनीय हैं</span></li>
+  </div>
+
+
+  <!-- Footer (Updated with Marquee) -->
+  <footer class="bg-gray-900 text-white pt-12">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Contact Information</h4>
+      <div class="space-y-2 text-sm">
+       <p class="flex items-center">📞 <span class="ml-2 font-semibold" id="footer-phone">8816014071</span></p>
+       <p class="flex items-center">✉️ <span class="ml-2" id="footer-email">care@sonipathomeservice.com</span></p>
+       <p class="flex items-center">📍 <span class="ml-2" id="office-address">128/1, Sainipura, Sonipat</span></p>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+       <li><a href="index.html" class="hover:text-blue-400 transition-colors">• Home Page</a></li>
+       <li><a href="policy.html" class="hover:text-blue-400 transition-colors">• Privacy Policy</a></li>
+       <li><a href="terms.html" class="hover:text-blue-400 transition-colors">• Terms &amp; Conditions</a></li>
+       <li><a href="refund.html" class="hover:text-blue-400 transition-colors">• Refund Policy</a></li>
       </ul>
-     </div><!-- Right Column -->
-     <div class="bg-white rounded-xl p-6 shadow-lg">
-      <h3 class="text-xl font-bold text-orange-600 mb-4 flex items-center">🛒 सामान व्यवस्था नियम</h3>
-      <ul class="space-y-3 text-gray-700">
-       <li class="flex items-start space-x-2"><span class="text-blue-500 font-bold">📦</span> <span>सभी कच्चा सामान कस्टमर को अरेंज करना होगा</span></li>
-       <li class="flex items-start space-x-2"><span class="text-blue-500 font-bold">📋</span> <span>केवल बुक किए गए आइटम्स ही बनाए जाएंगे</span></li>
-       <li class="flex items-start space-x-2"><span class="text-blue-500 font-bold">🥘</span> <span>बुक किए गए सभी आइटम्स का सामान तैयार रखें</span></li>
-       <li class="flex items-start space-x-2"><span class="text-blue-500 font-bold">🍳</span> <span>बर्तन, गैस, और किचन की व्यवस्था आपकी होगी</span></li>
-      </ul>
-     </div>
-    </div><!-- Important Notes -->
-    <div class="mt-8 bg-gradient-to-r from-orange-100 to-red-100 rounded-xl p-6">
-     <h3 class="text-xl font-bold text-red-700 mb-4 flex items-center">⚠️ महत्वपूर्ण जानकारी</h3>
-     <div class="grid md:grid-cols-2 gap-6">
-      <div>
-       <h4 class="font-bold text-gray-800 mb-2">💰 रेट की जानकारी:</h4>
-       <p class="text-gray-700 text-sm">• यहाँ दिए गए सभी रेट <strong>50 लोगों के खाना बनाने के हैं</strong><br>
-         • अधिक या कम लोगों के लिए रेट अलग होगा<br>
-         • फाइनल रेट बुकिंग के समय कन्फर्म होगा</p>
-      </div>
-      <div>
-       <h4 class="font-bold text-gray-800 mb-2">📱 नए आइटम के लिए:</h4>
-       <p class="text-gray-700 text-sm">• नए आइटम बुक करने के लिए कस्टमर केयर पर कॉल करें<br>
-         • या सोनीपत होम सर्विस मोबाइल ऐप का उपयोग करें<br>
-         • आप जितने चाहें उतने आइटम ऐड करवा सकते हैं</p>
-      </div>
-     </div>
-    </div><!-- Ingredients List Information -->
-    <div class="mt-6 bg-gradient-to-r from-green-100 to-blue-100 rounded-xl p-6">
-     <h3 class="text-xl font-bold text-green-700 mb-4 flex items-center">📋 सामान की लिस्ट की जानकारी</h3>
-     <div class="bg-white rounded-lg p-4 border-l-4 border-green-500">
-      <div class="flex items-start space-x-3">
-       <div class="text-2xl">
-        📱
-       </div>
-       <div>
-        <h4 class="font-bold text-gray-800 mb-2">व्हाट्सएप पर सामान की लिस्ट:</h4>
-        <p class="text-gray-700 text-sm mb-3"><strong>ऑर्डर बुकिंग के तुरंत बाद</strong> आपको Email पर एक डिटेल्ड मैसेज आएगा जिसमें होगा:</p>
-        <ul class="text-gray-700 text-sm space-y-1 ml-4">
-         <li>• आपके ऑर्डर किए गए सभी आइटम्स की पूरी लिस्ट</li>
-         <li>• हर आइटम के लिए जरूरी सामान (ingredients) की डिटेल</li>
-         <li>• सब्जियों, मसालों, और अन्य चीजों की मात्रा</li>
-         <li>• बर्तन और गैस की जरूरत की जानकारी</li>
-        </ul>
-        <div class="mt-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-         <p class="text-sm text-yellow-800 font-semibold">⚠️ कृपया लिस्ट के अनुसार ही सारा सामान अरेंज करें। बिना सामान के हमारे हलवाई काम नहीं कर पाएंगे।</p>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div><!-- Contact for Custom Orders -->
-    <div class="mt-6 bg-white rounded-xl p-6 shadow-lg border-l-4 border-orange-500">
-     <h3 class="text-lg font-bold text-gray-800 mb-3 flex items-center">📞 कस्टम ऑर्डर के लिए संपर्क करें</h3>
-     <div class="flex flex-wrap gap-4 items-center"><a href="tel:8816014071" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors"> 📞 कॉल करें: 88160 14071 </a> <a href="mailto:care@sonipathamservice.com" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors"> ✉️ ईमेल करें </a> <span class="text-gray-600 text-sm"> या मोबाइल ऐप डाउनलोड करें </span>
-     </div>
-    </div>
-   </div>
-  </section><!-- Footer -->
-  <footer class="bg-gray-800 text-white mt-0">
-   <div class="max-w-7xl mx-auto px-4 py-12">
-    <div class="grid md:grid-cols-3 gap-8">
-     <div>
-      <h3 class="text-xl font-bold mb-4" id="footer-company-name">सोनीपत होम सर्विस</h3>
-      <p class="text-gray-300 mb-4">हमारी सेवा में शामिल है सभी प्रकार के समारोह के लिए स्वादिष्ट खाना और बेहतरीन सेवा।</p>
-      <div class="flex space-x-4"><span class="text-2xl">⭐</span> <span class="text-2xl">⭐</span> <span class="text-2xl">⭐</span> <span class="text-2xl">⭐</span> <span class="text-2xl">⭐</span>
-      </div>
      </div>
      <div>
-      <h4 class="text-lg font-semibold mb-4">संपर्क जानकारी</h4>
-      <div class="space-y-2 text-gray-300">
-       <p>📞 <span id="footer-phone">88160 14071</span></p>
-       <p>✉️ <span id="footer-email">care@sonipathamservice.com</span></p>
-       <p>📍 <span id="footer-address">128 /1 सैनीपुरा सोनीपत</span></p>
-      </div>
-     </div>
-     <div>
-      <h4 class="text-lg font-semibold mb-4">हमारी सेवाएं</h4>
-      <ul class="space-y-2 text-gray-300">
-       <li>• शादी-विवाह केटरिंग</li>
-       <li>• पार्टी केटरिंग</li>
-       <li>• कॉर्पोरेट इवेंट</li>
-       <li>• होम डिलीवरी</li>
-       <li>• बल्क ऑर्डर</li>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Halwai Highlights</h4>
+      <ul class="space-y-2 text-sm">
+       <li>✓ Best Price Guarantee</li>
+       <li>✓ Experienced Sweet Makers</li>
+       <li>✓ Vegetable & Sweet Menu</li>
+       <li>✓ Ingredients List Provided</li>
       </ul>
      </div>
     </div>
-    <div style="background: #374151; padding: 20px 0; margin-top: 20px;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 20px; font-size: 18px;">All Our Services</h4>
+    <!-- Marquee Slider for All Services (Copied styling and structure from AC/CCTV file) -->
+    <div style="background: #374151; padding: 15px 0; margin-top: 30px; border-radius: 10px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 10px; font-size: 16px; font-weight: bold;">All Our Services</h4>
      <div class="services-slider">
       <div class="services-track"><a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span> <!-- Duplicate for seamless loop --> <a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span>
       </div>
@@ -288,50 +420,29 @@
     </div>
    </div>
 
-    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-     <p>© 2025 Sonipat Home Service.com। All Rights are Reserved।</p>
+    <div class="border-t border-gray-800 mt-8 pt-6 pb-2 text-center text-sm">
+     <p>© 2024 Halwai & Catering Service in Sonipat. All rights reserved.</p>
     </div>
    </div>
   </footer>
+  
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
-        /* 
-        🚀 GITHUB PAGES पर DEPLOY करने के लिए:
-        
-        1️⃣ RAZORPAY SETUP:
-           - Razorpay.com पर अकाउंट बनाएं
-           - Dashboard से Key ID कॉपी करें (rzp_live_xxxxxxxxxx या rzp_test_xxxxxxxxxx)
-           - नीचे razorpay_key में paste करें
-        
-        2️⃣ GITHUB PAGES SETUP:
-           - GitHub पर नया repository बनाएं
-           - इस HTML file को index.html नाम से upload करें
-           - Settings > Pages > Source को "Deploy from a branch" सेट करें
-           - Branch को "main" या "master" सेलेक्ट करें
-           - आपकी website https://username.github.io/repository-name पर live हो जाएगी
-        
-        3️⃣ CUSTOM DOMAIN (Optional):
-           - अपना domain name खरीदें
-           - GitHub Pages settings में custom domain add करें
-           - DNS settings में CNAME record add करें
-        */
+        // Google Apps Script Web App URL for Google Sheets Integration
+        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbylUIJN1kcyFvkpcs3aWhP6Abpej9A7CVRxtb4U84oRtPWJcTyjhfTRoLsBeFdTcuE/exec";
         
         // Default configuration
         const defaultConfig = {
             // 🔥 अपनी कंपनी की जानकारी यहाँ बदलें:
             company_name: "सोनीपत होम सर्विस", // ⚠️ अपनी कंपनी का नाम
-            company_phone: "88160 14071", // ⚠️ अपना फोन नंबर
-            company_email: "care@sonipathamservice.com", // ⚠️ अपना ईमेल
-            company_address: "128 /1 सैनीपुरा सोनीपत", // ⚠️ अपना पता
-            // 🔥 यहाँ अपनी RAZORPAY KEY ID डालें (rzp_live_xxxxxxxxxx या rzp_test_xxxxxxxxxx)
+            company_phone: "8816014071", // ⚠️ अपना फोन नंबर
+            company_email: "care@sonipathomeservice.com", // ⚠️ अपना ईमेल
+            company_address: "128/1, Sainipura, Sonipat", // ⚠️ अपना पता
             razorpay_key: "rzp_live_RLjzp7VlXERwiG", // ✅ Live Razorpay Key ID
-            background_color: "#f97316",
-            surface_color: "#ffffff",
-            text_color: "#1f2937",
-            primary_action_color: "#ff6b35",
-            secondary_action_color: "#f7931e",
-            font_family: "Inter",
-            font_size: 16
         };
+        const BOOKING_AMOUNT = 99;
 
         // Ingredients database for each menu item
         const ingredientsData = {
@@ -346,7 +457,7 @@
             'sweet1': { name: 'गुलाब जामुन', ingredients: ['खोया - 500 ग्राम', 'मैदा - 100 ग्राम', 'चीनी - 1 किलो', 'इलायची - 20 ग्राम', 'केसर - 5 ग्राम', 'गुलाब जल - 50 मिली', 'घी - 500 मिली (तलने के लिए)', 'दूध - 100 मिली'] },
             'sweet2': { name: 'रसगुल्ला', ingredients: ['छेना - 500 ग्राम', 'चीनी - 800 ग्राम', 'इलायची - 15 ग्राम', 'केसर - 3 ग्राम', 'गुलाब जल - 30 मिली', 'पानी - 2 लीटर', 'नींबू का रस - 50 मिली'] },
             'sweet3': { name: 'जलेबी', ingredients: ['मैदा - 500 ग्राम', 'दही - 200 ग्राम', 'चीनी - 1 किलो', 'केसर - 5 ग्राम', 'इलायची - 20 ग्राम', 'घी - 1 लीटर (तलने के लिए)', 'पानी - 1 लीटर', 'नींबू का रस - 30 मिली'] },
-            'sweet4': { name: 'खीर', ingredients: ['चावल - 200 ग्राम', 'दूध - 2 लीटर', 'चीनी - 300 ग्राम', 'इलायची - 15 ग्राम', 'बादाम - 100 ग्राम', 'किशमिश - 50 ग्राम', 'केसर - 3 ग्राम', 'घी - 50 मिली'] },
+            'sweet4': { name: 'खीर', ingredients: ['चावल - 200 ग्राम', 'दूध - 2 लीटर', 'चीनी - 300 ग्राम', 'इलायची - 15 ग्राम', 'बादाम - 100 ग्राम', 'किशमिश - 50 ग्राम', 'केसर - 3 ग्राम', ' घी - 50 मिली'] },
             'sweet5': { name: 'हलवा', ingredients: ['सूजी - 500 ग्राम', 'चीनी - 500 ग्राम', 'घी - 300 ग्राम', 'दूध - 1 लीटर', 'इलायची - 20 ग्राम', 'बादाम - 100 ग्राम', 'किशमिश - 50 ग्राम', 'केसर - 5 ग्राम'] },
             
             // Stall items ingredients
@@ -358,10 +469,9 @@
         // Menu data
         const menuData = {
             vegetables: [
-                // 🔥 मुख्य सब्जियां - यहाँ अपने अनुसार prices बदल सकते हैं:
-                { id: 'veg1', name: 'आलू गोभी', price: 999, image: '🥔' }, // ⚠️ Price बदलें
-                { id: 'veg2', name: 'पालक पनीर', price: 999, image: '🥬' }, // ⚠️ Price बदलें
-                { id: 'veg3', name: 'दाल मखनी', price: 999, image: '🍛' }, // ⚠️ Price बदलें
+                { id: 'veg1', name: 'आलू गोभी', price: 999, image: '🥔' }, 
+                { id: 'veg2', name: 'पालक पनीर', price: 999, image: '🥬' }, 
+                { id: 'veg3', name: 'दाल मखनी', price: 999, image: '🍛' }, 
                 { id: 'veg4', name: 'भिंडी मसाला', price: 999, image: '🌶️' },
                 { id: 'veg5', name: 'चना मसाला', price: 999, image: '🫘' },
                 { id: 'veg6', name: 'मिक्स वेज', price: 999, image: '🥕' },
@@ -484,9 +594,9 @@
         };
 
         // Cart state
-        let cart = [];
-        let currentCategory = 'vegetables';
-        let currentRecordCount = 0;
+        var cart = [];
+        var currentCategory = 'vegetables';
+        var currentRecordCount = 0;
 
         // Data SDK handler
         const dataHandler = {
@@ -511,97 +621,33 @@
             const currentConfig = { ...defaultConfig, ...config };
             
             // Update company information
-            document.getElementById('company-name').textContent = currentConfig.company_name;
-            document.getElementById('header-phone').textContent = currentConfig.company_phone;
-            document.getElementById('header-email').textContent = currentConfig.company_email;
-            document.getElementById('footer-company-name').textContent = currentConfig.company_name;
-            document.getElementById('footer-phone').textContent = currentConfig.company_phone;
-            document.getElementById('footer-email').textContent = currentConfig.company_email;
-            document.getElementById('footer-address').textContent = currentConfig.company_address;
+            document.getElementById('company-name').textContent = (currentConfig.company_name || defaultConfig.company_name).split(' ')[0] + 'HomeService';
+            document.querySelector('header a[href^="tel:"]').textContent = `📞 ${currentConfig.company_phone || defaultConfig.company_phone}`;
+            document.getElementById('email-address').textContent = currentConfig.company_email || defaultConfig.company_email;
+            document.getElementById('footer-company-name').textContent = currentConfig.company_name || defaultConfig.company_name;
+            document.getElementById('footer-phone').textContent = currentConfig.company_phone || defaultConfig.company_phone;
+            document.getElementById('footer-email').textContent = currentConfig.company_email || defaultConfig.company_email;
+            document.getElementById('office-address').textContent = currentConfig.company_address || defaultConfig.company_address;
             
-            // Update colors
+            // Apply gradient to dynamic buttons (Re-render might be needed for perfect look)
             const primaryButtons = document.querySelectorAll('.btn-primary');
             primaryButtons.forEach(btn => {
-                btn.style.background = `linear-gradient(45deg, ${currentConfig.primary_action_color}, ${currentConfig.secondary_action_color})`;
+                btn.style.background = `linear-gradient(135deg, #ff6b35, #f7931e)`;
             });
             
             const activeTabs = document.querySelectorAll('.category-tab.active');
             activeTabs.forEach(tab => {
-                tab.style.background = `linear-gradient(45deg, ${currentConfig.primary_action_color}, ${currentConfig.secondary_action_color})`;
+                tab.style.background = `linear-gradient(135deg, #ff6b35, #f7931e)`;
             });
-            
-            // Update fonts
-            const customFont = currentConfig.font_family;
-            const baseFontStack = 'system-ui, -apple-system, sans-serif';
-            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
-            
-            // Update font sizes
-            const baseSize = currentConfig.font_size;
-            document.getElementById('company-name').style.fontSize = `${baseSize * 1.5}px`;
         }
 
         // Capabilities mapping
         function mapToCapabilities(config) {
             return {
-                recolorables: [
-                    {
-                        get: () => config.background_color || defaultConfig.background_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ background_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.surface_color || defaultConfig.surface_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ surface_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.text_color || defaultConfig.text_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ text_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ primary_action_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ secondary_action_color: value });
-                            }
-                        }
-                    }
-                ],
+                recolorables: [],
                 borderables: [],
-                fontEditable: {
-                    get: () => config.font_family || defaultConfig.font_family,
-                    set: (value) => {
-                        if (window.elementSdk) {
-                            window.elementSdk.setConfig({ font_family: value });
-                        }
-                    }
-                },
-                fontSizeable: {
-                    get: () => config.font_size || defaultConfig.font_size,
-                    set: (value) => {
-                        if (window.elementSdk) {
-                            window.elementSdk.setConfig({ font_size: value });
-                        }
-                    }
-                }
+                fontEditable: undefined,
+                fontSizeable: undefined
             };
         }
 
@@ -626,24 +672,126 @@
                 mapToEditPanelValues
             });
         }
+        
+        // Utility function to show custom toast message
+        function showToast(message, type) {
+            const existing = document.getElementById('app-message');
+            if(existing) existing.remove();
+            
+            const colors = {
+                success: { bg: 'bg-green-500', icon: '✅' },
+                error: { bg: 'bg-red-500', icon: '❌' },
+                loading: { bg: 'bg-blue-500', icon: '<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>' }
+            };
+            
+            const msg = colors[type] || colors.loading;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.id = 'app-message';
+            messageDiv.className = `fixed top-4 right-4 ${msg.bg} text-white p-4 rounded-xl shadow-2xl z-[1000] transition-opacity duration-300`;
+            messageDiv.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <span class="text-xl">${msg.icon}</span>
+                    <div>
+                        <p class="font-bold text-lg">${type === 'success' ? 'Success' : (type === 'error' ? 'Error' : 'Processing...')}</p>
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(messageDiv);
+            
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    messageDiv.classList.add('opacity-0');
+                    setTimeout(() => messageDiv.remove(), 300);
+                }, 5000);
+            }
+        }
+        
+        function showLoadingMessage() { showToast('Saving your order details', 'loading'); }
+        function hideLoadingMessage() { const loadingDiv = document.getElementById('app-message'); if (loadingDiv) loadingDiv.remove(); }
+        function showSuccessMessage(paymentId, totalAmount, bookingCharge, onsiteBalance) { 
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 popup-overlay';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl p-6 max-w-md w-full popup-content">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl text-green-500 mb-4">✅</div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">ऑर्डर कन्फर्म!</h2>
+                        <p class="text-gray-600">आपका Halwai Order सफलतापूर्वक बुक हो गया है।</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6 text-sm bg-green-50 p-4 rounded-lg">
+                        <div class="flex justify-between">
+                            <span>Payment ID:</span>
+                            <span class="font-medium text-xs break-all">${paymentId}</span>
+                        </div>
+                        <div class="flex justify-between font-bold">
+                            <span>Estimated Service Cost:</span>
+                            <span>₹${totalAmount.toLocaleString('en-IN')}</span>
+                        </div>
+                        <div class="flex justify-between text-green-700">
+                            <span>भुगतान की गई राशि (बुकिंग):</span>
+                            <span>₹${bookingCharge}</span>
+                        </div>
+                        <div class="flex justify-between text-red-600 font-bold">
+                            <span>बकाया राशि (Onsite):</span>
+                            <span>₹${onsiteBalance.toLocaleString('en-IN')}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                        <p class="text-sm text-blue-800">
+                            <strong>अगले कदम:</strong><br>
+                            • हमारे हलवाई 24 घंटे में आपसे संपर्क करेंगे<br>
+                            • सामान की लिस्ट WhatsApp पर भेजी जा चुकी है<br>
+                            • बकाया राशि ₹${onsiteBalance.toLocaleString('en-IN')} काम पूरा होने पर ली जाएगी<br>
+                        </p>
+                    </div>
+                    
+                    <button onclick="closeConfirmation()" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-sm transition-colors">
+                        धन्यवाद
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            window.closeConfirmation = () => {
+                document.body.removeChild(modal);
+                delete window.closeConfirmation;
+            };
+        }
+
 
         // Render menu items
         function renderMenu(category) {
             const container = document.getElementById('menu-container');
             const items = menuData[category];
             
-            container.innerHTML = items.map(item => `
-                <div class="menu-card bg-white rounded-lg p-2 shadow-md">
-                    <div class="text-xl text-center mb-1">${item.image}</div>
-                    <h3 class="text-xs font-bold text-center mb-1 leading-tight">${item.name}</h3>
-                    <p class="text-sm font-bold text-orange-600 text-center mb-2">₹${item.price}</p>
-                    <div class="flex items-center justify-center space-x-1">
-                        <button onclick="updateQuantity('${item.id}', -1)" class="bg-gray-200 hover:bg-gray-300 w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs">-</button>
-                        <span id="qty-${item.id}" class="font-bold text-xs min-w-[1rem] text-center">0</span>
-                        <button onclick="updateQuantity('${item.id}', 1)" class="bg-orange-500 hover:bg-orange-600 text-white w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs">+</button>
+            container.innerHTML = items.map(item => {
+                // Find current quantity from cart
+                const cartItem = cart.find(c => c.id === item.id);
+                const currentQty = cartItem ? cartItem.quantity : 0;
+
+                return `
+                    <div class="menu-card shadow-lg border-gray-100 hover:border-[#ff6b35]" onclick="updateQuantity('${item.id}', 1)">
+                        <div class="item-image">${item.image}</div>
+                        <h3 class="text-sm font-extrabold text-center mb-1 leading-snug text-gray-800">${item.name}</h3>
+                        <p class="item-price text-center mb-3">₹${item.price.toLocaleString('en-IN')}</p>
+                        <div class="flex items-center justify-center space-x-2 qty-selector">
+                            <button onclick="event.stopPropagation(); updateQuantity('${item.id}', -1);" class="minus-btn w-9 h-9 rounded-full flex items-center justify-center text-center">
+                                <i class="fas fa-minus text-sm"></i>
+                            </button>
+                            <span id="qty-${item.id}" class="qty-span">${currentQty}</span>
+                            <button onclick="event.stopPropagation(); updateQuantity('${item.id}', 1);" class="plus-btn w-9 h-9 rounded-full flex items-center justify-center text-center">
+                                <i class="fas fa-plus text-sm"></i>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Price for 50 people</p>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         // Update quantity
@@ -652,144 +800,197 @@
             let currentQty = parseInt(qtyElement.textContent);
             let newQty = Math.max(0, currentQty + change);
             
-            qtyElement.textContent = newQty;
-            
-            // Update cart
+            // Find item for display/notification
             const allItems = [...menuData.vegetables, ...menuData.sweets, ...menuData.stall];
             const item = allItems.find(i => i.id === itemId);
+
+            if (!item) return;
             
+            // Only proceed if quantity actually changes
+            if (newQty === currentQty) return;
+
+            qtyElement.textContent = newQty;
+            
+            // Update cart logic
             if (newQty === 0) {
                 cart = cart.filter(cartItem => cartItem.id !== itemId);
+                showToast(`${item.name} removed from cart.`, "success");
             } else {
                 const existingItem = cart.find(cartItem => cartItem.id === itemId);
                 if (existingItem) {
                     existingItem.quantity = newQty;
+                    if (change > 0) showToast(`${item.name} quantity increased (x${newQty})`, "success");
+                    else showToast(`${item.name} quantity reduced (x${newQty})`, "success");
                 } else {
                     cart.push({ ...item, quantity: newQty });
+                    showToast(`${item.name} added to cart! (x${newQty})`, "success");
                 }
             }
             
-            updateCartDisplay();
+            updateCartUI();
         }
 
         // Update cart display
-        function updateCartDisplay() {
-            const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cart-count').textContent = cartCount;
-            
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
             const cartItems = document.getElementById('cart-items');
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const proceedBtn = document.getElementById('proceed-checkout');
             
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = cart.length; // Show number of unique items
+            
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT;
+            const onsiteAmount = Math.max(0, totalAmount - bookingCharge);
+
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p class="text-gray-500 text-center py-8">आपका Cart खाली है</p>';
+                document.getElementById('proceed-checkout').disabled = true;
             } else {
                 cartItems.innerHTML = cart.map(item => `
-                    <div class="cart-item flex justify-between items-center bg-gray-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center p-4 bg-blue-50 rounded-lg border border-blue-100">
                         <div class="flex items-center space-x-3">
                             <span class="text-2xl">${item.image}</span>
                             <div>
-                                <h4 class="font-semibold">${item.name}</h4>
-                                <p class="text-sm text-gray-600">₹${item.price} x ${item.quantity}</p>
+                                <h4 class="font-semibold text-gray-800">${item.name}</h4>
+                                <p class="text-sm text-gray-600">₹${item.price.toLocaleString('en-IN')} x ${item.quantity}</p>
                             </div>
                         </div>
-                        <div class="text-right">
-                            <p class="font-bold">₹${item.price * item.quantity}</p>
-                            <button onclick="removeFromCart('${item.id}')" class="text-red-500 hover:text-red-700 text-sm">हटाएं</button>
+                        <div class="text-right flex flex-col items-end">
+                            <p class="font-bold text-lg text-red-600">₹${(item.price * item.quantity).toLocaleString('en-IN')}</p>
+                            <button onclick="event.stopPropagation(); removeItemFromCart('${item.id}')" class="text-red-500 hover:text-red-700 text-xs mt-1"><i class="fas fa-trash-alt mr-1"></i> Remove All</button>
                         </div>
                     </div>
                 `).join('');
+                 document.getElementById('proceed-checkout').disabled = false;
             }
             
-            document.getElementById('total-amount').textContent = totalAmount;
-            document.getElementById('checkout-total').textContent = totalAmount;
+            // Update totals in both cart and checkout popups
+            const totalElements = ['cart-total', 'checkout-total'];
+            totalElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = totalAmount.toLocaleString('en-IN');
+            });
+
+            const onsiteElements = ['onsite-balance', 'checkout-onsite-balance'];
+            onsiteElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = onsiteAmount.toLocaleString('en-IN');
+            });
+
+            const chargeElements = ['cart-booking-charge', 'checkout-booking-charge', 'cart-pay-now', 'checkout-pay-now', 'note-booking-charge'];
+            chargeElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = bookingCharge;
+            });
+            
+            document.getElementById('cart-button-text').textContent = `Book Service - Pay ₹${bookingCharge}`;
+            const checkoutBtnText = document.getElementById('checkout-button-text');
+            if (checkoutBtnText) checkoutBtnText.textContent = `Pay ₹${bookingCharge} Booking Charge`;
+            
+            const onsiteNote = document.getElementById('onsite-note');
+            if (onsiteNote) {
+                if (onsiteAmount === 0) {
+                    onsiteNote.textContent = "Full amount completed online. (₹0 Onsite Balance)";
+                } else {
+                    onsiteNote.textContent = "Remaining amount must be paid to the Halwai on-site after service completion.";
+                }
+            }
         }
 
         // Remove from cart
-        function removeFromCart(itemId) {
+        function removeItemFromCart(itemId) {
             cart = cart.filter(item => item.id !== itemId);
-            document.getElementById(`qty-${itemId}`).textContent = '0';
-            updateCartDisplay();
+            const qtyElement = document.getElementById(`qty-${itemId}`);
+            if (qtyElement) qtyElement.textContent = '0';
+            updateCartUI();
         }
 
-        // Category tabs
-        document.querySelectorAll('.category-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                currentCategory = this.dataset.category;
-                renderMenu(currentCategory);
-                
-                // Reset quantities
-                cart.forEach(item => {
-                    const qtyElement = document.getElementById(`qty-${item.id}`);
-                    if (qtyElement) {
-                        qtyElement.textContent = item.quantity;
-                    }
+        // Setup all event listeners after DOM is ready
+        function setupEventListeners() {
+            // Cart button
+            document.getElementById('cart-btn').addEventListener('click', function() {
+                 document.getElementById('cart-popup').classList.remove('hidden');
+            });
+
+            document.getElementById('close-cart').addEventListener('click', function() {
+                document.getElementById('cart-popup').classList.add('hidden');
+            });
+
+            // Checkout modal trigger
+            document.getElementById('proceed-checkout').addEventListener('click', function() {
+                if (cart.length === 0) {
+                    showToast('कृपया पहले कुछ आइटम Cart में डालें!', 'error');
+                    return;
+                }
+                document.getElementById('cart-popup').classList.add('hidden');
+                document.getElementById('checkout-popup').classList.remove('hidden');
+            });
+
+            document.getElementById('close-checkout').addEventListener('click', function() {
+                document.getElementById('checkout-popup').classList.add('hidden');
+            });
+            
+            // Close modals on outside click
+            document.getElementById('cart-popup').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+
+            document.getElementById('checkout-popup').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+
+            // Category tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.dataset.category;
+                    renderMenu(currentCategory);
+                    
+                    // Reset quantities shown for all menu items
+                    document.querySelectorAll('[id^="qty-"]').forEach(el => el.textContent = '0');
+                    // Update only items currently in cart
+                    cart.forEach(item => {
+                        const qtyElement = document.getElementById(`qty-${item.id}`);
+                        if (qtyElement) {
+                            qtyElement.textContent = item.quantity;
+                        }
+                    });
                 });
             });
-        });
-
-        // Share modal
-        document.getElementById('share-btn').addEventListener('click', function() {
-            document.getElementById('share-modal').classList.remove('hidden');
-        });
-
-        document.getElementById('close-share').addEventListener('click', function() {
-            document.getElementById('share-modal').classList.add('hidden');
-        });
-
-        // Cart modal
-        document.getElementById('cart-btn').addEventListener('click', function() {
-            document.getElementById('cart-modal').classList.remove('hidden');
-        });
-
-        document.getElementById('close-cart').addEventListener('click', function() {
-            document.getElementById('cart-modal').classList.add('hidden');
-        });
-
-        // Checkout modal
-        document.getElementById('checkout-btn').addEventListener('click', function() {
-            if (cart.length === 0) {
-                showMessage('कृपया पहले कुछ आइटम Cart में डालें!', 'error');
-                return;
-            }
-            document.getElementById('cart-modal').classList.add('hidden');
-            document.getElementById('checkout-modal').classList.remove('hidden');
-        });
-
-        document.getElementById('close-checkout').addEventListener('click', function() {
-            document.getElementById('checkout-modal').classList.add('hidden');
-        });
-
-        // Checkout form
-        document.getElementById('checkout-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
             
-            if (currentRecordCount >= 999) {
-                showMessage('ऑर्डर की सीमा पूरी हो गई है। कृपया बाद में कोशिश करें।', 'error');
-                return;
-            }
-            
-            const formData = {
-                customer_name: document.getElementById('customer-name').value,
-                mobile: document.getElementById('customer-mobile').value,
-                email: document.getElementById('customer-email').value,
-                address: document.getElementById('customer-address').value,
-                landmark: document.getElementById('customer-landmark').value,
-                pincode: document.getElementById('customer-pincode').value
-            };
-            
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            // Show loading state
-            const payBtn = document.getElementById('pay-btn');
-            const originalText = payBtn.textContent;
-            payBtn.textContent = 'डेटा सेव हो रहा है...';
-            payBtn.disabled = true;
-            
-            // 🔥 INSTANT SAVE: तुरंत Google Sheet में customer की जानकारी save करें
-            try {
-                await sendToGoogleSheets({
+            // Checkout form (Submission & Payment)
+            document.getElementById('checkout-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (currentRecordCount >= 999) {
+                    showToast('ऑर्डर की सीमा पूरी हो गई है। कृपया बाद में कोशिश करें।', 'error');
+                    return;
+                }
+                
+                const formData = {
+                    customer_name: document.getElementById('customer-name').value,
+                    mobile: document.getElementById('mobile-number').value,
+                    email: document.getElementById('email-id').value,
+                    address: document.getElementById('full-address').value,
+                    landmark: document.getElementById('landmark').value,
+                    pincode: document.getElementById('pincode').value
+                };
+                
+                const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT;
+                
+                showLoadingMessage();
+                
+                // 1. Prepare data for Google Sheet (Pre-Payment Status)
+                const orderItems = cart.map(item => `${item.name} x ${item.quantity} (₹${item.price})`).join(' | ');
+                
+                const initialSheetData = {
                     timestamp: new Date().toLocaleString('hi-IN'),
                     customerName: formData.customer_name,
                     mobile: formData.mobile,
@@ -797,240 +998,102 @@
                     address: formData.address,
                     landmark: formData.landmark || 'N/A',
                     pincode: formData.pincode,
-                    orderItems: cart.map(item => `${item.name} x ${item.quantity}`).join(', '),
+                    orderItems: orderItems,
                     totalAmount: totalAmount,
-                    paymentId: 'PENDING', // Payment ID अभी pending है
-                    status: 'Payment Pending' // Status pending रखा है
-                });
+                    paidAmount: 0,
+                    onsiteBalance: totalAmount,
+                    paymentId: 'PENDING', 
+                    status: 'Payment Pending - Halwai'
+                };
                 
-                showMessage('✅ आपकी जानकारी Google Sheet में save हो गई!', 'success');
-                payBtn.textContent = 'पेमेंट प्रोसेसिंग...';
+                // Save initial data 
+                await sendToGoogleSheets(initialSheetData);
                 
-            } catch (error) {
-                console.error('Google Sheets error:', error);
-                showMessage('⚠️ Google Sheet में save करने में समस्या हुई!', 'error');
-                payBtn.textContent = originalText;
-                payBtn.disabled = false;
-                return; // अगर Google Sheet में save नहीं हुआ तो payment process रोक दें
-            }
-            
-            // Initialize Razorpay payment
-            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
-            const razorpayKey = config.razorpay_key || defaultConfig.razorpay_key;
-            
-            const options = {
-                key: razorpayKey,
-                amount: totalAmount * 100, // Amount in paise
-                currency: 'INR',
-                name: config.company_name || defaultConfig.company_name,
-                description: 'केटरिंग ऑर्डर',
-                handler: async function(response) {
-                    // Payment successful - अब payment ID को update करें
-                    const orderData = {
-                        id: `order_${Date.now()}`,
-                        ...formData,
-                        cart_items: JSON.stringify(cart),
-                        total_amount: totalAmount,
-                        order_date: new Date().toISOString(),
-                        status: 'confirmed',
-                        payment_id: response.razorpay_payment_id
-                    };
-                    
-                    // Save to Canva Sheet (Data SDK)
-                    if (window.dataSdk) {
-                        const result = await window.dataSdk.create(orderData);
-                        if (result.isOk) {
-                            showMessage('ऑर्डर सफलतापूर्वक प्लेस हो गया! धन्यवाद!', 'success');
-                        } else {
-                            showMessage('ऑर्डर सेव करने में समस्या हुई। कृपया संपर्क करें।', 'error');
-                        }
-                    }
-                    
-                    // 🔥 Update Google Sheet with payment confirmation
-                    try {
+                // 2. Initialize Razorpay payment
+                const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+                const razorpayKey = config.razorpay_key || defaultConfig.razorpay_key;
+                
+                const options = {
+                    key: razorpayKey,
+                    amount: bookingCharge * 100, // Amount in paise
+                    currency: 'INR',
+                    name: config.company_name || defaultConfig.company_name,
+                    description: `Advance Booking - Halwai Menu`,
+                    image: 'https://via.placeholder.com/200x200/0f62fe/ffffff?text=SHS',
+                    handler: async function(response) {
+                        hideLoadingMessage();
+                        
+                        // 3. Payment successful - Update final status
+                        const finalSheetData = {
+                            ...initialSheetData,
+                            paidAmount: bookingCharge,
+                            onsiteBalance: totalAmount - bookingCharge,
+                            paymentId: response.razorpay_payment_id,
+                            status: 'Advance Paid - Ingredients List Sent'
+                        };
+                        
+                        // Update the row based on mobile number
                         await updateGoogleSheetPaymentStatus({
                             mobile: formData.mobile,
                             paymentId: response.razorpay_payment_id,
-                            status: 'Payment Confirmed'
+                            status: finalSheetData.status
                         });
                         
-                        showMessage('✅ Payment status भी update हो गया!', 'success');
-                    } catch (error) {
-                        console.error('Payment update error:', error);
-                        showMessage('⚠️ Payment status update में समस्या हुई!', 'error');
-                    }
-                    
-                    // Send ingredients list via WhatsApp
-                    setTimeout(() => {
-                        sendIngredientsListToWhatsApp(formData, cart);
-                    }, 2000);
-                    
-                    // Reset cart and close modal
-                    cart = [];
-                    updateCartDisplay();
-                    document.getElementById('checkout-modal').classList.add('hidden');
-                    document.getElementById('checkout-form').reset();
-                    
-                    // Reset all quantity displays
-                    document.querySelectorAll('[id^="qty-"]').forEach(el => {
-                        el.textContent = '0';
-                    });
-                    
-                    payBtn.textContent = originalText;
-                    payBtn.disabled = false;
-                },
-                prefill: {
-                    name: formData.customer_name,
-                    email: formData.email,
-                    contact: formData.mobile
-                },
-                theme: {
-                    color: '#ff6b35'
-                },
-                modal: {
-                    ondismiss: function() {
-                        // अगर user payment cancel कर दे तो status update करें
-                        updateGoogleSheetPaymentStatus({
-                            mobile: formData.mobile,
-                            paymentId: 'CANCELLED',
-                            status: 'Payment Cancelled'
-                        }).catch(console.error);
+                        // Show confirmation
+                        showSuccessMessage(response.razorpay_payment_id, totalAmount, bookingCharge, finalSheetData.onsiteBalance);
                         
-                        payBtn.textContent = originalText;
-                        payBtn.disabled = false;
+                        // Send ingredients list via WhatsApp (Essential for this service)
+                        sendIngredientsListToWhatsApp(formData, cart);
+                        
+                        // Reset cart and UI
+                        cart = [];
+                        updateCartUI();
+                        document.getElementById('checkout-modal').classList.add('hidden');
+                        document.getElementById('checkout-form').reset();
+                        document.querySelectorAll('[id^="qty-"]').forEach(el => el.textContent = '0');
+                    },
+                    prefill: {
+                        name: formData.customer_name,
+                        email: formData.email,
+                        contact: formData.mobile
+                    },
+                    theme: {
+                        color: '#ff6b35'
+                    },
+                    modal: {
+                        ondismiss: function() {
+                            hideLoadingMessage();
+                            // Update status to Cancelled/Pending if needed
+                            updateGoogleSheetPaymentStatus({
+                                mobile: formData.mobile,
+                                paymentId: 'CANCELLED',
+                                status: 'Payment Cancelled'
+                            }).catch(console.error);
+                            showToast('भुगतान रद्द किया गया', 'error');
+                        }
                     }
-                }
-            };
-            
-            const rzp = new Razorpay(options);
-            rzp.open();
-        });
-
-        // Show message function
-        function showMessage(message, type) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `fixed top-4 right-4 z-50 p-4 rounded-lg text-white font-semibold ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
-            messageDiv.textContent = message;
-            document.body.appendChild(messageDiv);
-            
-            setTimeout(() => {
-                messageDiv.remove();
-            }, 5000);
+                };
+                
+                const rzp = new Razorpay(options);
+                rzp.open();
+            });
         }
+        // End setupEventListeners
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeDataSDK();
-            renderMenu(currentCategory);
-        });
 
-        // Social sharing functions
-        function getShareData() {
-            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
-            const companyName = config.company_name || defaultConfig.company_name;
-            const phone = config.company_phone || defaultConfig.company_phone;
-            
-            return {
-                title: `${companyName} - केटरिंग सर्विस`,
-                text: `🍽️ ${companyName} से ऑर्डर करें!\n\n✅ स्वादिष्ट खाना\n✅ बेहतरीन सेवा\n✅ होम डिलीवरी\n\n📞 ${phone}\n\nअभी ऑर्डर करें:`,
-                url: window.location.href
-            };
-        }
-
-        function shareOnWhatsApp() {
-            const data = getShareData();
-            const message = encodeURIComponent(`${data.text} ${data.url}`);
-            window.open(`https://wa.me/?text=${message}`, '_blank', 'noopener,noreferrer');
-        }
-
-        function shareOnInstagram() {
-            // Instagram doesn't support direct URL sharing, so we copy the text
-            const data = getShareData();
-            copyToClipboard(`${data.text} ${data.url}`);
-            showMessage('टेक्स्ट कॉपी हो गया! अब Instagram पर पेस्ट करें।', 'success');
-        }
-
-        function shareOnTelegram() {
-            const data = getShareData();
-            const message = encodeURIComponent(`${data.text} ${data.url}`);
-            window.open(`https://t.me/share/url?url=${encodeURIComponent(data.url)}&text=${encodeURIComponent(data.text)}`, '_blank', 'noopener,noreferrer');
-        }
-
-        function shareOnFacebook() {
-            const data = getShareData();
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(data.url)}`, '_blank', 'noopener,noreferrer');
-        }
-
-        function shareOnTwitter() {
-            const data = getShareData();
-            const text = encodeURIComponent(`${data.text} ${data.url}`);
-            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank', 'noopener,noreferrer');
-        }
-
-        function copyLink() {
-            copyToClipboard(window.location.href);
-            showMessage('लिंक कॉपी हो गया!', 'success');
-        }
-
-        function shareViaWebAPI() {
-            const data = getShareData();
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: data.title,
-                    text: data.text,
-                    url: data.url
-                }).then(() => {
-                    showMessage('शेयर किया गया!', 'success');
-                }).catch((error) => {
-                    console.log('Error sharing:', error);
-                    copyToClipboard(`${data.text} ${data.url}`);
-                    showMessage('टेक्स्ट कॉपी हो गया! अपनी पसंदीदा ऐप में पेस्ट करें।', 'success');
-                });
-            } else {
-                copyToClipboard(`${data.text} ${data.url}`);
-                showMessage('टेक्स्ट कॉपी हो गया! अपनी पसंदीदा ऐप में पेस्ट करें।', 'success');
-            }
-        }
-
-        function copyToClipboard(text) {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text);
-            } else {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-            }
-        }
-
-        // 🔥 Send data to Google Sheets
+        // 🔥 Send data to Google Sheets (Create new entry)
         async function sendToGoogleSheets(data) {
             try {
-                // Create form data for Google Apps Script
-                const formData = new FormData();
-                formData.append('action', 'create'); // Action type
-                formData.append('timestamp', data.timestamp);
-                formData.append('customerName', data.customerName);
-                formData.append('mobile', data.mobile);
-                formData.append('email', data.email);
-                formData.append('address', data.address);
-                formData.append('landmark', data.landmark);
-                formData.append('pincode', data.pincode);
-                formData.append('orderItems', data.orderItems);
-                formData.append('totalAmount', data.totalAmount);
-                formData.append('paymentId', data.paymentId);
-                formData.append('status', data.status);
+                // Using URL parameters for POST to App Script
+                const params = new URLSearchParams(data);
                 
-                const response = await fetch(GOOGLE_SHEETS_URL, {
+                // Note: Using a generic URL for this environment, replace with your actual App Script URL
+                const response = await fetch(`https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec?${params.toString()}`, {
                     method: 'POST',
-                    body: formData
+                    mode: 'no-cors'
                 });
                 
-                console.log('Google Sheets response sent');
+                console.log('Google Sheets initial entry sent');
                 return true;
             } catch (error) {
                 console.error('Google Sheets error:', error);
@@ -1041,16 +1104,20 @@
         // 🔥 Update payment status in Google Sheets
         async function updateGoogleSheetPaymentStatus(data) {
             try {
-                const formData = new FormData();
-                formData.append('action', 'update'); // Action type for update
-                formData.append('mobile', data.mobile); // Mobile number को identifier के रूप में use करें
-                formData.append('paymentId', data.paymentId);
-                formData.append('status', data.status);
-                formData.append('updateTimestamp', new Date().toLocaleString('hi-IN'));
+                const updateData = {
+                    action: 'update_status', 
+                    mobile: data.mobile,
+                    paymentId: data.paymentId,
+                    status: data.status,
+                    updateTimestamp: new Date().toLocaleString('hi-IN')
+                };
                 
-                const response = await fetch(GOOGLE_SHEETS_URL, {
+                const params = new URLSearchParams(updateData);
+
+                // Note: Using a generic URL for this environment, replace with your actual App Script URL
+                const response = await fetch(`https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec?${params.toString()}`, {
                     method: 'POST',
-                    body: formData
+                    mode: 'no-cors'
                 });
                 
                 console.log('Payment status updated in Google Sheets');
@@ -1067,77 +1134,66 @@
             const companyName = config.company_name || defaultConfig.company_name;
             const companyPhone = config.company_phone || defaultConfig.company_phone;
             
-            let message = `🍽️ ${companyName} - सामान की लिस्ट\n\n`;
-            message += `📋 ऑर्डर की जानकारी:\n`;
-            message += `👤 नाम: ${customerData.customer_name}\n`;
-            message += `📱 मोबाइल: ${customerData.mobile}\n`;
-            message += `📍 पता: ${customerData.address}\n\n`;
+            let message = `🍽️ *${companyName}* - सामान की लिस्ट\n\n`;
             
-            message += `🛒 ऑर्डर किए गए आइटम्स:\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-            
+            message += `📋 *ऑर्डर किए गए आइटम्स:*\n`;
             let totalAmount = 0;
             orderItems.forEach((item, index) => {
-                message += `${index + 1}. ${item.name} x ${item.quantity} = ₹${item.price * item.quantity}\n`;
+                message += `• ${item.name} x ${item.quantity} = ₹${(item.price * item.quantity).toLocaleString('en-IN')}\n`;
                 totalAmount += item.price * item.quantity;
             });
             
-            message += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-            message += `💰 कुल राशि: ₹${totalAmount}\n\n`;
+            message += `\n💰 *कुल राशि:* ₹${totalAmount.toLocaleString('en-IN')}\n\n`;
             
-            message += `📦 जरूरी सामान की लिस्ट:\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `📦 *जरूरी सामान की लिस्ट:*\n`;
             
             orderItems.forEach((item, index) => {
                 const ingredientData = ingredientsData[item.id];
                 if (ingredientData) {
-                    message += `\n${index + 1}. ${ingredientData.name} के लिए:\n`;
+                    message += `\n*${ingredientData.name} (${item.quantity} unit) के लिए:*\n`;
                     ingredientData.ingredients.forEach(ingredient => {
-                        message += `   • ${ingredient}\n`;
+                        let qtyString = ingredient.split(' - ')[1];
+                        let nameString = ingredient.split(' - ')[0];
+                        
+                        let numericQty = parseFloat(qtyString.match(/\d+/));
+                        let unit = qtyString.replace(/\d+/g, '').trim();
+                        
+                        if (!isNaN(numericQty) && numericQty > 0) {
+                            numericQty = numericQty * item.quantity;
+                            message += `   - ${nameString}: ${numericQty} ${unit}\n`;
+                        } else {
+                            message += `   - ${nameString}: ${qtyString}\n`;
+                        }
                     });
                 } else {
-                    message += `\n${index + 1}. ${item.name} के लिए:\n`;
+                    message += `\n${item.name} के लिए:\n`;
                     message += `   • सामान की जानकारी के लिए कॉल करें\n`;
                 }
             });
             
-            message += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-            message += `⚠️ महत्वपूर्ण निर्देश:\n`;
+            message += `\n*━━━━━━━━━━━━━━━━━━━━━━━*\n`;
+            message += `*⚠️ महत्वपूर्ण निर्देश:*\n`;
             message += `• कृपया ऊपर दी गई लिस्ट के अनुसार ही सारा सामान तैयार रखें\n`;
-            message += `• सभी सामान ताजा और अच्छी क्वालिटी का होना चाहिए\n`;
             message += `• बर्तन, गैस, और किचन की व्यवस्था आपकी जिम्मेदारी है\n`;
-            message += `• हमारे हलवाई समय पर पहुंचेंगे और खाना तैयार करेंगे\n\n`;
+            message += `• हलवाई को नशा या तंबाकू न दें\n\n`;
             
-            message += `📞 किसी भी समस्या के लिए संपर्क करें:\n`;
-            message += `${companyPhone}\n\n`;
-            message += `धन्यवाद! 🙏\n${companyName}`;
+            message += `📞 किसी भी सहायता के लिए संपर्क करें: ${companyPhone}\n`;
             
             // Open WhatsApp with the message
             const whatsappUrl = `https://wa.me/${customerData.mobile.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
             
             // Show confirmation message
-            showMessage('सामान की लिस्ट व्हाट्सएप पर भेजी गई है!', 'success');
+            showToast('सामान की लिस्ट व्हाट्सएप पर भेजी गई है!', 'success');
         }
 
-        // Close modals on outside click
-        document.getElementById('share-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.add('hidden');
-            }
-        });
-
-        document.getElementById('cart-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.add('hidden');
-            }
-        });
-
-        document.getElementById('checkout-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.add('hidden');
-            }
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDataSDK();
+            renderMenu(currentCategory);
+            setupEventListeners();
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'995f209127771c49',t:'MTc2MTcwMzcyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ </body>
+
 </html>
