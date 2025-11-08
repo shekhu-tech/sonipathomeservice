@@ -2,69 +2,189 @@
 <html lang="hi">
  <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="icon" type="image/svg+xml" href="logo.png">
-  <title>DTH Installation Service - Sonipat Home Service</title>
+  <title>Sonipat DTH Installation - Dish TV, Tata Play, Airtel Digital TV</title>
   <!-- SEO Meta Tags -->
-    <meta name="description" content="Get 30+ fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support with expert technicians. Book now!" />
-    <meta name="keywords" content="DTH connection Sonipat,Set top box,New DTH connection sonipat,DTH recharge,DTH offers,Best DTH company,Dish TV connection sonipat,Dish TV recharge,Dish TV new plan,DishTV customer care,Dish TV offers,Tata Sky sonipat,Tata Play recharge,Tata Play plan,Tata Play DTH,Tata Sky DTH,Airtel DTH connection Sonipat,Airtel digital TV,Airtel DTH recharge,Airtel DTH plans,Airtel TV,DD Free Dish sonipat,Free DTH,DD Free Dish channel list,DD Free Dish set top box,Doordarshan Free Dish,DTH dealer near me Sonipat,Dish TV dealer in Sonipat,Tata Play dealer Sonipat,Airtel DTH connection Sonipat,Set top box repair Sonipat,DTH recharge shop near me,, home services in Sonipat" />
+    <meta name="description" content="Book DTH installation and repair services in Sonipat for Dish TV, Tata Play, Airtel Digital TV, and DD Free Dish. Get set-top boxes, installation, and channel packages. Fast service with expert technicians." />
+    <meta name="keywords" content="DTH connection Sonipat, Tata Play installation, Dish TV dealer, Airtel Digital TV setup, DD Free Dish, set top box repair, DTH recharge, DTH offers, DTH technician Sonipat" />
     <meta name="author" content="Sonipat Home Service" />
-    <link rel="canonical" href="https://sonipathomeservice.com/" />
+    <link rel="canonical" href="https://sonipathomeservice.com/Book-dth-installation-service.html" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sonipathomeservice.com/" />
-    <meta property="og:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="og:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="og:image" content="logo.png" />
-    <meta property="og:site_name" content="Sonipat Home Service" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sonipathomeservice.com/" />
-    <meta property="twitter:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="twitter:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="twitter:image" content="logo.png" />
   <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
         body {
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Subtle light background */
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
+        
+        /* --- Gradient Colors for Header and Primary Buttons (From AC/Fridge File) --- */
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f62fe 0%, #1e40af 100%); /* Deep Blue/Indigo */
+        }
+
+        header {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        
+        /* --- Service/Plan Card (Ultra Stylish - From AC/Fridge File) --- */
         .plan-card {
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            transform-style: preserve-3d;
+            background: #ffffff;
+            box-shadow: 
+                0 15px 30px rgba(0,0,0,0.1),
+                0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 20px; /* More rounded */
+            position: relative;
+            overflow: hidden;
+            margin: 8px;
+            cursor: pointer;
         }
+        
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15,98,254,0.1) 0%, rgba(30,64,175,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        
+        .plan-card:hover::before {
+            opacity: 1;
+        }
+        
         .plan-card:hover {
+            transform: translateY(-8px) scale(1.02); 
+            box-shadow: 
+                0 25px 50px rgba(15,98,254,0.3), /* Stronger shadow */
+                0 15px 30px rgba(0,0,0,0.15),
+                inset 0 2px 0 rgba(255,255,255,0.9);
+            border-color: #0f62fe; /* Primary color border on hover */
+        }
+        
+        .plan-card-content {
+            position: relative;
+            z-index: 2;
+            padding: 24px;
+        }
+        
+        /* --- Primary Button (From AC/Fridge File) --- */
+        .btn-primary {
+            background: linear-gradient(135deg, #0f62fe, #1e40af);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(15,98,254,0.4);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e40af, #11368e);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(15,98,254,0.6);
         }
-        .loading {
-            opacity: 0.6;
-            pointer-events: none;
+        
+        /* --- Utility classes for Modals and Loading (From AC/Fridge File) --- */
+        .popup-overlay {
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
         }
-        .toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            padding: 12px 24px;
-            border-radius: 8px;
-            color: white;
+        
+        .popup-content {
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .cart-badge {
+            animation: bounce 0.5s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* --- Marquee/Slider Styling (From AC/Fridge File) --- */
+        .services-slider {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            background: #374151; /* Match footer component background */
+        }
+
+        .services-track {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        .services-track a, .services-track span {
+            display: inline-block;
+            color: #d1d5db; /* light gray */
+            padding: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .services-track a:hover {
+            color: #60a5fa; /* blue-400 */
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- DTH Specific Modal/List Styling (Updated for modern look) --- */
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 8px;
+        }
+        .channel-item {
+            background: #f1f5f9; /* slate-100 */
+            padding: 6px 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 13px;
             font-weight: 500;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
+            color: #334155; /* slate-700 */
+            border: 1px solid #e2e8f0;
         }
-        .toast.show {
-            transform: translateX(0);
-        }
-        .toast.success {
-            background-color: #10b981;
-        }
-        .toast.error {
-            background-color: #ef4444;
+        .channel-category {
+            background: #0f62fe; /* Primary Blue */
+            color: white;
+            font-weight: 800;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-size: 18px;
         }
         .modal {
             position: fixed;
@@ -72,307 +192,310 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
             padding: 20px;
+            backdrop-filter: blur(5px);
         }
         .modal-content {
             background: white;
-            border-radius: 12px;
-            max-width: 800px;
-            width: 100%;
-            max-height: 80%;
+            border-radius: 20px;
+            max-width: 90%;
+            width: 700px;
+            max-height: 90%;
             overflow-y: auto;
             position: relative;
-        }
-        .channel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 12px;
-        }
-        .channel-item {
-            background: #f8f9fa;
-            padding: 8px 12px;
-            border-radius: 6px;
-            text-align: center;
-            font-size: 14px;
-            border: 1px solid #e9ecef;
-        }
-        .channel-category {
-            background: #e3f2fd;
-            color: #1565c0;
-            font-weight: 600;
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 8px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
     </style>
   <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="min-h-full bg-gradient-to-br from-blue-50 to-indigo-100"><!-- Header -->
-  <header class="bg-white shadow-lg">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-    <div class="flex flex-col sm:flex-row justify-between items-center">
-     <div class="mb-4 sm:mb-0">
-      <h1 id="company-name" class="text-2xl sm:text-3xl font-bold text-indigo-600">Sonipat Home Service.com</h1>
-      <p class="text-gray-600 text-sm sm:text-base">Professional DTH Installation Services</p>
-     </div>
-     <div class="text-center sm:text-right">
-      <p class="text-gray-700 font-semibold">Customer Care</p>
-      <p id="customer-care" class="text-indigo-600 font-bold text-lg"><b>8816014071</b></p>
-      <p id="email-address" class="text-gray-600 text-sm"><b>care@sonipathomeservice.com</b></p>
+ <body class="min-h-full bg-gray-50"><!-- Header (From Fridge File) -->
+  <header class="gradient-bg text-white shadow-2xl sticky top-0 z-40"> 
+   <div class="container mx-auto px-4 py-4">
+    <br>
+    <div class="flex justify-between items-center"><a href="index.html" class="flex items-center space-x-3 hover:opacity-90 transition-opacity"><img src="logo.png" alt="Sonipat Home Service Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-lg border border-white/50">
+      <div>
+       <h1 id="company-name" class="text-xl sm:text-2xl font-extrabold tracking-tight"> <span class="text-yellow-300">SonipatHomeService</span></h1>
+       <p class="text-sm font-semibold opacity-90">Professional DTH Installation & Services</p>
+      </div></a>
+     <div class="flex items-center space-x-4">
+      <!-- Desktop Contact Side Bar -->
+      <div class="text-right hidden md:block border-l pl-4 border-white/30">
+       <a href="tel:8816014071" class="text-lg font-bold hover:text-yellow-300 transition-colors">📞 8816014071</a>
+       <p id="email-address" class="text-xs opacity-80 mt-1">care@sonipathomeservice.com</p>
+      </div>
+      <!-- Cart Button with Pop -->
+      <button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-md"> <span class="flex items-center space-x-2">
+        <i class="fas fa-shopping-cart w-5 h-5"></i>
+        <span class="hidden sm:inline">Cart</span> <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-0.5 text-xs hidden font-bold">0</span> </span> </button>
      </div>
     </div>
    </div>
   </header>
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><!-- Plans Section -->
-   <section class="mb-12">
-    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">DTH Plans &amp; Packages</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="plans-container"><!-- DD Free Dish -->
-     <div class="plan-card bg-white rounded-xl shadow-md p-6 border-2 border-green-200">
-      <div class="text-center mb-4">
-       <h3 class="text-xl font-bold text-green-600">DD Free Dish</h3>
-       <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold inline-block mt-2">
-        Lifetime Free
-       </div>
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- NEW: Info Cards Section (From AC/Fridge File) -->
+    <section class="py-6 bg-white rounded-xl shadow-lg mb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Info Card 1: Same Day Service -->
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl text-blue-600"><i class="fas fa-bolt"></i></span>
+                        <div>
+                            <h4 class="font-extrabold text-lg text-gray-800">Same Day Service</h4>
+                            <p class="text-sm text-gray-600">Installation within 24 hours of booking</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Info Card 2: 1 Year Warranty -->
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl text-green-600"><i class="fas fa-shield-alt"></i></span>
+                        <div>
+                            <h4 class="font-extrabold text-lg text-gray-800">1 Year Warranty</h4>
+                            <p class="text-sm text-gray-600">Warranty on set-top box and installation</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Info Card 3: Verified Technicians -->
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl text-yellow-600"><i class="fas fa-user-shield"></i></span>
+                        <div>
+                            <h4 class="font-extrabold text-lg text-gray-800">Verified Technicians</h4>
+                            <p class="text-sm text-gray-600">Background checked and highly trained experts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section (Updated styling) -->
+    <section class="mb-12">
+        <h3 class="text-3xl font-extrabold text-center mb-10 text-gray-800">DTH Plans & Packages <i class="fas fa-satellite-dish text-blue-600 ml-2"></i></h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2" id="plans-container">
+            <!-- Plans will be populated here by JavaScript -->
+        </div>
+    </section>
+  
+  </main>
+  
+  <!-- Channel List Modal (Updated styling) -->
+   <div id="channel-modal" class="modal hidden">
+    <div class="modal-content">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-6">
+       <h3 id="channel-modal-title" class="text-2xl font-bold text-gray-800"></h3><button onclick="closeChannelModal()" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
       </div>
-      <div class="space-y-2 mb-6">
-       <p class="text-gray-700">✓ HD+ Set Top Box</p>
-       <p class="text-gray-700">✓ Professional Installation</p>
-       <p class="text-gray-700">✓ 10 Mtr Wire Included</p>
-       <p class="text-gray-700">✓ 250+ Free HD + SD Channels</p>
-      </div>
-      <div class="text-center mb-4"><span class="text-3xl font-bold text-green-600">₹1,599</span>
-       <p class="text-gray-500 text-sm">One-time payment</p>
-      </div>
-      <div class="space-y-2"><button onclick="showChannelList('DD Free Dish')" class="w-full bg-green-100 hover:bg-green-200 text-green-700 font-semibold py-2 px-4 rounded-lg transition duration-200 border border-green-300"> 📺 See Channel List </button> <button onclick="addToCart('DD Free Dish', 'DD Free Dish-HD+ Set Top Box+Installation+ 10 Mtr Wire+ 10 Mtr Wire', 1599)" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Add to Cart </button>
-      </div>
-     </div><!-- Dish TV 1 Month -->
-     <div class="plan-card bg-white rounded-xl shadow-md p-6 border-2 border-orange-200">
-      <div class="text-center mb-4">
-       <h3 class="text-xl font-bold text-orange-600">Dish TV</h3>
-       <div class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold inline-block mt-2">
-        1 Month Free
-       </div>
-      </div>
-      <div class="space-y-2 mb-6">
-       <p class="text-gray-700">✓ Set Top Box</p>
-       <p class="text-gray-700">✓ Professional Installation</p>
-       <p class="text-gray-700">✓ A1810 Mtr Wire</p>
-       <p class="text-gray-700">✓ 250+ Paid Channels</p>
-      </div>
-      <div class="text-center mb-4"><span class="text-3xl font-bold text-orange-600">₹1,899</span>
-       <p class="text-gray-500 text-sm">1 Month Free</p>
-      </div>
-      <div class="space-y-2"><button onclick="showChannelList('Dish TV')" class="w-full bg-orange-100 hover:bg-orange-200 text-orange-700 font-semibold py-2 px-4 rounded-lg transition duration-200 border border-orange-300"> 📺 See Channel List </button> <button onclick="addToCart('Dish TV', 'Dish TV+ Set Top Box+Installation+ A1810 Mtr Wire , 1 Month Free, 250+ Paid Channel', 1899)" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Add to Cart </button>
-      </div>
-     </div><!-- Dish TV 12 Month -->
-     <div class="plan-card bg-white rounded-xl shadow-md p-6 border-2 border-orange-200">
-      <div class="text-center mb-4">
-       <h3 class="text-xl font-bold text-orange-600">Dish TV</h3>
-       <div class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold inline-block mt-2">
-        12 Months Free
-       </div>
-      </div>
-      <div class="space-y-2 mb-6">
-       <p class="text-gray-700">✓ Set Top Box</p>
-       <p class="text-gray-700">✓ Professional Installation</p>
-       <p class="text-gray-700">✓ A1810 Mtr Wire</p>
-       <p class="text-gray-700">✓ 250+ Paid Channels</p>
-      </div>
-      <div class="text-center mb-4"><span class="text-3xl font-bold text-orange-600">₹3,520</span>
-       <p class="text-gray-500 text-sm">12 Months Free</p>
-      </div>
-      <div class="space-y-2"><button onclick="showChannelList('Dish TV')" class="w-full bg-orange-100 hover:bg-orange-200 text-orange-700 font-semibold py-2 px-4 rounded-lg transition duration-200 border border-orange-300"> 📺 See Channel List </button> <button onclick="addToCart('Dish TV', 'Dish TV+ Set Top Box+Installation+ A1810 Mtr Wire , 12 Month Free, 250+ Paid Channel', 3520)" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Add to Cart </button>
-      </div>
-     </div><!-- TATA SKY 1 Month -->
-     <div class="plan-card bg-white rounded-xl shadow-md p-6 border-2 border-red-200">
-      <div class="text-center mb-4">
-       <h3 class="text-xl font-bold text-red-600">TATA SKY</h3>
-       <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold inline-block mt-2">
-        1 Month Free
-       </div>
-      </div>
-      <div class="space-y-2 mb-6">
-       <p class="text-gray-700">✓ Set Top Box</p>
-       <p class="text-gray-700">✓ Professional Installation</p>
-       <p class="text-gray-700">✓ A1810 Mtr Wire</p>
-       <p class="text-gray-700">✓ 250+ Paid Channels</p>
-      </div>
-      <div class="text-center mb-4"><span class="text-3xl font-bold text-red-600">₹1,999</span>
-       <p class="text-gray-500 text-sm">1 Month Free</p>
-      </div>
-      <div class="space-y-2"><button onclick="showChannelList('TATA SKY')" class="w-full bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-2 px-4 rounded-lg transition duration-200 border border-red-300"> 📺 See Channel List </button> <button onclick="addToCart('TATA SKY', 'TATA SKY+ Set Top Box+Installation+ A1810 Mtr Wire , 1 Month Free, 250+ Paid Channel', 1999)" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Add to Cart </button>
-      </div>
-     </div><!-- TATA SKY 12 Month -->
-     <div class="plan-card bg-white rounded-xl shadow-md p-6 border-2 border-red-200">
-      <div class="text-center mb-4">
-       <h3 class="text-xl font-bold text-red-600">TATA SKY</h3>
-       <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold inline-block mt-2">
-        12 Months Free
-       </div>
-      </div>
-      <div class="space-y-2 mb-6">
-       <p class="text-gray-700">✓ Set Top Box</p>
-       <p class="text-gray-700">✓ Professional Installation</p>
-       <p class="text-gray-700">✓ A1810 Mtr Wire</p>
-       <p class="text-gray-700">✓ 250+ Paid Channels</p>
-      </div>
-      <div class="text-center mb-4"><span class="text-3xl font-bold text-red-600">₹3,600</span>
-       <p class="text-gray-500 text-sm">12 Months Free</p>
-      </div>
-      <div class="space-y-2"><button onclick="showChannelList('TATA SKY')" class="w-full bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-2 px-4 rounded-lg transition duration-200 border border-red-300"> 📺 See Channel List </button> <button onclick="addToCart('TATA SKY', 'TATA SKY+ Set Top Box+Installation+ A1810 Mtr Wire , 12 Month Free, 250+ Paid Channel', 3600)" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Add to Cart </button>
-      </div>
-     </div><!-- Airtel TV 1 Month -->
-     <div class="plan-card bg-white rounded-xl shadow-md p-6 border-2 border-purple-200">
-      <div class="text-center mb-4">
-       <h3 class="text-xl font-bold text-purple-600">Airtel TV</h3>
-       <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold inline-block mt-2">
-        1 Month Free
-       </div>
-      </div>
-      <div class="space-y-2 mb-6">
-       <p class="text-gray-700">✓ Set Top Box</p>
-       <p class="text-gray-700">✓ Professional Installation</p>
-       <p class="text-gray-700">✓ A1810 Mtr Wire</p>
-       <p class="text-gray-700">✓ 250+ Paid Channels</p>
-      </div>
-      <div class="text-center mb-4"><span class="text-3xl font-bold text-purple-600">₹1,999</span>
-       <p class="text-gray-500 text-sm">1 Month Free</p>
-      </div>
-      <div class="space-y-2"><button onclick="showChannelList('Airtel TV')" class="w-full bg-purple-100 hover:bg-purple-200 text-purple-700 font-semibold py-2 px-4 rounded-lg transition duration-200 border border-purple-300"> 📺 See Channel List </button> <button onclick="addToCart('Airtel TV', 'Airtel tv+ Set Top Box+Installation+ A1810 Mtr Wire , 1 Month Free, 250+ Paid Channel', 1999)" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Add to Cart </button>
-      </div>
-     </div><!-- Airtel TV 12 Month -->
-     <div class="plan-card bg-white rounded-xl shadow-md p-6 border-2 border-purple-200">
-      <div class="text-center mb-4">
-       <h3 class="text-xl font-bold text-purple-600">Airtel TV</h3>
-       <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold inline-block mt-2">
-        12 Months Free
-       </div>
-      </div>
-      <div class="space-y-2 mb-6">
-       <p class="text-gray-700">✓ Set Top Box</p>
-       <p class="text-gray-700">✓ Professional Installation</p>
-       <p class="text-gray-700">✓ A1810 Mtr Wire</p>
-       <p class="text-gray-700">✓ 250+ Paid Channels</p>
-      </div>
-      <div class="text-center mb-4"><span class="text-3xl font-bold text-purple-600">₹3,600</span>
-       <p class="text-gray-500 text-sm">12 Months Free</p>
-      </div>
-      <div class="space-y-2"><button onclick="showChannelList('Airtel TV')" class="w-full bg-purple-100 hover:bg-purple-200 text-purple-700 font-semibold py-2 px-4 rounded-lg transition duration-200 border border-purple-300"> 📺 See Channel List </button> <button onclick="addToCart('Airtel TV', 'Airtel tv+ Set Top Box+Installation+ A1810 Mtr Wire , 12 Month Free, 250+ Paid Channel', 3600)" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Add to Cart </button>
+      <div id="channel-list-content" class="channel-grid"></div>
+      <div class="mt-6 text-center"><button onclick="closeChannelModal()" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-200"> Close </button>
       </div>
      </div>
     </div>
-   </section><!-- Cart Section -->
-   <section id="cart-section" class="mb-12 hidden">
-    <div class="bg-white rounded-xl shadow-lg p-6">
-     <h3 class="text-2xl font-bold text-gray-800 mb-6">Your Cart</h3>
-     <div id="cart-items" class="space-y-4 mb-6"></div>
-     <div class="border-t pt-4">
-      <div class="space-y-2">
-       <div class="flex justify-between items-center text-lg"><span>Total Amount:</span> <span id="cart-total" class="text-gray-800 font-semibold">₹0</span>
-       </div>
-       <div class="flex justify-between items-center text-lg text-green-600"><span>Booking Charge (Pay Now):</span> <span class="font-bold">₹99</span>
-       </div>
-       <div class="flex justify-between items-center text-lg text-blue-600"><span>Remaining (Pay on Installation):</span> <span id="remaining-amount" class="font-bold">₹0</span>
-       </div>
-      </div>
-     </div><button onclick="proceedToCheckout()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg mt-4 transition duration-200"> Book Now - Pay ₹99 Only </button>
-    </div>
-   </section><!-- Customer Details Form Modal -->
-   <div id="checkout-modal" class="modal hidden">
-    <div class="modal-content">
+   </div>
+
+  <!-- Cart Popup (From Fridge File) -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content">
      <div class="p-6">
-      <div class="flex justify-between items-center mb-4">
-       <h3 class="text-2xl font-bold text-gray-800">Customer Details</h3><button onclick="closeCheckoutModal()" class="text-gray-500 hover:text-gray-700 text-3xl font-bold"> × </button>
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+       <h3 class="text-2xl font-extrabold text-gray-800">Your Cart</h3><button id="close-cart" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
       </div>
-      <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-       <div class="flex items-center mb-2"><span class="text-blue-600 text-xl mr-2">💰</span>
-        <h4 class="font-semibold text-blue-800">Payment Information</h4>
-       </div>
-       <div class="space-y-1 text-sm">
-        <p><strong>Total Amount:</strong> <span id="modal-total">₹0</span></p>
-        <p class="text-green-600"><strong>Pay Now (Booking):</strong> ₹99</p>
-        <p class="text-blue-600"><strong>Pay on Installation:</strong> <span id="modal-remaining">₹0</span></p>
-       </div>
+      <div id="cart-items" class="space-y-3 mb-4 max-h-60 overflow-y-auto"><!-- Cart items will be populated here -->
       </div>
-      <form id="customer-form" class="space-y-4">
-       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div><label for="customer-name" class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label> <input type="text" id="customer-name" name="customer-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+      <div class="border-t pt-4">
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600 font-semibold">Service Total:</span> <span class="font-extrabold text-lg">₹<span id="cart-total">0</span></span>
         </div>
-        <div><label for="mobile" class="block text-sm font-medium text-gray-700 mb-2">Mobile Number *</label> <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <div class="flex justify-between items-center text-blue-600"><span class="font-semibold">Booking Charge:</span> <span class="font-extrabold">₹<span id="cart-booking-charge">99</span></span>
+        </div>
+        <div class="flex justify-between items-center text-green-600"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="onsite-balance">0</span></span>
+        </div>
+        <div class="border-t pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="cart-pay-now">99</span></span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform disabled:opacity-50" disabled> <span id="cart-button-text">Book Service - Pay ₹99</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Checkout Form Popup (From Fridge File) -->
+  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-start justify-center min-h-full p-2 py-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content" style="max-height: 95vh; overflow-y: auto;">
+     <div class="sticky top-0 bg-white p-4 border-b flex justify-between items-center z-10">
+      <h3 class="text-xl font-extrabold">Customer Details</h3><button id="close-checkout" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+       </svg></button>
+     </div>
+     <div class="p-4">
+      <form id="checkout-form" class="space-y-4">
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" maxlength="10" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email-id" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
         </div>
        </div>
-       <div><label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label> <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-       </div>
-       <div><label for="address" class="block text-sm font-medium text-gray-700 mb-2">Full Address *</label> <textarea id="address" name="address" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
-       </div>
-       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div><label for="landmark" class="block text-sm font-medium text-gray-700 mb-2">Landmark</label> <input type="text" id="landmark" name="landmark" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Full Address *</label> <textarea id="full-address" required rows="3" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"></textarea>
         </div>
-        <div><label for="pincode" class="block text-sm font-medium text-gray-700 mb-2">Pincode *</label> <input type="text" id="pincode" name="pincode" required pattern="[0-9]{6}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <div class="grid grid-cols-2 gap-4">
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+         </div>
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required pattern="[0-9]{6}" maxlength="6" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+         </div>
         </div>
        </div>
-       <div class="flex space-x-4 pt-4"><button type="button" onclick="closeCheckoutModal()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Cancel </button> <button type="submit" id="payment-btn" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"> Pay ₹99 via Razorpay </button>
+       <div class="border-t pt-4 mt-4">
+        <h4 class="text-lg font-extrabold mb-3">Payment Summary</h4>
+        <div class="space-y-2 mb-4 bg-blue-50 p-3 rounded-lg border border-blue-200">
+         <div class="flex justify-between items-center text-sm"><span class="text-gray-700 font-semibold">Service Total:</span> <span class="font-extrabold">₹<span id="checkout-total">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-blue-700 text-sm"><span class="font-semibold">Booking Charge (Non-refundable):</span> <span class="font-extrabold">₹<span id="checkout-booking-charge">99</span></span>
+         </div>
+         <div class="flex justify-between items-center text-green-700 text-sm"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="checkout-onsite-balance">0</span></span>
+         </div>
+         <div class="border-t border-blue-300 pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="checkout-pay-now">99</span></span>
+         </div>
+        </div>
+        <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-3 mb-4">
+         <p class="text-xs text-yellow-800"><strong>Note:</strong> You are paying only the booking charge (₹<span id="note-booking-charge">99</span>) now. <span id="onsite-note">Remaining amount will be paid to the technician after service completion.</span></p>
+        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform"> <span id="checkout-button-text">Pay ₹99 Booking Charge</span> </button>
        </div>
       </form>
      </div>
     </div>
    </div>
-  </main><!-- Footer -->
-  <footer class="bg-gray-800 text-white py-8 mt-12">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  </div>
+
+
+  <!-- Footer (Updated with Marquee) -->
+  <footer class="bg-gray-900 text-white pt-12 mt-16">
+   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
      <div>
-      <h4 class="text-lg font-semibold mb-4">Contact Information</h4>
-      <p class="mb-2">📞 Customer Care: <span id="footer-phone">8816014071</span></p>
-      <p class="mb-2">📧 Email: <span id="footer-email">care@sonipathomeservice.com</span></p>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Contact Information</h4>
+      <div class="space-y-2 text-sm">
+       <p class="flex items-center">📞 <span class="ml-2 font-semibold" id="footer-phone">8816014071</span></p>
+       <p class="flex items-center">✉️ <span class="ml-2" id="footer-email">care@sonipathomeservice.com</span></p>
+       <p class="flex items-center">📍 <span class="ml-2" id="office-address">128/1, Sainipura, Sonipat</span></p>
+      </div>
      </div>
      <div>
-      <h4 class="text-lg font-semibold mb-4">Office Address</h4>
-      <p id="office-address">128/1, Sainipura, Sonipat</p>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+       <li><a href="index.html" class="hover:text-blue-400 transition-colors">• Home Page</a></li>
+       <li><a href="policy.html" class="hover:text-blue-400 transition-colors">• Privacy Policy</a></li>
+       <li><a href="terms.html" class="hover:text-blue-400 transition-colors">• Terms &amp; Conditions</a></li>
+       <li><a href="refund.html" class="hover:text-blue-400 transition-colors">• Refund Policy</a></li>
+      </ul>
      </div>
      <div>
-      <h4 class="text-lg font-semibold mb-4">Services</h4>
-      <p>Professional DTH Installation</p>
-      <p>All Major Providers Supported</p>
-      <p>Same Day Installation Available</p>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">DTH Highlights</h4>
+      <ul class="space-y-2 text-sm">
+       <li>✓ All Major DTH Providers</li>
+       <li>✓ Instant Activation</li>
+       <li>✓ 1 Year Product Warranty</li>
+       <li>✓ Transparent Pricing</li>
+      </ul>
      </div>
     </div>
-
-    <div style="background: #374151; padding: 20px 0; margin-top: 20px;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 20px; font-size: 18px;">All Our Services</h4>
+    <!-- Marquee Slider for All Services (Copied styling and structure from Fridge/AC file) -->
+    <div style="background: #374151; padding: 15px 0; margin-top: 30px; border-radius: 10px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 10px; font-size: 16px; font-weight: bold;">All Our Services</h4>
      <div class="services-slider">
       <div class="services-track"><a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span> <!-- Duplicate for seamless loop --> <a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span>
       </div>
      </div>
     </div>
    </div>
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-     <p>© 2024 Sonipat Home Service. All rights reserved.</p>
+
+    <div class="border-t border-gray-800 mt-8 pt-6 pb-2 text-center text-sm">
+     <p>© 2024 DTH Installation & Service in Sonipat. All rights reserved.</p>
     </div>
    </div>
   </footer>
+  
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
         // Configuration
         const defaultConfig = {
-            company_name: "Sonipat Home Service.com",
+            company_name: "DTH Installation & Service in Sonipat",
             customer_care: "8816014071",
             email_address: "care@sonipathomeservice.com",
             office_address: "128/1, Sainipura, Sonipat"
         };
+        const BOOKING_AMOUNT = 99;
 
         let cart = [];
         let currentRecordCount = 0;
         let isRazorpayLoaded = false;
 
-        // Channel Lists Data
+        // Utility function to show custom toast message (Defined globally to fix ReferenceError)
+        function showToast(message, type) {
+            const existing = document.getElementById('app-message');
+            if(existing) existing.remove();
+            
+            const colors = {
+                success: { bg: 'bg-green-500', icon: '✅' },
+                error: { bg: 'bg-red-500', icon: '❌' },
+                loading: { bg: 'bg-blue-500', icon: '<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>' }
+            };
+            
+            const msg = colors[type] || colors.loading;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.id = 'app-message';
+            messageDiv.className = `fixed top-4 right-4 ${msg.bg} text-white p-4 rounded-xl shadow-2xl z-[1000] transition-opacity duration-300`;
+            messageDiv.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <span class="text-xl">${msg.icon}</span>
+                    <div>
+                        <p class="font-bold text-lg">${type === 'success' ? 'Success' : (type === 'error' ? 'Error' : 'Processing...')}</p>
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(messageDiv);
+            
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    messageDiv.classList.add('opacity-0');
+                    setTimeout(() => messageDiv.remove(), 300);
+                }, 5000);
+            }
+        }
+        
+        // This function is kept for backward compatibility and internal use, routing through showToast
+        function showMessage(type, title, message) {
+            showToast(message, type);
+        }
+        
+        function showLoadingMessage() { showMessage('loading', 'Processing...', 'Saving your booking details'); }
+        function hideLoadingMessage() { const loadingDiv = document.getElementById('app-message'); if (loadingDiv) loadingDiv.remove(); }
+        function showErrorMessage() { showMessage('error', 'Booking Failed!', 'Please try again or contact support.'); }
+
+
+        // Channel Lists Data (Retained and structured)
         const channelLists = {
             'DD Free Dish': {
                 title: 'DD Free Dish - 163 Free Channels (Latest 2024 Update)',
@@ -463,7 +586,7 @@
                 }
             },
             'TATA SKY': {
-                title: 'TATA SKY - 250+ Premium Channels',
+                title: 'TATA Play - 250+ Premium Channels',
                 channels: {
                     'Entertainment': [
                         'Star Plus', 'Colors', 'Sony TV', 'Zee TV', 'Star Bharat',
@@ -549,6 +672,23 @@
             }
         };
 
+        const plans = [
+            // DD Free Dish
+            { id: 1, provider: 'DD Free Dish', title: 'Free Dish HD+', price: 1599, description: 'HD+ Set Top Box + Professional Installation + 10 Mtr Wire. 250+ Free Channels. Lifetime Free.', icon: 'fas fa-tv text-green-500' },
+            
+            // Dish TV
+            { id: 2, provider: 'Dish TV', title: '1 Month Pack', price: 1899, description: 'Set Top Box + Installation + 10 Mtr Wire. Includes 1 Month Free Subscription (250+ Paid Channels).', icon: 'fas fa-satellite-dish text-orange-500' },
+            { id: 3, provider: 'Dish TV', title: '12 Month Pack', price: 3520, description: 'Set Top Box + Installation + 10 Mtr Wire. Includes 12 Months Free Subscription (250+ Paid Channels).', icon: 'fas fa-satellite-dish text-orange-500' },
+            
+            // TATA PLAY
+            { id: 4, provider: 'TATA Play', title: '1 Month Pack', price: 1999, description: 'Set Top Box + Installation + 10 Mtr Wire. Includes 1 Month Free Subscription (250+ Paid Channels).', icon: 'fas fa-compact-disc text-red-500' },
+            { id: 5, provider: 'TATA Play', title: '12 Month Pack', price: 3600, description: 'Set Top Box + Installation + 10 Mtr Wire. Includes 12 Months Free Subscription (250+ Paid Channels).', icon: 'fas fa-compact-disc text-red-500' },
+            
+            // Airtel Digital TV
+            { id: 6, provider: 'Airtel Digital TV', title: '1 Month Pack', price: 1999, description: 'Set Top Box + Installation + 10 Mtr Wire. Includes 1 Month Free Subscription (250+ Paid Channels).', icon: 'fas fa-bolt text-purple-500' },
+            { id: 7, provider: 'Airtel Digital TV', title: '12 Month Pack', price: 3600, description: 'Set Top Box + Installation + 10 Mtr Wire. Includes 12 Months Free Subscription (250+ Paid Channels).', icon: 'fas fa-bolt text-purple-500' }
+        ];
+
         // Data SDK Handler
         const dataHandler = {
             onDataChanged(data) {
@@ -564,7 +704,8 @@
             const officeAddress = config.office_address || defaultConfig.office_address;
 
             document.getElementById('company-name').textContent = companyName;
-            document.getElementById('customer-care').textContent = customerCare;
+            const headerPhone = document.querySelector('header a[href^="tel:"]');
+            if (headerPhone) headerPhone.textContent = `📞 ${customerCare}`;
             document.getElementById('email-address').textContent = emailAddress;
             document.getElementById('footer-phone').textContent = customerCare;
             document.getElementById('footer-email').textContent = emailAddress;
@@ -603,342 +744,319 @@
             if (window.dataSdk) {
                 const initResult = await window.dataSdk.init(dataHandler);
                 if (!initResult.isOk) {
-                    showToast("Failed to initialize data storage", "error");
+                    console.error("Failed to initialize data storage");
                 }
             }
-
-            // Check if Razorpay is loaded
-            checkRazorpayStatus();
+            renderPlans();
         }
 
-        function checkRazorpayStatus() {
-            if (typeof Razorpay !== 'undefined') {
-                isRazorpayLoaded = true;
-                console.log('✅ Razorpay loaded successfully');
-                console.log('Razorpay object:', Razorpay);
-                
-                // Test Razorpay functionality
-                try {
-                    const testOptions = {
-                        key: 'rzp_live_RLjzp7VlXERwiG',
-                        amount: 100,
-                        currency: 'INR'
-                    };
-                    const testRzp = new Razorpay(testOptions);
-                    console.log('✅ Razorpay instance created successfully');
-                    showToast("Payment gateway ready!", "success");
-                } catch (error) {
-                    console.error('❌ Razorpay test failed:', error);
-                    showToast("Payment gateway error detected", "error");
-                }
-            } else {
-                console.log('⏳ Waiting for Razorpay to load...');
-                console.log('Current window.Razorpay:', window.Razorpay);
-                console.log('Current typeof Razorpay:', typeof Razorpay);
-                setTimeout(checkRazorpayStatus, 1000);
-            }
+        function renderPlans() {
+            const container = document.getElementById('plans-container');
+            container.innerHTML = plans.map(plan => `
+                <div class="plan-card" onclick="addToCart(${plan.id})">
+                    <div class="plan-card-content">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 mr-4 text-blue-600 text-2xl">
+                                <i class="${plan.icon}"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-extrabold text-xl mb-1 text-gray-800 leading-snug">${plan.provider}</h4>
+                                <p class="text-gray-600 text-sm font-semibold">${plan.title}</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 text-sm mb-4">${plan.description}</p>
+                        
+                        <div class="flex justify-between items-center pt-2 border-t border-gray-100">
+                            <span class="text-3xl font-extrabold text-red-600">₹${plan.price}</span>
+                            <button class="btn-primary text-white px-4 py-2 rounded-full font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-300" onclick="event.stopPropagation(); addToCart(${plan.id});">
+                                Add to Cart
+                            </button>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button onclick="event.stopPropagation(); showChannelList('${plan.provider.includes('Dish') ? 'Dish TV' : plan.provider.includes('TATA') ? 'TATA SKY' : plan.provider.includes('Airtel') ? 'Airtel TV' : 'DD Free Dish'}')" 
+                                    class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors">
+                                📺 See Channel List
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
+        
+        function addToCart(planId) {
+            const plan = plans.find(p => p.id === planId);
+            if (!plan) return;
 
-        // Cart Functions
-        function addToCart(provider, planName, price) {
+            // Clear cart if adding a new DTH plan (Assuming only one major installation can be booked at a time)
+            cart = [];
+
             const item = {
-                id: Date.now().toString(),
-                provider: provider,
-                plan: planName,
-                price: price
+                id: plan.id, // Use plan ID for easy replacement
+                provider: plan.provider,
+                plan: plan.title,
+                price: plan.price,
+                quantity: 1
             };
             
             cart.push(item);
-            updateCartDisplay();
-            showToast("Plan added to cart!", "success");
+            updateCartUI();
+            showToast(`${plan.title} added to cart!`, "success");
+            showCartPopup();
         }
 
-        function removeFromCart(itemId) {
-            cart = cart.filter(item => item.id !== itemId);
-            updateCartDisplay();
-            showToast("Item removed from cart", "success");
-        }
-
-        function updateCartDisplay() {
-            const cartSection = document.getElementById('cart-section');
-            const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-            
+        function removeFromCart(planId) {
+            // Check if item exists (it should, as we only have 1)
+            cart = cart.filter(item => item.id !== planId);
+            updateCartUI();
             if (cart.length === 0) {
-                cartSection.classList.add('hidden');
-                return;
+                hideCartPopup();
+                hideCheckoutPopup();
+            }
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const proceedBtn = document.getElementById('proceed-checkout');
+            
+            const totalItems = cart.length;
+            const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT; 
+            const onsiteAmount = Math.max(0, totalAmount - bookingCharge);
+            
+            // 1. Update Cart Count Badge
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+                cartCount.classList.add('cart-badge');
+            } else {
+                cartCount.classList.add('hidden');
             }
             
-            cartSection.classList.remove('hidden');
-            
+            // 2. Update Cart Items in Popup
             cartItems.innerHTML = cart.map(item => `
-                <div class="flex justify-between items-center p-4 border border-gray-200 rounded-lg">
-                    <div>
-                        <h4 class="font-semibold text-gray-800">${item.provider}</h4>
-                        <p class="text-sm text-gray-600">${item.plan}</p>
+                <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-100">
+                    <div class="flex-1">
+                        <h5 class="font-bold text-base text-gray-800">${item.provider} - ${item.plan}</h5>
+                        <p class="text-xs text-gray-600">Quantity: ${item.quantity}</p>
                     </div>
-                    <div class="flex items-center space-x-4">
-                        <span class="font-bold text-lg">₹${item.price}</span>
-                        <button onclick="removeFromCart('${item.id}')" 
-                                class="text-red-600 hover:text-red-800 font-semibold">
-                            Remove
+                    <div class="flex flex-col items-end space-y-1">
+                        <span class="font-extrabold text-lg text-red-600">₹${item.price}</span>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 text-xs">
+                            <i class="fas fa-trash-alt mr-1"></i> Remove
                         </button>
                     </div>
                 </div>
             `).join('');
             
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            const remainingAmount = Math.max(0, total - 99);
+            // 3. Update Cart Totals
+            const totalElements = ['cart-total', 'checkout-total'];
+            totalElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = totalAmount;
+            });
+
+            const onsiteElements = ['onsite-balance', 'checkout-onsite-balance'];
+            onsiteElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = onsiteAmount;
+            });
             
-            cartTotal.textContent = `₹${total}`;
-            document.getElementById('remaining-amount').textContent = `₹${remainingAmount}`;
+            // Update charge displays
+            const chargeElements = ['cart-booking-charge', 'checkout-booking-charge', 'cart-pay-now', 'checkout-pay-now', 'note-booking-charge'];
+            chargeElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = bookingCharge;
+            });
+            
+            const onsiteNote = document.getElementById('onsite-note');
+            if (onsiteNote) {
+                if (onsiteAmount === 0) {
+                    onsiteNote.textContent = "Full plan amount paid online (₹0 Onsite Balance).";
+                } else {
+                    onsiteNote.textContent = "Remaining amount will be paid to the technician after installation.";
+                }
+            }
+            
+            if (proceedBtn) {
+                proceedBtn.disabled = cart.length === 0;
+                document.getElementById('cart-button-text').textContent = `Book Service - Pay ₹${bookingCharge}`;
+                const checkoutBtnText = document.getElementById('checkout-button-text');
+                if (checkoutBtnText) checkoutBtnText.textContent = `Pay ₹${bookingCharge} Booking Charge`;
+            }
         }
 
-        function proceedToCheckout() {
+        function showCartPopup() {
+            document.getElementById('cart-popup').classList.remove('hidden');
+        }
+
+        function hideCartPopup() {
+            document.getElementById('cart-popup').classList.add('hidden');
+        }
+
+        function showCheckoutPopup() {
             if (cart.length === 0) {
-                showToast("Please add items to cart first", "error");
+                showToast('Please add a plan to the cart first.', 'error');
                 return;
             }
-            
-            // Update modal payment info
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            const remainingAmount = Math.max(0, total - 99);
-            
-            document.getElementById('modal-total').textContent = `₹${total}`;
-            document.getElementById('modal-remaining').textContent = `₹${remainingAmount}`;
-            
-            document.getElementById('checkout-modal').classList.remove('hidden');
+            hideCartPopup();
+            document.getElementById('checkout-popup').classList.remove('hidden');
         }
 
-        // Google Apps Script URL for your sheet
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec';
-
-        // Function to send data to Google Sheet
-        async function sendToGoogleSheet(orderData, paymentId = '', status = 'Pending') {
-            try {
-                const sheetData = {
-                    timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-                    customerName: orderData.customer_name,
-                    mobile: orderData.mobile,
-                    email: orderData.email,
-                    address: orderData.address + (orderData.landmark ? `, ${orderData.landmark}` : ''),
-                    landmark: orderData.landmark || '',
-                    pincode: orderData.pincode,
-                    orderItems: orderData.plan_name,
-                    totalAmount: orderData.price,
-                    paymentId: paymentId,
-                    status: status
-                };
-
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(sheetData)
-                });
-
-                console.log('✅ Data sent to Google Sheet successfully');
-                return true;
-            } catch (error) {
-                console.error('❌ Error sending to Google Sheet:', error);
-                return false;
-            }
+        function hideCheckoutPopup() {
+            document.getElementById('checkout-popup').classList.add('hidden');
+            document.getElementById('checkout-form').reset(); // Reset form on close
         }
 
-        // Simple Form Submission - Direct Payment
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('customer-form');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    if (cart.length === 0) {
-                        showToast("No items in cart", "error");
-                        return;
-                    }
-                    
-                    // Get form values
-                    const customerName = document.getElementById('customer-name').value.trim();
-                    const mobile = document.getElementById('mobile').value.trim();
-                    const email = document.getElementById('email').value.trim();
-                    const address = document.getElementById('address').value.trim();
-                    const landmark = document.getElementById('landmark').value.trim();
-                    const pincode = document.getElementById('pincode').value.trim();
-                    
-                    // Validate required fields
-                    if (!customerName || !mobile || !email || !address || !pincode) {
-                        showToast("Please fill all required fields", "error");
-                        return;
-                    }
-                    
-                    // Validate mobile number
-                    if (!/^[0-9]{10}$/.test(mobile)) {
-                        showToast("Please enter a valid 10-digit mobile number", "error");
-                        return;
-                    }
-                    
-                    // Validate pincode
-                    if (!/^[0-9]{6}$/.test(pincode)) {
-                        showToast("Please enter a valid 6-digit pincode", "error");
-                        return;
-                    }
-                    
-                    // Start payment immediately
-                    startDirectPayment({
-                        customer_name: customerName,
-                        mobile: mobile,
-                        email: email,
-                        address: address,
-                        landmark: landmark,
-                        pincode: pincode,
-                        plan_name: cart.map(item => item.plan).join(', '),
-                        provider: cart.map(item => item.provider).join(', '),
-                        price: cart.reduce((sum, item) => sum + item.price, 0)
-                    });
-                });
-            }
-        });
-
-        // Direct Razorpay Payment - Simplified
-        function startDirectPayment(orderData) {
-            // Show loading
-            const submitBtn = document.getElementById('payment-btn');
-            submitBtn.textContent = 'Opening Payment...';
-            submitBtn.disabled = true;
+        // Razorpay payment integration (Copied and adapted from Fridge file)
+        function initiatePayment(customerData) {
+            const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT; 
             
-            // Wait a moment for Razorpay to be ready
-            setTimeout(() => {
-                if (typeof Razorpay === 'undefined') {
-                    showToast("Payment system loading... Please try again in 2 seconds", "error");
-                    submitBtn.textContent = 'Pay ₹99 via Razorpay';
-                    submitBtn.disabled = false;
-                    return;
+            const options = {
+                key: 'rzp_live_RLjzp7VlXERwiG', 
+                amount: bookingCharge * 100, // Amount in paise
+                currency: 'INR',
+                name: 'DTH Installation & Service',
+                description: 'Booking Charge - DTH Plan Installation',
+                image: 'https://via.placeholder.com/200x200/0f62fe/ffffff?text=SHS',
+                prefill: {
+                    name: customerData.name,
+                    email: customerData.email,
+                    contact: customerData.mobile
+                },
+                theme: {
+                    color: '#0f62fe'
+                },
+                handler: function(response) {
+                    // Payment successful
+                    submitToGoogleSheets(customerData, response.razorpay_payment_id);
+                },
+                modal: {
+                    ondismiss: function() {
+                        showToast('Payment cancelled', 'error');
+                    }
                 }
-
-                const options = {
-                    key: 'rzp_live_RLjzp7VlXERwiG',
-                    amount: 9900, // ₹99 in paise
-                    currency: 'INR',
-                    name: 'Sonipat Home Service',
-                    description: 'DTH Installation Booking - ₹99',
-                    image: 'https://cdn-icons-png.flaticon.com/512/2972/2972531.png',
-                    handler: function (response) {
-                        handlePaymentSuccess(response, orderData);
-                    },
-                    prefill: {
-                        name: orderData.customer_name,
-                        email: orderData.email,
-                        contact: orderData.mobile
-                    },
-                    theme: {
-                        color: '#2563eb'
-                    },
-                    modal: {
-                        ondismiss: function() {
-                            submitBtn.textContent = 'Pay ₹99 via Razorpay';
-                            submitBtn.disabled = false;
-                            showToast("Payment cancelled", "error");
-                        }
-                    }
-                };
-
-                try {
-                    const rzp1 = new Razorpay(options);
-                    rzp1.open();
-                } catch (error) {
-                    console.error('Razorpay Error:', error);
-                    showToast("Payment gateway error. Please refresh and try again.", "error");
-                    submitBtn.textContent = 'Pay ₹99 via Razorpay';
-                    submitBtn.disabled = false;
-                }
-            }, 500);
-        }
-
-        // Handle successful payment
-        async function handlePaymentSuccess(response, orderData) {
-            console.log('Payment Success:', response);
-            
-            // Save to data storage
-            const fullOrderData = {
-                id: Date.now().toString(),
-                ...orderData,
-                payment_id: response.razorpay_payment_id,
-                order_date: new Date().toISOString()
             };
-
-            // Save to Canva Sheet
-            if (window.dataSdk && currentRecordCount < 999) {
-                try {
-                    await window.dataSdk.create(fullOrderData);
-                } catch (error) {
-                    console.error('Data save error:', error);
-                }
+            
+            // Check if Razorpay script is loaded before creating an instance
+            if (typeof Razorpay !== 'undefined') {
+                const rzp = new Razorpay(options);
+                rzp.open();
+            } else {
+                 showToast('Payment gateway not loaded. Please try again in a moment.', 'error');
             }
-            
-            // Save to Google Sheet
-            await sendToGoogleSheet(fullOrderData, response.razorpay_payment_id, 'Payment Completed');
-            
-            // Show success
-            showPaymentSuccess(response.razorpay_payment_id, orderData);
         }
 
-        function showPaymentSuccess(paymentId, orderData) {
+        // Google Sheets integration (Copied and adapted from Fridge file)
+        async function submitToGoogleSheets(customerData, paymentId) {
+            const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT;
+            const onsiteBalance = Math.max(0, totalAmount - bookingCharge);
+            
+            const orderItems = cart.map(item => `${item.provider} | ${item.plan} (Price: ${item.price})`).join(' || ');
+
+            const params = new URLSearchParams({
+                timestamp: new Date().toLocaleString('hi-IN'),
+                customerName: customerData.name,
+                mobile: customerData.mobile,
+                email: customerData.email,
+                address: customerData.address,
+                landmark: customerData.landmark || '',
+                pincode: customerData.pincode,
+                orderItems: orderItems,
+                totalAmount: totalAmount,
+                paidAmount: bookingCharge,
+                onsiteBalance: onsiteBalance,
+                paymentId: paymentId,
+                status: onsiteBalance > 0 ? 'DTH Booking Confirmed - Onsite Balance Pending' : 'DTH Payment Complete'
+            });
+
+            try {
+                showLoadingMessage();
+                
+                // Using a generic URL for the demo environment to prevent cross-origin issues
+                const response = await fetch(`https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec?${params.toString()}`, {
+                    method: 'POST',
+                    mode: 'no-cors' 
+                });
+
+                hideLoadingMessage();
+                hideCheckoutPopup();
+                showSuccessMessage(paymentId, totalAmount, bookingCharge, onsiteBalance);
+                
+                cart = [];
+                updateCartUI();
+                
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                hideLoadingMessage();
+                showErrorMessage();
+            }
+        }
+        
+        function showSuccessMessage(paymentId, totalAmount, bookingCharge, onsiteBalance) { 
             const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 popup-overlay';
             modal.innerHTML = `
-                <div class="bg-white rounded-xl p-6 max-w-md w-full">
-                    <div class="text-center">
-                        <div class="text-6xl mb-4">✅</div>
-                        <h3 class="text-xl font-bold text-green-600 mb-4">Payment Successful!</h3>
-                        <div class="bg-green-50 p-4 rounded-lg mb-4 text-left">
-                            <p class="font-semibold mb-2 text-green-800">Booking Confirmed:</p>
-                            <p class="text-sm"><strong>Payment ID:</strong> ${paymentId}</p>
-                            <p class="text-sm"><strong>Amount Paid:</strong> ₹99</p>
-                            <p class="text-sm"><strong>Customer:</strong> ${orderData.customer_name}</p>
-                            <p class="text-sm"><strong>Mobile:</strong> ${orderData.mobile}</p>
-                            <p class="text-sm"><strong>Total Order:</strong> ₹${orderData.price}</p>
-                            <p class="text-sm"><strong>Remaining:</strong> ₹${orderData.price - 99}</p>
-                        </div>
-                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
-                            <p class="text-blue-800 text-sm font-medium">📋 Next Steps:</p>
-                            <p class="text-blue-700 text-sm">• Our team will call you within 24 hours</p>
-                            <p class="text-blue-700 text-sm">• Installation will be scheduled</p>
-                            <p class="text-blue-700 text-sm">• Pay remaining ₹${orderData.price - 99} during installation</p>
-                            <p class="text-blue-700 text-sm">• Customer Care: 8816014071</p>
-                        </div>
-                        <button onclick="closeSuccessModal()" 
-                                class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg">
-                            Close
-                        </button>
+                <div class="bg-white rounded-xl p-6 max-w-md w-full popup-content">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl text-green-500 mb-4">✅</div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">बुकिंग कन्फर्म!</h2>
+                        <p class="text-gray-600">आपका DTH प्लान सफलतापूर्वक बुक हो गया है।</p>
                     </div>
+                    
+                    <div class="space-y-3 mb-6 text-sm bg-green-50 p-4 rounded-lg">
+                        <div class="flex justify-between">
+                            <span>Payment ID:</span>
+                            <span class="font-medium text-xs break-all">${paymentId}</span>
+                        </div>
+                        <div class="flex justify-between font-bold">
+                            <span>कुल प्लान राशि:</span>
+                            <span>₹${totalAmount}</span>
+                        </div>
+                        <div class="flex justify-between text-green-700">
+                            <span>भुगतान की गई राशि:</span>
+                            <span>₹${bookingCharge}</span>
+                        </div>
+                        <div class="flex justify-between text-red-600 font-bold">
+                            <span>बकाया राशि (Onsite):</span>
+                            <span>₹${onsiteBalance}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                        <p class="text-sm text-blue-800">
+                            <strong>अगले कदम:</strong><br>
+                            • हमारी टीम 24 घंटे में आपसे संपर्क करेगी<br>
+                            • इंस्टालेशन जल्द ही होगा<br>
+                            • बकाया राशि ₹${onsiteBalance} इंस्टालेशन के दौरान देनी होगी<br>
+                        </p>
+                    </div>
+                    
+                    <button onclick="closeConfirmation()" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-sm transition-colors">
+                        धन्यवाद
+                    </button>
                 </div>
             `;
-            document.body.appendChild(modal);
-            window.currentModal = modal;
             
-            // Clear cart and close forms
-            cart = [];
-            updateCartDisplay();
-            closeCheckoutModal();
-            showToast("Payment successful! Booking confirmed.", "success");
+            document.body.appendChild(modal);
+            
+            window.closeConfirmation = () => {
+                document.body.removeChild(modal);
+                delete window.closeConfirmation;
+            };
         }
-
-        function closeSuccessModal() {
-            if (window.currentModal) {
-                document.body.removeChild(window.currentModal);
-                window.currentModal = null;
-            }
-        }
-
-        // Channel List Functions
+        
         function showChannelList(provider) {
             const channelData = channelLists[provider];
             if (!channelData) return;
 
-            const modal = document.createElement('div');
-            modal.className = 'modal';
+            const modal = document.getElementById('channel-modal');
+            const titleElement = document.getElementById('channel-modal-title');
+            const listContent = document.getElementById('channel-list-content');
+            
+            titleElement.textContent = channelData.title;
             
             let channelHTML = '';
             Object.keys(channelData.channels).forEach(category => {
@@ -948,68 +1066,63 @@
                 });
             });
 
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 class="text-2xl font-bold text-gray-800">${channelData.title}</h3>
-                            <button onclick="closeChannelModal()" 
-                                    class="text-gray-500 hover:text-gray-700 text-3xl font-bold">
-                                ×
-                            </button>
-                        </div>
-                        <div class="channel-grid">
-                            ${channelHTML}
-                        </div>
-                        <div class="mt-6 text-center">
-                            <button onclick="closeChannelModal()" 
-                                    class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-lg">
-                                Close
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            window.currentChannelModal = modal;
+            listContent.innerHTML = channelHTML;
+            modal.classList.remove('hidden');
         }
 
         function closeChannelModal() {
-            if (window.currentChannelModal) {
-                document.body.removeChild(window.currentChannelModal);
-                window.currentChannelModal = null;
-            }
+            document.getElementById('channel-modal').classList.add('hidden');
         }
 
-        function closeCheckoutModal() {
-            document.getElementById('checkout-modal').classList.add('hidden');
-            document.getElementById('customer-form').reset();
-        }
 
-        function showToast(message, type) {
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => toast.classList.add('show'), 100);
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => document.body.removeChild(toast), 300);
-            }, 3000);
-        }
-
-        // Initialize app when page loads
+        // Event listeners (Copied and adapted from Fridge file)
         document.addEventListener('DOMContentLoaded', function() {
             initializeApp();
+
+            // Cart button
+            document.getElementById('cart-btn').addEventListener('click', showCartPopup);
+            
+            // Close buttons
+            document.getElementById('close-cart').addEventListener('click', hideCartPopup);
+            document.getElementById('close-checkout').addEventListener('click', hideCheckoutPopup);
+            
+            // Proceed to checkout
+            document.getElementById('proceed-checkout').addEventListener('click', showCheckoutPopup);
+            
+            // Checkout form
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const customerData = {
+                    name: document.getElementById('customer-name').value,
+                    mobile: document.getElementById('mobile-number').value,
+                    email: document.getElementById('email-id').value,
+                    address: document.getElementById('full-address').value,
+                    landmark: document.getElementById('landmark').value,
+                    pincode: document.getElementById('pincode').value
+                };
+                
+                // Final check before payment
+                if (cart.length === 0) {
+                    showToast('Please select a DTH plan first.', 'error');
+                    return;
+                }
+                
+                initiatePayment(customerData);
+            });
+
+            // Close popups when clicking outside
+            document.getElementById('cart-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCartPopup();
+            });
+            
+            document.getElementById('checkout-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCheckoutPopup();
+            });
         });
+        
+
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9961bdbd46421c49',t:'MTc2MTczMTEzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ </body>
+
 </html>
-
-
-
-
-
-
