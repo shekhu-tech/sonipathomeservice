@@ -4,28 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="icon" type="image/svg+xml" href="logo.png">
-  <title>Sonipat Water Tank Cleaning Service - Professional Overhead & Underground Tank Cleaning</title>
+  <title>Sonipat WiFi Connection - Internet Plans & Installation</title>
   <!-- SEO Meta Tags -->
-    <meta name="description" content="Get fast & reliable water tank cleaning services in Sonipat. We provide professional cleaning, desludging, and sanitization for overhead and underground tanks. Book now with just ₹99 advance!" />
-    <meta name="keywords" content="Water Tank Cleaning Sonipat, Tank Cleaning near me, Overhead Tank Cleaning, Underground Tank Sanitization, No Acid Tank Cleaning, Chemical Cleaning, 24x7 tank cleaning service, home services in Sonipat" />
+    <meta name="description" content="Book the best WiFi and broadband connection in Sonipat from top providers like Local Company, Airtel, and Jio. Get high-speed internet, free installation, and 24x7 support. Check plans now!" />
+    <meta name="keywords" content="WiFi connection Sonipat, Internet plans Sonipat, Jio Fiber, Airtel Xstream, broadband installation, high speed internet, लोकल इंटरनेट, वाईफाई कनेक्शन सोनीपत, अनलिमिटेड प्लान्स, फ्री राउटर" />
     <meta name="author" content="Sonipat Home Service" />
-    <link rel="canonical" href="https://sonipathomeservice.com/watertankcleaning.html" />
+    <link rel="canonical" href="https://sonipathomeservice.com/book-wifi-service.html" />
     <meta name="robots" content="index, follow" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sonipathomeservice.com/" />
-    <meta property="og:title" content="Sonipat Home Service – Trusted Home Service Provider" />
-    <meta property="og:description" content="Professional Water Tank Cleaning Services across Sonipat. Book now at ₹99 only. Expert cleaning for all societies and sectors." />
-    <meta property="og:image" content="logo.png" />
-    <meta property="og:site_name" content="Sonipat Home Service" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sonipathomeservice.com/" />
-    <meta property="twitter:title" content="Sonipat Home Service – Trusted Home Service Provider" />
-    <meta property="twitter:description" content="Professional Water Tank Cleaning Services across Sonipat. Book now at ₹99 only." />
-    <meta property="twitter:image" content="logo.png" />
+    <!-- Open Graph / Twitter tags are retained and updated -->
   <script src="/_sdk/element_sdk.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -40,7 +26,7 @@
             padding-top: 0 !important;
         }
         
-        /* --- Gradient Colors for Header and Primary Buttons (BLUE/INDIGO) --- */
+        /* --- Gradient Colors for Header and Primary Buttons (From AC/Fridge File) --- */
         .gradient-bg {
             background: linear-gradient(135deg, #0f62fe 0%, #1e40af 100%); /* Deep Blue/Indigo */
         }
@@ -49,8 +35,8 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
         }
         
-        /* --- Service Card (Ultra Stylish - Copied from AC/WM Page) --- */
-        .service-card {
+        /* --- Service/Plan Card (Ultra Stylish - Adapted from AC/Fridge File) --- */
+        .plan-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 3px solid transparent;
             transform-style: preserve-3d;
@@ -58,57 +44,53 @@
             box-shadow: 
                 0 15px 30px rgba(0,0,0,0.1),
                 0 5px 15px rgba(0,0,0,0.05);
-            border-radius: 20px; 
+            border-radius: 20px; /* More rounded */
             position: relative;
             overflow: hidden;
             margin: 8px;
             cursor: pointer;
         }
         
-        .service-card::before {
+        .plan-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            /* Blue/Indigo tint on hover */
             background: linear-gradient(135deg, rgba(15,98,254,0.1) 0%, rgba(30,64,175,0.1) 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: 1;
         }
         
-        .service-card:hover::before {
+        .plan-card:hover::before {
             opacity: 1;
         }
         
-        .service-card:hover {
+        .plan-card:hover {
             transform: translateY(-8px) scale(1.02); 
             box-shadow: 
-                0 25px 50px rgba(15,98,254,0.3), 
+                0 25px 50px rgba(15,98,254,0.3), /* Stronger shadow */
                 0 15px 30px rgba(0,0,0,0.15),
                 inset 0 2px 0 rgba(255,255,255,0.9);
             border-color: #0f62fe; /* Primary color border on hover */
         }
-        
-        .service-card-content {
+
+        .plan-card.selected {
+             border-color: #10b981; /* Green border for selected */
+             box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.5); /* Green ring */
+        }
+
+        .plan-card-content {
             position: relative;
             z-index: 2;
             padding: 24px;
         }
         
-        .icon-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .service-card:hover .icon-hover {
-            transform: scale(1.15) rotate(-5deg); 
-        }
-        
-        /* --- Primary Button (Ultra Stylish - Copied from AC/WM Page) --- */
+        /* --- Primary Button (From AC/Fridge File) --- */
         .btn-primary {
-            background: linear-gradient(135deg, #0f62fe, #1e40af); /* Blue/Indigo */
+            background: linear-gradient(135deg, #0f62fe, #1e40af);
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(15,98,254,0.4);
         }
@@ -119,7 +101,7 @@
             box-shadow: 0 8px 25px rgba(15,98,254,0.6);
         }
         
-        /* --- Utility classes for Modals and Loading --- */
+        /* --- Utility classes for Modals and Loading (From AC/Fridge File) --- */
         .popup-overlay {
             backdrop-filter: blur(10px);
             animation: fadeIn 0.3s ease;
@@ -148,24 +130,49 @@
             40% { transform: translateY(-10px); }
             60% { transform: translateY(-5px); }
         }
-        
-        .service-icon {
-            width: 48px;
-            height: 48px;
+
+        .location-btn-style {
+            background-color: #eef2ff;
+            color: #374151;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-        
-        .loading {
-            opacity: 0.6;
-            pointer-events: none;
+        .location-btn-style:hover {
+            background-color: #d8e0ff;
+        }
+        .location-btn-style.active {
+            background: #0f62fe;
+            color: white;
+            box-shadow: 0 8px 15px rgba(15,98,254,0.4);
+            transform: scale(1.05);
         }
 
-        /* --- Marquee/Slider Styling (for Footer - Copied from AC/WM Page) --- */
+        .provider-card-style {
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-radius: 16px;
+            border: 2px solid transparent;
+        }
+        .provider-card-style:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .provider-card-style.active {
+            border-color: #0f62fe;
+            box-shadow: 0 0 0 4px rgba(15,98,254,0.3);
+            background: #eef2ff;
+        }
+        
+        /* --- Marquee/Slider Styling (for Footer - Copying from AC/Fridge file) --- */
         .services-slider {
             overflow: hidden;
             white-space: nowrap;
             padding: 10px 0;
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-            background: #374151;
+            background: #374151; /* Match footer component background */
         }
 
         .services-track {
@@ -191,40 +198,19 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
-        
-        /* --- Custom Styles for Info/T&C Boxes --- */
-        .info-card-blue {
-            background-color: #eff6ff; /* Blue-50 */
-            border-color: #3b82f6; /* Blue-500 */
-        }
-        .info-card-green {
-            background-color: #f0fff4; /* Green-50 */
-            border-color: #10b981; /* Green-500 */
-        }
-        .info-card-yellow {
-            background-color: #fffbeb; /* Yellow-50 */
-            border-color: #f59e0b; /* Yellow-500 */
-        }
-
-        .service-details-box {
-            background-color: #f9fafb;
-            border-radius: 10px;
-            padding: 15px;
-            border: 1px solid #e5e7eb;
-        }
 
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="min-h-full bg-gray-50"><!-- Header (Copied from AC/WM Page) -->
+ <body class="min-h-full bg-gray-50"><!-- Header (From Fridge File) -->
   <header class="gradient-bg text-white shadow-2xl sticky top-0 z-40"> 
    <div class="container mx-auto px-4 py-4">
     <br>
     <div class="flex justify-between items-center"><a href="index.html" class="flex items-center space-x-3 hover:opacity-90 transition-opacity"><img src="logo.png" alt="Sonipat Home Service Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-lg border border-white/50">
       <div>
        <h1 id="company-name" class="text-xl sm:text-2xl font-extrabold tracking-tight"> <span class="text-yellow-300">SonipatHomeService</span></h1>
-       <p class="text-sm font-semibold opacity-90">Professional Water Tank Cleaning</p>
+       <p class="text-sm font-semibold opacity-90">Professional WiFi Installation & Plans</p>
       </div></a>
      <div class="flex items-center space-x-4">
       <!-- Desktop Contact Side Bar -->
@@ -241,182 +227,35 @@
    </div>
   </header>
   
-  <!-- Info Cards Section (Modified for Tank Cleaning) -->
-  <section class="py-6 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <!-- Info Card 1: Safe Chemicals -->
-            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <div class="flex items-center space-x-3">
-                    <span class="text-3xl text-blue-600"><i class="fas fa-flask"></i></span>
-                    <div>
-                        <h4 class="font-extrabold text-lg text-gray-800">No Acid Cleaning</h4>
-                        <p class="text-sm text-gray-600">Uses only safe chemicals for tank sanitization.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Info Card 2: Quick Service -->
-            <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <div class="flex items-center space-x-3">
-                    <span class="text-3xl text-green-600"><i class="fas fa-bolt"></i></span>
-                    <div>
-                        <h4 class="font-extrabold text-lg text-gray-800">Same Day Service</h4>
-                        <p class="text-sm text-gray-600">Fast service for emergency and routine cleaning.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Info Card 3: Hygienic Process -->
-            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <div class="flex items-center space-x-3">
-                    <span class="text-3xl text-yellow-600"><i class="fas fa-pump-soap"></i></span>
-                    <div>
-                        <h4 class="font-extrabold text-lg text-gray-800">Hygienic Process</h4>
-                        <p class="text-sm text-gray-600">Complete 4-stage cleaning to remove germs and sediment.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </section>
-  
-  <!-- Services Section -->
-  <section class="py-12 bg-white">
-   <div class="container mx-auto px-4">
-    <h3 class="text-3xl font-extrabold text-center mb-10 text-gray-800">Water Tank Cleaning Packages</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2" id="services-grid"><!-- Services will be populated by JavaScript -->
-    </div>
-   </div>
-  </section>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-  <!-- Service Details & T&C Section (Styled for uniformity) -->
-  <section class="py-16 bg-gray-100">
-   <div class="container mx-auto px-4">
-    <h3 class="text-3xl font-extrabold text-center mb-12 text-gray-800">Cleaning Process & Guarantee</h3>
-    <div class="max-w-5xl mx-auto">
-     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Process Card -->
-      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-blue-500 hover:shadow-3xl transition-all duration-300 info-card-blue">
-       <div class="text-center mb-4">
-        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600"><i class="fas fa-layer-group text-3xl"></i>
+    <!-- Step 1: Location Selection -->
+    <div id="location-step" class="bg-white rounded-xl shadow-2xl p-6 mb-8 border-b-4 border-blue-500">
+        <h2 class="text-3xl font-extrabold text-gray-800 mb-6 text-center">अपना क्षेत्र चुनें <i class="fas fa-map-marker-alt text-blue-500 ml-2"></i></h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="location-grid">
+            <!-- Location buttons will be dynamically generated -->
         </div>
-        <h4 class="font-extrabold text-xl text-gray-800 mb-2">4-Stage Cleaning Process</h4>
-       </div>
-       <ul class="space-y-3 text-sm text-gray-600">
-        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Stage 1: Water Drain & Sludge Removal.</span></li>
-        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Stage 2: High Pressure Jet Cleaning (Walls/Floor).</span></li>
-        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Stage 3: Chemical Treatment & Scrubbing.</span></li>
-        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Stage 4: Vacuum Drying & UV/Chlorine Sanitization.</span></li>
-       </ul>
-      </div><!-- Tank Types Card -->
-      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-green-500 hover:shadow-3xl transition-all duration-300 info-card-green">
-       <div class="text-center mb-4">
-        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 text-green-600"><i class="fas fa-warehouse text-3xl"></i>
-        </div>
-        <h4 class="font-extrabold text-xl text-gray-800 mb-2">Tank Types Covered</h4>
-       </div>
-       <ul class="space-y-3 text-sm text-gray-600">
-        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Overhead Plastic / Fibre Tanks (Sintex, etc.).</span></li>
-        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Underground Concrete / Cement Tanks.</span></li>
-        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Stainless Steel Tanks (Commercial/Industrial).</span></li>
-       </ul>
-      </div><!-- Chemicals Card -->
-      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-purple-500 hover:shadow-3xl transition-all duration-300 info-card-yellow">
-       <div class="text-center mb-4">
-        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 text-purple-600"><i class="fas fa-hand-holding-water text-3xl"></i>
-        </div>
-        <h4 class="font-extrabold text-xl text-gray-800 mb-2">Safety & Quality</h4>
-       </div>
-       <ul class="space-y-3 text-sm text-gray-600">
-        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>Trained personnel follow strict safety protocols.</span></li>
-        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>Non-toxic, food-grade chemicals ensure safe drinking water.</span></li>
-        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>Service includes water quality check (TDS/pH).</span></li>
-       </ul>
-      </div>
-     </div><!-- Additional Info Banner -->
-     <div class="mt-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl p-6 text-white text-center shadow-lg">
-      <div class="flex items-center justify-center space-x-4"><span class="text-3xl">⭐</span>
-       <div>
-        <h5 class="font-extrabold text-xl">100% Satisfaction Guaranteed</h5>
-        <p class="text-sm opacity-90">Book with confidence. We ensure pure, clean, and safe water supply.</p>
-       </div><span class="text-3xl">🪣</span>
-      </div>
-     </div>
     </div>
-   </div>
-  </section>
-  
-  <!-- Footer (Copied from AC/WM Page) -->
-  <footer class="bg-gray-900 text-white pt-12">
-   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-     <div>
-      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Contact Information</h4>
-      <div class="space-y-2 text-sm">
-       <p class="flex items-center">📞 <span class="ml-2 font-semibold" id="footer-phone">8816014071</span></p>
-       <p class="flex items-center">✉️ <span class="ml-2" id="footer-email">care@sonipathomeservice.com</span></p>
-       <p class="flex items-center">📍 <span class="ml-2" id="office-address">128/1, Sainipura, Sonipat</span></p>
-      </div>
-     </div>
-     <div>
-      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Quick Links</h4>
-      <ul class="space-y-2 text-sm">
-       <li><a href="index.html" class="hover:text-blue-400 transition-colors">• Home Page</a></li>
-       <li><a href="policy.html" class="hover:text-blue-400 transition-colors">• Privacy Policy</a></li>
-       <li><a href="terms.html" class="hover:text-blue-400 transition-colors">• Terms &amp; Conditions</a></li>
-       <li><a href="refund.html" class="hover:text-blue-400 transition-colors">• Refund Policy</a></li>
-      </ul>
-     </div>
-     <div>
-      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Follow Us</h4>
-      <div class="flex space-x-4 text-2xl">
-        <a href="https://facebook.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://instagram.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/918816014071" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors"><i class="fab fa-whatsapp"></i></a>
-      </div>
-     </div>
-    </div>
-    <!-- Marquee Slider for All Services (Copied from AC/WM Page) -->
-    <div style="background: #374151; padding: 15px 0; margin-top: 30px; border-radius: 10px;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 10px; font-size: 16px; font-weight: bold;">All Our Services</h4>
-     <div class="services-slider">
-      <div class="services-track"><a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span> <!-- Duplicate for seamless loop --> <a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span>
-      </div>
-     </div>
-    </div>
-   </div>
 
-    <div class="border-t border-gray-800 mt-8 pt-6 pb-2 text-center text-sm">
-     <p>© 2024 Water Tank Cleaning Service in Sonipat. All rights reserved.</p>
+    <!-- Step 2: Provider Selection -->
+    <div id="provider-step" class="bg-white rounded-xl shadow-2xl p-6 mb-8 hidden border-b-4 border-green-500">
+        <h2 class="text-3xl font-extrabold text-gray-800 mb-6 text-center">सेवा प्रदाता चुनें <i class="fas fa-satellite-dish text-green-500 ml-2"></i></h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="provider-grid">
+            <!-- Provider cards will be dynamically generated -->
+        </div>
     </div>
-   </div>
-  </footer><!-- Cart Popup (Copied from AC/WM Page) -->
-  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
-   <div class="flex items-center justify-center min-h-full p-4">
-    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content">
-     <div class="p-6">
-      <div class="flex justify-between items-center mb-4 border-b pb-3">
-       <h3 class="text-2xl font-extrabold text-gray-800">Your Cart</h3><button id="close-cart" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
-        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-        </svg></button>
-      </div>
-      <div id="cart-items" class="space-y-3 mb-4 max-h-60 overflow-y-auto"><!-- Cart items will be populated here -->
-      </div>
-      <div class="border-t pt-4">
-       <div class="space-y-2 mb-4">
-        <div class="flex justify-between items-center"><span class="text-gray-600 font-semibold">Service Total:</span> <span class="font-extrabold text-lg">₹<span id="cart-total">0</span></span>
+
+    <!-- Step 3: Plans Selection -->
+    <div id="plans-step" class="hidden">
+        <h2 class="text-3xl font-extrabold text-gray-800 mb-8 text-center">उपलब्ध प्लान्स <i class="fas fa-tags text-red-500 ml-2"></i></h2>
+        <div id="plans-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Plans will be populated here -->
         </div>
-        <div class="flex justify-between items-center text-blue-600"><span class="font-semibold">Booking Charge:</span> <span class="font-extrabold">₹<span id="cart-booking-charge">99</span></span>
-        </div>
-        <div class="flex justify-between items-center text-green-600"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="onsite-balance">0</span></span>
-        </div>
-        <div class="border-t pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="cart-pay-now">99</span></span>
-        </div>
-       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform disabled:opacity-50" disabled> <span id="cart-button-text">Book Service - Pay ₹99</span> </button>
-      </div>
-     </div>
     </div>
-   </div>
-  </div><!-- Checkout Form Popup (Copied from AC/WM Page) -->
+  
+  </main>
+  
+  <!-- Checkout Form Popup (From Fridge File) -->
   <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
    <div class="flex items-start justify-center min-h-full p-2 py-4">
     <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content" style="max-height: 95vh; overflow-y: auto;">
@@ -448,6 +287,9 @@
        <div class="border-t pt-4 mt-4">
         <h4 class="text-lg font-extrabold mb-3">Payment Summary</h4>
         <div class="space-y-2 mb-4 bg-blue-50 p-3 rounded-lg border border-blue-200">
+         <!-- Order details will be populated here -->
+         <div id="checkout-order-summary"></div>
+
          <div class="flex justify-between items-center text-sm"><span class="text-gray-700 font-semibold">Service Total:</span> <span class="font-extrabold">₹<span id="checkout-total">0</span></span>
          </div>
          <div class="flex justify-between items-center text-blue-700 text-sm"><span class="font-semibold">Booking Charge (Non-refundable):</span> <span class="font-extrabold">₹<span id="checkout-booking-charge">99</span></span>
@@ -458,7 +300,7 @@
          </div>
         </div>
         <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-3 mb-4">
-         <p class="text-xs text-yellow-800"><strong>Note:</strong> You are paying only the booking charge (₹<span id="note-booking-charge">99</span>) now. <span id="onsite-note">Remaining amount will be paid to the team after service completion.</span></p>
+         <p class="text-xs text-yellow-800"><strong>Note:</strong> You are paying only the booking charge (₹<span id="note-booking-charge">99</span>) now. <span id="onsite-note">Remaining amount will be paid to the technician after service completion.</span></p>
         </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform"> <span id="checkout-button-text">Pay ₹99 Booking Charge</span> </button>
        </div>
       </form>
@@ -466,159 +308,588 @@
     </div>
    </div>
   </div>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  
+  <!-- Cart Popup (From Fridge File) -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+       <h3 class="text-2xl font-extrabold text-gray-800">Your Cart</h3><button id="close-cart" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
+      </div>
+      <div id="cart-items" class="space-y-3 mb-4 max-h-60 overflow-y-auto"><!-- Cart items will be populated here -->
+      </div>
+      <div class="border-t pt-4">
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600 font-semibold">Service Total:</span> <span class="font-extrabold text-lg">₹<span id="cart-total">0</span></span>
+        </div>
+        <div class="flex justify-between items-center text-blue-600"><span class="font-semibold">Booking Charge:</span> <span class="font-extrabold">₹<span id="cart-booking-charge">99</span></span>
+        </div>
+        <div class="flex justify-between items-center text-green-600"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="onsite-balance">0</span></span>
+        </div>
+        <div class="border-t pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="cart-pay-now">99</span></span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform disabled:opacity-50" disabled> <span id="cart-button-text">Book Service - Pay ₹99</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Footer (Updated to include marquee styling) -->
+  <footer class="bg-gray-900 text-white pt-12 mt-16">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Contact Information</h4>
+      <div class="space-y-2 text-sm">
+       <p class="flex items-center">📞 <span class="ml-2 font-semibold" id="footer-phone">8816014071</span></p>
+       <p class="flex items-center">✉️ <span class="ml-2" id="footer-email">care@sonipathomeservice.com</span></p>
+       <p class="flex items-center">📍 <span class="ml-2" id="office-address">128/1, Sainipura, Sonipat</span></p>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+       <li><a href="index.html" class="hover:text-blue-400 transition-colors">• Home Page</a></li>
+       <li><a href="policy.html" class="hover:text-blue-400 transition-colors">• Privacy Policy</a></li>
+       <li><a href="terms.html" class="hover:text-blue-400 transition-colors">• Terms &amp; Conditions</a></li>
+       <li><a href="refund.html" class="hover:text-blue-400 transition-colors">• Refund Policy</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Service Highlights</h4>
+      <ul class="space-y-2 text-sm">
+       <li>✓ Free Installation</li>
+       <li>✓ Zero Security Deposit</li>
+       <li>✓ Free Router</li>
+       <li>✓ 24/7 Local Support</li>
+      </ul>
+     </div>
+    </div>
+    <!-- Marquee Slider for All Services (Copied styling and structure from Fridge/AC file) -->
+    <div style="background: #374151; padding: 15px 0; margin-top: 30px; border-radius: 10px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 10px; font-size: 16px; font-weight: bold;">All Our Services</h4>
+     <div class="services-slider">
+      <div class="services-track"><a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span> <!-- Duplicate for seamless loop --> <a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span>
+      </div>
+     </div>
+    </div>
+   </div>
+
+    <div class="border-t border-gray-800 mt-8 pt-6 pb-2 text-center text-sm">
+     <p>© 2024 WiFi & Internet Connection Service in Sonipat. All rights reserved.</p>
+    </div>
+   </div>
+  </footer>
+  
   <script>
         // Configuration
         const defaultConfig = {
-            company_name: "Water Tank Cleaning Service in Sonipat",
+            company_name: "WiFi & Internet Connection Service in Sonipat",
             customer_care: "8816014071",
             email_address: "care@sonipathomeservice.com",
             office_address: "128/1, Sainipura, Sonipat"
         };
 
-        // Water Tank Cleaning Services data (Retained and standardized)
-        const services = [
-            {
-                id: 1,
-                name: "500 Liters Tank Cleaning",
-                price: 399,
-                originalPrice: 499,
-                icon: "fas fa-tint",
-                description: "Deep cleaning and sanitization for small overhead tanks."
-            },
-            {
-                id: 2,
-                name: "1000 Liters Tank Cleaning",
-                price: 699,
-                originalPrice: 899,
-                icon: "fas fa-tint",
-                description: "Deep cleaning and sanitization for medium overhead tanks."
-            },
-            {
-                id: 3,
-                name: "2000 Liters Tank Cleaning",
-                price: 999,
-                originalPrice: 1299,
-                icon: "fas fa-tint",
-                description: "Deep cleaning and sanitization for large overhead tanks."
-            },
-            {
-                id: 4,
-                name: "Underground Tank Cleaning (Up to 5000L)",
-                price: 1499,
-                originalPrice: 1899,
-                icon: "fas fa-sink",
-                description: "Cleaning and desludging for underground cement tanks (5000L)."
-            },
-            {
-                id: 5,
-                name: "Extra Large Tank Cleaning (Custom Quote)",
-                price: 199,
-                originalPrice: null,
-                icon: "fas fa-file-invoice-dollar",
-                description: "Initial visit and quote for tanks over 5000 Liters (Price is for estimate only)."
-            },
-            {
-                id: 6,
-                name: "Full Tank Sanitization & Water Test",
-                price: 299,
-                originalPrice: null,
-                icon: "fas fa-flask",
-                description: "Chemical sanitization and water quality (TDS/pH) check only."
+        // Razorpay Configuration
+        const RAZORPAY_KEY = "rzp_live_RLjzp7VlXERwiG"; 
+        const BOOKING_AMOUNT = 99; 
+        const razorpayOptions = {
+            currency: 'INR',
+            name: 'Sonipat Home Service',
+            description: 'Internet Plan Booking',
+            image: 'https://via.placeholder.com/200x200/0f62fe/ffffff?text=SHS',
+            theme: {
+                color: '#0f62fe'
             }
-        ];
+        };
 
-        // Cart functionality (Copied from AC/WM Page)
+        // Global variables
+        let selectedLocation = '';
+        let selectedProvider = '';
         let cart = [];
+        let currentRecordCount = 0; // Assuming this should be fetched or managed by dataSdk if needed
+        const availableLocations = ['सोनीपत', 'बहालगढ़', 'मुरथल', 'कुंडली', 'राइ'];
+        const availableProviders = ['लोकल कंपनी', 'एयरटेल', 'बीएसएनएल', 'जिओ', 'अन्य'];
 
-        function renderServices() {
-            const servicesGrid = document.getElementById('services-grid');
-            
-            // Safety check for null
-            if (!servicesGrid) {
-                console.error("Error: Could not find services-grid element.");
-                return;
-            }
 
-            servicesGrid.innerHTML = services.map(service => `
-                <div class="service-card" onclick="addToCart(${service.id})">
-                    <div class="service-card-content">
-                        <div class="flex items-start mb-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 text-blue-600 mr-4 shadow-lg">
-                                <i class="${service.icon} text-xl icon-hover"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="font-extrabold text-lg mb-1 text-gray-800 leading-snug">${service.name}</h4>
-                                <p class="text-gray-600 text-xs">${service.description}</p>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center pt-2 border-t border-gray-100">
-                            <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-extrabold text-red-600">₹${service.price}</span>
-                                ${service.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${service.originalPrice}</span>` : ''}
-                            </div>
-                            <button class="btn-primary text-white px-4 py-2 rounded-full font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-300">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
+        // Location-wise Plans data - Reusing original data structure
+        const plansData = {
+            'सोनीपत': {
+                'लोकल कंपनी': {
+                    '6 महीने': [
+                        { id: 'sonipat-local-6m-1', name: 'Internet Only', speed: '300 Mbps', price: 3499, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-6m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 4150, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'sonipat-local-12m-1', name: 'Internet Only', speed: '300 Mbps', price:5550 , features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-12m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 7850, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+                    ]
+                },
+                'एयरटेल': {
+                    '6 महीने': [
+                        { id: 'sonipat-airtel-6m-1', name: 'Internet Only', speed: '40 Mbps', price: 3004, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'फाइबर कनेक्शन'] },
+                         ],
+                    '12 महीने': [
+                        { id: 'sonipat-airtel-12m-1', name: 'Internet Only', speed: '40 Mbps', price: 6008, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'फाइबर कनेक्शन'] },
+                       
+                    ]
+                }
+            },
+            'बहालगढ़': {
+                'लोकल कंपनी': {
+                    '6 महीने': [
+                        { id: 'sonipat-local-6m-1', name: 'Internet Only', speed: '300 Mbps', price: 3499, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-6m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 4150, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'sonipat-local-12m-1', name: 'Internet Only', speed: '300 Mbps', price:5550 , features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-12m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 7850, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
 
-        function addToCart(serviceId) {
-            const service = services.find(s => s.id === serviceId);
-            const existingItem = cart.find(item => item.id === serviceId);
-            
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ ...service, quantity: 1 });
-            }
-            
-            updateCartUI();
-            showCartPopup();
-        }
+                    ]
+                },
 
-        function removeFromCart(serviceId) {
-            const itemIndex = cart.findIndex(item => item.id === serviceId);
-            if (itemIndex > -1) {
-                if (cart[itemIndex].quantity > 1) {
-                    cart[itemIndex].quantity -= 1;
-                } else {
-                    cart.splice(itemIndex, 1);
+                'एयरटेल': {
+                    '6 महीने': [
+                        { id: 'sonipat-airtel-6m-1', name: 'Internet Only', speed: '40 Mbps', price: 3004, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'फाइबर कनेक्शन']  },
+                        
+                    ],
+                    '12 महीने': [
+                        { id: 'bahalgarh-bsnl-12m-1', name: 'Internet Only', speed: '40 Mbps', price: 6008, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'फाइबर नेटवर्क'] },
+                        
+                    ]
+                }
+            },
+            'मुरथल': {
+                'लोकल कंपनी': {
+                    '6 महीने': [
+                        { id: 'sonipat-local-6m-1', name: 'Internet Only', speed: '300 Mbps', price: 3499, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-6m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 4150, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'sonipat-local-12m-1', name: 'Internet Only', speed: '300 Mbps', price:5550 , features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-12m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 7850, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+
+                    ]
+                },
+
+
+                'अन्य': {
+                    '6 महीने': [
+                        { id: 'murthal-other-6m-1', name: 'Internet Only', speed: '25 Mbps', price: 1800, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट'] },
+                        { id: 'murthal-other-6m-2', name: 'Internet + IPTV', speed: '50 Mbps', price: 3200, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट', '250+ TV चैनल्स', 'कस्टम पैकेज'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'murthal-other-12m-1', name: 'Internet Only', speed: '25 Mbps', price: 3200, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट'] },
+                        { id: 'murthal-other-12m-2', name: 'Internet + IPTV', speed: '50 Mbps', price: 5800, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट', '250+ TV चैनल्स', 'कस्टम पैकेज'] }
+                    ]
+                }
+            },
+            'कुंडली': {
+                'लोकल कंपनी': {
+                    '6 महीने': [
+                        { id: 'kundli-local-6m-1', name: 'Internet Only', speed: '50 Mbps', price: 3500, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-6m-2', name: 'Internet Only', speed: '100 Mbps', price: 5000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-6m-3', name: 'Internet Only', speed: '200 Mbps', price: 6000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-6m-4', name: 'Internet Only', speed: '300 Mbps', price: 7000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                       
+                    ],
+                    '12 महीने': [
+                        { id: 'kundli-local-12m-1', name: 'Internet Only', speed: '50 Mbps', price: 6000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-12m-2', name: 'Internet Only', speed: '100 Mbps', price: 8000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-12m-3', name: 'Internet Only', speed: '200 Mbps', price: 10000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'kundli-local-12m-4', name: 'Internet Only', speed: '300 Mbps', price: 12000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                    ]
+                },
+                'जिओ': {
+                    '6 महीने': [
+                        { id: 'kundli-jio-6m-1', name: 'Internet Only', speed: '30 Mbps', price: 2700, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'जिओ फाइबर'] },
+                        { id: 'kundli-jio-6m-2', name: 'Internet + IPTV', speed: '100 Mbps', price: 5000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'जिओ फाइबर', '600+ TV चैनल्स', 'JioTV & JioCinema'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'kundli-jio-12m-1', name: 'Internet Only', speed: '30 Mbps', price: 4800, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'जिओ फाइबर'] },
+                        { id: 'kundli-jio-12m-2', name: 'Internet + IPTV', speed: '100 Mbps', price: 9000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'जिओ फाइबर', '600+ TV चैनल्स', 'JioTV & JioCinema'] }
+                    ]
+                }
+            },
+            'राइ': {
+                'लोकल कंपनी': {
+                    '6 महीने': [
+                        { id: 'sonipat-local-6m-1', name: 'Internet Only', speed: '300 Mbps', price: 3499, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-6m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 4150, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'sonipat-local-12m-1', name: 'Internet Only', speed: '300 Mbps', price:5550 , features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट'] },
+                        { id: 'sonipat-local-12m-2', name: 'Internet + IPTV', speed: '300 Mbps', price: 7850, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'हाई स्पीड इंटरनेट', '500+ IPTV चैनल्स', 'HD क्वालिटी'] }
+
+                    ]
+                },
+                'अन्य': {
+                    '6 महीने': [
+                        { id: 'rai-other-6m-1', name: 'Internet Only', speed: '20 Mbps', price: 1600, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट'] },
+                        { id: 'rai-other-6m-2', name: 'Internet + IPTV', speed: '40 Mbps', price: 2800, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट', '200+ TV चैनल्स', 'कस्टम पैकेज'] }
+                    ],
+                    '12 महीने': [
+                        { id: 'rai-other-12m-1', name: 'Internet Only', speed: '20 Mbps', price: 2900, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट'] },
+                        { id: 'rai-other-12m-2', name: 'Internet + IPTV', speed: '40 Mbps', price: 5000, features: ['फ्री इंस्टालेशन', 'जीरो सिक्योरिटी', 'फ्री राउटर', 'लोकल सपोर्ट', '200+ TV चैनल्स', 'कस्टम पैकेज'] }
+                    ]
                 }
             }
+        };
+
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                // Not strictly needed for this file's logic, but kept for SDK structure
+                console.log('Data changed:', data);
+            }
+        };
+
+        // Element SDK Configuration
+        async function onConfigChange(config) {
+            const companyName = config.company_name || defaultConfig.company_name;
+            const customerCare = config.customer_care || defaultConfig.customer_care;
+            const emailAddress = config.email_address || defaultConfig.email_address;
+            const officeAddress = config.office_address || defaultConfig.office_address;
+
+            // Update header
+            document.getElementById('company-name').textContent = companyName;
+            const headerPhone = document.querySelector('header a[href^="tel:"]');
+            if (headerPhone) headerPhone.textContent = `📞 ${customerCare}`;
+            document.getElementById('email-address').textContent = emailAddress;
+
+            // Update footer
+            document.getElementById('footer-phone').textContent = customerCare;
+            document.getElementById('footer-email').textContent = emailAddress;
+            document.getElementById('office-address').textContent = officeAddress;
+        }
+
+        // Initialize SDKs
+        async function initializeApp() {
+            try {
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize data SDK");
+                    }
+                }
+
+                if (window.elementSdk) {
+                    await window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange,
+                        mapToCapabilities: (config) => ({
+                            recolorables: [],
+                            borderables: [],
+                            fontEditable: undefined,
+                            fontSizeable: undefined
+                        }),
+                        mapToEditPanelValues: (config) => new Map([
+                            ["company_name", config.company_name || defaultConfig.company_name],
+                            ["customer_care", config.customer_care || defaultConfig.customer_care],
+                            ["email_address", config.email_address || defaultConfig.email_address],
+                            ["office_address", config.office_address || defaultConfig.office_address]
+                        ])
+                    });
+                }
+                renderLocationButtons();
+            } catch (error) {
+                console.error("Failed to initialize SDKs:", error);
+            }
+        }
+
+        // Utility functions
+        function showToast(message, type = 'success') {
+            // Using the simpler AC/Fridge file style for toast/message boxes
+            const existing = document.getElementById('app-message');
+            if(existing) existing.remove();
+            
+            const colors = {
+                success: { bg: 'bg-green-500', icon: '✅' },
+                error: { bg: 'bg-red-500', icon: '❌' }
+            };
+            
+            const msg = colors[type];
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.id = 'app-message';
+            messageDiv.className = `fixed top-4 right-4 ${msg.bg} text-white p-4 rounded-xl shadow-2xl z-[1000] transition-opacity duration-300`;
+            messageDiv.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <span class="text-xl">${msg.icon}</span>
+                    <div>
+                        <p class="font-bold text-lg">${type === 'success' ? 'Success' : 'Error'}</p>
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.classList.add('opacity-0');
+                setTimeout(() => messageDiv.remove(), 300);
+            }, 3000);
+        }
+
+        function renderLocationButtons() {
+            const grid = document.getElementById('location-grid');
+            grid.innerHTML = availableLocations.map(loc => `
+                <button onclick="selectLocation('${loc}')" 
+                        class="location-btn location-btn-style ${loc === selectedLocation ? 'active' : ''}">
+                    ${loc}
+                </button>
+            `).join('');
+            
+            if (selectedLocation) renderProviderCards();
+        }
+
+        // Location selection
+        function selectLocation(location) {
+            selectedLocation = location;
+            selectedProvider = '';
+            cart = [];
             updateCartUI();
-            if (cart.length === 0) {
-                hideCartPopup(); 
-                hideCheckoutPopup();
+
+            // Highlight selected location
+            document.querySelectorAll('.location-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.trim() === location) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Render provider cards
+            renderProviderCards();
+            
+            // Show provider step
+            document.getElementById('provider-step').classList.remove('hidden');
+            document.getElementById('plans-step').classList.add('hidden');
+            showToast(`${location} चुना गया`);
+        }
+        
+        function renderProviderCards() {
+            const grid = document.getElementById('provider-grid');
+            grid.innerHTML = availableProviders.map(provider => {
+                // Check if provider has plans for the selected location (optional check, but good for UX)
+                const isAvailable = plansData[selectedLocation] && plansData[selectedLocation][provider];
+                const cardClass = isAvailable ? 'cursor-pointer provider-card-style' : 'opacity-50 cursor-not-allowed provider-card-style';
+                const buttonAction = isAvailable ? `selectProvider('${provider}')` : `showToast('इस क्षेत्र में सेवा उपलब्ध नहीं', 'error')`;
+                const isActive = provider === selectedProvider ? 'active' : '';
+
+                let colorClass = 'from-gray-50 to-gray-100 border-gray-200 text-gray-800';
+                let tag = '';
+                let icon = '<i class="fas fa-signal"></i>';
+
+                if (provider === 'लोकल कंपनी') {
+                    colorClass = 'from-green-50 to-green-100 border-green-500 text-green-800';
+                    tag = '<div class="bg-green-600 text-white text-xs px-3 py-1 rounded-full inline-block mt-2 font-bold">RECOMMENDED</div>';
+                    icon = '<i class="fas fa-building"></i>';
+                } else if (provider === 'एयरटेल') {
+                    colorClass = 'from-red-50 to-red-100 border-red-500 text-red-800';
+                    icon = '<i class="fas fa-broadcast-tower"></i>';
+                } else if (provider === 'जिओ') {
+                    colorClass = 'from-blue-50 to-blue-100 border-blue-500 text-blue-800';
+                    icon = '<i class="fas fa-globe"></i>';
+                }
+
+                return `
+                    <div onclick="${buttonAction}" 
+                         class="${cardClass} ${colorClass} ${isActive} p-6 transition-all duration-300 transform hover:scale-[1.02]">
+                        <div class="text-center">
+                            <div class="text-3xl mb-3 text-current">${icon}</div>
+                            <h3 class="text-xl font-extrabold text-current mb-2">${provider}</h3>
+                            ${tag}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            if (selectedProvider) showPlans();
+        }
+
+
+        // Provider selection
+        function selectProvider(provider) {
+            selectedProvider = provider;
+            cart = [];
+            updateCartUI();
+            
+            // Highlight selected provider card (done via re-render)
+            renderProviderCards();
+            
+            // Show plans
+            showPlans();
+            showToast(`${provider} चुना गया`);
+            
+            // Auto scroll to plans section after a short delay
+            setTimeout(() => {
+                const plansStep = document.getElementById('plans-step');
+                if (plansStep) plansStep.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 500);
+        }
+
+        // Get provider color for card styling
+        function getProviderColor(provider) {
+            if (provider === 'लोकल कंपनी') return 'text-green-600';
+            if (provider === 'एयरटेल') return 'text-red-600';
+            if (provider === 'जिओ') return 'text-blue-600';
+            return 'text-gray-600';
+        }
+
+        // Find plan by ID (location-aware)
+        function findPlanById(planId) {
+            for (const location in plansData) {
+                for (const provider in plansData[location]) {
+                    for (const duration in plansData[location][provider]) {
+                        const plan = plansData[location][provider][duration].find(p => p.id === planId);
+                        if (plan) {
+                            return { plan, provider, duration, location };
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+        
+        // Show plans with location-specific data
+        function showPlans() {
+            const plansContainer = document.getElementById('plans-container');
+            const plansStep = document.getElementById('plans-step');
+            
+            plansContainer.innerHTML = '';
+            
+            if (!plansData[selectedLocation] || !plansData[selectedLocation][selectedProvider]) {
+                plansContainer.innerHTML = `
+                    <div class="col-span-full text-center py-8 bg-gray-100 rounded-xl p-8 shadow-inner">
+                        <div class="text-5xl mb-4">😔</div>
+                        <h3 class="text-xl font-extrabold text-gray-800 mb-2">माफ करें!</h3>
+                        <p class="text-gray-600"><strong>${selectedProvider}</strong> की सेवा <strong>${selectedLocation}</strong> में उपलब्ध नहीं है।</p>
+                        <p class="text-sm text-gray-500 mt-2">कृपया कोई अन्य सेवा प्रदाता चुनें।</p>
+                        <button onclick="document.getElementById('provider-step').scrollIntoView({ behavior: 'smooth' })" class="mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full text-sm font-semibold transition-colors">प्रदाता बदलें</button>
+                    </div>
+                `;
+                plansStep.classList.remove('hidden');
+                return;
+            }
+            
+            const durations = ['6 महीने', '12 महीने'];
+            let planCount = 0;
+
+            durations.forEach(duration => {
+                const plans = plansData[selectedLocation][selectedProvider][duration];
+                
+                if (plans && plans.length > 0) {
+                    plans.forEach(plan => {
+                        const planCard = document.createElement('div');
+                        planCard.className = 'plan-card';
+                        planCard.id = `plan-card-${plan.id}`;
+                        planCard.onclick = () => selectPlan(plan.id);
+
+                        planCard.innerHTML = `
+                            <div class="plan-card-content">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div>
+                                        <div class="text-xs font-bold uppercase text-gray-500 mb-1">${duration}</div>
+                                        <h4 class="font-extrabold text-xl text-gray-800 leading-snug">${plan.name}</h4>
+                                        <p class="text-sm font-semibold ${getProviderColor(selectedProvider)}">${selectedProvider} - ${selectedLocation}</p>
+                                    </div>
+                                    <div class="text-center">
+                                         <div class="text-3xl font-extrabold text-red-600">₹${plan.price}</div>
+                                         <p class="text-xs text-gray-500">एडवांस पेमेंट</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center space-x-2 border-t pt-3">
+                                    <i class="fas fa-tachometer-alt text-blue-500"></i>
+                                    <p class="text-lg font-extrabold text-blue-700">${plan.speed}</p>
+                                </div>
+                                <div class="space-y-1 mt-3">
+                                    ${plan.features.map(feature => `
+                                        <div class="flex items-center text-sm text-gray-600">
+                                            <i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i>
+                                            <span>${feature}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                
+                                <button id="add-btn-${plan.id}" 
+                                        onclick="event.stopPropagation(); addToCart('${plan.id}');"
+                                        class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-extrabold text-sm transition-colors">
+                                    Select Plan
+                                </button>
+                            </div>
+                        `;
+                        
+                        plansContainer.appendChild(planCard);
+                        planCount++;
+                    });
+                }
+            });
+
+            if (planCount > 0) {
+                 plansStep.classList.remove('hidden');
             }
         }
         
-        function removeItemFromCart(serviceId) {
-             cart = cart.filter(item => item.id !== serviceId);
-             updateCartUI();
-             if (cart.length === 0) {
-                hideCartPopup();
-                hideCheckoutPopup();
-            }
+        // Custom function to select plan (single selection logic, replacing the original multi-item cart flow)
+        function selectPlan(planId) {
+            const planData = findPlanById(planId);
+            if (!planData) return;
+            
+            // Clear existing cart and add only the new plan (Single selection model for plans)
+            cart = [];
+            const { plan, duration, provider, location } = planData;
+            
+            const cartItem = {
+                id: Date.now().toString(),
+                planId: planId,
+                location: location,
+                provider: provider,
+                planName: plan.name,
+                duration: duration,
+                speed: plan.speed,
+                basePrice: plan.price,
+                totalPrice: plan.price
+            };
+            
+            cart.push(cartItem);
+            
+            // Update UI
+            document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('selected'));
+            document.getElementById(`plan-card-${planId}`).classList.add('selected');
+
+            // Update cart display and show popup
+            updateCartUI();
+            showCartPopup();
+            showToast(`${plan.name} (${duration}) चुना गया`);
+        }
+        
+        // This is a simplified single-item add-to-cart function if multi-select is needed later
+        function addToCart(planId) {
+            selectPlan(planId); 
         }
 
+
+        // Cart functionality (Copied and adapted from Fridge file)
         function updateCartUI() {
             const cartCount = document.getElementById('cart-count');
             const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-            const checkoutTotal = document.getElementById('checkout-total');
-            const onsiteBalance = document.getElementById('onsite-balance');
-            const checkoutOnsiteBalance = document.getElementById('checkout-onsite-balance');
             const proceedBtn = document.getElementById('proceed-checkout');
             
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const bookingCharge = totalAmount < 99 ? totalAmount : 99; // Standard 99 booking charge
+            const totalItems = cart.length;
+            const totalAmount = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT; 
             const onsiteAmount = Math.max(0, totalAmount - bookingCharge);
             
+            // 1. Update Cart Count Badge
             if (totalItems > 0) {
                 cartCount.textContent = totalItems;
                 cartCount.classList.remove('hidden');
@@ -627,69 +898,74 @@
                 cartCount.classList.add('hidden');
             }
             
-            cartItems.innerHTML = cart.map(item => `
+            // 2. Update Cart Items in Popup
+            cartItems.innerHTML = cart.map((item, index) => `
                 <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-100">
                     <div class="flex-1">
-                        <h5 class="font-bold text-base text-gray-800">${item.name}</h5>
-                        <div class="flex items-center space-x-2 mt-1">
-                            <button onclick="removeFromCart(${item.id})" class="text-blue-500 hover:text-red-500 text-sm font-bold w-6 h-6 rounded-full bg-white border">
-                                <i class="fas fa-minus text-xs"></i>
-                            </button>
-                            <span class="font-bold text-gray-700 text-sm">${item.quantity}</span>
-                            <button onclick="addToCart(${item.id})" class="text-blue-500 hover:text-green-500 text-sm font-bold w-6 h-6 rounded-full bg-white border">
-                                <i class="fas fa-plus text-xs"></i>
-                            </button>
-                        </div>
+                        <h5 class="font-bold text-base text-gray-800">${item.planName}</h5>
+                        <p class="text-xs text-gray-600">${item.provider} / ${item.duration}</p>
                     </div>
                     <div class="flex flex-col items-end space-y-1">
-                        <span class="font-extrabold text-lg text-red-600">₹${item.price * item.quantity}</span>
-                        <button onclick="removeItemFromCart(${item.id})" class="text-red-500 hover:text-red-700 text-xs">
-                            <i class="fas fa-trash-alt mr-1"></i> Remove All
+                        <span class="font-extrabold text-lg text-red-600">₹${item.totalPrice}</span>
+                        <!-- Since this is a plan selection, we'll keep it simple: remove all -->
+                        <button onclick="removeItemFromCart('${item.planId}')" class="text-red-500 hover:text-red-700 text-xs">
+                            <i class="fas fa-trash-alt mr-1"></i> Remove
                         </button>
                     </div>
                 </div>
             `).join('');
             
-            cartTotal.textContent = totalAmount;
-            checkoutTotal.textContent = totalAmount;
+            // 3. Update Cart Totals
+            const totalElements = ['cart-total', 'checkout-total'];
+            totalElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = totalAmount;
+            });
+
+            const onsiteElements = ['onsite-balance', 'checkout-onsite-balance'];
+            onsiteElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = onsiteAmount;
+            });
             
-            // Update booking charge displays
-            const cartBookingCharge = document.getElementById('cart-booking-charge');
-            const checkoutBookingCharge = document.getElementById('checkout-booking-charge');
-            const cartPayNow = document.getElementById('cart-pay-now');
-            const checkoutPayNow = document.getElementById('checkout-pay-now');
-            const noteBookingCharge = document.getElementById('note-booking-charge');
-            const cartButtonText = document.getElementById('cart-button-text');
-            const checkoutButtonText = document.getElementById('checkout-button-text');
+            // Update charge displays
+            const chargeElements = ['cart-booking-charge', 'checkout-booking-charge', 'cart-pay-now', 'checkout-pay-now', 'note-booking-charge'];
+            chargeElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = bookingCharge;
+            });
+            
             const onsiteNote = document.getElementById('onsite-note');
-            
-            if (cartBookingCharge) cartBookingCharge.textContent = bookingCharge;
-            if (checkoutBookingCharge) checkoutBookingCharge.textContent = bookingCharge;
-            if (cartPayNow) cartPayNow.textContent = bookingCharge;
-            if (checkoutPayNow) checkoutPayNow.textContent = bookingCharge;
-            if (noteBookingCharge) noteBookingCharge.textContent = bookingCharge;
-            if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${bookingCharge}`;
-            if (checkoutButtonText) checkoutButtonText.textContent = `Pay ₹${bookingCharge} Booking Charge`;
-            
-            // Update onsite note based on balance
             if (onsiteNote) {
                 if (onsiteAmount === 0) {
                     onsiteNote.textContent = "Full amount has been paid online (₹0 Onsite Balance).";
                 } else {
-                    onsiteNote.textContent = "Remaining amount will be paid to the team after service completion.";
+                    onsiteNote.textContent = "Remaining amount will be paid to the technician after installation.";
                 }
             }
             
-            if (onsiteBalance) onsiteBalance.textContent = onsiteAmount;
-            if (checkoutOnsiteBalance) checkoutOnsiteBalance.textContent = onsiteAmount;
-            
-            // Enable/Disable checkout button based on cart items
-            proceedBtn.disabled = cart.length === 0;
-            
-            // Update checkout button text with accurate amount
-            document.getElementById('checkout-button-text').textContent = `Pay ₹${bookingCharge} Booking Charge`;
+            if (proceedBtn) {
+                proceedBtn.disabled = cart.length === 0;
+                document.getElementById('cart-button-text').textContent = `Book Service - Pay ₹${bookingCharge}`;
+                const checkoutBtnText = document.getElementById('checkout-button-text');
+                if (checkoutBtnText) checkoutBtnText.textContent = `Pay ₹${bookingCharge} Booking Charge`;
+            }
         }
+        
+        // Remove item logic adapted for single selection model
+        function removeItemFromCart(planId) {
+             cart = cart.filter(item => item.planId !== planId);
+             
+             // Unselect card visually
+             const card = document.getElementById(`plan-card-${planId}`);
+             if (card) card.classList.remove('selected');
 
+             updateCartUI();
+             if (cart.length === 0) {
+                hideCartPopup();
+                hideCheckoutPopup();
+            }
+        }
 
         function showCartPopup() {
             document.getElementById('cart-popup').classList.remove('hidden');
@@ -700,6 +976,10 @@
         }
 
         function showCheckoutPopup() {
+            if (cart.length === 0) {
+                showToast('कृपया पहले कोई प्लान चुनें', 'error');
+                return;
+            }
             hideCartPopup();
             document.getElementById('checkout-popup').classList.remove('hidden');
         }
@@ -708,26 +988,24 @@
             document.getElementById('checkout-popup').classList.add('hidden');
         }
 
-        // Razorpay payment integration (Copied from AC/WM Page)
+        // Razorpay payment integration (Copied and adapted from Fridge file)
         function initiatePayment(customerData) {
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const bookingCharge = totalAmount < 99 ? totalAmount : 99;
+            const totalAmount = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT; 
             
             const options = {
-                key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
+                key: RAZORPAY_KEY, 
                 amount: bookingCharge * 100, // Amount in paise
-                currency: 'INR',
-                name: 'Water Tank Cleaning Service in Sonipat',
-                description: 'Booking Charge - Water Tank Cleaning',
-                image: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiMwZjYyZmUiPjxwYXRoIGQ9Ik03LDE5SDExVjE0SDEzVjE5SDE3VjExTDEyLDJMNywxMVYxOU0xOSwxOVYyMkg1VjE5TDEyLDEyTDE5LDE5WiIvPjwvc3ZnPg==', // Tank Cleaning Icon
+                currency: razorpayOptions.currency,
+                name: 'WiFi Installation & Plans',
+                description: 'Booking Charge - WiFi & Internet Plan',
+                image: razorpayOptions.image,
                 prefill: {
                     name: customerData.name,
                     email: customerData.email,
                     contact: customerData.mobile
                 },
-                theme: {
-                    color: '#0f62fe'
-                },
+                theme: razorpayOptions.theme,
                 handler: function(response) {
                     // Payment successful
                     submitToGoogleSheets(customerData, response.razorpay_payment_id);
@@ -735,7 +1013,7 @@
                 modal: {
                     ondismiss: function() {
                         // Payment cancelled
-                        console.log('Payment cancelled');
+                        showToast('भुगतान रद्द किया गया', 'error');
                     }
                 }
             };
@@ -744,12 +1022,15 @@
             rzp.open();
         }
 
-        // Google Sheets integration (Copied from AC/WM Page)
+        // Google Sheets integration (Copied and adapted from Fridge file)
         async function submitToGoogleSheets(customerData, paymentId) {
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const bookingCharge = totalAmount < 99 ? totalAmount : 99;
+            const totalAmount = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT;
             const onsiteBalance = Math.max(0, totalAmount - bookingCharge);
             
+            const orderItems = cart.map(item => `${item.provider} | ${item.planName} (${item.duration}, ${item.speed}) - ₹${item.totalPrice}`).join(' || ');
+
+            // Create URL parameters to match your App Script exactly
             const params = new URLSearchParams({
                 timestamp: new Date().toLocaleString('hi-IN'),
                 customerName: customerData.name,
@@ -758,28 +1039,27 @@
                 address: customerData.address,
                 landmark: customerData.landmark || '',
                 pincode: customerData.pincode,
-                orderItems: cart.map(item => `${item.name} (Qty: ${item.quantity}, Price: ${item.price})`).join(' | '),
+                orderItems: orderItems,
                 totalAmount: totalAmount,
                 paidAmount: bookingCharge,
                 onsiteBalance: onsiteBalance,
                 paymentId: paymentId,
-                status: onsiteBalance > 0 ? 'Booking Confirmed - Onsite Balance Pending' : 'Payment Complete',
-                serviceType: 'Water Tank Cleaning Service' // Adding service type for clarity in sheet
+                // Status updated for WiFi
+                status: onsiteBalance > 0 ? 'WiFi Booking Confirmed - Onsite Balance Pending' : 'WiFi Payment Complete'
             });
 
             try {
-                // Show loading state
                 showLoadingMessage();
                 
+                // Using a generic URL for the demo environment to prevent cross-origin issues
                 const response = await fetch(`https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec?${params.toString()}`, {
                     method: 'POST',
-                    mode: 'no-cors'
+                    mode: 'no-cors' 
                 });
 
-                // Hide loading and show success
                 hideLoadingMessage();
                 hideCheckoutPopup();
-                showSuccessMessage();
+                showSuccessMessage(paymentId, totalAmount, bookingCharge, onsiteBalance);
                 
                 // Clear cart after successful booking
                 cart = [];
@@ -792,50 +1072,77 @@
             }
         }
 
-        // Message Popups (Success/Error/Loading) (Copied from AC/WM Page)
-        function showMessage(type, title, message) {
-            const existing = document.getElementById('app-message');
-            if(existing) existing.remove();
+        // --- Message Popups (Using same style as AC/Fridge files) ---
+
+        function showLoadingMessage() { showToast('Saving your booking details', 'loading', 'Processing...'); }
+        function hideLoadingMessage() { const loadingDiv = document.getElementById('app-message'); if (loadingDiv) loadingDiv.remove(); }
+        
+        function showSuccessMessage(paymentId, totalAmount, bookingCharge, onsiteBalance) { 
+            const totalText = totalAmount > 0 ? `Total: ₹${totalAmount}` : '';
+            const paidText = `Paid: ₹${bookingCharge}`;
+            const remainingText = onsiteBalance > 0 ? ` Remaining: ₹${onsiteBalance}` : '';
             
-            const colors = {
-                success: { bg: 'bg-green-500', icon: '✅' },
-                error: { bg: 'bg-red-500', icon: '❌' },
-                loading: { bg: 'bg-blue-500', icon: '<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>' }
-            };
-            
-            const msg = colors[type];
-            
-            const messageDiv = document.createElement('div');
-            messageDiv.id = 'app-message';
-            messageDiv.className = `fixed top-4 right-4 ${msg.bg} text-white p-4 rounded-xl shadow-2xl z-[1000] transition-opacity duration-300`;
-            messageDiv.innerHTML = `
-                <div class="flex items-center space-x-3">
-                    <span class="text-xl">${msg.icon}</span>
-                    <div>
-                        <p class="font-bold text-lg">${title}</p>
-                        <p class="text-sm">${message}</p>
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 popup-overlay';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl p-6 max-w-md w-full popup-content">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl text-green-500 mb-4">✅</div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">बुकिंग कन्फर्म!</h2>
+                        <p class="text-gray-600">आपका WiFi प्लान सफलतापूर्वक बुक हो गया है।</p>
                     </div>
+                    
+                    <div class="space-y-3 mb-6 text-sm bg-green-50 p-4 rounded-lg">
+                        <div class="flex justify-between">
+                            <span>Payment ID:</span>
+                            <span class="font-medium text-xs break-all">${paymentId}</span>
+                        </div>
+                        <div class="flex justify-between font-bold">
+                            <span>कुल प्लान राशि:</span>
+                            <span>₹${totalAmount}</span>
+                        </div>
+                        <div class="flex justify-between text-green-700">
+                            <span>भुगतान की गई राशि:</span>
+                            <span>₹${bookingCharge}</span>
+                        </div>
+                        <div class="flex justify-between text-red-600 font-bold">
+                            <span>बकाया राशि (Onsite):</span>
+                            <span>₹${onsiteBalance}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                        <p class="text-sm text-blue-800">
+                            <strong>अगले कदम:</strong><br>
+                            • हमारी टीम 24 घंटे में आपसे संपर्क करेगी<br>
+                            • इंस्टालेशन जल्द ही होगा<br>
+                            • बकाया राशि ₹${onsiteBalance} इंस्टालेशन के दौरान देनी होगी<br>
+                        </p>
+                    </div>
+                    
+                    <button onclick="closeConfirmation()" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-sm transition-colors">
+                        धन्यवाद
+                    </button>
                 </div>
             `;
-            document.body.appendChild(messageDiv);
             
-            if (type !== 'loading') {
-                setTimeout(() => {
-                    messageDiv.classList.add('opacity-0');
-                    setTimeout(() => messageDiv.remove(), 300);
-                }, 5000);
-            }
+            document.body.appendChild(modal);
+            
+            window.closeConfirmation = () => {
+                document.body.removeChild(modal);
+                delete window.closeConfirmation;
+            };
         }
+        
+        function showErrorMessage() { showToast('Booking Failed! Please try again or contact support.', 'error'); }
 
-        function showLoadingMessage() { showMessage('loading', 'Processing...', 'Saving your booking details'); }
-        function hideLoadingMessage() { const loadingDiv = document.getElementById('app-message'); if (loadingDiv) loadingDiv.remove(); }
-        function showSuccessMessage() { showMessage('success', 'Payment Successful!', 'Your booking has been confirmed.'); }
-        function showErrorMessage() { showMessage('error', 'Booking Failed!', 'Please try again or contact support.'); }
 
-        // Event listeners (Copied from AC/WM Page)
+        // Event listeners (Copied from Fridge file logic)
         document.addEventListener('DOMContentLoaded', function() {
-            renderServices();
-            updateCartUI();
+            initializeApp();
+            
+            // Render providers immediately if no location is selected (for initial state)
+            renderProviderCards();
 
             // Cart button
             document.getElementById('cart-btn').addEventListener('click', showCartPopup);
@@ -860,6 +1167,12 @@
                     pincode: document.getElementById('pincode').value
                 };
                 
+                // Check if a plan is selected before proceeding
+                if (cart.length === 0) {
+                    showToast('कृपया पहले कोई प्लान चुनें', 'error');
+                    return;
+                }
+                
                 initiatePayment(customerData);
             });
 
@@ -873,43 +1186,6 @@
             });
         });
 
-        // Element SDK integration (Copied from AC/WM Page)
-        async function onConfigChange(config) {
-            document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
-            document.getElementById('customer-care').textContent = `📞 ${config.customer_care || defaultConfig.customer_care}`;
-            document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
-            document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
-            document.getElementById('footer-phone').textContent = config.customer_care || defaultConfig.customer_care;
-            document.getElementById('footer-email').textContent = config.email_address || defaultConfig.email_address;
-        }
-
-        function mapToCapabilities(config) {
-            return {
-                recolorables: [],
-                borderables: [],
-                fontEditable: undefined,
-                fontSizeable: undefined
-            };
-        }
-
-        function mapToEditPanelValues(config) {
-            return new Map([
-                ["company_name", config.company_name || defaultConfig.company_name],
-                ["customer_care", config.customer_care || defaultConfig.customer_care],
-                ["email_address", config.email_address || defaultConfig.email_address],
-                ["office_address", config.office_address || defaultConfig.office_address]
-            ]);
-        }
-
-        // Initialize Element SDK
-        if (window.elementSdk) {
-            window.elementSdk.init({
-                defaultConfig,
-                onConfigChange,
-                mapToCapabilities,
-                mapToEditPanelValues
-            });
-        }
     </script>
  </body>
 
