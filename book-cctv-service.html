@@ -1,107 +1,102 @@
 <!doctype html>
-<html lang="en">
+<html lang="hi">
  <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="icon" type="image/svg+xml" href="logo.png">
-  <title>CCTV Camera Installation &amp; Repair Service - Professional Security Solutions</title>
-  <!-- SEO Meta Tags -->
-    <meta name="description" content="Get 30+ fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support with expert technicians. Book now!" />
-    <meta name="keywords" content="AC Repair Sonipat, best cctv service in sonipat,cctv installation near me,cctv repair near me,cctv technician near me,security camera installation,24x7 cctv service sonipat,best price cctv camera sonipat,bullet camera sonipat,camera connector sonipat,camera installation delhi road sonipat,camera installation murthal,camera lens cleaning sonipat,camera lens repair sonipat,camera stand sonipat,cctv annual maintenance sonipat,cctv cable sonipat,cctv camera installation sonipat,cctv camera price sonipat,cctv camera repair sonipat,cctv camera sonipat,cctv cleaning service sonipat,cctv display problem sonipat,cctv dvr repair sonipat,cctv fitting sonipat,cctv installation cost sonipat,cctv installation sector 15 sonipat,cctv installation sonipat,cctv maintenance sonipat,cctv near me sonipat,cctv not working sonipat,cctv package sonipat,cctv power supply sonipat,cctv repair gohana road sonipat,cctv repair kundli,cctv repair sonipat,cctv service model town sonipat,cctv service sonipat,cctv setup sonipat,cctv troubleshooting sonipat,cctv upgradation sonipat,cctv wiring sonipat,cheap cctv installation sonipat,cp plus cctv sonipat,dahua camera repair sonipat,dahua cctv sonipat,dome camera sonipat,dvr machine sonipat,dvr repair sonipat,economical cctv system sonipat,emergency cctv repair sonipat,factory cctv installation sonipat,hd camera sonipat,hd cctv camera sonipat,hikvision camera installation sonipat,
-home services in Sonipat" />
+  <title>Sonipat CCTV Installation - Camera Packages & Service</title>
+  <!-- SEO Meta Tags updated for consistency -->
+    <meta name="description" content="Book CCTV Camera Installation services in Sonipat for home and office. Get AHD and IP Camera packages with DVR/NVR, installation, and 1-year warranty. Fast and professional service." />
+    <meta name="keywords" content="CCTV installation Sonipat, security camera repair, IP camera package, AHD camera setup, DVR repair, NVR installation, CCTV service near me, cctv कैमरा सोनीपत, 4 channel cctv, 8 channel cctv" />
     <meta name="author" content="Sonipat Home Service" />
-    <link rel="canonical" href="https://sonipathomeservice.com/" />
+    <link rel="canonical" href="https://sonipathomeservice.com/book-cctv-service.html" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sonipathomeservice.com/" />
-    <meta property="og:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="og:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="og:image" content="logo.png" />
-    <meta property="og:site_name" content="Sonipat Home Service" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sonipathomeservice.com/" />
-    <meta property="twitter:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="twitter:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="twitter:image" content="logo.png" />
   <script src="/_sdk/element_sdk.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
         body {
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Subtle light background */
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
         
-        .service-card {
+        /* --- Gradient Colors for Header and Primary Buttons (From AC/Fridge File) --- */
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f62fe 0%, #1e40af 100%); /* Deep Blue/Indigo */
+        }
+
+        header {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        
+        /* --- Service/Plan Card (Ultra Stylish - From AC/Fridge File) --- */
+        .plan-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid transparent;
+            border: 3px solid transparent;
             transform-style: preserve-3d;
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            background: #ffffff;
             box-shadow: 
-                0 8px 32px rgba(0,0,0,0.1),
-                0 4px 16px rgba(0,0,0,0.05),
-                inset 0 1px 0 rgba(255,255,255,0.8);
-            border-radius: 16px;
+                0 15px 30px rgba(0,0,0,0.1),
+                0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 20px; /* More rounded */
             position: relative;
             overflow: hidden;
             margin: 8px;
+            cursor: pointer;
         }
         
-        .service-card::before {
+        .plan-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(37,99,235,0.1) 100%);
+            background: linear-gradient(135deg, rgba(15,98,254,0.1) 0%, rgba(30,64,175,0.1) 100%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
             z-index: 1;
         }
         
-        .service-card:hover::before {
+        .plan-card:hover::before {
             opacity: 1;
         }
         
-        .service-card:hover {
-            transform: translateY(-12px) rotateX(3deg) rotateY(3deg) scale(1.01);
+        .plan-card:hover {
+            transform: translateY(-8px) scale(1.02); 
             box-shadow: 
-                0 25px 50px rgba(59,130,246,0.2),
-                0 15px 30px rgba(0,0,0,0.1),
-                0 8px 16px rgba(59,130,246,0.08),
+                0 25px 50px rgba(15,98,254,0.3), /* Stronger shadow */
+                0 15px 30px rgba(0,0,0,0.15),
                 inset 0 2px 0 rgba(255,255,255,0.9);
-            border-color: #3b82f6;
+            border-color: #0f62fe; /* Primary color border on hover */
         }
         
-        .service-card-content {
+        .plan-card-content {
             position: relative;
             z-index: 2;
-            transform: translateZ(20px);
+            padding: 24px;
         }
         
-        .icon-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .icon-hover:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-        
+        /* --- Primary Button (From AC/Fridge File) --- */
         .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            background: linear-gradient(135deg, #0f62fe, #1e40af);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(15,98,254,0.4);
         }
         
         .btn-primary:hover {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            background: linear-gradient(135deg, #1e40af, #11368e);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(15,98,254,0.6);
         }
         
+        /* --- Utility classes for Modals and Loading (From AC/Fridge File) --- */
         .popup-overlay {
             backdrop-filter: blur(10px);
             animation: fadeIn 0.3s ease;
@@ -130,179 +125,316 @@ home services in Sonipat" />
             40% { transform: translateY(-10px); }
             60% { transform: translateY(-5px); }
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-        }
-        
-        .service-icon {
-            width: 48px;
-            height: 48px;
-        }
-        
-        .loading {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-        
-        .warranty-badge {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 4px;
-        }
-        
 
-        
+        /* --- Marquee/Slider Styling (From AC/Fridge File) --- */
+        .services-slider {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            background: #374151; /* Match footer component background */
+        }
+
+        .services-track {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        .services-track a, .services-track span {
+            display: inline-block;
+            color: #d1d5db; /* light gray */
+            padding: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .services-track a:hover {
+            color: #60a5fa; /* blue-400 */
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- CCTV Specific Styles --- */
         .feature-list {
             list-style: none;
             padding: 0;
+            margin-top: 12px;
+            font-size: 14px; /* Slightly larger features */
         }
         
         .feature-list li {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
-            font-size: 12px;
+            margin-bottom: 6px;
         }
         
-        .feature-list li::before {
-            content: '✓';
-            color: #10b981;
-            font-weight: bold;
+        .feature-list li .feature-icon {
+            color: #10b981; /* Green checkmark */
             margin-right: 8px;
-            font-size: 14px;
+            font-size: 16px;
         }
+        
+        .icon-package {
+             /* Custom icon background for packages */
+             background: #eff6ff; /* blue-50 */
+             color: #1d4ed8; /* blue-700 */
+        }
+
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="min-h-full bg-gray-50"><!-- Header -->
-  <header class="gradient-bg text-white shadow-lg sticky top-0 z-40">
+ <body class="min-h-full bg-gray-50"><!-- Header (Updated to AC/Fridge style) -->
+  <header class="gradient-bg text-white shadow-2xl sticky top-0 z-40"> 
    <div class="container mx-auto px-4 py-4">
-    <div class="flex justify-between items-center">
-     <div class="flex items-center space-x-3">
-      <div class="service-icon icon-hover">
-       <svg viewbox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M17,9H7V7A5,5 0 0,1 12,2A5,5 0 0,1 17,7V9M20,9A2,2 0 0,1 22,11V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V11A2,2 0 0,1 4,9H6V7A6,6 0 0,1 12,1A6,6 0 0,1 18,7V9H20M12,17A2,2 0 0,0 14,15A2,2 0 0,0 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17Z" />
-       </svg>
-      </div>
+    <br>
+    <div class="flex justify-between items-center"><a href="index.html" class="flex items-center space-x-3 hover:opacity-90 transition-opacity"><img src="logo.png" alt="Sonipat Home Service Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-lg border border-white/50">
       <div>
-       <h1 id="company-name" class="text-xl font-bold">CCTV Camera Installation Service</h1>
-       <p class="text-sm opacity-90">Professional Security Solutions &amp; Repair</p>
-      </div>
-     </div>
+       <h1 id="company-name" class="text-xl sm:text-2xl font-extrabold tracking-tight"> <span class="text-yellow-300">SonipatHomeService</span></h1>
+       <p class="text-sm font-semibold opacity-90">Professional CCTV Installation & Security Service</p>
+      </div></a>
      <div class="flex items-center space-x-4">
-      <div class="text-right hidden md:block">
-       <p id="customer-care" class="text-sm font-semibold">📞 8816014071</p>
-       <p id="email-address" class="text-xs opacity-90">security@cctvservice.com</p>
-      </div><button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-lg transition-all duration-300"> <span class="flex items-center space-x-2">
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7M9 3V4H15V3H9M7 6V19H17V6H7Z" />
-        </svg><span>Cart</span> <span id="cart-count" class="bg-blue-500 text-white rounded-full px-2 py-1 text-xs hidden">0</span> </span> </button>
+      <!-- Desktop Contact Side Bar -->
+      <div class="text-right hidden md:block border-l pl-4 border-white/30">
+       <a href="tel:8816014071" class="text-lg font-bold hover:text-yellow-300 transition-colors">📞 8816014071</a>
+       <p id="email-address" class="text-xs opacity-80 mt-1">care@sonipathomeservice.com</p>
+      </div>
+      <!-- Cart Button with Pop -->
+      <button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-md"> <span class="flex items-center space-x-2">
+        <i class="fas fa-shopping-cart w-5 h-5"></i>
+        <span class="hidden sm:inline">Cart</span> <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-0.5 text-xs hidden font-bold">0</span> </span> </button>
      </div>
     </div>
    </div>
-  </header><!-- Hero Section -->
- <!-- Services Section -->
-  <section class="py-12 bg-white">
+  </header>
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- NEW: Info Cards Section (From AC/Fridge File) -->
+    <section class="py-6 bg-white rounded-xl shadow-lg mb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Info Card 1: Same Day Service -->
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl text-blue-600"><i class="fas fa-bolt"></i></span>
+                        <div>
+                            <h4 class="font-extrabold text-lg text-gray-800">Same Day Booking</h4>
+                            <p class="text-sm text-gray-600">Fast service scheduling and dispatch.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Info Card 2: 1 Year Warranty -->
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl text-green-600"><i class="fas fa-shield-alt"></i></span>
+                        <div>
+                            <h4 class="font-extrabold text-lg text-gray-800">1 Year Warranty</h4>
+                            <p class="text-sm text-gray-600">Warranty on all equipment & installation.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Info Card 3: Verified Technicians -->
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl text-yellow-600"><i class="fas fa-user-shield"></i></span>
+                        <div>
+                            <h4 class="font-extrabold text-lg text-gray-800">Verified Technicians</h4>
+                            <p class="text-sm text-gray-600">Background checked and professional experts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services/Packages Section (Updated styling) -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-extrabold text-center mb-10 text-gray-800">CCTV Camera Installation Packages</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-2" id="services-grid">
+                <!-- Packages will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+  
+  <!-- Terms & Conditions (From AC/Fridge File) -->
+  <section class="py-16 bg-gray-100">
    <div class="container mx-auto px-4">
-    <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">CCTV Camera Packages &amp; Pricing</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2" id="services-grid"><!-- Services will be populated by JavaScript -->
-    </div>
-   </div>
-  </section><!-- Service Details -->
-  <section class="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
-   <div class="container mx-auto px-4">
-    <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose Our CCTV Services?</h3>
-    <div class="max-w-6xl mx-auto">
-     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Installation Card -->
-      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-blue-500">
+    <h3 class="text-3xl font-extrabold text-center mb-12 text-gray-800">Why Choose Sonipat Home Service?</h3>
+    <div class="max-w-5xl mx-auto">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Service Terms Card -->
+      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-blue-500 hover:shadow-3xl transition-all duration-300">
        <div class="text-center mb-4">
-        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">🔧</span>
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600"><i class="fas fa-video text-3xl"></i>
         </div>
-        <h4 class="font-bold text-xl text-gray-800 mb-2">Professional Installation</h4>
+        <h4 class="font-extrabold text-xl text-gray-800 mb-2">Package Inclusion</h4>
        </div>
        <ul class="space-y-3 text-sm text-gray-600">
-        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Free installation service</span></li>
-        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Expert technician team</span></li>
-        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>Complete wiring setup</span></li>
-        <li class="flex items-start space-x-2"><span class="text-blue-500 mt-1">✓</span> <span>System configuration</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>All necessary equipment included</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>HDD/Storage included in package price</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Free Installation & Configuration</span></li>
        </ul>
-      </div><!-- Warranty Card -->
-      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-green-500">
+      </div><!-- Payment Terms Card -->
+      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-green-500 hover:shadow-3xl transition-all duration-300">
        <div class="text-center mb-4">
-        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">🛡️</span>
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 text-green-600"><i class="fas fa-coins text-3xl"></i>
         </div>
-        <h4 class="font-bold text-xl text-gray-800 mb-2">Complete Warranty</h4>
+        <h4 class="font-extrabold text-xl text-gray-800 mb-2">Payment Flexibility</h4>
        </div>
        <ul class="space-y-3 text-sm text-gray-600">
-        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>1 year warranty on all items</span></li>
-        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>1 year free service</span></li>
-        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Free repair &amp; maintenance</span></li>
-        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>24/7 technical support</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Low upfront booking fee (₹99 fixed)</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Accept all payment methods (Cash, UPI, Card)</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Secure Razorpay gateway for online payment</span></li>
        </ul>
-      </div><!-- Quality Card -->
-      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-purple-500">
+      </div><!-- Contact & Support Card -->
+      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-purple-500 hover:shadow-3xl transition-all duration-300">
        <div class="text-center mb-4">
-        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-3xl">⭐</span>
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 text-purple-600"><i class="fas fa-headset text-3xl"></i>
         </div>
-        <h4 class="font-bold text-xl text-gray-800 mb-2">Premium Quality</h4>
+        <h4 class="font-extrabold text-xl text-gray-800 mb-2">Dedicated Support</h4>
        </div>
        <ul class="space-y-3 text-sm text-gray-600">
-        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>HD &amp; Full HD cameras</span></li>
-        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>Night vision capability</span></li>
-        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>Weather resistant</span></li>
-        <li class="flex items-start space-x-2"><span class="text-purple-500 mt-1">✓</span> <span>Mobile app monitoring</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>1 Year Free Service & Warranty</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Mobile app configuration support</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>24/7 technical support line</span></li>
        </ul>
       </div>
      </div><!-- Additional Info Banner -->
-     <div class="mt-8 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl p-6 text-white text-center">
-      <div class="flex items-center justify-center space-x-4"><span class="text-2xl">🏆</span>
+     <div class="mt-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl p-6 text-white text-center shadow-lg">
+      <div class="flex items-center justify-center space-x-4"><span class="text-3xl">⭐</span>
        <div>
-        <h5 class="font-bold text-lg">Complete CCTV Security Solutions</h5>
-        <p class="text-sm opacity-90">Professional installation with 1 year warranty and free service support</p>
-       </div><span class="text-2xl">📹</span>
+        <h5 class="font-extrabold text-xl">Peace of Mind Security Guaranteed</h5>
+        <p class="text-sm opacity-90">Book with confidence. We ensure quality and reliable security.</p>
+       </div><span class="text-3xl">🛠️</span>
       </div>
      </div>
     </div>
    </div>
-  </section><!-- Footer -->
-  <footer class="bg-gray-800 text-white py-12">
+  </section>
+  </main>
+  
+  <!-- Cart Popup (From Fridge File) -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+       <h3 class="text-2xl font-extrabold text-gray-800">Your Cart</h3><button id="close-cart" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
+      </div>
+      <div id="cart-items" class="space-y-3 mb-4 max-h-60 overflow-y-auto"><!-- Cart items will be populated here -->
+      </div>
+      <div class="border-t pt-4">
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600 font-semibold">Service Total:</span> <span class="font-extrabold text-lg">₹<span id="cart-total">0</span></span>
+        </div>
+        <div class="flex justify-between items-center text-blue-600"><span class="font-semibold">Booking Charge:</span> <span class="font-extrabold">₹<span id="cart-booking-charge">99</span></span>
+        </div>
+        <div class="flex justify-between items-center text-green-600"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="onsite-balance">0</span></span>
+        </div>
+        <div class="border-t pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="cart-pay-now">99</span></span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform disabled:opacity-50" disabled> <span id="cart-button-text">Book Service - Pay ₹99</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Checkout Form Popup (From Fridge File) -->
+  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-start justify-center min-h-full p-2 py-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content" style="max-height: 95vh; overflow-y: auto;">
+     <div class="sticky top-0 bg-white p-4 border-b flex justify-between items-center z-10">
+      <h3 class="text-xl font-extrabold">Customer Details</h3><button id="close-checkout" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+       </svg></button>
+     </div>
+     <div class="p-4">
+      <form id="checkout-form" class="space-y-4">
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" maxlength="10" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email-id" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+       </div>
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Full Address *</label> <textarea id="full-address" required rows="3" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+         </div>
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required pattern="[0-9]{6}" maxlength="6" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+         </div>
+        </div>
+       </div>
+       <div class="border-t pt-4 mt-4">
+        <h4 class="text-lg font-extrabold mb-3">Payment Summary</h4>
+        <div class="space-y-2 mb-4 bg-blue-50 p-3 rounded-lg border border-blue-200">
+         <div class="flex justify-between items-center text-sm"><span class="text-gray-700 font-semibold">Service Total:</span> <span class="font-extrabold">₹<span id="checkout-total">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-blue-700 text-sm"><span class="font-semibold">Booking Charge (Non-refundable):</span> <span class="font-extrabold">₹<span id="checkout-booking-charge">99</span></span>
+         </div>
+         <div class="flex justify-between items-center text-green-700 text-sm"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="checkout-onsite-balance">0</span></span>
+         </div>
+         <div class="border-t border-blue-300 pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="checkout-pay-now">99</span></span>
+         </div>
+        </div>
+        <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-3 mb-4">
+         <p class="text-xs text-yellow-800"><strong>Note:</strong> You are paying only the booking charge (₹<span id="note-booking-charge">99</span>) now. <span id="onsite-note">Remaining amount will be paid to the technician after service completion.</span></p>
+        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform"> <span id="checkout-button-text">Pay ₹99 Booking Charge</span> </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+
+
+  <!-- Footer (Updated with Marquee) -->
+  <footer class="bg-gray-900 text-white pt-12">
    <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
      <div>
-      <h4 class="text-xl font-bold mb-4">Contact Information</h4>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Contact Information</h4>
       <div class="space-y-2 text-sm">
-       <p>📞 <span id="footer-phone">8816014071</span></p>
-       <p>✉️ <span id="footer-email">security@cctvservice.com</span></p>
-       <p>📍 <span id="office-address">Security Solutions Center, Tech City</span></p>
+       <p class="flex items-center">📞 <span class="ml-2 font-semibold" id="footer-phone">8816014071</span></p>
+       <p class="flex items-center">✉️ <span class="ml-2" id="footer-email">care@sonipathomeservice.com</span></p>
+       <p class="flex items-center">📍 <span class="ml-2" id="office-address">128/1, Sainipura, Sonipat</span></p>
       </div>
      </div>
      <div>
-      <h4 class="text-xl font-bold mb-4">Our Services</h4>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Quick Links</h4>
       <ul class="space-y-2 text-sm">
-       <li>• CCTV Camera Installation</li>
-       <li>• Security System Repair</li>
-       <li>• HD &amp; IP Camera Setup</li>
-       <li>• 24/7 Monitoring Solutions</li>
+       <li><a href="index.html" class="hover:text-blue-400 transition-colors">• Home Page</a></li>
+       <li><a href="policy.html" class="hover:text-blue-400 transition-colors">• Privacy Policy</a></li>
+       <li><a href="terms.html" class="hover:text-blue-400 transition-colors">• Terms &amp; Conditions</a></li>
+       <li><a href="refund.html" class="hover:text-blue-400 transition-colors">• Refund Policy</a></li>
       </ul>
      </div>
      <div>
-      <h4 class="text-xl font-bold mb-4">Why Choose Us?</h4>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">CCTV Highlights</h4>
       <ul class="space-y-2 text-sm">
-       <li>• Professional Installation</li>
-       <li>• 1 Year Complete Warranty</li>
-       <li>• Free Service &amp; Support</li>
-       <li>• Premium Quality Equipment</li>
+       <li>✓ AHD & IP Camera Packages</li>
+       <li>✓ Free Installation</li>
+       <li>✓ 1 Year Full Warranty</li>
+       <li>✓ Mobile App Monitoring</li>
       </ul>
      </div>
     </div>
-    <div style="background: #374151; padding: 20px 0; margin-top: 20px;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 20px; font-size: 18px;">All Our Services</h4>
+    <!-- Marquee Slider for All Services (Copied styling and structure from Fridge/AC file) -->
+    <div style="background: #374151; padding: 15px 0; margin-top: 30px; border-radius: 10px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 10px; font-size: 16px; font-weight: bold;">All Our Services</h4>
      <div class="services-slider">
       <div class="services-track"><a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span> <!-- Duplicate for seamless loop --> <a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span>
       </div>
@@ -310,201 +442,188 @@ home services in Sonipat" />
     </div>
    </div>
 
-    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
-     <p>© 2024 CCTV Camera Installation Service. All rights reserved.</p>
+    <div class="border-t border-gray-800 mt-8 pt-6 pb-2 text-center text-sm">
+     <p>© 2024 CCTV Installation & Service in Sonipat. All rights reserved.</p>
     </div>
    </div>
-  </footer><!-- Cart Popup -->
-  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
-   <div class="flex items-center justify-center min-h-full p-4">
-    <div class="bg-white rounded-lg shadow-xl max-w-md w-full popup-content">
-     <div class="p-6">
-      <div class="flex justify-between items-center mb-4">
-       <h3 class="text-xl font-bold">Your Cart</h3><button id="close-cart" class="text-gray-500 hover:text-gray-700">
-        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-        </svg></button>
-      </div>
-      <div id="cart-items" class="space-y-3 mb-4"><!-- Cart items will be populated here -->
-      </div>
-      <div class="border-t pt-4">
-       <div class="space-y-2 mb-4">
-        <div class="flex justify-between items-center"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="cart-total">0</span></span>
-        </div>
-        <div class="flex justify-between items-center"><span class="text-gray-600">Booking Amount:</span> <span class="font-semibold text-blue-600">₹<span id="cart-pay-now">0</span></span>
-        </div>
-        <div class="flex justify-between items-center" id="remaining-payment-row"><span class="text-gray-600">Remaining Payment:</span> <span class="font-semibold text-orange-600">₹<span id="cart-remaining">0</span></span>
-        </div>
-        <div class="bg-orange-50 border border-orange-200 rounded p-2 text-xs text-orange-800"><span id="remaining-note">Remaining amount will be collected during installation</span>
-        </div>
-       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-lg font-semibold disabled:opacity-50" disabled> <span id="cart-button-text">Book Service</span> </button>
-      </div>
-     </div>
-    </div>
-   </div>
-  </div><!-- Checkout Form Popup -->
-  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
-   <div class="flex items-start justify-center min-h-full p-2 py-4">
-    <div class="bg-white rounded-lg shadow-xl max-w-md w-full popup-content" style="max-height: 90vh; overflow-y: auto;">
-     <div class="sticky top-0 bg-white p-3 border-b flex justify-between items-center">
-      <h3 class="text-lg font-bold">Customer Details</h3><button id="close-checkout" class="text-gray-500 hover:text-gray-700">
-       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-       </svg></button>
-     </div>
-     <div class="p-3">
-      <form id="checkout-form" class="space-y-2">
-       <div><label class="block text-xs font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
-       </div>
-       <div><label class="block text-xs font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
-       </div>
-       <div><label class="block text-xs font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email-id" required class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
-       </div>
-       <div><label class="block text-xs font-medium text-gray-700 mb-1">Full Address *</label> <textarea id="full-address" required rows="2" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
-       </div>
-       <div class="grid grid-cols-2 gap-2">
-        <div><label class="block text-xs font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
-        </div>
-        <div><label class="block text-xs font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required pattern="[0-9]{6}" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-transparent">
-        </div>
-       </div>
-       <div class="border-t pt-2 mt-3">
-        <div class="space-y-1 mb-2">
-         <div class="flex justify-between items-center text-xs"><span class="text-gray-600">Service Total:</span> <span class="font-semibold">₹<span id="checkout-total">0</span></span>
-         </div>
-         <div class="flex justify-between items-center text-xs"><span class="text-gray-600">Booking Amount:</span> <span class="font-semibold text-blue-600">₹<span id="checkout-pay-now">0</span></span>
-         </div>
-         <div class="flex justify-between items-center text-xs" id="checkout-remaining-row"><span class="text-gray-600">Remaining Payment:</span> <span class="font-semibold text-orange-600">₹<span id="checkout-remaining">0</span></span>
-         </div>
-         <div class="bg-blue-50 border border-blue-200 rounded p-1.5 mt-1">
-          <p class="text-xs text-blue-800"><strong>Note:</strong> <span id="payment-note">Booking amount ₹99. Remaining amount will be collected during installation.</span></p>
-         </div>
-        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-2 rounded font-semibold text-sm"> <span id="checkout-button-text">Pay Now</span> </button>
-       </div>
-      </form>
-     </div>
-    </div>
-   </div>
-  </div>
+  </footer>
+  
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
         // Configuration
         const defaultConfig = {
-            company_name: "CCTV Camera Installation Service",
+            company_name: "CCTV Installation & Service in Sonipat",
             customer_care: "8816014071",
-            email_address: "security@cctvservice.com",
-            office_address: "Security Solutions Center, Tech City"
+            email_address: "care@sonipathomeservice.com",
+            office_address: "128/1, Sainipura, Sonipat"
         };
+        const BOOKING_AMOUNT = 99;
 
-        // CCTV Services data
+        var cart = []; 
+        var currentRecordCount = 0; 
+
+        // Utility function to show custom toast message (Defined globally)
+        function showToast(message, type) {
+            const existing = document.getElementById('app-message');
+            if(existing) existing.remove();
+            
+            const colors = {
+                success: { bg: 'bg-green-500', icon: '✅' },
+                error: { bg: 'bg-red-500', icon: '❌' },
+                loading: { bg: 'bg-blue-500', icon: '<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>' }
+            };
+            
+            const msg = colors[type] || colors.loading;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.id = 'app-message';
+            messageDiv.className = `fixed top-4 right-4 ${msg.bg} text-white p-4 rounded-xl shadow-2xl z-[1000] transition-opacity duration-300`;
+            messageDiv.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <span class="text-xl">${msg.icon}</span>
+                    <div>
+                        <p class="font-bold text-lg">${type === 'success' ? 'Success' : (type === 'error' ? 'Error' : 'Processing...')}</p>
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(messageDiv);
+            
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    messageDiv.classList.add('opacity-0');
+                    setTimeout(() => messageDiv.remove(), 300);
+                }, 5000);
+            }
+        }
+        
+        // Helper functions
+        function showLoadingMessage() { showToast('Saving your booking details', 'loading'); }
+        function hideLoadingMessage() { const loadingDiv = document.getElementById('app-message'); if (loadingDiv) loadingDiv.remove(); }
+        function showErrorMessage() { showToast('Booking Failed! Please try again or contact support.', 'error'); }
+
+        // Initialize SDKs (MOVED TO TOP TO PREVENT ReferenceError)
+        async function initializeApp() {
+            if (window.elementSdk) {
+                await window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange,
+                    mapToCapabilities,
+                    mapToEditPanelValues
+                });
+            }
+
+            if (window.dataSdk) {
+                const initResult = await window.dataSdk.init(dataHandler);
+                if (!initResult.isOk) {
+                    console.error("Failed to initialize data storage");
+                }
+            }
+            renderServices();
+        }
+
+        // CCTV Services data (Updated to use icons instead of emojis)
         const services = [
             {
-                id: 2,
-                name: "AHD 4 Camera Set",
-                price: 16000,
+                id: 1,
+                name: "Diagnosis / Repair Visit",
+                price: 299,
                 originalPrice: null,
-                icon: "📹",
-                description: "Complete AHD 4 camera security system with DVR",
-                details: "4 Cameras • 1 DVR • 500GB HDD • 1 Year Warranty",
+                icon: "fas fa-search",
+                description: "Complete diagnosis of existing CCTV/DVR/NVR issues",
+                details: "Includes technician visit charges.",
                 features: [
-                    "4 AHD Cameras",
+                    "Full system checkup",
+                    "Minor adjustments",
+                    "Troubleshooting"
+                ]
+            },
+            {
+                id: 2,
+                name: "AHD 4 Camera Package",
+                price: 16000,
+                originalPrice: 17500,
+                icon: "fas fa-camera",
+                description: "Complete Analog HD security system with DVR",
+                details: "4 AHD Cameras • 1 DVR • 500GB HDD • Installation included",
+                features: [
+                    "4 AHD Cameras (CP Plus/Dahua)",
                     "1 DVR 4 Channel",
-                    "Supply - 4 Channel",
-                    "1 HDD - 500 GB",
-                    "3+1 Wire 90 Meters",
-                    "Free Installation",
-                    "1 Year Warranty",
-                    "1 Year Free Service"
+                    "500GB Hard Disk Drive",
+                    "90 Mtrs 3+1 Wire",
+                    "1 Year Warranty"
                 ]
             },
             {
                 id: 3,
-                name: "IP Camera 4 Camera Set",
+                name: "IP 4 Camera Package (POE)",
                 price: 24000,
-                originalPrice: null,
-                icon: "🌐",
+                originalPrice: 26500,
+                icon: "fas fa-network-wired",
                 description: "Advanced IP camera system with NVR and POE",
-                details: "4 IP Cameras • 1 NVR • POE Switch • 1 Year Warranty",
+                details: "4 IP Cameras • 1 NVR • POE Switch • Installation included",
                 features: [
-                    "4 IP Cameras",
+                    "4 IP Cameras (2MP+)",
                     "1 NVR 4 Channel",
-                    "1 POE 4 Channel",
-                    "CAT-6 Wire 90 Meters",
-                    "1 HDD - 500 GB",
-                    "Remote Monitoring",
-                    "1 Year Warranty",
-                    "1 Year Free Service"
+                    "POE Switch",
+                    "CAT-6 Wire 90 Mtrs",
+                    "1 Year Warranty"
                 ]
             },
             {
                 id: 4,
-                name: "AHD 8 Camera Set",
+                name: "AHD 8 Camera Package",
                 price: 24000,
-                originalPrice: null,
-                icon: "🏢",
+                originalPrice: 27000,
+                icon: "fas fa-warehouse",
                 description: "Extended AHD 8 camera system for larger areas",
-                details: "8 Cameras • 1 DVR • 1TB HDD • 1 Year Warranty",
+                details: "8 AHD Cameras • 1 DVR • 1TB HDD • Installation included",
                 features: [
-                    "8 AHD Cameras",
+                    "8 AHD Cameras (CP Plus/Dahua)",
                     "1 DVR 8 Channel",
-                    "Supply - 8 Channel",
-                    "HDD - 1TB",
-                    "3+1 Wire 180 Meters",
-                    "Complete Coverage",
-                    "1 Year Warranty",
-                    "1 Year Free Service"
-                ]
-            },
-            {
-                id: 5,
-                name: "IP Camera 8 Camera Set",
-                price: 34000,
-                originalPrice: null,
-                icon: "🏭",
-                description: "Premium IP camera system for comprehensive security",
-                details: "8 IP Cameras • 1 NVR • POE Switch • 1 Year Warranty",
-                features: [
-                    "8 IP Cameras",
-                    "1 NVR 8 Channel",
-                    "1 POE 8 Channel",
-                    "CAT-6 Wire 180 Meters",
-                    "HDD - 1TB",
-                    "Advanced Features",
-                    "1 Year Warranty",
-                    "1 Year Free Service"
+                    "1TB Hard Disk Drive",
+                    "180 Mtrs 3+1 Wire",
+                    "1 Year Warranty"
                 ]
             }
         ];
 
         // Cart functionality
-        let cart = [];
+        var cart = []; 
 
         function renderServices() {
             const servicesGrid = document.getElementById('services-grid');
             servicesGrid.innerHTML = services.map(service => `
-                <div class="service-card p-6">
-                    <div class="service-card-content">
-
-                        <div class="text-center mb-4">
-                            <div class="text-4xl mb-3 icon-hover">${service.icon}</div>
-                            <h4 class="font-bold text-base mb-2 text-gray-800 leading-tight">${service.name}</h4>
-                            <p class="text-gray-600 text-xs mb-2">${service.description}</p>
-                            <p class="text-blue-600 text-xs font-semibold">${service.details}</p>
-                            ${!service.isDemo ? '<div class="warranty-badge mt-2">1 Year Warranty + Free Service</div>' : ''}
-                        </div>
-                        <div class="mb-4">
-                            <ul class="feature-list text-xs text-gray-600">
-                                ${service.features.slice(0, 4).map(feature => `<li>${feature}</li>`).join('')}
-                                ${service.features.length > 4 ? `<li class="text-blue-600 font-semibold">+${service.features.length - 4} more features</li>` : ''}
-                            </ul>
-                        </div>
-                        <div class="text-center mb-4">
-                            <div class="flex items-center justify-center space-x-2">
-                                <span class="text-xl font-bold text-blue-600">₹${service.price.toLocaleString()}</span>
-                                ${service.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${service.originalPrice.toLocaleString()}</span>` : ''}
+                <div class="plan-card" onclick="addToCart(${service.id})">
+                    <div class="plan-card-content">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 mr-4 text-blue-600 text-2xl icon-package">
+                                <i class="${service.icon}"></i>
                             </div>
-                            ${service.originalPrice ? `<div class="text-xs text-blue-600 font-semibold">Save ₹${(service.originalPrice - service.price).toLocaleString()}</div>` : ''}
+                            <div class="flex-1">
+                                <h4 class="font-extrabold text-lg mb-1 text-gray-800 leading-snug">${service.name}</h4>
+                                <p class="text-gray-600 text-xs">${service.description}</p>
+                                <p class="text-blue-600 text-xs font-semibold">${service.details}</p>
+                            </div>
                         </div>
-                        <button onclick="addToCart(${service.id})" class="w-full btn-primary text-white py-2.5 rounded-lg font-semibold text-sm transform transition-transform hover:scale-105">
-                            Add to Cart
-                        </button>
+                        
+                        <ul class="feature-list text-gray-700">
+                            ${service.features.map(feature => `
+                                <li><i class="fas fa-check-circle feature-icon"></i> ${feature}</li>
+                            `).join('')}
+                        </ul>
+
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-100 mt-4">
+                            <div class="flex flex-col">
+                                <span class="text-2xl font-extrabold text-red-600">₹${service.price.toLocaleString('en-IN')}</span>
+                                ${service.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${service.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+                            </div>
+                            <button class="btn-primary text-white px-4 py-2 rounded-full font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-300" onclick="event.stopPropagation(); addToCart(${service.id});">
+                                Add to Cart
+                            </button>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -517,34 +636,54 @@ home services in Sonipat" />
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
+                // Clear cart if adding a new installation package (assuming single large order)
+                if (service.price >= 1000) { 
+                    cart = []; 
+                }
                 cart.push({ ...service, quantity: 1 });
             }
             
             updateCartUI();
+            showToast(`${service.name} added to cart!`, "success");
             showCartPopup();
         }
 
         function removeFromCart(serviceId) {
-            cart = cart.filter(item => item.id !== serviceId);
+            const itemIndex = cart.findIndex(item => item.id === serviceId);
+            if (itemIndex > -1) {
+                if (cart[itemIndex].quantity > 1) {
+                    cart[itemIndex].quantity -= 1;
+                } else {
+                    cart.splice(itemIndex, 1);
+                }
+            }
             updateCartUI();
             if (cart.length === 0) {
+                hideCartPopup(); 
+                hideCheckoutPopup();
+            }
+        }
+        
+        function removeItemFromCart(serviceId) {
+             cart = cart.filter(item => item.id !== serviceId);
+             updateCartUI();
+             if (cart.length === 0) {
                 hideCartPopup();
+                hideCheckoutPopup();
             }
         }
 
         function updateCartUI() {
             const cartCount = document.getElementById('cart-count');
             const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-            const checkoutTotal = document.getElementById('checkout-total');
             const proceedBtn = document.getElementById('proceed-checkout');
             
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT; 
+            const onsiteAmount = Math.max(0, totalAmount - bookingCharge);
             
-            // Calculate payment amount (₹99 booking for all CCTV services)
-            const payAmount = 99;
-            
+            // 1. Update Cart Count Badge
             if (totalItems > 0) {
                 cartCount.textContent = totalItems;
                 cartCount.classList.remove('hidden');
@@ -553,58 +692,65 @@ home services in Sonipat" />
                 cartCount.classList.add('hidden');
             }
             
+            // 2. Update Cart Items in Popup
             cartItems.innerHTML = cart.map(item => `
-                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-100">
                     <div class="flex-1">
-                        <h5 class="font-semibold text-sm">${item.name}</h5>
-                        <p class="text-gray-600 text-xs">₹${item.price.toLocaleString()} x ${item.quantity}</p>
+                        <h5 class="font-bold text-base text-gray-800">${item.name}</h5>
+                        <div class="flex items-center space-x-2 mt-1">
+                            <button onclick="removeFromCart(${item.id})" class="text-blue-500 hover:text-red-500 text-sm font-bold w-6 h-6 rounded-full bg-white border">
+                                <i class="fas fa-minus text-xs"></i>
+                            </button>
+                            <span class="font-bold text-gray-700 text-sm">${item.quantity}</span>
+                            <button onclick="addToCart(${item.id})" class="text-blue-500 hover:text-green-500 text-sm font-bold w-6 h-6 rounded-full bg-white border">
+                                <i class="fas fa-plus text-xs"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <span class="font-bold">₹${(item.price * item.quantity).toLocaleString()}</span>
-                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                            </svg>
+                    <div class="flex flex-col items-end space-y-1">
+                        <span class="font-extrabold text-lg text-red-600">₹${(item.price * item.quantity).toLocaleString('en-IN')}</span>
+                        <button onclick="removeItemFromCart(${item.id})" class="text-red-500 hover:text-red-700 text-xs">
+                            <i class="fas fa-trash-alt mr-1"></i> Remove All
                         </button>
                     </div>
                 </div>
             `).join('');
             
-            cartTotal.textContent = totalAmount.toLocaleString();
-            checkoutTotal.textContent = totalAmount.toLocaleString();
+            // 3. Update Cart Totals
+            const totalElements = ['cart-total', 'checkout-total'];
+            totalElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = totalAmount.toLocaleString('en-IN');
+            });
+
+            const onsiteElements = ['onsite-balance', 'checkout-onsite-balance'];
+            onsiteElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = onsiteAmount.toLocaleString('en-IN');
+            });
             
-            // Update payment amount displays
-            const cartPayNow = document.getElementById('cart-pay-now');
-            const checkoutPayNow = document.getElementById('checkout-pay-now');
-            const cartButtonText = document.getElementById('cart-button-text');
-            const checkoutButtonText = document.getElementById('checkout-button-text');
-            const paymentNote = document.getElementById('payment-note');
-            const remainingAmount = totalAmount - payAmount;
+            // Update charge displays
+            const chargeElements = ['cart-booking-charge', 'checkout-booking-charge', 'cart-pay-now', 'checkout-pay-now', 'note-booking-charge'];
+            chargeElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.textContent = bookingCharge;
+            });
             
-            if (cartPayNow) cartPayNow.textContent = payAmount.toLocaleString();
-            if (checkoutPayNow) checkoutPayNow.textContent = payAmount.toLocaleString();
-            
-            // Update remaining payment displays
-            const cartRemaining = document.getElementById('cart-remaining');
-            const checkoutRemaining = document.getElementById('checkout-remaining');
-            const remainingPaymentRow = document.getElementById('remaining-payment-row');
-            const checkoutRemainingRow = document.getElementById('checkout-remaining-row');
-            const remainingNote = document.getElementById('remaining-note');
-            
-            if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${payAmount.toLocaleString()}`;
-            if (checkoutButtonText) checkoutButtonText.textContent = `Pay Booking Amount ₹${payAmount.toLocaleString()}`;
-            if (remainingPaymentRow) remainingPaymentRow.style.display = 'flex';
-            if (checkoutRemainingRow) checkoutRemainingRow.style.display = 'flex';
-            if (cartRemaining) cartRemaining.textContent = remainingAmount.toLocaleString();
-            if (checkoutRemaining) checkoutRemaining.textContent = remainingAmount.toLocaleString();
-            if (remainingNote) remainingNote.textContent = 'Remaining amount will be collected during installation';
-            
-            // Update payment note
-            if (paymentNote) {
-                paymentNote.textContent = `Booking amount ₹${payAmount}. Remaining ₹${remainingAmount.toLocaleString()} will be collected during installation.`;
+            const onsiteNote = document.getElementById('onsite-note');
+            if (onsiteNote) {
+                if (onsiteAmount === 0) {
+                    onsiteNote.textContent = "Full amount has been paid online (₹0 Onsite Balance).";
+                } else {
+                    onsiteNote.textContent = "Remaining amount will be paid to the technician after service completion.";
+                }
             }
             
-            proceedBtn.disabled = cart.length === 0;
+            if (proceedBtn) {
+                proceedBtn.disabled = cart.length === 0;
+                document.getElementById('cart-button-text').textContent = `Book Service - Pay ₹${bookingCharge}`;
+                const checkoutBtnText = document.getElementById('checkout-button-text');
+                if (checkoutBtnText) checkoutBtnText.textContent = `Pay ₹${bookingCharge} Booking Charge`;
+            }
         }
 
         function showCartPopup() {
@@ -616,33 +762,38 @@ home services in Sonipat" />
         }
 
         function showCheckoutPopup() {
+            if (cart.length === 0) {
+                 showToast('Please add a package to the cart first.', 'error');
+                 return;
+            }
             hideCartPopup();
             document.getElementById('checkout-popup').classList.remove('hidden');
         }
 
         function hideCheckoutPopup() {
             document.getElementById('checkout-popup').classList.add('hidden');
+            document.getElementById('checkout-form').reset(); // Reset form on close
         }
 
         // Razorpay payment integration
         function initiatePayment(customerData) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const payAmount = 99; // ₹99 booking for all CCTV services
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT; 
             
             const options = {
-                key: 'rzp_live_RLjzp7VlXERwiG', // Replace with your actual Razorpay key
-                amount: payAmount * 100, // Amount in paise
+                key: 'rzp_live_RLjzp7VlXERwiG', 
+                amount: bookingCharge * 100, // Amount in paise
                 currency: 'INR',
-                name: 'CCTV Camera Installation Service',
-                description: 'CCTV Security System',
-                image: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiMzYjgyZjYiPjxwYXRoIGQ9Ik0xNyw5SDdWN0E1LDUgMCAwLDEgMTIsQUE1LDUgMCAwLDEgMTcsN1Y5TTIwLDlBMiwyIDAgMCwxIDIyLDExVjIwQTIsMiAwIDAsMSAyMCwyMkg0QTIsMiAwIDAsMSAyLDIwVjExQTIsMiAwIDAsMSA0LDlINlY3QTYsNiAwIDAsMSAxMiwxQTYsNiAwIDAsMSAxOCw3VjlIMjBNMTIsMTdBMiwyIDAgMCwwIDE0LDE1QTIsMiAwIDAsMCAxMiwxM0EyLDIgMCAwLDAgMTAsMTVBMiwyIDAgMCwwIDEyLDE3WiIvPjwvc3ZnPg==',
+                name: 'CCTV Installation & Service',
+                description: `Booking Charge - CCTV Package`,
+                image: 'https://via.placeholder.com/200x200/0f62fe/ffffff?text=SHS',
                 prefill: {
                     name: customerData.name,
                     email: customerData.email,
                     contact: customerData.mobile
                 },
                 theme: {
-                    color: '#3b82f6'
+                    color: '#0f62fe'
                 },
                 handler: function(response) {
                     // Payment successful
@@ -650,8 +801,7 @@ home services in Sonipat" />
                 },
                 modal: {
                     ondismiss: function() {
-                        // Payment cancelled
-                        console.log('Payment cancelled');
+                        showToast('Payment cancelled', 'error');
                     }
                 }
             };
@@ -663,37 +813,39 @@ home services in Sonipat" />
         // Google Sheets integration
         async function submitToGoogleSheets(customerData, paymentId) {
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const payAmount = 99; // ₹99 booking for all CCTV services
-            const remainingAmount = totalAmount - payAmount;
+            const bookingCharge = totalAmount < BOOKING_AMOUNT ? totalAmount : BOOKING_AMOUNT;
+            const onsiteBalance = Math.max(0, totalAmount - bookingCharge);
             
-            const formData = new FormData();
-            formData.append('timestamp', new Date().toLocaleString('en-IN'));
-            formData.append('customerName', customerData.name);
-            formData.append('mobile', customerData.mobile);
-            formData.append('email', customerData.email);
-            formData.append('address', customerData.address);
-            formData.append('landmark', customerData.landmark || '');
-            formData.append('pincode', customerData.pincode);
-            formData.append('orderItems', cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', '));
-            formData.append('totalAmount', totalAmount);
-            formData.append('paidAmount', payAmount);
-            formData.append('remainingAmount', remainingAmount);
-            formData.append('paymentId', paymentId);
-            formData.append('status', 'CCTV Installation Booking Confirmed - Remaining Payment On Installation');
+            const orderItems = cart.map(item => `${item.name} (Qty: ${item.quantity}, Price: ${item.price})`).join(' | ');
+
+            const params = new URLSearchParams({
+                timestamp: new Date().toLocaleString('hi-IN'),
+                customerName: customerData.name,
+                mobile: customerData.mobile,
+                email: customerData.email,
+                address: customerData.address,
+                landmark: customerData.landmark || '',
+                pincode: customerData.pincode,
+                orderItems: orderItems,
+                totalAmount: totalAmount,
+                paidAmount: bookingCharge,
+                onsiteBalance: onsiteBalance,
+                paymentId: paymentId,
+                status: onsiteBalance > 0 ? 'CCTV Booking Confirmed - Onsite Balance Pending' : 'CCTV Payment Complete'
+            });
 
             try {
-                // Show loading state
                 showLoadingMessage();
                 
-                const response = await fetch('https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec', {
+                const response = await fetch(`https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec?${params.toString()}`, {
                     method: 'POST',
-                    body: formData
+                    mode: 'no-cors' 
                 });
 
-                // Hide loading and show success
                 hideLoadingMessage();
                 hideCheckoutPopup();
-                showSuccessMessage();
+                showSuccessMessage(paymentId, totalAmount, bookingCharge, onsiteBalance);
+                
                 cart = [];
                 updateCartUI();
                 
@@ -703,72 +855,65 @@ home services in Sonipat" />
                 showErrorMessage();
             }
         }
-
-        function showLoadingMessage() {
-            const loadingDiv = document.createElement('div');
-            loadingDiv.id = 'loading-message';
-            loadingDiv.className = 'fixed top-4 right-4 bg-blue-500 text-white p-4 rounded-lg shadow-lg z-50';
-            loadingDiv.innerHTML = `
-                <div class="flex items-center space-x-2">
-                    <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    <div>
-                        <p class="font-semibold">Processing...</p>
-                        <p class="text-sm">Saving your booking details</p>
+        
+        function showSuccessMessage(paymentId, totalAmount, bookingCharge, onsiteBalance) { 
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 popup-overlay';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl p-6 max-w-md w-full popup-content">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl text-green-500 mb-4">✅</div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">बुकिंग कन्फर्म!</h2>
+                        <p class="text-gray-600">आपका CCTV पैकेज सफलतापूर्वक बुक हो गया है।</p>
                     </div>
+                    
+                    <div class="space-y-3 mb-6 text-sm bg-green-50 p-4 rounded-lg">
+                        <div class="flex justify-between">
+                            <span>Payment ID:</span>
+                            <span class="font-medium text-xs break-all">${paymentId}</span>
+                        </div>
+                        <div class="flex justify-between font-bold">
+                            <span>कुल पैकेज राशि:</span>
+                            <span>₹${totalAmount.toLocaleString('en-IN')}</span>
+                        </div>
+                        <div class="flex justify-between text-green-700">
+                            <span>भुगतान की गई राशि (बुकिंग):</span>
+                            <span>₹${bookingCharge}</span>
+                        </div>
+                        <div class="flex justify-between text-red-600 font-bold">
+                            <span>बकाया राशि (Onsite):</span>
+                            <span>₹${onsiteBalance.toLocaleString('en-IN')}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                        <p class="text-sm text-blue-800">
+                            <strong>अगले कदम:</strong><br>
+                            • हमारी टीम 24 घंटे में आपसे संपर्क करेगी<br>
+                            • इंस्टालेशन जल्द ही होगा<br>
+                            • बकाया राशि ₹${onsiteBalance.toLocaleString('en-IN')} इंस्टालेशन के दौरान देनी होगी<br>
+                        </p>
+                    </div>
+                    
+                    <button onclick="closeConfirmation()" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-sm transition-colors">
+                        धन्यवाद
+                    </button>
                 </div>
             `;
-            document.body.appendChild(loadingDiv);
-        }
-
-        function hideLoadingMessage() {
-            const loadingDiv = document.getElementById('loading-message');
-            if (loadingDiv) {
-                loadingDiv.remove();
-            }
-        }
-
-        function showSuccessMessage() {
-            const successDiv = document.createElement('div');
-            successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50';
-            successDiv.innerHTML = `
-                <div class="flex items-center space-x-2">
-                    <span class="text-xl">✅</span>
-                    <div>
-                        <p class="font-semibold">Payment Successful!</p>
-                        <p class="text-sm">Your CCTV installation booking confirmed.</p>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(successDiv);
             
-            setTimeout(() => {
-                successDiv.remove();
-            }, 5000);
+            document.body.appendChild(modal);
+            
+            window.closeConfirmation = () => {
+                document.body.removeChild(modal);
+                delete window.closeConfirmation;
+            };
         }
 
-        function showErrorMessage() {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50';
-            errorDiv.innerHTML = `
-                <div class="flex items-center space-x-2">
-                    <span class="text-xl">❌</span>
-                    <div>
-                        <p class="font-semibold">Error!</p>
-                        <p class="text-sm">Please try again or contact support.</p>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(errorDiv);
-            
-            setTimeout(() => {
-                errorDiv.remove();
-            }, 5000);
-        }
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
-            renderServices();
-            updateCartUI();
+            // FIX: initializeApp is now defined globally, so call it directly
+            initializeApp();
 
             // Cart button
             document.getElementById('cart-btn').addEventListener('click', showCartPopup);
@@ -793,6 +938,11 @@ home services in Sonipat" />
                     pincode: document.getElementById('pincode').value
                 };
                 
+                if (cart.length === 0) {
+                     showToast('Please add a package to the cart first.', 'error');
+                     return;
+                }
+                
                 initiatePayment(customerData);
             });
 
@@ -808,7 +958,7 @@ home services in Sonipat" />
 
         // Element SDK integration
         async function onConfigChange(config) {
-            document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+            document.getElementById('company-name').textContent = (config.company_name || defaultConfig.company_name).split(' ')[0] + 'HomeService';
             document.getElementById('customer-care').textContent = `📞 ${config.customer_care || defaultConfig.customer_care}`;
             document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
             document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
@@ -827,7 +977,7 @@ home services in Sonipat" />
 
         function mapToEditPanelValues(config) {
             return new Map([
-                ["company_name", config.company_name || defaultConfig.company_name],
+                ["company_name", defaultConfig.company_name],
                 ["customer_care", config.customer_care || defaultConfig.customer_care],
                 ["email_address", config.email_address || defaultConfig.email_address],
                 ["office_address", config.office_address || defaultConfig.office_address]
@@ -844,5 +994,6 @@ home services in Sonipat" />
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99671bb6a0cc1c49',t:'MTc2MTc4NzQxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ </body>
+
 </html>
