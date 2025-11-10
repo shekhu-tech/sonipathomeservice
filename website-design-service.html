@@ -2,591 +2,918 @@
 <html lang="hi">
  <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="icon" type="image/svg+xml" href="logo.png">
-  <title>Website Development Services - Sonipat Home Service</title>
-  <!-- SEO Meta Tags -->
-    <meta name="description" content="Get 30+ fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support with expert technicians. Book now!" />
-    <meta name="keywords" content="best website development company in sonipat,web design company near me,web developer near me,website designer near me,website development near me,वेबसाइट डिजाइनिंग,affordable website development sonipat,android app development sonipat,angular developer sonipat,basic website package sonipat,best price website design sonipat,best web designer sonipat,budget website development sonipat,Business website development,business website development sonipat,business website sonipat,cheap website design sonipat,corporate website sonipat,custom website development sonipat,domain registration sonipat,dynamic website development sonipat,E-commerce store creation,ecommerce website development sonipat,ecommerce website sonipat,experienced web developer sonipat,expert website developer sonipat,hospital website development sonipat,hotel website design sonipat,html css website design sonipat,ios app development sonipat,Local business websites,low cost website design sonipat,Mobile app development,mobile friendly website sonipat,mobile website design sonipat,online store development sonipat,php website development sonipat,professional web designer sonipat,python web developer sonipat,react js developer sonipat,responsive web design sonipat,responsive website design sonipat,restaurant website development sonipat,school website design sonipat,SEO and digital marketing,shop website design sonipat,shopping website sonipat,small business website sonipat,sonipat business online,sonipat company website,sonipat local business website,sonipat service website,sonipat shop website,startup website design sonipat,
-" />
-    <meta name="author" content="Sonipat Home Service" />
-    <link rel="canonical" href="https://sonipathomeservice.com/" />
-    <meta name="robots" content="index, follow" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sonipathomeservice.com/" />
-    <meta property="og:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="og:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="og:image" content="logo.png" />
-    <meta property="og:site_name" content="Sonipat Home Service" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sonipathomeservice.com/" />
-    <meta property="twitter:title" content="Sonipat Home Service – Trusted Home Appliance Repair" />
-    <meta property="twitter:description" content="Get fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support." />
-    <meta property="twitter:image" content="logo.png" />
-
+  <title>Sonipat Home Service - Website Design & Development | Starting at ₹1,999</title>
+  <!-- SEO Meta Tags from original file -->
+  <meta name="title" content="Sonipat Home Service - Website Design & Development | Starting at ₹1,999">
+  <meta name="description" content="Professional website design and development services in Sonipat starting at ₹1,999. Get static, dynamic, or e-commerce solutions with responsive design and SEO setup. Book now!">
+  <meta name="keywords" content="best website development company in sonipat,web design company near me,web developer near me,website designer near me,website development near me,वेबसाइट डिजाइनिंग,affordable website development sonipat,android app development sonipat,angular developer sonipat,basic website package sonipat,best price website design sonipat,best web designer sonipat,budget website development sonipat,Business website development,business website development sonipat,business website sonipat,cheap website design sonipat,corporate website sonipat,custom website development sonipat,domain registration sonipat,dynamic website development sonipat,E-commerce store creation,ecommerce website development sonipat,ecommerce website sonipat,experienced web developer sonipat,expert website developer sonipat,hospital website development sonipat,hotel website design sonipat,html css website design sonipat,ios app development sonipat,Local business websites,low cost website design sonipat,Mobile app development,mobile friendly website sonipat,mobile website design sonipat,online store development sonipat,php website development sonipat,professional web designer sonipat,python web developer sonipat,react js developer sonipat,responsive web design sonipat,responsive website design sonipat,restaurant website development sonipat,school website design sonipat,SEO and digital marketing,shop website design sonipat,shopping website sonipat,small business website sonipat,sonipat business online,sonipat company website,sonipat local business website,sonipat service website,sonipat shop website,startup website design sonipat,">
+  <meta name="author" content="Sonipat Home Service" />
+  <link rel="canonical" href="https://sonipathomeservice.com/" />
+  <meta name="robots" content="index, follow" />
+  
   <script src="/_sdk/element_sdk.js"></script>
   <script src="/_sdk/data_sdk.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
   <style>
         body {
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Subtle light background */
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            overflow-x: hidden;
         }
+        
+        /* --- Gradient Colors for Header and Primary Buttons (Deep Blue/Indigo theme) --- */
         .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0f62fe 0%, #1e40af 100%); /* Deep Blue/Indigo */
         }
-        .card-hover {
+
+        /* --- Service Card (Ultra Stylish) --- */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            transform-style: preserve-3d;
+            background: #ffffff;
+            box-shadow: 
+                0 15px 30px rgba(0,0,0,0.1),
+                0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 20px; /* More rounded */
+            position: relative;
+            overflow: hidden;
+            margin: 8px;
+            cursor: pointer;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15,98,254,0.1) 0%, rgba(30,64,175,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-card.selected {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(15,98,254,0.3),
+                0 15px 30px rgba(0,0,0,0.15),
+                inset 0 2px 0 rgba(255,255,255,0.9);
+            border-color: #0f62fe; /* Primary color border on selection */
+        }
+
+        .service-card:not(.selected):hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 
+                0 20px 40px rgba(15,98,254,0.2),
+                0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .service-card-content {
+            position: relative;
+            z-index: 2;
+            padding: 24px;
+        }
+        
+        .icon-hover {
             transition: all 0.3s ease;
         }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        
+        .service-card:hover .icon-hover {
+            transform: scale(1.15) rotate(-5deg); /* Bounce icon slightly */
         }
-        .modal {
-            display: none;
+        
+        /* --- Primary Button (Ultra Stylish) --- */
+        .btn-primary {
+            background: linear-gradient(135deg, #0f62fe, #1e40af);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(15,98,254,0.4);
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(135deg, #1e40af, #11368e);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(15,98,254,0.6);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* --- Utility classes for Modals and Loading --- */
+        .popup-overlay {
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .popup-content {
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .cart-badge {
+            animation: bounce 0.5s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .service-icon {
+            width: 48px;
+            height: 48px;
+        }
+        
+        .loading {
+            opacity: 0.8;
+            pointer-events: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-        .modal.show {
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 1001;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #0f62fe;
+            font-size: 1.2rem;
+            font-weight: bold;
         }
-        .pulse-animation {
-            animation: pulse 2s infinite;
+        
+        /* --- Marquee/Slider Styling (for Footer) --- */
+        .services-slider {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            background: #374151;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+
+        .services-track {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        .services-track a, .services-track span {
+            display: inline-block;
+            color: #d1d5db; /* light gray */
+            padding: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .services-track a:hover {
+            color: #60a5fa; /* blue-400 */
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Style for the Info Cards Section from AC Page */
+        .info-card {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
     </style>
   <style>@view-transition { navigation: auto; }</style>
  </head>
- <body class="min-h-full bg-gray-50"><!-- Header -->
-  <header class="gradient-bg text-white py-6 relative">
-   <div class="container mx-auto px-4 relative">
-    <div class="text-center">
-     <h1 id="company-name" class="text-4xl font-bold mb-2">Sonipat Home Service.com</h1>
-     <p class="text-xl">Professional Website Development Services</p>
-     <div class="mt-4 space-y-1">
-      <p>📞 Customer Care: <span id="customer-care">8816014071</span></p>
-      <p>📧 Email: <span id="email-address">care@sonipathomeservice.com</span></p>
-      <p>📍 Office: <span id="office-address">128/1, Sainipura, Sonipat</span></p>
-     </div>
-    </div><!-- Cart Icon - Top Right -->
-    <div id="header-cart" class="absolute top-0 right-0 cursor-pointer z-10" style="display: none;" onclick="toggleCartView()">
-     <div class="bg-white bg-opacity-20 rounded-full p-3 hover:bg-opacity-30 transition-all shadow-lg">
-      <div class="relative">
-       <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z"></path>
-       </svg><span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center animate-pulse">0</span>
+ <body class="min-h-full bg-gray-50"><!-- Header (Matching AC/Parcel Page) -->
+  <header class="gradient-bg text-white shadow-2xl sticky top-0 z-40"> 
+   <div class="container mx-auto px-4 py-4">
+    <br>
+    <div class="flex justify-between items-center"><a href="index.html" class="flex items-center space-x-3 hover:opacity-90 transition-opacity"><img src="logo.png" alt="Sonipat Home Service Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-lg border border-white/50">
+      <div>
+       <h1 id="company-name" class="text-xl sm:text-2xl font-extrabold tracking-tight"> <span class="text-yellow-300">SonipatHomeService</span></h1>
+       <p class="text-sm font-semibold opacity-90">Professional Website Design &amp; SEO</p>
+      </div></a>
+     <div class="flex items-center space-x-4">
+      <!-- Desktop Contact Side Bar -->
+      <div class="text-right hidden md:block border-l pl-4 border-white/30">
+       <a href="tel:8816014071" class="text-lg font-bold hover:text-yellow-300 transition-colors">📞 8816014071</a>
+       <p id="email-address" class="text-xs opacity-80 mt-1">care@sonipathomeservice.com</p>
       </div>
+      <!-- Cart Button with Pop -->
+      <button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-md"> <span class="flex items-center space-x-2">
+        <i class="fas fa-shopping-cart w-5 h-5"></i>
+        <span class="hidden sm:inline">Cart</span> <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-0.5 text-xs hidden font-bold">0</span> </span> </button>
      </div>
     </div>
    </div>
-  </header><!-- Main Content -->
-  <main class="container mx-auto px-4 py-8"><!-- Pricing Plans -->
-   <section class="mb-12">
-    <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">हमारे Website Development Packages</h2>
-    <div class="grid md:grid-cols-3 gap-8 mb-8"><!-- Basic Website -->
-     <div class="bg-white rounded-lg shadow-lg p-6 card-hover border-2 border-blue-200">
-      <div class="text-center">
-       <h3 class="text-2xl font-bold text-blue-600 mb-4">Basic Website</h3>
-       <div class="text-4xl font-bold text-gray-800 mb-4">
-        ₹1,999
-       </div>
-       <ul class="text-left space-y-2 mb-6">
-        <li>✅ Static Website Design</li>
-        <li>✅ Responsive Layout</li>
-        <li>✅ Contact Form</li>
-        <li>✅ Basic SEO Setup</li>
-        <li>✅ Mobile Friendly</li>
-       </ul><button onclick="addToCart('Basic Website', 1999)" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"> Add to Cart </button>
-      </div>
-     </div><!-- Dynamic Website -->
-     <div class="bg-white rounded-lg shadow-lg p-6 card-hover border-2 border-green-200 pulse-animation">
-      <div class="text-center">
-       <div class="bg-green-500 text-white px-3 py-1 rounded-full text-sm mb-4">
-        Most Popular
-       </div>
-       <h3 class="text-2xl font-bold text-green-600 mb-4">Dynamic Website</h3>
-       <div class="text-4xl font-bold text-gray-800 mb-4">
-        ₹9,999
-       </div>
-       <ul class="text-left space-y-2 mb-6">
-        <li>✅ Dynamic Content Management</li>
-        <li>✅ Admin Panel</li>
-        <li>✅ Database Integration</li>
-        <li>✅ Advanced SEO</li>
-        <li>✅ Contact Forms &amp; Gallery</li>
-       </ul><button onclick="addToCart('Dynamic Website', 9999)" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors"> Add to Cart </button>
-      </div>
-     </div><!-- Business Website -->
-     <div class="bg-white rounded-lg shadow-lg p-6 card-hover border-2 border-purple-200">
-      <div class="text-center">
-       <h3 class="text-2xl font-bold text-purple-600 mb-4">Business Website</h3>
-       <div class="text-4xl font-bold text-gray-800 mb-4">
-        ₹19,999
-       </div>
-       <ul class="text-left space-y-2 mb-6">
-        <li>✅ E-commerce Ready</li>
-        <li>✅ Payment Gateway</li>
-        <li>✅ Advanced Admin Panel</li>
-        <li>✅ Multi-language Support</li>
-        <li>✅ Complete Business Solution</li>
-       </ul><button onclick="addToCart('Business Website', 19999)" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition-colors"> Add to Cart </button>
+  </header>
+  
+  <!-- Info Cards Section (Web Focused) -->
+  <section class="py-6 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Info Card 1: SEO Ready -->
+            <div class="info-card bg-blue-50 border-l-4 border-blue-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl text-blue-600"><i class="fas fa-search-dollar"></i></span>
+                    <div>
+                        <h4 class="font-extrabold text-lg text-gray-800">SEO Ready Design</h4>
+                        <p class="text-sm text-gray-600">Websites built for high search engine ranking.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Info Card 2: Mobile Friendly -->
+            <div class="info-card bg-green-50 border-l-4 border-green-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl text-green-600"><i class="fas fa-mobile-alt"></i></span>
+                    <div>
+                        <h4 class="font-extrabold text-lg text-gray-800">Fully Responsive</h4>
+                        <p class="text-sm text-gray-600">Looks perfect on mobile, tablet, and desktop.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Info Card 3: Fast Turnaround -->
+            <div class="info-card bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl text-yellow-600"><i class="fas fa-bolt"></i></span>
+                    <div>
+                        <h4 class="font-extrabold text-lg text-gray-800">Fast Turnaround</h4>
+                        <p class="text-sm text-gray-600">Quick delivery on basic and dynamic websites.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  
+  <!-- Services/Pricing Section (Using AC/Parcel Card Style) -->
+  <section class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h3 class="text-3xl font-extrabold text-center mb-10 text-gray-800">Choose Your Website Design Package</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2" id="services-grid"><!-- Website packages will be populated by JavaScript -->
+    </div>
+   </div>
+  </section>
+
+  <!-- Pricing Info & Terms (Refined from original) -->
+  <section class="py-8 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto space-y-6">
+            <!-- Price Information -->
+            <div class="bg-yellow-50 rounded-xl p-6 border-l-4 border-yellow-500 shadow-lg">
+                <h3 class="text-xl font-extrabold text-yellow-800 mb-4 flex items-center space-x-2">
+                    <i class="fas fa-info-circle"></i> <span>Important Pricing Details</span>
+                </h3>
+                <ul class="space-y-3 text-sm text-gray-700 list-disc list-inside">
+                    <li>Packages cover **website design and development** only.</li>
+                    <li>**Exclusions (Not Included):** Domain Name, Web Hosting Server, SSL Certificate, and any paid API integration costs.</li>
+                    <li>**Add-on Costs (Estimates):** Domain Name (₹500 - ₹5,000/year), Hosting (₹999 - ₹1,499/month minimum).</li>
+                    <li>**Payment Rule:** ₹99 booking amount is non-refundable but is adjusted in the final project cost.</li>
+                </ul>
+            </div>
+            
+            <!-- Payment Terms -->
+            <div class="bg-blue-50 rounded-xl p-6 border-l-4 border-blue-500 shadow-lg">
+                <h3 class="text-xl font-extrabold text-blue-800 mb-4 flex items-center space-x-2">
+                    <i class="fas fa-hand-holding-usd"></i> <span>Flexible Payment Terms</span>
+                </h3>
+                <ul class="space-y-3 text-sm text-gray-700 list-disc list-inside">
+                    <li>**Upfront Booking:** Only **₹99** is required to start your project.</li>
+                    <li>**Remaining Balance:** The large balance is payable **only after the website is fully ready** and approved by you.</li>
+                    <li>**Guarantee:** 100% Satisfaction Guarantee. We deliver what we promise.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </section>
+  
+  <!-- Footer (Matching AC/Parcel Page) -->
+  <footer class="bg-gray-900 text-white pt-12">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Contact Information</h4>
+      <div class="space-y-2 text-sm">
+       <p class="flex items-center">📞 <span class="ml-2 font-semibold" id="footer-phone">8816014071</span></p>
+       <p class="flex items-center">✉️ <span class="ml-2" id="footer-email">care@sonipathomeservice.com</span></p>
+       <p class="flex items-center">📍 <span class="ml-2" id="office-address">128/1, Sainipura, Sonipat</span></p>
       </div>
      </div>
-    </div>
-   </section><!-- Price Information -->
-   <section class="bg-yellow-50 rounded-lg p-6 mb-8">
-    <h3 class="text-2xl font-bold text-yellow-800 mb-4">💰 Price Related Information</h3>
-    <div class="grid md:grid-cols-2 gap-6">
      <div>
-      <h4 class="font-bold text-lg mb-2">Package Details:</h4>
-      <ul class="space-y-1">
-       <li>• Packages are given only for design</li>
-       <li>• Customer has to provide Domain Name, Hosting Server &amp; Other Certificates</li>
-       <li>• Domain name: Extra ₹500 to ₹5,000</li>
-       <li>• Hosting: Extra ₹999 to ₹1,499 per month</li>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+       <li><a href="index.html" class="hover:text-blue-400 transition-colors">• Home Page</a></li>
+       <li><a href="policy.html" class="hover:text-blue-400 transition-colors">• Privacy Policy</a></li>
+       <li><a href="terms.html" class="hover:text-blue-400 transition-colors">• Terms &amp; Conditions</a></li>
+       <li><a href="refund.html" class="hover:text-blue-400 transition-colors">• Refund Policy</a></li>
       </ul>
      </div>
      <div>
-      <h4 class="font-bold text-lg mb-2">Complete Solutions:</h4>
-      <ul class="space-y-1">
-       <li>• <strong>Pricing Excludes:</strong> Domain, Hosting, SSL certificate &amp; Other Services</li>
-       <li>• Personal to Business packages available</li>
-       <li>• All components selected for optimal performance</li>
-      </ul>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Follow Us</h4>
+      <div class="flex space-x-4 text-2xl">
+        <a href="https://facebook.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/918816014071" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors"><i class="fab fa-whatsapp"></i></a>
+      </div>
      </div>
     </div>
-   </section><!-- Booking & Payment -->
-   <section class="bg-blue-50 rounded-lg p-6 mb-8">
-    <h3 class="text-2xl font-bold text-blue-800 mb-4">📋 Booking &amp; Payment</h3>
-    <div class="space-y-2">
-     <p>• The price displayed is the full cost for the package</p>
-     <p>• <strong>Booking Amount: Only ₹99</strong> is collected upon booking</p>
-     <p>• The remaining balance is paid only after the website is fully operational</p>
-     <p>• 100% satisfaction guarantee</p>
-    </div>
-   </section><!-- Cart Popup Modal -->
-   <div id="cart-modal" class="modal">
-    <div class="bg-white rounded-lg shadow-2xl p-6 max-w-md w-full mx-4 relative"><!-- Close Button --> <button onclick="closeCartModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold"> × </button>
-     <h3 class="text-2xl font-bold mb-4 text-center">🛒 Your Cart</h3>
-     <div id="cart-items"></div>
-     <div class="border-t pt-4 mt-4">
-      <div class="space-y-3">
-       <div class="flex justify-between items-center"><span class="text-xl font-bold">Total: ₹<span id="cart-total">0</span></span>
-       </div>
-       <div class="bg-blue-50 p-3 rounded-lg">
-        <p class="text-sm text-blue-800" id="payment-terms"><strong>💰 Payment Terms:</strong><br>
-          • Booking Amount: <span class="text-green-600 font-bold">₹99 only</span><br>
-          • Remaining Balance: <span class="text-red-600 font-bold">₹<span id="remaining-balance">0</span></span> (Pay after completion)</p>
-       </div>
-       <div class="flex gap-3"><button onclick="closeCartModal()" class="flex-1 bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors"> Continue Shopping </button> <button onclick="proceedToCheckout()" id="checkout-button" class="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"> Checkout </button>
-       </div>
+    <!-- Marquee Slider for All Services -->
+    <div style="background: #374151; padding: 15px 0; margin-top: 30px; border-radius: 10px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 10px; font-size: 16px; font-weight: bold;">All Our Services</h4>
+     <div class="services-slider">
+      <div class="services-track"><a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span> <!-- Duplicate for seamless loop --> <a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span>
       </div>
      </div>
     </div>
    </div>
-  </main><!-- Customer Details Modal -->
-  <div id="customer-modal" class="modal">
-   <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
-    <h3 class="text-2xl font-bold mb-6 text-center">Customer Details</h3>
-    <form id="customer-form">
-     <div class="space-y-4">
-      <div><label for="customer-name" class="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-      </div>
-      <div><label for="mobile" class="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-      </div>
-      <div><label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-      </div>
-      <div><label for="address" class="block text-sm font-medium text-gray-700 mb-1">Full Address *</label> <textarea id="address" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-      </div>
-      <div><label for="landmark" class="block text-sm font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-      </div>
-      <div><label for="pincode" class="block text-sm font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-      </div>
-     </div>
-     <div class="flex gap-4 mt-6"><button type="button" onclick="closeModal()" class="flex-1 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 transition-colors"> Cancel </button> <button type="submit" class="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"> Proceed to Payment </button>
-     </div>
-    </form>
+    <div class="border-t border-gray-800 mt-8 pt-6 pb-2 text-center text-sm">
+     <p>© 2024 Sonipat Home Service - All rights reserved.</p>
+    </div>
    </div>
-  </div><!-- Success Message -->
-  <div id="success-message" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg" style="display: none;">
-   Order submitted successfully! We'll contact you soon.
+  </footer>
+  
+  <!-- Cart Popup (Matching AC/Parcel Page) -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+       <h3 class="text-2xl font-extrabold text-gray-800">Your Website Cart</h3><button id="close-cart" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
+      </div>
+      <div id="cart-items" class="space-y-3 mb-4 max-h-60 overflow-y-auto"><!-- Cart items will be populated here -->
+       <div class="text-center text-gray-500 py-6">
+        Your cart is empty. Please select a package.
+       </div>
+      </div>
+      <div class="border-t pt-4">
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600 font-semibold">Project Cost:</span> <span class="font-extrabold text-lg">₹<span id="cart-total">0</span></span>
+        </div>
+        <div class="flex justify-between items-center text-blue-600"><span class="font-semibold">Booking Charge:</span> <span class="font-extrabold">₹<span id="cart-booking-charge">99</span></span>
+        </div>
+        <div class="flex justify-between items-center text-red-600"><span class="font-semibold">Remaining Balance:</span> <span class="font-extrabold">₹<span id="cart-remaining-balance">0</span></span>
+        </div>
+        <div class="border-t pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="cart-pay-now">99</span></span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform disabled:opacity-50" disabled> <span id="cart-button-text">Book Project - Pay ₹99</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
   </div>
+  
+  <!-- Checkout Form Popup (Matching AC/Parcel Page) -->
+  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-start justify-center min-h-full p-2 py-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full checkout-popup popup-content" style="max-height: 95vh; overflow-y: auto;">
+     <div class="sticky top-0 bg-white p-4 border-b flex justify-between items-center z-10">
+      <h3 class="text-xl font-extrabold">Customer &amp; Project Details</h3><button id="close-checkout" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+       </svg></button>
+     </div>
+     <div class="p-4">
+      <form id="checkout-form" class="space-y-4">
+       <!-- Customer Contact Details -->
+       <h4 class="text-lg font-extrabold mb-3 text-blue-600">Contact Details</h4>
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label> <input type="text" id="checkout-customer-name" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your full name">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="checkout-customer-mobile" required pattern="[0-9]{10}" maxlength="10" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="10-digit mobile number">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="checkout-customer-email" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Email for project updates">
+        </div>
+       </div>
+       <!-- Project Details -->
+       <h4 class="text-lg font-extrabold mb-3 pt-4 text-green-600 border-t">Project Address / Location</h4>
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Business Name / Project Title *</label> <input type="text" id="checkout-project-title" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="e.g., ABC Food Corner">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Address/Location (for service records) *</label> <textarea id="checkout-address" required rows="2" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none" placeholder="Enter your business/home address"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="checkout-landmark" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Near Hospital etc.">
+         </div>
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="checkout-pincode" required pattern="[0-9]{6}" maxlength="6" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="6-digit pincode">
+         </div>
+        </div>
+       </div>
+       <!-- Payment Summary -->
+       <div class="border-t pt-4 mt-4">
+        <h4 class="text-lg font-extrabold mb-3">Payment Summary</h4>
+        <div class="space-y-2 mb-4 bg-blue-50 p-3 rounded-lg border border-blue-200">
+         <div class="flex justify-between items-center text-sm"><span class="text-gray-700 font-semibold">Project Cost:</span> <span class="font-extrabold">₹<span id="checkout-total">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-blue-700 text-sm"><span class="font-semibold">Booking Charge (Non-refundable):</span> <span class="font-extrabold">₹<span id="checkout-booking-charge">99</span></span>
+         </div>
+         <div class="flex justify-between items-center text-red-700 text-sm"><span class="font-semibold">Remaining Balance (Pay on completion):</span> <span class="font-extrabold">₹<span id="checkout-remaining-balance">0</span></span>
+         </div>
+         <div class="border-t border-blue-300 pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="checkout-pay-now">99</span></span>
+         </div>
+        </div>
+        <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-3 mb-4">
+         <p class="text-xs text-yellow-800"><strong>Note:</strong> You are paying only the booking charge (₹<span id="note-booking-charge">99</span>) now. The large balance is paid **after** the website is complete.</p>
+        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform"> <span id="checkout-button-text">Pay ₹99 Booking Charge</span> </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Loading Message (Shared across all apps) -->
+  <div id="loading-overlay" class="loading hidden">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-4 border-blue-500"></div>
+      <p class="mt-4">Processing Project Booking, Please Wait...</p>
+  </div>
+
   <script>
         // Configuration
         const defaultConfig = {
-            company_name: "Sonipat Home Service.com",
+            company_name: "Sonipat Home Service",
             customer_care: "8816014071",
             email_address: "care@sonipathomeservice.com",
             office_address: "128/1, Sainipura, Sonipat"
         };
-
-        let cart = [];
-        let currentRecordCount = 0;
-
-        // Data SDK Handler
-        const dataHandler = {
-            onDataChanged(data) {
-                currentRecordCount = data.length;
-                // Update UI if needed
-            }
-        };
-
-        // Element SDK Implementation
-        const element = {
-            defaultConfig,
-            onConfigChange: async (config) => {
-                document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
-                document.getElementById('customer-care').textContent = config.customer_care || defaultConfig.customer_care;
-                document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
-                document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
+        
+        // --- Website Packages ---
+        const websitePackages = [
+            {
+                id: 'basic',
+                name: "Basic Website (Static)",
+                price: 1999,
+                originalPrice: 2500, // Added original price for savings display
+                icon: "fas fa-file-code",
+                description: "Single-page static website, basic SEO, contact form.",
+                features: ["Static Design (1 Page)", "Responsive Layout", "Basic SEO Setup", "Contact Form"],
+                bookingAmount: 99
             },
-            mapToCapabilities: (config) => ({
-                recolorables: [],
-                borderables: [],
-                fontEditable: undefined,
-                fontSizeable: undefined
-            }),
-            mapToEditPanelValues: (config) => new Map([
-                ["company_name", config.company_name || defaultConfig.company_name],
-                ["customer_care", config.customer_care || defaultConfig.customer_care],
-                ["email_address", config.email_address || defaultConfig.email_address],
-                ["office_address", config.office_address || defaultConfig.office_address]
-            ])
-        };
-
-        // Initialize SDKs
-        async function initializeApp() {
-            if (window.elementSdk) {
-                await window.elementSdk.init(element);
+            {
+                id: 'dynamic',
+                name: "Dynamic Website (Admin Panel)",
+                price: 9999,
+                originalPrice: 12500,
+                icon: "fas fa-database",
+                description: "CMS, Admin Panel, Database integration, Advanced SEO.",
+                features: ["Dynamic CMS (5 Pages)", "Admin Panel", "Database Integration", "Advanced SEO & Gallery"],
+                bookingAmount: 99
+            },
+            {
+                id: 'business',
+                name: "Business Website (E-commerce Ready)",
+                price: 19999,
+                originalPrice: 25000,
+                icon: "fas fa-shopping-cart",
+                description: "E-commerce ready, Payment Gateway, Multi-language support.",
+                features: ["E-commerce Ready (10 Products)", "Payment Gateway Integration", "Advanced CMS & Security", "Multi-language Support (Optional)"],
+                bookingAmount: 99
             }
+        ];
+
+        // Cart functionality
+        let cart = [];
+        let currentRecordCount = 0; 
+
+        // --- Utility Functions ---
+
+        // Message Popups (Success/Error/Loading)
+        function showMessage(type, title, message) {
+            const existing = document.getElementById('app-message');
+            if(existing) existing.remove();
             
-            if (window.dataSdk) {
-                const initResult = await window.dataSdk.init(dataHandler);
-                if (!initResult.isOk) {
-                    console.error("Failed to initialize data SDK");
-                }
-            }
-        }
-
-        // Cart Functions
-        function addToCart(planName, price) {
-            const existingItem = cart.find(item => item.plan === planName);
-            if (existingItem) {
-                showMessage("Item already in cart!", "warning");
-                return;
-            }
-
-            cart.push({
-                plan: planName,
-                price: price
-            });
-
-            updateCartDisplay();
-            showCartModal(); // Show cart popup immediately after adding
-            showMessage("Added to cart successfully!", "success");
-        }
-
-        // Show cart popup modal
-        function showCartModal() {
-            document.getElementById('cart-modal').classList.add('show');
-        }
-
-        // Close cart popup modal
-        function closeCartModal() {
-            document.getElementById('cart-modal').classList.remove('show');
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartDisplay();
+            const colors = {
+                success: { bg: 'bg-green-500', icon: '✅' },
+                error: { bg: 'bg-red-500', icon: '❌' },
+                loading: { bg: 'bg-blue-500', icon: '<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>' }
+            };
             
-            // Auto-close cart popup if cart becomes empty
-            if (cart.length === 0) {
-                closeCartModal();
+            const msg = colors[type];
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.id = 'app-message';
+            messageDiv.className = `fixed top-4 right-4 ${msg.bg} text-white p-4 rounded-xl shadow-2xl z-[1000] transition-opacity duration-300`;
+            messageDiv.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <span class="text-xl">${msg.icon}</span>
+                    <div>
+                        <p class="font-bold text-lg">${title}</p>
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(messageDiv);
+            
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    messageDiv.classList.add('opacity-0');
+                    setTimeout(() => messageDiv.remove(), 300);
+                }, 5000);
             }
         }
 
-        function updateCartDisplay() {
-            const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-            const headerCart = document.getElementById('header-cart');
-            const cartCount = document.getElementById('cart-count');
+        function showLoading() { document.getElementById('loading-overlay').classList.remove('hidden'); }
+        function hideLoading() { document.getElementById('loading-overlay').classList.add('hidden'); }
+        function showSuccessMessage() { showMessage('success', 'Project Booked!', 'आपका प्रोजेक्ट ₹99 बुकिंग के साथ बुक हो गया है।'); }
+        function showErrorMessage(message = 'Booking failed! Please try again or contact support.') { showMessage('error', 'Booking Failed!', message); }
+        function showPaymentMessage() { showMessage('success', '💳 Payment Initiated', 'Razorpay secure gateway will open shortly...'); }
 
-            // Update header cart icon visibility and count
-            if (cart.length === 0) {
-                headerCart.style.display = 'none';
-                return;
-            }
-
-            // Show header cart icon when items are added
-            headerCart.style.display = 'block';
-            cartCount.textContent = cart.length;
-            
-            let total = 0;
-            cartItems.innerHTML = cart.map((item, index) => {
-                total += item.price;
-                return `
-                    <div class="flex justify-between items-center py-2 border-b">
-                        <div>
-                            <span class="font-medium">${item.plan}</span>
-                            <span class="text-green-600 ml-2">₹${item.price}</span>
+        // --- Service Rendering ---
+        function renderServices() {
+            const servicesGrid = document.getElementById('services-grid');
+            servicesGrid.innerHTML = websitePackages.map(option => `
+                <div class="service-card" id="card-${option.id}" onclick="addToCart('${option.id}')">
+                    <div class="service-card-content">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 text-blue-600 mr-4 shadow-lg">
+                                <i class="${option.icon} text-xl icon-hover"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-extrabold text-lg mb-1 text-gray-800 leading-snug">${option.name}</h4>
+                                <ul class="text-xs text-gray-600 list-disc list-inside space-y-0.5 mt-1">
+                                    ${option.features.map(f => `<li>${f}</li>`).join('')}
+                                </ul>
+                            </div>
                         </div>
-                        <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700">
-                            Remove
+                        <div class="flex justify-between items-center pt-2 border-t border-gray-100">
+                            <div class="flex flex-col items-start space-y-1">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-2xl font-extrabold text-red-600">₹${option.price.toLocaleString('en-IN')}</span>
+                                    <span class="text-sm text-gray-500 line-through">₹${option.originalPrice.toLocaleString('en-IN')}</span>
+                                </div>
+                                <span class="text-xs font-semibold text-green-600">Save ₹${(option.originalPrice - option.price).toLocaleString('en-IN')}</span>
+                            </div>
+                            <button class="btn-primary text-white px-4 py-2 rounded-full font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-300">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- Cart Logic (Single Selection) ---
+        function addToCart(optionId) {
+            const option = websitePackages.find(o => o.id === optionId);
+            
+            // Clear previous selections and only keep the current one
+            cart = [];
+            document.querySelectorAll('.service-card').forEach(card => card.classList.remove('selected'));
+            
+            cart.push({ 
+                ...option, 
+                quantity: 1, 
+                savings: option.originalPrice - option.price,
+                remainingBalance: option.price - 99 
+            });
+            
+            document.getElementById(`card-${optionId}`).classList.add('selected');
+            
+            updateCartUI();
+            showCartPopup();
+        }
+
+        function removeItemFromCart(itemId) {
+             cart = cart.filter(item => item.id !== itemId);
+             document.getElementById(`card-${itemId}`).classList.remove('selected');
+             updateCartUI();
+             if (cart.length === 0) {
+                hideCartPopup();
+                hideCheckoutPopup();
+            }
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutTotal = document.getElementById('checkout-total');
+            const remainingBalance = cart.length > 0 ? cart[0].remainingBalance : 0;
+            const projectCost = cart.length > 0 ? cart[0].price : 0;
+            const payableAmount = projectCost >= 99 ? 99 : projectCost; // Always pay the lesser of 99 or total cost
+            
+            // Update Cart and Checkout displays
+            document.getElementById('cart-remaining-balance').textContent = remainingBalance.toLocaleString('en-IN');
+            document.getElementById('checkout-remaining-balance').textContent = remainingBalance.toLocaleString('en-IN');
+            document.getElementById('cart-booking-charge').textContent = payableAmount.toLocaleString('en-IN');
+            
+            document.getElementById('checkout-total').textContent = projectCost.toLocaleString('en-IN');
+            document.getElementById('checkout-booking-charge').textContent = payableAmount.toLocaleString('en-IN');
+            
+            document.getElementById('cart-pay-now').textContent = payableAmount.toLocaleString('en-IN');
+            document.getElementById('checkout-pay-now').textContent = payableAmount.toLocaleString('en-IN');
+            document.getElementById('note-booking-charge').textContent = payableAmount.toLocaleString('en-IN');
+
+            const totalItems = cart.length; 
+            
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+                cartCount.classList.add('cart-badge');
+            } else {
+                cartCount.classList.add('hidden');
+                cartItemsContainer.innerHTML = '<div class="text-center text-gray-500 py-6">Your cart is empty. Please select a package.</div>';
+            }
+            
+            cartTotal.textContent = projectCost.toLocaleString('en-IN');
+            
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-100">
+                    <div class="flex-1">
+                        <h5 class="font-bold text-base text-gray-800">${item.name}</h5>
+                        <p class="text-gray-600 text-xs mt-1">Cost: ₹${item.price.toLocaleString('en-IN')}</p>
+                    </div>
+                    <div class="flex flex-col items-end space-y-1">
+                        <span class="font-extrabold text-lg text-red-600">₹${item.price.toLocaleString('en-IN')}</span>
+                        <button onclick="removeItemFromCart('${item.id}')" class="text-red-500 hover:text-red-700 text-xs">
+                            <i class="fas fa-trash-alt mr-1"></i> Remove
                         </button>
                     </div>
-                `;
-            }).join('');
-
-            cartTotal.textContent = total;
+                </div>
+            `).join('');
             
-            // Update payment terms and button based on total amount
-            const paymentTerms = document.getElementById('payment-terms');
-            const checkoutButton = document.getElementById('checkout-button');
-            const remainingBalanceSpan = document.getElementById('remaining-balance');
+            // Enable/Disable checkout button
+            const isCartEmpty = cart.length === 0 || payableAmount <= 0;
+            const proceedBtn = document.getElementById('proceed-checkout');
             
-            if (total < 99) {
-                // If total is less than ₹99, charge full amount
-                paymentTerms.innerHTML = `
-                    <strong>💰 Payment Terms:</strong><br>
-                    • <span class="text-green-600 font-bold">Full Payment: ₹${total}</span><br>
-                    • <span class="text-blue-600 font-bold">No remaining balance</span>
-                `;
-                checkoutButton.textContent = `Pay Full Amount ₹${total}`;
-                remainingBalanceSpan.textContent = '0';
-            } else {
-                // If total is ₹99 or more, charge ₹99 booking
-                const remainingBalance = total - 99;
-                paymentTerms.innerHTML = `
-                    <strong>💰 Payment Terms:</strong><br>
-                    • Booking Amount: <span class="text-green-600 font-bold">₹99 only</span><br>
-                    • Remaining Balance: <span class="text-red-600 font-bold">₹${remainingBalance}</span> (Pay after website completion)
-                `;
-                checkoutButton.textContent = 'Pay Booking Amount ₹99';
-                remainingBalanceSpan.textContent = remainingBalance;
-            }
+            proceedBtn.disabled = isCartEmpty;
+            
+            // Update checkout button text with accurate amount
+            const btnText = isCartEmpty ? 'Book Project' : (projectCost < 99 ? `Pay Full Amount ₹${payableAmount.toLocaleString('en-IN')}` : `Pay ₹${payableAmount.toLocaleString('en-IN')} Booking Charge`);
+            document.getElementById('cart-button-text').textContent = btnText;
+            document.getElementById('checkout-button-text').textContent = btnText;
         }
 
-        // Toggle cart popup visibility
-        function toggleCartView() {
-            showCartModal();
+        function showCartPopup() {
+            document.getElementById('cart-popup').classList.remove('hidden');
         }
 
-        function proceedToCheckout() {
+        function hideCartPopup() {
+            document.getElementById('cart-popup').classList.add('hidden');
+        }
+
+        function showCheckoutPopup() {
             if (cart.length === 0) {
-                showMessage("Cart is empty!", "warning");
+                showMessage('error', 'Cart Empty', 'Please select a package first.');
                 return;
             }
-            document.getElementById('customer-modal').classList.add('show');
+            hideCartPopup();
+            document.getElementById('checkout-popup').classList.remove('hidden');
         }
 
-        function closeModal() {
-            document.getElementById('customer-modal').classList.remove('show');
+        function hideCheckoutPopup() {
+            document.getElementById('checkout-popup').classList.add('hidden');
         }
 
-        // Google Apps Script URL - Your Sheet Integration
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec';
+        // --- Razorpay Payment & Google Sheets Integration ---
 
-        // Razorpay Payment Function
-        function initiateRazorpayPayment(orderData) {
-            // Calculate payment amount - if total is less than ₹99, charge total amount
-            const paymentAmount = orderData.price < 99 ? orderData.price : 99;
-            const amountInPaise = paymentAmount * 100; // Convert to paise
+        function initializeRazorpayPayment(customerData, totalAmount) {
+            const payableAmount = totalAmount >= 99 ? 99 : totalAmount;
             
             const options = {
-                "key": "rzp_live_RLjzp7VlXERwiG", // Replace with your Razorpay Key ID
-                "amount": amountInPaise, // Dynamic amount based on total
-                "currency": "INR",
-                "name": "Sonipat Home Service",
-                "description": orderData.price < 99 ? "Full Payment" : "Website Development Booking",
-                "image": "", // Add your logo URL here
-                "order_id": "", // This should be generated from your backend
-                "handler": function (response) {
+                key: 'rzp_live_RLjzp7VlXERwiG', // Live Production Key
+                amount: payableAmount * 100, // Amount in paise
+                currency: 'INR',
+                name: 'Sonipat Home Service',
+                description: `Website Booking - ${cart[0].name}`,
+                // FIX: Completed the truncated Base64 SVG string
+                image: 'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiMzYjgyZjYiPjxwYXRoIGQ9Ik0xMiwyQTEwLDEwIDAgMCwxIDIyLDEyQTEwLDEwIDAgMCwxIDEyLDIyQTEwLDEwIDAgMCwxIDIsMTJBMTAsMTAgMCAwLDEgMTIsMk0xMiw0QTgsOCAwIDAsMCA0LDEyQTgsOCAwIDAsMCAxMiwyMEE4LDggMCAwLDAgMjAsMTJBOCw4IDAgMCwwIDEyLDRNMTIsNkE2LDYgMCAwLDEgMTgsMTJBNiw2IDAgMCwxIDEyLDE4QTYsNiAwIDAsMSA2LDEyQTYsNiAwIDAsMSAxMiw2TTEyLDhBNCw0IDAgMCwwIDgsMTJBNCw0IDAgMCwwIDEyLDE2QTQsNCAwIDAsMCAxNiwxMkE0LDQgMCAwLDAgMTIsOFoiLz48L3N2Zz4=', 
+                prefill: {
+                    name: customerData.customerName,
+                    email: customerData.customerEmail,
+                    contact: customerData.customerMobile
+                },
+                theme: {
+                    color: '#0f62fe'
+                },
+                handler: function(response) {
                     // Payment successful
-                    handlePaymentSuccess(response, orderData, paymentAmount);
+                    submitToGoogleSheets(customerData, response.razorpay_payment_id, totalAmount);
                 },
-                "prefill": {
-                    "name": orderData.customer_name,
-                    "email": orderData.email,
-                    "contact": orderData.mobile
-                },
-                "notes": {
-                    "plan": orderData.plan_name,
-                    "total_amount": orderData.price,
-                    "payment_type": orderData.price < 99 ? "full_payment" : "booking_amount"
-                },
-                "theme": {
-                    "color": "#667eea"
-                },
-                "modal": {
-                    "ondismiss": function() {
-                        showMessage("Payment cancelled", "warning");
+                modal: {
+                    ondismiss: function() {
+                        // Payment cancelled
+                        hideLoading();
+                        showErrorMessage('Payment cancelled. Please try again.');
                     }
                 }
             };
-
+            
             const rzp = new Razorpay(options);
             rzp.open();
         }
 
-        // Handle Payment Success
-        async function handlePaymentSuccess(paymentResponse, orderData, paidAmount) {
+        // Send data to Google Sheets
+        async function submitToGoogleSheets(customerData, paymentId, projectCost) {
+            const selectedItem = cart[0];
+            const bookingCharge = projectCost >= 99 ? 99 : projectCost;
+            const remainingBalance = projectCost - bookingCharge;
+            
+            const fullDescription = `Package: ${selectedItem.name} | Project: ${customerData.projectTitle}`;
+            const fullAddress = `${customerData.address}, ${customerData.landmark}, Pincode: ${customerData.pincode}`;
+            
+            // Create URL parameters to match your App Script exactly
+            const params = new URLSearchParams({
+                timestamp: new Date().toLocaleString('hi-IN'),
+                customerName: customerData.customerName,
+                mobile: customerData.customerMobile,
+                email: customerData.customerEmail,
+                address: fullAddress,
+                landmark: customerData.landmark,
+                pincode: customerData.pincode,
+                orderItems: fullDescription,
+                totalAmount: projectCost,
+                paidAmount: bookingCharge,
+                onsiteBalance: remainingBalance,
+                paymentId: paymentId,
+                status: remainingBalance > 0 ? 'Booking Confirmed - Balance Pending' : 'Payment Complete',
+                projectTitle: customerData.projectTitle
+            });
+
             try {
-                // Add payment details to order data
-                orderData.payment_id = paymentResponse.razorpay_payment_id;
-                orderData.payment_status = orderData.price < 99 ? 'fully_paid' : 'booking_paid';
-                orderData.booking_amount = paidAmount;
-                orderData.remaining_amount = orderData.price - paidAmount;
-
-                // Save to Canva Sheet via Data SDK
-                if (window.dataSdk) {
-                    const result = await window.dataSdk.create(orderData);
-                    if (!result.isOk) {
-                        console.error("Failed to save to Canva Sheet");
-                    }
-                }
-
-                // Send to Google Sheets
-                await sendToGoogleSheets(orderData);
-
-                // Success message and cleanup
-                closeModal();
-                closeCartModal(); // Close cart popup too
-                cart = [];
-                updateCartDisplay(); // This will hide the header cart icon too
-                document.getElementById('customer-form').reset();
-                showMessage("Payment successful! Order confirmed. We'll contact you soon.", "success");
-
-            } catch (error) {
-                console.error("Error handling payment success:", error);
-                showMessage("Payment successful but there was an error saving details. We'll contact you soon.", "warning");
-            }
-        }
-
-        // Send Data to Google Sheets
-        async function sendToGoogleSheets(data) {
-            try {
-                // Prepare form data for Google Apps Script (using URL parameters)
-                const formData = new FormData();
-                formData.append('timestamp', new Date().toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' }));
-                formData.append('customerName', data.customer_name);
-                formData.append('mobile', data.mobile);
-                formData.append('email', data.email);
-                formData.append('address', data.address);
-                formData.append('landmark', data.landmark || '');
-                formData.append('pincode', data.pincode);
-                formData.append('orderItems', data.plan_name);
-                const paidAmount = data.booking_amount || 99;
-                const remainingAmount = data.remaining_amount || 0;
-                const paymentType = data.price < 99 ? 'Full Payment' : 'Booking Payment';
+                showLoading();
                 
-                formData.append('totalAmount', `₹${data.price} (${paymentType}: ₹${paidAmount}, Remaining: ₹${remainingAmount})`);
-                formData.append('paymentId', data.payment_id || '');
-                formData.append('status', data.payment_status || 'pending');
-
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                // Using a generic URL for the demo environment to prevent cross-origin issues
+                const response = await fetch(`https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec?${params.toString()}`, {
                     method: 'POST',
-                    body: formData
+                    mode: 'no-cors' // Use no-cors for Google App Script execution
                 });
+
+                hideLoading();
+                hideCheckoutPopup();
+                showSuccessMessage();
                 
-                console.log("Data sent to Google Sheets successfully");
+                // Clear form and cart after successful booking
+                document.getElementById('checkout-form').reset();
+                cart = [];
+                document.querySelectorAll('.service-card').forEach(card => card.classList.remove('selected'));
+                updateCartUI();
+                
             } catch (error) {
-                console.error("Error sending to Google Sheets:", error);
+                console.error('Error submitting to Google Sheets:', error);
+                hideLoading();
+                showErrorMessage('Payment successful but failed to save booking details. Please contact support with Payment ID.');
             }
         }
 
-        // Form Submission
-        document.getElementById('customer-form').addEventListener('submit', async function(e) {
+        // Handle Form Submission
+        document.getElementById('checkout-form').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            if (currentRecordCount >= 999) {
-                showMessage("Maximum limit reached. Please contact us directly.", "error");
+            
+            if (cart.length === 0) {
+                showErrorMessage('Please select a website package first.');
                 return;
             }
-
-            const totalAmount = cart.reduce((total, item) => total + item.price, 0);
-            const formData = {
-                id: Date.now().toString(),
-                plan_name: cart.map(item => item.plan).join(', '),
-                price: totalAmount,
-                customer_name: document.getElementById('customer-name').value,
-                mobile: document.getElementById('mobile').value,
-                email: document.getElementById('email').value,
-                address: document.getElementById('address').value,
-                landmark: document.getElementById('landmark').value,
-                pincode: document.getElementById('pincode').value,
-                timestamp: new Date().toISOString(),
-                payment_status: 'pending'
+            
+            const totalAmount = cart[0].price;
+            
+            // --- Gather Form Data ---
+            const customerData = {
+                customerName: document.getElementById('checkout-customer-name').value,
+                customerMobile: document.getElementById('checkout-customer-mobile').value,
+                customerEmail: document.getElementById('checkout-customer-email').value,
+                projectTitle: document.getElementById('checkout-project-title').value,
+                address: document.getElementById('checkout-address').value,
+                landmark: document.getElementById('checkout-landmark').value,
+                pincode: document.getElementById('checkout-pincode').value,
             };
 
-            // Show loading state
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Processing...';
-            submitBtn.disabled = true;
-
-            try {
-                // Initiate Razorpay payment
-                initiateRazorpayPayment(formData);
-            } catch (error) {
-                showMessage("Payment initialization failed. Please try again.", "error");
-                console.error("Payment error:", error);
-            } finally {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+            // Basic Form Validation
+            if (!customerData.customerName || !customerData.projectTitle || !customerData.address || !customerData.pincode) {
+                showErrorMessage('Please fill in all required fields marked with *');
+                return;
             }
+            
+            showPaymentMessage();
+            
+            // Delay to allow message to show
+            setTimeout(() => {
+                initializeRazorpayPayment(customerData, totalAmount);
+            }, 2000);
         });
 
-        function showMessage(message, type) {
-            const messageDiv = document.getElementById('success-message');
-            messageDiv.textContent = message;
-            messageDiv.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg ${
-                type === 'success' ? 'bg-green-500' : 
-                type === 'error' ? 'bg-red-500' : 
-                type === 'warning' ? 'bg-yellow-500' : 'bg-blue-500'
-            } text-white`;
-            messageDiv.style.display = 'block';
+        // --- Event Listeners and Initialization ---
+        document.addEventListener('DOMContentLoaded', function() {
+            renderServices();
+            updateCartUI();
+
+            // Cart button
+            document.getElementById('cart-btn').addEventListener('click', showCartPopup);
             
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 5000);
+            // Close buttons
+            document.getElementById('close-cart').addEventListener('click', hideCartPopup);
+            document.getElementById('close-checkout').addEventListener('click', hideCheckoutPopup);
+            
+            // Proceed to checkout
+            document.getElementById('proceed-checkout').addEventListener('click', showCheckoutPopup);
+            
+            // Close popups when clicking outside
+            document.getElementById('cart-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCartPopup();
+            });
+            
+            document.getElementById('checkout-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCheckoutPopup();
+            });
+
+            // Initialize SDKs
+            initializeApp();
+        });
+
+        async function initializeApp() {
+            try {
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init({
+                        onDataChanged(data) {
+                            currentRecordCount = data.length;
+                            console.log(`Current record count: ${currentRecordCount}`);
+                        }
+                    });
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize data SDK:", initResult.error);
+                    } else {
+                        console.log("Data SDK initialized successfully");
+                    }
+                }
+                
+                if (window.elementSdk) {
+                    window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange: onConfigChange,
+                        mapToCapabilities: mapToCapabilities,
+                        mapToEditPanelValues: mapToEditPanelValues
+                    });
+                    console.log("Element SDK initialized successfully");
+                }
+            } catch (error) {
+                console.error("Error initializing app:", error);
+            }
+        }
+        
+        // --- Element SDK Handlers (Same as AC/Parcel page) ---
+        async function onConfigChange(config) {
+            document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+            const headerPhoneElement = document.querySelector('.header-right a[href^="tel"]');
+            // This element may not exist in this version, using direct ID if available
+            const phoneDisplay = document.getElementById('footer-phone');
+            if (phoneDisplay) phoneDisplay.textContent = config.customer_care || defaultConfig.customer_care;
+            
+            document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
+            document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
+            document.getElementById('footer-phone').textContent = config.customer_care || defaultConfig.customer_care;
+            document.getElementById('footer-email').textContent = config.email_address || defaultConfig.email_address;
         }
 
-        // Close modal when clicking outside
-        document.getElementById('customer-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
 
-        // Close cart modal when clicking outside
-        document.getElementById('cart-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeCartModal();
-            }
-        });
-
-        // Initialize app when page loads
-        document.addEventListener('DOMContentLoaded', initializeApp);
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["company_name", config.company_name || defaultConfig.company_name],
+                ["customer_care", config.customer_care || defaultConfig.customer_care],
+                ["email_address", config.email_address || defaultConfig.email_address],
+                ["office_address", config.office_address || defaultConfig.office_address]
+            ]);
+        }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9962d5bc534fc51e',t:'MTc2MTc0MjYwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ </body>
+
 </html>
-
-
-
-
-
