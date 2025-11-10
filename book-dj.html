@@ -1,416 +1,364 @@
 <!doctype html>
-<html lang="en">
+<html lang="hi">
  <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- FIX: Removed viewport-fit=cover from viewport meta tag to prevent excess top padding in some webviews/browsers -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="icon" type="image/svg+xml" href="logo.png">
+  <title>Sonipat Home Service - DJ Service | Professional DJ Booking</title>
+  <!-- SEO Meta Tags (Retained original DJ content) -->
   <meta name="description" content="Professional DJ Services in Sonipat - Book DJ for weddings, parties, events. Serving Sonipat, Murthal, Bahalgarh, Kundli, Rai, Ganaur, Kharkhoda, Gohana, Mohana and all sectors.">
-  <meta name="keywords" content="DJ Service Sonipat, DJ Booking, Wedding DJ, Party DJ, Event DJ, Sonipat Home Service, DJ Murthal, DJ Bahalgarh, DJ Kundli, Professional DJ,DJ service Sonipat,Sonipat DJ wala,Wedding DJ Sonipat,Shaadi DJ Sonipat,Party DJ Sonipat,DJ booking Sonipat,Best DJ in Sonipat,Sasta DJ Sonipat,DJ for marriage Sonipat,DJ Sonipat,Wedding DJ Sonipat,DJ service Sonipat,Party DJ Sonipat,Event DJ Sonipat,Professional DJ Sonipat,Best DJ in Sonipat,DJ booking Sonipat,DJ for wedding Sonipat,DJ Murthal,DJ Bahalgarh,DJ Kundli,DJ Ganaur,DJ Rai,DJ Atali,DJ Rathdhana,DJ Kharkhoda,DJ Barhi,DJ home service Sonipat,
-">
-  <meta name="author" content="Sonipat Home Service">
+  <meta name="keywords" content="DJ Service Sonipat, DJ Booking, Wedding DJ, Party DJ, Event DJ, Sonipat Home Service, DJ Murthal, DJ Bahalgarh, DJ Kundli, Professional DJ,DJ service Sonipat,Sonipat DJ wala,Wedding DJ Sonipat,Shaadi DJ Sonipat,Party DJ Sonipat,DJ booking Sonipat,Best DJ in Sonipat,Sasta DJ Sonipat,DJ for marriage Sonipat,DJ Sonipat,Wedding DJ Sonipat,DJ service Sonipat,Party DJ Sonipat,Event DJ Sonipat,Professional DJ Sonipat,Best DJ in Sonipat,DJ booking Sonipat,DJ for wedding Sonipat,DJ Murthal,DJ Bahalgarh,DJ Kundli,DJ Ganaur,DJ Rai,DJ Atali,DJ Rathdhana,DJ Kharkhoda,DJ Barhi,DJ home service Sonipat,">
+  <meta name="author" content="Sonipat Home Service" />
   <meta property="og:title" content="DJ Service - Sonipat Home Service">
   <meta property="og:description" content="Book professional DJ services in Sonipat and nearby areas. Quality sound, lighting, and entertainment for all events.">
   <meta property="og:type" content="website">
-  <title>DJ Service - Sonipat Home Service | Professional DJ Booking</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎧</text></svg>">
-  <script src="/_sdk/data_sdk.js"></script>
+
   <script src="/_sdk/element_sdk.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
+        /* Cloned from book-ac-services.html */
         body {
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Subtle light background */
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
         
-        .theme-gradient {
-            transition: background 0.5s ease;
+        /* --- Gradient Colors for Header and Primary Buttons --- */
+        .gradient-bg {
+            /* Using AC Blue theme */
+            background: linear-gradient(135deg, #0f62fe 0%, #1e40af 100%); 
+        }
+
+        header {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes dance {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            25% { transform: translateY(-15px) rotate(-10deg); }
-            50% { transform: translateY(-5px) rotate(0deg); }
-            75% { transform: translateY(-15px) rotate(10deg); }
-        }
-        
-        .dance-animation {
-            animation: dance 1s ease-in-out infinite;
-            display: inline-block;
-        }
-        
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.6); }
-        }
-        
-        .pulse-glow {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-        
-        .modal-overlay {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .cart-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ef4444;
-            color: white;
-            border-radius: 50%;
-            min-width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 0 6px;
-        }
-        
+        /* --- Service Card (Ultra Stylish) --- */
         .service-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            transform-style: preserve-3d;
+            background: #ffffff;
+            box-shadow: 
+                0 15px 30px rgba(0,0,0,0.1),
+                0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 20px; /* More rounded */
+            position: relative;
+            overflow: hidden;
+            margin: 8px;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15,98,254,0.1) 0%, rgba(30,64,175,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px) scale(1.02); /* Less rotation, more lift */
+            box-shadow: 
+                0 25px 50px rgba(15,98,254,0.3), /* Stronger shadow */
+                0 15px 30px rgba(0,0,0,0.15),
+                inset 0 2px 0 rgba(255,255,255,0.9);
+            border-color: #0f62fe; /* Primary color border on hover */
         }
         
-        .success-message {
-            animation: slideDown 0.5s ease;
+        .service-card-content {
+            position: relative;
+            z-index: 2;
+            padding: 24px;
         }
         
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .icon-hover {
+            transition: all 0.3s ease;
         }
         
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-33.33%);
-            }
+        .service-card:hover .icon-hover {
+            transform: scale(1.15) rotate(-5deg); /* Bounce icon slightly */
         }
         
-        .marquee-container {
-            width: 100%;
+        /* --- Primary Button (Ultra Stylish) --- */
+        .btn-primary {
+            background: linear-gradient(135deg, #0f62fe, #1e40af);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(15,98,254,0.4);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e40af, #11368e);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(15,98,254,0.6);
+        }
+        
+        /* --- Utility classes for Modals and Loading --- */
+        .popup-overlay {
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .popup-content {
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .cart-badge {
+            animation: bounce 0.5s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .service-icon {
+            width: 48px;
+            height: 48px;
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* --- Marquee/Slider Styling (for Footer) --- */
+        .services-slider {
             overflow: hidden;
-            background: linear-gradient(90deg, rgba(147, 51, 234, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-            padding: 12px 0;
-            border-radius: 12px;
-        }
-        
-        .marquee-content {
-            display: inline-block;
             white-space: nowrap;
-            animation: marquee 20s linear infinite;
-            padding: 0 20px;
+            padding: 10px 0;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            background: #374151;
         }
-        
-        /* Mobile Optimizations */
-        @media (max-width: 768px) {
-            .hide-mobile {
-                display: none !important;
-            }
-            
-            .service-card:hover {
-                transform: none;
-            }
-            
-            .service-card:active {
-                transform: scale(0.98);
-            }
-            
-            .float-animation {
-                animation: none;
-            }
-            
-            input, textarea, select, button {
-                font-size: 16px !important; /* Prevents zoom on iOS */
-            }
+
+        .services-track {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
         }
-        
-        /* Tablet Optimizations */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .container {
-                max-width: 90%;
-            }
+
+        .services-track a, .services-track span {
+            display: inline-block;
+            color: #d1d5db; /* light gray */
+            padding: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
         }
-        
-        /* Desktop Optimizations */
-        @media (min-width: 1025px) {
-            .container {
-                max-width: 1200px;
-            }
+
+        .services-track a:hover {
+            color: #60a5fa; /* blue-400 */
         }
-        
-        /* Touch device optimizations */
-        @media (hover: none) and (pointer: coarse) {
-            button, a {
-                min-height: 44px;
-                min-width: 44px;
-            }
-        }
-        
-        /* Landscape phone optimization */
-        @media (max-width: 896px) and (orientation: landscape) {
-            .modal-overlay {
-                padding: 10px;
-            }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
     </style>
   <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body><!-- Header -->
-  <header id="header" class="theme-gradient sticky top-0 z-50 shadow-lg">
-   <div class="container mx-auto px-3 sm:px-4 py-2 sm:py-3">
-    <div class="flex justify-between items-center gap-2 sm:gap-3"><a href="https://www.sonipathomeservice.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 sm:space-x-3 flex-shrink min-w-0">
-      <div class="text-3xl sm:text-4xl md:text-5xl flex-shrink-0">
-       🎧
-      </div>
-      <div class="min-w-0">
-       <h1 class="text-white text-sm sm:text-lg md:text-xl lg:text-2xl font-bold truncate">SonipatHomeService.Com</h1>
-       <p id="tagline" class="text-white text-xs sm:text-sm opacity-90 truncate">Your trusted DJ service provider</p>
+ <body class="min-h-full bg-gray-50"><!-- Header (AC Style) -->
+  <header class="gradient-bg text-white shadow-2xl sticky top-0 z-40"> 
+   <div class="container mx-auto px-4 py-4">
+    <br>
+    <div class="flex justify-between items-center"><a href="index.html" class="flex items-center space-x-3 hover:opacity-90 transition-opacity"><img src="logo.png" alt="Sonipat Home Service Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-lg border border-white/50">
+      <div>
+       <h1 id="company-name" class="text-xl sm:text-2xl font-extrabold tracking-tight"> <span class="text-yellow-300">SonipatHomeService</span></h1>
+       <p id="company-tagline" class="text-sm font-semibold opacity-90">Professional DJ &amp; Entertainment Services</p>
       </div></a>
-     <div class="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
-      <div class="hidden lg:flex flex-col space-y-1 text-white text-sm"><a href="tel:8816014071" class="flex items-center space-x-2 hover:opacity-80 transition"> <span class="text-lg">📞</span> <span class="font-semibold">8816014071</span> </a> <a href="mailto:care@sonipathomeservice.com" class="flex items-center space-x-2 hover:opacity-80 transition"> <span class="text-lg">✉️</span> <span class="font-semibold">care@sonipathomeservice.com</span> </a>
-      </div><button id="cartBtn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 active:bg-opacity-40 text-white p-2 sm:p-3 rounded-full transition touch-manipulation">
-       <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-       </svg><span id="cartCount" class="cart-badge">0</span> </button>
-     </div>
-    </div>
-   </div>
-  </header><!-- Success Message -->
-  <div id="successMessage" class="hidden fixed top-20 left-0 right-0 z-50 mx-auto max-w-2xl">
-   <div class="success-message bg-green-500 text-white p-6 rounded-lg shadow-2xl mx-4">
-    <div class="flex items-center space-x-3">
-     <div class="text-3xl">
-      ✅
-     </div>
-     <div class="flex-1">
-      <h3 class="font-bold text-xl">Booking Confirmed!</h3>
-      <p id="successDetails" class="text-sm mt-1"></p>
-     </div>
-    </div>
-   </div>
-  </div><!-- Hero Section -->
-  <section class="py-8 sm:py-12 md:py-16 px-3 sm:px-4">
-   <div class="container mx-auto text-center">
-    <div class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-4 sm:mb-6 float-animation">
-     🎵
-    </div>
-    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-gray-800 px-2">Professional DJ Services</h2>
-    <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 px-4">Making your events memorable with amazing music &amp; entertainment</p>
-    <div class="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs sm:text-sm px-2"><span class="bg-purple-100 text-purple-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap">📍 Sonipat</span> <span class="bg-blue-100 text-blue-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap">📍 Murthal</span> <span class="bg-green-100 text-green-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap">📍 Bahalgarh</span> <span class="bg-yellow-100 text-yellow-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap">📍 Kundli</span> <span class="bg-red-100 text-red-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap">📍 Rai</span> <span class="bg-indigo-100 text-indigo-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap">📍 Ganaur</span> <span class="bg-pink-100 text-pink-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap">📍 Kharkhoda</span> <span class="bg-orange-100 text-orange-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap">📍 Gohana</span> <span class="bg-teal-100 text-teal-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap">📍 Mohana</span>
-    </div>
-    <p class="text-gray-500 mt-3 sm:mt-4 text-xs sm:text-sm px-4">Serving all societies &amp; sectors in these areas</p>
-   </div>
-  </section><!-- Services Section -->
-  <section class="py-8 sm:py-12 md:py-16 px-3 sm:px-4 bg-gray-50">
-   <div class="container mx-auto">
-    <div class="text-center mb-4 sm:mb-6">
-     <div class="text-5xl sm:text-6xl md:text-7xl"><span class="dance-animation" style="animation-delay: 0s;">💃</span> <span class="dance-animation" style="animation-delay: 0.3s;">🕺</span>
-     </div>
-    </div>
-    <h2 id="serviceTitle" class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 text-gray-800 px-2">Our DJ Services</h2>
-    <div id="servicesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"><!-- Services will be loaded here -->
-    </div>
-   </div>
-  </section><!-- Features Section -->
-  <section class="py-8 sm:py-12 md:py-16 px-3 sm:px-4">
-   <div class="container mx-auto">
-    <h2 id="featuresTitle" class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 text-gray-800 px-2">Why Choose Us</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-     <div class="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
-      <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">
-       🎼
+     <div class="flex items-center space-x-4">
+      <!-- Desktop Contact Side Bar -->
+      <div class="text-right hidden md:block border-l pl-4 border-white/30">
+       <a href="tel:8816014071" class="text-lg font-bold hover:text-yellow-300 transition-colors">📞 <span id="customer-care">8816014071</span></a>
+       <p id="email-address" class="text-xs opacity-80 mt-1">care@sonipathomeservice.com</p>
       </div>
-      <h3 class="font-bold text-lg sm:text-xl mb-2">Professional Equipment</h3>
-      <p class="text-sm sm:text-base text-gray-600">High-quality sound systems &amp; lighting</p>
-     </div>
-     <div class="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
-      <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">
-       🎤
-      </div>
-      <h3 class="font-bold text-lg sm:text-xl mb-2">Experienced DJs</h3>
-      <p class="text-sm sm:text-base text-gray-600">Skilled professionals for all events</p>
-     </div>
-     <div class="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
-      <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">
-       💰
-      </div>
-      <h3 class="font-bold text-lg sm:text-xl mb-2">Affordable Pricing</h3>
-      <p class="text-sm sm:text-base text-gray-600">Best rates with quality service</p>
-     </div>
-     <div class="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg">
-      <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">
-       ⏰
-      </div>
-      <h3 class="font-bold text-lg sm:text-xl mb-2">24/7 Support</h3>
-      <p class="text-sm sm:text-base text-gray-600">Always available for bookings</p>
+      <!-- Cart Button with Pop -->
+      <button id="cart-btn" class="relative bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-md"> <span class="flex items-center space-x-2">
+        <i class="fas fa-shopping-cart w-5 h-5"></i>
+        <span class="hidden sm:inline">Cart</span> <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-0.5 text-xs hidden font-bold">0</span> </span> </button>
      </div>
     </div>
    </div>
-  </section><!-- Terms & Conditions Section -->
-  <section class="py-8 sm:py-12 md:py-16 px-3 sm:px-4 bg-gradient-to-br from-purple-50 to-pink-50">
-   <div class="container mx-auto max-w-4xl">
-    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 text-gray-800 px-2">Terms &amp; Conditions</h2>
-    <div class="bg-white rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 md:p-8">
-     <div class="space-y-4 sm:space-y-5">
-      <div class="flex items-start space-x-3 sm:space-x-4">
-       <div class="text-2xl sm:text-3xl flex-shrink-0">
-        📅
+  </header>
+  
+  
+  <!-- Hero Section (P&M Style Adapted) -->
+  <section class="py-10 bg-white shadow-inner">
+      <div class="container mx-auto px-4 text-center">
+          <div class="text-5xl sm:text-6xl md:text-7xl mb-4">
+            🎧
+          </div>
+          <h2 id="hero-title" class="text-3xl sm:text-4xl font-extrabold mb-3 text-gray-800">Professional DJ Services</h2>
+          <p id="hero-subtitle" class="text-lg sm:text-xl text-gray-600 mb-6">Making your events memorable with amazing music &amp; entertainment</p>
+          <div class="bg-blue-50 bg-opacity-80 rounded-xl p-4 inline-block shadow-md border border-blue-100">
+              <p class="text-sm sm:text-base font-semibold text-gray-800 mb-2">📍 Service Areas:</p>
+              <p class="text-xs sm:text-sm text-gray-700">Sonipat, Murthal, Bahalgarh, Kundli, Rai, Ganaur, Kharkhoda, Gohana, Mohana</p>
+          </div>
+      </div>
+  </section>
+
+  <!-- Info Cards Section (AC Style) -->
+  <section class="py-6 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Info Card 1: Same Day Service -->
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl text-blue-600"><i class="fas fa-music"></i></span>
+                    <div>
+                        <h4 class="font-extrabold text-lg text-gray-800">Professional Sound</h4>
+                        <p class="text-sm text-gray-600">High-quality audio system for clear sound.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Info Card 2: Experienced DJs -->
+            <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl text-green-600"><i class="fas fa-user-tie"></i></span>
+                    <div>
+                        <h4 class="font-extrabold text-lg text-gray-800">Experienced DJs</h4>
+                        <p class="text-sm text-gray-600">Skilled DJs for all types of events (Wedding, Party).</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Info Card 3: Affordable Price -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl text-yellow-600"><i class="fas fa-sack-dollar"></i></span>
+                    <div>
+                        <h4 class="font-extrabold text-lg text-gray-800">Best Price Guaranteed</h4>
+                        <p class="text-sm text-gray-600">Affordable packages with no compromise on quality.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  
+  <!-- Services Section (AC Style) -->
+  <section class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h3 class="text-3xl font-extrabold text-center mb-10 text-gray-800" id="services-heading">Our DJ Services</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2" id="services-grid"><!-- Services will be populated by JavaScript -->
+    </div>
+   </div>
+  </section>
+
+  <!-- Terms & Conditions (AC Style, DJ adapted text) -->
+  <section class="py-16 bg-gray-100">
+   <div class="container mx-auto px-4">
+    <h3 class="text-3xl font-extrabold text-center mb-12 text-gray-800" id="contact-heading">Important Terms &amp; Conditions</h3>
+    <div class="max-w-5xl mx-auto">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Service Terms Card -->
+      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-blue-500 hover:shadow-3xl transition-all duration-300">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600"><i class="fas fa-handshake text-3xl"></i>
+        </div>
+        <h4 class="font-extrabold text-xl text-gray-800 mb-2">Booking Policy</h4>
        </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Book minimum 7 days in advance for best rates.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-red-500 mt-1">✗</span> <span>Urgent bookings require telephonic confirmation.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Transparent pricing with no hidden charges.</span></li>
+       </ul>
+      </div><!-- Payment Terms Card -->
+      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-green-500 hover:shadow-3xl transition-all duration-300">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 text-green-600"><i class="fas fa-coins text-3xl"></i>
+        </div>
+        <h4 class="font-extrabold text-xl text-gray-800 mb-2">Payment Details</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Advance booking fee: ₹499 (Non-refundable).</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Accept all payment methods (Cash, UPI, Card).</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Secure Razorpay gateway for online payment.</span></li>
+       </ul>
+      </div><!-- Contact & Support Card -->
+      <div class="bg-white rounded-xl shadow-2xl p-6 border-b-4 border-purple-500 hover:shadow-3xl transition-all duration-300">
+       <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 text-purple-600"><i class="fas fa-headset text-3xl"></i>
+        </div>
+        <h4 class="font-extrabold text-xl text-gray-800 mb-2">DC Order Compliance</h4>
+       </div>
+       <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="text-red-500 mt-1">✗</span> <span class="font-bold text-red-600">DJ service stops strictly at 10 PM.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>Venue owner/client is responsible for local permissions.</span></li>
+        <li class="flex items-start space-x-2"><span class="text-green-500 mt-1">✓</span> <span>We adhere to all local administration rules.</span></li>
+       </ul>
+      </div>
+     </div><!-- Additional Info Banner -->
+     <div class="mt-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl p-6 text-white text-center shadow-lg">
+      <div class="flex items-center justify-center space-x-4"><span class="text-3xl">⭐</span>
        <div>
-        <h3 class="font-bold text-base sm:text-lg text-gray-800 mb-1">Book in Advance</h3>
-        <p class="text-sm sm:text-base text-gray-600">Availability as per advance booking. Plan ahead to secure your preferred date.</p>
-       </div>
+        <h5 class="font-extrabold text-xl">100% Satisfaction Guaranteed</h5>
+        <p class="text-sm opacity-90">Book with confidence. We ensure quality and peace of mind.</p>
+       </div><span class="text-3xl">🎧</span>
       </div>
-      <div class="flex items-start space-x-3 sm:space-x-4">
-       <div class="text-2xl sm:text-3xl flex-shrink-0">
-        📞
-       </div>
-       <div>
-        <h3 class="font-bold text-base sm:text-lg text-gray-800 mb-1">Immediate Booking</h3>
-        <p class="text-sm sm:text-base text-gray-600">For urgent bookings, call our customer care service at <a href="tel:8816014071" class="text-purple-600 font-semibold hover:underline">8816014071</a></p>
-       </div>
-      </div>
-      <div class="flex items-start space-x-3 sm:space-x-4">
-       <div class="text-2xl sm:text-3xl flex-shrink-0">
-        ⏰
-       </div>
-       <div>
-        <h3 class="font-bold text-base sm:text-lg text-gray-800 mb-1">Time Restriction</h3>
-        <p class="text-sm sm:text-base text-gray-600">DJ is not allowed after 10 PM as per DC Order. Please plan your event accordingly.</p>
-       </div>
-      </div>
-      <div class="flex items-start space-x-3 sm:space-x-4">
-       <div class="text-2xl sm:text-3xl flex-shrink-0">
-        💳
-       </div>
-       <div>
-        <h3 class="font-bold text-base sm:text-lg text-gray-800 mb-1">Payment Terms</h3>
-        <p class="text-sm sm:text-base text-gray-600">Advance booking amount: <span class="font-bold text-purple-600">₹499</span></p>
-        <p class="text-sm sm:text-base text-gray-600 mt-1">Rest payment to be made onsite after service completion.</p>
-       </div>
-      </div>
-     </div>
-     <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200">
-      <p class="text-xs sm:text-sm text-gray-500 text-center">By booking our services, you agree to these terms and conditions.</p>
      </div>
     </div>
    </div>
-  </section><!-- Booking Modal -->
-  <div id="bookingModal" class="hidden fixed inset-0 z-50 modal-overlay flex items-center justify-center p-3 sm:p-4">
-   <div class="bg-white rounded-xl sm:rounded-2xl shadow-2xl max-w-md w-full max-h-[95%] sm:max-h-[90%] overflow-y-auto">
-    <div class="p-4 sm:p-6">
-     <div class="flex justify-between items-center mb-4 sm:mb-6">
-      <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Book Your Service</h3><button id="closeModal" class="text-gray-500 hover:text-gray-700 active:text-gray-900 text-3xl sm:text-4xl leading-none touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center">×</button>
-     </div>
-     <form id="bookingForm" class="space-y-3 sm:space-y-4">
-      <div><label class="block text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">Customer Name *</label> <input type="text" id="customerName" required class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base" placeholder="Enter your name">
-      </div>
-      <div><label class="block text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">Mobile Number *</label> <input type="tel" id="mobileNumber" required pattern="[0-9]{10}" maxlength="10" class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base" placeholder="10 digit mobile number">
-      </div>
-      <div><label class="block text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">Email ID *</label> <input type="email" id="emailId" required class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base" placeholder="your@email.com">
-      </div>
-      <div><label class="block text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">Full Address *</label> <textarea id="fullAddress" required rows="2" class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base resize-none" placeholder="Enter complete address"></textarea>
-      </div>
-      <div><label class="block text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">Landmark *</label> <input type="text" id="landmark" required class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base" placeholder="Nearby landmark">
-      </div>
-      <div><label class="block text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">Pin Code *</label> <input type="text" id="pinCode" required pattern="[0-9]{6}" maxlength="6" class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base" placeholder="6 digit pin code">
-      </div>
-      <div><label class="block text-sm font-semibold text-gray-700 mb-1.5 sm:mb-2">Choose Booking Date *</label> <input type="date" id="bookingDate" required class="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base">
-      </div>
-      <div class="bg-purple-50 p-3 sm:p-4 rounded-lg">
-       <div class="flex justify-between items-center mb-2 text-sm sm:text-base"><span class="font-semibold">Service:</span> <span id="modalServiceName" class="text-purple-700 text-right ml-2"></span>
-       </div>
-       <div class="flex justify-between items-center mb-2 text-sm sm:text-base"><span class="font-semibold">Total Price:</span> <span id="modalTotalPrice" class="text-purple-700"></span>
-       </div>
-       <div class="flex justify-between items-center text-base sm:text-lg font-bold"><span>Booking Amount:</span> <span id="modalBookingAmount" class="text-green-600"></span>
-       </div>
-       <p class="text-xs sm:text-sm text-gray-600 mt-2">Rest payment on work complete/onsite</p>
-      </div><button type="submit" id="submitBooking" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:from-purple-700 hover:to-pink-700 active:from-purple-800 active:to-pink-800 transition pulse-glow touch-manipulation"> Pay ₹<span id="payAmount">499</span> &amp; Book Now </button>
-     </form>
-    </div>
-   </div>
-  </div><!-- Footer -->
-  <footer class="hidden md:block bg-gray-900 text-white py-8 sm:py-10 md:py-12 px-3 sm:px-4">
-   <div class="container mx-auto">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
+  </section>
+
+  <!-- Footer (AC Style) -->
+  <footer class="bg-gray-900 text-white pt-12">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
      <div>
-      <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">SonipatHomeService.Com</h3>
-      <p class="text-gray-400 mb-2 text-sm sm:text-base">📍 128/1, Sainipura, Sonipat</p><a href="tel:8816014071" class="block text-gray-400 hover:text-white mb-2 text-sm sm:text-base transition">📞 8816014071</a> <a href="mailto:care@sonipathomeservice.com" class="block text-gray-400 hover:text-white text-sm sm:text-base transition break-all">✉️ care@sonipathomeservice.com</a>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Contact Information</h4>
+      <div class="space-y-2 text-sm">
+       <p class="flex items-center">📞 <span class="ml-2 font-semibold" id="footer-phone">8816014071</span></p>
+       <p class="flex items-center">✉️ <span class="ml-2" id="footer-email">care@sonipathomeservice.com</span></p>
+       <p class="flex items-center">📍 <span class="ml-2" id="office-address">128/1, Sainipura, Sonipat</span></p>
+      </div>
      </div>
      <div>
-      <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Follow Us</h3>
-      <div class="space-y-2"><a href="https://facebook.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" class="block text-gray-400 hover:text-white transition text-sm sm:text-base touch-manipulation">📘 Facebook</a> <a href="https://instagram.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" class="block text-gray-400 hover:text-white transition text-sm sm:text-base touch-manipulation">📷 Instagram</a> <a href="https://x.com/sonipathome" target="_blank" rel="noopener noreferrer" class="block text-gray-400 hover:text-white transition text-sm sm:text-base touch-manipulation">🐦 X (Twitter)</a> <a href="https://wa.me/918816014071" target="_blank" rel="noopener noreferrer" class="block text-gray-400 hover:text-white transition text-sm sm:text-base touch-manipulation">💬 WhatsApp</a>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Quick Links</h4>
+      <ul class="space-y-2 text-sm">
+       <li><a href="index.html" class="hover:text-blue-400 transition-colors">• Home Page</a></li>
+       <li><a href="policy.html" class="hover:text-blue-400 transition-colors">• Privacy Policy</a></li>
+       <li><a href="terms.html" class="hover:text-blue-400 transition-colors">• Terms &amp; Conditions</a></li>
+       <li><a href="refund.html" class="hover:text-blue-400 transition-colors">• Refund Policy</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-xl font-extrabold mb-4 text-blue-400">Follow Us</h4>
+      <div class="flex space-x-4 text-2xl">
+        <a href="https://facebook.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/918816014071" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors"><i class="fab fa-whatsapp"></i></a>
       </div>
      </div>
-     <div class="sm:col-span-2 lg:col-span-1">
-      <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Download Our App</h3><a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" class="block mb-3 bg-black text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg hover:bg-gray-800 active:bg-gray-700 transition flex items-center space-x-3 touch-manipulation">
-       <svg class="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" viewbox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-       </svg>
-       <div class="text-left">
-        <div class="text-xs">
-         GET IT ON
-        </div>
-        <div class="text-base sm:text-lg font-bold">
-         Google Play
-        </div>
-       </div></a> <a href="https://www.indusappstore.com/apps/house-and-home/sonipat-home-service/com.crapd.sonipathomeservice/?page=details&amp;id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" class="block bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg hover:from-orange-600 hover:to-red-600 active:from-orange-700 active:to-red-700 transition flex items-center space-x-3 touch-manipulation">
-       <svg class="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" viewbox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
-       </svg>
-       <div class="text-left">
-        <div class="text-xs">
-         DOWNLOAD ON
-        </div>
-        <div class="text-base sm:text-lg font-bold">
-         Indus AppStore
-        </div>
-       </div></a>
-     </div>
     </div>
- <div style="background: #374151; padding: 20px 0; margin-top: 20px;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 20px; font-size: 18px;">All Our Services</h4>
+    <!-- Marquee Slider for All Services -->
+    <div style="background: #374151; padding: 15px 0; margin-top: 30px; border-radius: 10px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+     <h4 style="text-align: center; color: #60a5fa; margin-bottom: 10px; font-size: 16px; font-weight: bold;">All Our Services</h4>
      <div class="services-slider">
       <div class="services-track"><a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span> <!-- Duplicate for seamless loop --> <a href="book-ac-services.html" target="_blank" rel="noopener noreferrer">❄️ AC Installation &amp; Repair</a> <a href="book-fridge-refrigrator-services.html" target="_blank" rel="noopener noreferrer">🧊 Refrigerator Repair</a> <a href="book-washing-machine-services.html" target="_blank" rel="noopener noreferrer">🌀 Washing Machine Repair</a> <a href="book-tv-repair.html" target="_blank" rel="noopener noreferrer">📺 TV Repair</a> <a href="book-geyser-services.html" target="_blank" rel="noopener noreferrer">🔥 Geyser Repair</a> <a href="electricianservice.html" target="_blank" rel="noopener noreferrer">⚡ Electrician Service</a> <a href="book-ro-serrvice.html" target="_blank" rel="noopener noreferrer">💧 RO Water Purifier</a> <a href="book-chimney-cleaning.html" target="_blank" rel="noopener noreferrer">🏠 Chimney Cleaning</a> <a href="book-safty-tank-service.html" target="_blank" rel="noopener noreferrer">🚽 Septic Tank Cleaning</a> <a href="book-sewerage-unblock-service.html" target="_blank" rel="noopener noreferrer">🔧 Sewerage Unblocking</a> <a href="book-pasti-control-service.html" target="_blank" rel="noopener noreferrer">🐛 Pest Control Service</a> <a href="book-Sofa-cleaning.html" target="_blank" rel="noopener noreferrer">🛋️ Sofa Cleaning</a> <a href="watertankcleaning.html" target="_blank" rel="noopener noreferrer">🪣 Water Tank Cleaning</a> <a href="book-wifi-service.html" target="_blank" rel="noopener noreferrer">📶 Wi-Fi Setup</a> <a href="Book-dth-installation-service.html" target="_blank" rel="noopener noreferrer">📡 DTH Installation</a> <a href="book-cctv-service.html" target="_blank" rel="noopener noreferrer">📹 CCTV Installation</a> <a href="book-borewell-service.html" target="_blank" rel="noopener noreferrer">🕳️ Borewell Service</a> <a href="book-chinai-mistri.html" target="_blank" rel="noopener noreferrer">🧱 Masonry Work</a> <a href="book-building-material-supply.html" target="_blank" rel="noopener noreferrer">🏗️ Building Material Supply</a> <a href="book-solar-installation.html" target="_blank" rel="noopener noreferrer">☀️ Solar Panel Installation</a> <a href="book-ro-water-services-services.html" target="_blank" rel="noopener noreferrer">💦 RO Water Service</a> <a href="website-design-service.html" target="_blank" rel="noopener noreferrer">💻 Website Design</a> <a href="book-bricks.html" target="_blank" rel="noopener noreferrer">🧱 Bricks Supply</a> <a href="book-halwai-service.html" target="_blank" rel="noopener noreferrer">🍰 Halwai Service</a> <a href="comingsoon.html" target="_blank" rel="noopener noreferrer">🍽️ Catering Service</a> <a href="book-barber-service.html" target="_blank" rel="noopener noreferrer">✂️ Barber Service</a> <a href="index.html" target="_blank" rel="noopener noreferrer">💄 Ladies Corner</a> <a href="book-vehicle-service.html" target="_blank" rel="noopener noreferrer">🚗 Vehicle Service</a> <a href="automobile-repairing-services.html" target="_blank" rel="noopener noreferrer">🔧 Car Repair</a> <a href="book-parcel-delivery-service-services.html" target="_blank" rel="noopener noreferrer">📦 Parcel Delivery</a> <span style="color: #9ca3af;">💰 Loan Service (Coming Soon)</span>
       </div>
@@ -418,382 +366,501 @@
     </div>
    </div>
 
-
-    <div class="border-t border-gray-800 pt-4 sm:pt-6 text-center">
-     <p class="text-gray-400 mb-2 text-xs sm:text-sm md:text-base px-2">💳 We Accept: Credit/Debit Card, Net Banking, UPI &amp; Wallet</p>
-     <p class="text-gray-500 text-xs sm:text-sm px-2">© 2024 SonipatHomeService.Com - All Rights Reserved</p>
+    <div class="border-t border-gray-800 mt-8 pt-6 pb-2 text-center text-sm">
+     <p>© 2024 Sonipat Home Service - DJ Service. All rights reserved.</p>
     </div>
    </div>
   </footer>
+  
+  <!-- Cart Popup (AC Style) -->
+  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4 border-b pb-3">
+       <h3 class="text-2xl font-extrabold text-gray-800">Your Booking</h3><button id="close-cart" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg></button>
+      </div>
+      <div id="cart-items" class="space-y-3 mb-4 max-h-60 overflow-y-auto"><!-- Cart items will be populated here -->
+      </div>
+      <div class="border-t pt-4">
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between items-center"><span class="text-gray-600 font-semibold">Service Total:</span> <span class="font-extrabold text-lg">₹<span id="cart-total">0</span></span>
+        </div>
+        <div class="flex justify-between items-center text-blue-600"><span class="font-semibold">Booking Charge (Non-refundable):</span> <span class="font-extrabold">₹<span id="cart-booking-charge">499</span></span>
+        </div>
+        <div class="flex justify-between items-center text-green-600"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="onsite-balance">0</span></span>
+        </div>
+        <div class="border-t pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="cart-pay-now">499</span></span>
+        </div>
+       </div><button id="proceed-checkout" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform disabled:opacity-50" disabled> <span id="cart-button-text">Book Service - Pay ₹499</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  
+  <!-- Checkout Form Popup (AC Style) -->
+  <div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 popup-overlay hidden z-50">
+   <div class="flex items-start justify-center min-h-full p-2 py-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full popup-content" style="max-height: 95vh; overflow-y: auto;">
+     <div class="sticky top-0 bg-white p-4 border-b flex justify-between items-center z-10">
+      <h3 class="text-xl font-extrabold">Customer Details</h3><button id="close-checkout" class="text-gray-500 hover:text-red-600 transition-colors p-1 rounded-full bg-gray-100">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+       </svg></button>
+     </div>
+     <div class="p-4">
+      <form id="checkout-form" class="space-y-4">
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label> <input type="text" id="customer-name" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label> <input type="tel" id="mobile-number" required pattern="[0-9]{10}" maxlength="10" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Email ID *</label> <input type="email" id="email-id" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+       </div>
+       <div class="space-y-2">
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Full Address *</label> <textarea id="full-address" required rows="3" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Landmark</label> <input type="text" id="landmark" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+         </div>
+         <div><label class="block text-sm font-medium text-gray-700 mb-1">Pincode *</label> <input type="text" id="pincode" required pattern="[0-9]{6}" maxlength="6" class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+         </div>
+        </div>
+        <div><label class="block text-sm font-medium text-gray-700 mb-1">Event/Booking Date *</label> <input type="date" id="booking-date" required class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-colors">
+        </div>
+       </div>
+       <div class="border-t pt-4 mt-4">
+        <h4 class="text-lg font-extrabold mb-3">Payment Summary</h4>
+        <div class="space-y-2 mb-4 bg-blue-50 p-3 rounded-lg border border-blue-200">
+         <div class="flex justify-between items-center text-sm"><span class="text-gray-700 font-semibold">Service Total:</span> <span class="font-extrabold">₹<span id="checkout-total">0</span></span>
+         </div>
+         <div class="flex justify-between items-center text-blue-700 text-sm"><span class="font-semibold">Booking Charge (Non-refundable):</span> <span class="font-extrabold">₹<span id="checkout-booking-charge">499</span></span>
+         </div>
+         <div class="flex justify-between items-center text-green-700 text-sm"><span class="font-semibold">Onsite Balance:</span> <span class="font-extrabold">₹<span id="checkout-onsite-balance">0</span></span>
+         </div>
+         <div class="border-t border-blue-300 pt-3 flex justify-between items-center mt-2"><span class="font-extrabold text-xl text-gray-900">Pay Now:</span> <span class="font-extrabold text-xl text-red-600">₹<span id="checkout-pay-now">499</span></span>
+         </div>
+        </div>
+        <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-3 mb-4">
+         <p class="text-xs text-yellow-800"><strong>Note:</strong> You are paying only the booking charge (₹<span id="note-booking-charge">499</span>) now. <span id="onsite-note">Remaining amount will be paid to the DJ after service completion.</span></p>
+        </div><button type="submit" id="pay-now" class="w-full btn-primary text-white py-3 rounded-xl font-extrabold text-lg transform hover:scale-[1.01] transition-transform"> <span id="checkout-button-text">Pay ₹499 Booking Charge</span> </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+
   <script>
-        // Configuration
+        // Configuration (Updated for DJ Service Context)
         const defaultConfig = {
-            company_tagline: "Your trusted DJ service provider",
-            service_title: "Our DJ Services",
-            features_title: "Why Choose Us",
-            primary_color: "#9333ea",
-            secondary_color: "#ec4899",
-            background_color: "#f9fafb",
-            text_color: "#1f2937",
-            accent_color: "#8b5cf6"
+            company_name: "DJ Service Booking",
+            company_tagline: "Professional DJ & Entertainment Services",
+            customer_care: "8816014071",
+            email_address: "care@sonipathomeservice.com",
+            office_address: "128/1, Sainipura, Sonipat",
+            hero_title: "Professional DJ Services",
+            hero_subtitle: "Making your events memorable with amazing music & entertainment",
+            services_heading: "Our DJ Services",
+            contact_heading: "Important Terms & Conditions"
         };
 
-        let config = { ...defaultConfig };
-        let cartItems = [];
-        let currentService = null;
-
-        // Google Sheets Web App URL
-        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec';
-
-        // Services Data
+        // DJ Services data (Copied from original DJ file, adapted for cart logic)
         const services = [
-            
-            {
-                id: "simple-dj",
-                name: "Simple DJ",
-                price: 3499,
-                fullPrice: 3499,
-                bookingAmount: 499,
-                icon: "🎵",
-                description: "Basic DJ setup for small gatherings - Max till 10 PM"
-            },
-            {
-                id: "floor-dj-light",
-                name: "Floor DJ With Light",
-                price: 4199,
-                fullPrice: 4199,
-                bookingAmount: 499,
-                icon: "💡",
-                description: "DJ with floor lighting effects - Max till 10 PM"
-            },
-            {
-                id: "baraat-dj-vehicle",
-                name: "Baraat DJ on Vehicle",
-                price: 4999,
-                fullPrice: 4999,
-                bookingAmount: 499,
-                icon: "🚗",
-                description: "Mobile DJ setup on vehicle for baraat - Max till 10 PM"
-            },
-            {
-                id: "wedding-dj",
-                name: "Wedding DJ Package",
-                price: 9999,
-                fullPrice: 9999,
-                bookingAmount: 499,
-                icon: "💒",
-                description: "Gudchadi + Reception Party - Complete DJ setup"
-            },
-            {
-                id: "birthday-dj",
-                name: "Birthday Party DJ",
-                price: 4199,
-                fullPrice: 4199,
-                bookingAmount: 499,
-                icon: "🎂",
-                description: "With Light & Floor Setup - Fun DJ for birthdays"
-            },
-            {
-                id: "sangeet-dj",
-                name: "Sangeet Night DJ",
-                price: 4199,
-                fullPrice: 4199,
-                bookingAmount: 499,
-                icon: "💃",
-                description: "Special DJ setup for sangeet ceremonies"
-            },
-            
+            { id: 1, name: "Simple DJ", price: 3499, originalPrice: null, icon: "fas fa-compact-disc", description: "Basic DJ setup for small gatherings - Max till 10 PM" },
+            { id: 2, name: "Floor DJ With Light", price: 4199, originalPrice: null, icon: "fas fa-lightbulb", description: "DJ with floor lighting effects - Max till 10 PM" },
+            { id: 3, name: "Baraat DJ on Vehicle", price: 4999, originalPrice: null, icon: "fas fa-truck-moving", description: "Mobile DJ setup on vehicle for baraat - Max till 10 PM" },
+            { id: 4, name: "Wedding DJ Package", price: 9999, originalPrice: 12999, icon: "fas fa-ring", description: "Gudchadi + Reception Party - Complete DJ setup" },
+            { id: 5, name: "Birthday Party DJ", price: 4199, originalPrice: null, icon: "fas fa-birthday-cake", description: "With Light & Floor Setup - Fun DJ for birthdays" },
+            { id: 6, name: "Sangeet Night DJ", price: 4199, originalPrice: null, icon: "fas fa-users", description: "Special DJ setup for sangeet ceremonies" },
         ];
 
-        // Theme colors for rotation
-        const themes = [
-            { primary: "#9333ea", secondary: "#ec4899" }, // Purple-Pink
-            { primary: "#3b82f6", secondary: "#06b6d4" }, // Blue-Cyan
-            { primary: "#ef4444", secondary: "#f59e0b" }, // Red-Orange
-            { primary: "#10b981", secondary: "#84cc16" }, // Green-Lime
-            { primary: "#8b5cf6", secondary: "#d946ef" }, // Violet-Fuchsia
-            { primary: "#f59e0b", secondary: "#ef4444" }  // Orange-Red
-        ];
 
-        let currentThemeIndex = 0;
+        // Cart functionality (Cloned from AC service page - adapted for fixed booking charge)
+        let cart = [];
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec';
 
-        // Change theme every 30 seconds
-        function rotateTheme() {
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            const theme = themes[currentThemeIndex];
-            const header = document.getElementById('header');
-            header.style.background = `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)`;
-        }
+        // NOTE: DJ service typically involves booking one main package. 
+        // We allow multiple quantities of the same service for flexibility, 
+        // but adding a second different service will overwrite the cart 
+        // to simplify the model (as DJ packages are usually mutually exclusive).
 
-        setInterval(rotateTheme, 30000);
-
-        // Initialize theme
-        rotateTheme();
-
-        // Render services
         function renderServices() {
-            const grid = document.getElementById('servicesGrid');
-            grid.innerHTML = services.map(service => `
-                <div class="service-card bg-white rounded-lg sm:rounded-xl shadow-lg overflow-hidden">
-                    <div class="p-4 sm:p-5 md:p-6">
-                        <div class="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 text-center">${service.icon}</div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-gray-800">${service.name}</h3>
-                        <p class="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm">${service.description}</p>
-                        <div class="flex justify-between items-center mb-3 sm:mb-4">
-                            <span class="text-xl sm:text-2xl font-bold text-purple-600">₹${service.price}</span>
-                            <span class="text-xs sm:text-sm text-gray-500">Book @ ₹${service.bookingAmount}</span>
+            const servicesGrid = document.getElementById('services-grid');
+            servicesGrid.innerHTML = services.map(service => `
+                <div class="service-card" onclick="addToCart(${service.id})">
+                    <div class="service-card-content">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 text-blue-600 mr-4 shadow-lg">
+                                <i class="${service.icon} text-xl icon-hover"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-extrabold text-lg mb-1 text-gray-800 leading-snug">${service.name}</h4>
+                                <p class="text-gray-600 text-xs">${service.description}</p>
+                            </div>
                         </div>
-                        <button onclick="addToCart('${service.id}')" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base hover:from-purple-700 hover:to-pink-700 active:from-purple-800 active:to-pink-800 transition touch-manipulation">
-                            Add to Cart 🛒
-                        </button>
+                        <div class="flex justify-between items-center pt-2 border-t border-gray-100">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-2xl font-extrabold text-red-600">₹${service.price.toLocaleString('en-IN')}</span>
+                                ${service.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${service.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+                            </div>
+                            <button class="btn-primary text-white px-4 py-2 rounded-full font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-300">
+                                Book Now
+                            </button>
+                        </div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Add to cart
         function addToCart(serviceId) {
             const service = services.find(s => s.id === serviceId);
-            if (!service) return;
-
-            currentService = service;
-            cartItems = [service];
-            updateCartCount();
-            openBookingModal();
-        }
-
-        // Update cart count
-        function updateCartCount() {
-            document.getElementById('cartCount').textContent = cartItems.length;
-        }
-
-        // Open booking modal
-        function openBookingModal() {
-            if (!currentService) return;
-
-            document.getElementById('modalServiceName').textContent = currentService.name;
-            document.getElementById('modalTotalPrice').textContent = `₹${currentService.fullPrice}`;
-            document.getElementById('modalBookingAmount').textContent = `₹${currentService.bookingAmount}`;
-            document.getElementById('payAmount').textContent = currentService.bookingAmount;
-            document.getElementById('bookingModal').classList.remove('hidden');
-        }
-
-        // Close modal
-        document.getElementById('closeModal').addEventListener('click', () => {
-            document.getElementById('bookingModal').classList.add('hidden');
-            document.getElementById('bookingForm').reset();
-        });
-
-        // Cart button
-        document.getElementById('cartBtn').addEventListener('click', () => {
-            if (cartItems.length > 0) {
-                openBookingModal();
+            
+            // For DJ service, we generally assume one booking is made at a time, 
+            // but we use the multi-item logic structure for UI consistency.
+            if (cart.length > 0 && cart[0].id !== serviceId) {
+                // Clear cart if a different service is selected
+                cart = []; 
             }
-        });
 
-        // Handle booking form submission
-        document.getElementById('bookingForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+            const existingItem = cart.find(item => item.id === serviceId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...service, quantity: 1, bookingAmount: 499 }); // Fixed booking amount for DJ
+            }
+            
+            updateCartUI();
+            showCartPopup();
+        }
 
-            const submitBtn = document.getElementById('submitBooking');
-            const originalButtonHTML = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Opening Payment... ⏳';
+        function removeFromCart(serviceId) {
+            const itemIndex = cart.findIndex(item => item.id === serviceId);
+            if (itemIndex > -1) {
+                if (cart[itemIndex].quantity > 1) {
+                    cart[itemIndex].quantity -= 1;
+                } else {
+                    cart.splice(itemIndex, 1);
+                }
+            }
+            updateCartUI();
+            if (cart.length === 0) {
+                hideCartPopup(); 
+                hideCheckoutPopup();
+            }
+        }
+        
+        function removeItemFromCart(serviceId) {
+             cart = cart.filter(item => item.id !== serviceId);
+             updateCartUI();
+             if (cart.length === 0) {
+                hideCartPopup();
+                hideCheckoutPopup();
+            }
+        }
 
-            const formData = {
-                customer_name: document.getElementById('customerName').value,
-                mobile_number: document.getElementById('mobileNumber').value,
-                email_id: document.getElementById('emailId').value,
-                full_address: document.getElementById('fullAddress').value,
-                landmark: document.getElementById('landmark').value,
-                pin_code: document.getElementById('pinCode').value,
-                booking_date_selected: document.getElementById('bookingDate').value,
-                service_name: currentService.name,
-                service_price: currentService.fullPrice,
-                booking_amount: currentService.bookingAmount
-            };
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutTotal = document.getElementById('checkout-total');
+            const onsiteBalance = document.getElementById('onsite-balance');
+            const checkoutOnsiteBalance = document.getElementById('checkout-onsite-balance');
+            const proceedBtn = document.getElementById('proceed-checkout');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = 499; // Fixed booking charge for DJ
+            const onsiteAmount = Math.max(0, totalAmount - bookingCharge);
+            
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+                cartCount.classList.add('cart-badge');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+            
+            cartItems.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-100">
+                    <div class="flex-1">
+                        <h5 class="font-bold text-base text-gray-800">${item.name}</h5>
+                        <div class="flex items-center space-x-2 mt-1">
+                            <button onclick="removeFromCart(${item.id})" class="text-blue-500 hover:text-red-500 text-sm font-bold w-6 h-6 rounded-full bg-white border">
+                                <i class="fas fa-minus text-xs"></i>
+                            </button>
+                            <span class="font-bold text-gray-700 text-sm">${item.quantity}</span>
+                            <button onclick="addToCart(${item.id})" class="text-blue-500 hover:text-green-500 text-sm font-bold w-6 h-6 rounded-full bg-white border">
+                                <i class="fas fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-end space-y-1">
+                        <span class="font-extrabold text-lg text-red-600">₹${(item.price * item.quantity).toLocaleString('en-IN')}</span>
+                        <button onclick="removeItemFromCart(${item.id})" class="text-red-500 hover:text-red-700 text-xs">
+                            <i class="fas fa-trash-alt mr-1"></i> Remove All
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            cartTotal.textContent = totalAmount.toLocaleString('en-IN');
+            checkoutTotal.textContent = totalAmount.toLocaleString('en-IN');
+            
+            // Update booking charge displays
+            const cartBookingCharge = document.getElementById('cart-booking-charge');
+            const checkoutBookingCharge = document.getElementById('checkout-booking-charge');
+            const cartPayNow = document.getElementById('cart-pay-now');
+            const checkoutPayNow = document.getElementById('checkout-pay-now');
+            const noteBookingCharge = document.getElementById('note-booking-charge');
+            const cartButtonText = document.getElementById('cart-button-text');
+            const checkoutButtonText = document.getElementById('checkout-button-text');
+            const onsiteNote = document.getElementById('onsite-note');
+            
+            if (cartBookingCharge) cartBookingCharge.textContent = bookingCharge;
+            if (checkoutBookingCharge) checkoutBookingCharge.textContent = bookingCharge;
+            if (cartPayNow) cartPayNow.textContent = bookingCharge;
+            if (checkoutPayNow) checkoutPayNow.textContent = bookingCharge;
+            if (noteBookingCharge) noteBookingCharge.textContent = bookingCharge;
+            
+            // Update onsite note based on balance
+            if (onsiteNote) {
+                if (onsiteAmount === 0) {
+                    onsiteNote.textContent = "Full amount has been paid online (₹0 Onsite Balance).";
+                } else {
+                    onsiteNote.textContent = `Remaining ₹${onsiteAmount.toLocaleString('en-IN')} will be paid to the DJ after service completion.`;
+                }
+            }
+            
+            if (onsiteBalance) onsiteBalance.textContent = onsiteAmount.toLocaleString('en-IN');
+            if (checkoutOnsiteBalance) checkoutOnsiteBalance.textContent = onsiteAmount.toLocaleString('en-IN');
+            
+            // Enable/Disable checkout button based on cart items
+            proceedBtn.disabled = cart.length === 0;
+            
+            // Update button text with accurate amount
+            if (cartButtonText) cartButtonText.textContent = `Book Service - Pay ₹${bookingCharge}`;
+            if (checkoutButtonText) checkoutButtonText.textContent = `Pay ₹${bookingCharge} Booking Charge`;
+        }
 
-            // Razorpay Payment
+        function showCartPopup() {
+            document.getElementById('cart-popup').classList.remove('hidden');
+        }
+
+        function hideCartPopup() {
+            document.getElementById('cart-popup').classList.add('hidden');
+        }
+
+        function showCheckoutPopup() {
+            hideCartPopup();
+            document.getElementById('checkout-popup').classList.remove('hidden');
+        }
+
+        function hideCheckoutPopup() {
+            document.getElementById('checkout-popup').classList.add('hidden');
+        }
+
+        // Razorpay payment integration (Cloned)
+        function initiatePayment(customerData, eventDate) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = 499;
+            
             const options = {
-                key: "rzp_live_RLjzp7VlXERwiG", // Replace with your live key
-                amount: currentService.bookingAmount * 100,
-                currency: "INR",
-                name: "SonipatHomeService.Com",
-                description: currentService.name,
-                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🎧%3C/text%3E%3C/svg%3E",
-                handler: async function (response) {
-                    // Show processing status
-                    submitBtn.innerHTML = 'Saving Booking... ⏳';
-                    
-                    const bookingData = {
-                        id: Date.now().toString(),
-                        ...formData,
-                        transaction_id: response.razorpay_payment_id,
-                        booking_date: new Date().toISOString(),
-                        status: "confirmed"
-                    };
-
-                    try {
-                        // Save to Google Sheets FIRST (most important)
-                        submitBtn.innerHTML = 'Saving to Sheet... 📊';
-                        await saveToGoogleSheet(bookingData);
-                        
-                        // Then save to Data SDK
-                        submitBtn.innerHTML = 'Finalizing... ✅';
-                        if (window.dataSdk) {
-                            await window.dataSdk.create(bookingData);
-                        }
-
-                        // Close modal and show success
-                        document.getElementById('bookingModal').classList.add('hidden');
-                        showSuccessMessage(bookingData, true);
-                        document.getElementById('bookingForm').reset();
-                        cartItems = [];
-                        currentService = null;
-                        updateCartCount();
-                        
-                    } catch (error) {
-                        console.error('Error saving booking:', error);
-                        // Still show success since payment was successful
-                        document.getElementById('bookingModal').classList.add('hidden');
-                        showSuccessMessage(bookingData, false);
-                        document.getElementById('bookingForm').reset();
-                        cartItems = [];
-                        currentService = null;
-                        updateCartCount();
-                    }
-
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalButtonHTML;
-                },
+                key: 'rzp_live_RLjzp7VlXERwiG', // Same Razorpay Key
+                amount: bookingCharge * 100, // Amount in paise
+                currency: 'INR',
+                name: 'DJ Service Booking',
+                description: 'Booking Charge - DJ & Entertainment Service',
+                image: 'data:image/svg+xml,%3Csvg viewBox="0 0 24 24" fill="#3b82f6"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z"/></svg>',
                 prefill: {
-                    name: formData.customer_name,
-                    email: formData.email_id,
-                    contact: formData.mobile_number
+                    name: customerData.name,
+                    email: customerData.email,
+                    contact: customerData.mobile
                 },
                 notes: {
-                    address: formData.full_address,
-                    landmark: formData.landmark,
-                    pincode: formData.pin_code
+                    address: customerData.address,
+                    landmark: customerData.landmark,
+                    pincode: customerData.pincode,
+                    event_date: eventDate,
+                    service_items: cart.map(item => `${item.name} x${item.quantity}`).join(', ')
                 },
                 theme: {
-                    color: "#9333ea"
+                    color: '#0f62fe'
+                },
+                handler: function(response) {
+                    // Payment successful
+                    submitToGoogleSheets(customerData, eventDate, response.razorpay_payment_id);
                 },
                 modal: {
                     ondismiss: function() {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalButtonHTML;
+                        // Payment cancelled
+                        console.log('Payment cancelled');
                     }
                 }
             };
-
+            
             const rzp = new Razorpay(options);
             rzp.open();
+        }
+
+        // Google Sheets integration (Cloned, adapted for event date)
+        async function submitToGoogleSheets(customerData, eventDate, paymentId) {
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const bookingCharge = 499;
+            const onsiteBalance = Math.max(0, totalAmount - bookingCharge);
+            
+            const params = new URLSearchParams({
+                timestamp: new Date().toLocaleString('hi-IN'),
+                customerName: customerData.name,
+                mobile: customerData.mobile,
+                email: customerData.email,
+                address: customerData.address,
+                landmark: customerData.landmark || '',
+                pincode: customerData.pincode,
+                eventDate: eventDate, // New field for DJ booking
+                orderItems: cart.map(item => `${item.name} (Qty: ${item.quantity}, Price: ${item.price})`).join(' | '),
+                totalAmount: totalAmount,
+                paidAmount: bookingCharge,
+                onsiteBalance: onsiteBalance,
+                paymentId: paymentId,
+                status: onsiteBalance > 0 ? 'Booking Confirmed - Onsite Balance Pending' : 'Payment Complete'
+            });
+
+            try {
+                showLoadingMessage();
+                
+                // Using the same URL and method from the AC service file
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, {
+                    method: 'POST',
+                    mode: 'no-cors' 
+                });
+
+                hideLoadingMessage();
+                hideCheckoutPopup();
+                showSuccessMessage();
+                
+                // Clear cart after successful booking
+                cart = [];
+                updateCartUI();
+                
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                hideLoadingMessage();
+                showErrorMessage();
+            }
+        }
+
+        // Message Popups (Success/Error/Loading) - Cloned
+        function showMessage(type, title, message) {
+            const existing = document.getElementById('app-message');
+            if(existing) existing.remove();
+            
+            const colors = {
+                success: { bg: 'bg-green-500', icon: '✅' },
+                error: { bg: 'bg-red-500', icon: '❌' },
+                loading: { bg: 'bg-blue-500', icon: '<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>' }
+            };
+            
+            const msg = colors[type];
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.id = 'app-message';
+            messageDiv.className = `fixed top-4 right-4 ${msg.bg} text-white p-4 rounded-xl shadow-2xl z-[1000] transition-opacity duration-300`;
+            messageDiv.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <span class="text-xl">${msg.icon}</span>
+                    <div>
+                        <p class="font-bold text-lg">${title}</p>
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(messageDiv);
+            
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    messageDiv.classList.add('opacity-0');
+                    setTimeout(() => messageDiv.remove(), 300);
+                }, 5000);
+            }
+        }
+
+        function showLoadingMessage() { showMessage('loading', 'Processing...', 'Saving your booking details'); }
+        function hideLoadingMessage() { const loadingDiv = document.getElementById('app-message'); if (loadingDiv) loadingDiv.remove(); }
+        function showSuccessMessage() { showMessage('success', 'Booking Confirmed!', 'Your DJ service is booked!'); }
+        function showErrorMessage() { showMessage('error', 'Booking Failed!', 'Please try again or contact support.'); }
+
+        // Event listeners (Cloned, added date validation)
+        document.addEventListener('DOMContentLoaded', function() {
+            renderServices();
+            updateCartUI();
+
+            // Cart button
+            document.getElementById('cart-btn').addEventListener('click', showCartPopup);
+            
+            // Close buttons
+            document.getElementById('close-cart').addEventListener('click', hideCartPopup);
+            document.getElementById('close-checkout').addEventListener('click', hideCheckoutPopup);
+            
+            // Proceed to checkout
+            document.getElementById('proceed-checkout').addEventListener('click', showCheckoutPopup);
+            
+            // Checkout form
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const eventDateInput = document.getElementById('booking-date');
+                if (!eventDateInput.value) {
+                    showMessage('error', 'Error', 'Please select the event date.');
+                    return;
+                }
+
+                const customerData = {
+                    name: document.getElementById('customer-name').value,
+                    mobile: document.getElementById('mobile-number').value,
+                    email: document.getElementById('email-id').value,
+                    address: document.getElementById('full-address').value,
+                    landmark: document.getElementById('landmark').value,
+                    pincode: document.getElementById('pincode').value
+                };
+
+                const eventDate = eventDateInput.value;
+                
+                initiatePayment(customerData, eventDate);
+            });
+
+            // Close popups when clicking outside
+            document.getElementById('cart-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCartPopup();
+            });
+            
+            document.getElementById('checkout-popup').addEventListener('click', function(e) {
+                if (e.target === this) hideCheckoutPopup();
+            });
         });
 
-        // Save to Google Sheets
-        async function saveToGoogleSheet(bookingData) {
-            return new Promise((resolve) => {
-                try {
-                    // Format date in Indian format: DD/MM/YYYY, HH:MM:SS AM/PM
-                    const indianDate = new Date(bookingData.booking_date).toLocaleString('en-IN', { 
-                        timeZone: 'Asia/Kolkata',
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                        hour12: true
-                    });
-                    
-                    // Create form data (URL encoded) to match Google Apps Script e.parameter
-                    const formData = new URLSearchParams();
-                    formData.append('timestamp', indianDate);
-                    formData.append('customerName', bookingData.customer_name);
-                    formData.append('mobile', bookingData.mobile_number);
-                    formData.append('email', bookingData.email_id);
-                    formData.append('address', bookingData.full_address);
-                    formData.append('landmark', bookingData.landmark);
-                    formData.append('pincode', bookingData.pin_code);
-                    formData.append('orderItems', bookingData.service_name + ' | Booking Date: ' + bookingData.booking_date_selected);
-                    formData.append('totalAmount', bookingData.service_price.toString());
-                    formData.append('paymentId', bookingData.transaction_id);
-                    formData.append('status', bookingData.status);
-
-                    // Use fetch with no-cors mode
-                    fetch(GOOGLE_SHEET_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: formData.toString()
-                    }).then(() => {
-                        // Wait 2 seconds to ensure Google Script processes the request
-                        setTimeout(() => resolve(true), 2000);
-                    }).catch((error) => {
-                        console.error('Error saving to Google Sheet:', error);
-                        // Still resolve after delay to show success message
-                        setTimeout(() => resolve(false), 2000);
-                    });
-                    
-                } catch (error) {
-                    console.error('Error preparing Google Sheet data:', error);
-                    setTimeout(() => resolve(false), 1000);
-                }
-            });
-        }
-
-        // Show success message
-        function showSuccessMessage(booking, sheetSaved) {
-            const successMsg = document.getElementById('successMessage');
-            const details = document.getElementById('successDetails');
-            
-            let sheetWarning = '';
-            if (!sheetSaved) {
-                sheetWarning = '<br><span class="text-yellow-200 text-xs">⚠️ Could not update Google Sheet. Your booking is saved and we will contact you.</span>';
-            }
-            
-            details.innerHTML = `
-                <strong>Transaction ID:</strong> ${booking.transaction_id}<br>
-                <strong>Service:</strong> ${booking.service_name}<br>
-                <strong>Amount Paid:</strong> ₹${booking.booking_amount}${sheetWarning}
-            `;
-            successMsg.classList.remove('hidden');
-
-            setTimeout(() => {
-                successMsg.classList.add('hidden');
-            }, 8000);
-        }
-
-        // Data SDK Handler
-        const dataHandler = {
-            onDataChanged(data) {
-                // Data is stored, no UI update needed for bookings
-            }
-        };
-
-        // Element SDK Implementation
-        async function onConfigChange(newConfig) {
-            config = { ...defaultConfig, ...newConfig };
-            
-            document.getElementById('tagline').textContent = config.company_tagline || defaultConfig.company_tagline;
-            document.getElementById('serviceTitle').textContent = config.service_title || defaultConfig.service_title;
-            document.getElementById('featuresTitle').textContent = config.features_title || defaultConfig.features_title;
+        // Element SDK integration (Updated for DJ Text Fields)
+        async function onConfigChange(config) {
+            document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+            document.getElementById('company-tagline').textContent = config.company_tagline || defaultConfig.company_tagline;
+            document.getElementById('customer-care').textContent = config.customer_care || defaultConfig.customer_care;
+            document.getElementById('email-address').textContent = config.email_address || defaultConfig.email_address;
+            document.getElementById('office-address').textContent = config.office_address || defaultConfig.office_address;
+            document.getElementById('footer-phone').textContent = config.customer_care || defaultConfig.customer_care;
+            document.getElementById('footer-email').textContent = config.email_address || defaultConfig.email_address;
+            document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+            document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+            document.getElementById('services-heading').textContent = config.services_heading || defaultConfig.services_heading;
+            document.getElementById('contact-heading').textContent = config.contact_heading || defaultConfig.contact_heading;
         }
 
         function mapToCapabilities(config) {
             return {
-                recolorables: [
-                    {
-                        get: () => config.primary_color || defaultConfig.primary_color,
-                        set: (value) => {
-                            config.primary_color = value;
-                            window.elementSdk.setConfig({ primary_color: value });
-                        }
-                    }
-                ],
+                recolorables: [],
                 borderables: [],
                 fontEditable: undefined,
                 fontSizeable: undefined
@@ -802,34 +869,28 @@
 
         function mapToEditPanelValues(config) {
             return new Map([
+                ["company_name", config.company_name || defaultConfig.company_name],
                 ["company_tagline", config.company_tagline || defaultConfig.company_tagline],
-                ["service_title", config.service_title || defaultConfig.service_title],
-                ["features_title", config.features_title || defaultConfig.features_title]
+                ["customer_care", config.customer_care || defaultConfig.customer_care],
+                ["email_address", config.email_address || defaultConfig.email_address],
+                ["office_address", config.office_address || defaultConfig.office_address],
+                ["hero_title", config.hero_title || defaultConfig.hero_title],
+                ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+                ["services_heading", config.services_heading || defaultConfig.services_heading],
+                ["contact_heading", config.contact_heading || defaultConfig.contact_heading]
             ]);
         }
 
-        // Initialize SDKs
-        async function init() {
-            if (window.dataSdk) {
-                const initResult = await window.dataSdk.init(dataHandler);
-                if (!initResult.isOk) {
-                    console.error("Failed to initialize data SDK");
-                }
-            }
-
-            if (window.elementSdk) {
-                window.elementSdk.init({
-                    defaultConfig,
-                    onConfigChange,
-                    mapToCapabilities,
-                    mapToEditPanelValues
-                });
-            }
-
-            renderServices();
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
         }
-
-        init();
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99ac916ef0b98e7e',t:'MTc2MjUxNTc1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ </body>
+
 </html>
