@@ -1,0 +1,1234 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sonipat Home Service - Professional Plumbing Services in Sonipat, Murthal, Bahalgarh, Kundli, Rai, Ganaur, Kharkhoda, Gohana, Mohana. Expert plumbers available 24/7 for all your plumbing needs.">
+  <meta name="keywords" content="plumber sonipat, plumbing services, home service sonipat, plumber near me,plumber in sonipat,sonipat plumber,best plumber in sonipat,emergency plumber near me,plumber in bahalgarh,plumber in murthal,plumber in ganaur,plumber in rai,plumber in kundli,plumber in TDI city sonipat,plumber in apex greens sonipat,TDI city plumber,Apex Greens plumber service,water tap repair sonipat,bathroom fitting installation sonipat,pipeline repair sonipat,blocked sink repair sonipat,geyser installation service sonipat,kitchen faucet repair sonipat,Indian toilet installation sonipat,24 hour plumber sonipat,emergency plumber sonipat,urgent plumber near me,
+,emergency plumber, pipe repair, tap repair, bathroom fitting, kitchen plumbing, water heater installation, sonipat plumber, murthal plumber, bahalgarh plumber">
+  <meta name="author" content="Sonipat Home Service">
+  <meta property="og:title" content="Sonipat Home Service - Professional Plumbing Services">
+  <meta property="og:description" content="Expert plumbing services in Sonipat and nearby areas. Book now with just Rs. 49!">
+  <meta property="og:type" content="website">
+  <title>Sonipat Home Service - Professional Plumbing Services | Expert Plumbers</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 1s ease;
+            min-height: 100%;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            font-size: 40px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .company-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .cart-icon {
+            font-size: 32px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .services-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #1e40af;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .service-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1e40af;
+        }
+
+        .service-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .service-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #059669;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .locations-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 20px;
+            margin: 40px 0;
+        }
+
+        .locations-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .location-tag {
+            background: #dbeafe;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-align: center;
+            font-weight: 600;
+            color: #1e40af;
+            border: 2px solid #3b82f6;
+        }
+
+        .features-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+        }
+
+        .feature-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        .close-btn {
+            font-size: 30px;
+            cursor: pointer;
+            color: #666;
+            background: none;
+            border: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .booking-amount {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .booking-amount-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #92400e;
+        }
+
+        .payment-note {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            background: #059669;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #047857;
+        }
+
+        .submit-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            z-index: 3000;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #059669;
+            margin-bottom: 15px;
+        }
+
+        .transaction-details {
+            background: #f3f4f6;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .detail-row {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #3b82f6;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 15px;
+            background: #3b82f6;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: #2563eb;
+        }
+
+        .app-stores {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .app-store-link {
+            display: inline-block;
+        }
+
+        .app-store-badge {
+            height: 50px;
+            width: auto;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .payment-icon {
+            font-size: 24px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #475569;
+            font-size: 14px;
+        }
+
+        /* Mobile Phones (iPhone & Android) - Portrait */
+        @media (max-width: 480px) {
+            .header {
+                padding: 12px 15px;
+            }
+
+            .logo-icon {
+                font-size: 32px;
+            }
+
+            .company-name {
+                font-size: 16px;
+            }
+
+            .cart-icon {
+                font-size: 28px;
+            }
+
+            .hero {
+                padding: 40px 15px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+
+            .hero p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+
+            .services-section {
+                padding: 30px 15px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 20px;
+            }
+
+            .service-icon {
+                font-size: 50px;
+            }
+
+            .service-name {
+                font-size: 18px;
+            }
+
+            .service-price {
+                font-size: 24px;
+            }
+
+            .locations-section {
+                padding: 30px 15px;
+            }
+
+            .locations-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .location-tag {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .features-section {
+                padding: 30px 15px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .feature-item {
+                padding: 15px;
+            }
+
+            .feature-icon {
+                font-size: 35px;
+            }
+
+            .feature-text {
+                font-size: 14px;
+            }
+
+            .modal-content {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .modal-title {
+                font-size: 20px;
+            }
+
+            .form-input {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .footer {
+                display: none;
+            }
+
+            .logo-text {
+                display: none;
+            }
+        }
+
+        /* Mobile Phones - Landscape & Small Tablets */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .header {
+                padding: 12px 20px;
+            }
+
+            .logo-icon {
+                font-size: 36px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .locations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer {
+                display: none;
+            }
+
+            .logo-text {
+                display: flex;
+            }
+        }
+
+        /* Tablets - Portrait */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero {
+                padding: 50px 30px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .locations-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Tablets - Landscape & Small Laptops */
+        @media (min-width: 1025px) and (max-width: 1366px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .locations-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Large Laptops & Desktops */
+        @media (min-width: 1367px) {
+            .services-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .locations-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Touch-friendly improvements for all mobile devices */
+        @media (hover: none) and (pointer: coarse) {
+            .add-to-cart-btn {
+                padding: 15px 30px;
+                font-size: 18px;
+                min-height: 48px;
+            }
+
+            .form-input {
+                min-height: 48px;
+            }
+
+            .submit-btn {
+                min-height: 52px;
+                font-size: 18px;
+            }
+
+            .close-btn {
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+            .cart-icon {
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <header class="header">
+   <div class="header-content"><a href="https://www.sonipathomeservice.com" class="logo" target="_blank" rel="noopener noreferrer">
+     <div class="logo-icon">
+      🔧
+     </div>
+     <div class="logo-text">
+      <div class="company-name" id="headerCompanyName">
+       Plumber Service-Sonipat Home Service
+      </div>
+      <div class="contact-info">
+       📞 <span id="headerContactNumber"><b>8816014071</b></span>
+      </div>
+     </div></a>
+    <div class="cart-icon" onclick="toggleCart()">
+     🛒 <span class="cart-count" id="cartCount">0</span>
+    </div>
+   </div>
+  </header>
+  <section class="hero">
+   <h1 id="heroTagline">Professional Plumbing Services</h1>
+   <p id="heroDescription">Expert plumbers at your doorstep in Sonipat and nearby areas</p>
+  </section>
+  <section class="services-section">
+   <h2 class="section-title">Our Plumbing Services</h2>
+   <div class="services-grid" id="servicesGrid"></div>
+  </section>
+  <section class="locations-section">
+   <div class="services-section">
+    <h2 class="section-title">Service Locations</h2>
+    <div class="locations-grid" id="locationsGrid"></div>
+   </div>
+  </section>
+  <section class="features-section">
+   <h2 class="section-title">Why Choose Us?</h2>
+   <div class="features-grid">
+    <div class="feature-item">
+     <div class="feature-icon">
+      ⚡
+     </div>
+     <div class="feature-text">
+      24/7 Emergency Service
+     </div>
+    </div>
+    <div class="feature-item">
+     <div class="feature-icon">
+      👨‍🔧
+     </div>
+     <div class="feature-text">
+      Certified Professionals
+     </div>
+    </div>
+    <div class="feature-item">
+     <div class="feature-icon">
+      💰
+     </div>
+     <div class="feature-text">
+      Affordable Pricing
+     </div>
+    </div>
+    <div class="feature-item">
+     <div class="feature-icon">
+      ✅
+     </div>
+     <div class="feature-text">
+      Quality Guaranteed
+     </div>
+    </div>
+    <div class="feature-item">
+     <div class="feature-icon">
+      🚀
+     </div>
+     <div class="feature-text">
+      Quick Response Time
+     </div>
+    </div>
+    <div class="feature-item">
+     <div class="feature-icon">
+      🛠️
+     </div>
+     <div class="feature-text">
+      Modern Equipment
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="modal" id="bookingModal">
+   <div class="modal-content">
+    <div class="modal-header">
+     <h2 class="modal-title">Book Your Service</h2><button class="close-btn" onclick="closeModal()">×</button>
+    </div>
+    <form id="bookingForm">
+     <div class="form-group"><label class="form-label" for="customerName">Customer Name *</label> <input type="text" id="customerName" class="form-input" required>
+     </div>
+     <div class="form-group"><label class="form-label" for="mobileNumber">Mobile Number *</label> <input type="tel" id="mobileNumber" class="form-input" pattern="[0-9]{10}" maxlength="10" required>
+     </div>
+     <div class="form-group"><label class="form-label" for="emailId">Email ID *</label> <input type="email" id="emailId" class="form-input" required>
+     </div>
+     <div class="form-group"><label class="form-label" for="fullAddress">Full Address *</label> <input type="text" id="fullAddress" class="form-input" required>
+     </div>
+     <div class="form-group"><label class="form-label" for="landmark">Landmark *</label> <input type="text" id="landmark" class="form-input" required>
+     </div>
+     <div class="form-group"><label class="form-label" for="pinCode">Pin Code *</label> <input type="text" id="pinCode" class="form-input" pattern="[0-9]{6}" maxlength="6" required>
+     </div>
+     <div class="booking-amount">
+      <div class="booking-amount-text">
+       Booking Amount: ₹<span id="bookingAmount">49</span>
+      </div>
+      <div class="payment-note">
+       Rest payment on work completion
+      </div>
+     </div><button type="submit" class="submit-btn" id="submitBtn">Proceed to Payment</button>
+    </form>
+   </div>
+  </div>
+  <div class="success-message" id="successMessage">
+   <div class="success-icon">
+    ✅
+   </div>
+   <h2 class="success-title">Booking Confirmed!</h2>
+   <div class="transaction-details" id="transactionDetails"></div>
+  </div>
+  <footer class="footer">
+   <div class="footer-content">
+    <div class="footer-grid">
+     <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p><strong id="footerCompanyName">Sonipat Home Service.Com</strong></p>
+      <p id="footerAddress">128/1, Sainipura, Sonipat</p>
+      <p>📞 8816014071</p>
+      <p>📧 <span id="footerEmail">care@sonipathomeservice.com</span></p>
+     </div>
+     <div class="footer-section">
+      <h3>Follow Us</h3>
+      <div class="social-links"><a href="https://facebook.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" class="social-link">Facebook</a> <a href="https://instagram.com/sonipathomeservice" target="_blank" rel="noopener noreferrer" class="social-link">Instagram</a>
+      </div>
+      <div class="social-links"><a href="https://x.com/sonipathome" target="_blank" rel="noopener noreferrer" class="social-link">X (Twitter)</a> <a href="https://wa.me/918816014071" target="_blank" rel="noopener noreferrer" class="social-link">WhatsApp</a>
+      </div>
+     </div>
+     <div class="footer-section">
+      <h3>Download Our App</h3>
+      <div class="app-stores"><a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" class="app-store-link"> <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 135 40'%3E%3Cpath fill='%23000' d='M130 40H5c-2.8 0-5-2.2-5-5V5c0-2.8 2.2-5 5-5h125c2.8 0 5 2.2 5 5v30c0 2.8-2.2 5-5 5z'/%3E%3Cpath fill='%23FFF' d='M47.4 10.2c0 .8-.2 1.5-.7 2-.6.6-1.3.9-2.2.9s-1.6-.3-2.2-.9c-.6-.6-.9-1.3-.9-2.2s.3-1.6.9-2.2c.6-.6 1.3-.9 2.2-.9.4 0 .8.1 1.2.3.4.2.7.4.9.7l-.5.5c-.4-.5-.9-.7-1.6-.7-.6 0-1.2.2-1.6.7-.5.4-.7 1-.7 1.7s.2 1.3.7 1.7c.5.4 1 .7 1.6.7.7 0 1.2-.2 1.7-.7.3-.3.5-.7.5-1.2h-2.2v-.8h2.9v.4zm3.7-2.2h-2.6v1.9h2.3v.7h-2.3v1.9h2.6v.8h-3.5V7.2h3.5v.8zm4.8 5.3h-.9V8.7h-1.6v-.8h4.1v.8h-1.6v4.6zm3.8 0V7.2h.9v5.3h-.9zm4.8 0h-.9V8.7h-1.6v-.8h4.1v.8h-1.6v4.6zm9.4-.8c-.6.6-1.3.9-2.2.9s-1.6-.3-2.2-.9c-.6-.6-.9-1.3-.9-2.2s.3-1.6.9-2.2c.6-.6 1.3-.9 2.2-.9s1.6.3 2.2.9c.6.6.9 1.3.9 2.2s-.3 1.6-.9 2.2zm-3.8-.5c.4.4 1 .7 1.6.7s1.2-.2 1.6-.7c.4-.4.7-1 .7-1.7s-.2-1.3-.7-1.7c-.4-.4-1-.7-1.6-.7s-1.2.2-1.6.7c-.4.4-.7 1-.7 1.7s.2 1.3.7 1.7zm5.8 1.3V7.2h1.2l2.9 4.7V7.2h.9v5.3h-1l-3.1-5v5h-.9z'/%3E%3Cpath fill='%23FFF' d='M68.1 21.8c-2.4 0-4.3 1.8-4.3 4.3 0 2.4 1.9 4.3 4.3 4.3s4.3-1.8 4.3-4.3c0-2.6-1.9-4.3-4.3-4.3zm0 6.8c-1.3 0-2.4-1.1-2.4-2.6s1.1-2.6 2.4-2.6 2.4 1.1 2.4 2.6-1.1 2.6-2.4 2.6zm-9.3-6.8c-2.4 0-4.3 1.8-4.3 4.3 0 2.4 1.9 4.3 4.3 4.3s4.3-1.8 4.3-4.3c0-2.6-1.9-4.3-4.3-4.3zm0 6.8c-1.3 0-2.4-1.1-2.4-2.6s1.1-2.6 2.4-2.6 2.4 1.1 2.4 2.6-1.1 2.6-2.4 2.6zm-11.1-5.5v1.8h4.3c-.1 1-.5 1.8-1 2.3-.6.6-1.6 1.3-3.3 1.3-2.7 0-4.7-2.1-4.7-4.8s2.1-4.8 4.7-4.8c1.4 0 2.5.6 3.3 1.3l1.3-1.3c-1.1-1-2.5-1.8-4.5-1.8-3.6 0-6.7 3-6.7 6.6 0 3.6 3.1 6.6 6.7 6.6 2 0 3.4-.6 4.6-1.9 1.2-1.2 1.6-2.9 1.6-4.2 0-.4 0-.8-.1-1.1h-6.2zm45.4 1.4c-.4-1-1.4-2.7-3.6-2.7s-4 1.7-4 4.3c0 2.4 1.8 4.3 4.2 4.3 1.9 0 3.1-1.2 3.5-1.9l-1.4-1c-.5.7-1.1 1.2-2.1 1.2s-1.6-.4-2.1-1.3l5.7-2.4-.2-.5zm-5.8 1.4c0-1.6 1.3-2.5 2.2-2.5.7 0 1.4.4 1.6.9l-3.8 1.6zM82.6 30h1.9V17.5h-1.9V30zm-3-7.3c-.5-.5-1.3-1-2.3-1-2.1 0-4.1 1.9-4.1 4.3s1.9 4.2 4.1 4.2c1 0 1.8-.5 2.2-1h.1v.6c0 1.6-.9 2.5-2.3 2.5-1.1 0-1.9-.8-2.1-1.5l-1.6.7c.5 1.1 1.7 2.5 3.8 2.5 2.2 0 4-1.3 4-4.4V22h-1.8v.7zm-2.2 5.9c-1.3 0-2.4-1.1-2.4-2.6s1.1-2.6 2.4-2.6 2.3 1.1 2.3 2.6-1 2.6-2.3 2.6zm24.4-11.1h-4.5V30h1.9v-4.7h2.6c2.1 0 4.1-1.5 4.1-3.9s-2-3.9-4.1-3.9zm.1 6h-2.7v-4.3h2.7c1.4 0 2.2 1.2 2.2 2.1-.1 1.1-.9 2.2-2.2 2.2zm11.5-1.8c-1.4 0-2.8.6-3.3 1.9l1.7.7c.4-.7 1-.9 1.7-.9 1 0 1.9.6 2 1.6v.1c-.3-.2-1.1-.5-1.9-.5-1.8 0-3.6 1-3.6 2.8 0 1.7 1.5 2.8 3.1 2.8 1.3 0 1.9-.6 2.4-1.2h.1v1h1.8v-4.8c-.2-2.2-1.9-3.5-4-3.5zm-.2 6.9c-.6 0-1.5-.3-1.5-1.1 0-1 1.1-1.3 2-1.3.8 0 1.2.2 1.7.4-.2 1.2-1.2 2-2.2 2zm10.5-6.6l-2.1 5.4h-.1l-2.2-5.4h-2l3.3 7.6-1.9 4.2h1.9l5.1-11.8h-2zm-16.8 8h1.9V17.5h-1.9V30z'/%3E%3Cpath fill='%2300D7FE' d='M10.4 7.5c-.3.3-.4.8-.4 1.4V31c0 .6.2 1.1.5 1.4l.1.1L23 20.1v-.2L10.4 7.5z'/%3E%3Cpath fill='%23FFD900' d='M27 24.3l-4.1-4.1V19.9l4.1-4.1.1.1 4.9 2.8c1.4.8 1.4 2.1 0 2.9l-5 2.7z'/%3E%3Cpath fill='%23FF5621' d='M27.1 24.2L23 20.1 10.4 32.8c.5.5 1.2.5 2.1.1l14.6-8.7'/%3E%3Cpath fill='%2300A94B' d='M27.1 16.1L12.5 7.5c-.9-.5-1.6-.4-2.1.1L23 20.1l4.1-4z'/%3E%3C/svg%3E" alt="Get it on Google Play" class="app-store-badge"> </a> <a href="https://www.indusappstore.com/apps/house-and-home/sonipat-home-service/com.crapd.sonipathomeservice/?page=details&amp;id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" class="app-store-link"> <img src="https://www.indusappstore.com/assets/img/DownloadIndusOS.png" alt="Get it on Indus AppStore" class="app-store-badge" onerror="this.style.display='none';"> </a>
+      </div>
+     </div>
+     <div class="footer-section">
+      <h3>Payment Methods</h3>
+      <div class="payment-methods"><span class="payment-icon">💳</span> <span class="payment-icon">🏦</span> <span class="payment-icon">📱</span> <span class="payment-icon">💰</span>
+      </div>
+      <p style="margin-top: 10px; font-size: 14px;">Credit/Debit Card, Net Banking, UPI &amp; Wallet</p>
+     </div>
+    </div>
+    <div class="footer-bottom">
+     <p>© 2024 Sonipat Home Service.Com. All rights reserved.</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+        const defaultConfig = {
+            company_name: "Sonipat Home Service.Com",
+            contact_number: "8816014071",
+            tagline: "Professional Plumbing Services",
+            hero_description: "Expert plumbers at your doorstep in Sonipat and nearby areas",
+            footer_address: "128/1, Sainipura, Sonipat",
+            footer_email: "care@sonipathomeservice.com"
+        };
+
+        const services = [
+            
+            {
+                id: 2,
+                name: "Wash Basin Installation",
+                icon: "🚰",
+                description: "Professional wash basin installation service",
+                price: 499,
+                fullPrice: 499
+            },
+            {
+                id: 3,
+                name: "Western Toilet Sheet Installation",
+                icon: "🚽",
+                description: "Complete western toilet sheet installation",
+                price: 1999,
+                fullPrice: 1999
+            },
+            {
+                id: 4,
+                name: "Indian Toilet Sheet Installation",
+                icon: "🚾",
+                description: "Complete Indian toilet sheet installation",
+                price: 1999,
+                fullPrice: 1999
+            },
+            {
+                id: 5,
+                name: "Flush Tank Replacement",
+                icon: "💧",
+                description: "Replace old or damaged flush tank",
+                price: 499,
+                fullPrice: 499
+            },
+            {
+                id: 6,
+                name: "Tap Change",
+                icon: "🔧",
+                description: "Replace old taps with new ones",
+                price: 199,
+                fullPrice: 199
+            },
+            {
+                id: 7,
+                name: "Water Mixer Change",
+                icon: "🚿",
+                description: "Install or replace water mixer",
+                price: 499,
+                fullPrice: 499
+            },
+            {
+                id: 8,
+                name: "Bathroom Accessory Installation",
+                icon: "🛁",
+                description: "Install bathroom accessories and fittings",
+                price: 199,
+                fullPrice: 199
+            },
+            {
+                id: 9,
+                name: "Bathroom Shower Installation",
+                icon: "🚿",
+                description: "Install or replace bathroom shower",
+                price: 199,
+                fullPrice: 199
+            },
+            {
+                id: 10,
+                name: "Water Motor Installation",
+                icon: "⚙️",
+                description: "Professional water motor installation",
+                price: 499,
+                fullPrice: 499
+            },
+            {
+                id: 11,
+                name: "Connection Hose Pipe Replacement",
+                icon: "🔗",
+                description: "Replace connection hose pipes",
+                price: 199,
+                fullPrice: 199
+            }
+        ];
+
+        const locations = [
+            "Sonipat", "Murthal", "Bahalgarh", "Kundli", "Rai", 
+            "Ganaur", "Kharkhoda", "Gohana", "Mohana",
+            "All Societies & Sectors"
+        ];
+
+        const backgroundColors = [
+            'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+            'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+            'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+            'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+            'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)'
+        ];
+
+        let currentColorIndex = 0;
+        let cart = [];
+        let selectedService = null;
+
+        function changeBackground() {
+            document.body.style.background = backgroundColors[currentColorIndex];
+            currentColorIndex = (currentColorIndex + 1) % backgroundColors.length;
+        }
+
+        changeBackground();
+        setInterval(changeBackground, 30000);
+
+        function renderServices() {
+            const grid = document.getElementById('servicesGrid');
+            grid.innerHTML = services.map(service => `
+                <div class="service-card">
+                    <div class="service-icon">${service.icon}</div>
+                    <div class="service-name">${service.name}</div>
+                    <div class="service-description">${service.description}</div>
+                    <div class="service-price">₹${service.price}</div>
+                    <button class="add-to-cart-btn" onclick="addToCart(${service.id})">Book Now</button>
+                </div>
+            `).join('');
+        }
+
+        function renderLocations() {
+            const grid = document.getElementById('locationsGrid');
+            grid.innerHTML = locations.map(location => `
+                <div class="location-tag">${location}</div>
+            `).join('');
+        }
+
+        function addToCart(serviceId) {
+            selectedService = services.find(s => s.id === serviceId);
+            if (selectedService) {
+                document.getElementById('bookingModal').classList.add('active');
+                const bookingAmount = selectedService.id === 1 ? 1 : 49;
+                document.getElementById('bookingAmount').textContent = bookingAmount;
+            }
+        }
+
+        function toggleCart() {
+            if (cart.length > 0) {
+                alert('Cart feature - items in cart: ' + cart.length);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+            document.getElementById('bookingForm').reset();
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+
+            const formData = {
+                name: document.getElementById('customerName').value,
+                mobile: document.getElementById('mobileNumber').value,
+                email: document.getElementById('emailId').value,
+                address: document.getElementById('fullAddress').value,
+                landmark: document.getElementById('landmark').value,
+                pincode: document.getElementById('pinCode').value,
+                service: selectedService.name,
+                amount: selectedService.id === 1 ? 1 : 49
+            };
+
+            const options = {
+                key: "rzp_live_RLjzp7VlXERwiG",
+                amount: formData.amount * 100,
+                currency: "INR",
+                name: "Sonipat Home Service",
+                description: formData.service,
+                image: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🔧</text></svg>",
+                handler: function (response) {
+                    showSuccessMessage(response.razorpay_payment_id, formData);
+                },
+                prefill: {
+                    name: formData.name,
+                    email: formData.email,
+                    contact: formData.mobile
+                },
+                notes: {
+                    address: formData.address,
+                    landmark: formData.landmark,
+                    pincode: formData.pincode
+                },
+                theme: {
+                    color: "#2563eb"
+                },
+                modal: {
+                    ondismiss: function() {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Proceed to Payment';
+                    }
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        });
+
+        async function saveToGoogleSheet(transactionId, formData) {
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec';
+            
+            const sheetData = new FormData();
+            sheetData.append('timestamp', new Date().toLocaleString('hi-IN'));
+            sheetData.append('customerName', formData.name);
+            sheetData.append('mobile', formData.mobile);
+            sheetData.append('email', formData.email);
+            sheetData.append('address', formData.address);
+            sheetData.append('landmark', formData.landmark);
+            sheetData.append('pincode', formData.pincode);
+            sheetData.append('orderItems', formData.service);
+            sheetData.append('totalAmount', formData.amount);
+            sheetData.append('paymentId', transactionId);
+            sheetData.append('status', 'Paid');
+            
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: sheetData
+                });
+                
+                const result = await response.json();
+                console.log('Google Sheet save result:', result);
+            } catch (error) {
+                console.error('Error saving to Google Sheet:', error);
+            }
+        }
+
+        function showSuccessMessage(transactionId, formData) {
+            closeModal();
+            
+            saveToGoogleSheet(transactionId, formData);
+            
+            const detailsHtml = `
+                <div class="detail-row"><span class="detail-label">Transaction ID:</span> ${transactionId}</div>
+                <div class="detail-row"><span class="detail-label">Service:</span> ${formData.service}</div>
+                <div class="detail-row"><span class="detail-label">Name:</span> ${formData.name}</div>
+                <div class="detail-row"><span class="detail-label">Mobile:</span> ${formData.mobile}</div>
+                <div class="detail-row"><span class="detail-label">Amount Paid:</span> ₹${formData.amount}</div>
+                <div class="detail-row"><span class="detail-label">Balance:</span> Pay on completion</div>
+            `;
+            
+            document.getElementById('transactionDetails').innerHTML = detailsHtml;
+            document.getElementById('successMessage').classList.add('active');
+            
+            setTimeout(() => {
+                document.getElementById('successMessage').classList.remove('active');
+                document.getElementById('bookingForm').reset();
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').textContent = 'Proceed to Payment';
+            }, 5000);
+        }
+
+        async function onConfigChange(config) {
+            const companyName = config.company_name || defaultConfig.company_name;
+            const contactNumber = config.contact_number || defaultConfig.contact_number;
+            const tagline = config.tagline || defaultConfig.tagline;
+            const heroDescription = config.hero_description || defaultConfig.hero_description;
+            const footerAddress = config.footer_address || defaultConfig.footer_address;
+            const footerEmail = config.footer_email || defaultConfig.footer_email;
+
+            document.getElementById('headerCompanyName').textContent = companyName;
+            document.getElementById('headerContactNumber').textContent = contactNumber;
+            document.getElementById('heroTagline').textContent = tagline;
+            document.getElementById('heroDescription').textContent = heroDescription;
+            document.getElementById('footerCompanyName').textContent = companyName;
+            document.getElementById('footerAddress').textContent = footerAddress;
+            document.getElementById('footerEmail').textContent = footerEmail;
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig: defaultConfig,
+                onConfigChange: onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["company_name", config.company_name || defaultConfig.company_name],
+                    ["contact_number", config.contact_number || defaultConfig.contact_number],
+                    ["tagline", config.tagline || defaultConfig.tagline],
+                    ["hero_description", config.hero_description || defaultConfig.hero_description],
+                    ["footer_address", config.footer_address || defaultConfig.footer_address],
+                    ["footer_email", config.footer_email || defaultConfig.footer_email]
+                ])
+            });
+        }
+
+        renderServices();
+        renderLocations();
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99cde6bfe351550b',t:'MTc2Mjg2NTI4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
