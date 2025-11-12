@@ -96,6 +96,19 @@
         --color-text-secondary: #6c757d;
         --color-button-text: #ffffff;
       }
+
+      /* Styles for Offer Slider */
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        /* A card is w-44 (11rem) + its wrapper is px-3 (1.5rem). Total = 12.5rem. 8 cards * 12.5rem = 100rem */
+        100% { transform: translateX(calc(-12.5rem * 8)); }
+      }
+      .animate-scroll {
+        animation: scroll 40s linear infinite;
+      }
+      .group-hover\:pause:hover {
+        animation-play-state: paused;
+      }
     </style>
 <script type="importmap">
 {
@@ -109,6 +122,57 @@
 </head>
 <body>
     <div id="root"></div>
+    <!-- Today Offer's Card Slider Section Start -->
+<div id="todays-offers" style="max-width:400px;margin:auto;">
+  <h2 style="text-align:center;font-size:24px;color:#f8710a;">Today's Offer's</h2>
+  <div id="offer-card" style="transition:.5s;padding:16px;text-align:center;background:#fff;border-radius:16px;box-shadow:0 6px 24px #00000022;">
+    <!-- Card content will appear here -->
+  </div>
+</div>
+<script>
+  // Dummy minimum price offers (update as needed)
+  const offerCards = [
+    
+           { title: "AC Installation & Repair",price:199, oldPrice:299, discount:"33% OFF" ,imageUrl: "drng1.png", href: "book-ac-services.html" },
+          { title: "Refrigerator Repair", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng2.png", href: "book-fridge-refrigrator-services.html" },
+          { title: "Washing Machine Repair", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng3.jpeg", href: "book-washing-machine-services.html" },
+          { title: "LED TV Repair & Installation", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng17.png", href: "book-tv-repair.html" },
+          { title: "Geyser Repair", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "five.png", href: "book-geyser-services.html" },
+          { title: "Electrician Services", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng7.png", href: "electricianservice.html" },
+          { title: "Plumber", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng40.png", href: "book-plumber.html" },
+          { title: "R.O install & Repair", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng13.png", href: "book-ro-serrvice.html" },
+          { title: "Chimney Cleaning", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "six.png", href: "book-chimney-cleaning.html" },
+          { title: "Septic Tank Cleaning",price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng29.png", href: "book-safty-tank-service.html" },
+          { title: "Sewerage Unblock", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng9.png", href: "book-sewerage-unblock-service.html" },
+          { title: "Pest Control Service", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng23.png", href: "book-pasti-control-service.html" },
+          { title: "Sofa Cleaning Service", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng25.png", href: "book-Sofa-cleaning.html" },
+          { title: "Water Tank Cleaning", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng31.png", href: "watertankcleaning.html" },
+          { title: "Wi-Fi Connection", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng21.png", href: "book-wifi-service.html" },
+          { title: "DTH Installation", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng22.png", href: "Book-dth-installation-service.html" },
+          { title: "CCTV Solutions", price:199, oldPrice:299, discount:"33% OFF",imageUrl: "drng12.png", href: "book-cctv-service.html" },
+
+  ];
+  let offerIndex = 0;
+  function renderOfferCard(){
+    const o = offerCards[offerIndex];
+    document.getElementById('offer-card').innerHTML = `
+      <img src="${o.img}" style="width:90px;height:90px;border-radius:8px;border:2px solid #f8710a;background:#fafafa;object-fit:cover;">
+      <h3 style="font-size:18px;font-weight:600;margin:8px 0;">${o.title}</h3>
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
+        <span style="color:#ef4444;font-size:20px;font-weight:700;">₹${o.price}</span>
+        <span style="text-decoration:line-through;color:#888;">₹${o.oldPrice}</span>
+        <span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;">${o.discount}</span>
+      </div>
+    `;
+  }
+  renderOfferCard();
+  setInterval(()=>{
+    offerIndex=(offerIndex+1)%offerCards.length;
+    renderOfferCard();
+  },3000);
+</script>
+<!-- Today Offer's Card Slider Section End -->
+
 
     <script type="text/babel">
       const { useState, useEffect } = React;
@@ -402,16 +466,67 @@
           </a>
         );
       };
+      
+      // --- NEW: Today's Offers Components ---
+      const offerServicesData = [
+          { ...servicesData[0], originalPrice: 599, offerPrice: 199 }, // AC
+          { ...servicesData[1], originalPrice: 499, offerPrice: 199 }, // Fridge
+          { ...servicesData[2], originalPrice: 499, offerPrice: 199 }, // Washing Machine
+          { ...servicesData[12], originalPrice: 999, offerPrice: 299 }, // Sofa Cleaning
+          { ...servicesData[11], originalPrice: 799, offerPrice: 499 }, // Pest Control
+          { ...servicesData[13], originalPrice: 699, offerPrice: 399 }, // Water Tank
+          { ...servicesData[4], originalPrice: 599, offerPrice: 149 }, // Geyser
+          { ...servicesData[7], originalPrice: 499, offerPrice: 199 }, // RO
+      ];
 
-      const Services = () => (
-        <section id="services-section" className="py-16 px-4 text-center">
-          <h2 className="text-4xl font-extrabold mb-3 text-secondary transition-colors">Our <span className="text-primary">30+</span> Home Services</h2>
-          <div className="inline-block h-1.5 w-32 bg-primary rounded mb-12 transition-colors"></div>
-          <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {servicesData.map((service, index) => <ServiceCard key={index} service={service} />)}
-          </div>
-        </section>
-      );
+      const OfferCard = ({ service }) => {
+          const discount = Math.round(((service.originalPrice - service.offerPrice) / service.originalPrice) * 100);
+          return (
+              <div className="flex-shrink-0 w-44 bg-card rounded-2xl shadow-lg overflow-hidden transform transition-transform hover:scale-105 border-2 border-primary/20">
+                  <div className="relative">
+                      <img src={service.imageUrl} alt={service.title} className="w-full h-24 object-cover" />
+                      <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                          {discount}% OFF
+                      </div>
+                  </div>
+                  <div className="p-2">
+                      <h3 className="font-bold text-sm text-text-primary truncate">{service.title}</h3>
+                      <div className="flex items-center justify-between mt-2">
+                          <div>
+                              <p className="text-sm font-extrabold text-primary">₹{service.offerPrice}</p>
+                              <p className="text-xs text-text-secondary line-through">₹{service.originalPrice}</p>
+                          </div>
+                          <a href={service.href} className="bg-primary text-button-text text-xs font-bold py-1.5 px-3 rounded-lg hover:bg-secondary transition-colors">
+                              Book Now
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          );
+      };
+
+      const TodaysOffers = () => {
+          const loopedOffers = [...offerServicesData, ...offerServicesData];
+          return (
+              <div className="container mx-auto my-12">
+                   <h3 className="text-3xl font-extrabold mb-6 text-secondary transition-colors text-left">
+                      Today's <span className="text-primary">Offers</span>
+                  </h3>
+                  <div className="relative overflow-hidden group">
+                      <div className="flex animate-scroll group-hover:pause">
+                          {loopedOffers.map((service, index) => (
+                              <div key={index} className="px-3">
+                                  <OfferCard service={service} />
+                              </div>
+                          ))}
+                      </div>
+                       <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-background to-transparent pointer-events-none"></div>
+                       <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-background to-transparent pointer-events-none"></div>
+                  </div>
+              </div>
+          );
+      };
+      // --- END: Today's Offers Components ---
 
       const Footer = () => (
         <footer id="contact" className="bg-gray-800 text-gray-300 py-12 px-4 hidden lg:grid">
@@ -581,7 +696,20 @@
             <Header />
             <main>
               <Hero />
-              <Services />
+              <section id="services-section" className="py-16 px-4">
+                <div className="text-center">
+                    <h2 className="text-4xl font-extrabold mb-3 text-secondary transition-colors">Our <span className="text-primary">30+</span> Home Services</h2>
+                    <div className="inline-block h-1.5 w-32 bg-primary rounded mb-12 transition-colors"></div>
+                </div>
+
+                {/* TODAY'S OFFERS SLIDER */}
+                <TodaysOffers />
+
+                {/* ALL SERVICES GRID */}
+                <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
+                    {servicesData.map((service, index) => <ServiceCard key={index} service={service} />)}
+                </div>
+              </section>
             </main>
             <Stats />
             <Footer />
@@ -598,23 +726,5 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
