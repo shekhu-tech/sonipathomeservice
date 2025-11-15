@@ -848,22 +848,11 @@
                     `📅 *Date:* ${new Date().toLocaleString('hi-IN')}\n\n` +
                     `*Sonipat Home Service* - Tree Care Request`;
                 
-                // Send to WhatsApp - Universal approach
+                // Send to WhatsApp - Fixed approach for all devices
                 const whatsappUrl = `https://wa.me/918816014071?text=${encodeURIComponent(whatsappMessage)}`;
                 
-                // Try to open WhatsApp app first, fallback to web
-                try {
-                    // For all devices - open in new window/tab
-                    const whatsappWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-                    
-                    // If popup blocked, try direct navigation
-                    if (!whatsappWindow) {
-                        window.location.href = whatsappUrl;
-                    }
-                } catch (error) {
-                    // Fallback - direct navigation
-                    window.location.href = whatsappUrl;
-                }
+                // Universal WhatsApp opening - works on all devices
+                window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
                 
                 // Submit to Data SDK (Canva Sheet) if available
                 if (window.dataSdk) {
@@ -895,5 +884,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99eda68bd157919e',t:'MTc2MzE5ODE5NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edac2c47d0919e',t:'MTc2MzE5ODQyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
