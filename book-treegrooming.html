@@ -905,25 +905,49 @@
 
         // Universal call function that works on all devices
         function makeCall(phoneNumber) {
-            // Try multiple methods for maximum compatibility
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = 'tel:' + phoneNumber;
+            link.style.display = 'none';
+            
+            // Add to DOM, click, then remove
+            document.body.appendChild(link);
+            
             try {
-                // Method 1: Direct tel: protocol
-                window.location.href = 'tel:' + phoneNumber;
+                link.click();
             } catch (error) {
+                // Fallback: copy number and show message
+                copyPhoneNumber(phoneNumber);
+            } finally {
+                document.body.removeChild(link);
+            }
+        }
+
+        // Copy phone number function
+        function copyPhoneNumber(phoneNumber) {
+            // Try to copy to clipboard
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(phoneNumber).then(() => {
+                    showCallMessage(phoneNumber, '📋 Phone number copied! Please dial manually.');
+                }).catch(() => {
+                    showCallMessage(phoneNumber, '📞 Please dial this number manually:');
+                });
+            } else {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = phoneNumber;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.select();
+                
                 try {
-                    // Method 2: Open in new window
-                    window.open('tel:' + phoneNumber, '_self');
-                } catch (error2) {
-                    // Method 3: Fallback - copy number and show message
-                    if (navigator.clipboard) {
-                        navigator.clipboard.writeText(phoneNumber).then(() => {
-                            showCallMessage(phoneNumber, 'Phone number copied! Please dial manually.');
-                        }).catch(() => {
-                            showCallMessage(phoneNumber, 'Please dial this number manually:');
-                        });
-                    } else {
-                        showCallMessage(phoneNumber, 'Please dial this number manually:');
-                    }
+                    document.execCommand('copy');
+                    showCallMessage(phoneNumber, '📋 Phone number copied! Please dial manually.');
+                } catch (error) {
+                    showCallMessage(phoneNumber, '📞 Please dial this number manually:');
+                } finally {
+                    document.body.removeChild(textArea);
                 }
             }
         }
@@ -944,5 +968,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edd76363f6d8a9',t:'MTc2MzIwMDE5NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99eddae4c41dd8a9',t:'MTc2MzIwMDMzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
