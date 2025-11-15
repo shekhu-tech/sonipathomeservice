@@ -875,10 +875,10 @@
                             💬 Send SMS
                         </a>
                         
-                        <!-- WhatsApp Web Link -->
-                        <a href="https://wa.me/918816014071?text=${encodeURIComponent('Tree Service Request: ' + submissionData.name + ', ' + submissionData.mobile + ', ' + submissionData.address)}" target="_blank" rel="noopener noreferrer" style="background: #25d366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 5px; font-size: 16px;">
+                        <!-- WhatsApp Button -->
+                        <button onclick="openWhatsApp('8816014071', 'Tree Service Request: ${submissionData.name}, ${submissionData.mobile}, ${submissionData.address}')" style="background: #25d366; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-weight: bold; margin: 5px; font-size: 16px; cursor: pointer;">
                             📱 WhatsApp
-                        </a>
+                        </button>
                         
                         <br><br>
                         <small style="color: #666;">Customer: ${submissionData.name} | ${submissionData.mobile}<br>Address: ${submissionData.address}</small>
@@ -965,8 +965,80 @@
             `;
         }
 
+        // Smart WhatsApp function with multiple fallbacks
+        function openWhatsApp(phoneNumber, message) {
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Try multiple WhatsApp URL formats for maximum compatibility
+            const whatsappUrls = [
+                `whatsapp://send?phone=91${phoneNumber}&text=${encodedMessage}`,  // App protocol
+                `https://wa.me/91${phoneNumber}?text=${encodedMessage}`,          // Web version
+                `https://api.whatsapp.com/send?phone=91${phoneNumber}&text=${encodedMessage}`, // API version
+                `https://web.whatsapp.com/send?phone=91${phoneNumber}&text=${encodedMessage}`  // Web client
+            ];
+            
+            // Try each URL in sequence
+            let urlIndex = 0;
+            
+            function tryNextUrl() {
+                if (urlIndex < whatsappUrls.length) {
+                    const currentUrl = whatsappUrls[urlIndex];
+                    
+                    // Create temporary link
+                    const link = document.createElement('a');
+                    link.href = currentUrl;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                    link.style.display = 'none';
+                    
+                    document.body.appendChild(link);
+                    
+                    try {
+                        link.click();
+                        
+                        // Check if WhatsApp opened successfully after a short delay
+                        setTimeout(() => {
+                            // If still on the same page, try next URL
+                            if (document.hasFocus()) {
+                                urlIndex++;
+                                tryNextUrl();
+                            }
+                        }, 1500);
+                        
+                    } catch (error) {
+                        urlIndex++;
+                        tryNextUrl();
+                    } finally {
+                        document.body.removeChild(link);
+                    }
+                } else {
+                    // All URLs failed, show manual message
+                    showWhatsAppMessage(phoneNumber, message);
+                }
+            }
+            
+            tryNextUrl();
+        }
+
+        // Show WhatsApp message as final fallback
+        function showWhatsAppMessage(phoneNumber, message) {
+            const messageDiv = document.getElementById('formMessage');
+            const existingContent = messageDiv.innerHTML;
+            messageDiv.innerHTML = existingContent + `
+                <div style="background: #d1ecf1; color: #0c5460; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid #bee5eb; text-align: center;">
+                    <strong>📱 WhatsApp Message Ready!</strong><br><br>
+                    <strong>Number:</strong> <span style="font-size: 18px; color: #25d366;">${phoneNumber}</span><br>
+                    <strong>Message:</strong><br>
+                    <div style="background: white; padding: 10px; border-radius: 5px; margin: 10px 0; font-style: italic;">
+                        "${message}"
+                    </div>
+                    <small>Copy the number and message, then open WhatsApp manually</small>
+                </div>
+            `;
+        }
+
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99eddae4c41dd8a9',t:'MTc2MzIwMDMzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99eddf5071f3d8a9',t:'MTc2MzIwMDUyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
