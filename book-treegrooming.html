@@ -903,40 +903,41 @@
             }
         });
 
-        // Universal call function that works on all devices
+        // Simple call function - just copy number to clipboard
         function makeCall(phoneNumber) {
-            // Show immediate feedback
+            // Show the number prominently and copy to clipboard
             const messageDiv = document.getElementById('formMessage');
             const existingContent = messageDiv.innerHTML;
             
-            // Method 1: Create a proper tel: link and click it
-            try {
-                const link = document.createElement('a');
-                link.href = 'tel:' + phoneNumber;
-                link.style.display = 'none';
-                document.body.appendChild(link);
-                
-                // Add click event listener to handle success/failure
-                link.addEventListener('click', function(e) {
-                    // Show success message
-                    setTimeout(() => {
-                        messageDiv.innerHTML = existingContent + `
-                            <div style="background: #d4edda; color: #155724; padding: 10px; border-radius: 8px; margin-top: 10px; text-align: center;">
-                                ✅ Opening phone dialer for ${phoneNumber}
-                            </div>
-                        `;
-                    }, 100);
+            // Try to copy to clipboard
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(phoneNumber).then(() => {
+                    messageDiv.innerHTML = existingContent + `
+                        <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+                            <strong>📞 Call This Number:</strong><br>
+                            <span style="font-size: 28px; font-weight: bold; color: #22c55e; letter-spacing: 2px;">${phoneNumber}</span><br>
+                            <small style="color: #666;">✅ Number copied to clipboard! Paste in your dialer app</small>
+                        </div>
+                    `;
+                }).catch(() => {
+                    showCallNumber(phoneNumber);
                 });
-                
-                link.click();
-                document.body.removeChild(link);
-                return;
-            } catch (error) {
-                console.log('Tel link failed:', error);
+            } else {
+                showCallNumber(phoneNumber);
             }
-            
-            // Fallback: Show number with copy option
-            copyPhoneNumber(phoneNumber);
+        }
+        
+        // Show call number without clipboard
+        function showCallNumber(phoneNumber) {
+            const messageDiv = document.getElementById('formMessage');
+            const existingContent = messageDiv.innerHTML;
+            messageDiv.innerHTML = existingContent + `
+                <div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 2px solid #22c55e;">
+                    <strong>📞 Call This Number:</strong><br>
+                    <span style="font-size: 28px; font-weight: bold; color: #22c55e; letter-spacing: 2px;">${phoneNumber}</span><br>
+                    <small>Tap and hold the number above to copy, then paste in your phone dialer</small>
+                </div>
+            `;
         }
 
         // Copy phone number function
@@ -1065,5 +1066,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edf08a845dd8a9',t:'MTc2MzIwMTIyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edf5ab748059ae',t:'MTc2MzIwMTQzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
