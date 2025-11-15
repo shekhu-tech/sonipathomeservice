@@ -840,28 +840,23 @@
                     submission_date: new Date().toISOString()
                 };
                 
-                // Create simple WhatsApp message without special characters
-                const whatsappMessage = `Tree Cutting Service Request\n\n` +
-                    `Name: ${submissionData.name}\n` +
-                    `Mobile: ${submissionData.mobile}\n` +
-                    `Address: ${submissionData.address}\n` +
-                    `Date: ${new Date().toLocaleDateString()}\n\n` +
-                    `Sonipat Home Service - Tree Care Request`;
+                // Create simple WhatsApp message - no special characters
+                const whatsappMessage = `Tree Cutting Service Request
+
+Name: ${submissionData.name}
+Mobile: ${submissionData.mobile}
+Address: ${submissionData.address}
+Date: ${new Date().toLocaleDateString()}
+
+Sonipat Home Service - Tree Care Request`;
                 
-                // Mobile app compatible WhatsApp URL
+                // Mobile app compatible approach - direct window.open
                 const phoneNumber = '918816014071';
                 const encodedMessage = encodeURIComponent(whatsappMessage);
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
                 
-                // Create a simple link element and click it (mobile app compatible)
-                const whatsappLink = document.createElement('a');
-                whatsappLink.href = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-                whatsappLink.target = '_blank';
-                whatsappLink.rel = 'noopener noreferrer';
-                
-                // Add to DOM temporarily and click
-                document.body.appendChild(whatsappLink);
-                whatsappLink.click();
-                document.body.removeChild(whatsappLink);
+                // Direct window.open - works best in mobile apps
+                window.open(whatsappUrl, '_blank');
                 
                 // Submit to Data SDK (Canva Sheet) if available
                 if (window.dataSdk) {
@@ -893,5 +888,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edb3e0a751919e',t:'MTc2MzE5ODc0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edb7ec0735919e',t:'MTc2MzE5ODkwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
