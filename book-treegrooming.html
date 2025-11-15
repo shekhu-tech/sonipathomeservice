@@ -905,37 +905,37 @@
 
         // Universal call function that works on all devices
         function makeCall(phoneNumber) {
-            // Method 1: Try direct window.location
-            try {
-                window.location.href = 'tel:' + phoneNumber;
-                return;
-            } catch (error) {
-                console.log('Direct tel: failed:', error);
-            }
+            // Show immediate feedback
+            const messageDiv = document.getElementById('formMessage');
+            const existingContent = messageDiv.innerHTML;
             
-            // Method 2: Try window.open
-            try {
-                window.open('tel:' + phoneNumber, '_self');
-                return;
-            } catch (error) {
-                console.log('Window.open tel: failed:', error);
-            }
-            
-            // Method 3: Create invisible link and click
+            // Method 1: Create a proper tel: link and click it
             try {
                 const link = document.createElement('a');
                 link.href = 'tel:' + phoneNumber;
-                link.style.position = 'absolute';
-                link.style.left = '-9999px';
+                link.style.display = 'none';
                 document.body.appendChild(link);
+                
+                // Add click event listener to handle success/failure
+                link.addEventListener('click', function(e) {
+                    // Show success message
+                    setTimeout(() => {
+                        messageDiv.innerHTML = existingContent + `
+                            <div style="background: #d4edda; color: #155724; padding: 10px; border-radius: 8px; margin-top: 10px; text-align: center;">
+                                ✅ Opening phone dialer for ${phoneNumber}
+                            </div>
+                        `;
+                    }, 100);
+                });
+                
                 link.click();
-                setTimeout(() => document.body.removeChild(link), 100);
+                document.body.removeChild(link);
                 return;
             } catch (error) {
-                console.log('Link click failed:', error);
+                console.log('Tel link failed:', error);
             }
             
-            // Final fallback: copy number and show message
+            // Fallback: Show number with copy option
             copyPhoneNumber(phoneNumber);
         }
 
@@ -1065,5 +1065,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edecfbd14059ae',t:'MTc2MzIwMTA4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edf08a845dd8a9',t:'MTc2MzIwMTIyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
