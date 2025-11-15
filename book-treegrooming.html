@@ -905,22 +905,38 @@
 
         // Universal call function that works on all devices
         function makeCall(phoneNumber) {
-            // Create a temporary link element
-            const link = document.createElement('a');
-            link.href = 'tel:' + phoneNumber;
-            link.style.display = 'none';
-            
-            // Add to DOM, click, then remove
-            document.body.appendChild(link);
-            
+            // Method 1: Try direct window.location
             try {
-                link.click();
+                window.location.href = 'tel:' + phoneNumber;
+                return;
             } catch (error) {
-                // Fallback: copy number and show message
-                copyPhoneNumber(phoneNumber);
-            } finally {
-                document.body.removeChild(link);
+                console.log('Direct tel: failed:', error);
             }
+            
+            // Method 2: Try window.open
+            try {
+                window.open('tel:' + phoneNumber, '_self');
+                return;
+            } catch (error) {
+                console.log('Window.open tel: failed:', error);
+            }
+            
+            // Method 3: Create invisible link and click
+            try {
+                const link = document.createElement('a');
+                link.href = 'tel:' + phoneNumber;
+                link.style.position = 'absolute';
+                link.style.left = '-9999px';
+                document.body.appendChild(link);
+                link.click();
+                setTimeout(() => document.body.removeChild(link), 100);
+                return;
+            } catch (error) {
+                console.log('Link click failed:', error);
+            }
+            
+            // Final fallback: copy number and show message
+            copyPhoneNumber(phoneNumber);
         }
 
         // Copy phone number function
@@ -970,35 +986,59 @@
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/91${phoneNumber}?text=${encodedMessage}`;
             
-            // Method 1: Direct window.location (most reliable)
+            // Method 1: window.open with _blank (most compatible)
             try {
-                window.location.href = whatsappUrl;
-                return;
-            } catch (error) {
-                console.log('Method 1 failed:', error);
-            }
-            
-            // Method 2: window.open
-            try {
-                const newWindow = window.open(whatsappUrl, '_blank');
+                const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
                 if (newWindow) {
+                    // Show success message
+                    setTimeout(() => {
+                        const messageDiv = document.getElementById('formMessage');
+                        const existingContent = messageDiv.innerHTML;
+                        messageDiv.innerHTML = existingContent + `
+                            <div style="background: #d4edda; color: #155724; padding: 10px; border-radius: 8px; margin-top: 10px; text-align: center;">
+                                ✅ WhatsApp opened in new tab!
+                            </div>
+                        `;
+                    }, 500);
                     return;
                 }
             } catch (error) {
-                console.log('Method 2 failed:', error);
+                console.log('Window.open failed:', error);
             }
             
-            // Method 3: Create and click link
+            // Method 2: Create and click link with _blank
             try {
                 const link = document.createElement('a');
                 link.href = whatsappUrl;
                 link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.style.position = 'absolute';
+                link.style.left = '-9999px';
                 document.body.appendChild(link);
                 link.click();
-                document.body.removeChild(link);
+                setTimeout(() => document.body.removeChild(link), 100);
+                
+                // Show success message
+                setTimeout(() => {
+                    const messageDiv = document.getElementById('formMessage');
+                    const existingContent = messageDiv.innerHTML;
+                    messageDiv.innerHTML = existingContent + `
+                        <div style="background: #d4edda; color: #155724; padding: 10px; border-radius: 8px; margin-top: 10px; text-align: center;">
+                            ✅ WhatsApp link clicked!
+                        </div>
+                    `;
+                }, 500);
                 return;
             } catch (error) {
-                console.log('Method 3 failed:', error);
+                console.log('Link click failed:', error);
+            }
+            
+            // Method 3: Direct window.location as last resort
+            try {
+                window.location.href = whatsappUrl;
+                return;
+            } catch (error) {
+                console.log('Direct location failed:', error);
             }
             
             // Final fallback - show manual instructions
@@ -1025,5 +1065,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99ede94f87a4d8a9',t:'MTc2MzIwMDkyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edecfbd14059ae',t:'MTc2MzIwMTA4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
