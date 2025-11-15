@@ -817,7 +817,7 @@
             }
         }
 
-        // Form submission handler
+        // Form submission handler - Android compatible
         document.getElementById('serviceForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -840,68 +840,59 @@
                     submission_date: new Date().toISOString()
                 };
                 
-                // Submit to Data SDK (Canva Sheet) first
+                // Submit to Data SDK (Canva Sheet)
+                let dataSaved = false;
                 if (window.dataSdk) {
                     try {
                         const result = await window.dataSdk.create(submissionData);
-                        
                         if (result.isOk) {
-                            // Show success with call option
-                            messageDiv.innerHTML = `
-                                <div class="success-message">
-                                    ✅ Request submitted successfully! Data saved to your Canva Sheet.
-                                    <br><br>
-                                    <strong>📞 Call us now to discuss your tree service:</strong>
-                                    <br><br>
-                                    <a href="tel:+918816014071" style="background: #22c55e; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 10px 0;">
-                                        📞 Call 8816014071 Now
-                                    </a>
-                                    <br><br>
-                                    <small>Customer Details: ${submissionData.name} | ${submissionData.mobile} | ${submissionData.address}</small>
-                                </div>
-                            `;
-                        } else {
-                            messageDiv.innerHTML = `
-                                <div class="success-message">
-                                    ✅ Request received! Please call us to confirm your tree service.
-                                    <br><br>
-                                    <a href="tel:+918816014071" style="background: #22c55e; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 10px 0;">
-                                        📞 Call 8816014071 Now
-                                    </a>
-                                </div>
-                            `;
+                            dataSaved = true;
                         }
                     } catch (error) {
-                        messageDiv.innerHTML = `
-                            <div class="success-message">
-                                ✅ Request received! Please call us to confirm your tree service.
-                                <br><br>
-                                <a href="tel:+918816014071" style="background: #22c55e; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 10px 0;">
-                                    📞 Call 8816014071 Now
-                                </a>
-                            </div>
-                        `;
+                        console.log('Data SDK error:', error);
                     }
-                } else {
-                    messageDiv.innerHTML = `
-                        <div class="success-message">
-                            ✅ Request received! Please call us to confirm your tree service.
-                            <br><br>
-                            <a href="tel:+918816014071" style="background: #22c55e; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 10px 0;">
-                                📞 Call 8816014071 Now
-                            </a>
-                        </div>
-                    `;
                 }
+                
+                // Show success message with multiple contact options
+                const successMessage = dataSaved ? 
+                    '✅ Request submitted successfully! Data saved to your Canva Sheet.' : 
+                    '✅ Request received! We will contact you soon.';
+                
+                messageDiv.innerHTML = `
+                    <div class="success-message">
+                        ${successMessage}
+                        <br><br>
+                        <strong>Contact us now:</strong>
+                        <br><br>
+                        
+                        <!-- Direct Call Button -->
+                        <a href="tel:8816014071" style="background: #22c55e; color: white; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 5px; font-size: 16px;">
+                            📞 Call Now
+                        </a>
+                        
+                        <!-- SMS Button -->
+                        <a href="sms:8816014071?body=Tree Service Request: ${encodeURIComponent(submissionData.name + ', ' + submissionData.mobile + ', ' + submissionData.address)}" style="background: #3b82f6; color: white; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 5px; font-size: 16px;">
+                            💬 Send SMS
+                        </a>
+                        
+                        <!-- WhatsApp Web Link -->
+                        <a href="https://wa.me/918816014071?text=${encodeURIComponent('Tree Service Request: ' + submissionData.name + ', ' + submissionData.mobile + ', ' + submissionData.address)}" target="_blank" rel="noopener noreferrer" style="background: #25d366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 5px; font-size: 16px;">
+                            📱 WhatsApp
+                        </a>
+                        
+                        <br><br>
+                        <small style="color: #666;">Customer: ${submissionData.name} | ${submissionData.mobile}<br>Address: ${submissionData.address}</small>
+                    </div>
+                `;
                 
                 this.reset();
             } catch (error) {
                 messageDiv.innerHTML = `
                     <div class="error-message">
-                        ❌ An error occurred. Please call us directly.
+                        ❌ Please contact us directly:
                         <br><br>
-                        <a href="tel:+918816014071" style="background: #dc3545; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 10px 0;">
-                            📞 Call 8816014071 Now
+                        <a href="tel:8816014071" style="background: #dc3545; color: white; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 5px;">
+                            📞 Call 8816014071
                         </a>
                     </div>
                 `;
@@ -915,5 +906,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edc2e6b1a4d8a9',t:'MTc2MzE5OTM1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edc9d5858859ae',t:'MTc2MzE5OTY0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
