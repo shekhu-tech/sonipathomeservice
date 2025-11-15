@@ -965,59 +965,32 @@
             `;
         }
 
-        // Smart WhatsApp function with multiple fallbacks
+        // Fixed WhatsApp function - Direct link approach
         function openWhatsApp(phoneNumber, message) {
             const encodedMessage = encodeURIComponent(message);
             
-            // Try multiple WhatsApp URL formats for maximum compatibility
-            const whatsappUrls = [
-                `whatsapp://send?phone=91${phoneNumber}&text=${encodedMessage}`,  // App protocol
-                `https://wa.me/91${phoneNumber}?text=${encodedMessage}`,          // Web version
-                `https://api.whatsapp.com/send?phone=91${phoneNumber}&text=${encodedMessage}`, // API version
-                `https://web.whatsapp.com/send?phone=91${phoneNumber}&text=${encodedMessage}`  // Web client
-            ];
+            // Create direct link and click it
+            const link = document.createElement('a');
+            link.href = `https://wa.me/91${phoneNumber}?text=${encodedMessage}`;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.style.display = 'none';
             
-            // Try each URL in sequence
-            let urlIndex = 0;
+            // Add to DOM temporarily
+            document.body.appendChild(link);
             
-            function tryNextUrl() {
-                if (urlIndex < whatsappUrls.length) {
-                    const currentUrl = whatsappUrls[urlIndex];
-                    
-                    // Create temporary link
-                    const link = document.createElement('a');
-                    link.href = currentUrl;
-                    link.target = '_blank';
-                    link.rel = 'noopener noreferrer';
-                    link.style.display = 'none';
-                    
-                    document.body.appendChild(link);
-                    
-                    try {
-                        link.click();
-                        
-                        // Check if WhatsApp opened successfully after a short delay
-                        setTimeout(() => {
-                            // If still on the same page, try next URL
-                            if (document.hasFocus()) {
-                                urlIndex++;
-                                tryNextUrl();
-                            }
-                        }, 1500);
-                        
-                    } catch (error) {
-                        urlIndex++;
-                        tryNextUrl();
-                    } finally {
-                        document.body.removeChild(link);
-                    }
-                } else {
-                    // All URLs failed, show manual message
-                    showWhatsAppMessage(phoneNumber, message);
-                }
-            }
+            // Click the link
+            link.click();
             
-            tryNextUrl();
+            // Remove from DOM
+            setTimeout(() => {
+                document.body.removeChild(link);
+            }, 100);
+            
+            // Show backup message after 2 seconds if still on page
+            setTimeout(() => {
+                showWhatsAppMessage(phoneNumber, message);
+            }, 2000);
         }
 
         // Show WhatsApp message as final fallback
@@ -1040,5 +1013,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99eddf5071f3d8a9',t:'MTc2MzIwMDUyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99ede411549bd8a9',t:'MTc2MzIwMDcxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
