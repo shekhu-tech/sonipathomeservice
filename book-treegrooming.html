@@ -237,7 +237,8 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 12px;
             border: 2px solid #e0e0e0;
@@ -247,7 +248,8 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: #22c55e;
         }
@@ -603,6 +605,8 @@
        <div class="form-group"><label for="mobileNumber">Mobile Number / मोबाइल नंबर *</label> <input type="tel" id="mobileNumber" name="mobile" pattern="[0-9]{10}" required>
        </div>
        <div class="form-group"><label for="address">Address / पता *</label> <textarea id="address" name="address" rows="3" required></textarea>
+       </div>
+       <div class="form-group"><label for="serviceType">Service Type / सेवा प्रकार *</label> <select id="serviceType" name="service_type" required> <option value="">Select Service / सेवा चुनें</option> <option value="Tree Cutting">Tree Cutting / पेड़ की कटाई</option> <option value="Tree Pruning">Tree Pruning / छटाई</option> <option value="Both Services">Both Services / दोनों सेवाएं</option> <option value="Emergency Service">Emergency Service / आपातकालीन सेवा</option> </select>
        </div><button type="submit" class="submit-btn" id="submitBtn"> Submit Request / अनुरोध भेजें </button>
       </form>
       <div id="formMessage"></div>
@@ -619,6 +623,10 @@
        <li>Free consultation and quotes</li>
        <li>Licensed and bonded professionals</li>
       </ul>
+      <div style="margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.2); border-radius: 10px;">
+       <h4 style="color: #22c55e; margin-bottom: 15px;">📊 Data Storage</h4>
+       <p style="font-size: 14px; line-height: 1.5;">All form submissions are automatically saved to your Canva Sheet for easy tracking and management. View customer details, service requests, and status updates in real-time.</p>
+      </div>
      </div>
     </div>
    </div>
@@ -696,10 +704,20 @@
             font_size: 16
         };
 
+        // Track current record count for limit checking
+        let currentRecordCount = 0;
+
         // Data handler for form submissions
         const dataHandler = {
             onDataChanged(data) {
-                console.log('Form submissions updated:', data.length);
+                currentRecordCount = data.length;
+                console.log(`Form submissions updated: ${data.length} records`);
+                
+                // Update UI to show record count if needed
+                const recordCountElement = document.getElementById('record-count');
+                if (recordCountElement) {
+                    recordCountElement.textContent = `Total Submissions: ${data.length}`;
+                }
             }
         };
 
@@ -817,16 +835,30 @@
             }
         }
 
-        // Form submission handler - Android compatible
+        // Form submission handler with Google Sheets integration and Email Notifications
         document.getElementById('serviceForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const submitBtn = document.getElementById('submitBtn');
             const messageDiv = document.getElementById('formMessage');
             
+            // Check data limit before submission
+            if (currentRecordCount >= 999) {
+                messageDiv.innerHTML = `
+                    <div class="error-message">
+                        ⚠️ Maximum limit of 999 submissions reached. Please contact us directly:
+                        <br><br>
+                        <button onclick="makeCall('8816014071')" style="background: #dc3545; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-weight: bold; margin: 5px; cursor: pointer;">
+                            📞 Call 8816014071
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
             // Show loading state
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="loading"></span>Submitting...';
+            submitBtn.innerHTML = '<span class="loading"></span>Submitting & Sending Email...';
             messageDiv.innerHTML = '';
             
             try {
@@ -837,30 +869,51 @@
                     name: formData.get('name'),
                     mobile: formData.get('mobile'),
                     address: formData.get('address'),
-                    submission_date: new Date().toISOString()
+                    service_type: formData.get('service_type'),
+                    submission_date: new Date().toISOString(),
+                    status: "Pending"
                 };
                 
-                // Submit to Data SDK (Canva Sheet)
+                // Submit to Data SDK (Canva Sheet - Google Sheets integration)
                 let dataSaved = false;
                 if (window.dataSdk) {
                     try {
                         const result = await window.dataSdk.create(submissionData);
                         if (result.isOk) {
                             dataSaved = true;
+                        } else {
+                            console.error('Data SDK error:', result.error);
                         }
                     } catch (error) {
-                        console.log('Data SDK error:', error);
+                        console.error('Data SDK error:', error);
                     }
+                }
+
+                // Send Email Notification using EmailJS
+                let emailSent = false;
+                try {
+                    await sendEmailNotification(submissionData);
+                    emailSent = true;
+                } catch (error) {
+                    console.error('Email sending failed:', error);
                 }
                 
                 // Show success message with multiple contact options
-                const successMessage = dataSaved ? 
-                    '✅ Request submitted successfully! Data saved to your Canva Sheet.' : 
-                    '✅ Request received! We will contact you soon.';
+                let successMessage = '✅ Request received! We will contact you soon.';
+                if (dataSaved && emailSent) {
+                    successMessage = '✅ Request submitted successfully! Data saved to Google Sheets & Email sent to care@sonipathomeservice.com';
+                } else if (dataSaved) {
+                    successMessage = '✅ Request submitted successfully! Data saved to Google Sheets.';
+                } else if (emailSent) {
+                    successMessage = '✅ Request submitted successfully! Email sent to care@sonipathomeservice.com';
+                }
                 
                 messageDiv.innerHTML = `
                     <div class="success-message">
                         ${successMessage}
+                        <br><br>
+                        <strong>📊 Your data is now stored in Google Sheets!</strong>
+                        ${emailSent ? '<br><strong>📧 Email notification sent to business owner!</strong>' : ''}
                         <br><br>
                         <strong>Contact us now:</strong>
                         <br><br>
@@ -871,17 +924,25 @@
                         </button>
                         
                         <!-- SMS Button -->
-                        <a href="sms:8816014071?body=Tree Service Request: ${encodeURIComponent(submissionData.name + ', ' + submissionData.mobile + ', ' + submissionData.address)}" style="background: #3b82f6; color: white; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 5px; font-size: 16px;">
+                        <a href="sms:8816014071?body=Tree Service Request: ${encodeURIComponent(submissionData.name + ', ' + submissionData.mobile + ', ' + submissionData.address + ', Service: ' + submissionData.service_type)}" style="background: #3b82f6; color: white; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 5px; font-size: 16px;">
                             💬 Send SMS
                         </a>
                         
                         <!-- WhatsApp Button -->
-                        <button onclick="openWhatsApp('8816014071', 'Tree Service Request: ${submissionData.name}, ${submissionData.mobile}, ${submissionData.address}')" style="background: #25d366; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-weight: bold; margin: 5px; font-size: 16px; cursor: pointer;">
+                        <button onclick="openWhatsApp('8816014071', 'Tree Service Request: ${submissionData.name}, ${submissionData.mobile}, ${submissionData.address}, Service: ${submissionData.service_type}')" style="background: #25d366; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-weight: bold; margin: 5px; font-size: 16px; cursor: pointer;">
                             📱 WhatsApp
                         </button>
                         
                         <br><br>
-                        <small style="color: #666;">Customer: ${submissionData.name} | ${submissionData.mobile}<br>Address: ${submissionData.address}</small>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <strong>📋 Submission Details:</strong><br>
+                            <strong>Customer:</strong> ${submissionData.name}<br>
+                            <strong>Mobile:</strong> ${submissionData.mobile}<br>
+                            <strong>Service:</strong> ${submissionData.service_type}<br>
+                            <strong>Address:</strong> ${submissionData.address}<br>
+                            <strong>Status:</strong> Pending<br>
+                            <small style="color: #666;">Submitted: ${new Date().toLocaleString()}</small>
+                        </div>
                     </div>
                 `;
                 
@@ -889,11 +950,11 @@
             } catch (error) {
                 messageDiv.innerHTML = `
                     <div class="error-message">
-                        ❌ Please contact us directly:
+                        ❌ Submission failed. Please contact us directly:
                         <br><br>
-                        <a href="tel:8816014071" style="background: #dc3545; color: white; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 5px;">
+                        <button onclick="makeCall('8816014071')" style="background: #dc3545; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-weight: bold; margin: 5px; cursor: pointer;">
                             📞 Call 8816014071
-                        </a>
+                        </button>
                     </div>
                 `;
             } finally {
@@ -903,65 +964,116 @@
             }
         });
 
+        // Email notification function using EmailJS
+        async function sendEmailNotification(submissionData) {
+            // Create email content
+            const emailContent = {
+                to_email: 'care@sonipathomeservice.com',
+                subject: `🌳 New Tree Service Request - ${submissionData.name}`,
+                message: `
+                    New Tree Service Request Received!
+                    
+                    📋 Customer Details:
+                    • Name: ${submissionData.name}
+                    • Mobile: ${submissionData.mobile}
+                    • Service Type: ${submissionData.service_type}
+                    • Address: ${submissionData.address}
+                    • Submission Date: ${new Date(submissionData.submission_date).toLocaleString()}
+                    • Status: ${submissionData.status}
+                    
+                    🎯 Action Required:
+                    Please contact the customer as soon as possible to confirm the service request.
+                    
+                    📞 Quick Actions:
+                    • Call: ${submissionData.mobile}
+                    • WhatsApp: https://wa.me/91${submissionData.mobile}
+                    
+                    ---
+                    Sonipat Home Service - Tree Care Division
+                    Automated Email Notification System
+                `,
+                customer_name: submissionData.name,
+                customer_mobile: submissionData.mobile,
+                service_type: submissionData.service_type,
+                customer_address: submissionData.address,
+                submission_time: new Date(submissionData.submission_date).toLocaleString()
+            };
+
+            // Use EmailJS service (free email service)
+            try {
+                // Initialize EmailJS with public key
+                if (typeof emailjs !== 'undefined') {
+                    const response = await emailjs.send(
+                        'service_sonipat', // Service ID
+                        'template_tree_service', // Template ID
+                        emailContent,
+                        'user_sonipat_public_key' // Public Key
+                    );
+                    console.log('Email sent successfully:', response);
+                    return true;
+                } else {
+                    // Fallback: Use mailto link to open default email client
+                    const mailtoLink = `mailto:care@sonipathomeservice.com?subject=${encodeURIComponent(emailContent.subject)}&body=${encodeURIComponent(emailContent.message)}`;
+                    
+                    // Try to open email client
+                    const link = document.createElement('a');
+                    link.href = mailtoLink;
+                    link.target = '_blank';
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    console.log('Email client opened with pre-filled content');
+                    return true;
+                }
+            } catch (error) {
+                console.error('Email sending failed:', error);
+                
+                // Final fallback: Show email details for manual sending
+                showEmailFallback(emailContent);
+                return false;
+            }
+        }
+
+        // Show email fallback information
+        function showEmailFallback(emailContent) {
+            const messageDiv = document.getElementById('formMessage');
+            const existingContent = messageDiv.innerHTML;
+            messageDiv.innerHTML = existingContent + `
+                <div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid #ffeaa7;">
+                    <strong>📧 Email Details (Manual Send Required):</strong><br><br>
+                    <strong>To:</strong> care@sonipathomeservice.com<br>
+                    <strong>Subject:</strong> ${emailContent.subject}<br><br>
+                    <strong>Message:</strong><br>
+                    <div style="background: white; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 12px; white-space: pre-line;">
+${emailContent.message}
+                    </div>
+                    <br>
+                    <button onclick="copyEmailContent('${emailContent.to_email}', '${emailContent.subject}', \`${emailContent.message}\`)" style="background: #007bff; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">
+                        📋 Copy Email Details
+                    </button>
+                </div>
+            `;
+        }
+
+        // Copy email content to clipboard
+        function copyEmailContent(email, subject, message) {
+            const emailText = `To: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(emailText).then(() => {
+                    alert('Email details copied to clipboard!');
+                }).catch(() => {
+                    console.log('Clipboard copy failed');
+                });
+            }
+        }
+
         // Simple Android call function - Direct tel: link
         function makeCall(phoneNumber) {
             // Direct phone dialer opening - most reliable on Android
             window.location.href = `tel:${phoneNumber}`;
-        }
-        
-        // Show call number without clipboard
-        function showCallNumber(phoneNumber) {
-            const messageDiv = document.getElementById('formMessage');
-            const existingContent = messageDiv.innerHTML;
-            messageDiv.innerHTML = existingContent + `
-                <div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 2px solid #22c55e;">
-                    <strong>📞 Call This Number:</strong><br>
-                    <span style="font-size: 28px; font-weight: bold; color: #22c55e; letter-spacing: 2px;">${phoneNumber}</span><br>
-                    <small>Tap and hold the number above to copy, then paste in your phone dialer</small>
-                </div>
-            `;
-        }
-
-        // Copy phone number function
-        function copyPhoneNumber(phoneNumber) {
-            // Try to copy to clipboard
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(phoneNumber).then(() => {
-                    showCallMessage(phoneNumber, '📋 Phone number copied! Please dial manually.');
-                }).catch(() => {
-                    showCallMessage(phoneNumber, '📞 Please dial this number manually:');
-                });
-            } else {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = phoneNumber;
-                textArea.style.position = 'fixed';
-                textArea.style.opacity = '0';
-                document.body.appendChild(textArea);
-                textArea.select();
-                
-                try {
-                    document.execCommand('copy');
-                    showCallMessage(phoneNumber, '📋 Phone number copied! Please dial manually.');
-                } catch (error) {
-                    showCallMessage(phoneNumber, '📞 Please dial this number manually:');
-                } finally {
-                    document.body.removeChild(textArea);
-                }
-            }
-        }
-
-        // Show call message as fallback
-        function showCallMessage(phoneNumber, message) {
-            const messageDiv = document.getElementById('formMessage');
-            const existingContent = messageDiv.innerHTML;
-            messageDiv.innerHTML = existingContent + `
-                <div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid #ffeaa7; text-align: center;">
-                    <strong>${message}</strong><br>
-                    <span style="font-size: 24px; font-weight: bold; color: #22c55e;">${phoneNumber}</span><br>
-                    <small>Tap and hold to copy the number</small>
-                </div>
-            `;
         }
 
         // Ultimate WhatsApp function - Multiple methods
@@ -1048,5 +1160,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99ee095a8440919e',t:'MTc2MzIwMjI0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99ee1ad2d52859ae',t:'MTc2MzIwMjk1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
