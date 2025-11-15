@@ -840,51 +840,71 @@
                     submission_date: new Date().toISOString()
                 };
                 
-                // Create WhatsApp message - very simple format for mobile compatibility
-                const message = `Tree Service Request: ${submissionData.name}, ${submissionData.mobile}, ${submissionData.address}`;
-                
-                // Android app compatible approach - create hidden link and click it
-                const phoneNumber = '918816014071';
-                const whatsappUrl = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-                
-                // Create temporary link element
-                const tempLink = document.createElement('a');
-                tempLink.href = whatsappUrl;
-                tempLink.target = '_blank';
-                tempLink.rel = 'noopener noreferrer';
-                tempLink.style.display = 'none';
-                
-                // Add to DOM, click, then remove
-                document.body.appendChild(tempLink);
-                tempLink.click();
-                document.body.removeChild(tempLink);
-                
-                // Fallback for web browsers after 2 seconds
-                setTimeout(() => {
-                    const webUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                    window.open(webUrl, '_blank', 'noopener,noreferrer');
-                }, 2000);
-                
-                // Submit to Data SDK (Canva Sheet) if available
+                // Submit to Data SDK (Canva Sheet) first
                 if (window.dataSdk) {
                     try {
                         const result = await window.dataSdk.create(submissionData);
                         
                         if (result.isOk) {
-                            messageDiv.innerHTML = '<div class="success-message">✅ Request submitted successfully! WhatsApp should open now. Data saved to your Canva Sheet. We will contact you soon.</div>';
+                            // Show success with call option
+                            messageDiv.innerHTML = `
+                                <div class="success-message">
+                                    ✅ Request submitted successfully! Data saved to your Canva Sheet.
+                                    <br><br>
+                                    <strong>📞 Call us now to discuss your tree service:</strong>
+                                    <br><br>
+                                    <a href="tel:+918816014071" style="background: #22c55e; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 10px 0;">
+                                        📞 Call 8816014071 Now
+                                    </a>
+                                    <br><br>
+                                    <small>Customer Details: ${submissionData.name} | ${submissionData.mobile} | ${submissionData.address}</small>
+                                </div>
+                            `;
                         } else {
-                            messageDiv.innerHTML = '<div class="success-message">✅ WhatsApp should open now! We will contact you soon. (Note: Data backup failed but your request was received)</div>';
+                            messageDiv.innerHTML = `
+                                <div class="success-message">
+                                    ✅ Request received! Please call us to confirm your tree service.
+                                    <br><br>
+                                    <a href="tel:+918816014071" style="background: #22c55e; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 10px 0;">
+                                        📞 Call 8816014071 Now
+                                    </a>
+                                </div>
+                            `;
                         }
                     } catch (error) {
-                        messageDiv.innerHTML = '<div class="success-message">✅ WhatsApp should open now! We will contact you soon.</div>';
+                        messageDiv.innerHTML = `
+                            <div class="success-message">
+                                ✅ Request received! Please call us to confirm your tree service.
+                                <br><br>
+                                <a href="tel:+918816014071" style="background: #22c55e; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 10px 0;">
+                                    📞 Call 8816014071 Now
+                                </a>
+                            </div>
+                        `;
                     }
                 } else {
-                    messageDiv.innerHTML = '<div class="success-message">✅ WhatsApp should open now! We will contact you soon.</div>';
+                    messageDiv.innerHTML = `
+                        <div class="success-message">
+                            ✅ Request received! Please call us to confirm your tree service.
+                            <br><br>
+                            <a href="tel:+918816014071" style="background: #22c55e; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 10px 0;">
+                                📞 Call 8816014071 Now
+                            </a>
+                        </div>
+                    `;
                 }
                 
                 this.reset();
             } catch (error) {
-                messageDiv.innerHTML = '<div class="error-message">❌ An error occurred. Please try again or call us at 8816014071.</div>';
+                messageDiv.innerHTML = `
+                    <div class="error-message">
+                        ❌ An error occurred. Please call us directly.
+                        <br><br>
+                        <a href="tel:+918816014071" style="background: #dc3545; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin: 10px 0;">
+                            📞 Call 8816014071 Now
+                        </a>
+                    </div>
+                `;
             } finally {
                 // Reset button state
                 submitBtn.disabled = false;
@@ -895,5 +915,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edbd4fb37259ae',t:'MTc2MzE5OTEyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edc2e6b1a4d8a9',t:'MTc2MzE5OTM1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
