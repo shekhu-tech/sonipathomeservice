@@ -840,19 +840,28 @@
                     submission_date: new Date().toISOString()
                 };
                 
-                // Create WhatsApp message
-                const whatsappMessage = `🌳 *नया Tree Cutting Service Request*\n\n` +
-                    `👤 *Name:* ${submissionData.name}\n` +
-                    `📱 *Mobile:* ${submissionData.mobile}\n` +
-                    `📍 *Address:* ${submissionData.address}\n` +
-                    `📅 *Date:* ${new Date().toLocaleString('hi-IN')}\n\n` +
-                    `*Sonipat Home Service* - Tree Care Request`;
+                // Create simple WhatsApp message without special characters
+                const whatsappMessage = `Tree Cutting Service Request\n\n` +
+                    `Name: ${submissionData.name}\n` +
+                    `Mobile: ${submissionData.mobile}\n` +
+                    `Address: ${submissionData.address}\n` +
+                    `Date: ${new Date().toLocaleDateString()}\n\n` +
+                    `Sonipat Home Service - Tree Care Request`;
                 
-                // Send to WhatsApp - Fixed approach for all devices
-                const whatsappUrl = `https://wa.me/918816014071?text=${encodeURIComponent(whatsappMessage)}`;
+                // Mobile app compatible WhatsApp URL
+                const phoneNumber = '918816014071';
+                const encodedMessage = encodeURIComponent(whatsappMessage);
                 
-                // Universal WhatsApp opening - works on all devices
-                window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+                // Create a simple link element and click it (mobile app compatible)
+                const whatsappLink = document.createElement('a');
+                whatsappLink.href = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+                whatsappLink.target = '_blank';
+                whatsappLink.rel = 'noopener noreferrer';
+                
+                // Add to DOM temporarily and click
+                document.body.appendChild(whatsappLink);
+                whatsappLink.click();
+                document.body.removeChild(whatsappLink);
                 
                 // Submit to Data SDK (Canva Sheet) if available
                 if (window.dataSdk) {
@@ -860,15 +869,15 @@
                         const result = await window.dataSdk.create(submissionData);
                         
                         if (result.isOk) {
-                            messageDiv.innerHTML = '<div class="success-message">✅ Request submitted successfully! WhatsApp message sent and data saved to your Canva Sheet. We will contact you soon.</div>';
+                            messageDiv.innerHTML = '<div class="success-message">✅ Request submitted successfully! WhatsApp opened and data saved to your Canva Sheet. We will contact you soon.</div>';
                         } else {
-                            messageDiv.innerHTML = '<div class="success-message">✅ WhatsApp message sent successfully! We will contact you soon. (Note: Data backup failed but your request was received)</div>';
+                            messageDiv.innerHTML = '<div class="success-message">✅ WhatsApp opened successfully! We will contact you soon. (Note: Data backup failed but your request was received)</div>';
                         }
                     } catch (error) {
-                        messageDiv.innerHTML = '<div class="success-message">✅ WhatsApp message sent successfully! We will contact you soon.</div>';
+                        messageDiv.innerHTML = '<div class="success-message">✅ WhatsApp opened successfully! We will contact you soon.</div>';
                     }
                 } else {
-                    messageDiv.innerHTML = '<div class="success-message">✅ WhatsApp message sent successfully! We will contact you soon.</div>';
+                    messageDiv.innerHTML = '<div class="success-message">✅ WhatsApp opened successfully! We will contact you soon.</div>';
                 }
                 
                 this.reset();
@@ -884,5 +893,5 @@
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edac2c47d0919e',t:'MTc2MzE5ODQyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99edb3e0a751919e',t:'MTc2MzE5ODc0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
