@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="logo.png">
+  <title>Water Pipe Cleaning Service - Sonipat Home Service</title><!-- SEO Meta Tags -->
+  <meta name="description" content="Professional water pipe cleaning service using compressed air technology. Book now for Rs. 49 booking amount. Sonipat Home Service - Your trusted cleaning partner.">
+  <meta name="keywords" content="water pipe cleaning,water pipe cleaning near me, water pipe cleaning service in sonipat,  compressed air cleaning, pipe maintenance, home service, Sonipat">
+  <meta name="author" content="Sonipat Home Service">
+  <meta name="robots" content="index, follow"><!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Water Pipe Cleaning Service - Sonipat Home Service">
+  <meta property="og:description" content="Professional water pipe cleaning with compressed air technology. Book now!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sonipathomeservice.com"><!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Water Pipe Cleaning Service">
+  <meta name="twitter:description" content="Professional pipe cleaning service with compressed air technology">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .hero-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: slideIn 1s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1001;
+            text-align: center;
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: successPop 0.5s ease-out;
+        }
+        
+        @keyframes successPop {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            .footer-desktop { display: none; }
+        }
+        
+        @media (min-width: 769px) {
+            .footer-mobile { display: none; }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="min-h-full bg-gray-50"><!-- Header -->
+  <header class="bg-white shadow-lg sticky top-0 z-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+     <div class="flex items-center cursor-pointer" onclick="redirectToHome()">
+      <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+       <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.16.21 2.76.21 3.92 0 5.16-1 9-5.45 9-11V7l-10-5z" />
+       </svg>
+      </div>
+      <div>
+       <h1 class="text-xl font-bold text-gray-900">Sonipat Home Service</h1>
+       <p class="text-sm text-gray-600">Professional Cleaning Solutions</p>
+      </div>
+     </div>
+     <div class="hidden md:flex flex-col items-end space-y-1"><a href="tel:8816014071" class="text-blue-600 hover:text-blue-800 font-semibold">📞 8816014071</a>
+      <p class="text-sm text-gray-600">128/1, Sainipura, Near Baba Dhaam Mandir, Sonipat</p>
+     </div>
+    </div>
+   </div>
+  </header><!-- Hero Section -->
+  <section class="hero-slide text-white py-16 px-4">
+   <div class="max-w-4xl mx-auto text-center">
+    <h2 id="hero-title" class="text-4xl md:text-6xl font-bold mb-6">Professional Water Pipe Cleaning</h2>
+    <p id="hero-subtitle" class="text-xl md:text-2xl mb-8 opacity-90">Clean pipes with compressed air technology</p>
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+     <div class="bg-white bg-opacity-20 rounded-lg p-4">
+      <div class="text-2xl mb-2">
+       💨
+      </div>
+      <p class="font-semibold">Compressed Air</p>
+     </div>
+     <div class="bg-white bg-opacity-20 rounded-lg p-4">
+      <div class="text-2xl mb-2">
+       🔧
+      </div>
+      <p class="font-semibold">Professional Tools</p>
+     </div>
+     <div class="bg-white bg-opacity-20 rounded-lg p-4">
+      <div class="text-2xl mb-2">
+       ✅
+      </div>
+      <p class="font-semibold">95% Success Rate</p>
+     </div>
+    </div><!-- Service Availability -->
+    <div class="text-center mb-8">
+     <p class="text-xl font-bold mb-2">🏠 Service Available For: 🏠 Home • 🏪 Shop • 🏘️ Kothi • 🏢 Flat • 🏭 Industrial</p>
+     <p class="text-lg font-semibold opacity-90">Complete Unblocking Solutions</p>
+    </div><button onclick="scrollToServices()" class="bg-white text-blue-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition duration-300"> Book Service Now </button>
+   </div>
+  </section><!-- Services Section -->
+  <section id="services" class="py-16 px-4">
+   <div class="max-w-6xl mx-auto">
+    <h3 class="text-3xl font-bold text-center mb-12 text-gray-900">Our Services</h3>
+    <div class="max-w-md mx-auto mb-12"><!-- Water Pipe Cleaning Service -->
+     <div class="product-card bg-white rounded-xl shadow-lg p-6">
+      <div class="text-center mb-6">
+       <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+        </svg>
+       </div>
+       <h4 class="text-xl font-bold text-gray-900 mb-2">Water Pipe Cleaning</h4>
+       <p id="service-description" class="text-gray-600 mb-4">Professional pipe cleaning service using compressed air technology for optimal water flow</p><!-- Price Comparison -->
+       <div class="mb-4">
+        <div class="flex items-center justify-center gap-4 mb-2">
+         <div class="text-lg text-gray-500 line-through">
+          Market Price: ₹2,499
+         </div>
+         <div class="bg-red-100 text-red-600 px-2 py-1 rounded-full text-sm font-bold">
+          40% OFF
+         </div>
+        </div>
+        <div class="text-3xl font-bold text-green-600 mb-2">
+         Our Price: ₹1,499
+        </div>
+        <div class="text-lg text-blue-600 font-semibold">
+         You Save: ₹1,000
+        </div>
+       </div>
+       <p class="text-sm text-gray-500 mb-4">Booking Amount: ₹149 | Rest on completion</p>
+      </div><button onclick="addToCart('Water Pipe Cleaning', 1499, 149)" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"> Add to Cart </button>
+     </div>
+    </div><!-- Terms & Conditions -->
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-lg">
+     <h4 class="text-lg font-bold text-yellow-800 mb-3">⚠️ Important Terms &amp; Conditions</h4>
+     <p class="text-yellow-700 mb-4"><strong>Success Rate:</strong> Only 95% chance to open your pipeline, 5% no chance. In both conditions, you have to pay the full amount. If you accept these conditions, then book our service.</p>
+    </div>
+   </div>
+  </section><!-- Booking Modal -->
+  <div id="bookingModal" class="modal">
+   <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+    <div class="flex justify-between items-center mb-6">
+     <h3 class="text-2xl font-bold text-gray-900">Book Service</h3><button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+    </div>
+    <form id="bookingForm" class="space-y-4">
+     <div><label class="block text-sm font-medium text-gray-700 mb-2">Customer Name *</label> <input type="text" id="customerName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+     </div>
+     <div><label class="block text-sm font-medium text-gray-700 mb-2">Mobile Number *</label> <input type="tel" id="mobileNumber" required pattern="[0-9]{10}" maxlength="10" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="10 digit mobile number">
+     </div>
+     <div><label class="block text-sm font-medium text-gray-700 mb-2">Email ID *</label> <input type="email" id="emailId" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+     </div>
+     <div><label class="block text-sm font-medium text-gray-700 mb-2">Full Address *</label> <textarea id="fullAddress" required rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+     </div>
+     <div><label class="block text-sm font-medium text-gray-700 mb-2">Landmark</label> <input type="text" id="landmark" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+     </div>
+     <div><label class="block text-sm font-medium text-gray-700 mb-2">Pin Code *</label> <input type="text" id="pinCode" required pattern="[0-9]{6}" maxlength="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="6 digit pin code">
+     </div>
+     <div class="bg-gray-50 p-4 rounded-lg">
+      <p class="font-semibold text-gray-900">Service: <span id="selectedService"></span></p>
+      <p class="text-gray-600">Total Amount: ₹<span id="totalAmount"></span></p>
+      <p class="text-blue-600 font-semibold">Booking Amount: ₹<span id="bookingAmount"></span></p>
+      <p class="text-sm text-gray-500">Rest payment on work completion</p>
+     </div>
+     <div class="flex items-start space-x-3"><input type="checkbox" id="termsAccepted" required class="mt-1"> <label for="termsAccepted" class="text-sm text-gray-700"> I accept the terms and conditions: 95% chance to open pipeline, 5% no chance. In both conditions, full payment is required. </label>
+     </div><button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"> Proceed to Payment </button>
+    </form>
+   </div>
+  </div><!-- Success Message -->
+  <div id="successMessage" class="success-message">
+   <div class="text-green-600 text-4xl mb-4">
+    ✅
+   </div>
+   <h3 class="text-xl font-bold text-gray-900 mb-2">Payment Successful!</h3>
+   <p class="text-gray-600 mb-4">Transaction ID: <span id="transactionId" class="font-mono font-bold"></span></p>
+   <div id="bookingDetails" class="text-left bg-gray-50 p-4 rounded-lg"></div>
+  </div><!-- Footer Desktop -->
+  <footer class="footer-desktop bg-gray-900 text-white py-12">
+   <div class="max-w-6xl mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8"><!-- Company Info -->
+     <div>
+      <h4 class="text-lg font-bold mb-4">Sonipat Home Service.Com</h4>
+      <p class="text-gray-300 mb-4">128/1, Sainipura, Sonipat</p>
+      <p class="text-gray-300">Contact: 8816014071</p>
+     </div><!-- Social Links -->
+     <div>
+      <h4 class="text-lg font-bold mb-4">Follow Us</h4>
+      <div class="space-y-2"><a href="https://facebook.com/Sonipathomeservice" target="_blank" rel="noopener noreferrer" class="block text-blue-400 hover:text-blue-300">📘 Facebook</a> <a href="https://instagram.com/Sonipathomeservice" target="_blank" rel="noopener noreferrer" class="block text-pink-400 hover:text-pink-300">📷 Instagram</a> <a href="https://twitter.com/Sonipathome" target="_blank" rel="noopener noreferrer" class="block text-blue-400 hover:text-blue-300">🐦 Twitter</a> <a href="https://wa.me/8816014071" target="_blank" rel="noopener noreferrer" class="block text-green-400 hover:text-green-300">📱 WhatsApp</a>
+      </div>
+     </div><!-- Payment Methods -->
+     <div>
+      <h4 class="text-lg font-bold mb-4">Payment Accepted</h4>
+      <div class="text-gray-300 space-y-1">
+       <p>💳 Credit/Debit Card</p>
+       <p>🏦 Net Banking</p>
+       <p>📱 UPI &amp; Wallet</p>
+      </div>
+     </div><!-- App Downloads -->
+     <div>
+      <h4 class="text-lg font-bold mb-4">Download App</h4>
+      <div class="space-y-3"><a href="https://play.google.com/store/apps/details?id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" class="block">
+        <div class="w-40 h-12 bg-black rounded-lg flex items-center justify-center px-3">
+         <svg class="w-6 h-6 mr-2" viewbox="0 0 24 24" fill="none"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.61 3 21.09 3 20.5Z" fill="#EA4335" /> <path d="M16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12Z" fill="#FBBC04" /> <path d="M20.16 10.85C20.5 11.05 20.5 11.95 20.16 12.15L16.81 15.12L14.54 12.85L16.81 10.58L20.16 10.85Z" fill="#4285F4" /> <path d="M16.81 8.88L6.05 2.66L14.54 11.15L16.81 8.88Z" fill="#34A853" />
+         </svg>
+         <div class="text-white text-xs">
+          <div class="text-[8px] leading-none">
+           GET IT ON
+          </div>
+          <div class="text-sm font-semibold leading-none">
+           Google Play
+          </div>
+         </div>
+        </div></a> <a href="https://www.indusappstore.com/apps/house-and-home/sonipat-home-service/com.crapd.sonipathomeservice/?page=details&amp;id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer" class="block">
+        <div class="w-40 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center px-3">
+         <svg class="w-6 h-6 mr-2" viewbox="0 0 24 24" fill="white"><path d="M12 2L2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17V7L12 2ZM12 4.84L19 8.4V17H5V8.4L12 4.84Z" /> <circle cx="12" cy="12" r="3" fill="white" />
+         </svg>
+         <div class="text-white text-xs">
+          <div class="text-[8px] leading-none">
+           GET IT ON
+          </div>
+          <div class="text-sm font-semibold leading-none">
+           Indus Store
+          </div>
+         </div>
+        </div></a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <script>
+        let currentBooking = null;
+        let allBookings = [];
+        
+        const defaultConfig = {
+            hero_title: "Professional Water Pipe Cleaning",
+            hero_subtitle: "Clean pipes with compressed air technology",
+            service_description: "Professional pipe cleaning service using compressed air technology for optimal water flow"
+        };
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                allBookings = data;
+                console.log('Bookings updated:', data.length);
+            }
+        };
+
+        // Initialize SDKs
+        async function initializeApp() {
+            if (window.dataSdk) {
+                const result = await window.dataSdk.init(dataHandler);
+                if (!result.isOk) {
+                    console.error('Failed to initialize data SDK');
+                }
+            }
+
+            if (window.elementSdk) {
+                await window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange: async (config) => {
+                        document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+                        document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+                        document.getElementById('service-description').textContent = config.service_description || defaultConfig.service_description;
+                    },
+                    mapToCapabilities: (config) => ({
+                        recolorables: [],
+                        borderables: [],
+                        fontEditable: undefined,
+                        fontSizeable: undefined
+                    }),
+                    mapToEditPanelValues: (config) => new Map([
+                        ["hero_title", config.hero_title || defaultConfig.hero_title],
+                        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+                        ["service_description", config.service_description || defaultConfig.service_description]
+                    ])
+                });
+            }
+        }
+
+        function redirectToHome() {
+            window.open('https://www.sonipathomeservice.com', '_blank', 'noopener,noreferrer');
+        }
+
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function addToCart(serviceName, totalPrice, bookingPrice) {
+            currentBooking = {
+                serviceName,
+                totalPrice,
+                bookingPrice
+            };
+            
+            document.getElementById('selectedService').textContent = serviceName;
+            document.getElementById('totalAmount').textContent = totalPrice;
+            document.getElementById('bookingAmount').textContent = bookingPrice;
+            
+            document.getElementById('bookingModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+            document.getElementById('bookingForm').reset();
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                customerName: document.getElementById('customerName').value,
+                mobileNumber: document.getElementById('mobileNumber').value,
+                emailId: document.getElementById('emailId').value,
+                fullAddress: document.getElementById('fullAddress').value,
+                landmark: document.getElementById('landmark').value,
+                pinCode: document.getElementById('pinCode').value
+            };
+
+            // Validate mobile number
+            if (formData.mobileNumber.length !== 10) {
+                alert('Please enter a valid 10-digit mobile number');
+                return;
+            }
+
+            // Validate pin code
+            if (formData.pinCode.length !== 6) {
+                alert('Please enter a valid 6-digit pin code');
+                return;
+            }
+
+            // Check terms acceptance
+            if (!document.getElementById('termsAccepted').checked) {
+                alert('Please accept the terms and conditions to proceed');
+                return;
+            }
+
+            // Check booking limit
+            if (allBookings.length >= 999) {
+                alert('Maximum limit of 999 bookings reached. Please try again later.');
+                return;
+            }
+
+            // Initiate Razorpay payment
+            const options = {
+                key: 'rzp_live_RLjzp7VlXERwiG',
+                amount: currentBooking.bookingPrice * 100, // Amount in paise
+                currency: 'INR',
+                name: 'Sonipat Home Service',
+                description: currentBooking.serviceName,
+                handler: async function(response) {
+                    await handlePaymentSuccess(response, formData);
+                },
+                prefill: {
+                    name: formData.customerName,
+                    email: formData.emailId,
+                    contact: formData.mobileNumber
+                },
+                theme: {
+                    color: '#2563eb'
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        });
+
+        async function handlePaymentSuccess(paymentResponse, formData) {
+            const bookingData = {
+                id: Date.now().toString(),
+                ...formData,
+                productName: currentBooking.serviceName,
+                productPrice: currentBooking.totalPrice,
+                bookingAmount: currentBooking.bookingPrice,
+                transactionId: paymentResponse.razorpay_payment_id,
+                paymentStatus: 'completed',
+                bookingDate: new Date().toISOString()
+            };
+
+            // Save to Data SDK
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(bookingData);
+                if (!result.isOk) {
+                    console.error('Failed to save booking data');
+                }
+            }
+
+            // Save to Google Sheets
+            await saveToGoogleSheets(bookingData);
+
+            // Show success message
+            showSuccessMessage(bookingData);
+            closeModal();
+        }
+
+        async function saveToGoogleSheets(bookingData) {
+            // Google Apps Script Web App URL
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec';
+            
+            try {
+                const formData = new FormData();
+                formData.append('timestamp', new Date(bookingData.bookingDate).toLocaleString('hi-IN'));
+                formData.append('customerName', bookingData.customerName);
+                formData.append('mobile', bookingData.mobileNumber);
+                formData.append('email', bookingData.emailId);
+                formData.append('address', bookingData.fullAddress);
+                formData.append('landmark', bookingData.landmark || '');
+                formData.append('pincode', bookingData.pinCode);
+                formData.append('orderItems', bookingData.productName);
+                formData.append('totalAmount', `₹${bookingData.productPrice} (Paid: ₹${bookingData.bookingAmount})`);
+                formData.append('paymentId', bookingData.transactionId);
+                formData.append('status', 'Booking Confirmed');
+
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    console.log('Data saved to Google Sheets successfully');
+                } else {
+                    console.error('Failed to save to Google Sheets:', result.message);
+                }
+            } catch (error) {
+                console.error('Error saving to Google Sheets:', error);
+                // Don't block the user experience if Google Sheets fails
+            }
+        }
+
+        function showSuccessMessage(bookingData) {
+            document.getElementById('transactionId').textContent = bookingData.transactionId;
+            
+            const detailsHtml = `
+                <p><strong>Service:</strong> ${bookingData.productName}</p>
+                <p><strong>Customer:</strong> ${bookingData.customerName}</p>
+                <p><strong>Mobile:</strong> ${bookingData.mobileNumber}</p>
+                <p><strong>Amount Paid:</strong> ₹${bookingData.bookingAmount}</p>
+                <p><strong>Remaining:</strong> ₹${bookingData.productPrice - bookingData.bookingAmount}</p>
+            `;
+            
+            document.getElementById('bookingDetails').innerHTML = detailsHtml;
+            document.getElementById('successMessage').classList.add('show');
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').classList.remove('show');
+            }, 5000);
+        }
+
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99fd42506139919e',t:'MTc2MzM2MTg2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
