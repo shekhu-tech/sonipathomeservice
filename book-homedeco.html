@@ -213,7 +213,7 @@
 
     function openCheckoutForCart() {
       const isTestOnly = cart.length === 1 && cart[0].price === 1;
-      const amountToCharge = isTestOnly ? 1 : 299; // rupees (flat booking)
+      const amountToCharge = isTestOnly ? 1 : 99; // rupees (flat booking)
       payNow(amountToCharge, cart);
     }
 
@@ -377,13 +377,13 @@
                 <div className="mt-4 flex items-center justify-between">
                   <div>
                     <div className="text-sm text-gray-500">Booking (partial)</div>
-                    <div className="font-bold text-lg">₹299</div>
+                    <div className="font-bold text-lg">₹99</div>
                   </div>
 
                   <div className="flex gap-2">
                     <button className="px-4 py-2 rounded border" onClick={() => setCartOpen(false)}>Continue Shopping</button>
                     <button disabled={isProcessing} onClick={openCheckoutForCart} className="px-4 py-2 rounded bg-blue-600 text-white">
-                      {isProcessing ? "Processing..." : "Pay ₹299"}
+                      {isProcessing ? "Processing..." : "Pay ₹99"}
                     </button>
                   </div>
                 </div>
