@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="logo.png">
+  <title>Sonipat Home Service — Wedding & Haldi Decoration</title>
+  <meta name="description" content="Sonipat Home Service - Wedding & Haldi decoration, booking and partial payments." />
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Sonipat Home Service .Com - Wedding & Haldi Decoration, Stage, Haldi Setup, Mandap Decoration in Sonipat. Online Booking Available." />
+  <meta name="keywords" content="Sonipat Home Service, Wedding Decoration,Wedding Decoration near me, Wedding Decoration in sonipat,Haldi Decoration,Haldi Decoration near me,Haldi Decoration in sonipat, Mandap,Mandap decoration in sonipat,Mandap decoration near me, Stage Setup, Sonipat Decoration" />
+  <link rel="canonical" href="https://www.sonipathomeservice.com" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sonipat Home Service .Com" />
+  <meta property="og:description" content="Wedding & Haldi Decoration – Online Booking Available" />
+  <meta property="og:image" content="https://picsum.photos/600/400?random=1" />
+  <meta property="og:url" content="https://www.sonipathomeservice.com" />
+  <meta property="og:type" content="website" />
+
+  <!-- Local Business Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Sonipat Home Service .Com",
+    "image": "https://www.sonipathomeservice.com/logo.png",
+    "@id": "https://www.sonipathomeservice.com",
+    "url": "https://www.sonipathomeservice.com",
+    "telephone": "+918816014071",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "128/1, Sainipura",
+      "addressLocality": "Sonipat",
+      "addressRegion": "Haryana",
+      "postalCode": "131001",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "28.9954",
+      "longitude": "77.0113"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }],
+    "sameAs": [
+      "https://www.facebook.com/Sonipathomeservice",
+      "https://www.instagram.com/Sonipathomeservice",
+      "https://x.com/Sonipathome"
+    ]
+  }
+  </script>
+  <!-- Tailwind (play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React + ReactDOM UMD -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel for JSX in-browser (single-file demo) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Razorpay -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <style>
+    /* minor overrides */
+    body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    /* ensure hero images don't jump */
+    .hero-image { transition: opacity .5s ease-in-out; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <div id="root"></div>
+
+  <!-- The full React app (single-file). Using JSX parsed by Babel for demo purposes. -->
+  <script type="text/babel">
+  const { useState, useEffect } = React;
+
+  function App() {
+    const initialProducts = [
+      { id: "p1", title: "Round Floral Mandap", price: 2500, image: "h1.jpeg", icon: "🌼" },
+      { id: "p2", title: "Green & Gold Stage", price: 2500, image: "h2.jpeg", icon: "🎀" },
+      { id: "p3", title: "Colorful Haldi Backdrop", price: 1500, image: "h3.jpeg", icon: "🪔" },
+      { id: "p4", title: "Diagonal Green Stage", price: 2500, image: "h4.jpeg", icon: "🌸" },
+      { id: "p5", title: "Yellow Haldi Mini Stage", price: 2000, image: "h5.jpeg", icon: "💛" },
+      // five more demo gallery items (added as you requested)
+      { id: "d1", title: "Pink & Brown House Decoration", price: 8000, image: "h9.jpeg", icon: "💡" },
+      { id: "d2", title: "Yellow & Red House Decoration", price: 2500, image: "h11.jpeg", icon: "🌺" },
+      { id: "d3", title: "Home Yellow & Blue Decoration ", price: 5000, image: "h14.jpeg", icon: "🧵" },
+      { id: "d4", title: "Chunni & Umbrella Deco", price: 3000, image: "h15.jpeg", icon: "🌷" },
+          ];
+
+    const [products] = useState(initialProducts);
+    const [heroIndex, setHeroIndex] = useState(0);
+    const [cart, setCart] = useState([]);
+    const [isCartOpen, setCartOpen] = useState(false);
+    const [isProcessing, setProcessing] = useState(false);
+    const [toast, setToast] = useState(null);
+
+    const [form, setForm] = useState({
+      name: "", mobile: "", email: "", address: "", landmark: "", pincode: ""
+    });
+
+    useEffect(() => {
+      const id = setInterval(() => {
+        setHeroIndex(i => (i + 1) % Math.min(5, products.length));
+      }, 3500);
+      return () => clearInterval(id);
+    }, [products.length]);
+
+    useEffect(() => {
+      if (toast) {
+        const t = setTimeout(() => setToast(null), 5000);
+        return () => clearTimeout(t);
+      }
+    }, [toast]);
+
+    function addToCart(product) {
+      setCart(c => {
+        const exists = c.find(x => x.id === product.id);
+        if (exists) return c.map(x => x.id === product.id ? {...x, qty: x.qty + 1} : x);
+        return [...c, {...product, qty: 1}];
+      });
+      setCartOpen(true);
+    }
+
+    function updateForm(e) {
+      const { name, value } = e.target;
+      setForm(f => ({ ...f, [name]: value }));
+    }
+
+    function validateForm() {
+      if (!form.name || !form.mobile || !form.pincode) return false;
+      if (!/^\d{10}$/.test(form.mobile)) return false;
+      if (!/^\d{6}$/.test(form.pincode)) return false;
+      return true;
+    }
+
+    function saveToSheet(payload) {
+      // Google Apps Script endpoint you provided
+      const url = "https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec";
+      // send via POST, mode no-cors so response isn't readable — Apps Script will receive it
+      const formData = new URLSearchParams();
+      Object.keys(payload).forEach(k => formData.append(k, payload[k]));
+      fetch(url, { method: "POST", mode: "no-cors", body: formData })
+        .catch(err => {
+          // no-cors will often reject in some browsers for CORS reasons, but Apps Script may still receive the request
+          console.warn("sheet save (no-cors) possibly blocked in browser - server may still have received it", err);
+        });
+    }
+
+    function payNow(totalAmountInRupees, cartSnapshot) {
+      if (!validateForm()) {
+        alert("Please fill name, valid 10-digit mobile and 6-digit pincode.");
+        return;
+      }
+      setProcessing(true);
+      const amountPaise = totalAmountInRupees * 100;
+
+      const options = {
+        key: "rzp_live_RLjzp7VlXERwiG", // provided live key (you can change later)
+        amount: amountPaise,
+        currency: "INR",
+        name: "Sonipat Home Service .Com",
+        description: "Booking amount - Partial payment",
+        prefill: { name: form.name, email: form.email, contact: form.mobile },
+        notes: { address: form.address || "" },
+        handler: function(response) {
+          const paymentId = response.razorpay_payment_id || response.razorpay_payment_link_id || "(id-not-returned)";
+          const payload = {
+            timestamp: new Date().toLocaleString('hi-IN'),
+            customerName: form.name,
+            mobile: form.mobile,
+            email: form.email,
+            address: form.address,
+            landmark: form.landmark,
+            pincode: form.pincode,
+            orderItems: cartSnapshot.map(it => `${it.title} x${it.qty}`).join(" | "),
+            totalAmount: totalAmountInRupees,
+            paymentId: paymentId,
+            status: "Paid"
+          };
+          // save to google sheet
+          saveToSheet(payload);
+
+          // show toast with tx id then clear cart
+          setToast({ type: "success", message: `Payment success: ${paymentId}`, details: payload });
+          setCart([]);
+          setCartOpen(false);
+          setProcessing(false);
+
+          // open whatsapp auto message
+          const waNumber = "918816014017"; // +91 8816014017 (no plus sign)
+          const waMessage = encodeURIComponent(
+            `Hello ${form.name}\nYour booking is confirmed.\nAmount: ₹${totalAmountInRupees}\nPayment ID: ${paymentId}\nWe will contact you soon. - Sonipat Home Service`
+          );
+          // open whatsapp in a new tab (if mobile, it opens WhatsApp app)
+          window.open(`https://wa.me/${waNumber}?text=${waMessage}`, "_blank");
+        },
+        modal: {
+          ondismiss: function() { setProcessing(false); }
+        },
+        theme: { color: "#ff6b35" }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    }
+
+    function openCheckoutForCart() {
+      const isTestOnly = cart.length === 1 && cart[0].price === 1;
+      const amountToCharge = isTestOnly ? 1 : 49; // rupees (flat booking)
+      payNow(amountToCharge, cart);
+    }
+
+    return (
+      <div className="min-h-screen">
+        {/* Header */}
+        <header className="bg-white shadow sticky top-0 z-40">
+          <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="https://www.sonipathomeservice.com" className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-full bg-orange-200 flex items-center justify-center font-bold text-orange-700">SH</div>
+              <div>
+                <div className="font-bold">Sonipat Home Service .Com</div>
+                <div className="text-xs text-gray-500">Wedding & Haldi Decoration</div>
+              </div>
+            </a>
+
+            <nav className="hidden md:flex gap-4 items-center">
+              <a className="text-sm" href="#gallery">Book Your Service Now</a>
+            </nav>
+
+            <div className="flex items-center gap-3">
+              <button onClick={() => setCartOpen(true)} className="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 6m12-6l2 6m-6 0a2 2 0 11-4 0" />
+                </svg>
+                {cart.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs px-2">
+                    {cart.reduce((s, p) => s + p.qty, 0)}
+                  </span>
+                )}
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <main className="max-w-6xl mx-auto p-4">
+          {/* Hero */}
+          <section className="grid md:grid-cols-2 gap-6 items-center">
+            <div className="relative rounded-lg overflow-hidden shadow-lg">
+              <img src={products[heroIndex].image} alt={products[heroIndex].title} className="w-full h-96 object-cover hero-image" />
+              <div className="absolute left-4 bottom-4 bg-white/90 px-3 py-2 rounded shadow">
+                <div className="text-sm font-semibold">{products[heroIndex].title}</div>
+                <div className="text-xs">Starting ₹{products[heroIndex].price}</div>
+              </div>
+            </div>
+
+            <div>
+              <h1 className="text-2xl font-bold">Haldi & Wedding Decorations</h1>
+              <p className="mt-2 text-gray-600">Service locations: Sonipat, Murthal, Bahalgarh, Kundli, Rai, Ganaur, Kharkhoda, Gohana, Mohana and all societies & sectors.</p>
+
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {products.slice(0,4).map(p => (
+                  <div key={p.id} className="bg-white p-3 rounded shadow flex items-center gap-3">
+                    <img src={p.image} alt={p.title} className="w-20 h-20 object-cover rounded" />
+                    <div className="flex-1">
+                      <div className="font-semibold">{p.title}</div>
+                      <div className="text-sm text-gray-500">{p.icon}</div>
+                      <div className="mt-2 flex items-center justify-between">
+                        <div className="text-lg font-bold">₹{p.price}</div>
+                        <button onClick={() => addToCart(p)} className="bg-yellow-500 px-3 py-1 rounded text-white text-sm">Book</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Gallery */}
+          <section id="gallery" className="mt-8">
+            <h2 className="text-xl font-semibold">Gallery</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-3">
+              {products.map(p => (
+                <div key={p.id} className="bg-white rounded shadow overflow-hidden">
+                  <img src={p.image} alt={p.title} className="w-full h-48 object-cover" />
+                  <div className="p-3 flex items-center justify-between">
+                    <div>
+                      <div className="font-semibold">{p.title}</div>
+                      <div className="text-sm text-gray-500">{p.icon}</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-bold">₹{p.price}</div>
+                      <button onClick={() => addToCart(p)} className="mt-2 bg-green-600 text-white px-3 py-1 rounded text-sm">Add to Cart</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+        </main>
+
+        {/* Footer */}
+        <footer className="bg-gray-900 text-white mt-8 p-6 sm:block hidden">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <div className="font-semibold text-lg">Sonipat Home Service .Com</div>
+              <div className="text-sm mt-1">128/1, Sainipura, Sonipat</div>
+              <div className="text-sm">Contact: 8816014071</div>
+              <div className="text-sm mt-2">Credit / Debit Card, Net Banking, UPI & Wallet Payment Accepted</div>
+            </div>
+
+            <div>
+              <div className="font-semibold mb-2">Follow Us</div>
+              <ul className="space-y-1 text-sm">
+                <li>Facebook: Sonipathomeservice</li>
+                <li>Instagram: Sonipathomeservice</li>
+                <li>X (Twitter): @Sonipathome</li>
+                <li>WhatsApp: 8816014071</li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="font-semibold mb-2">Download Our App</div>
+              <a href="https://play.google.com/store/apps/details?Id=Com.Crapd.Sonipathomeservice" target="_blank" rel="noopener noreferrer">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play Store" className="h-12 mb-3" />
+              </a>
+              <a href="https://www.indusappstore.com/apps/house-and-home/sonipat-home-service/com.crapd.sonipathomeservice/?page=details&id=com.crapd.sonipathomeservice" target="_blank" rel="noopener noreferrer">
+                <img src="indus.png" alt="Indus App Store" className="h-12  mb-3" />
+              </a>
+            </div>
+          </div>
+
+          <div className="text-center text-xs text-gray-400 mt-4">© {new Date().getFullYear()} Sonipat Home Service</div>
+        </footer>
+
+        {/* Cart Modal */}
+        {isCartOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+            <div className="bg-white rounded-lg w-full max-w-md p-4">
+              <div className="flex justify-between items-center">
+                <h4 className="font-semibold">Cart ({cart.length})</h4>
+                <button className="text-gray-500" onClick={() => setCartOpen(false)}>Close</button>
+              </div>
+
+              <div className="mt-3 space-y-3">
+                {cart.length === 0 && <div className="text-gray-500">Your cart is empty</div>}
+                {cart.map(c => (
+                  <div key={c.id} className="flex items-center gap-3">
+                    <img src={c.image} className="w-14 h-14 object-cover rounded" />
+                    <div className="flex-1">
+                      <div className="font-semibold">{c.title}</div>
+                      <div className="text-sm text-gray-500">Qty: {c.qty}</div>
+                    </div>
+                    <div className="font-semibold">₹{c.price}</div>
+                  </div>
+                ))}
+
+                <div className="mt-2">
+                  <h5 className="font-semibold">Booking Details</h5>
+                  <div className="grid grid-cols-1 gap-2 mt-2">
+                    <input name="name" value={form.name} onChange={updateForm} placeholder="Customer Name" className="border p-2 rounded" />
+                    <input name="mobile" value={form.mobile} onChange={updateForm} placeholder="Mobile (10 digits)" className="border p-2 rounded" />
+                    <input name="email" value={form.email} onChange={updateForm} placeholder="Email ID" className="border p-2 rounded" />
+                    <input name="address" value={form.address} onChange={updateForm} placeholder="Full Address" className="border p-2 rounded" />
+                    <input name="landmark" value={form.landmark} onChange={updateForm} placeholder="Landmark" className="border p-2 rounded" />
+                    <input name="pincode" value={form.pincode} onChange={updateForm} placeholder="Pin Code (6 digits)" className="border p-2 rounded" />
+                  </div>
+                </div>
+
+                <div className="mt-4 flex items-center justify-between">
+                  <div>
+                    <div className="text-sm text-gray-500">Booking (partial)</div>
+                    <div className="font-bold text-lg">₹49</div>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <button className="px-4 py-2 rounded border" onClick={() => setCartOpen(false)}>Continue Shopping</button>
+                    <button disabled={isProcessing} onClick={openCheckoutForCart} className="px-4 py-2 rounded bg-blue-600 text-white">
+                      {isProcessing ? "Processing..." : "Pay ₹49"}
+                    </button>
+                  </div>
+                </div>
+
+                <div className="text-xs text-gray-500">Note: Remaining payment will be collected on-site or after service completion.</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Toast */}
+        {toast && (
+          <div className="fixed bottom-6 right-6 bg-white p-4 rounded shadow-lg z-50">
+            <div className="font-semibold">{toast.type === "success" ? "Payment Successful" : "Info"}</div>
+            <div className="text-sm mt-1">{toast.message}</div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Render app
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<App />);
+  </script>
+
+  <!-- small note for deployers -->
+  <!--
+    Notes:
+    - Upload two images in your public folder:
+       /google-play-badge.png
+       /indus-appstore-badge.png
+    - Replace Razorpay key (rzp_live_RLjzp7VlXERwiG) with your own if needed.
+    - For production, create a server API to create Razorpay orders and verify signatures.
+    - Google Apps Script endpoint used for sheet saving:
+      https://script.google.com/macros/s/AKfycbwR2uJ2Uslimb7A04lHdd9JwKdk-d02iqVO-PAht9CRUw9rRcusnGAdAjCT07SjZHiO/exec
+  -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
