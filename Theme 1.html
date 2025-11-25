@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="logo.png">
+    <title>Sonipat Home Service – 30+ Trusted Home Appliance Repair & Service</title>
+    
+    <!-- Security & SEO -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="description" content="Get 30+ fast & reliable home appliance repair services in Sonipat. We fix ACs, refrigerators, washing machines, geysers, LED TVs, and more. 24x7 support with expert technicians. Book now!" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                800: '#1e40af',
+                900: '#1e3a8a',
+              },
+              accent: {
+                500: '#f59e0b',
+                600: '#d97706',
+              }
+            },
+            fontFamily: {
+              'poppins': ['Poppins', 'sans-serif'],
+              'inter': ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.6s ease-out',
+              'slide-in': 'slideIn 0.5s ease-out',
+              'pulse-slow': 'pulse 3s infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              slideIn: {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(0)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #f8fafc;
+      }
+      
+      .hero-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .hero-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+      }
+      
+      .service-card {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid #f1f5f9;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+      
+      .service-card:hover::before {
+        transform: scaleX(1);
+      }
+      
+      .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      }
+      
+      .service-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 28px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+      }
+      
+      .category-badge {
+        background: #f0f9ff;
+        color: #1e40af;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 12px;
+      }
+      
+      .nav-glass {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .footer-gradient {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      }
+      
+      .stats-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 24px;
+      }
+      
+      .cta-button {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: white;
+        padding: 16px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        border: none;
+        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(245, 158, 11, 0.6);
+      }
+      
+      .mobile-nav {
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(30px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .security-badge {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 25px;
+        font-size: 14px;
+        font-weight: 600;
+        z-index: 1000;
+        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+      
+      .loading-spinner {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+      
+      @keyframes floating {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      .section-title {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        border-radius: 2px;
+      }
+
+      /* Mobile Footer Toggle */
+      .footer-toggle {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 20px;
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        z-index: 1001;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .footer-toggle:hover {
+        transform: scale(1.1);
+      }
+    </style>
+</head>
+<body class="font-inter">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 bg-gradient-to-br from-primary-600 to-primary-800 flex items-center justify-center z-50">
+        <div class="text-center text-white">
+            <div class="loading-spinner mb-4"></div>
+            <h2 class="text-2xl font-bold mb-2 font-poppins">Sonipat Home Service</h2>
+            <p class="text-primary-200">Loading Premium Experience...</p>
+        </div>
+    </div>
+
+    <!-- Security Badge -->
+    <div class="security-badge">
+      <i class="fas fa-shield-alt"></i>
+      <span>SSL Secured</span>
+    </div>
+
+    <!-- Footer Toggle Button (Mobile Only) -->
+    <div class="footer-toggle lg:hidden" id="footerToggle">
+        <i class="fas fa-info"></i>
+    </div>
+
+    <!-- Header -->
+    <header class="nav-glass fixed top-0 left-0 right-0 z-40 py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center">
+                        <img src="logo.png" alt="Logo" class="w-8 h-8">
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-black text-gray-900 font-poppins">Sonipat Home Service</h1>
+                        <p class="text-primary-600 text-sm font-medium">30+ Trusted Services</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">Services</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">About</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">Contact</a>
+                    <a href="tel:8816014071" class="bg-primary-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg">
+                        <i class="fas fa-phone mr-2"></i>8816014071
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-gray-700 p-2" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative pt-20">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center text-white max-w-6xl mx-auto">
+                <div class="inline-flex items-center space-x-2 bg-white/20 rounded-full px-6 py-3 mb-8 backdrop-blur-sm">
+                    <span class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+                    <span class="text-lg font-semibold">🚀 24/7 Service Available</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight font-poppins">
+                    Your Complete
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400 mt-4">
+                        Home Solution
+                    </span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-4xl mx-auto font-light">
+                    From AC repair to wedding decoration, we provide 30+ premium home services in Sonipat. 
+                    Trusted by 10,000+ families with 100% satisfaction guarantee.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                    <button class="cta-button group text-lg px-12 py-4" onclick="scrollToServices()">
+                        <span class="flex items-center">
+                            <i class="fas fa-bolt mr-3"></i>
+                            Explore All Services
+                        </span>
+                    </button>
+                    <a href="tel:8816014071" class="bg-white/20 text-white px-10 py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-lg">
+                        <i class="fas fa-phone-volume mr-3"></i>Call: 8816014071
+                    </a>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+                    <div class="stats-card text-center">
+                        <div class="text-3xl font-black text-white mb-2">38+</div>
+                        <div class="text-white/80 font-medium">Services</div>
+                    </div>
+                    <div class="stats-card text-center">
+                        <div class="text-3xl font-black text-white mb-2">12+</div>
+                        <div class="text-white/80 font-medium">Experts</div>
+                    </div>
+                    <div class="stats-card text-center">
+                        <div class="text-3xl font-black text-white mb-2">10K+</div>
+                        <div class="text-white/80 font-medium">Homes</div>
+                    </div>
+                    <div class="stats-card text-center">
+                        <div class="text-3xl font-black text-white mb-2">24/7</div>
+                        <div class="text-white/80 font-medium">Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-8 h-12 border-2 border-white rounded-full flex justify-center">
+                <div class="w-1 h-4 bg-white rounded-full mt-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-primary-50 text-primary-600 px-6 py-3 rounded-full text-sm font-semibold mb-6 border border-primary-100">
+                    <i class="fas fa-star mr-2"></i>OUR COMPLETE SERVICES
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black text-gray-900 mb-6 font-poppins">
+                    <span class="section-title">38+ Premium</span>
+                    <span class="block text-primary-600 mt-2">Home Services</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    One-stop solution for all your home maintenance needs. From appliance repair to special events, we've got you covered.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="servicesGrid">
+                <!-- Services will be loaded here -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button class="bg-primary-600 text-white px-12 py-4 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg text-lg">
+                    <i class="fas fa-sync-alt mr-2"></i>Load More Services
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-600 to-primary-800 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center text-white max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-black mb-6 font-poppins">
+                    Ready to Transform Your Home?
+                </h2>
+                <p class="text-xl mb-12 text-white/90 leading-relaxed">
+                    Join 10,000+ satisfied customers in Sonipat who trust us for their home maintenance needs. 
+                    Get started with a free consultation today!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="tel:8816014071" class="cta-button text-lg px-12 py-4">
+                        <i class="fas fa-phone mr-3"></i>Call Now: 8816014071
+                    </a>
+                    <button class="bg-white/20 text-white px-10 py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-lg">
+                        <i class="fas fa-whatsapp mr-3"></i>WhatsApp Us
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Hidden on Mobile by Default) -->
+    <footer class="footer-gradient text-white pt-20 pb-10 hidden lg:block" id="mainFooter">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
+                            <img src="logo.png" alt="Logo" class="w-8 h-8">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-black font-poppins">Sonipat Home Service</h3>
+                            <p class="text-primary-300 text-sm">Since 2020</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Your trusted partner for all home appliance repairs and services in Sonipat. 
+                        Fast, reliable, and available 24x7 with verified technicians.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-poppins">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-white transition-colors">All Services</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Career</a></li>
+                    </ul>
+                </div>
+
+                <!-- Service Areas -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-poppins">Service Areas</h4>
+                    <ul class="space-y-3">
+                        <li class="text-gray-300">Sonipat City</li>
+                        <li class="text-gray-300">Murthal</li>
+                        <li class="text-gray-300">Bahalgarh</li>
+                        <li class="text-gray-300">Kundli</li>
+                        <li class="text-gray-300">Rai & Ganaur</li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-poppins">Contact Info</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-300">128/1, Sainipura</p>
+                                <p class="text-gray-300">Sonipat, Haryana</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-300">8816014071</p>
+                                <p class="text-gray-300">24/7 Available</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-300">care@sonipathomeservice.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © 2024 Sonipat Home Service. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Refund Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav fixed bottom-0 left-0 right-0 z-40 lg:hidden">
+        <div class="flex justify-around items-center py-4">
+            <a href="#home" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
+                <i class="fas fa-home text-xl mb-1"></i>
+                <span class="text-xs">Home</span>
+            </a>
+            <a href="#services" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
+                <i class="fas fa-concierge-bell text-xl mb-1"></i>
+                <span class="text-xs">Services</span>
+            </a>
+            <a href="#" onclick="scrollToServices()" class="flex flex-col items-center transform -translate-y-6">
+                <div class="w-16 h-16 bg-gradient-to-r from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-lg">
+                    <i class="fas fa-plus text-2xl text-white"></i>
+                </div>
+                <span class="text-xs text-white mt-2 font-semibold">Book Now</span>
+            </a>
+            <a href="tel:8816014071" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
+                <i class="fas fa-phone text-xl mb-1"></i>
+                <span class="text-xs">Call</span>
+            </a>
+            <a href="#contact" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
+                <i class="fas fa-user text-xl mb-1"></i>
+                <span class="text-xs">Account</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Complete Services Data (All 38 Services)
+        const servicesData = [
+            // Appliance Repair (8 services)
+            { title: "AC Installation & Repair", category: "Cooling", href: "book-ac-services.html", icon: "snowflake", price: "₹299" },
+            { title: "Refrigerator Repair", category: "Fridge", href: "book-fridge-refrigrator-services.html", icon: "temperature-low", price: "₹199" },
+            { title: "Washing Machine Repair", category: "Laundry", href: "book-washing-machine-services.html", icon: "tshirt", price: "₹199" },
+            { title: "LED TV Repair & Installation", category: "Electronics", href: "book-tv-repair.html", icon: "tv", price: "₹249" },
+            { title: "Geyser Repair", category: "Heating", href: "book-geyser-services.html", icon: "fire", price: "₹149" },
+            { title: "RO Installation & Repair", category: "Purification", href: "book-ro-serrvice.html", icon: "tint", price: "₹199" },
+            { title: "Chimney Cleaning", category: "Kitchen", href: "book-chimney-cleaning.html", icon: "wind", price: "₹399" },
+            { title: "Microwave Repair", category: "Kitchen", href: "#", icon: "microwave", price: "₹179" },
+
+            // Cleaning Services (6 services)
+            { title: "Sofa Cleaning Service", category: "Maintenance", href: "book-Sofa-cleaning.html", icon: "couch", price: "₹299" },
+            { title: "Water Tank Cleaning", category: "Maintenance", href: "book-watertankcleaning.html", icon: "fill-drip", price: "₹399" },
+            { title: "Septic Tank Cleaning", category: "Cleaning", href: "book-safty-tank-service.html", icon: "toilet", price: "₹799" },
+            { title: "Sewerage Unblock", category: "Plumbing", href: "book-sewerage-unblock-service.html", icon: "pipe-valve", price: "₹299" },
+            { title: "Pest Control Service", category: "Cleaning", href: "book-pasti-control-service.html", icon: "bug", price: "₹499" },
+            { title: "Full Home Deep Cleaning", category: "Cleaning", href: "#", icon: "broom", price: "₹1299" },
+
+            // Technical Services (8 services)
+            { title: "Electrician Services", category: "Electrical", href: "electricianservice.html", icon: "bolt", price: "₹149" },
+            { title: "Plumber Services", category: "Fitting", href: "book-plumber.html", icon: "faucet", price: "₹149" },
+            { title: "Wi-Fi Connection", category: "Connectivity", href: "book-wifi-service.html", icon: "wifi", price: "₹199" },
+            { title: "DTH Installation", category: "Connectivity", href: "Book-dth-installation-service.html", icon: "satellite-dish", price: "₹199" },
+            { title: "CCTV Solutions", category: "Security", href: "book-cctv-service.html", icon: "video", price: "₹1499" },
+            { title: "Solar Panel Installation", category: "Energy", href: "book-solar-installation.html", icon: "solar-panel", price: "₹2999" },
+            { title: "Borewell Installation", category: "Boring", href: "book-borewell-service.html", icon: "water", price: "₹4999" },
+            { title: "Compress Pipeline Cleaning", category: "Utility", href: "book-pipelineunblock.html", icon: "pipe-collar", price: "₹399" },
+
+            // Construction & Repair (6 services)
+            { title: "Masonry Services", category: "Construction", href: "book-chinai-mistri.html", icon: "hammer", price: "₹299" },
+            { title: "Building Material Supply", category: "Construction", href: "book-building-material-supply.html", icon: "truck-loading", price: "Contact" },
+            { title: "Bricks Supply", category: "Material", href: "book-bricks.html", icon: "cube", price: "Contact" },
+            { title: "Carpentry Work", category: "Construction", href: "#", icon: "ruler-combined", price: "₹349" },
+            { title: "Painting Services", category: "Construction", href: "#", icon: "paint-roller", price: "₹499" },
+            { title: "False Ceiling", category: "Construction", href: "#", icon: "vector-square", price: "₹1999" },
+
+            // Special Services (10 services)
+            { title: "Vehicle Booking", category: "Transportation", href: "book-vehicle-service.html", icon: "car", price: "₹99" },
+            { title: "Car Repair Services", category: "Automobile", href: "automobile-repairing-services.html", icon: "car-side", price: "₹199" },
+            { title: "Puncture Repair at home", category: "Auto", href: "book-tyrepuncture.html", icon: "tire", price: "₹99" },
+            { title: "Fast Parcel Delivery", category: "Delivery", href: "book-parcel-delivery-service-services.html", icon: "shipping-fast", price: "₹49" },
+            { title: "Packers & Movers", category: "logistics", href: "book-packermover.html", icon: "truck-moving", price: "Contact" },
+            { title: "Halwai Booking", category: "Events", href: "book-halwai-service.html", icon: "utensils", price: "Contact" },
+            { title: "Cater Booking", category: "Events", href: "comingsoon.html", icon: "pizza-slice", price: "Contact" },
+            { title: "DJ Booking", category: "Party", href: "book-dj.html", icon: "music", price: "₹2999" },
+            { title: "Wedding & Haldi Decoration", category: "Wedding", href: "book-homedeco.html", icon: "ring", price: "Contact" },
+            { title: "Tree Grooming", category: "Gardening", href: "book-treegrooming.html", icon: "tree", price: "₹399" },
+            { title: "Barber Services", category: "Salon", href: "book-barber-service.html", icon: "cut", price: "₹99" },
+            { title: "Ladies Corner", category: "Beauty", href: "book-ladies-corner-service.html", icon: "spa", price: "₹199" },
+            { title: "RO Water Supply", category: "Water", href: "book-ro-water-services-services.html", icon: "water", price: "₹30/L" },
+            { title: "Website Development", category: "Digital", href: "book-web.html", icon: "code", price: "₹4999" },
+            { title: "Loan Assistance", category: "Finance", href: "#loan", icon: "hand-holding-usd", price: "Free" }
+        ];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.display = 'none';
+            }, 2000);
+
+            // Load all services
+            loadAllServices();
+            
+            // Add security features
+            document.addEventListener('contextmenu', e => e.preventDefault());
+            
+            // Add noopener to external links
+            document.querySelectorAll('a[target="_blank"]').forEach(link => {
+                if (!link.rel.includes('noopener')) {
+                    link.rel += ' noopener noreferrer';
+                }
+            });
+
+            // Footer toggle functionality
+            setupFooterToggle();
+        });
+
+        // Load All Services
+        function loadAllServices() {
+            const servicesGrid = document.getElementById('servicesGrid');
+            servicesData.forEach(service => {
+                const serviceCard = document.createElement('a');
+                serviceCard.href = service.href;
+                serviceCard.className = 'service-card group animate-fade-in-up';
+                
+                serviceCard.innerHTML = `
+                    <div class="service-icon">
+                        <i class="fas fa-${service.icon}"></i>
+                    </div>
+                    <span class="category-badge">${service.category}</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors leading-tight">
+                        ${service.title}
+                    </h3>
+                    <div class="flex justify-between items-center">
+                        <span class="text-primary-600 font-semibold">${service.price}</span>
+                        <div class="w-10 h-10 bg-primary-50 rounded-full flex items-center justify-center text-primary-600 group-hover:bg-primary-600 group-hover:text-white transition-colors">
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </div>
+                    </div>
+                `;
+                
+                servicesGrid.appendChild(serviceCard);
+            });
+        }
+
+        // Footer Toggle Setup
+        function setupFooterToggle() {
+            const footerToggle = document.getElementById('footerToggle');
+            const mainFooter = document.getElementById('mainFooter');
+            let footerVisible = false;
+
+            footerToggle.addEventListener('click', function() {
+                if (footerVisible) {
+                    // Hide footer
+                    mainFooter.classList.add('hidden');
+                    footerToggle.innerHTML = '<i class="fas fa-info"></i>';
+                    footerToggle.style.background = 'linear-gradient(135deg, #3b82f6, #1e40af)';
+                } else {
+                    // Show footer
+                    mainFooter.classList.remove('hidden');
+                    mainFooter.scrollIntoView({ behavior: 'smooth' });
+                    footerToggle.innerHTML = '<i class="fas fa-times"></i>';
+                    footerToggle.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                }
+                footerVisible = !footerVisible;
+            });
+
+            // Auto-hide footer on mobile when scrolling up
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                if (window.innerWidth < 1024) { // Only on mobile
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                    if (scrollTop > lastScrollTop && footerVisible) {
+                        // Scrolling down - hide footer
+                        mainFooter.classList.add('hidden');
+                        footerToggle.innerHTML = '<i class="fas fa-info"></i>';
+                        footerToggle.style.background = 'linear-gradient(135deg, #3b82f6, #1e40af)';
+                        footerVisible = false;
+                    }
+                    lastScrollTop = scrollTop;
+                }
+            });
+        }
+
+        // Scroll to Services
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Mobile Menu
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            alert('Mobile menu would open here in a full implementation');
+        });
+    </script>
+</body>
+</html>
