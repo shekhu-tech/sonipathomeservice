@@ -113,13 +113,63 @@
       
       .service-card {
         background: white;
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid #f1f5f9;
+        border: 3px solid #3b82f6;
         position: relative;
         overflow: hidden;
+        animation: borderColorChange 30s infinite;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Mobile-specific card styles */
+      @media (max-width: 768px) {
+        .service-card {
+          padding: 12px;
+          border-radius: 10px;
+          border-width: 2px;
+        }
+        
+        .service-icon {
+          width: 50px !important;
+          height: 50px !important;
+          font-size: 20px !important;
+          margin-bottom: 12px !important;
+        }
+        
+        .service-card h3 {
+          font-size: 14px !important;
+          line-height: 1.3 !important;
+          margin-bottom: 8px !important;
+        }
+        
+        .category-badge {
+          font-size: 10px !important;
+          padding: 4px 10px !important;
+          margin-bottom: 8px !important;
+        }
+        
+        .service-card .price {
+          font-size: 13px !important;
+        }
+        
+        .service-card .arrow-icon {
+          width: 28px !important;
+          height: 28px !important;
+        }
+      }
+      
+      @keyframes borderColorChange {
+        0%, 50% {
+          border-color: #3b82f6;
+        }
+        51%, 100% {
+          border-color: #000000;
+        }
       }
       
       .service-card::before {
@@ -128,7 +178,7 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 4px;
+        height: 3px;
         background: linear-gradient(135deg, #3b82f6, #1e40af);
         transform: scaleX(0);
         transition: transform 0.3s ease;
@@ -139,33 +189,35 @@
       }
       
       .service-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
       }
       
       .service-icon {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         background: linear-gradient(135deg, #3b82f6, #1e40af);
-        border-radius: 16px;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
-        font-size: 28px;
-        margin-bottom: 20px;
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        font-size: 24px;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        flex-shrink: 0;
       }
       
       .category-badge {
         background: #f0f9ff;
         color: #1e40af;
-        padding: 6px 16px;
-        border-radius: 20px;
-        font-size: 12px;
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 11px;
         font-weight: 600;
         display: inline-block;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
+        line-height: 1;
       }
       
       .nav-glass {
@@ -199,6 +251,7 @@
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        cursor: pointer;
       }
       
       .cta-button:hover {
@@ -292,6 +345,30 @@
       .footer-toggle:hover {
         transform: scale(1.1);
       }
+
+      /* Improved mobile header */
+      @media (max-width: 768px) {
+        .hero-bg {
+          padding: 80px 0 40px;
+        }
+        
+        .hero-bg h1 {
+          font-size: 2.5rem !important;
+          line-height: 1.2 !important;
+        }
+        
+        .hero-bg p {
+          font-size: 1rem !important;
+        }
+        
+        .stats-card {
+          padding: 16px 12px;
+        }
+        
+        .stats-card .text-3xl {
+          font-size: 1.5rem;
+        }
+      }
     </style>
 </head>
 <body class="font-inter">
@@ -305,17 +382,17 @@
     </div>
 
     <!-- Header -->
-    <header class="nav-glass fixed top-0 left-0 right-0 z-40 py-4">
+    <header class="nav-glass fixed top-0 left-0 right-0 z-40 py-3">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center">
-                        <img src="logo.png" alt="Logo" class="w-8 h-8">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center">
+                        <img src="logo.png" alt="Logo" class="w-6 h-6">
                     </div>
                     <div>
-                        <h1 class="text-xl font-black text-gray-900 font-poppins">Sonipat Home Service</h1>
-                        <p class="text-primary-600 text-sm font-medium">30+ Trusted Services</p>
+                        <h1 class="text-lg font-black text-gray-900 font-poppins">Sonipat Home Service</h1>
+                        <p class="text-primary-600 text-xs font-medium">30+ Trusted Services</p>
                     </div>
                 </div>
 
@@ -325,9 +402,9 @@
                     <a href="#services" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">Services</a>
                     <a href="#about" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">About</a>
                     <a href="#contact" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">Contact</a>
-                    <a href="tel:8816014071" class="bg-primary-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg">
+                    <button onclick="makeCall('8816014071')" class="bg-primary-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg">
                         <i class="fas fa-phone mr-2"></i>8816014071
-                    </a>
+                    </button>
                 </nav>
 
                 <!-- Mobile Menu Button -->
@@ -339,55 +416,55 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative pt-20">
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative pt-16">
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center text-white max-w-6xl mx-auto">
-                <div class="inline-flex items-center space-x-2 bg-white/20 rounded-full px-6 py-3 mb-8 backdrop-blur-sm">
-                    <span class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
-                    <span class="text-lg font-semibold">🚀 24/7 Service Available</span>
+                <div class="inline-flex items-center space-x-2 bg-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span class="text-sm font-semibold">🚀 24/7 Service Available</span>
                 </div>
                 
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight font-poppins">
+                <h1 class="text-4xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight font-poppins">
                     Your Complete
-                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400 mt-4">
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400 mt-2 md:mt-4">
                         Home Solution
                     </span>
                 </h1>
                 
-                <p class="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-4xl mx-auto font-light">
+                <p class="text-lg md:text-2xl text-white/90 mb-8 md:mb-12 leading-relaxed max-w-4xl mx-auto font-light">
                     From AC repair to wedding decoration, we provide 30+ premium home services in Sonipat. 
                     Trusted by 10,000+ families with 100% satisfaction guarantee.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-                    <button class="cta-button group text-lg px-12 py-4" onclick="scrollToServices()">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                    <button class="cta-button group text-base md:text-lg px-8 md:px-12 py-3 md:py-4" onclick="scrollToServices()">
                         <span class="flex items-center">
-                            <i class="fas fa-bolt mr-3"></i>
+                            <i class="fas fa-bolt mr-2 md:mr-3"></i>
                             Explore All Services
                         </span>
                     </button>
-                    <a href="tel:8816014071" class="bg-white/20 text-white px-10 py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-lg">
-                        <i class="fas fa-phone-volume mr-3"></i>Call: 8816014071
-                    </a>
+                    <button onclick="makeCall('8816014071')" class="bg-white/20 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-base md:text-lg">
+                        <i class="fas fa-phone-volume mr-2 md:mr-3"></i>Call: 8816014071
+                    </button>
                 </div>
                 
                 <!-- Stats -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto">
                     <div class="stats-card text-center">
-                        <div class="text-3xl font-black text-white mb-2">38+</div>
-                        <div class="text-white/80 font-medium">Services</div>
+                        <div class="text-2xl md:text-3xl font-black text-white mb-1 md:mb-2">38+</div>
+                        <div class="text-white/80 text-sm md:text-base font-medium">Services</div>
                     </div>
                     <div class="stats-card text-center">
-                        <div class="text-3xl font-black text-white mb-2">12+</div>
-                        <div class="text-white/80 font-medium">Experts</div>
+                        <div class="text-2xl md:text-3xl font-black text-white mb-1 md:mb-2">12+</div>
+                        <div class="text-white/80 text-sm md:text-base font-medium">Experts</div>
                     </div>
                     <div class="stats-card text-center">
-                        <div class="text-3xl font-black text-white mb-2">10K+</div>
-                        <div class="text-white/80 font-medium">Homes</div>
+                        <div class="text-2xl md:text-3xl font-black text-white mb-1 md:mb-2">10K+</div>
+                        <div class="text-white/80 text-sm md:text-base font-medium">Homes</div>
                     </div>
                     <div class="stats-card text-center">
-                        <div class="text-3xl font-black text-white mb-2">24/7</div>
-                        <div class="text-white/80 font-medium">Support</div>
+                        <div class="text-2xl md:text-3xl font-black text-white mb-1 md:mb-2">24/7</div>
+                        <div class="text-white/80 text-sm md:text-base font-medium">Support</div>
                     </div>
                 </div>
             </div>
@@ -395,36 +472,36 @@
         
         <!-- Scroll Indicator -->
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div class="w-8 h-12 border-2 border-white rounded-full flex justify-center">
-                <div class="w-1 h-4 bg-white rounded-full mt-2"></div>
+            <div class="w-6 h-8 border-2 border-white rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white rounded-full mt-1"></div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 bg-white relative">
+    <section id="services" class="py-12 md:py-20 bg-white relative">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <div class="inline-block bg-primary-50 text-primary-600 px-6 py-3 rounded-full text-sm font-semibold mb-6 border border-primary-100">
-                    <i class="fas fa-star mr-2"></i>OUR COMPLETE SERVICES
+            <div class="text-center mb-12 md:mb-16">
+                <div class="inline-block bg-primary-50 text-primary-600 px-4 py-2 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-semibold mb-4 md:mb-6 border border-primary-100">
+                    <i class="fas fa-star mr-1 md:mr-2"></i>OUR COMPLETE SERVICES
                 </div>
-                <h2 class="text-5xl md:text-6xl font-black text-gray-900 mb-6 font-poppins">
+                <h2 class="text-3xl md:text-6xl font-black text-gray-900 mb-4 md:mb-6 font-poppins">
                     <span class="section-title">38+ Premium</span>
-                    <span class="block text-primary-600 mt-2">Home Services</span>
+                    <span class="block text-primary-600 mt-1 md:mt-2">Home Services</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     One-stop solution for all your home maintenance needs. From appliance repair to special events, we've got you covered.
                 </p>
             </div>
 
             <!-- Services Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="servicesGrid">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="servicesGrid">
                 <!-- Services will be loaded here -->
             </div>
 
             <!-- Load More Button -->
-            <div class="text-center mt-12">
-                <button class="bg-primary-600 text-white px-12 py-4 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg text-lg">
+            <div class="text-center mt-8 md:mt-12">
+                <button class="bg-primary-600 text-white px-8 md:px-12 py-3 md:py-4 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg text-base md:text-lg">
                     <i class="fas fa-sync-alt mr-2"></i>Load More Services
                 </button>
             </div>
@@ -432,23 +509,23 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-primary-600 to-primary-800 relative overflow-hidden">
+    <section class="py-12 md:py-20 bg-gradient-to-r from-primary-600 to-primary-800 relative overflow-hidden">
         <div class="absolute inset-0 bg-black/20"></div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center text-white max-w-4xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-black mb-6 font-poppins">
+                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6 font-poppins">
                     Ready to Transform Your Home?
                 </h2>
-                <p class="text-xl mb-12 text-white/90 leading-relaxed">
+                <p class="text-base md:text-xl mb-8 md:mb-12 text-white/90 leading-relaxed">
                     Join 10,000+ satisfied customers in Sonipat who trust us for their home maintenance needs. 
                     Get started with a free consultation today!
                 </p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <a href="tel:8816014071" class="cta-button text-lg px-12 py-4">
-                        <i class="fas fa-phone mr-3"></i>Call Now: 8816014071
-                    </a>
-                    <button class="bg-white/20 text-white px-10 py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-lg">
-                        <i class="fas fa-whatsapp mr-3"></i>WhatsApp Us
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button onclick="makeCall('8816014071')" class="cta-button text-base md:text-lg px-8 md:px-12 py-3 md:py-4">
+                        <i class="fas fa-phone mr-2 md:mr-3"></i>Call Now: 8816014071
+                    </button>
+                    <button class="bg-white/20 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-base md:text-lg">
+                        <i class="fas fa-whatsapp mr-2 md:mr-3"></i>WhatsApp Us
                     </button>
                 </div>
             </div>
@@ -456,90 +533,90 @@
     </section>
 
     <!-- Footer (Hidden on Mobile by Default) -->
-    <footer class="footer-gradient text-white pt-20 pb-10 hidden lg:block" id="mainFooter">
+    <footer class="footer-gradient text-white pt-12 md:pt-20 pb-6 md:pb-10 hidden lg:block" id="mainFooter">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8 md:mb-12">
                 <!-- Company Info -->
                 <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
-                            <img src="logo.png" alt="Logo" class="w-8 h-8">
+                    <div class="flex items-center space-x-3 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center">
+                            <img src="logo.png" alt="Logo" class="w-6 h-6 md:w-8 md:h-8">
                         </div>
                         <div>
-                            <h3 class="text-xl font-black font-poppins">Sonipat Home Service</h3>
-                            <p class="text-primary-300 text-sm">Since 2020</p>
+                            <h3 class="text-lg md:text-xl font-black font-poppins">Sonipat Home Service</h3>
+                            <p class="text-primary-300 text-xs md:text-sm">Since 2020</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
+                    <p class="text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
                         Your trusted partner for all home appliance repairs and services in Sonipat. 
                         Fast, reliable, and available 24x7 with verified technicians.
-                        <h3 class="text-xl font-black font-poppins">Our Websites:-</h3><br>🌐www.sonipathomeservice.com<br>🌐www.sonipatacservice.com<br>🌐www.sonipatrentals.com
+                        <h3 class="text-lg md:text-xl font-black font-poppins mt-2">Our Websites:-</h3><br>🌐www.sonipathomeservice.com<br>🌐www.sonipatacservice.com<br>🌐www.sonipatrentals.com
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
-                            <i class="fab fa-facebook-f"></i>
+                    <div class="flex space-x-3 md:space-x-4">
+                        <a href="#" class="w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <i class="fab fa-facebook-f text-sm"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
-                            <i class="fab fa-instagram"></i>
+                        <a href="#" class="w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <i class="fab fa-instagram text-sm"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
-                            <i class="fab fa-whatsapp"></i>
+                        <a href="#" class="w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <i class="fab fa-whatsapp text-sm"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="text-lg font-bold mb-6 font-poppins">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#home" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
-                        <li><a href="#services" class="text-gray-300 hover:text-white transition-colors">All Services</a></li>
-                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Career</a></li>
+                    <h4 class="text-base md:text-lg font-bold mb-4 md:mb-6 font-poppins">Quick Links</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li><a href="#home" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Home</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">All Services</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Contact</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Career</a></li>
                     </ul>
                 </div>
 
                 <!-- Service Areas -->
                 <div>
-                    <h4 class="text-lg font-bold mb-6 font-poppins">Service Areas</h4>
-                    <ul class="space-y-3">
-                        <li class="text-gray-300">Sonipat City</li>
-                        <li class="text-gray-300">Murthal</li>
-                        <li class="text-gray-300">Bahalgarh</li>
-                        <li class="text-gray-300">Kundli</li>
-                        <li class="text-gray-300">Rai & Ganaur</li>
+                    <h4 class="text-base md:text-lg font-bold mb-4 md:mb-6 font-poppins">Service Areas</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li class="text-gray-300 text-sm md:text-base">Sonipat City</li>
+                        <li class="text-gray-300 text-sm md:text-base">Murthal</li>
+                        <li class="text-gray-300 text-sm md:text-base">Bahalgarh</li>
+                        <li class="text-gray-300 text-sm md:text-base">Kundli</li>
+                        <li class="text-gray-300 text-sm md:text-base">Rai & Ganaur</li>
                     </ul>
                 </div>
 
                 <!-- Contact Info -->
                 <div>
-                    <h4 class="text-lg font-bold mb-6 font-poppins">Contact Info</h4>
-                    <div class="space-y-4">
+                    <h4 class="text-base md:text-lg font-bold mb-4 md:mb-6 font-poppins">Contact Info</h4>
+                    <div class="space-y-3 md:space-y-4">
                         <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt"></i>
+                            <div class="w-8 h-8 md:w-10 md:h-10 bg-primary-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-sm"></i>
                             </div>
                             <div>
-                                <p class="text-gray-300">128/1, Sainipura</p>
-                                <p class="text-gray-300">Sonipat, Haryana</p>
+                                <p class="text-gray-300 text-sm md:text-base">128/1, Sainipura</p>
+                                <p class="text-gray-300 text-sm md:text-base">Sonipat, Haryana</p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-phone"></i>
+                            <div class="w-8 h-8 md:w-10 md:h-10 bg-primary-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-phone text-sm"></i>
                             </div>
                             <div>
-                                <p class="text-gray-300">8816014071</p>
-                                <p class="text-gray-300">24/7 Available</p>
+                                <p class="text-gray-300 text-sm md:text-base">8816014071</p>
+                                <p class="text-gray-300 text-sm md:text-base">24/7 Available</p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-envelope"></i>
+                            <div class="w-8 h-8 md:w-10 md:h-10 bg-primary-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope text-sm"></i>
                             </div>
                             <div>
-                                <p class="text-gray-300">care@sonipathomeservice.com</p>
+                                <p class="text-gray-300 text-sm md:text-base">care@sonipathomeservice.com</p>
                             </div>
                         </div>
                     </div>
@@ -547,12 +624,12 @@
             </div>
 
             <!-- Bottom Bar -->
-            <div class="border-t border-gray-700 pt-8">
+            <div class="border-t border-gray-700 pt-6 md:pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    <p class="text-gray-400 text-xs md:text-sm mb-3 md:mb-0 text-center md:text-left">
                         © 2024 Sonipat Home Service. All rights reserved.
                     </p>
-                    <div class="flex space-x-6 text-sm">
+                    <div class="flex space-x-4 md:space-x-6 text-xs md:text-sm">
                         <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
                         <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
                         <a href="#" class="text-gray-400 hover:text-white transition-colors">Refund Policy</a>
@@ -564,27 +641,27 @@
 
     <!-- Mobile Navigation -->
     <nav class="mobile-nav fixed bottom-0 left-0 right-0 z-40 lg:hidden">
-        <div class="flex justify-around items-center py-4">
+        <div class="flex justify-around items-center py-3">
             <a href="#home" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
-                <i class="fas fa-home text-xl mb-1"></i>
+                <i class="fas fa-home text-lg mb-1"></i>
                 <span class="text-xs">Home</span>
             </a>
             <a href="#services" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
-                <i class="fas fa-concierge-bell text-xl mb-1"></i>
+                <i class="fas fa-concierge-bell text-lg mb-1"></i>
                 <span class="text-xs">Services</span>
             </a>
-            <a href="#" onclick="scrollToServices()" class="flex flex-col items-center transform -translate-y-6">
-                <div class="w-16 h-16 bg-gradient-to-r from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-lg">
-                    <i class="fas fa-plus text-2xl text-white"></i>
+            <a href="#" onclick="scrollToServices()" class="flex flex-col items-center transform -translate-y-4">
+                <div class="w-12 h-12 bg-gradient-to-r from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-lg">
+                    <i class="fas fa-plus text-xl text-white"></i>
                 </div>
-                <span class="text-xs text-white mt-2 font-semibold">Book Now</span>
+                <span class="text-xs text-white mt-1 font-semibold">Book Now</span>
             </a>
-            <a href="tel:8816014071" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
-                <i class="fas fa-phone text-xl mb-1"></i>
+            <button onclick="makeCall('8816014071')" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
+                <i class="fas fa-phone text-lg mb-1"></i>
                 <span class="text-xs">Call</span>
-            </a>
+            </button>
             <a href="#contact" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
-                <i class="fas fa-user text-xl mb-1"></i>
+                <i class="fas fa-user text-lg mb-1"></i>
                 <span class="text-xs">Account</span>
             </a>
         </div>
@@ -684,13 +761,13 @@
                         <i class="fas fa-${service.icon}"></i>
                     </div>
                     <span class="category-badge">${service.category}</span>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors leading-tight">
+                    <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors leading-tight flex-grow">
                         ${service.title}
                     </h3>
-                    <div class="flex justify-between items-center">
-                        <span class="text-primary-600 font-semibold">${service.price}</span>
-                        <div class="w-10 h-10 bg-primary-50 rounded-full flex items-center justify-center text-primary-600 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                            <i class="fas fa-arrow-right text-sm"></i>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="text-primary-600 font-semibold price">${service.price}</span>
+                        <div class="w-8 h-8 bg-primary-50 rounded-full flex items-center justify-center text-primary-600 group-hover:bg-primary-600 group-hover:text-white transition-colors arrow-icon">
+                            <i class="fas fa-arrow-right text-xs"></i>
                         </div>
                     </div>
                 `;
@@ -699,27 +776,44 @@
             });
         }
 
+        // Universal Call Function - Works in Mobile Apps
+        function makeCall(phoneNumber) {
+            // Try different methods to handle calls
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // For mobile devices
+                window.location.href = 'tel:' + phoneNumber;
+            } else {
+                // For desktop or when tel: doesn't work
+                if (confirm('Call ' + phoneNumber + '?')) {
+                    // Fallback for mobile apps that block tel: protocol
+                    window.open('tel:' + phoneNumber, '_system');
+                }
+            }
+        }
+
         // Footer Toggle Setup
         function setupFooterToggle() {
             const footerToggle = document.getElementById('footerToggle');
             const mainFooter = document.getElementById('mainFooter');
             let footerVisible = false;
 
-            footerToggle.addEventListener('click', function() {
-                if (footerVisible) {
-                    // Hide footer
-                    mainFooter.classList.add('hidden');
-                    footerToggle.innerHTML = '<i class="fas fa-info"></i>';
-                    footerToggle.style.background = 'linear-gradient(135deg, #3b82f6, #1e40af)';
-                } else {
-                    // Show footer
-                    mainFooter.classList.remove('hidden');
-                    mainFooter.scrollIntoView({ behavior: 'smooth' });
-                    footerToggle.innerHTML = '<i class="fas fa-times"></i>';
-                    footerToggle.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
-                }
-                footerVisible = !footerVisible;
-            });
+            if (footerToggle) {
+                footerToggle.addEventListener('click', function() {
+                    if (footerVisible) {
+                        // Hide footer
+                        mainFooter.classList.add('hidden');
+                        footerToggle.innerHTML = '<i class="fas fa-info"></i>';
+                        footerToggle.style.background = 'linear-gradient(135deg, #3b82f6, #1e40af)';
+                    } else {
+                        // Show footer
+                        mainFooter.classList.remove('hidden');
+                        mainFooter.scrollIntoView({ behavior: 'smooth' });
+                        footerToggle.innerHTML = '<i class="fas fa-times"></i>';
+                        footerToggle.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                    }
+                    footerVisible = !footerVisible;
+                });
+            }
 
             // Auto-hide footer on mobile when scrolling up
             let lastScrollTop = 0;
@@ -730,8 +824,10 @@
                     if (scrollTop > lastScrollTop && footerVisible) {
                         // Scrolling down - hide footer
                         mainFooter.classList.add('hidden');
-                        footerToggle.innerHTML = '<i class="fas fa-info"></i>';
-                        footerToggle.style.background = 'linear-gradient(135deg, #3b82f6, #1e40af)';
+                        if (footerToggle) {
+                            footerToggle.innerHTML = '<i class="fas fa-info"></i>';
+                            footerToggle.style.background = 'linear-gradient(135deg, #3b82f6, #1e40af)';
+                        }
                         footerVisible = false;
                     }
                     lastScrollTop = scrollTop;
