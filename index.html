@@ -369,6 +369,60 @@
           font-size: 1.5rem;
         }
       }
+
+      /* Call Modal Styles */
+      .call-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .call-modal-content {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 90%;
+        width: 400px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      
+      .call-modal-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 25px;
+      }
+      
+      .call-modal-btn {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .call-modal-call {
+        background: #10b981;
+        color: white;
+      }
+      
+      .call-modal-cancel {
+        background: #ef4444;
+        color: white;
+      }
+      
+      .call-modal-btn:hover {
+        transform: translateY(-2px);
+      }
     </style>
 </head>
 <body class="font-inter">
@@ -378,6 +432,20 @@
             <div class="loading-spinner mb-4"></div>
             <h2 class="text-2xl font-bold mb-2 font-poppins">Sonipat Home Service</h2>
             <p class="text-primary-200">🙏 Namaste ...</p>
+        </div>
+    </div>
+
+    <!-- Call Confirmation Modal -->
+    <div id="callModal" class="call-modal">
+        <div class="call-modal-content">
+            <div class="text-6xl mb-4">📞</div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Call Sonipat Home Service</h3>
+            <p class="text-gray-600 mb-4">Do you want to call our customer service?</p>
+            <div class="text-3xl font-bold text-primary-600 mb-6">8816014071</div>
+            <div class="call-modal-buttons">
+                <button id="cancelCall" class="call-modal-btn call-modal-cancel">Cancel</button>
+                <button id="confirmCall" class="call-modal-btn call-modal-call">Call Now</button>
+            </div>
         </div>
     </div>
 
@@ -402,7 +470,7 @@
                     <a href="#services" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">Services</a>
                     <a href="#about" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">About</a>
                     <a href="#contact" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">Contact</a>
-                    <button onclick="makeCall('8816014071')" class="bg-primary-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg">
+                    <button onclick="showCallModal('8816014071')" class="bg-primary-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg">
                         <i class="fas fa-phone mr-2"></i>8816014071
                     </button>
                 </nav>
@@ -443,7 +511,7 @@
                             Explore All Services
                         </span>
                     </button>
-                    <button onclick="makeCall('8816014071')" class="bg-white/20 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-base md:text-lg">
+                    <button onclick="showCallModal('8816014071')" class="bg-white/20 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-base md:text-lg">
                         <i class="fas fa-phone-volume mr-2 md:mr-3"></i>Call: 8816014071
                     </button>
                 </div>
@@ -521,7 +589,7 @@
                     Get started with a free consultation today!
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button onclick="makeCall('8816014071')" class="cta-button text-base md:text-lg px-8 md:px-12 py-3 md:py-4">
+                    <button onclick="showCallModal('8816014071')" class="cta-button text-base md:text-lg px-8 md:px-12 py-3 md:py-4">
                         <i class="fas fa-phone mr-2 md:mr-3"></i>Call Now: 8816014071
                     </button>
                     <button class="bg-white/20 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-base md:text-lg">
@@ -656,7 +724,7 @@
                 </div>
                 <span class="text-xs text-white mt-1 font-semibold">Book Now</span>
             </a>
-            <button onclick="makeCall('8816014071')" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
+            <button onclick="showCallModal('8816014071')" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
                 <i class="fas fa-phone text-lg mb-1"></i>
                 <span class="text-xs">Call</span>
             </button>
@@ -744,8 +812,8 @@
                 }
             });
 
-            // Footer toggle functionality
-            setupFooterToggle();
+            // Setup call modal
+            setupCallModal();
         });
 
         // Load All Services
@@ -776,63 +844,69 @@
             });
         }
 
-        // Universal Call Function - Works in Mobile Apps
-        function makeCall(phoneNumber) {
-            // Try different methods to handle calls
-            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                // For mobile devices
-                window.location.href = 'tel:' + phoneNumber;
-            } else {
-                // For desktop or when tel: doesn't work
-                if (confirm('Call ' + phoneNumber + '?')) {
-                    // Fallback for mobile apps that block tel: protocol
-                    window.open('tel:' + phoneNumber, '_system');
-                }
-            }
-        }
+        // Call Modal System - Fixed for Mobile Apps
+        let currentPhoneNumber = '';
 
-        // Footer Toggle Setup
-        function setupFooterToggle() {
-            const footerToggle = document.getElementById('footerToggle');
-            const mainFooter = document.getElementById('mainFooter');
-            let footerVisible = false;
+        function setupCallModal() {
+            const callModal = document.getElementById('callModal');
+            const confirmCall = document.getElementById('confirmCall');
+            const cancelCall = document.getElementById('cancelCall');
 
-            if (footerToggle) {
-                footerToggle.addEventListener('click', function() {
-                    if (footerVisible) {
-                        // Hide footer
-                        mainFooter.classList.add('hidden');
-                        footerToggle.innerHTML = '<i class="fas fa-info"></i>';
-                        footerToggle.style.background = 'linear-gradient(135deg, #3b82f6, #1e40af)';
-                    } else {
-                        // Show footer
-                        mainFooter.classList.remove('hidden');
-                        mainFooter.scrollIntoView({ behavior: 'smooth' });
-                        footerToggle.innerHTML = '<i class="fas fa-times"></i>';
-                        footerToggle.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
-                    }
-                    footerVisible = !footerVisible;
-                });
-            }
+            // Confirm call
+            confirmCall.addEventListener('click', function() {
+                initiateCall(currentPhoneNumber);
+                callModal.style.display = 'none';
+            });
 
-            // Auto-hide footer on mobile when scrolling up
-            let lastScrollTop = 0;
-            window.addEventListener('scroll', function() {
-                if (window.innerWidth < 1024) { // Only on mobile
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    
-                    if (scrollTop > lastScrollTop && footerVisible) {
-                        // Scrolling down - hide footer
-                        mainFooter.classList.add('hidden');
-                        if (footerToggle) {
-                            footerToggle.innerHTML = '<i class="fas fa-info"></i>';
-                            footerToggle.style.background = 'linear-gradient(135deg, #3b82f6, #1e40af)';
-                        }
-                        footerVisible = false;
-                    }
-                    lastScrollTop = scrollTop;
+            // Cancel call
+            cancelCall.addEventListener('click', function() {
+                callModal.style.display = 'none';
+            });
+
+            // Close modal when clicking outside
+            callModal.addEventListener('click', function(e) {
+                if (e.target === callModal) {
+                    callModal.style.display = 'none';
                 }
             });
+        }
+
+        function showCallModal(phoneNumber) {
+            currentPhoneNumber = phoneNumber;
+            const callModal = document.getElementById('callModal');
+            callModal.style.display = 'flex';
+        }
+
+        function initiateCall(phoneNumber) {
+            // Method 1: Direct tel protocol (works in browsers)
+            const telLink = 'tel:' + phoneNumber;
+            
+            // Method 2: Create temporary link for mobile apps
+            const isInApp = /WebView|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isInApp) {
+                // For mobile apps - use multiple approaches
+                try {
+                    // Try opening in system browser first
+                    window.open(telLink, '_system');
+                } catch (e) {
+                    try {
+                        // Fallback: Create and click a temporary link
+                        const tempLink = document.createElement('a');
+                        tempLink.href = telLink;
+                        tempLink.style.display = 'none';
+                        document.body.appendChild(tempLink);
+                        tempLink.click();
+                        document.body.removeChild(tempLink);
+                    } catch (e2) {
+                        // Final fallback: Show number for manual dialing
+                        alert('Please call: ' + phoneNumber);
+                    }
+                }
+            } else {
+                // For regular browsers
+                window.location.href = telLink;
+            }
         }
 
         // Scroll to Services
