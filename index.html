@@ -792,8 +792,95 @@
             { title: "Loan Assistance", category: "Finance", href: "book-loan-assistance.html", icon: "hand-holding-usd", price: "Free" }
         ];
 
+        // Complete Mobile App Call Solution
+        let currentPhoneNumber = '8816014071';
+
+        function setupCallModal() {
+            const callModal = document.getElementById('callModal');
+            const confirmCall = document.getElementById('confirmCall');
+            const cancelCall = document.getElementById('cancelCall');
+
+            confirmCall.addEventListener('click', function() {
+                makeUniversalCall(currentPhoneNumber);
+                callModal.style.display = 'none';
+            });
+
+            cancelCall.addEventListener('click', function() {
+                callModal.style.display = 'none';
+            });
+
+            callModal.addEventListener('click', function(e) {
+                if (e.target === callModal) {
+                    callModal.style.display = 'none';
+                }
+            });
+        }
+
+        function showCallModal(phoneNumber) {
+            currentPhoneNumber = phoneNumber;
+            const callModal = document.getElementById('callModal');
+            callModal.style.display = 'flex';
+        }
+
+        function makeUniversalCall(phoneNumber) {
+            console.log('Attempting to call:', phoneNumber);
+            
+            // Method 1: Direct tel (works in browsers)
+            try {
+                window.location.href = 'tel:' + phoneNumber;
+                return true;
+            } catch (e) {
+                console.log('Direct tel failed');
+            }
+            
+            // Method 2: Create hidden link and click
+            setTimeout(() => {
+                try {
+                    const link = document.createElement('a');
+                    link.href = 'tel:' + phoneNumber;
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } catch (e) {
+                    console.log('Hidden link method failed');
+                }
+            }, 50);
+            
+            // Method 3: Show manual dial as fallback
+            setTimeout(() => {
+                showManualDial(phoneNumber);
+            }, 500);
+            
+            return false;
+        }
+
+        function showManualDial(phoneNumber) {
+            const manualDial = document.createElement('div');
+            manualDial.innerHTML = `
+                <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:10001;">
+                    <div style="background:white;padding:30px;border-radius:15px;text-align:center;max-width:90%;width:350px;">
+                        <div style="font-size:40px;margin-bottom:15px;">📞</div>
+                        <h3 style="margin:0 0 10px 0;color:#333;font-size:18px;">Manual Dial Required</h3>
+                        <p style="color:#666;margin-bottom:20px;">Please dial this number:</p>
+                        <div style="background:#3b82f6;color:white;padding:15px;border-radius:10px;font-size:20px;font-weight:bold;margin-bottom:20px;">
+                            ${phoneNumber}
+                        </div>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove();" 
+                                style="background:#ef4444;color:white;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(manualDial);
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            // Setup call modal first
+            setupCallModal();
+            
             // Hide loading screen
             setTimeout(() => {
                 document.getElementById('loadingScreen').style.display = 'none';
@@ -812,8 +899,8 @@
                 }
             });
 
-            // Setup call modal
-            setupCallModal();
+            // Footer toggle functionality
+            setupFooterToggle();
         });
 
         // Load All Services
@@ -844,69 +931,48 @@
             });
         }
 
-        // Call Modal System - Fixed for Mobile Apps
-        let currentPhoneNumber = '';
+        // Footer Toggle Setup
+        function setupFooterToggle() {
+            const footerToggle = document.getElementById('footerToggle');
+            const mainFooter = document.getElementById('mainFooter');
+            let footerVisible = false;
 
-        function setupCallModal() {
-            const callModal = document.getElementById('callModal');
-            const confirmCall = document.getElementById('confirmCall');
-            const cancelCall = document.getElementById('cancelCall');
-
-            // Confirm call
-            confirmCall.addEventListener('click', function() {
-                initiateCall(currentPhoneNumber);
-                callModal.style.display = 'none';
-            });
-
-            // Cancel call
-            cancelCall.addEventListener('click', function() {
-                callModal.style.display = 'none';
-            });
-
-            // Close modal when clicking outside
-            callModal.addEventListener('click', function(e) {
-                if (e.target === callModal) {
-                    callModal.style.display = 'none';
-                }
-            });
-        }
-
-        function showCallModal(phoneNumber) {
-            currentPhoneNumber = phoneNumber;
-            const callModal = document.getElementById('callModal');
-            callModal.style.display = 'flex';
-        }
-
-        function initiateCall(phoneNumber) {
-            // Method 1: Direct tel protocol (works in browsers)
-            const telLink = 'tel:' + phoneNumber;
-            
-            // Method 2: Create temporary link for mobile apps
-            const isInApp = /WebView|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            if (isInApp) {
-                // For mobile apps - use multiple approaches
-                try {
-                    // Try opening in system browser first
-                    window.open(telLink, '_system');
-                } catch (e) {
-                    try {
-                        // Fallback: Create and click a temporary link
-                        const tempLink = document.createElement('a');
-                        tempLink.href = telLink;
-                        tempLink.style.display = 'none';
-                        document.body.appendChild(tempLink);
-                        tempLink.click();
-                        document.body.removeChild(tempLink);
-                    } catch (e2) {
-                        // Final fallback: Show number for manual dialing
-                        alert('Please call: ' + phoneNumber);
+            if (footerToggle) {
+                footerToggle.addEventListener('click', function() {
+                    if (footerVisible) {
+                        // Hide footer
+                        mainFooter.classList.add('hidden');
+                        footerToggle.innerHTML = '<i class="fas fa-info"></i>';
+                        footerToggle.style.background = 'linear-gradient(135deg, #3b82f6, #1e40af)';
+                    } else {
+                        // Show footer
+                        mainFooter.classList.remove('hidden');
+                        mainFooter.scrollIntoView({ behavior: 'smooth' });
+                        footerToggle.innerHTML = '<i class="fas fa-times"></i>';
+                        footerToggle.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
                     }
-                }
-            } else {
-                // For regular browsers
-                window.location.href = telLink;
+                    footerVisible = !footerVisible;
+                });
             }
+
+            // Auto-hide footer on mobile when scrolling up
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                if (window.innerWidth < 1024) { // Only on mobile
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                    if (scrollTop > lastScrollTop && footerVisible) {
+                        // Scrolling down - hide footer
+                        mainFooter.classList.add('hidden');
+                        if (footerToggle) {
+                            footerToggle.innerHTML = '<i class="fas fa-info"></i>';
+                            footerToggle.style.background = 'linear-gradient(135deg, #3b82f6, #1e40af)';
+                        }
+                        footerVisible = false;
+                    }
+                    lastScrollTop = scrollTop;
+                }
+            });
         }
 
         // Scroll to Services
