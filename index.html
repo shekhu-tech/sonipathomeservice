@@ -370,8 +370,8 @@
         }
       }
 
-      /* Call Modal Styles */
-      .call-modal {
+      /* Contact Modal Styles */
+      .contact-modal {
         display: none;
         position: fixed;
         top: 0;
@@ -384,7 +384,7 @@
         justify-content: center;
       }
       
-      .call-modal-content {
+      .contact-modal-content {
         background: white;
         padding: 30px;
         border-radius: 20px;
@@ -394,34 +394,49 @@
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
       }
       
-      .call-modal-buttons {
+      .contact-modal-buttons {
         display: flex;
-        gap: 15px;
-        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
         margin-top: 25px;
       }
       
-      .call-modal-btn {
-        padding: 12px 25px;
+      .contact-modal-btn {
+        padding: 15px;
         border: none;
-        border-radius: 50px;
+        border-radius: 12px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
       }
       
-      .call-modal-call {
+      .contact-modal-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-whatsapp {
+        background: #25D366;
+        color: white;
+      }
+
+      .btn-call {
         background: #10b981;
         color: white;
       }
-      
-      .call-modal-cancel {
-        background: #ef4444;
+
+      .btn-copy {
+        background: #3b82f6;
         color: white;
       }
-      
-      .call-modal-btn:hover {
-        transform: translateY(-2px);
+
+      .btn-cancel {
+        background: #6b7280;
+        color: white;
       }
     </style>
 </head>
@@ -435,16 +450,26 @@
         </div>
     </div>
 
-    <!-- Call Confirmation Modal -->
-    <div id="callModal" class="call-modal">
-        <div class="call-modal-content">
+    <!-- Contact Options Modal -->
+    <div id="contactModal" class="contact-modal">
+        <div class="contact-modal-content">
             <div class="text-6xl mb-4">📞</div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Call Sonipat Home Service</h3>
-            <p class="text-gray-600 mb-4">Do you want to call our customer service?</p>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Contact Sonipat Home Service</h3>
+            <p class="text-gray-600 mb-4">Choose your preferred contact method:</p>
             <div class="text-3xl font-bold text-primary-600 mb-6">8816014071</div>
-            <div class="call-modal-buttons">
-                <button id="cancelCall" class="call-modal-btn call-modal-cancel">Cancel</button>
-                <button id="confirmCall" class="call-modal-btn call-modal-call">Call Now</button>
+            <div class="contact-modal-buttons">
+                <button onclick="openWhatsApp('8816014071')" class="contact-modal-btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Call/Chat
+                </button>
+                <button onclick="tryDirectCall('8816014071')" class="contact-modal-btn btn-call">
+                    <i class="fas fa-phone"></i> Try Direct Call
+                </button>
+                <button onclick="copyToClipboard('8816014071')" class="contact-modal-btn btn-copy">
+                    <i class="fas fa-copy"></i> Copy Number
+                </button>
+                <button onclick="closeContactModal()" class="contact-modal-btn btn-cancel">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
             </div>
         </div>
     </div>
@@ -470,7 +495,7 @@
                     <a href="#services" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">Services</a>
                     <a href="#about" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">About</a>
                     <a href="#contact" class="text-gray-700 hover:text-primary-600 transition-colors font-semibold">Contact</a>
-                    <button onclick="showCallModal('8816014071')" class="bg-primary-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg">
+                    <button onclick="showContactModal()" class="bg-primary-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg">
                         <i class="fas fa-phone mr-2"></i>8816014071
                     </button>
                 </nav>
@@ -511,7 +536,7 @@
                             Explore All Services
                         </span>
                     </button>
-                    <button onclick="showCallModal('8816014071')" class="bg-white/20 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-base md:text-lg">
+                    <button onclick="showContactModal()" class="bg-white/20 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-base md:text-lg">
                         <i class="fas fa-phone-volume mr-2 md:mr-3"></i>Call: 8816014071
                     </button>
                 </div>
@@ -589,11 +614,11 @@
                     Get started with a free consultation today!
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button onclick="showCallModal('8816014071')" class="cta-button text-base md:text-lg px-8 md:px-12 py-3 md:py-4">
+                    <button onclick="showContactModal()" class="cta-button text-base md:text-lg px-8 md:px-12 py-3 md:py-4">
                         <i class="fas fa-phone mr-2 md:mr-3"></i>Call Now: 8816014071
                     </button>
-                    <button class="bg-white/20 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-base md:text-lg">
-                        <i class="fas fa-whatsapp mr-2 md:mr-3"></i>WhatsApp Us
+                    <button onclick="openWhatsApp('8816014071')" class="bg-white/20 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white/30 transition-all backdrop-blur-sm border border-white/30 text-base md:text-lg">
+                        <i class="fab fa-whatsapp mr-2 md:mr-3"></i>WhatsApp Us
                     </button>
                 </div>
             </div>
@@ -627,7 +652,7 @@
                         <a href="#" class="w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
                             <i class="fab fa-instagram text-sm"></i>
                         </a>
-                        <a href="#" class="w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                        <a href="#" onclick="openWhatsApp('8816014071')" class="w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
                             <i class="fab fa-whatsapp text-sm"></i>
                         </a>
                     </div>
@@ -724,7 +749,7 @@
                 </div>
                 <span class="text-xs text-white mt-1 font-semibold">Book Now</span>
             </a>
-            <button onclick="showCallModal('8816014071')" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
+            <button onclick="showContactModal()" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
                 <i class="fas fa-phone text-lg mb-1"></i>
                 <span class="text-xs">Call</span>
             </button>
@@ -792,67 +817,41 @@
             { title: "Loan Assistance", category: "Finance", href: "book-loan-assistance.html", icon: "hand-holding-usd", price: "Free" }
         ];
 
-        // Complete Mobile App Call Solution
-        let currentPhoneNumber = '8816014071';
-
-        function setupCallModal() {
-            const callModal = document.getElementById('callModal');
-            const confirmCall = document.getElementById('confirmCall');
-            const cancelCall = document.getElementById('cancelCall');
-
-            confirmCall.addEventListener('click', function() {
-                makeUniversalCall(currentPhoneNumber);
-                callModal.style.display = 'none';
-            });
-
-            cancelCall.addEventListener('click', function() {
-                callModal.style.display = 'none';
-            });
-
-            callModal.addEventListener('click', function(e) {
-                if (e.target === callModal) {
-                    callModal.style.display = 'none';
-                }
-            });
+        // Contact Modal Functions
+        function showContactModal() {
+            const contactModal = document.getElementById('contactModal');
+            contactModal.style.display = 'flex';
         }
 
-        function showCallModal(phoneNumber) {
-            currentPhoneNumber = phoneNumber;
-            const callModal = document.getElementById('callModal');
-            callModal.style.display = 'flex';
+        function closeContactModal() {
+            const contactModal = document.getElementById('contactModal');
+            contactModal.style.display = 'none';
         }
 
-        function makeUniversalCall(phoneNumber) {
-            console.log('Attempting to call:', phoneNumber);
+        // WhatsApp Integration - This will WORK in Mobile Apps
+        function openWhatsApp(phoneNumber) {
+            // Remove any non-digit characters except +
+            const cleanNumber = phoneNumber.replace(/\D/g, '');
             
-            // Method 1: Direct tel (works in browsers)
+            // Create WhatsApp URL
+            const whatsappUrl = `https://wa.me/91${cleanNumber}`;
+            
+            // Open WhatsApp - this works in mobile apps
+            window.open(whatsappUrl, '_blank');
+            
+            closeContactModal();
+        }
+
+        // Direct Call with Fallback
+        function tryDirectCall(phoneNumber) {
+            // Try direct call first
             try {
                 window.location.href = 'tel:' + phoneNumber;
-                return true;
             } catch (e) {
-                console.log('Direct tel failed');
-            }
-            
-            // Method 2: Create hidden link and click
-            setTimeout(() => {
-                try {
-                    const link = document.createElement('a');
-                    link.href = 'tel:' + phoneNumber;
-                    link.style.display = 'none';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                } catch (e) {
-                    console.log('Hidden link method failed');
-                }
-            }, 50);
-            
-            // Method 3: Show manual dial as fallback
-            setTimeout(() => {
+                // If direct call fails, show manual dial option
                 showManualDial(phoneNumber);
-            }, 500);
-            
-            return false;
+            }
+            closeContactModal();
         }
 
         function showManualDial(phoneNumber) {
@@ -876,11 +875,24 @@
             document.body.appendChild(manualDial);
         }
 
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Phone number copied to clipboard: ' + text);
+            }, function() {
+                // Fallback for older browsers
+                const tempInput = document.createElement('input');
+                tempInput.value = text;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                alert('Phone number copied to clipboard: ' + text);
+            });
+            closeContactModal();
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            // Setup call modal first
-            setupCallModal();
-            
             // Hide loading screen
             setTimeout(() => {
                 document.getElementById('loadingScreen').style.display = 'none';
@@ -901,6 +913,14 @@
 
             // Footer toggle functionality
             setupFooterToggle();
+
+            // Close modal when clicking outside
+            const contactModal = document.getElementById('contactModal');
+            contactModal.addEventListener('click', function(e) {
+                if (e.target === contactModal) {
+                    closeContactModal();
+                }
+            });
         });
 
         // Load All Services
